@@ -81,7 +81,9 @@ The library is pure JavaScript without any dependencies and can easily be de-cou
                                         Instead of the expected type of 'array'. 
                                         'an-error'
 
-### Turn off Checking for Production, via undefined checking function:
+## Turn Off Checking for Production
+
+### Turning off via undefined checking function:
     if (typeof TypeCzech === 'function')
       type_czech = TypeCzech('LOG-ERRORS')
     else
@@ -99,7 +101,7 @@ The library is pure JavaScript without any dependencies and can easily be de-cou
     posNumber(1)              // My positive number 1
     posNumber('not-checked')  // My positive number not-checked
 
-### Turn off Checking for Production, via no library:
+### Turning off via no library:
     TypeCzech = 'not included in this page'
     if (typeof TypeCzech === 'function')
       type_czech = TypeCzech('LOG-ERRORS')
@@ -118,7 +120,7 @@ The library is pure JavaScript without any dependencies and can easily be de-cou
     posNumber(1)              // My positive number 1
     posNumber('not-checked')  // My positive number not-checked
 
-### Turn off Checking for Production, via no choice TypeCzech():
+### Turning off via no choice TypeCzech():
     if (typeof TypeCzech === 'function')
       type_czech = TypeCzech()
     else
@@ -135,6 +137,38 @@ The library is pure JavaScript without any dependencies and can easily be de-cou
     }
     posNumber(1)              // My positive number 1
     posNumber('not-checked')  // My positive number not-checked
+
+
+## All Checks Together
+    if (typeof TypeCzech === 'function')
+      type_czech = TypeCzech('LOG-ERRORS')
+    else
+      type_czech = { precedeCheck : do_nothing => do_nothing }
+    MUST_BE_ELVIS = (typeof MUST_BE_ELVIS === 'undefined') ? undefined : MUST_BE_ELVIS
+
+    must_be_elvis = type_czech.precedeCheck(must_be_elvis, MUST_BE_ELVIS) 
+    function must_be_elvis(elvis_object){
+      return elvis_object.the_name
+    }
+    function MUST_BE_ELVIS(an_object){
+       type_czech.setReturnType('must_be_elvis', 'string')
+       not_object_err = type_czech.typeVerify(arguments, {the_name:'string'})
+       if (not_object_err) return not_object_err
+       not_empty_err = type_czech.emptyVerify(arguments, {the_name:'EMPTY-ER'})
+       if (not_empty_err) return not_empty_err
+       if (an_object.the_name[0]!=='E') return `Not-Start-E-Error`
+    }
+
+    must_be_elvis({the_name:'Elvis'})   
+    must_be_elvis({the_name:''})        // EMPTY-ER
+    must_be_elvis({the_name:'Presley'}) // Not-Start-E-Error
+    must_be_elvis({the_name:17})        // 17-Not-String-Err & Return-Not-String-Err
+
+
+     
+
+
+
 
 ## Created by
 
