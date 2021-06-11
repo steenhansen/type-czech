@@ -307,7 +307,7 @@ To verify parameter types use the type_czech.typeVerify(arguments, expected_type
 
 
 
-## Live Fiddles
+## Self-Contained Live Fiddles
 [01-funcs-check.html](https://jsfiddle.net/steen_hansen/9u54vsd2/2/) - 01 Validate Function Parameters by Value
 
 [02-funcs-off.html](https://jsfiddle.net/steen_hansen/6zy89om1/4/) - 02 Turning TypeCzech Parameter checking Off
@@ -353,6 +353,55 @@ To verify parameter types use the type_czech.typeVerify(arguments, expected_type
 [22-has-interface.html](https://jsfiddle.net/steen_hansen/hjxekf63/) - 22 Check Interface of a Parameter
 
 [23-on-off.html](https://jsfiddle.net/steen_hansen/ntrsobk3/) - 23 Count, Turn-On, and Turn-Off TypeCzech Parameter Validation
+
+
+
+## Self-Contained Samples
+[01-funcs-check.html](samples/01-funcs-check.html) - 01 Validate Function Parameters by Value
+
+[02-funcs-off.html](samples/) - 02 Turning TypeCzech Parameter checking Off
+
+[03-return-check.html](samples/03-return-check.html) - 03 Validate Function Return Values by Type
+
+[04-closure-check.html](samples/04-closure-check.html) - 04 Check Parameters in a Closure and its Functions
+
+[05-closure-off.html](samples/05-closure-off.html) - 05 Not Checking Functions In a Closure
+
+[06-class-check.html](samples/06-class-check.html) - 06 Check Parameters in a Class and its Methods
+
+[07-class-off.html](samples/07-class-off.html) - 07 Not Checking Methods In a Class
+
+[08-type-shape.html](samples/08-type-shape.html) - 08 Check Parameters by Type Shape
+
+[09-typed-arrays.html](samples/09-typed-arrays.html) - 09 Check Array Parameters with One Type
+
+[10-empty-shape.html](samples/10-empty-shape.html) - 10 Check for Empty & Valueless Parameters
+
+[11-type-extra.html](samples/11-type-extra.html) - 11 Type Check with Extra Optional Parameters 
+
+[12-empty-extra.html](samples/12-empty-extra.html) - 12 Empty & Valueless Check with Extra Optional Parameters 
+
+[13-null-undef.html](samples/13-null-undef.html) - 13 Null and Undefined Parameter Values
+
+[14-count-checks.html](samples/14-count-checks.html) - 14 Count Parameter Checking Function Calls
+
+[15-flash-checks.html](samples/15-flash-checks.html) - 15 Flash on Parameter Checks
+
+[16-throw-log.html](samples/16-throw-log.html) - 16 Throw, Log, or Ignore TypeCzech Parameter Checks
+
+[17-short-types.html](samples/17-short-types.html) - 17 TypeCzech Short Types
+
+[18-short-emptys.html](samples/18-short-emptys.html) - 18 TypeCzech Short Empty & Valueless Declarations
+
+[19-one-of-type.html](samples/19-one-of-type.html) - 19 Overloaded Function Parameter Type Checks
+
+[20-one-of-empty.html](samples/20-one-of-empty.html) - 20 Overloaded Function Checks with Empty & Valueless Parameters
+
+[21-one-of-extras.html](samples/21-one-of-extras.html) - 21 Overloaded Parameter Checks with Extra Optional Arguments
+
+[22-has-interface.html](samples/22-has-interface.html) - 22 Check Interface of a Parameter
+
+[23-on-off.html](samples/23-on-off.html) - 23 Count, Turn-On, and Turn-Off TypeCzech Parameter Validation
 
 
 
