@@ -161,7 +161,7 @@ The library is pure JavaScript without any dependencies and can easily be de-cou
 
        not_empty_err = type_czech.emptyVerify(arguments, {the_name:'EMPTY-ER'})
        if (not_empty_err) return not_empty_err
-       
+
        if (an_object.the_name[0]!=='E') return `Not-Start-E-Error`
     }
 
@@ -170,9 +170,52 @@ The library is pure JavaScript without any dependencies and can easily be de-cou
     must_be_elvis({the_name:'Presley'}) // Not-Start-E-Error
     must_be_elvis({the_name:17})        // 17-Not-String-Err & Return-Not-String-Err
 
+## Live Fiddles
+[01-funcs-check.html](https://jsfiddle.net/steen_hansen/9u54vsd2/2/)
 
-     
+[02-funcs-off.html](https://jsfiddle.net/steen_hansen/6zy89om1/4/)
 
+[03-return-check.html](https://jsfiddle.net/steen_hansen/m1tce27f/)
+
+[04-closure-check.html](https://jsfiddle.net/steen_hansen/nve4d3ah/)
+
+[05-closure-off.html](https://jsfiddle.net/steen_hansen/wrkvscqg/)
+
+[06-class-check.html](https://jsfiddle.net/steen_hansen/jxrdom62/)
+
+[07-class-off.html](https://jsfiddle.net/steen_hansen/abh0jkL1/)
+
+[08-type-shape.html](https://jsfiddle.net/steen_hansen/3pv5qwx8/)
+
+[09-typed-arrays.html](https://jsfiddle.net/steen_hansen/hrvucjzm/1/)
+
+[10-empty-shape.html](https://jsfiddle.net/steen_hansen/r8L3mp40/)
+
+[11-type-extra.html](https://jsfiddle.net/steen_hansen/Lhwov8y9/)
+
+[12-empty-extra.html](https://jsfiddle.net/steen_hansen/qp29Ljd1/)
+
+[13-null-undef.html](https://jsfiddle.net/steen_hansen/og2sk4b9/)
+
+[14-count-checks.html](https://jsfiddle.net/steen_hansen/rh79bLwa/)
+
+[15-flash-checks.html](https://jsfiddle.net/steen_hansen/1ref2ot7/)
+
+[16-throw-log.html](https://jsfiddle.net/steen_hansen/zkhfLw0u/)
+
+[17-short-types.html](https://jsfiddle.net/steen_hansen/bsw3yp5c/)
+
+[18-short-emptys.html](https://jsfiddle.net/steen_hansen/063wLqfs/)
+
+[19-one-of-type.html](https://jsfiddle.net/steen_hansen/x8h6dvj5/)
+
+[20-one-of-empty.html](https://jsfiddle.net/steen_hansen/b7cfsz9y/)
+
+[21-one-of-extras.html](https://jsfiddle.net/steen_hansen/Lwn504es/)
+
+[22-has-interface.html](https://jsfiddle.net/steen_hansen/hjxekf63/)
+
+[23-on-off.html](https://jsfiddle.net/steen_hansen/ntrsobk3/)
 
 
 
