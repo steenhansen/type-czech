@@ -144,22 +144,28 @@ The library is pure JavaScript without any dependencies and can easily be de-cou
       type_czech = TypeCzech('LOG-ERRORS')
     else
       type_czech = { precedeCheck : do_nothing => do_nothing }
+
     MUST_BE_ELVIS = (typeof MUST_BE_ELVIS === 'undefined') ? undefined : MUST_BE_ELVIS
 
     must_be_elvis = type_czech.precedeCheck(must_be_elvis, MUST_BE_ELVIS) 
+
     function must_be_elvis(elvis_object){
-      return elvis_object.the_name
+      return elvis_object.the_name            // setReturnType() ==> Must return a 'string'
     }
+
     function MUST_BE_ELVIS(an_object){
        type_czech.setReturnType('must_be_elvis', 'string')
-       not_object_err = type_czech.typeVerify(arguments, {the_name:'string'})
-       if (not_object_err) return not_object_err
+
+       not_the_name_str = type_czech.typeVerify(arguments, {the_name:'string'})
+       if (not_the_name_str) return not_the_name_str
+
        not_empty_err = type_czech.emptyVerify(arguments, {the_name:'EMPTY-ER'})
        if (not_empty_err) return not_empty_err
+       
        if (an_object.the_name[0]!=='E') return `Not-Start-E-Error`
     }
 
-    must_be_elvis({the_name:'Elvis'})   
+    must_be_elvis({the_name:'Elvis'})   // no error
     must_be_elvis({the_name:''})        // EMPTY-ER
     must_be_elvis({the_name:'Presley'}) // Not-Start-E-Error
     must_be_elvis({the_name:17})        // 17-Not-String-Err & Return-Not-String-Err
