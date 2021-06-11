@@ -17,6 +17,7 @@ regExp sentence A-Z ... .
   with TypeCzech.precedeCheck(your_function, testing_function)
   <ul>
     <li>Parameter Checks : checking parameters by value</li>
+    <li>Return Checks : checking function return values by type</li>
     <li>Type Shapes : checking parameters by type shape</li>
     <li>Typed Array : checking arrays with a single type</li>
     <li>Empty Shapes : checking parameters by emptiness &amp; valuelessness</li>
@@ -24,95 +25,163 @@ regExp sentence A-Z ... .
   </ul>
 
 
-  
-<pre>
-  type_czech = TypeCzech('THROW-EXCEPTIONS')
-  
-  function CHECKING_ROUTINE(a_sentence){ 
-    if (!typeof a_sentence === 'string') return 'not a string'
-    A_SENTENCE = new RegExp(/^[A-Z].*\.$/)
-    is_sentence = a_sentence.match(A_SENTENCE)
-    if (is_sentence){
-      return ''
-    }
-    return `a bad sentence found : ${a_sentence}`
-  }
-  
-  your_routine = type_czech.precedeCheck(your_routine, CHECKING_ROUTINE)
-  
-  function your_routine(a_sentence){
-    console.log('Good upper case sentence: ', a_sentence.toUpperCase())
-  }
-    
-  your_routine('Good sentence, starts with uppercase and ends with period.')
-  your_routine('bad sentence does not start with uppercase; no period')
- 
-  </pre>
-
-  Maybe we need a really simple example also
-
-  run this in the console like the other pages ...... !!!
-
-also want to have off ability
-  <pre>
-    type_czech = TypeCzech('LOG-ERRORS')
-    
-    function CHECKING_ROUTINE(/* arguments */){ 
-      increasing_positives = [...arguments]
-      largest = -1;
-      for (const an_integer of increasing_positives) {
-        if (an_integer &lt; largest) 
-          return 'This array is not sorted : ' + increasing_positives.join()
-        largest = an_integer
-      }
-      return ''
-    }
-    
-    your_routine = type_czech.precedeCheck(your_routine, CHECKING_ROUTINE)
-    
-    function your_routine(/* arguments */){
-      increasing_array = [...arguments]
-      array_str = increasing_array.join();
-      console.log('increasing array: ', array_str)
-    }
-      
-    your_routine(10,13,15,22,33,44,1000)
-    your_routine(10,11,12,13,5,4)
-    your_routine(12,23,34,45,56,67)
-   
-    </pre>
 
 
 
 
 <ul>
-   <li>  <a href="01-funcs-check.html">   01 : Validate Function Parameters by Value with TypeCzech</a></li>
-   <li>  <a href="02-funcs-off.html">     02 : Turning TypeCzech Parameter checking Off</a></li>
-   <li>  <a href="03-return-check.html">  03 : Validate Function Return Values by Type</a></li>
-   <li>  <a href="04-closure-check.html"> 04 : Check Parameters in a Closure and its Functions</a></li>
-   <li>  <a href="05-closure-off.html">   05 : Not Checking Functions In a Closure</a></li>
-   <li>  <a href="06-class-check.html">   06 : Check Parameters in a Class and its Methods</a></li>
-   <li>  <a href="07-class-off.html">     07 : Not Checking Methods In a Class</a></li>
-   <li>  <a href="08-type-shape.html">    08 : Check Parameters by Type Shape</a></li>
-   <li>  <a href="09-typed-arrays.html">  09 : Check Array Parameters with One Type</a></li>
-   <li>  <a href="10-empty-shape.html">   10 : Check for Empty &amp; Valueless Parameters</a></li>
-   <li>  <a href="11-type-extra.html">    11 : Type Check with Extra Optional Parameters</a></li>
-   <li>  <a href="12-empty-extra.html">   12 : Empty &amp; Valueless Check with Extra Optional Parameters</a></li>
-   <li>  <a href="13-null-undef.html">    13 : Null and Undefined Parameter Values</a></li>
-   <li>  <a href="14-count-checks.html">  14 : Count Parameter Checking Function Calls</a></li>
-   <li>  <a href="15-flash-checks.html">  15 : Flash on Parameter Checks</a></li>
-   <li>  <a href="16-throw-log.html">     16 : Throw, Log, or Ignore TypeCzech Parameter Checks</a></li>
-   <li>  <a href="17-short-types.html">   17 : TypeCzech Short Types</a></li>
-   <li>  <a href="18-short-emptys.html">  18 : TypeCzech Short Empty &amp; Valueless Declarations</a></li>
-   <li>  <a href="19-one-of-type.html">   19 : Overloaded Function Parameter Type Checks</a></li>
-   <li>  <a href="20-one-of-empty.html">  20 : Overloaded Function Checks with Empty &amp; Valueless Parameters</a></li>
-   <li>  <a href="21-one-of-extras.html"> 21 : NOT DONE YET Overloaded Parameter Checks with Extra Optional Arguments</a></li>
-   <li>  <a href="22-has-interface.html"> 22 : Check Interface of a Parameter</a></li>
-   <li>  <a href="23-on-off.html">        23 : Count, Turn-On, and Turn-Off TypeCzech Parameter Validation</a></li>
+   <li>  <a href="01-funcs-check.html">   01</a> : 
+         Validate Function Parameters by Value with TypeCzech -  
+         <a href="https://jsfiddle.net/steen_hansen/9u54vsd2/2/">Live Fiddle</a>  </li>
+
+   <li>  <a href="02-funcs-off.html">     02</a> : 
+         Turning TypeCzech Parameter checking Off -  
+         <a href="https://jsfiddle.net/steen_hansen/6zy89om1/4/">Live Fiddle</a>  </li>
+
+   <li>  <a href="03-return-check.html">  03</a> : 
+         Validate Function Return Values by Type -  
+         <a href="https://jsfiddle.net/steen_hansen/m1tce27f/">Live Fiddle</a>  </li>
+
+   <li>  <a href="04-closure-check.html"> 04</a> : 
+         Check Parameters in a Closure and its Functions -  
+         <a href="https://jsfiddle.net/steen_hansen/nve4d3ah/">Live Fiddle</a>  </li>
+
+   <li>  <a href="05-closure-off.html">   05</a> : 
+         Not Checking Functions In a Closure -  
+         <a href="https://jsfiddle.net/steen_hansen/wrkvscqg/">Live Fiddle</a>  </li>
+
+   <li>  <a href="06-class-check.html">   06</a> : 
+         Check Parameters in a Class and its Methods -  
+         <a href="https://jsfiddle.net/steen_hansen/jxrdom62/">Live Fiddle</a>  </li>
+
+   <li>  <a href="07-class-off.html">     07</a> : 
+         Not Checking Methods In a Class -  
+         <a href="https://jsfiddle.net/steen_hansen/abh0jkL1/">Live Fiddle</a>  </li>
+
+   <li>  <a href="08-type-shape.html">    08</a> : 
+         Check Parameters by Type Shape -  
+         <a href="https://jsfiddle.net/steen_hansen/3pv5qwx8/">Live Fiddle</a>  </li>
+
+   <li>  <a href="09-typed-arrays.html">  09</a> : 
+         Check Array Parameters with One Type -  
+         <a href="https://jsfiddle.net/steen_hansen/hrvucjzm/1/">Live Fiddle</a>  </li>
+
+   <li>  <a href="10-empty-shape.html">   10</a> : 
+         Check for Empty &amp; Valueless Parameters -  
+         <a href="https://jsfiddle.net/steen_hansen/r8L3mp40/">Live Fiddle</a>  </li>
+
+   <li>  <a href="11-type-extra.html">    11</a> : 
+         Type Check with Extra Optional Parameters -  
+         <a href="https://jsfiddle.net/steen_hansen/Lhwov8y9/">Live Fiddle</a>  </li>
+
+   <li>  <a href="12-empty-extra.html">   12</a> : 
+         Empty &amp; Valueless Check with Extra Optional Parameters -  
+         <a href="https://jsfiddle.net/steen_hansen/qp29Ljd1/">Live Fiddle</a>  </li>
+
+   <li>  <a href="13-null-undef.html">    13</a> : 
+         Null and Undefined Parameter Values -  
+         <a href="https://jsfiddle.net/steen_hansen/og2sk4b9/">Live Fiddle</a>  </li>
+
+   <li>  <a href="14-count-checks.html">  14</a> : 
+         Count Parameter Checking Function Calls -  
+         <a href="https://jsfiddle.net/steen_hansen/rh79bLwa/">Live Fiddle</a>  </li>
+
+   <li>  <a href="15-flash-checks.html">  15</a> : 
+         Flash on Parameter Checks -  
+         <a href="https://jsfiddle.net/steen_hansen/1ref2ot7/">Live Fiddle</a>  </li>
+
+   <li>  <a href="16-throw-log.html">     16</a> : 
+         Throw, Log, or Ignore TypeCzech Parameter Checks -  
+         <a href="https://jsfiddle.net/steen_hansen/zkhfLw0u/">Live Fiddle</a>  </li>
+
+   <li>  <a href="17-short-types.html">   17</a> : 
+         TypeCzech Short Types -  
+         <a href="https://jsfiddle.net/steen_hansen/bsw3yp5c/">Live Fiddle</a>  </li>
+
+   <li>  <a href="18-short-emptys.html">  18</a> : 
+         TypeCzech Short Empty &amp; Valueless Declarations -  
+         <a href="https://jsfiddle.net/steen_hansen/063wLqfs/">Live Fiddle</a>  </li>
+
+   <li>  <a href="19-one-of-type.html">   19</a> : 
+         Overloaded Function Parameter Type Checks -  
+         <a href="https://jsfiddle.net/steen_hansen/x8h6dvj5/">Live Fiddle</a>  </li>
+
+   <li>  <a href="20-one-of-empty.html">  20</a> : 
+         Overloaded Function Checks with Empty &amp; Valueless Parameters -  
+         <a href="https://jsfiddle.net/steen_hansen/b7cfsz9y/">Live Fiddle</a>  </li>
+
+   <li>  <a href="21-one-of-extras.html"> 21</a> : 
+         Overloaded Parameter Checks with Extra Optional Arguments -  
+         <a href="https://jsfiddle.net/steen_hansen/Lwn504es/">Live Fiddle</a>  </li>
+
+   <li>  <a href="22-has-interface.html"> 22</a> : 
+         Check Interface of a Parameter -  
+         <a href="https://jsfiddle.net/steen_hansen/hjxekf63/">Live Fiddle</a>  </li>
+
+   <li>  <a href="23-on-off.html">        23</a> : 
+         Count, Turn-On, and Turn-Off TypeCzech Parameter Validation -  
+         <a href="https://jsfiddle.net/steen_hansen/ntrsobk3/">Live Fiddle</a>  </li>
 
   </ul>
 
 
+  
+  <pre>
+    type_czech = TypeCzech('THROW-EXCEPTIONS')
+    
+    function CHECKING_ROUTINE(a_sentence){ 
+      if (!typeof a_sentence === 'string') return 'not a string'
+      A_SENTENCE = new RegExp(/^[A-Z].*\.$/)
+      is_sentence = a_sentence.match(A_SENTENCE)
+      if (is_sentence){
+        return ''
+      }
+      return `a bad sentence found : ${a_sentence}`
+    }
+    
+    your_routine = type_czech.precedeCheck(your_routine, CHECKING_ROUTINE)
+    
+    function your_routine(a_sentence){
+      console.log('Good upper case sentence: ', a_sentence.toUpperCase())
+    }
+      
+    your_routine('Good sentence, starts with uppercase and ends with period.')
+    your_routine('bad sentence does not start with uppercase; no period')
+   
+    </pre>
+  
+    Maybe we need a really simple example also
+  
+    run this in the console like the other pages ...... !!!
+  
+  also want to have off ability
+    <pre>
+      type_czech = TypeCzech('LOG-ERRORS')
+      
+      function CHECKING_ROUTINE(/* arguments */){ 
+        increasing_positives = [...arguments]
+        largest = -1;
+        for (const an_integer of increasing_positives) {
+          if (an_integer &lt; largest) 
+            return 'This array is not sorted : ' + increasing_positives.join()
+          largest = an_integer
+        }
+        return ''
+      }
+      
+      your_routine = type_czech.precedeCheck(your_routine, CHECKING_ROUTINE)
+      
+      function your_routine(/* arguments */){
+        increasing_array = [...arguments]
+        array_str = increasing_array.join();
+        console.log('increasing array: ', array_str)
+      }
+        
+      your_routine(10,13,15,22,33,44,1000)
+      your_routine(10,11,12,13,5,4)
+      your_routine(12,23,34,45,56,67)
+     
+      </pre>
 
 
 <link rel="stylesheet" href="../arg-check.css">
