@@ -12,24 +12,25 @@ The TypeCzech library can check function parameters by value, type, as well as w
 Function return signatures can also be validated against a type shape.
 The library is pure JavaScript without any dependencies and can easily be de-coupled for production.
 
-To load the TypeCzech library and console log checking errors:
+To load the TypeCzech library and console log checking errors
 
     type_czech = TypeCzech('LOG-ERRORS')
 
-To load the TypeCzech library and throw exceptions on checking errors:
+To load the TypeCzech library and throw exceptions on checking errors
 
     type_czech = TypeCzech('THROW-EXCEPTIONS')
 
-To load the TypeCzech library but do nothing in production code:
+To load the TypeCzech library but do nothing in production code
 
     type_czech = TypeCzech()
 
-The function that links a testing_function() to your_function() is TypeCzech.precedeCheck():
+The function that links a testing_function() to your_function() is TypeCzech.precedeCheck()
 
     your_function = TypeCzech.precedeCheck(your_function, testing_function)
 
-Return '' in the testing_function() to indicate no errors found.
-Any text returned will be considered an error, and acted upon, with a console log or an exception
+Return '', a blank string, in the testing_function() to indicate no errors found.
+Any text returned will be considered an error, and acted upon, with a console log or an exception.
+Parameters are not altered by checks.
 
     function testing_function(/* arguments */){
       if (!error_found) {
@@ -38,7 +39,7 @@ Any text returned will be considered an error, and acted upon, with a console lo
       return 'the-error-message'
     }
 
-To verify types use the type_czech.typeVerify(arguments, expected_type) being careful in the use of arrays:
+To verify parameter types use the type_czech.typeVerify(arguments, expected_type) being careful in the use of arrays:
 
     function testing_function(one_string){
       return type_czech.typeVerify(arguments, 'string')
@@ -65,14 +66,18 @@ To verify types use the type_czech.typeVerify(arguments, expected_type) being ca
 ### Check by value for a positive number:
 
     type_czech = TypeCzech('LOG-ERRORS')
+
     posNumber = type_czech.precedeCheck(posNumber, CHECK_POSITIVE) 
+
     function posNumber(a_number){
       console.log('My positive number', a_number)
     }
+
     function CHECK_POSITIVE(a_number){
         if (a_number<1) return `Error, ${a_number} is not positive`
         return ''
     }
+
     posNumber(1)   // My positive number 1
     posNumber(-4)  // Error, -4 is not positive
                    // My positive number -4
@@ -129,13 +134,17 @@ To verify types use the type_czech.typeVerify(arguments, expected_type) being ca
 ### Check by type for a string:
 
     type_czech = TypeCzech('THROW-EXCEPTIONS')
+
     aString = type_czech.precedeCheck(aString, STRING_CHECK) 
+
     function aString(a_string){
       console.log('My string', a_string)
     }
+
     function STRING_CHECK(){
        return type_czech.typeVerify(arguments, 'string')
     }
+
     aString('a-string')  // My string a-string
     aString(99)          // Uncaught TypeCzech - aString() - The variable '99',
                             which is a 'number', is not a 'string'
@@ -143,47 +152,55 @@ To verify types use the type_czech.typeVerify(arguments, expected_type) being ca
                              ACTUAL VALUE 99
                             EXPECTED TYPE 'string'
 
-### Check parameter is not empty:
+### Check parameter has a value:
     type_czech = TypeCzech('LOG-ERRORS')
-    notEmpty = type_czech.precedeCheck(notEmpty, NOT_EMPTY) 
-    function notEmpty(a_parameter){
+
+    hasValue = type_czech.precedeCheck(hasValue, HAS_VALUE) 
+
+    function hasValue(a_parameter){
       console.log('empty check', a_parameter)
     }
-    function NOT_EMPTY(){
+
+    function HAS_VALUE(){
        return type_czech.emptyVerify(arguments, 'EMPTY-ER')
     }
-    notEmpty([1]) 
-    notEmpty([])          // Error
-    notEmpty('a-string')
-    notEmpty('')          // Error
-    notEmpty({a:1})
-    notEmpty({})          // Error
+
+    hasValue([1]) 
+    hasValue([])          // Error
+    hasValue('a-string')
+    hasValue('')          // Error
+    hasValue({a:1})
+    hasValue({})          // Error
 
 ### Check function returns only an array of array of number:
     type_czech = TypeCzech('LOG-ERRORS')
-    onlyArrays = type_czech.precedeCheck(onlyArrays, RETURN_ARRAY) 
-    function onlyArrays(an_array){
+
+    onlyArrayArrays = type_czech.precedeCheck(onlyArrayArrays, ONLY_ARRAY_ARRAYS) 
+
+    function onlyArrayArrays(an_array){
       return an_array
     }
-    function RETURN_ARRAY(){
-       type_czech.setReturnType('onlyArrays', [['number']])
+
+    function ONLY_ARRAY_ARRAYS(){
+       type_czech.setReturnType('onlyArrayArrays', [['number']])
     }
-    console.log(onlyArrays([ [1], [2,2], [3,3,4] ]))      
-    console.log(onlyArrays('an-error'))  
-                     // The function 'onlyArrays' is improperly returning result type of 'an-error', 
+
+    console.log(onlyArrayArrays([ [1], [2,2], [3,3,4] ]))      
+    console.log(onlyArrayArrays('an-error'))  
+                     // The function 'onlyArrayArrays' is improperly returning result type of 'an-error', 
                                         Instead of the expected type of [['number']]. 
                                         'an-error'
 
 ### Checking Object for Interface
     type_czech = TypeCzech('THROW-EXCEPTIONS')
 
-    function YOUR_ROUTINE(an_object){ 
+    function INTERFACE_LOOK(an_object){ 
       matching_interface = {methodCall:'function', my_int:'number'}
       interface_error = type_czech.hasInterface(an_object, matching_interface)
       return interface_error
     }
 
-    your_routine = type_czech.precedeCheck(your_routine, YOUR_ROUTINE)
+    your_routine = type_czech.precedeCheck(your_routine, INTERFACE_LOOK)
 
     function loggingMethod(some_string){ 
       console.log(some_string)
@@ -197,7 +214,7 @@ To verify types use the type_czech.typeVerify(arguments, expected_type) being ca
     your_routine(pass_object)
 
     fail_object = {methodCall:loggingMethod,            my_string:'not-in-interface'}
-    your_routine(fail_object)     // my_int missing
+    your_routine(fail_object)           // my_int missing
 
 ## Turn Off Checking for Production
 
@@ -221,6 +238,7 @@ To verify types use the type_czech.typeVerify(arguments, expected_type) being ca
 
 ### Turning off via no library:
     TypeCzech = 'not included in this page'
+
     if (typeof TypeCzech === 'function')
       type_czech = TypeCzech('LOG-ERRORS')
     else
@@ -256,7 +274,7 @@ To verify types use the type_czech.typeVerify(arguments, expected_type) being ca
     posNumber(1)              // My positive number 1
     posNumber('not-checked')  // My positive number not-checked
 
-## All Checks Together
+## A Flurry of Different Checks in One Function
     if (typeof TypeCzech === 'function')
       type_czech = TypeCzech('LOG-ERRORS')
     else
