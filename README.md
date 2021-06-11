@@ -11,9 +11,17 @@ This repository is a JavaScript copy of [clojure.spec](https://clojure.org/about
 The TypeCzech library can check function parameters by value, type, as well as with emptiness and valuelessness. 
 Function return signatures can also be validated against a type shape.
 The library is pure JavaScript without any dependencies and can easily be de-coupled for production.
- 
 
- with TypeCzech.precedeCheck(your_function, testing_function)
+The function that links a testing_function() to your_function() is TypeCzech.precedeCheck().
+
+
+    your_function = TypeCzech.precedeCheck(your_function, testing_function)
+   
+
+
+## Sample Fiddles
+[01-funcs-check.html](https://jsfiddle.net/steen_hansen/9u54vsd2/2/)
+
   <ul>
     <li>Parameter Checks : checking parameters by value</li>
  [Return Checks : checking function return values by type 03-return-check.html](https://jsfiddle.net/steen_hansen/m1tce27f/)
@@ -255,51 +263,51 @@ The library is pure JavaScript without any dependencies and can easily be de-cou
 
 
 ## Live Fiddles
-[01-funcs-check.html](https://jsfiddle.net/steen_hansen/9u54vsd2/2/)
+[01-funcs-check.html](https://jsfiddle.net/steen_hansen/9u54vsd2/2/) - 01 Validate Function Parameters by Value
 
-[02-funcs-off.html](https://jsfiddle.net/steen_hansen/6zy89om1/4/)
+[02-funcs-off.html](https://jsfiddle.net/steen_hansen/6zy89om1/4/) - 02 Turning TypeCzech Parameter checking Off
 
-[03-return-check.html](https://jsfiddle.net/steen_hansen/m1tce27f/)
+[03-return-check.html](https://jsfiddle.net/steen_hansen/m1tce27f/) - 03 Validate Function Return Values by Type
 
-[04-closure-check.html](https://jsfiddle.net/steen_hansen/nve4d3ah/)
+[04-closure-check.html](https://jsfiddle.net/steen_hansen/nve4d3ah/) - 04 Check Parameters in a Closure and its Functions
 
-[05-closure-off.html](https://jsfiddle.net/steen_hansen/wrkvscqg/)
+[05-closure-off.html](https://jsfiddle.net/steen_hansen/wrkvscqg/) - 05 Not Checking Functions In a Closure
 
-[06-class-check.html](https://jsfiddle.net/steen_hansen/jxrdom62/)
+[06-class-check.html](https://jsfiddle.net/steen_hansen/jxrdom62/) - 06 Check Parameters in a Class and its Methods
 
-[07-class-off.html](https://jsfiddle.net/steen_hansen/abh0jkL1/)
+[07-class-off.html](https://jsfiddle.net/steen_hansen/abh0jkL1/) - 07 Not Checking Methods In a Class
 
-[08-type-shape.html](https://jsfiddle.net/steen_hansen/3pv5qwx8/)
+[08-type-shape.html](https://jsfiddle.net/steen_hansen/3pv5qwx8/) - 08 Check Parameters by Type Shape
 
-[09-typed-arrays.html](https://jsfiddle.net/steen_hansen/hrvucjzm/1/)
+[09-typed-arrays.html](https://jsfiddle.net/steen_hansen/hrvucjzm/1/) - 09 Check Array Parameters with One Type
 
-[10-empty-shape.html](https://jsfiddle.net/steen_hansen/r8L3mp40/)
+[10-empty-shape.html](https://jsfiddle.net/steen_hansen/r8L3mp40/) - 10 Check for Empty & Valueless Parameters
 
-[11-type-extra.html](https://jsfiddle.net/steen_hansen/Lhwov8y9/)
+[11-type-extra.html](https://jsfiddle.net/steen_hansen/Lhwov8y9/) - 11 Type Check with Extra Optional Parameters 
 
-[12-empty-extra.html](https://jsfiddle.net/steen_hansen/qp29Ljd1/)
+[12-empty-extra.html](https://jsfiddle.net/steen_hansen/qp29Ljd1/) - 12 Empty & Valueless Check with Extra Optional Parameters 
 
-[13-null-undef.html](https://jsfiddle.net/steen_hansen/og2sk4b9/)
+[13-null-undef.html](https://jsfiddle.net/steen_hansen/og2sk4b9/) - 13 Null and Undefined Parameter Values
 
-[14-count-checks.html](https://jsfiddle.net/steen_hansen/rh79bLwa/)
+[14-count-checks.html](https://jsfiddle.net/steen_hansen/rh79bLwa/) - 14 Count Parameter Checking Function Calls
 
-[15-flash-checks.html](https://jsfiddle.net/steen_hansen/1ref2ot7/)
+[15-flash-checks.html](https://jsfiddle.net/steen_hansen/1ref2ot7/) - 15 Flash on Parameter Checks
 
-[16-throw-log.html](https://jsfiddle.net/steen_hansen/zkhfLw0u/)
+[16-throw-log.html](https://jsfiddle.net/steen_hansen/zkhfLw0u/) - 16 Throw, Log, or Ignore TypeCzech Parameter Checks
 
-[17-short-types.html](https://jsfiddle.net/steen_hansen/bsw3yp5c/)
+[17-short-types.html](https://jsfiddle.net/steen_hansen/bsw3yp5c/) - 17 TypeCzech Short Types
 
-[18-short-emptys.html](https://jsfiddle.net/steen_hansen/063wLqfs/)
+[18-short-emptys.html](https://jsfiddle.net/steen_hansen/063wLqfs/) - 18 TypeCzech Short Empty & Valueless Declarations
 
-[19-one-of-type.html](https://jsfiddle.net/steen_hansen/x8h6dvj5/)
+[19-one-of-type.html](https://jsfiddle.net/steen_hansen/x8h6dvj5/) - 19 Overloaded Function Parameter Type Checks
 
-[20-one-of-empty.html](https://jsfiddle.net/steen_hansen/b7cfsz9y/)
+[20-one-of-empty.html](https://jsfiddle.net/steen_hansen/b7cfsz9y/) - 20 Overloaded Function Checks with Empty & Valueless Parameters
 
-[21-one-of-extras.html](https://jsfiddle.net/steen_hansen/Lwn504es/)
+[21-one-of-extras.html](https://jsfiddle.net/steen_hansen/Lwn504es/) - 21 Overloaded Parameter Checks with Extra Optional Arguments
 
-[22-has-interface.html](https://jsfiddle.net/steen_hansen/hjxekf63/)
+[22-has-interface.html](https://jsfiddle.net/steen_hansen/hjxekf63/) - 22 Check Interface of a Parameter
 
-[23-on-off.html](https://jsfiddle.net/steen_hansen/ntrsobk3/)
+[23-on-off.html](https://jsfiddle.net/steen_hansen/ntrsobk3/) - 23 Count, Turn-On, and Turn-Off TypeCzech Parameter Validation
 
 
 
