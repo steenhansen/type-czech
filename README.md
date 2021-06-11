@@ -13,12 +13,15 @@ Function return signatures can also be validated against a type shape.
 The library is pure JavaScript without any dependencies and can easily be de-coupled for production.
 
 To load the TypeCzech library and console log checking errors:
+
     type_czech = TypeCzech('LOG-ERRORS')
 
 To load the TypeCzech library and throw exceptions on checking errors:
+
     type_czech = TypeCzech('THROW-EXCEPTIONS')
 
 To load the TypeCzech library but do nothing in production code:
+
     type_czech = TypeCzech()
 
 The function that links a testing_function() to your_function() is TypeCzech.precedeCheck():
