@@ -45,24 +45,24 @@ The library is pure JavaScript without any dependencies and can easily be de-cou
 
 ### Check by RegExp for a sentence:
 
-  type_czech = TypeCzech('THROW-EXCEPTIONS')
-    
-  function CHECKING_ROUTINE(a_sentence){ 
-    if (!typeof a_sentence === 'string') return 'not a string'
-    capital_then_ending_period = new RegExp(/^[A-Z].*\.$/)
-    is_sentence = a_sentence.match(capital_then_ending_period)
-    if (is_sentence) return ''
-    return `a bad sentence found : ${a_sentence}`
-  }
-    
-  your_routine = type_czech.precedeCheck(your_routine, CHECKING_ROUTINE)
-    
-  function your_routine(a_sentence){
-    console.log('Good upper case sentence: ', a_sentence.toUpperCase())
-  }
+    type_czech = TypeCzech('THROW-EXCEPTIONS')
       
-  your_routine('Good sentence, starts with uppercase and ends with period.')
-  your_routine('bad sentence does not start with uppercase; no period')
+    function CHECKING_ROUTINE(a_sentence){ 
+      if (!typeof a_sentence === 'string') return 'not a string'
+      capital_then_ending_period = new RegExp(/^[A-Z].*\.$/)
+      is_sentence = a_sentence.match(capital_then_ending_period)
+      if (is_sentence) return ''
+      return `a bad sentence found : ${a_sentence}`
+    }
+      
+    your_routine = type_czech.precedeCheck(your_routine, CHECKING_ROUTINE)
+      
+    function your_routine(a_sentence){
+      console.log('Good upper case sentence: ', a_sentence.toUpperCase())
+    }
+        
+    your_routine('Good sentence, starts with uppercase and ends with period.')
+    your_routine('bad sentence does not start with uppercase; no period')
 
 ### Check for sorted parameters
     type_czech = TypeCzech('LOG-ERRORS')
