@@ -13,6 +13,15 @@ Function return signatures can also be validated against a type shape.
 The library is pure JavaScript without any dependencies and can easily be de-coupled for production.
  
 
+ with TypeCzech.precedeCheck(your_function, testing_function)
+  <ul>
+    <li>Parameter Checks : checking parameters by value</li>
+ [Return Checks : checking function return values by type 03-return-check.html](https://jsfiddle.net/steen_hansen/m1tce27f/)
+    <li>Type Shapes : checking parameters by type shape</li>
+    <li>Typed Array : checking arrays with a single type</li>
+    <li>Empty Shapes : checking parameters by emptiness &amp; valuelessness</li>
+    <li>Interface : checking objects for interfaces</li>       
+  </ul>
 
 
 
@@ -32,6 +41,55 @@ The library is pure JavaScript without any dependencies and can easily be de-cou
     posNumber(1)   // My positive number 1
     posNumber(-4)  // Error, -4 is not positive
                    // My positive number -4
+
+
+### Check by RegExp for a sentence:
+
+  type_czech = TypeCzech('THROW-EXCEPTIONS')
+    
+  function CHECKING_ROUTINE(a_sentence){ 
+    if (!typeof a_sentence === 'string') return 'not a string'
+    capital_then_ending_period = new RegExp(/^[A-Z].*\.$/)
+    is_sentence = a_sentence.match(capital_then_ending_period)
+    if (is_sentence) return ''
+    return `a bad sentence found : ${a_sentence}`
+  }
+    
+  your_routine = type_czech.precedeCheck(your_routine, CHECKING_ROUTINE)
+    
+  function your_routine(a_sentence){
+    console.log('Good upper case sentence: ', a_sentence.toUpperCase())
+  }
+      
+  your_routine('Good sentence, starts with uppercase and ends with period.')
+  your_routine('bad sentence does not start with uppercase; no period')
+
+### Check for sorted parameters
+    type_czech = TypeCzech('LOG-ERRORS')
+      
+    function CHECKING_ROUTINE(/* arguments */){ 
+      increasing_positives = [...arguments]
+      largest = -1;
+      for (const an_integer of increasing_positives) {
+        if (an_integer < largest) 
+          return 'This array is not sorted : ' + increasing_positives.join()
+        largest = an_integer
+      }
+      return ''
+    }
+      
+    your_routine = type_czech.precedeCheck(your_routine, CHECKING_ROUTINE)
+      
+    function your_routine(/* arguments */){
+      increasing_array = [...arguments]
+      array_str = increasing_array.join();
+      console.log('increasing array: ', array_str)
+    }
+        
+    your_routine(10,13,15,22,33,44,1000)
+    your_routine(10,11,12,13,5,4)       //This array is not sorted
+    your_routine(12,23,34,45,56,67)
+
 
 ### Check by type for a string:
 
@@ -80,6 +138,31 @@ The library is pure JavaScript without any dependencies and can easily be de-cou
                      // The function 'onlyArrays' is improperly returning result type of 'an-error', 
                                         Instead of the expected type of [['number']]. 
                                         'an-error'
+
+### Checking Object for Interface
+    type_czech = TypeCzech('THROW-EXCEPTIONS')
+
+    function YOUR_ROUTINE(an_object){ 
+      matching_interface = {methodCall:'function', my_int:'number'}
+      interface_error = type_czech.hasInterface(an_object, matching_interface)
+      return interface_error
+    }
+
+    your_routine = type_czech.precedeCheck(your_routine, YOUR_ROUTINE)
+
+    function loggingMethod(some_string){ 
+      console.log(some_string)
+    }
+
+    function your_routine(an_object){
+      an_object.methodCall('some-string')
+    }
+    
+    pass_object = {methodCall:loggingMethod, my_int:12, my_string:'not-in-interface'}
+    your_routine(pass_object)
+
+    fail_object = {methodCall:loggingMethod,            my_string:'not-in-interface'}
+    your_routine(fail_object)     // my_int missing
 
 ## Turn Off Checking for Production
 
