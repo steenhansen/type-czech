@@ -12,26 +12,50 @@ The TypeCzech library can check function parameters by value, type, as well as w
 Function return signatures can also be validated against a type shape.
 The library is pure JavaScript without any dependencies and can easily be de-coupled for production.
 
-The function that links a testing_function() to your_function() is TypeCzech.precedeCheck().
+To load the TypeCzech library and console log checking errors:
+    type_czech = TypeCzech('LOG-ERRORS')
 
+To load the TypeCzech library and throw exceptions on checking errors:
+    type_czech = TypeCzech('THROW-EXCEPTIONS')
+
+To load the TypeCzech library but do nothing in production code:
+    type_czech = TypeCzech()
+
+The function that links a testing_function() to your_function() is TypeCzech.precedeCheck():
 
     your_function = TypeCzech.precedeCheck(your_function, testing_function)
-   
 
+Return '' in the testing_function() to indicate no errors found.
+Any text returned will be considered an error, and acted upon, with a console log or an exception
 
-## Sample Fiddles
-[01-funcs-check.html](https://jsfiddle.net/steen_hansen/9u54vsd2/2/)
+    function testing_function(/* arguments */){
+      if (!error_found) {
+        return ''
+      }
+      return 'the-error-message'
+    }
 
-  <ul>
-    <li>Parameter Checks : checking parameters by value</li>
- [Return Checks : checking function return values by type 03-return-check.html](https://jsfiddle.net/steen_hansen/m1tce27f/)
-    <li>Type Shapes : checking parameters by type shape</li>
-    <li>Typed Array : checking arrays with a single type</li>
-    <li>Empty Shapes : checking parameters by emptiness &amp; valuelessness</li>
-    <li>Interface : checking objects for interfaces</li>       
-  </ul>
+To verify types use the type_czech.typeVerify(arguments, expected_type) being careful in the use of arrays:
 
+    function testing_function(one_string){
+      return type_czech.typeVerify(arguments, 'string')
+    }
 
+    function testing_function(one_string, two_string, three_string){
+      return type_czech.typeVerify(arguments, ['string'])
+    }
+
+    function testing_function(one_string, two_number, three_boolean){
+      return type_czech.typeVerify(arguments, ['string', 'number', 'boolean'])
+    }
+
+    function testing_function(array_of_strings, array_of_numbers, array_of_boolean){
+      return type_czech.typeVerify(arguments, [ ['string'], ['number'], ['boolean'] ])
+    }
+
+    function testing_function({str:'bob', num:17, bol:true}){
+      return type_czech.typeVerify(arguments, {str:'string', num:'number', bol:'boolean'})
+    }
 
 ## Samples
 
