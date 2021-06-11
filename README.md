@@ -76,9 +76,10 @@ The library is pure JavaScript without any dependencies and can easily be de-cou
        type_czech.setReturnType('onlyArrays', 'array')
     }
     console.log(onlyArrays([1]))         // Array [ 1 ]
-    console.log(onlyArrays('an-error'))  // The function 'onlyArrays' is improperly returning result type of 'string', 
-                                                            Instead of the expected type of 'array'. 
-                                                            'an-error'
+    console.log(onlyArrays('an-error'))  
+                     // The function 'onlyArrays' is improperly returning result type of 'string', 
+                                        Instead of the expected type of 'array'. 
+                                        'an-error'
 
 ### Turn off Checking for Production, via undefined checking function:
     if (typeof TypeCzech === 'function')
