@@ -308,39 +308,39 @@ To verify parameter types use the type_czech.typeVerify(arguments, expected_type
 
 
 ## Self-Contained Live Fiddles
-[01-funcs-check.html](https://jsfiddle.net/steen_hansen/9u54vsd2/4/)xx - 01 Validate Function Parameters by Value
+[01-funcs-check.html](https://jsfiddle.net/steen_hansen/9u54vsd2/4/) - 01 Validate Function Parameters by Value
 
-[02-funcs-off.html](https://jsfiddle.net/steen_hansen/6zy89om1/6/)xx - 02 Turning TypeCzech Parameter checking Off
+[02-funcs-off.html](https://jsfiddle.net/steen_hansen/6zy89om1/6/) - 02 Turning TypeCzech Parameter checking Off
 
-[03-return-check.html](https://jsfiddle.net/steen_hansen/m1tce27f/1/)xx - 03 Validate Function Return Values by Type
+[03-return-check.html](https://jsfiddle.net/steen_hansen/m1tce27f/1/) - 03 Validate Function Return Values by Type
 
-[04-closure-check.html](https://jsfiddle.net/steen_hansen/nve4d3ah/1/)xx - 04 Check Parameters in a Closure and its Functions
+[04-closure-check.html](https://jsfiddle.net/steen_hansen/nve4d3ah/1/) - 04 Check Parameters in a Closure and its Functions
 
-[05-closure-off.html](https://jsfiddle.net/steen_hansen/wrkvscqg/1/)xx - 05 Not Checking Functions In a Closure
+[05-closure-off.html](https://jsfiddle.net/steen_hansen/wrkvscqg/1/) - 05 Not Checking Functions In a Closure
 
-[06-class-check.html](https://jsfiddle.net/steen_hansen/jxrdom62/1/)xx - 06 Check Parameters in a Class and its Methods
+[06-class-check.html](https://jsfiddle.net/steen_hansen/jxrdom62/1/) - 06 Check Parameters in a Class and its Methods
 
-[07-class-off.html](https://jsfiddle.net/steen_hansen/abh0jkL1/1/)xx - 07 Not Checking Methods In a Class
+[07-class-off.html](https://jsfiddle.net/steen_hansen/abh0jkL1/1/) - 07 Not Checking Methods In a Class
 
-[08-type-shape.html](https://jsfiddle.net/steen_hansen/3pv5qwx8/1/)xx - 08 Check Parameters by Type Shape
+[08-type-shape.html](https://jsfiddle.net/steen_hansen/3pv5qwx8/1/) - 08 Check Parameters by Type Shape
 
-[09-typed-arrays.html](https://jsfiddle.net/steen_hansen/hrvucjzm/3/)xx - 09 Check Array Parameters with One Type
+[09-typed-arrays.html](https://jsfiddle.net/steen_hansen/hrvucjzm/3/) - 09 Check Array Parameters with One Type
 
-[10-empty-shape.html](https://jsfiddle.net/steen_hansen/r8L3mp40/1/)xx - 10 Check for Empty & Valueless Parameters
+[10-empty-shape.html](https://jsfiddle.net/steen_hansen/r8L3mp40/1/) - 10 Check for Empty & Valueless Parameters
 
-[11-type-extra.html](https://jsfiddle.net/steen_hansen/Lhwov8y9/1/)xx - 11 Type Check with Extra Optional Parameters 
+[11-type-extra.html](https://jsfiddle.net/steen_hansen/Lhwov8y9/1/) - 11 Type Check with Extra Optional Parameters 
 
-[12-empty-extra.html](https://jsfiddle.net/steen_hansen/qp29Ljd1/1/)xx - 12 Empty & Valueless Check with Extra Optional Parameters 
+[12-empty-extra.html](https://jsfiddle.net/steen_hansen/qp29Ljd1/1/) - 12 Empty & Valueless Check with Extra Optional Parameters 
 
-[13-null-undef.html](https://jsfiddle.net/steen_hansen/og2sk4b9/1/)xx - 13 Null and Undefined Parameter Values
+[13-null-undef.html](https://jsfiddle.net/steen_hansen/og2sk4b9/1/) - 13 Null and Undefined Parameter Values
 
-[14-count-checks.html](https://jsfiddle.net/steen_hansen/rh79bLwa/1/)xx - 14 Count Parameter Checking Function Calls
+[14-count-checks.html](https://jsfiddle.net/steen_hansen/rh79bLwa/1/) - 14 Count Parameter Checking Function Calls
 
-[15-flash-checks.html](https://jsfiddle.net/steen_hansen/1ref2ot7/1/)xx - 15 Flash on Parameter Checks
+[15-flash-checks.html](https://jsfiddle.net/steen_hansen/1ref2ot7/1/) - 15 Flash on Parameter Checks
 
-[16-throw-log.html](https://jsfiddle.net/steen_hansen/zkhfLw0u/1/)xx - 16 Throw, Log, or Ignore TypeCzech Parameter Checks
+[16-throw-log.html](https://jsfiddle.net/steen_hansen/zkhfLw0u/1/) - 16 Throw, Log, or Ignore TypeCzech Parameter Checks
 
-[17-short-types.html](https://jsfiddle.net/steen_hansen/bsw3yp5c/1/)xx - 17 TypeCzech Short Types
+[17-short-types.html](https://jsfiddle.net/steen_hansen/bsw3yp5c/1/) - 17 TypeCzech Short Types
 
 [18-short-emptys.html](https://jsfiddle.net/steen_hansen/063wLqfs/1/) - 18 TypeCzech Short Empty & Valueless Declarations
 
@@ -348,7 +348,7 @@ To verify parameter types use the type_czech.typeVerify(arguments, expected_type
 
 [20-one-of-empty.html](https://jsfiddle.net/steen_hansen/b7cfsz9y/1/) - 20 Overloaded Function Checks with Empty & Valueless Parameters
 
-[21-one-of-extras.html](https://jsfiddle.net/steen_hansen/Lwn504es/1/)xx - 21 Overloaded Parameter Checks with Extra Optional Arguments
+[21-one-of-extras.html](https://jsfiddle.net/steen_hansen/Lwn504es/1/) - 21 Overloaded Parameter Checks with Extra Optional Arguments
 
 [22-has-interface.html](https://jsfiddle.net/steen_hansen/hjxekf63/1/) - 22 Check Interface of a Parameter
 
