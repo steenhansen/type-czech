@@ -239,8 +239,8 @@ function test_ShapeCheck_test_ccc(deep_object_checks){
 			} catch (e){
 				actual_array = e;
 			}
-			afterCheck(check_object, valid_shape, before_str, 'ERROR@618');
-	const expected_str = `typeExtras(arguments, expected_types),SC@36 - Parameter is meant to be 'object' but is of the wrong type of 'array':[],{}`;
+			afterCheck(check_object, valid_shape, before_str, '');
+   	const expected_str = `SC@58 - TypeCzech.typeExtras() comparing actual [] parameter, with a value of [''], against the expected shape of {}. They should be the same type; both []s, or both {}s.`;
 		actual_array[2]= JSON.stringify(actual_array[2]);         
 		actual_str = '' + actual_array;
 		actual_str==expected_str ? tests_passed++ : _throw( errorMessage('ERROR@618', actual_array) );}
@@ -391,7 +391,7 @@ function test_ShapeCheck_test_eee(array_objects_empty){
 			}
 
 			afterCheck(check_variable, valid_type, before_str, 'ERROR@632');
-		const expected_str =`typeExtras(arguments, expected_types),The variable '[]', which is a 'array', is not a 'object',"object"`;
+		const expected_str =`SC@58 - TypeCzech.typeExtras() comparing actual [] parameter, with a value of [''], against the expected shape of "object". They should be the same type; both []s, or both "object"s.`;
 		actual_array[2]= JSON.stringify(actual_array[2]);         
 		actual_str = '' + actual_array;
 		actual_str==expected_str ? tests_passed++ : _throw( errorMessage('ERROR@632', actual_array) ); }
@@ -613,7 +613,7 @@ function test_ShapeCheck_test_hhh(simple_small_containers){
 	  		const before_str = beforeCheck(check_variable, valid_type);
 			const actual_array = type_czech.typeVerify(check_variable, valid_type);
 			afterCheck(check_variable, valid_type, before_str, 'ERROR@653');
-		const expected_str =`typeVerify(arguments, expected_types),SC@39 - Extra key in checked_object - (sneak:'extra'),{"cylinders":"number","fuel":"string"}`; 
+		const expected_str =`typeVerify(arguments, expected_types),SC@39 - Extra key in checked object - (sneak:'extra'),{"cylinders":"number","fuel":"string"}`; 
 		actual_array[2]= JSON.stringify(actual_array[2]);         
 		actual_str = '' + actual_array;
 		actual_str==expected_str ? tests_passed++ : _throw( errorMessage('ERROR@653', actual_array) ); }
@@ -706,7 +706,7 @@ function test_ShapeCheck_test_kkk(_missingKey){
 			const before_str = beforeCheck(extra_keys, '');
 			const actual = type_czech._missingKey(extra_keys);
 			afterCheck(extra_keys, '', before_str, 'ERROR@667');
-		const expected = "SC@46 - The key 'g', which has a type of 'my-extra-key', is missing in the checked_object"; 
+		const expected = "SC@46 - The key 'g', which has a type of 'my-extra-key', is missing in the checked object"; 
 		actual==expected ? tests_passed++ : _throw( errorMessage('ERROR@667', actual) );  }
 
 	return tests_passed;
@@ -839,7 +839,7 @@ const type_czech=TypeCzech(THROW_SPEC, SHOW_ERROR_TAGS, DEBUG_CONSOLE_TRACE);
 			const before_str = beforeCheck(check_object, object_shape);
 			const actual = type_czech._shapeCollectionTypes(check_object, object_shape, exact_shape);
 			afterCheck(check_object, object_shape, before_str, 'ERROR@678');
-		const expected = "SC@39 - Extra key in checked_object - (u:'illegal')"; 
+		const expected = "SC@39 - Extra key in checked object - (u:'illegal')"; 
 		actual==expected ? tests_passed++ : _throw( errorMessage('ERROR@678', actual) );  }
 
 	{	const check_object =  { r: 11, qwe:null};    
@@ -1025,7 +1025,7 @@ const type_czech=TypeCzech(THROW_SPEC, SHOW_ERROR_TAGS, DEBUG_CONSOLE_TRACE);
 	  		const before_str = beforeCheck(check_object, valid_shape);
 	  		const actual = type_czech._shapeVariable(check_object, valid_shape, 'TYPE-VERIFY');
 	  		afterCheck(check_object, valid_shape, before_str, 'ERROR@698');
-		const expected = "SC@39 - Extra key in checked_object - (extra:'superfluous')";
+		const expected = "SC@39 - Extra key in checked object - (extra:'superfluous')";
 		actual==expected ? tests_passed++ : _throw( errorMessage('ERROR@698', actual) ); }
 	return tests_passed;
 }
@@ -1033,45 +1033,99 @@ const type_czech=TypeCzech(THROW_SPEC, SHOW_ERROR_TAGS, DEBUG_CONSOLE_TRACE);
 function test_ShapeCheck_test_ttt(complex_deep_objects){
 	const type_czech=TypeCzech(THROW_SPEC, SHOW_ERROR_TAGS, DEBUG_CONSOLE_TRACE, 'UNDEF-OK');
 	let tests_passed=0; 
+
 	{	const check_object = null;
 	  	const valid_shape =  'null';
 	  		const before_str = beforeCheck(check_object, valid_shape);
-	  		const actual = type_czech.typeExtras(check_object, valid_shape );
+
+				let actual_array;
+				try{
+					actual_array = type_czech.typeExtras(check_object, valid_shape);
+				} catch (e){
+					actual_array = e;
+				}
+				actual_array[2]= JSON.stringify(actual_array[2]);         
+				actual_str = '' + actual_array;
 	  		afterCheck(check_object, valid_shape, before_str, 'ERROR@699');
-		const expected = "";
-		actual==expected ? tests_passed++ : _throw( errorMessage('ERROR@699', actual) ); }
+		const expected = `typeExtras(arguments, expected_types),SC@33 - The type 'null' is not valid,"null"`;
+		actual_str==expected ? tests_passed++ : _throw( errorMessage('ERROR@699', actual_str) ); }
 
 	{	const check_object = undefined;
 	  	const valid_shape =  'undefined';
 	  		const before_str = beforeCheck(check_object, valid_shape);
-	  		const actual = type_czech.typeExtras(check_object, valid_shape);
+	 
+
+				let actual_array;
+				try{
+					actual_array = type_czech.typeExtras(check_object, valid_shape);
+				} catch (e){
+					actual_array = e;
+				}
+				actual_array[2]= JSON.stringify(actual_array[2]);         
+				actual_str = '' + actual_array;
+
+
 	  		afterCheck(check_object, valid_shape, before_str, 'ERROR@700');
-		const expected ="";
-		actual==expected ? tests_passed++ : _throw( errorMessage('ERROR@700', actual) ); }
+		const expected =`typeExtras(arguments, expected_types),SC@33 - The type 'undefined' is not valid,"undefined"`;
+		actual_str==expected ? tests_passed++ : _throw( errorMessage('ERROR@700', actual_str) ); }
 
 
 	{	const check_object = { a: [ { b:[ {c:'abcdef'} ] } ],  z:null};
 	  	const valid_shape =  { a: [ { b:[ {c:'string'} ] } ], z:'null'};
 	  		const before_str = beforeCheck(check_object, valid_shape);
-	  		const actual = type_czech.typeExtras(check_object, valid_shape);
+
+
+
+				let actual_array;
+				try{
+					actual_array = type_czech.typeExtras(check_object, valid_shape);
+				} catch (e){
+					actual_array = e;
+				}
+				actual_array[2]= JSON.stringify(actual_array[2]);         
+				actual_str = '' + actual_array;
+
+
+
 	  		afterCheck(check_object, valid_shape, before_str, 'ERROR@701');
-		const expected = "";
-		actual==expected ? tests_passed++ : _throw( errorMessage('ERROR@701', actual) ); }
+		const expected = `typeExtras(arguments, expected_types),SC@40 - The type 'null' is not valid,{"a":[{"b":[{"c":"string"}]}],"z":"null"}`;
+		actual_str==expected ? tests_passed++ : _throw( errorMessage('ERROR@701', actual_str) ); }
 
 		{	const check_object = { a: [ { b:[ {c:'abcdef'} ] } ],  z:undefined};
 	  	const valid_shape =  { a: [ { b:[ {c:'string'} ] } ], z:'undefined'};
 	  		const before_str = beforeCheck(check_object, valid_shape);
-	  		const actual = type_czech.typeExtras(check_object, valid_shape);
+	 
+
+				let actual_array;
+				try{
+					actual_array = type_czech.typeExtras(check_object, valid_shape);
+				} catch (e){
+					actual_array = e;
+				}
+				actual_array[2]= JSON.stringify(actual_array[2]);         
+				actual_str = '' + actual_array;
+
+
 	  		afterCheck(check_object, valid_shape, before_str, 'ERROR@702');
-		const expected ="";
-		actual==expected ? tests_passed++ : _throw( errorMessage('ERROR@702', actual) ); }
+		const expected =`typeExtras(arguments, expected_types),SC@40 - The type 'undefined' is not valid,{"a":[{"b":[{"c":"string"}]}],"z":"undefined"}`;
+		actual_str==expected ? tests_passed++ : _throw( errorMessage('ERROR@702', actual_str) ); }
 
 		{	const check_object = { a: [ { b:[ {c:'abcdef'} ] } ],  z:null};
-	  	const valid_shape =  { a: [ { b:[ {c:'string'} ] } ], z:'undefined'};
+	  	const valid_shape =  { a: [ { b:[ {c:'string'} ] } ], z:'undefined'};                  // why is this not an error???
 	  		const before_str = beforeCheck(check_object, valid_shape);
-	  		const actual_array = type_czech.typeExtras(check_object, valid_shape);
-	  		afterCheck(check_object, valid_shape, before_str, 'ERROR@703');
-		const expected_str =`typeExtras(arguments, expected_types),SC@42 - Key 'z' was determined to be a 'undefined' but was instead 'null',{"a":[{"b":[{"c":"string"}]}],"z":"undefined"}`;
+
+        let actual_array;
+				try{
+					actual_array = type_czech.typeExtras(check_object, valid_shape);
+				} catch (e){
+					actual_array = e;
+				}
+
+
+	  
+	  		afterCheck(check_object, valid_shape, before_str, '');
+//		const expected_str =`typeExtras(arguments, expected_types),SC@42 - Key 'z' was determined to be a 'undefined' but was instead 'null',{"a":[{"b":[{"c":"string"}]}],"z":"undefined"}`;
+		const expected_str =`typeExtras(arguments, expected_types),SC@40 - The type 'undefined' is not valid,{"a":[{"b":[{"c":"string"}]}],"z":"undefined"}`;
 		actual_array[2]= JSON.stringify(actual_array[2]);         
 		actual_str = '' + actual_array;
 		actual_str==expected_str ? tests_passed++ : _throw( errorMessage('ERROR@703', actual_array) ); }
@@ -1079,10 +1133,23 @@ function test_ShapeCheck_test_ttt(complex_deep_objects){
 		{	const check_object = { a: [ { b:[ {c:'abcdef', t:12} ] } ],  z:undefined};
 	  	const valid_shape =      { a: [ { b:[ {c:'string'      } ] } ]};
 	  		const before_str = beforeCheck(check_object, valid_shape);
-	  		const actual = type_czech.typeExtras(check_object, valid_shape);
+
+				
+				let actual_array;
+				try{
+					actual_array = type_czech.typeExtras(check_object, valid_shape);
+				} catch (e){
+					actual_array = e;
+				}
+				actual_array[2]= JSON.stringify(actual_array[2]);         
+				actual_str = '' + actual_array;
+
+
+
+
 	  		afterCheck(check_object, valid_shape, before_str, 'ERROR@704');
 		const expected ="";
-		actual==expected ? tests_passed++ : _throw( errorMessage('ERROR@704', actual) ); }
+		actual_str==expected ? tests_passed++ : _throw( errorMessage('ERROR@704', actual_str) ); }
 
 	return tests_passed;
 }
@@ -1251,7 +1318,7 @@ function test_ShapeCheck_test_www(complex_deep_objects){
 
 
 	{	const check_object = { a: [ { b:[ {c:'abcdef'} ] } ],  z:null};
-	  	const valid_shape =  { a: [ { b:[ {c:'s'} ] } ], z:'null'};
+	  	const valid_shape =  { a: [ { b:[ {c:'s'} ] } ], z:'n'};
 	  		const before_str = beforeCheck(check_object, valid_shape);
 	  		const actual = type_czech.typeExtras(check_object, valid_shape );
 	  		afterCheck(check_object, valid_shape, before_str, 'ERROR@719');
@@ -1259,7 +1326,7 @@ function test_ShapeCheck_test_www(complex_deep_objects){
 		actual==expected ? tests_passed++ : _throw( errorMessage('ERROR@719', actual) ); }
 
 		{	const check_object = { a: [ { b:[ {c:'abcdef'} ] } ],  z:undefined};
-	  	const valid_shape =  { a: [ { b:[ {c:'s'} ] } ], z:'undefined'};
+	  	const valid_shape =  { a: [ { b:[ {c:'s'} ] } ], z:'n'};
 	  		const before_str = beforeCheck(check_object, valid_shape);
 	  		const actual = type_czech.typeExtras(check_object, valid_shape);
 	  		afterCheck(check_object, valid_shape, before_str, 'ERROR@720');
@@ -1267,11 +1334,12 @@ function test_ShapeCheck_test_www(complex_deep_objects){
 		actual==expected ? tests_passed++ : _throw( errorMessage('ERROR@720', actual) ); }
 
 		{	const check_object = { a: [ { b:[ {c:'abcdef'} ] } ],  z:null};
-	  	const valid_shape =  { a: [ { b:[ {c:'s'} ] } ], z:'undefined'};
+	  	const valid_shape =  { a: [ { b:[ {c:'s'} ] } ], z:'n'};
 	  		const before_str = beforeCheck(check_object, valid_shape);
 	  		const actual_array = type_czech.typeExtras(check_object, valid_shape);
 	  		afterCheck(check_object, valid_shape, before_str, 'ERROR@721');
-		const expected_str =`typeExtras(arguments, expected_types),SC@42 - Key 'z' was determined to be a 'undefined' but was instead 'null',{"a":[{"b":[{"c":"s"}]}],"z":"undefined"}`;
+		//const expected_str =`typeExtras(arguments, expected_types),SC@42 - Key 'z' was determined to be a 'undefined' but was instead 'null',{"a":[{"b":[{"c":"s"}]}],"z":"undefined"}`;
+		const expected_str =``;
 		actual_array[2]= JSON.stringify(actual_array[2]);         
 		actual_str = '' + actual_array;
 		actual_str==expected_str ? tests_passed++ : _throw( errorMessage('ERROR@721', actual_array) ); }
@@ -1317,7 +1385,7 @@ function test_ShapeCheck_test_yyy(complex_deep_objects){
 		actual = e;
 	}
 	afterCheck(check_variable, valid_type, before_str, 'ERROR@724');
-const expected = `typeVerify(arguments, expected_types),The variable '[]', which is a 'array', is not a 'string',string`;
+const expected = `SC@58 - TypeCzech.typeVerify() comparing actual [] parameter, with a value of ['a-string'], against the expected shape of "string". They should be the same type; both []s, or both "string"s.`;
 actual==expected ? tests_passed++ : _throw( errorMessage('ERROR@724', actual) ); }
 
 {	const check_variable = 'a-string';  // this is the arg[0]=='a-string' and it modifies it to the correct thing
@@ -1330,7 +1398,7 @@ try {
 	actual_array = e;
 }
 afterCheck(check_variable, valid_type, before_str, 'ERROR@725');
-const expected = `typeVerify(arguments, expected_types),SC@36 - Parameter is meant to be 'array' but is of the wrong type of 'string':'a-string',["string"]`;
+const expected = `SC@49 - TypeCzech.typeVerify() comparing actual 'string' parameter, with a value of 'a-string', opposed to the expected shape of ["string"]. They should be the same type; both []s, or both 'string's.`;
 actual_array[2]= JSON.stringify(actual_array[2]);         
 actual_str = '' + actual_array; 
 actual_str==expected ? tests_passed++ : _throw( errorMessage('ERROR@725', actual_str) );	}

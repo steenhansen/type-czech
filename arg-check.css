@@ -1,70 +1,76 @@
 
 
 
-.a-title{ font-family:arial; text-align:right; font-weight: bold; margin-right: 20px; }
-.an-explantion{ font-family:arial; 
-			text-align:center;
-			font-weight: bold;
-				 background-color: #dddddd; 
-			margin-right: 20px;
+.a-title{ 
+  font-family:arial; 
+  text-align:right;
+  font-weight: bold; 
+  margin-right: 20px; 
 }
-#console-log{	float:right; 
-			 background-color: #eeeeee; 
-	width:40%; }
-#js-div{	float:left;  
+.an-explantion{ 
+  font-family:arial; 
+  text-align:center;
+  font-weight: bold;
+  background-color: #dddddd; 
+  margin-right: 20px;
 }
-
-	#js-fiddles{	float:left;  
-		 background-color: #dddddd; 
-	}
-
-
-#js-code{ 	white-space: pre; 
-	font-family: 'Inconsolata', monospace;  
-	tab-size: 4;
-	-moz-tab-size: 4;
-	margin-left: 8px;
-	 margin-top: -32px; 
-	overflow-x:auto;
+#explanation-text{
+  padding-left: 8px;
+  font-size: 14px;
+  font-family:arial;
 }
-#js-files{padding-left: 8px;}
-#log-text{padding-left: 8px;}
-#the-explanation{	float:right; 
-	background-color: #dddddd; 	
+#console-log{
+  float:right; 
+  font-family: 'Inconsolata', monospace;  
+  background-color: #eeeeee;
 }
-#explanation-text{padding-left: 8px;}
-ul{padding-left: 16px; margin-top:0px;}
- li{padding-top:6px;} 
-
-.html-section{
+#js-div{
+  float:left;
 }
-
+#js-fiddles{ 
+  float:left;  
+  background-color: #dddddd; 
+}
+#js-code{
+  white-space: pre; 
+  font-family: 'Inconsolata', monospace;  
+  tab-size: 4;
+  -moz-tab-size: 4;
+  margin-left: 8px;
+  margin-top: -32px; 
+  overflow-x:auto; 
+}
+#js-files{
+  padding-left: 8px; 
+}
+#log-text{
+  padding-left: 8px; 
+}
+#the-explanation{
+  float:right; 
+  background-color: #dddddd; 
+}
+ul{
+  padding-left: 16px; 
+  margin-top:0px; 
+}
+li{
+  padding-top:6px;
+} 
 .text-1{ color:red; font-weight: bold; }
-.text-2{ color: red; 	font-weight: bold; }
-.text-3{color: red; 	font-weight: bold; }
-.text-4{ color: red;	font-weight: bolder; }
+.text-2{ color: red; font-weight: bold; }
+.text-3{ color: red; font-weight: bold; }
+.text-4{ color: red; font-weight: bolder; }
 .text-5{ color: red; font-weight: bolder; }
-.text-6{ color: red;	font-weight: bolder; }
-
+.text-6{ color: red; font-weight: bolder; }
 .back-1{ background-color: rgb(255, 230, 230); }
 .back-2{ background-color: rgb(230, 255, 230); }
 .back-3{ background-color: rgb(230, 230, 255); }
 .back-4{ background-color: rgb(255, 255, 160); }
 .back-5{ background-color: rgb(255, 220, 255); }
-.back-6{ background-color: rgb(200, 255,  255); }
-
-.under-1{ text-decoration: underline red 1px; }
-.under-2{   text-decoration:   underline green 1px;}   
-.under-3{ text-decoration: underline blue 1px; }
-.under-4{ text-decoration: underline black 2px; }
-.under-5{ text-decoration: underline; text-decoration-color: red; }
-.under-6{ text-decoration: underline; text-decoration-color: red; }
-
-
-.italic-out{ font-style:italic;}
-
+.back-6{ background-color: rgb(200, 255, 255); }
 pre{
-	background-color: #eee; 
-	margin-left:10px;
-	margin-right:10px;
+  background-color: #eee; 
+  margin-left:10px;
+  margin-right:10px; 
 }

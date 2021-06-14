@@ -61,7 +61,7 @@ function test_shapeObjectInArray(_shapeObjectInArray){
 			const before_str = beforeCheck(check_array, object_type);
 			const actual = type_czech._shapeObjectInArray(check_array, object_type, exact_shape);
 			afterCheck(check_array, object_type, before_str, 'ERROR@403');
-		const expected = "SC@01 - Index '0' - SC@46 - The key 'Y', which has a type of 'n', is missing in the checked_object"; 
+		const expected = "SC@01 - Index '0' - SC@46 - The key 'Y', which has a type of 'n', is missing in the checked object"; 
 		actual==expected ? tests_passed++ : _throw( errorMessage('ERROR@403', actual) );  }
 
 {	const check_array = [{r:11}, {r:22}, {r:33}];    
@@ -211,7 +211,7 @@ function test_typeVerify(typeVerify){
 	  		const before_str = beforeCheck(check_variable, valid_type);
 			const actual_array = type_czech.typeVerify(check_variable, valid_type);
 			afterCheck(check_variable, valid_type, before_str, 'ERROR@412');
-		const expected =`typeVerify(arguments, expected_types),SC@39 - Extra key in checked_object - (sneak:'extra'),{"cylinders":"number","fuel":"string"}`; 
+		const expected =`typeVerify(arguments, expected_types),SC@39 - Extra key in checked object - (sneak:'extra'),{"cylinders":"number","fuel":"string"}`; 
 		actual_array[2]= JSON.stringify(actual_array[2]);         
 		actual_str = '' + actual_array;
 		actual_str==expected ? tests_passed++ : _throw( errorMessage('ERROR@412', actual_array) ); }
@@ -231,7 +231,7 @@ function test_emptyKeysChecked(_emptyKeysChecked){
 	  		const before_str = beforeCheck(check_variable, valid_type);
 			const actual_array = type_czech.typeVerify(check_variable, valid_type);
 			afterCheck(check_variable, valid_type, before_str, 'ERROR@413');
-		const expected =`typeVerify(arguments, expected_types),SC@39 - Extra key in checked_object - (sneak:'extra'),{"cylinders":"number","fuel":"string"}`; 
+		const expected =`typeVerify(arguments, expected_types),SC@39 - Extra key in checked object - (sneak:'extra'),{"cylinders":"number","fuel":"string"}`; 
 		actual_array[2]= JSON.stringify(actual_array[2]);         
 		actual_str = '' + actual_array;
 		actual_str==expected ? tests_passed++ : _throw( errorMessage('ERROR@413', actual_array) ); }

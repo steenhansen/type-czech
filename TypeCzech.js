@@ -9,6 +9,18 @@ function TypeCzech(...the_arguments) {
   let OP_UNDEF_OK = false; // 'UNDEF-OK'
   let OP_CONSOLE_COUNT = false; // 'CONSOLE-COUNT'
 
+  const VERS_NUM = 'ver 2.0';
+
+  const M_HAS_INTERFACE = 'hasInterface(arguments, interface)';
+  const M_TYPE_VERIFY = 'typeVerify(arguments, expected_types)';
+  const M_TYPE_EXTRAS = 'typeExtras(arguments, expected_types)';
+  const M_TYPE_ONE_OF = 'typeOneOf(arguments, expected_types)';
+  const M_TYPE_ONE_OF_EXTRAS = 'typeOneOfExtras(arguments, expected_types)';
+  const M_EMPTY_VERIFY = 'emptyVerify(arguments, expected_emptys)';
+  const M_EMTPY_EXTRAS = 'emptyExtras(arguments, expected_emptys)';
+  const M_EMTPY_ONE_OF = 'emptyOneOf(arguments, expected_emptys)';
+  const M_EMTPY_ONE_OF_EXTRAS = 'emptyOneOfExtras(arguments, expected_emptys)';
+
   const TRACE_COLORS = 'background: #ee0; color: #00F';
   const ERROR_COLORS = 'background: #ee0; color: #F00';
   const START_COLORS = 'background: #cc0; color: #080';
@@ -45,7 +57,10 @@ function TypeCzech(...the_arguments) {
   let PARAMETER_CHECKING = false; // a varible
 
   const VALID_SET = new Set(['symbol', 'date', 'function', 'number', 'string', 'boolean', 'array', 'object', 'regexp']);
-  let VALID_TYPES = VALID_SET;
+
+  // NOTE that the below variable sometimes gets 'null' and 'undefined' added to set if the 'UNDEF-OK' option is used
+  // eslint-disable-next-line prefer-const
+  let VALID_TYPES = new Set(['symbol', 'date', 'function', 'number', 'string', 'boolean', 'array', 'object', 'regexp']);
 
   const SHORT_TYPES = {
     y: 'symbol', d: 'date', f: 'function', n: 'number', s: 'string', b: 'boolean', r: 'regexp',
@@ -58,11 +73,11 @@ function TypeCzech(...the_arguments) {
   const DO_CHECK_COLOR = 'blue';
   const FAIL_CHECK_COLOR = 'red';
 
-  const IS_INIT_CONSOLE = 'ArgumentCheck-init';
+  const IS_INIT_CONSOLE = 'TypeCzech-init';
 
   /* How to flash background green/blue/red easily
-    var arg_check = type_czech.ArgumentCheck(type_czech.TYPE_CZECH_EVENTS);
-    arg_check.checkArgs(program_function, checking_function);
+    var type_czech = type_czech.ArgumentCheck(type_czech.TYPE_CZECH_EVENTS);
+    type_czech.checkArgs(program_function, checking_function);
   */
   const TYPE_CZECH_EVENTS = {
     backBlink: (back_color) => {
@@ -81,7 +96,7 @@ true
     false
   */
   function _isValidType(a_type) {
-    if (VALID_TYPES.has(a_type)) return true; // date, string..... not null, not undef
+    if (VALID_SET.has(a_type)) return true; // date, string..... not null, not undef
     if (SHORT_TYPES[a_type]) return true; //   d,s,n,b.....
     return false;
   }
@@ -262,13 +277,13 @@ TheTAG - errorText
 
   /*
 type_czech._missingKey({z:"symbol"});
-SC@46 - The key 'z', which has a type of 'symbol', is missing in the checked_object
+SC@46 - The key 'z', which has a type of 'symbol', is missing in the checked object
   */
   function _missingKey(extra_keys) {
     // consolelog('_missingKey ENTER', extra_keys);
     if (Object.keys(extra_keys).length > 0) {
       const [share_key, share_type] = Object.entries(extra_keys)[0];
-      let error_46 = `The key '${share_key}', which has a type of '${share_type}', is missing in the checked_object`;
+      let error_46 = `The key '${share_key}', which has a type of '${share_type}', is missing in the checked object`;
       error_46 = _consoleError(error_46, 'SC@46');
       return error_46;
     }
@@ -332,7 +347,7 @@ jj
     uu
   */
   function _typeFromArray(shallow_array, element_index) {
-    // console.log('_typeFromArray ENTER', shallow_array, element_index);
+    consolelog('_typeFromArray ENTER', shallow_array, element_index);
     const shape_length = shallow_array.length;
     let element_type;
     if (shape_length === 1) {
@@ -340,6 +355,7 @@ jj
     } else {
       element_type = shallow_array[element_index];
     }
+    consolelog('_typeFromArray EXIT', element_type);
     return element_type;
   }
 
@@ -421,7 +437,8 @@ x=> { return x===11 ? 'Error x is 11': ''; }      // checking function
         const log_errors = OP_LOG_ERRORS ? 'LOG-ERRORS' : '';
         const undef_ok = OP_UNDEF_OK ? 'UNDEF-OK' : '';
         const console_count = OP_CONSOLE_COUNT ? 'CONSOLE-COUNT' : '';
-        const options_array = [IS_INIT_CONSOLE, throw_except, log_errors, undef_ok, console_count, arg_check_events];
+        const EVENTS = arg_check_events;
+        const options_array = [IS_INIT_CONSOLE, VERS_NUM, throw_except, log_errors, undef_ok, console_count, EVENTS];
         _coloredConsole(options_array, START_COLORS);
         if (arg_check_events.onStart !== undefined) {
           arg_check_events.onStart();
@@ -434,6 +451,33 @@ x=> { return x===11 ? 'Error x is 11': ''; }      // checking function
         }
         call_traps = true; // default parameter checking is on
       }
+    }
+
+    function actualVsExpected(argumentsList, exception_str, any_errors) {
+      const [shape_check, type_of_error, expected_shape] = any_errors;
+      const arg_list_brackets = _jsonStr(argumentsList);
+      const arg_list = arg_list_brackets.slice(1, -1); // delete start and end square brackets [ ]
+      const expected_json = _jsonStr(expected_shape);
+      let new_exception = exception_str + type_of_error;
+      new_exception += NEW_LINE_TAB_TAB + shape_check;
+      let actual_text;
+      let expected_text;
+      if (shape_check === M_HAS_INTERFACE) {
+        actual_text = '  ACTUAL INTERFACE';
+        expected_text = 'EXPECTED INTERFACE';
+      } else if (shape_check === M_TYPE_VERIFY
+             || shape_check === M_TYPE_EXTRAS
+             || shape_check === M_TYPE_ONE_OF
+             || shape_check === M_TYPE_ONE_OF_EXTRAS) {
+        actual_text = ' ACTUAL VALUE';
+        expected_text = 'EXPECTED TYPE';
+      } else {
+        actual_text = ' ACTUAL VALUE';
+        expected_text = 'EXPECTED EMPTY';
+      }
+      new_exception += `${NEW_LINE_TAB_TAB}${actual_text} ${arg_list}`;
+      new_exception += `${NEW_LINE_TAB_TAB}${expected_text} ${expected_json}`;
+      return new_exception;
     }
 
     function applyCheckFuncs(target_name, thisArg, argumentsList, predicatesFunc) {
@@ -450,14 +494,7 @@ x=> { return x===11 ? 'Error x is 11': ''; }      // checking function
         if (typeof any_errors === 'string') {
           exception_str = any_errors;
         } else {
-          const [shape_check, type_of_error, expected_shape] = any_errors;
-          const arg_list_brackets = _jsonStr(argumentsList);
-          const arg_list = arg_list_brackets.slice(1, -1); // delete start and end square brackets [ ]
-          const expected_json = _jsonStr(expected_shape);
-          exception_str += type_of_error;
-          exception_str += NEW_LINE_TAB_TAB + shape_check;
-          exception_str += `${NEW_LINE_TAB_TAB} ACTUAL VALUE ${arg_list}`;
-          exception_str += `${NEW_LINE_TAB_TAB}EXPECTED TYPE ${expected_json}`;
+          exception_str = actualVsExpected(argumentsList, exception_str, any_errors);
         }
         if (OP_THROW_EXCEPTIONS) {
           throw exception_str;
@@ -579,15 +616,15 @@ x=> { return x===11 ? 'Error x is 11': ''; }      // checking function
     }
 
     function checkResultType(function_result, proxy_name) {
-      const result_type = _aTypeOf(function_result);
       if (return_types_.has(proxy_name)) {
         const expected_type = return_types_.get(proxy_name);
-        if (expected_type !== result_type) {
+        const type_error = _shapeCheck(function_result, expected_type, TYPE_VERIFY);
+        if (type_error) {
           const result_str = _jsonStr(function_result);
+          const expected_str = _jsonStr(expected_type);
           const output_mismatch = `The function '${proxy_name}' is improperly returning a`
-                                 + ` result type of '${result_type}', ${NEW_LINE_TAB_TAB}`
-                                + `Instead of the expected type of '${expected_type}'. ${NEW_LINE_TAB_TAB}`
-                                + `${result_str}`;
+                                 + ` result type of ${result_str}, ${NEW_LINE_TAB_TAB}`
+                                + `In lieu of the expected type of ${expected_str}.`;
           if (OP_THROW_EXCEPTIONS) {
             throw output_mismatch;
           } else if (OP_LOG_ERRORS) {
@@ -754,9 +791,9 @@ type_czech._shapeContainer([[456,789]] , [["number"]], 'TYPE-EXTRAS')   Q*bert  
 type_czech._shapeObjectInArray([{r:11}, {r:22}, {r:33}], {r:"n"}, 'TYPE-VERIFY');
 ''
     type_czech._shapeObjectInArray([{r:11}, {X:22}, {r:33}], {r:"n"}, 'TYPE-VERIFY');
-   SC@01 - Index '1' - SC@39 - Extra key in checked_object - (X:'22')
+   SC@01 - Index '1' - SC@39 - Extra key in checked object - (X:'22')
 type_czech._shapeObjectInArray([{r:11}, {r:22}, {r:33}], {Y:"n"}, 'TYPE-VERIFY');
-SC@01 - Index '0' - SC@39 - Extra key in checked_object - (r:'11')
+SC@01 - Index '0' - SC@39 - Extra key in checked object - (r:'11')
     type_czech._shapeObjectInArray([{r:11}, "bob", {r:33}], {r:"n"}, 'TYPE-VERIFY');
     SC@01 - Index '1' - SC@36 - Parameter is supposed to be 'object' but is of the wrong type of 'string':'bob'
 type_czech._shapeObjectInArray([{r:11}, {r:22}, {r:33}], "n", 'TYPE-VERIFY');
@@ -764,9 +801,9 @@ SC@02 - Index '0' is supposed to be a 'n', but is incorrectly a 'object' : [{'r'
     type_czech._shapeObjectInArray([{r:11}, {r:22}, {r:33}], {r:"n"}, 'TYPE-EXTRAS');
     ''
 type_czech._shapeObjectInArray([{r:11}, {X:22}, {r:33}], {r:"n"}, 'TYPE-EXTRAS');
-SC@01 - Index '1' - SC@46 - The key 'r', which has a type of 'n', is missing in the checked_object
+SC@01 - Index '1' - SC@46 - The key 'r', which has a type of 'n', is missing in the checked object
     type_czech._shapeObjectInArray([{r:11}, {r:22}, {r:33}], {Y:"n"}, 'TYPE-EXTRAS');
-    SC@01 - Index '0' - SC@46 - The key 'Y', which has a type of 'n', is missing in the checked_object
+    SC@01 - Index '0' - SC@46 - The key 'Y', which has a type of 'n', is missing in the checked object
 type_czech._shapeObjectInArray([{r:11}, "bob", {r:33}], {r:"n"}, 'TYPE-EXTRAS');
 SC@01 - Index '1' - SC@36 - Parameter is supposed to be 'object' but is of the wrong type of 'string':'bob'
     type_czech._shapeObjectInArray([{r:11}, {r:22}, {r:33}], "n", 'TYPE-EXTRAS');
@@ -820,14 +857,35 @@ SC@45 - INDEX '1' is supposed to be a 'string', but is incorrectly a 'boolean' :
       if (_isCollection(type_of_array)) {
         error_string += _shapeVariable(check_element, type_of_array, check_type);
       } else if (type_of_array !== variable_type) {
-        const show_element = _toStr(check_element);
-        const error_45 = `INDEX '${element_index}' is asserted to be a '${type_of_array}',`
-                     + ` but is fallaciously a '${variable_type}' : ${show_element}`;
-        error_string = _consoleError(error_45, 'SC@45');
-        break;
+        if (OP_UNDEF_OK && variable_type === 'null') {
+          // ingore nulls if OP_UNDEF_OK
+        } else if (OP_UNDEF_OK && variable_type === 'undefined') {
+          // ingore undefined if OP_UNDEF_OK
+        } else {
+          const show_element = _toStr(check_element);
+          const error_45 = `INDEX '${element_index}' is asserted to be a '${type_of_array}',`
+                         + ` but is fallaciously a '${variable_type}' : ${show_element}`;
+          error_string = _consoleError(error_45, 'SC@45');
+          break;
+        }
       }
     }
     consolelog('_arrayOfOneType EXIT', error_string);
+    return error_string;
+  };
+
+  const _wrongType = (element_type, element_index, variable_type) => {
+   // consolelog('_wrongType ENTER', element_type, element_index, variable_type);
+    if (typeof element_type !== 'undefined' && !_isValidType(element_type)) {
+      const types_str = _jsonStr(SHORT_TYPES);
+      let error_60 = `The type '${element_type}' is not valid. Try one of : ${types_str}`;
+      error_60 = _consoleError(error_60, 'SC@60');
+      throw error_60;
+    }
+    const error_44 = `INDEX '${element_index}' is assumed to be a '${element_type}',`
+    + ` but is mistakenly a '${variable_type}'`;
+    const error_string = _consoleError(error_44, 'SC@44');
+    consolelog('_wrongType EXIT', error_string);
     return error_string;
   };
 
@@ -868,9 +926,7 @@ type_czech._shapeArrayTypes([], ['number'], 'TYPE-VERIFY');
             } else if (OP_UNDEF_OK && variable_type === 'undefined') {
               // ingore undefined if OP_UNDEF_OK
             } else {
-              const error_44 = `INDEX '${element_index}' is assumed to be a '${element_type}',`
-              + ` but is mistakenly a '${variable_type}'`;
-              error_string = _consoleError(error_44, 'SC@44');
+              error_string = _wrongType(element_type, element_index, variable_type);
               break;
             }
           }
@@ -907,7 +963,11 @@ SC@43 - Property 'r' is supposed to be a 'number', but is incorrectly a 'string'
     } else {
       const variable_type = _aTypeOf(check_variable);
       if (valid_type !== variable_type) {
-        if (typeof check_variable === 'undefined') {
+        if (OP_UNDEF_OK && variable_type === 'null') {
+          // ingore nulls if OP_UNDEF_OK
+        } else if (OP_UNDEF_OK && variable_type === 'undefined') {
+          // ingore undefined if OP_UNDEF_OK
+        } else if (typeof check_variable === 'undefined') {
           const error_41 = `Key '${property_key}' was given to be a '${valid_type}' but was instead 'undefined'`;
           error_string = _consoleError(error_41, 'SC@41');
         } else if (variable_type === 'null') {
@@ -929,7 +989,7 @@ SC@43 - Property 'r' is supposed to be a 'number', but is incorrectly a 'string'
 type_czech._shapeCollectionTypes({a:123},  {a:"n"}, 'TYPE-VERIFY');
 ''
     type_czech._shapeCollectionTypes({a:123, b:789},  {a:"n"}, 'TYPE-VERIFY');
-    SC@39 - Extra key in checked_object - (b:'789')
+    SC@39 - Extra key in checked object - (b:'789')
 type_czech._shapeCollectionTypes({a:[123], b:[789]},  {a:["n"]}, 'TYPE-VERIFY');
 ''
     type_czech._shapeCollectionTypes({a:[123], b:[789]},  {a:["s"]}, 'TYPE-VERIFY');
@@ -952,7 +1012,7 @@ type_czech._shapeCollectionTypes({a:{ccc:123}, b:{ddd:789}},  {a:{ccc:"n"}, b:{d
         error_string += _shapePropertyType(valid_shallow, check_key, check_var_or_obj);
         delete valid_shallow[check_key];
       } else if (check_type === TYPE_VERIFY) {
-        const error_39 = `Extra key in checked_object - (${check_key}:'${check_var_or_obj}')`;
+        const error_39 = `Extra key in checked object - (${check_key}:'${check_var_or_obj}')`;
         error_string = _consoleError(error_39, 'SC@39');
       } else {
         // console.log('NO ERROR shapesCheck');
@@ -1044,7 +1104,6 @@ type_czech._shapeCheck([456, 789], ["number"], 'TYPE-EXTRAS');
   */
   function _shapeCheck(check_variable, variable_type, check_type) {
     consolelog('_shapeCheck ENTER', check_variable, variable_type, check_type);
-    VALID_TYPES = VALID_SET;
     if (OP_UNDEF_OK) {
       VALID_TYPES.add('null');
       VALID_TYPES.add('undefined');
@@ -1213,7 +1272,7 @@ SC@10 - bad empty key 'is_-RONG', must be either EMPTY-OK/EM-OK or EMPTY-ER/EM-E
         if (is_empty) {
           const var_str = _jsonStr(check_var_or_obj);
           const error_8 = `'${check_key}' is a '${current_type}' which is reputed `
-                      + `to be '${long_empty}' but has a value of ${var_str}`;
+                      + `to be '${long_empty}' but has a value of ${var_str}. `;
           error_string = _consoleError(error_8, 'SC@08');
         }
       } else {
@@ -1234,7 +1293,7 @@ type_czech._emptyCollectionTypes({ r: 11 }, { r: 'EM-ER' }, 'EMPTY-VERIFY');
     type_czech._emptyCollectionTypes([[]], [['EM-ER']], 'EMPTY-VERIFY');
     SC@26 - Key '0' was supposed to be 'EMPTY-ER' but was instead '[]'
 type_czech._emptyCollectionTypes([1,2], ["EM-ER"], 'EMPTY-VERIFY');
-SC@27 - Extra key in checked_object - (1:'2')
+SC@27 - Extra key in checked object - (1:'2')
     type_czech._emptyCollectionTypes([1,2], ["EM-ER"], 'EMPTY-EXTRAS');
     ''
   */
@@ -1251,7 +1310,7 @@ SC@27 - Extra key in checked_object - (1:'2')
         const long_empty = _shortToLongEmpty(correct_empty);
         if (_isEmpty(check_var_or_obj)) {
           const show_empty = _jsonStr(check_var_or_obj);
-          const error_26 = `Key '${check_key}' was understood to be '${long_empty}' but was instead '${show_empty}'`;
+          const error_26 = `Key '${check_key}' was understood to be '${long_empty}' but was rather '${show_empty}'`;
           error_string = _consoleError(error_26, 'SC@26');
           break;
         }
@@ -1265,7 +1324,7 @@ SC@27 - Extra key in checked_object - (1:'2')
         }
         delete valid_shallow[check_key];
       } else if (check_type === EMPTY_VERIFY) {
-        const error_27 = `Extra key in checked_object - (${check_key}:'${check_var_or_obj}')`;
+        const error_27 = `Extra key in checked object - (${check_key}:'${check_var_or_obj}')`;
         error_string = _consoleError(error_27, 'SC@27');
         break;
       } else {
@@ -1456,7 +1515,6 @@ type_czech._doOneOfShape("TYPE-VERIFY", [  {"X":"an-str","Y":1234},   [{"X":"s",
   function _doOneOfShape(check_type, type_parameters) {
     consolelog('_doOneOfShape ENTER', check_type, type_parameters);
     const [check_variable, var_types_shapes] = type_parameters;
-    // console.log('var_shape_types', var_types_shapes)
     let error_string = '';
     let possible_error = '';
     // eslint-disable-next-line no-restricted-syntax
@@ -1558,7 +1616,7 @@ SC@49 - TypeCzech.methodName() comparing actual 'string' parameter, with a value
       } else if (shape_type !== 'string') {
         const error_50 = `TypeCzech.${method_name}() called with 'a-variable' and 'not-a-variable type'.`
                     + ` Matching '${parameter_str}' with '${shape_str}'.`
-                    + ` Instead try TypeCzech.${method_name}(12, 'number')`;
+                    + ` Preferably try TypeCzech.${method_name}(12, 'number')`;
         error_string = _consoleError(error_50, 'SC@50');
       }
     }
@@ -1635,10 +1693,12 @@ type_czech.emptyVerify({}, 'EMPTY-OK');
     consolelog('emptyVerify ENTER', arguments_obj, shape_list);
     const arguments_array = _getArguments(arguments_obj);
     consolelog('emptyVerify START', arguments_array, shape_list);
-    _twoArrays([arguments_array, shape_list], 'emptyVerify');
-    const invalid_error = _emptyCheck(arguments_array, shape_list, EMPTY_VERIFY);
-    const error_string = invalid_error ? ['emptyVerify(arguments, expected_emptys)', invalid_error, shape_list] : '';
-    consolelog('emptyVerify EXIT', arguments_obj, shape_list);
+    let error_string = _twoArrays([arguments_array, shape_list], 'emptyVerify');
+    if (error_string === '') {
+      const invalid_error = _emptyCheck(arguments_array, shape_list, EMPTY_VERIFY);
+      error_string = invalid_error ? [M_EMPTY_VERIFY, invalid_error, shape_list] : '';
+    }
+    consolelog('emptyVerify EXIT', error_string);
     return error_string;
   }
   /*
@@ -1648,9 +1708,9 @@ type_czech.emptyVerify({}, 'EMPTY-OK');
 type_czech.typeVerify({}, 'an-object');
 SC@33 - The type 'an-object' is not valid
     type_czech.typeVerify({cyl:4, fuel:"gasoline", snuck:"extra"}, {cyl:"number", fuel:"string"});
-    SC@39 - Extra key in checked_object - (snuck:'extra')
+    SC@39 - Extra key in checked object - (snuck:'extra')
 type_czech.typeVerify({cyl:4, fuel:"gasoline"}, {cyl:"number", fuel:"string", snuck:"boolean"});
-SC@46 - The key 'snuck', which has a type of 'boolean', is missing in the checked_object
+SC@46 - The key 'snuck', which has a type of 'boolean', is missing in the checked object
     type_czech.typeVerify({cyl:4, fuel:"gasoline"}, {cyl:"number", fuel:"string"});
     ''
 type_czech.typeVerify([1,2,3], ["n", "n"]);
@@ -1674,9 +1734,11 @@ q*bert
     consolelog('typeVerify ENTER', arguments_obj, shape_list);
     const arguments_array = _getArguments(arguments_obj);
     consolelog('typeVerify START', arguments_array, shape_list);
-    _twoArrays([arguments_array, shape_list], 'typeVerify');
-    const type_error = _shapeCheck(arguments_array, shape_list, TYPE_VERIFY);
-    const error_string = type_error ? ['typeVerify(arguments, expected_types)', type_error, shape_list] : '';
+    let error_string = _twoArrays([arguments_array, shape_list], 'typeVerify');
+    if (error_string === '') {
+      const type_error = _shapeCheck(arguments_array, shape_list, TYPE_VERIFY);
+      error_string = type_error ? [M_TYPE_VERIFY, type_error, shape_list] : '';
+    }
     consolelog('typeVerify EXIT', error_string);
     return error_string;
   }
@@ -1689,22 +1751,35 @@ type_czech.emptyExtras([12, 'a-string', false], ['EMPTY-ER', 'EMPTY-ER']);
     consolelog('emptyExtras ENTER', arguments_obj, shape_list);
     const arguments_array = _getArguments(arguments_obj);
     consolelog('emptyExtras START', arguments_array, shape_list);
-    _twoArrays([arguments_array, shape_list], 'emptyExtras');
-    const invalid_error = _emptyCheck(arguments_array, shape_list, EMPTY_EXTRAS);
-    const error_string = invalid_error ? ['emptyExtras(arguments, expected_emptys)', invalid_error, shape_list] : '';
+    let error_string = _twoArrays([arguments_array, shape_list], 'emptyExtras');
+    if (error_string === '') {
+      const invalid_error = _emptyCheck(arguments_array, shape_list, EMPTY_EXTRAS);
+      error_string = invalid_error ? [M_EMTPY_EXTRAS, invalid_error, shape_list] : '';
+    }
     consolelog('emptyExtras ENTER', error_string);
     return error_string;
   }
 
   /*
-type_czech.typeExtras({}, 'object');
-''
-    type_czech.typeExtras({cyl:4, fuel:"gasoline", snuck:"extra"}, {cyl:"number", fuel:"string"});
-    ''
-type_czech.typeExtras({cyl:4, fuel:"gasoline"}, {cyl:"number", fuel:"string", snuck:"boolean"});
-    SC@46 - The key 'snuck', which has a type of 'boolean', is missing in the checked_object
-type_czech.typeExtras({cyl:4, fuel:"gasoline"}, {cyl:"number", fuel:"string"});
-''
+Both parameters must be arrays of at least 2 entries, or error.
+We cannot handle single-type arrays with typeExtras()
+
+  Does not make sense. The extra 17 doesn't work. Does this match
+  function(['string'], 'number') or function(['string', 'number']) ?
+  type_czech.typeExtras(['a-string', 17], ['string']);
+  >>> "INDEX '1' is asserted to be a 'string', but is fallaciously a 'number' : 17"
+
+  Does not make sense either, missing a number in the arguments.
+  type_czech.typeExtras(['a-string'], ['string', 'number']);
+  >>> "TypeCzech.typeExtras() comparing actual 'string' parameter, with a value of 'a-string', opposed to the expected shape of [\"string\",\"number\"]. They should be the same type; both []s, or both 'string's."
+
+  These make sense
+  type_czech.typeExtras(['a-string', 17], ['string', 'number']);
+  >>> ''
+
+  type_czech.typeExtras(['a-string', 17, {}], ['string', 'number']);
+  >>> ''
+
     type_czech.typeExtras([1,2,3], ["n", "n"]);
     ''
 type_czech.typeExtras([1,2,3], ["n", "n", "n"]);
@@ -1715,10 +1790,12 @@ type_czech.typeExtras([1,2,3], ["n", "n", "n"]);
   function typeExtras(arguments_obj, shape_list) {
     consolelog('typeExtras ENTER', arguments_obj, shape_list);
     const arguments_array = _getArguments(arguments_obj);
-    _twoArrays([arguments_array, shape_list], 'typeExtras');
     consolelog('typeExtras START', arguments_array, shape_list);
-    const type_error = _shapeCheck(arguments_array, shape_list, TYPE_EXTRAS);
-    const error_string = type_error ? ['typeExtras(arguments, expected_types)', type_error, shape_list] : '';
+    let error_string = _twoArrays([arguments_array, shape_list], 'typeExtras');
+    if (error_string === '') {
+      const type_error = _shapeCheck(arguments_array, shape_list, TYPE_EXTRAS);
+      error_string = type_error ? [M_TYPE_EXTRAS, type_error, shape_list] : '';
+    }
     consolelog('typeExtras EXIT', error_string);
     return error_string;
   }
@@ -1745,7 +1822,7 @@ SC@23 - The variable \n~~~~~'{'a':0,'b':12}'\nwhich is a 'object', does not matc
     let error_string = _oneOfChecks([arguments_array, shapes_lists], 'emptyOneOf');
     if (error_string === '') {
       const exact_error = _doOneOfEmpty(EMPTY_VERIFY, [arguments_array, shapes_lists]);
-      error_string = exact_error ? ['emptyOneOf(arguments, expected_emptys)', exact_error, shapes_lists] : '';
+      error_string = exact_error ? [M_EMTPY_ONE_OF, exact_error, shapes_lists] : '';
     }
     consolelog('emptyOneOf EXIT', error_string);
     return error_string;
@@ -1764,7 +1841,7 @@ type_czech.typeOneOf(17, [ "string", "number" ]);
     let error_string = _oneOfChecks([arguments_array, possible_shapes], 'typeOneOf');
     if (error_string === '') {
       const exact_error = _doOneOfShape(TYPE_VERIFY, [arguments_array, possible_shapes]);
-      error_string = exact_error ? ['typeOneOf(arguments, expected_types)', exact_error, possible_shapes] : '';
+      error_string = exact_error ? [M_TYPE_ONE_OF, exact_error, possible_shapes] : '';
     }
     consolelog('typeOneOf ENTER', error_string);
     return error_string;
@@ -1788,7 +1865,7 @@ SC@15 - TypeCzech.emptyOneOfExtras() called with a second parameter as a non-arr
     let error_string = _oneOfChecks([arguments_array, shapes_lists], 'emptyOneOfExtras');
     if (error_string === '') {
       const loose_error = _doOneOfEmpty(EMPTY_EXTRAS, [arguments_array, shapes_lists]);
-      error_string = loose_error ? ['emptyOneOfExtras(arguments, expected_emptys)', loose_error, shapes_lists] : '';
+      error_string = loose_error ? [M_EMTPY_ONE_OF_EXTRAS, loose_error, shapes_lists] : '';
     }
     consolelog('emptyOneOfExtras EXIT', error_string);
     return error_string;
@@ -1808,7 +1885,7 @@ type_czech.typeOneOfExtras(17, [ "string", "boolean" ]);
     let error_string = _oneOfChecks([arguments_array, possible_shapes], 'typeOneOfExtras');
     if (error_string === '') {
       const loose_error = _doOneOfShape(TYPE_EXTRAS, [arguments_array, possible_shapes]);
-      error_string = loose_error ? ['typeOneOfExtras(arguments, expected_types)', loose_error, possible_shapes] : '';
+      error_string = loose_error ? [M_TYPE_ONE_OF_EXTRAS, loose_error, possible_shapes] : '';
     }
     consolelog('typeOneOfExtras EXIT', error_string);
     return error_string;
@@ -1834,16 +1911,18 @@ type_czech.hasInterface(97, 98);
     let error_string;
     if (_isArguments(data_object)) {
       const error_13 = 'TypeCzech.hasInterface() incorrectly called with a first parameter as "arguments".'
-                     + ' The first parameter should look something like {my-func:a_func, my-int:12} instead.';
+                     + ' The first parameter should look something like {my-func:a_func, my-int:12} oppositely.';
       error_string = _consoleError(error_13, 'SC@13');
     } else if (_aTypeOf(data_object) === 'object' && _aTypeOf(shape_list) === 'object') {
-      _twoArrays([data_object, shape_list], 'hasInterface');
-      const type_error = _shapeCheck(data_object, shape_list, TYPE_EXTRAS);
-      error_string = type_error ? ['hasInterface(arguments, expected_types)', type_error, shape_list] : '';
+      error_string = _twoArrays([data_object, shape_list], 'hasInterface');
+      if (error_string === '') {
+        const type_error = _shapeCheck(data_object, shape_list, TYPE_EXTRAS);
+        error_string = type_error ? [M_HAS_INTERFACE, type_error, shape_list] : '';
+      }
     } else {
       const error_17 = 'TypeCzech.hasInterface() incorrectly called, both parameters should be objects.'
-      + ' The first data parameter should look something like {my-func:a_func, my-int:12} instead.'
-      + ' The second interface parameter should look something like {my-func:"function", my-int:"number"} instead.';
+      + ' The first data parameter should look something like {my-func:a_func, my-int:12} alternately.'
+      + ' The second interface parameter should look something like {my-func:"function", my-int:"number"} alternately.';
       error_string = _consoleError(error_17, 'SC@17');
     }
     consolelog('hasInterface EXIT', error_string);
@@ -1861,14 +1940,8 @@ type_czech.hasInterface(97, 98);
                    + ' name, must be a string';
       error_59 = _consoleError(error_59, 'SC@59');
       throw error_59;
-    } else if (typeof return_type === 'string' && VALID_SET.has(return_type)) {
-      argument_check.return_types_.set(proxy_name, return_type);
     } else {
-      const valid_types = [...VALID_SET].join();
-      let error_60 = `TypeCzech.returnType('${proxy_name}', '${return_type}') second argument, the checked function's`
-                   + ` return type, must be one of [${valid_types}]`;
-      error_60 = _consoleError(error_60, 'SC@60');
-      throw error_60;
+      argument_check.return_types_.set(proxy_name, return_type);
     }
   }
 
@@ -1941,7 +2014,8 @@ type_czech.hasInterface(97, 98);
     _toStr,
     _twoArrays,
     _typeFromArray,
-    TYPE_CZECH_EVENTS, // arg_check = type_czech.ArgumentCheck(type_czech.TYPE_CZECH_EVENTS)
+    _wrongType,
+    TYPE_CZECH_EVENTS, // type_czech = type_czech.ArgumentCheck(type_czech.TYPE_CZECH_EVENTS)
     REPLACE_NL_TAB_TAB,
     MATCH_NL_TAB_TAB,
     CONSOLE_LOG_NEWLINE,

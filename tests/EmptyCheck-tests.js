@@ -203,10 +203,10 @@ function test_EmptyCheck_test_ccc_ccc(emptyVerify){
 
 	{	const check_object =   {str:""};
 	  	const valid_shape =   {str:"EMPTY-ER"};
-	  	const expected = `emptyVerify(arguments, expected_emptys),SC@08 - 'str' is a 'string' which is reputed to be 'EMPTY-ER' but has a value of ''SC@46 - The key 'str', which has a type of 'EMPTY-ER', is missing in the checked_object,[object Object]`; 
+	    	const expected = `emptyVerify(arguments, expected_emptys),SC@08 - 'str' is a 'string' which is reputed to be 'EMPTY-ER' but has a value of ''. SC@46 - The key 'str', which has a type of 'EMPTY-ER', is missing in the checked object,[object Object]`; 
 		  	const before_str = beforeCheck(check_object, valid_shape);
 			const actual = type_czech.emptyVerify(check_object, valid_shape);
-			afterCheck(check_object, valid_shape, before_str, 'ERROR@214');
+			afterCheck(check_object, valid_shape, before_str, '');
 		actual==expected ? tests_passed++ : _throw( errorMessage('ERROR@214', actual) );	}
 
 	{	const check_object =  {numx:17};
@@ -229,7 +229,7 @@ function test_EmptyCheck_test_ccc_ccc(emptyVerify){
 
 		{	const check_object =  {numx:NaN};
 		const valid_shape =  {numx:"EMPTY-ER"};    // this is not a throw
-		const expected = "emptyVerify(arguments, expected_emptys),SC@08 - 'numx' is a 'number' which is reputed to be 'EMPTY-ER' but has a value of '-NaN-'SC@46 - The key 'numx', which has a type of 'EMPTY-ER', is missing in the checked_object,[object Object]";
+		const expected =`emptyVerify(arguments, expected_emptys),SC@08 - 'numx' is a 'number' which is reputed to be 'EMPTY-ER' but has a value of '-NaN-'. SC@46 - The key 'numx', which has a type of 'EMPTY-ER', is missing in the checked object,[object Object]`;
 			const before_str = beforeCheck(check_object, valid_shape);
 		const actual = type_czech.emptyVerify(check_object, valid_shape);
 		afterCheck(check_object, valid_shape, before_str, 'ERROR@216b');
@@ -260,7 +260,7 @@ function test_EmptyCheck_test_ccc_ccc(emptyVerify){
 
 {	const check_object =  {num_JJ:18};
 	  	const valid_shape =  {num_y:"EMPTY-OK"};
-		const expected ="emptyVerify(arguments, expected_emptys),SC@27 - Extra key in checked_object - (num_JJ:'18')SC@46 - The key 'num_y', which has a type of 'EMPTY-OK', is missing in the checked_object,[object Object]";
+		const expected ="emptyVerify(arguments, expected_emptys),SC@27 - Extra key in checked object - (num_JJ:'18')SC@46 - The key 'num_y', which has a type of 'EMPTY-OK', is missing in the checked object,[object Object]";
 	  		const before_str = beforeCheck(check_object, valid_shape);
 			const actual = type_czech.emptyVerify(check_object, valid_shape);
 			afterCheck(check_object, valid_shape, before_str, 'ERROR@219');
@@ -377,11 +377,13 @@ function test_EmptyCheck_test_eee_eee(emptyVerify){
 
 	{	const check_object =   {str:""};
 	  	const valid_shape =   {str:"EMPTY-ER"};
-	  	const expected = "emptyVerify(arguments, expected_emptys),SC@08 - 'str' is a 'string' which is reputed to be 'EMPTY-ER' but has a value of ''SC@46 - The key 'str', which has a type of 'EMPTY-ER', is missing in the checked_object,[object Object]";
-		  	const before_str = beforeCheck(check_object, valid_shape);
-			const actual = type_czech.emptyVerify(check_object, valid_shape);
+		  const expected = `emptyVerify(arguments, expected_emptys),SC@08 - 'str' is a 'string' which is reputed to be 'EMPTY-ER' but has a value of ''. SC@46 - The key 'str', which has a type of 'EMPTY-ER', is missing in the checked object,{"str":"EMPTY-ER"}`;
+			const before_str = beforeCheck(check_object, valid_shape);
+			const actual_array = type_czech.emptyVerify(check_object, valid_shape);
+			actual_array[2]= JSON.stringify(actual_array[2]);   
+			actual_str = '' + actual_array;
 			afterCheck(check_object, valid_shape, before_str, 'ERROR@227');
-		actual==expected ? tests_passed++ : _throw( errorMessage('ERROR@227', actual) );	}
+			actual_str==expected ? tests_passed++ : _throw( errorMessage('ERROR@227', actual_str) );	}
 
 	{	const check_object =  {numx:17};
 	  	const valid_shape =  {numx:"EMPTY-ER"};    // this is not a throw
@@ -393,7 +395,7 @@ function test_EmptyCheck_test_eee_eee(emptyVerify){
 
 	// {	const check_object =  {numx:0};
 	//   	const valid_shape =  {numx:"EMPTY-ER"};    // this is not a throw
-	//   	const expected = "emptyVerify(arguments_obj, shape_list),SC@08 - 'numx' is a 'number' which is reputed to be 'EMPTY-ER' but has a value of 0SC@46 - The key 'numx', which has a type of 'EMPTY-ER', is missing in the checked_object,[object Object]"; 
+	//   	const expected = "emptyVerify(arguments_obj, shape_list),SC@08 - 'numx' is a 'number' which is reputed to be 'EMPTY-ER' but has a value of 0SC@46 - The key 'numx', which has a type of 'EMPTY-ER', is missing in the checked object,[object Object]"; 
 	//   		const before_str = beforeCheck(check_object, valid_shape);
 	// 		const actual = type_czech.emptyVerify(check_object, valid_shape);
 	// 		afterCheck(check_object, valid_shape, before_str, 'ERROR@229');
@@ -425,7 +427,7 @@ function test_EmptyCheck_test_eee_eee(emptyVerify){
 
 	{	const check_object =  {num_JJ:18};
 	  	const valid_shape =  {num_y:"EMPTY-OK"};
-	  	const expected_e = "The key 'num_y', which has a type of 'EMPTY-OK', is missing in the checked_object";
+	  	const expected_e = "The key 'num_y', which has a type of 'EMPTY-OK', is missing in the checked object";
 	  		const before_str = beforeCheck(check_object, valid_shape);
 	  	try{
 			const actual = type_czech.emptyVerify(check_object, valid_shape);
@@ -436,7 +438,7 @@ function test_EmptyCheck_test_eee_eee(emptyVerify){
 
 // {	const check_object =  [{num_JJ:18}];
 // 	  	const valid_shape =  [{num_y:"EMPTY-OK"}];
-// 		const expected ="Extra key in checked_object - (num_JJ:'18')";
+// 		const expected ="Extra key in checked object - (num_JJ:'18')";
 // 	  		const before_str = beforeCheck(check_object, valid_shape);
 // 			const actual = type_czech.emptyVerify(check_object, valid_shape);
 // 			afterCheck(check_object, valid_shape, before_str, 'eee_eee 666');
@@ -557,7 +559,7 @@ actual==expected ? tests_passed++ : _throw( errorMessage('ERROR@241', actual) );
 	{	const check_object =  [];
 		const valid_shape =  "EMPTY-ER";
 		let actual_array;
-	  const expected_e = `emptyVerify(arguments, expected_emptys),SC@24 - EMPTY-ER states 'array' must not be empty for the value '',"EMPTY-ER"` ;
+	  const expected_e = `SC@58 - TypeCzech.emptyVerify() comparing actual [] parameter, with a value of [''], against the expected shape of "EMPTY-ER". They should be the same type; both []s, or both "EMPTY-ER"s.` ;
 		const before_str = beforeCheck(check_object, valid_shape);
 		try{
 		  actual_array = type_czech.emptyVerify(check_object, valid_shape);
@@ -574,7 +576,7 @@ actual==expected ? tests_passed++ : _throw( errorMessage('ERROR@241', actual) );
 	{	const check_object =  [[]];
 		const valid_shape =  "EMPTY-ER";
 		let actual_array;
-	  const expected_e = `emptyVerify(arguments, expected_emptys),SC@24 - EMPTY-ER states 'array' must not be empty for the value '',"EMPTY-ER"` ;
+	  const expected_e = `SC@58 - TypeCzech.emptyVerify() comparing actual [] parameter, with a value of [''], against the expected shape of "EMPTY-ER". They should be the same type; both []s, or both "EMPTY-ER"s.`;
 		const before_str = beforeCheck(check_object, valid_shape);
 		try{
 		  actual_array = type_czech.emptyVerify(check_object, valid_shape);

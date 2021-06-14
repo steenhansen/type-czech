@@ -126,7 +126,7 @@ if (typeof args === 'object') {
             // eslint-disable-next-line no-restricted-syntax
             for (const single_char of single_chars) {
               log_count += 1;
-              single_section = `<span id='log-${log_count}' class='html-section'>${single_char}</span>`;
+              single_section = `<span id='log-${log_count}' >${single_char}</span>`;
               accum_span += single_section;
             }
             const div_text3 = accum_span.replace(NEW_LINE_REGEX, '<br>');
@@ -178,7 +178,7 @@ if (typeof args === 'object') {
     // eslint-disable-next-line no-restricted-syntax
     for (const single_char of single_chars) {
       log_count += 1;
-      single_section = `<span id='log-${log_count}' class='html-section'>${single_char}</span>`;
+      single_section = `<span id='log-${log_count}'>${single_char}</span>`;
       accum_span += single_section;
     }
 
@@ -213,9 +213,8 @@ if (typeof args === 'object') {
     if (console_type==='a-function'){
       a_function = args[0];
       func_str = a_function.toString()
-      func_nl = func_str.replace(/;/g, '<br>&nbsp;&nbsp;');
-      div_console.innerHTML += func_nl;
-     
+      func_nl = func_str.replace(/;/g, '|~~');
+      htmlNoColor(func_nl);
     } else if (console_type === 'string-string'){
       htmlNoColor(args[0]);
       htmlNoColor(args[1]);
@@ -257,7 +256,7 @@ function jsToDiv(div_id, script_id) {
   // eslint-disable-next-line no-restricted-syntax
   for (const single_char of single_chars) {
     code_count += 1;
-    single_section = `<span id='code-${code_count}' class='html-section'>${single_char}</span>`;
+    single_section = `<span id='code-${code_count}' >${single_char}</span>`;
     accum_span += single_section;
   }
   document.getElementById(div_id).innerHTML = accum_span;
@@ -280,30 +279,6 @@ function fromToBoldText(start_num, end_num, id_start, css_num) {
   for (i = start_num; i <= end_num; i += 1) {
     const an_id = `${id_start}-${i}`;
     const css_name = `text-${css_num}`;
-    const my_span = document.getElementById(an_id);
-    if (my_span) {
-      my_span.classList.add(css_name);
-    }
-  }
-}
-
-function fromToUnderline(start_num, end_num, id_start, css_num) {
-  if (end_num < start_num) throw new Error(`fromToUnderline() bad start/end : ${start_num} / ${end_num}`);
-  for (i = start_num; i <= end_num; i += 1) {
-    const an_id = `${id_start} - ${i}`;
-    const css_name = `under-${css_num}`;
-    const my_span = document.getElementById(an_id);
-    if (my_span) {
-      my_span.classList.add(css_name);
-    }
-  }
-}
-
-function fromToItalic(start_num, end_num, id_start) {
-  if (end_num < start_num) throw new Error(`fromToItalic() bad start/end : ${start_num} / ${end_num}`);
-  for (i = start_num; i <= end_num; i += 1) {
-    const an_id = `${id_start} - ${i}`;
-    const css_name = 'italic-out';
     const my_span = document.getElementById(an_id);
     if (my_span) {
       my_span.classList.add(css_name);
