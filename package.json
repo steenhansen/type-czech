@@ -1,19 +1,35 @@
 {
-  "name": "spec-czech",
-  "version": "1.0.0",
-  "main": "CarCheck.js",
-  "directories": {
-    "test": "tests"
+  "name": "type-czech",
+  "version": "0.0.2",
+  "homepage": "https://github.com/steenhansen/type-czech",
+  "keywords": [
+    "type checking"
+  ],
+  "license": "MIT",
+  "maintainers": [
+    {
+      "name": "steen hansen",
+      "email": "steen_hansen@yahoo.com"
+    }
+  ],
+  "engines": {
+    "node": ">=6.10.2"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "files": [
+    "TypeCzech.js"
+  ],
+  "_npmUser": {
+    "name": "steenhansen",
+    "email": "steen_hansen@yahoo.com"
   },
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "_npmVersion": "3.10.10",
+  "dependencies": {
+  },
+  "description": "JavaScript copy of clojure.spec",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/steenhansen/type-czech.git"
+  },
   "devDependencies": {
-    "eslint": "^7.26.0",
-    "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "^2.22.1"
   }
 }

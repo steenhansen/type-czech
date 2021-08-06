@@ -12,12 +12,10 @@ module.exports = {
     ecmaVersion: 12,
   },
   rules: {
-    "camelcase": "off",
- "no-underscore-dangle": 0,
- "no-nested-ternary": 0,
-  "max-len":  ["error", { "code":120, "ignoreComments": true }] ,
+    camelcase: 'off',
+    'no-underscore-dangle': 0,
+    'no-nested-ternary': 0,
+    'max-len': ['error', { code: 120, ignoreComments: true }],
   },
-
-
 
 };

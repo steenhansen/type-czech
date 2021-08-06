@@ -2,17 +2,29 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-console */
 
-const type_czech_copy = {
-  REPLACE_NL_TAB_TAB: new RegExp(/\\n\\t\\t/g),
-  MATCH_NL_TAB_TAB: new RegExp(/\n\t\t/g),
-  CONSOLE_LOG_NEWLINE: '|',
-};
+REPLACE_NL_TAB_TAB = new RegExp(/\\n\\t\\t/g);
+MATCH_NL_TAB_TAB = new RegExp(/\n\t\t/g);
+CONSOLE_LOG_NEWLINE = '|';
+
+const NL = CONSOLE_LOG_NEWLINE;
+const NL1 = CONSOLE_LOG_NEWLINE;
+const NL2 = CONSOLE_LOG_NEWLINE + CONSOLE_LOG_NEWLINE;
+const NL3 = CONSOLE_LOG_NEWLINE + CONSOLE_LOG_NEWLINE + CONSOLE_LOG_NEWLINE;
+const NL4 = CONSOLE_LOG_NEWLINE + CONSOLE_LOG_NEWLINE + CONSOLE_LOG_NEWLINE + CONSOLE_LOG_NEWLINE;
+
+const LEVEL_1 = NL + '________';
+const LEVEL_2 = NL + '................';
 
 // eslint-disable-next-line no-self-compare
 const isNaN = (maybeNaN) => maybeNaN !== maybeNaN;
 
+function lowerStart(an_str) {
+  return an_str ? (an_str[0] === an_str[0].toLowerCase()) : false;
+}
+
+docElemId = html_id => document.getElementById(html_id)
+
 let log_count = 0;
-let code_count = 0;
 
 const NEW_LINE_REGEX = new RegExp(/\|/, 'g');
 const NBSP_REGEX = new RegExp(/~/, 'g');
@@ -24,7 +36,18 @@ function startCurlyDates(log_text) {
   const no_news = log_text.replace(/\n/g, '');
   const p11 = no_news.replace(/([^}]),'/, "$1,'");
   const p3 = p11.split("},'");
-  const p4 = p3.join("},\n" + type_czech_copy.CONSOLE_LOG_NEWLINE + "'");
+  const curly_new_linesOLD = "},\n" + CONSOLE_LOG_NEWLINE + "'";
+
+  const curly_start_nl = '},\n';
+  const curly_end_nl = "'";
+
+  const curly_new_lines = `${curly_start_nl}${CONSOLE_LOG_NEWLINE}${curly_end_nl}`;
+
+   if (curly_new_linesOLD!==curly_new_lines){
+        console.log('1111111111111111111111111111111111111111111')
+   }
+
+  const p4 = p3.join(curly_new_linesOLD);
   const long_js_date = /(\d\d\d\d-\d\d-\d\d)\w\d\d:\d\d:\d\d.\d\d\d\w/gi;
   const obj_lines = p4.replace(long_js_date, "$1");
   return obj_lines;
@@ -64,7 +87,7 @@ function captureConsole(div_id) {
 
   function htmlLogColor(args) {
     // oldConsole('htmlLogColor', args)
-    if (!args[0].includes('ArgumentCheck-init')) {
+    if (!args[0].includes('_ParametersCheck-init')) {
       const [percent_c, a_number] = args[0].split(' ');
       const log_number = parseInt(a_number, 10);
       if (!isNaN(log_number)) {
@@ -74,7 +97,6 @@ function captureConsole(div_id) {
       }
     }
   }
-  
   
   function doubleToSingleQuotes(double_quotes) {
     const dq_1 = double_quotes.replace(/{"/g, "{'");
@@ -89,7 +111,7 @@ function captureConsole(div_id) {
   }
 
   function toStr(maybe_undef) {
-    //console.log('_toStr enter', maybe_undef);
+    // console.log('_toStr enter', maybe_undef);
     if (typeof maybe_undef === 'undefined') return UNDEFINED_AS_STR;
     if (typeof maybe_undef === 'string') {
       const no_double_quotes = maybe_undef.replace(/"/g, "'");
@@ -102,7 +124,7 @@ function captureConsole(div_id) {
     const single_quotes = doubleToSingleQuotes(double_quotes);
     return single_quotes;
   }
-  
+
   function stringifyReplacer(key, value) {
     if (typeof value === 'undefined') {
       return UNDEFINED_AS_STR;
@@ -117,29 +139,27 @@ function captureConsole(div_id) {
 
   function htmlNoColor(args) {
     // oldConsole('htmlNoColor', args,  jsonStr(args))
-let div_text4;
-if (typeof args === 'object') {
-  div_text4 = jsonStr(args);
-} else if (typeof args ==='string'){
-            const single_chars = args.split('');
-            let accum_span = '';
-            // eslint-disable-next-line no-restricted-syntax
-            for (const single_char of single_chars) {
-              log_count += 1;
-              single_section = `<span id='log-${log_count}' >${single_char}</span>`;
-              accum_span += single_section;
-            }
-            const div_text3 = accum_span.replace(NEW_LINE_REGEX, '<br>');
-            div_text4 = div_text3.replace(NBSP_REGEX, '&nbsp;');
-  } else{
-
-    div_text4 = jsonStr(args);
-  }
+    let div_text4;
+    if (typeof args === 'object') {
+      div_text4 = jsonStr(args);
+    } else if (typeof args === 'string') {
+      const single_chars = args.split('');
+      let accum_span = '';
+      // eslint-disable-next-line no-restricted-syntax
+      for (const single_char of single_chars) {
+        log_count += 1;
+        single_section = `<span id='log-${log_count}' >${single_char}</span>`;
+        accum_span += single_section;
+      }
+      const div_text3 = accum_span.replace(NEW_LINE_REGEX, '<br>');
+      div_text4 = div_text3.replace(NBSP_REGEX, '&nbsp;');
+    } else {
+      div_text4 = jsonStr(args);
+    }
     div_console.innerHTML += div_text4;
   }
 
   function logArray(args) {
-    
     function _stringifyReplacer(key, value) {
       if (typeof value === 'undefined') {
         return 'un-defined';
@@ -164,14 +184,10 @@ if (typeof args === 'object') {
     }
 
     const json_str22 = json_str.replace(/\\"/g, '"');
-    const new_line_with_spaces = type_czech_copy.CONSOLE_LOG_NEWLINE + '~~~~~~~~';
-    const div_text2 = json_str22.replace(type_czech_copy.REPLACE_NL_TAB_TAB, new_line_with_spaces);
+    const new_line_with_spaces = CONSOLE_LOG_NEWLINE + '~~~~~~~~';
+    const div_text2 = json_str22.replace(REPLACE_NL_TAB_TAB, new_line_with_spaces);
     const long_js_date = /(\d\d\d\d-\d\d-\d\d)\w\d\d:\d\d:\d\d.\d\d\d\w/gi;
-    const obj_lines = div_text2.replace(long_js_date, "$1");
-
-
-   // const obj_lines_NaN = obj_lines.replace('NasdsadaN', "nnnnnnaaaannn");
-
+    const obj_lines = div_text2.replace(long_js_date, '$1');
 
     const single_chars = obj_lines.split('');
     let accum_span = '';
@@ -198,7 +214,7 @@ if (typeof args === 'object') {
       console_type = 'a-function';
     } else if (typeof first_arg === 'string' && first_arg.match(/OUT/)) {
       console_type = 'string-string';
-    } else if (typeof first_arg === 'string' && first_arg.match(type_czech_copy.MATCH_NL_TAB_TAB)) {
+    } else if (typeof first_arg === 'string' && first_arg.match(MATCH_NL_TAB_TAB)) {
       console_type = 'multi-line';
     } else if (typeof first_arg === 'string' && first_arg.startsWith('%c')) {
       console_type = 'color-line';
@@ -209,13 +225,13 @@ if (typeof args === 'object') {
     } else {
       console_type = 'default-log';
     }
-   // oldConsole(' !! console_type == ', console_type)
-    if (console_type==='a-function'){
+    // oldConsole(' !! console_type == ', console_type)
+    if (console_type === 'a-function') {
       a_function = args[0];
-      func_str = a_function.toString()
+      func_str = a_function.toString();
       func_nl = func_str.replace(/;/g, '|~~');
       htmlNoColor(func_nl);
-    } else if (console_type === 'string-string'){
+    } else if (console_type === 'string-string') {
       htmlNoColor(args[0]);
       htmlNoColor(args[1]);
     } else if (console_type === 'multi-line') {
@@ -236,7 +252,6 @@ if (typeof args === 'object') {
       }
     }
   };
- 
 }
 
 function linesConsole(start_lines) {
@@ -246,13 +261,16 @@ function linesConsole(start_lines) {
   }
 }
 
+
 function jsToDiv(div_id, script_id) {
   const div_text1 = document.scripts[script_id].firstChild.textContent;
   const div_text2 = div_text1.replace(/\n\s*linesConsole\([^)]*\)\n/g, '\n'); // hide linesConsole(2,1,2);
   const div_text3 = div_text2.replace(/\}\s+$/, ''); // hide last }
   const div_text4 = div_text3.replace(/^[^{]*\{/, ''); // hide first function checkCodeRun(){
   const single_chars = div_text4.split('');
+  single_chars.shift(); // kill first empty cell
   let accum_span = '';
+  let code_count = 0;
   // eslint-disable-next-line no-restricted-syntax
   for (const single_char of single_chars) {
     code_count += 1;

@@ -41,7 +41,8 @@ function miscFuncs(){
  			}
  			return MISC_CHECK_OK;
  		} catch(e){
-   			throw 'miscFuncs.nameCapitalize() value=' + a_name + '  ' + e;
+			json_str = JSON.stringify(a_name, null);
+   			throw 'miscFuncs.nameCapitalize() value=' + json_str + '  ' + e;
  		}
  	}
 

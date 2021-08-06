@@ -1,0 +1,220 @@
+<meta charset="utf-8" />
+<title>26-Type-and-Empty-Abbreviations</title>
+
+
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Inconsolata">
+  
+<div id='js-div' style="width:50%">
+  <div id='js-code'>the javascript</div>
+</div>
+
+<div id="the-explanation" style="width:50%">
+  <div class='an-explantion'>26 - Type and Empty Abbreviations</div>
+  <div id='explanation-text'>
+    <br>
+
+     Abbreviations can be used to make type and empty assertions shorter.
+
+    <div>
+      <div style="float:left; width:20%; margin-left:10px">
+        <li style="list-style: none;"><b>Type Shortcuts</b></li>
+          </div>
+    
+      <div style="float:left; width:16%">
+        <ul>
+          <li><b>B</b> - Boolean</li>
+          <li><b>R</b> - RegExp</li>
+    
+        </ul>
+      </div>
+     
+      <div style="float:left; width:13%">
+        <ul>
+          <li><b>D</b> - Date</li>
+          <li><b>S</b> - String</li>
+        </ul>
+      </div>
+     
+      <div style="float:left; width:16%">
+        <ul>
+          <li><b>F</b> - Function</li>
+          <li><b>Y</b> - sYmbol</li>
+        </ul>
+      </div>
+
+      <div style="float:left; width:16%">
+        <ul>
+          <li><b>N</b> - Number</li>
+          <li><b>I</b> - BigInt</li>
+        </ul>
+      </div>
+
+      <div style="float:left; width:16%">
+        <ul>
+          <li><b>A</b> - Array</li>
+          <li><b>O</b> - Object</li>
+        </ul>
+      </div>
+    
+    </div>
+
+    <div>
+      <div style="float:left; width:25%">
+        <li style="list-style: none;"><b>Empty Shortcuts</b></li>
+      </div>
+    
+      <div style="float:left; width:25%">
+        <ul>
+          <li>'<b>EM-OK</b>' <br> 'EMPTY-OK'</li>
+        </ul>
+      </div>
+     
+      <div style="float:left; width:25%">
+        <ul>
+          <li>'<b>EM-ER</b>' <br> 'EMPTY-ERROR'</li>
+        </ul>
+      </div>
+
+      <div style="float:left; width:25%">
+        <ul>
+          <li>'<b>EM-IG</b>' <br> 'EMPTY-IGNORE'</li>
+        </ul>
+      </div>
+    
+    </div>
+
+<br>
+    The Pre_Person() function first verifies that an object is the construction parameter,
+    then that object is tested for the correct keys and types, finally
+    all keys are checked for being valueless.
+    
+    <br><br>
+    After which the POST_Person() function first certifies that the constructor
+    returns an array result, then the two elements are established to be the 
+    correctly ordered types, lastly the last name is checked for not being empty.
+    A valueless birth date returned is allowed.
+    <br><br>
+    The errors:
+     <ul>
+      <li>Queen Boudica does not have a valid birth date for PRE check, but this is OK on POST check</li>
+      <li>Madonna has no last name which causes two error messages in both PRE and POST</li>
+    </ul>
+
+    <br>
+ </div>
+
+
+ <div id="console-log"  class='a-collection'>
+  <div class='a-title'>Console Output</div>
+  <div id='log-text'></div>
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+<script id="check-code">
+
+function checkCodeRun(){
+/**/  if (typeof TypeCzech === 'function')
+/**/    type_czech = TypeCzech('LOG-ERRORS')
+/**/  else
+/**/    type_czech = { check: (nop) => nop, stats: (nop) => nop,
+/**/                                          is_active: false }
+/**/
+/**/  PRE_Person=(typeof PRE_Person === 'undefined') ?undefined:PRE_Person
+/**/  POST_Person=(typeof POST_Person==='undefined') ? undefined:POST_Person
+/**/
+/**/  function PRE_Person(){
+/**/    object_issue =  type_czech.valid(arguments, 'O')
+/**/    if (object_issue) return object_issue
+/**/
+/**/    person_types = {f_name:'S', l_name:'S', b_date:'D'}
+/**/    type_issue = type_czech.valid(arguments, person_types)
+/**/    if (type_issue) return type_issue
+/**/
+/**/    person_empties = {f_name:'EM-ER', l_name:'EM-ER', b_date:'EM-ER'}
+/**/    return type_czech.valueless(arguments, person_empties)
+/**/  }
+/**/
+/**/  function POST_Person(){
+/**/    array_issue = type_czech.valid(arguments, 'A')
+/**/    if (array_issue) return array_issue
+/**/
+/**/    type_issue = type_czech.valid(arguments, ['S', 'D'])
+/**/    if (type_issue) return type_issue
+/**/
+/**/    return type_czech.valueless(arguments, ['EM-ER', 'EM-OK'])
+/**/  }
+/**/  
+/**/  Person=type_czech.check(Person, PRE_Person, POST_Person)
+
+function Person(a_person){
+  let {f_name, l_name, b_date} = a_person
+  person_array = [l_name, b_date]
+  return person_array
+}
+
+al_data = {f_name:'Al', l_name:'Jones', b_date: new Date(1948,0,14)}
+al_person = Person(al_data)
+console.log(al_person)
+
+linesConsole(2)
+
+boudica_data = {f_name:'Queen', l_name:'Boudica', b_date:new Date('')}
+boudica_person = Person(boudica_data)
+console.log(boudica_person)
+
+linesConsole(2)
+
+string_data = {f_name:'Madonna', l_name:'', b_date: new Date(1912,6,23)} 
+string_person = Person(string_data)
+console.log(string_person)
+}
+
+</script>
+
+
+
+
+
+
+
+<script s r c="../consolelog.js">
+  REPLACE_NL_TAB_TAB=new RegExp(/\\n\\t\\t/g),MATCH_NL_TAB_TAB=new RegExp(/\n\t\t/g),CONSOLE_LOG_NEWLINE="|";const NL=CONSOLE_LOG_NEWLINE,NL1=CONSOLE_LOG_NEWLINE,NL2=CONSOLE_LOG_NEWLINE+CONSOLE_LOG_NEWLINE,NL3=CONSOLE_LOG_NEWLINE+CONSOLE_LOG_NEWLINE+CONSOLE_LOG_NEWLINE,NL4=CONSOLE_LOG_NEWLINE+CONSOLE_LOG_NEWLINE+CONSOLE_LOG_NEWLINE+CONSOLE_LOG_NEWLINE,LEVEL_1=NL+"________",LEVEL_2=NL+"................",isNaN=e=>e!=e;function lowerStart(e){return!!e&&e[0]===e[0].toLowerCase()}docElemId=(e=>document.getElementById(e));let log_count=0;const NEW_LINE_REGEX=new RegExp(/\|/,"g"),NBSP_REGEX=new RegExp(/~/,"g"),UNDEFINED_AS_STR="un-defined";function startCurlyDates(e){const n=e.replace(/\n/g,"").replace(/([^}]),'/,"$1,'").split("},'"),t="},\n"+CONSOLE_LOG_NEWLINE+"'";t!==`},\n${CONSOLE_LOG_NEWLINE}'`&&console.log("1111111111111111111111111111111111111111111");return n.join(t).replace(/(\d\d\d\d-\d\d-\d\d)\w\d\d:\d\d:\d\d.\d\d\d\w/gi,"$1")}function printObj(e){return startCurlyDates(type_czech._jsonStr(e).replace(/},/g,"},\n")).replace(/^{/,"{|\n").replace(/}$/,"\n|}")}function captureConsole(e){const n=console.log,t=document.getElementById(e);function o(e,n){return void 0===n?UNDEFINED_AS_STR:n}function r(e){return function(e){if(void 0===e)return UNDEFINED_AS_STR;if("string"==typeof e)return e.replace(/"/g,"'");const n=JSON.stringify(e);return"object"!=typeof e?n:function(e){return e.replace(/{"/g,"{'").replace(/":/g,"':").replace(/","/g,"','").replace(/,"/g,",'").replace(/\["/g,"['").replace(/"]/g,"']").replace(/],"/g,"],'")}(n)}(JSON.stringify(e,o))}function i(e){let n;if("object"==typeof e)n=r(e);else if("string"==typeof e){const t=e.split("");let o="";for(const e of t)log_count+=1,single_section=`<span id='log-${log_count}' >${e}</span>`,o+=single_section;n=o.replace(NEW_LINE_REGEX,"<br>").replace(NBSP_REGEX,"&nbsp;")}else n=r(e);t.innerHTML+=n}function s(e){json_quotes=JSON.stringify(e[0],function(e,n){if(void 0===n)return"un-defined";if(Number.isNaN(n))return"-NaN-";if("function"==typeof n||n&&n.constructor===RegExp)return`${String(n).substring(0,30)} ...`;return n},2),'"'===json_quotes[0]?json_str=json_quotes.slice(1,-1):json_str=json_quotes;const n=json_str.replace(/\\"/g,'"'),o=CONSOLE_LOG_NEWLINE+"~~~~~~~~",r=n.replace(REPLACE_NL_TAB_TAB,o).replace(/(\d\d\d\d-\d\d-\d\d)\w\d\d:\d\d:\d\d.\d\d\d\w/gi,"$1").split("");let i="";for(const e of r)log_count+=1,single_section=`<span id='log-${log_count}'>${e}</span>`,i+=single_section;const s=i.replace(NEW_LINE_REGEX,"<br>").replace(NBSP_REGEX,"&nbsp;");t.innerHTML+=`${s} <br>`}console.log=function(...e){let o;!function(e){const t=Array.from(e);"string"==typeof t[0]&&(t[0]=t[0].replace(/<br>/gi,""),t[0]=t[0].replace(/\|/gi,""),t[0]=t[0].replace(/&nbsp;/gi," "),t[0]=t[0].replace(/~/gi," ")),"string"==typeof t[1]&&(t[1]=t[1].replace(/<br>/gi,""),t[1]=t[1].replace(/\|/gi,""),t[1]=t[1].replace(/&nbsp;/gi," "),t[1]=t[1].replace(/~/gi," ")),n(...t)}(e);const r=e[0],c=e[1];if("a-function"===(o="function"==typeof r?"a-function":"string"==typeof r&&r.match(/OUT/)?"string-string":"string"==typeof r&&r.match(MATCH_NL_TAB_TAB)?"multi-line":"string"==typeof r&&r.startsWith("%c")?"color-line":"string"==typeof r&&"object"==typeof c?"string-object":"object"==typeof e[0]?"one-object":"default-log"))a_function=e[0],func_str=a_function.toString(),func_nl=func_str.replace(/;/g,"|~~"),i(func_nl);else if("string-string"===o)i(e[0]),i(e[1]);else if("multi-line"===o)s(e);else if("color-line"===o)!function(e){if(!e[0].includes("_ParametersCheck-init")){const[n,o]=e[0].split(" "),r=parseInt(o,10);if(!isNaN(r)){const n=`<span style='${e[1]}'>${r}</span><br>`;t.innerHTML+=n}}}(e);else if("one-object"===o)s(e);else if("string-object"===o){i(e.shift()),s(e)}else if(i(e[0]),void 0!==e[1]){i(JSON.stringify(e[1]))}}}function linesConsole(e){const n=document.getElementById("log-text");for(let t=0;t!==e;t+=1)n.innerHTML+="<br>"}function jsToDiv(e,n){const t=document.scripts[n].firstChild.textContent.replace(/\n\s*linesConsole\([^)]*\)\n/g,"\n").replace(/\}\s+$/,"").replace(/^[^{]*\{/,"").split("");t.shift();let o="",r=0;for(const e of t)single_section=`<span id='code-${r+=1}' >${e}</span>`,o+=single_section;document.getElementById(e).innerHTML=o}function fromToBackGround(e,n,t,o){if(n<e)throw new Error(`fromToBackGround() bad start/end : ${e} / ${n}`);for(i=e;i<=n;i+=1){const e=`${t}-${i}`,n=`back-${o}`,r=document.getElementById(e);r&&r.classList.add(n)}}function fromToBoldText(e,n,t,o){if(n<e)throw new Error(`fromToBoldText() bad start/end : ${e} / ${n}`);for(i=e;i<=n;i+=1){const e=`${t}-${i}`,n=`text-${o}`,r=document.getElementById(e);r&&r.classList.add(n)}}</script>
+  
+  <link r e l="stylesheet" href="../type-czech.css">
+  <style>
+  .a-title{font-family:arial;text-align:right;font-weight:700;margin-right:20px}.an-explantion{font-family:arial;text-align:center;font-weight:700;background-color:#ddd;margin-right:20px}#explanation-text{padding-left:8px;font-size:14px;font-family:arial}#console-log{font-family:Inconsolata,monospace;background-color:#eee}#js-div{float:left}#js-fiddles{float:left;background-color:#ddd}#js-code{white-space:pre;font-family:Inconsolata,monospace;tab-size:4;-moz-tab-size:4;margin-left:8px;overflow-x:auto}#js-files{padding-left:8px}#log-text{padding-left:8px}#the-explanation{float:right;background-color:#ddd}ul{padding-left:16px;margin-top:0}li{padding-top:6px}.font-1{font-family:arial}.text-2{font-family:Inconsolata,monospace}.text-1{color:red;font-weight:700}.text-2{color:red;font-weight:700}.text-3{color:red;font-weight:700}.text-4{color:red;font-weight:bolder}.text-5{color:red;font-weight:bolder}.text-6{color:red;font-weight:bolder}.back-1{background-color:#ffe6e6}.back-2{background-color:#e6ffe6}.back-3{background-color:#e6e6ff}.back-4{background-color:#ffffa0}.back-5{background-color:#ffdcff}.back-6{background-color:#c8ffff}pre{background-color:#eee;margin-top:4px;margin-left:10px;margin-right:10px;margin-bottom:16px}</style>
+  
+  <script src="../TypeCzech.js">
+  </script>
+  
+  
+
+
+
+
+
+
+
+
+<script>
+  
+  captureConsole("log-text");
+  checkCodeRun();
+  jsToDiv('js-code', "check-code");
+
+  fromToBoldText(741, 754, 'code', 1)  // l_name:'EM-ER'
+  fromToBoldText(1657, 1665, 'code', 1)  // l_name:''
+
+  fromToBoldText(648, 658, 'log', 1)    //'l_name':''
+  fromToBoldText(725, 740, 'log', 1)    //'l_name':'EM-ER'
+
+</script>
