@@ -14,6 +14,9 @@ const NL4 = CONSOLE_LOG_NEWLINE + CONSOLE_LOG_NEWLINE + CONSOLE_LOG_NEWLINE + CO
 
 const LEVEL_1 = NL + '________';
 const LEVEL_2 = NL + '................';
+const LEVEL_3 = NL + ',,,,,,,,,,,,,,,,,,,,,,,,';
+
+
 
 // eslint-disable-next-line no-self-compare
 const isNaN = (maybeNaN) => maybeNaN !== maybeNaN;
@@ -22,7 +25,7 @@ function lowerStart(an_str) {
   return an_str ? (an_str[0] === an_str[0].toLowerCase()) : false;
 }
 
-docElemId = html_id => document.getElementById(html_id)
+docElemId = (html_id) => document.getElementById(html_id);
 
 let log_count = 0;
 
@@ -63,12 +66,64 @@ function printObj(an_object) {
   return end_end;
 }
 
+function linesConsole(start_lines) {
+  const div_console = document.getElementById('log-text');
+  for (let i = 0; i !== start_lines; i += 1) {
+    div_console.innerHTML += '<br>';
+  }
+}
+
+function jsToDiv(div_id, script_id) {
+  const div_text1 = document.scripts[script_id].firstChild.textContent;
+  const div_text2 = div_text1.replace(/\n\s*linesConsole\([^)]*\)\n/g, '\n'); // hide linesConsole(2,1,2);
+  const single_chars = div_text2.split('');
+  single_chars.shift(); // kill first empty cell
+  let accum_span = '';
+  let code_count = 0;
+  // eslint-disable-next-line no-restricted-syntax
+  for (const single_char of single_chars) {
+    code_count += 1;
+    single_section = `<span id='code-${code_count}' >${single_char}</span>`;
+    accum_span += single_section;
+  }
+  document.getElementById(div_id).innerHTML = accum_span;
+}
+
+
+function fromToBackGround(start_num, end_num, id_start, css_num) {
+  if (end_num < start_num) throw new Error(`fromToBackGround() bad start/end : ${start_num} / ${end_num}`);
+  for (i = start_num; i <= end_num; i += 1) {
+    const an_id = `${id_start}-${i}`;
+    const css_name = `back-${css_num}`;
+    const my_span = document.getElementById(an_id);
+    if (my_span) {
+      my_span.classList.add(css_name);
+    }
+  }
+}
+
+function fromToBoldText(start_num, end_num, id_start, css_num) {
+  if (end_num < start_num) throw new Error(`fromToBoldText() bad start/end : ${start_num} / ${end_num}`);
+  for (i = start_num; i <= end_num; i += 1) {
+    const an_id = `${id_start}-${i}`;
+    const css_name = `text-${css_num}`;
+    const my_span = document.getElementById(an_id);
+    if (my_span) {
+      my_span.classList.add(css_name);
+    }
+  }
+}
+
+/////////////////////////////////////////////////////
+/////////////////////////////////////////////////////
+/////////////////////////////////////////////////////
+/////////////////////////////////////////////////////
+
+
 function captureConsole(div_id) {
-  const oldConsole = console.log;
   const div_console = document.getElementById(div_id);
 
   function realConsole(args) {
-    // oldConsole('realConsole', args)
     const not_colored = Array.from(args);
     if (typeof not_colored[0] === 'string') {
       not_colored[0] = not_colored[0].replace(/<br>/gi, '');
@@ -82,11 +137,10 @@ function captureConsole(div_id) {
       not_colored[1] = not_colored[1].replace(/&nbsp;/gi, ' ');
       not_colored[1] = not_colored[1].replace(/~/gi, ' ');
     }
-    oldConsole(...not_colored);
+    console.old(...not_colored);
   }
 
   function htmlLogColor(args) {
-    // oldConsole('htmlLogColor', args)
     if (!args[0].includes('_ParametersCheck-init')) {
       const [percent_c, a_number] = args[0].split(' ');
       const log_number = parseInt(a_number, 10);
@@ -138,7 +192,6 @@ function captureConsole(div_id) {
   }
 
   function htmlNoColor(args) {
-    // oldConsole('htmlNoColor', args,  jsonStr(args))
     let div_text4;
     if (typeof args === 'object') {
       div_text4 = jsonStr(args);
@@ -204,9 +257,10 @@ function captureConsole(div_id) {
     div_console.innerHTML += `${div_text4} <br>`;
   }
 
+  console.old = console.log;
+
   console.log = function newConsoleLog(...args) {
     realConsole(args);
-    // oldConsole('console.log', args)
     let console_type;
     const first_arg = args[0];
     const second_arg = args[1];
@@ -225,9 +279,8 @@ function captureConsole(div_id) {
     } else {
       console_type = 'default-log';
     }
-    // oldConsole(' !! console_type == ', console_type)
     if (console_type === 'a-function') {
-      a_function = args[0];
+      const a_function = args[0];
       func_str = a_function.toString();
       func_nl = func_str.replace(/;/g, '|~~');
       htmlNoColor(func_nl);
@@ -252,54 +305,6 @@ function captureConsole(div_id) {
       }
     }
   };
-}
 
-function linesConsole(start_lines) {
-  const div_console = document.getElementById('log-text');
-  for (let i = 0; i !== start_lines; i += 1) {
-    div_console.innerHTML += '<br>';
-  }
-}
-
-
-function jsToDiv(div_id, script_id) {
-  const div_text1 = document.scripts[script_id].firstChild.textContent;
-  const div_text2 = div_text1.replace(/\n\s*linesConsole\([^)]*\)\n/g, '\n'); // hide linesConsole(2,1,2);
-  const div_text3 = div_text2.replace(/\}\s+$/, ''); // hide last }
-  const div_text4 = div_text3.replace(/^[^{]*\{/, ''); // hide first function checkCodeRun(){
-  const single_chars = div_text4.split('');
-  single_chars.shift(); // kill first empty cell
-  let accum_span = '';
-  let code_count = 0;
-  // eslint-disable-next-line no-restricted-syntax
-  for (const single_char of single_chars) {
-    code_count += 1;
-    single_section = `<span id='code-${code_count}' >${single_char}</span>`;
-    accum_span += single_section;
-  }
-  document.getElementById(div_id).innerHTML = accum_span;
-}
-
-function fromToBackGround(start_num, end_num, id_start, css_num) {
-  if (end_num < start_num) throw new Error(`fromToBackGround() bad start/end : ${start_num} / ${end_num}`);
-  for (i = start_num; i <= end_num; i += 1) {
-    const an_id = `${id_start}-${i}`;
-    const css_name = `back-${css_num}`;
-    const my_span = document.getElementById(an_id);
-    if (my_span) {
-      my_span.classList.add(css_name);
-    }
-  }
-}
-
-function fromToBoldText(start_num, end_num, id_start, css_num) {
-  if (end_num < start_num) throw new Error(`fromToBoldText() bad start/end : ${start_num} / ${end_num}`);
-  for (i = start_num; i <= end_num; i += 1) {
-    const an_id = `${id_start}-${i}`;
-    const css_name = `text-${css_num}`;
-    const my_span = document.getElementById(an_id);
-    if (my_span) {
-      my_span.classList.add(css_name);
-    }
-  }
+  return console.log;
 }

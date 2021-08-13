@@ -1,0 +1,89 @@
+
+////////////////
+/* eslint-disable */
+
+/**/function TypeCzech_First() {
+/**/  if (type_czech.is_active) {
+/**/    function PRE_First() { log(`${NL}PRE-First`); }
+/**/    function POST_First() { log(`${NL}POST-First`); }
+/**/    function PRE_firstMethod() { log(`${NL}PRE-fir
+
+
+//////////////////////////////////////////////////////////////////////////////
+
+Intercepting extended class construction and method 
+calls is TypeCzech's most difficult case.
+Class declarations are done inside functions so as 
+to enable the interleaving of PRE and POST functions 
+in lockstep with class extensions.
+
+
+one download
+  Pros: simple one download without any later importing of JavaScript files
+ 
+  Cons:  but entire TypeCzech is shipped to client browsers for interpretation
+        class/closure initialization is done via functions
+
+
+
+all download
+  Pros: Class/Closure declarations are in their own one distinct files
+        thus easy to manipulate
+  
+  Cons: Each class/closure definition, including production code, has to be downloaded 
+        and interpreted after the main file
+
+
+
+ production code inlined checks downloaded
+
+  Pros: TypeCzech code is not downloaded if TypeCzech is turned off
+         
+  Cons: Class/Closure declarations have to be separated into 
+        function calls to enable function/method interception by TypeCzech
+
+
+
+31,32  only color the non-checking 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

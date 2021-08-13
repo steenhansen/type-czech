@@ -15,7 +15,7 @@ module.exports = {
     camelcase: 'off',
     'no-underscore-dangle': 0,
     'no-nested-ternary': 0,
-    'max-len': ['error', { code: 120, ignoreComments: true }],
+    'max-len': ['error', { code: 160, ignoreComments: true }],
   },
 
 };

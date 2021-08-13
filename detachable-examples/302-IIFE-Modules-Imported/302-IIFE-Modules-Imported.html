@@ -1,0 +1,128 @@
+<meta charset="utf-8" />
+<title>302-IIFE-Modules-Imported</title>
+
+
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Inconsolata">
+  
+<div id='js-div' style="width:35%; " class='a-collection'>
+  <div id='js-code'>the javascript</div>
+</div>
+
+
+<div id="the-explanation" style="width:65%" class='a-collection'>
+  <div class='an-explantion'>302 - IIFE Modules Imported</div>
+  <div id='explanation-text'>
+    <br>
+    302 - IIFE Multi-File All Imported
+
+<br><br>
+
+  </div>
+
+
+  <div id="console-log"  class='a-collection'>
+    <div class='a-title'>Console Output</div>
+    <div id='log-text'></div>
+    <br>
+  </div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="../../consolelog.js">
+</script>
+
+<script src="./ordered-import.js"></script>
+
+<link rel="stylesheet" href="../../type-czech.css">
+<style>
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  log = captureConsole("log-text");
+</script>
+
+
+
+<script  id="check-code">
+
+TYPE_CZECH_COMMANDS = ['LOG-ERRORS']
+
+const CHECKING_CLASS_FILES = [
+'../../TypeCzech.js',
+  './First.js',
+  './TypeCzech_First.js',
+  './Last.js',
+  './TypeCzech_Last.js',
+  './Full.js',
+  './TypeCzech_Full.js'
+]
+
+const NOT_CHECKING_CLASS_FILES = [
+  './First.js',
+  './Last.js',
+  './Full.js' 
+]
+
+let class_files
+if (TYPE_CZECH_COMMANDS) {
+  class_files = CHECKING_CLASS_FILES
+} else {
+  class_files = NOT_CHECKING_CLASS_FILES
+}
+
+onLoaded = (_loaded_files, _import_errors) => {
+  const pkd = Full('Mr', 'Philip K', 'Dick')
+  linesConsole(1)
+  pkd.firstMethod(new Date(1984,6,1))
+  linesConsole(1)
+  pkd.lastMethod(1985)
+  linesConsole(1)
+  pkd.fullMethod('The Man in the High Castle')
+}
+
+orderedImport(class_files, onLoaded)
+
+
+</script>
+  
+  
+
+
+
+
+
+<script>
+
+
+  jsToDiv('js-code', "check-code");   //only color the non-checking 
+
+</script>

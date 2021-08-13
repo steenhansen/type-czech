@@ -1,0 +1,193 @@
+<meta charset="utf-8" />
+<title>36-Start-and-Stop</title>
+
+
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Inconsolata">
+  
+  <div id='js-div' style="width:55%">
+  <div id='js-code'>the javascript</div>
+</div>
+
+<div id="the-explanation" style="width:45%">
+  <div class='an-explantion'>36 - Turn-On, Turn-Off, and Show TypeCzech Counting</div>
+  <div id='explanation-text'>
+    <br>
+
+    TypeCzech can stop and start checking parameters with:
+    <ul>
+      <li><b>type_czech.checkBegin()</b></li>
+      <li><b>type_czech.checkEnd()</b></li>
+    </ul>
+    TypeCzech defaults to checking parameters when initilized.
+    
+    Show the number of errors and checks found with:
+    <ul>
+      <li><b>type_czech.failureTally()</b></li>
+      <li><b>type_czech.checkTally()</b></li>
+    </ul>
+
+    To get the errors/checks ratio use type_czech.failureRatio().
+
+  </div>
+
+
+  <div id="console-log"  class='a-collection'>
+    <div class='a-title'>Console Output</div>
+    <div id='log-text'></div>
+    <br>
+  </div>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="../consolelog.js">
+</script>
+
+<script src="../TypeCzech.js">
+</script>
+
+<link r e l="stylesheet" href="../type-czech.css">
+<style>
+.a-title{font-family:arial;text-align:right;font-weight:700;margin-right:20px}.an-explantion{font-family:arial;text-align:center;font-weight:700;background-color:#ddd;margin-right:20px}#explanation-text{padding-left:8px;font-size:14px;font-family:arial}#console-log{font-family:Inconsolata,monospace;background-color:#eee}#js-div{float:left}#js-fiddles{float:left;background-color:#ddd}#js-code{white-space:pre;font-family:Inconsolata,monospace;tab-size:4;-moz-tab-size:4;margin-left:8px;overflow-x:auto}#js-files{padding-left:8px}#log-text{padding-left:8px}#the-explanation{float:right;background-color:#ddd}ul{padding-left:16px;margin-top:0}li{padding-top:6px}.font-1{font-family:arial}.text-2{font-family:Inconsolata,monospace}.text-1{color:red;font-weight:700}.text-2{color:red;font-weight:700}.text-3{color:red;font-weight:700}.text-4{color:red;font-weight:bolder}.text-5{color:red;font-weight:bolder}.text-6{color:red;font-weight:bolder}.back-1{background-color:#ffe6e6}.back-2{background-color:#e6ffe6}.back-3{background-color:#e6e6ff}.back-4{background-color:#ffffa0}.back-5{background-color:#ffdcff}.back-6{background-color:#c8ffff}pre{background-color:#eee;margin-top:4px;margin-left:10px;margin-right:10px;margin-bottom:16px}</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  log = captureConsole("log-text");
+</script>
+
+
+<script id="check-code">
+
+/**/  if (typeof TypeCzech === 'function')
+/**/    type_czech = TypeCzech('THROW-EXCEPTIONS')
+/**/  else
+/**/    type_czech = { check: (nop) => nop, stats: (nop) => nop, is_active: false }
+/**/  
+/**/  PRE_Person = (typeof PRE_Person === 'undefined') ? undefined : PRE_Person
+/**/  
+/**/  function PRE_Person(){
+/**/    return type_czech.valid(arguments, ['String', 'String'])
+/**/  }
+/**/  
+/**/  Person = type_czech.check(Person, PRE_Person)
+
+function Person(f_name, l_name){
+  log('valid name: ', `${f_name} ${l_name}`)
+  return [f_name, l_name]
+}
+
+try {
+  Person('Elizabeth', 1)
+} catch (e) {
+  log('Exception: Elizabeth 1 - not counted')
+}
+
+linesConsole(2)
+
+
+/**/  type_czech.checkBegin()
+
+
+Person('Prince', 'Charles')
+
+ linesConsole(2)
+
+try {
+Person('Elizabeth', 2)
+} catch (e) {
+  log('Exception: Elizabeth 2 - counted')
+}
+
+linesConsole(4)
+
+/**/  type_czech.checkEnd()
+/**/  failure_ratio = type_czech.failureRatio()
+/**/  failure_tally = type_czech.failureTally()
+/**/  check_tally = type_czech.checkTally()
+
+log( 'Counted errors/checks : ', failure_ratio)
+
+linesConsole(2)
+
+log( 'Counted errors : ',  failure_tally )
+
+linesConsole(2)
+
+log( 'Counted checks : ', check_tally )
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  
+
+  jsToDiv('js-code', "check-code");
+
+  // fromToBoldText(1064, 1100, 'code', 1)  //sole.log( 'Counted errors : ',  failure_tally )
+
+  // fromToBoldText(126, 143, 'log', 1)    //Counted errors : 1
+
+
+</script>

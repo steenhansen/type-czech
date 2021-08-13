@@ -22,7 +22,13 @@ function _isCollection_10001(error_number){
   const actual = type_czech._isCollection(a_variable);
   const expected = false;
   if (actual!==expected) _throw(`${error_id} _isCollection(null) <> false but instead ${actual}`);
-  failed_is_collection +=type_czech.failureTally();
+  
+  // does _isCollection() goto outputCheck() for console output and then failure count
+// nop
+
+  
+  
+  failed_is_collection +=type_czech.failureTally();   // does not make sense
   passed_is_collection ++;
 }
 

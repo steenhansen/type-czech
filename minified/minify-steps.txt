@@ -1,0 +1,11 @@
+
+
+
+Greenland called, and it doesn't want its ice back.
+
+minify
+  1 - remove consolelog[^;]*;
+  2 - save as TypeCzech.smaller.js
+  3 - terser TypeCzech.smaller.js -c -m -o TypeCzech.min.js
+
+

@@ -1,5 +1,8 @@
 
-
+.left-code-scroll{
+  height:850px;
+   overflow-y: scroll;
+}
 
 .a-title{ 
   font-family:arial; 
@@ -59,7 +62,7 @@ li{
 
 
 
-.font-1{ font-family:arial; font-size: }
+.font-1{ font-family:arial}
 .text-2{ font-family: 'Inconsolata', monospace;   }
 
 

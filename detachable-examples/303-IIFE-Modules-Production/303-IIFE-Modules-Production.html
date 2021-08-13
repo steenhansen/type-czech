@@ -1,0 +1,139 @@
+<meta charset="utf-8" />
+<title>303-IIFE-Modules-Production</title>
+
+
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Inconsolata">
+  
+<div id='js-div' style="width:52%;">
+  <div id='js-code'>the javascript</div>
+</div>
+
+
+<div id="the-explanation" style="width:48%" class='a-collection'>
+  <div class='an-explantion'>303 - IIFE Modules Production</div>
+  <div id='explanation-text'>
+    <br>
+    303 - Only IIFE Inlined
+
+<br><br>
+
+  </div>
+
+
+  <div id="console-log"  class='a-collection'>
+    <div class='a-title'>Console Output</div>
+    <div id='log-text'></div>
+    <br>
+  </div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="../../consolelog.js">
+</script>
+
+<script src="./ordered-import.js"></script>
+
+<link rel="stylesheet" href="../../type-czech.css">
+<style>
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  log = captureConsole("log-text");
+</script>
+
+
+
+<script  id="check-code">
+First = (f_name) => (
+  function(f_name) {
+    log(NL+`CONS-First :${f_name}`)
+    firstMethod = function(a_date) { log(NL+`firstMethod :${f_name} `, a_date) }
+    return { firstMethod } 
+  }
+)(f_name);
+
+Last = (f_name, l_name) => (
+  function(f_name, l_name) {
+    first = First(f_name)
+    log(NL+LEVEL_1+`CONS-Last :${f_name} ${l_name}`)
+    lastMethod = function (a_year) { 
+      log(LEVEL_1+`lastMethod :${a_year} ${f_name} ${l_name}`) 
+    }
+    return {lastMethod, firstMethod:first.firstMethod}
+  }
+)(f_name, l_name);
+
+Full = (salu, f_name, l_name) => (
+  function(salu, f_name, l_name) {
+    last = Last(f_name, l_name)
+    log(NL+LEVEL_2+`CONS-Full :${salu} ${f_name} ${l_name}`)
+    fullMethod = function (a_book) { 
+      log(LEVEL_2+`fullMethod :${a_book} ${salu} ${l_name}`) 
+    }
+    return {fullMethod, firstMethod:last.firstMethod, lastMethod:last.lastMethod}
+  }
+)(salu, f_name, l_name);
+
+onLoaded = (_loaded_files, _import_errors) => {  
+  const pkd = Full('Mr', 'Philip K', 'Dick')
+  linesConsole(1)
+  pkd.firstMethod(new Date(1984,6,1))
+  linesConsole(1)
+  pkd.lastMethod(1985)
+  linesConsole(1)
+  pkd.fullMethod('The Man in the High Castle') 
+}
+
+/**/  TYPE_CZECH_START = true
+
+if (TYPE_CZECH_START) {
+/**/  TYPE_CZECH_COMMANDS = ['LOG-ERRORS']
+/**/  const CHECKING_CLASS_FILES = ['../../TypeCzech.js',
+/**/                                './TypeCzech_First.js',
+/**/                                './TypeCzech_Last.js',
+/**/                                './TypeCzech_Full.js'  ]
+/**/  orderedImport(CHECKING_CLASS_FILES, onLoaded)
+} else {
+  onLoaded([], [])
+}
+
+</script>
+
+
+
+
+
+<script>
+
+
+  jsToDiv('js-code', "check-code");   //only color the non-checking 
+
+</script>
