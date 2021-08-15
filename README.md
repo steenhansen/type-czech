@@ -8,7 +8,8 @@ Enjoy some TypeScript benefits without the drawbacks of:
 - fragile entanglement
 
 The idea is to have detachable JavaScript checking routines run before and after your 
-own functions that test types, emptiness, and mutations. 
+own functions that test types, emptiness, and mutations. These PRE and POST routines can be 
+turned on or off at run-time.
 
 With TypeCzech you can:
  - check function parameter types
@@ -27,47 +28,29 @@ Missing from TypeCzech:
 This example shows:
  - type_czech.valid() ensuring that the parameters to aLottery() are a string, then an array of numbers, and finally a date
  - type_czech.valueless() complaining when parameters are found to be empty and valueless
- - announcing a variables' value error
+ - [live on jsFiddle](https://jsfiddle.net/steen_hansen/nve4d3ah/3/)
 
-  // Detachable TypeCzech Checking Code ****************************************
-
-    type_czech = TypeCzech('LOG-ERRORS')
-
-    A_LOTTERY_TYPE = ['String', ['Number'], 'Date']
-
-    function PRE_aLottery(lottery_name, lucky_numbers, draw_date){
-      type_issue = type_czech.valid(arguments, A_LOTTERY_TYPE)
-      if (type_issue) return type_issue
-      return type_czech.valueless(arguments, ['EMPTY-ERROR'])
-    }
-
-    aLottery = type_czech.check(aLottery, PRE_aLottery) 
-
-  // Actual Non-Checking Production Code ****************************************
+  /**/ // Lines starting this way are supporting TypeCzech test code and are safely removable
+  
+    /**/  type_czech = TypeCzech('LOG-ERRORS')
+    /**/
+    /**/  LOTTERY_SIGNATURE = ['String', ['Number'], 'Date']
+    /**/
+    /**/  function PRE_aLottery(lottery_name, lucky_numbers, draw_date){
+    /**/    type_issue = type_czech.valid(arguments, LOTTERY_SIGNATURE)
+    /**/    if (type_issue) return type_issue
+    /**/    return type_czech.valueless(arguments, ['EMPTY-ERROR'])
+    /**/  }
+    /**/
+    /**/  aLottery = type_czech.check(aLottery, PRE_aLottery) 
 
     function aLottery(lottery_name, lucky_numbers, draw_date){
-      // your code runs with unchanged values
+      // just check parameters
     }
-  
-  // Console Interaction ****************************************
 
     aLottery('El Gordo', [1,2,3,4,5,0], new Date('jun 14 1999'))
     >>
 
-    aLottery('', [1,2,3,4,5,26], new Date('Dec 31 1999'))
-    >>PRE_aLottery() aLottery() PRE-FUNC: INDEX '0' is erroneously empty :
-    >>               valueless(arguments, expected_emptys)
-    >>                  ACTUAL TYPES ['String','Array','Date']
-    >>                  ACTUAL VALUE ['',[1,2,3,4,5,26],'1999-12-31T08:00:00.000Z']
-    >>               EMPTY ASSERTION ['EMPTY-ERROR']
-
-    aLottery('Powerball', [], new Date('jun 14 1999'))
-    >>PRE_aLottery() aLottery() PRE-FUNC: INDEX '1' is erroneously empty :
-    >>               valueless(arguments, expected_emptys)
-    >>                  ACTUAL TYPES ['String','Array','Date']
-    >>                  ACTUAL VALUE ['Powerball',[],'1999-06-14T07:00:00.000Z']
-    >>               EMPTY ASSERTION ['EMPTY-ERROR']
-    
     aLottery('Lotto 649', [1,2,3,4,5,6])
     >>PRE_aLottery() aLottery() PRE-FUNC: Index '2' is supposed to be a 'Date', but is missing : ['Lotto 649',[1,2,3,4,5,6]]
     >>               valid(arguments, expected_types)
@@ -88,7 +71,20 @@ This example shows:
     >>                ACTUAL TYPES ['String','Number','Date']
     >>                ACTUAL VALUE ['Mega Millions',17,'1999-06-14T07:00:00.000Z']
     >>               EXPECTED TYPE ['String',['Number'],'Date']
-    
+
+    aLottery('Powerball', [], new Date('jun 14 1999'))
+    >>PRE_aLottery() aLottery() PRE-FUNC: INDEX '1' is erroneously empty :
+    >>               valueless(arguments, expected_emptys)
+    >>                  ACTUAL TYPES ['String','Array','Date']
+    >>                  ACTUAL VALUE ['Powerball',[],'1999-06-14T07:00:00.000Z']
+    >>               EMPTY ASSERTION ['EMPTY-ERROR']
+
+    aLottery('', [1,2,3,4,5,26], new Date('Dec 31 1999'))
+    >>PRE_aLottery() aLottery() PRE-FUNC: INDEX '0' is erroneously empty :
+    >>               valueless(arguments, expected_emptys)
+    >>                  ACTUAL TYPES ['String','Array','Date']
+    >>                  ACTUAL VALUE ['',[1,2,3,4,5,26],'1999-12-31T08:00:00.000Z']
+    >>               EMPTY ASSERTION ['EMPTY-ERROR']
 
 
 

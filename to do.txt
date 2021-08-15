@@ -1,12 +1,38 @@
 
+ Extended classes are used for inheritance:
+    <ul>
+          <li>When TypeCzech is turned off no JavaScript code is imported</li>
+          <li>With TypeCzech turned on, the supporting test code is imported:
+            <ul> 
+              <li class='floating_li'>TypeCzech.js</li> 
+              <li class='floating_li'>TypeCzech_First.js</li> 
+              <li class='floating_li'>TypeCzech_Last</li>
+              <li class='floating_li'>TypeCzech_Full.js</li>
+              <br>  <br><br>
+          </ul>
+          </li>
+          <li>Production classes declarations <b>must</b>
+
+
+
+
+
+
+FIGURE OUT COMMENTS FOR ALL reals
+
+
+then get all fiddles working with jsdelivr
+00 also !
+
+
+
+
+then fix all the readmes
+
 
 
 
 https://www.jsdelivr.com/github
-
-
-
-
 
 
 

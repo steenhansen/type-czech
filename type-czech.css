@@ -86,3 +86,8 @@ pre{
   margin-right:10px; 
   margin-bottom:16px;
 }
+
+.floating_li{
+  float:left;
+  margin-right: 36px;
+}

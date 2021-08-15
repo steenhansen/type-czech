@@ -1,0 +1,27 @@
+
+
+https://www.jsdelivr.com/github
+
+<!--            ------------------------------------------       -->
+<script src="../consolelog.js">
+</script>
+
+<script src="../TypeCzech.js">
+</script>
+
+<link rel="stylesheet" href="../type-czech.css">
+<style>
+</style>
+<!--            ------------------------------------------       -->
+
+<!--            ------------------------------------------       -->
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/consolelog.js">
+</script>
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/TypeCzech.js">
+</script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/type-czech.css">
+<style>
+</style>
+<!--            ------------------------------------------       -->

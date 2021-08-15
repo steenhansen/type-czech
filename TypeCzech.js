@@ -1281,7 +1281,6 @@ function TypeCzech() {
         const proxy_handler = {
           apply(target_closure, this_arg, parameter_list) {
             onParamCheck(getCheckFailureCount());
-            consolelog('23423432', p_call_traps , object_pre , object_post)
             if (p_call_traps && object_pre) {
               recordPre(object_name);
               const apply_type = `${object_name}${BEFORE_APPLY_TYPE}${PRE_OBJECT_NO_THIS}`;
@@ -1298,7 +1297,6 @@ function TypeCzech() {
           },
           construct(Target_class, parameter_list) {
             onParamCheck(getCheckFailureCount());
-          //  console.log('999900000', p_call_traps , object_pre , object_post)
             if (p_call_traps && object_pre) {
               recordPre(object_name);
               const apply_type = `${object_name}${BEFORE_APPLY_TYPE}${POST_CONST_OBJECT_NO_THIS}`;
