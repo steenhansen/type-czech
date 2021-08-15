@@ -1,15 +1,64 @@
 
-////////////////
-/* eslint-disable */
-
-/**/function TypeCzech_First() {
-/**/  if (type_czech.is_active) {
-/**/    function PRE_First() { log(`${NL}PRE-First`); }
-/**/    function POST_First() { log(`${NL}POST-First`); }
-/**/    function PRE_firstMethod() { log(`${NL}PRE-fir
 
 
-//////////////////////////////////////////////////////////////////////////////
+
+https://www.jsdelivr.com/github
+
+
+
+
+
+
+
+
+
+
+
+Extending Classes Inline:
+<ul>
+<li>Everything is in one file, no code imports</li>
+<li>Production class declarations <b>must</b> interleave with TypeCzech calls</li>
+</ul>
+
+Extending Classes Imports: 
+<ul>
+<li>Multiple code files, both TypeCzech and production code imported</li>
+<li>With no checking, only production code from First.js, Last.js, and Full.js are imported</li>
+<li>With TypeCzech turned on TypeCzech.js, TypeCzech_First.js, TypeCzech_Last, and   
+TypeCzech_Full.js are all imported as well</li>
+</ul>
+
+Extending Classes Production:
+<ul>
+<li>No testing code imported when TypeCzech is turned off</li>
+<li>When TypeCzech is turned on then TypeCzech.js, TypeCzech_First.js,
+   TypeCzech_Last, and TypeCzech_Full.js are all imported
+<li>When TypeCzech is turned on then TypeCzech.js, TypeCzech_First.js,
+Smallest footprint, fastest load, but can still turn on checking</li>
+</ul>
+
+classes
+
+closures
+
+iifes
+
+classfree
+
+prototypes
+
+oolo
+
+
+
+
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////////
 
 Intercepting extended class construction and method 
 calls is TypeCzech's most difficult case.

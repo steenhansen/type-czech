@@ -1,0 +1,120 @@
+<meta charset="utf-8" />
+<title>502-Inherited-Prototypes-Imported</title>
+
+
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Inconsolata">
+  
+<div id='js-div' style="width:35%; " >
+  <div id='js-code'>the javascript</div>
+</div>
+
+
+<div id="the-explanation" style="width:65%" class='a-collection'>
+  <div class='an-explantion'>502 - Inherited Prototypes Imported</div>
+  <div id='explanation-text'>
+    <br>
+ 
+502
+<br><br>
+
+  </div>
+
+
+  <div id="console-log"  class='a-collection'>
+    <div class='a-title'>Console Output</div>
+    <div id='log-text'></div>
+    <br>
+  </div>
+
+
+
+</div>
+
+
+
+
+
+
+<!--            ------------------------------------------       -->
+
+
+<script src="../../consolelog.js">
+</script>
+
+<script src="./ordered-import.js"></script>
+
+<link rel="stylesheet" href="../../type-czech.css">
+<style>
+</style>
+
+
+
+
+<!--            ------------------------------------------       -->
+
+
+
+
+<script>
+  log = captureConsole("log-text");
+</script>
+
+
+<script  id="check-code">
+
+
+const CHECKING_CLASS_FILES = [
+'../../TypeCzech.js',
+  './First.js',
+  './TypeCzech_First.js',
+  './Last.js',
+  './TypeCzech_Last.js',
+  './Full.js',
+  './TypeCzech_Full.js',
+  './Person.js',
+  './TypeCzech_Person.js'
+]
+
+const NOT_CHECKING_CLASS_FILES = [
+  './First.js',
+  './Last.js',
+  './Full.js',
+  './Person.js'
+]
+
+/**/  TYPE_CZECH_START = true
+
+let class_files
+if (TYPE_CZECH_START) {
+  TYPE_CZECH_COMMANDS = ['LOG-ERRORS']
+  class_files = CHECKING_CLASS_FILES
+} else {
+  class_files = NOT_CHECKING_CLASS_FILES
+}
+
+onLoaded = (_loaded_files, _import_errors) => {
+  mary_shelley = Person('Ms', 'Mary', 'Shelley')
+  linesConsole(1)
+  mary_shelley.firstMethod(new Date(1818,1,1))
+  linesConsole(1)
+  mary_shelley.lastMethod(1931)
+  linesConsole(1)
+  mary_shelley.fullMethod('Frankenstein')
+}
+
+orderedImport(class_files, onLoaded)
+
+
+</script>
+  
+  
+
+
+
+<script>
+
+
+  jsToDiv('js-code', "check-code");   //only color the non-checking 
+
+</script>

@@ -1,0 +1,157 @@
+<meta charset="utf-8" />
+<title>301-IIFE-Modules-Inline</title>
+
+
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Inconsolata">
+  
+<div id='js-div' style="width:55%; " class='left-code-scroll'>
+  <div id='js-code'>the javascript</div>
+</div>
+
+
+<div id="the-explanation" style="width:45%" class='a-collection'>
+  <div class='an-explantion'>301 - IIFE Modules Inline</div>
+  <div id='explanation-text'>
+    <br>
+    301 - IIFE All Inlined
+
+<br><br>
+
+  </div>
+
+
+  <div id="console-log"  class='a-collection'>
+    <div class='a-title'>Console Output</div>
+    <div id='log-text'></div>
+    <br>
+  </div>
+
+
+
+</div>
+
+
+
+
+
+
+
+<!--            ------------------------------------------       -->
+
+
+
+<script src="../consolelog.js">
+</script>
+
+<script src="../TypeCzech.js">
+</script>
+
+<link rel="stylesheet" href="../type-czech.css">
+<style>
+</style>
+
+
+
+
+
+<!--            ------------------------------------------       -->
+
+
+
+
+
+<script>
+  log = captureConsole("log-text");
+</script>
+
+
+<script id="check-code">
+
+First = (f_name) => (
+  function(f_name) {
+    log(NL+`CONS-First :${f_name}`)
+    firstMethod = function(a_date) { log(NL+`firstMethod :${f_name} `, a_date) }
+    return { firstMethod } 
+  }
+)(f_name)
+
+Last = (f_name, l_name) => (
+  function(f_name, l_name) {
+    first = First(f_name)
+    log(NL+LEVEL_1+`CONS-Last :${f_name} ${l_name}`)
+    lastMethod = function (a_year) { 
+      log(LEVEL_1+`lastMethod :${a_year} ${f_name} ${l_name}`) 
+    }
+    return {lastMethod, firstMethod:first.firstMethod}
+  }
+)(f_name, l_name)
+
+Full = (salu, f_name, l_name) => (
+  function(salu, f_name, l_name) {
+    last = Last(f_name, l_name)
+    log(NL+LEVEL_2+`CONS-Full :${salu} ${f_name} ${l_name}`)
+    fullMethod = function (a_book) { 
+      log(LEVEL_2+`fullMethod :${a_book} ${salu} ${l_name}`) 
+    }
+    return {fullMethod, firstMethod:last.firstMethod, lastMethod:last.lastMethod}
+  }
+)(salu, f_name, l_name)
+
+/**/  TYPE_CZECH_START = true
+/**/  if (TYPE_CZECH_START) {
+/**/    type_czech = TypeCzech('LOG-ERRORS');
+
+/**/    function PRE_First(){ log(NL2+'PRE -First') }
+/**/    function POST_First(){ log(NL1+'POST-First') }
+/**/    function PRE_firstMethod(){ log('PRE -firstMethod') }
+/**/    function POST_firstMethod(){ log('POST-firstMethod') }
+
+/**/    First_PREs = {First:PRE_First, firstMethod:PRE_firstMethod}
+/**/    First_POSTs = {First:POST_First, firstMethod:POST_firstMethod}
+/**/    First = type_czech.check(First, First_PREs, First_POSTs)
+
+/**/    function PRE_Last(){ log(LEVEL_1+'PRE-Last') }
+/**/    function POST_Last(){ log(LEVEL_1+"POST-Last") }
+/**/    function PRE_lastMethod(){ log(LEVEL_1+"PRE -lastMethod") }
+/**/    function POST_lastMethod(){ log(LEVEL_1+"POST-lastMethod") }
+
+/**/    Last_PREs = {Last:PRE_Last, lastMethod:PRE_lastMethod}
+/**/    Last_POSTs = {Last:POST_Last, lastMethod:POST_lastMethod}
+/**/    Last = type_czech.check(Last, Last_PREs, Last_POSTs)
+
+/**/    function PRE_Full(){  log(LEVEL_2+'PRE-Full') }
+/**/    function POST_Full(){ log(LEVEL_2+"POST-Full") }
+/**/    function PRE_fullMethod(){ log(LEVEL_2+"PRE -fullMethod") }
+/**/    function POST_fullMethod(){ log(LEVEL_2+"POST-fullMethod") }
+
+/**/    Full_PREs = {Full:PRE_Full, fullMethod:PRE_fullMethod}
+/**/    Full_POSTs= {Full:POST_Full, fullMethod:POST_fullMethod}
+/**/    Full = type_czech.check(Full, Full_PREs, Full_POSTs)
+/**/  }
+
+const pkd = Full('Mr', 'Philip K', 'Dick')
+linesConsole(1)
+pkd.firstMethod(new Date(1984,6,1))
+linesConsole(1)
+pkd.lastMethod(1985)
+linesConsole(1)
+pkd.fullMethod('The Man in the High Castle')
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+<script>
+
+  jsToDiv('js-code', "check-code");       //only color the non-checking 
+
+</script>

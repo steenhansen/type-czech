@@ -33,7 +33,7 @@ function check_1001(error_number){
     return actual_e;
   }
   const actual=get_out_of_scope_err();
-  expected = 'TC@06 - TypeCzech.check() target_proxy is not a function -un-defined-'
+  expected = 'TC@06 - The first parameter to TypeCzech.check(), target_proxy is not a function, but is instead -un-defined-'
   if (actual!==expected) _throw(`${error_id} _missingKey() misfired with : ${actual}`);
   failed_check +=type_czech.failureTally();
   passed_check ++;
@@ -71,7 +71,7 @@ function check_1003(error_number){
   }catch(actual_e){ 
     actual = actual_e
   }
-  expected = 'TC@06 - TypeCzech.check() target_proxy is not a function 17'
+  expected = 'TC@06 - The first parameter to TypeCzech.check(), target_proxy is not a function, but is instead 17'
   if (actual!==expected) _throw(`${error_id} _missingKey() misfired with : ${actual}`);
   failed_check +=type_czech.failureTally();
   passed_check ++;
@@ -89,7 +89,7 @@ function check_1004(error_number){
   }catch(actual_e){ 
     actual = actual_e
   }
-  expected = 'TC@06 - TypeCzech.check() target_proxy is not a function {}'
+  expected = 'TC@06 - The first parameter to TypeCzech.check(), target_proxy is not a function, but is instead {}'
   if (actual!==expected) _throw(`${error_id} _missingKey() misfired with : ${actual}`);
   failed_check +=type_czech.failureTally();
   passed_check ++;

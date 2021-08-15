@@ -1,0 +1,109 @@
+<meta charset="utf-8" />
+<title>102-Extended-Classes-Imported</title>
+
+
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Inconsolata">
+  
+<div id='js-div' style="width:35%; ">
+  <div id='js-code'>the javascript</div>
+</div>
+
+
+<div id="the-explanation" style="width:65%" class='a-collection'>
+  <div class='an-explantion'>102 - Extended Classes Imported</div>
+  <div id='explanation-text'>
+    <br>
+    <ul>
+      <li>Multiple code files, both TypeCzech and production code imported</li>
+      <li>With no checking, only production code from First.js, Last.js, and Full.js are imported</li>
+      <li>With TypeCzech turned on TypeCzech.js, TypeCzech_First.js, TypeCzech_Last, and   
+      TypeCzech_Full.js are all imported as well</li>
+      </ul>
+
+<br><br>
+
+  </div>
+
+
+  <div id="console-log"  class='a-collection'>
+    <div class='a-title'>Console Output</div>
+    <div id='log-text'></div>
+    <br>
+  </div>
+
+
+
+</div>
+
+
+
+
+<!--            ------------------------------------------       -->
+
+<script src="../../consolelog.js">
+</script>
+
+<script src="./ordered-import.js"></script>
+
+<link rel="stylesheet" href="../../type-czech.css">
+<style>
+</style>
+
+
+
+<!--            ------------------------------------------       -->
+
+
+
+<script>
+  log = captureConsole("log-text");
+</script>
+
+<script  id="check-code">
+const CHECKING_CLASS_FILES = [
+  '../../TypeCzech.js',
+  './First.js',
+  './TypeCzech_First.js',
+  './Last.js',
+  './TypeCzech_Last.js',
+  './Full.js',
+  './TypeCzech_Full.js'
+]
+
+const NOT_CHECKING_CLASS_FILES = [
+  './First.js',
+  './Last.js',
+  './Full.js' 
+]
+
+/**/  TYPE_CZECH_START = true
+
+let class_files
+if (TYPE_CZECH_START) {
+/**/  TYPE_CZECH_COMMANDS = ['LOG-ERRORS']
+/**/  class_files = CHECKING_CLASS_FILES
+} else {
+  class_files = NOT_CHECKING_CLASS_FILES
+}
+
+onLoaded = (_loaded_files, _import_errors) => {
+   ted_chiang = new Full('Mr', 'Ted', 'Chiang')
+   ted_chiang.firstMethod(new Date(2008,10,15))
+   ted_chiang.lastMethod(2009)
+   ted_chiang.fullMethod('Exhalation')
+}
+
+orderedImport(class_files, onLoaded)
+
+</script>
+  
+  
+
+
+
+<script>
+
+  jsToDiv('js-code', "check-code");       //only color the non-checking 
+
+</script>

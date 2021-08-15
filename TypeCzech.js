@@ -1116,7 +1116,7 @@ function TypeCzech() {
         }
         if (typeof target_proxy !== 'function') {
           const target_str = _toStr(target_proxy);
-          let error_6 = `The first parameter to TypeCzech.check(), target_proxy is not a function, but is instead ${target_str}.`;
+          let error_6 = `The first parameter to TypeCzech.check(), target_proxy is not a function, but is instead ${target_str}`;
           error_6 = _consoleError(error_6, 'TC@06');
           throw error_6;
         }
@@ -1281,6 +1281,7 @@ function TypeCzech() {
         const proxy_handler = {
           apply(target_closure, this_arg, parameter_list) {
             onParamCheck(getCheckFailureCount());
+            consolelog('23423432', p_call_traps , object_pre , object_post)
             if (p_call_traps && object_pre) {
               recordPre(object_name);
               const apply_type = `${object_name}${BEFORE_APPLY_TYPE}${PRE_OBJECT_NO_THIS}`;
@@ -1297,6 +1298,7 @@ function TypeCzech() {
           },
           construct(Target_class, parameter_list) {
             onParamCheck(getCheckFailureCount());
+          //  console.log('999900000', p_call_traps , object_pre , object_post)
             if (p_call_traps && object_pre) {
               recordPre(object_name);
               const apply_type = `${object_name}${BEFORE_APPLY_TYPE}${POST_CONST_OBJECT_NO_THIS}`;
@@ -1335,6 +1337,7 @@ function TypeCzech() {
           const pre_check_type = _aTypeOf(pre_checks);
           const post_check_type = _aTypeOf(post_checks);
           if (pre_check_type === 'Object' || post_check_type === 'Object') {
+          //  console.log('13089775 ')
             proxied_thing = proxyObject(target_proxy, pre_checks, post_checks);
           } else {
             proxied_thing = proxyFunction(target_proxy, pre_checks, post_checks);

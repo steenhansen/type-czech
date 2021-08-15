@@ -1,0 +1,29 @@
+
+
+https://stackoverflow.com/questions/29788181/kyle-simpsons-oloo-pattern-vs-prototype-design-pattern
+
+
+var Foo = {
+    init: function(who) {
+        this.me = who;
+    },
+    identify: function() {
+        return "I am " + this.me;
+    }
+};
+
+var Bar = Object.create(Foo);   ///Object.setPrototypeOf(Human, Animal)
+
+Bar.speak = function() {
+    console.log("Hello, " + this.identify() + ".");
+};
+
+var b1 = Object.create(Bar);
+b1.init("b1");
+var b2 = Object.create(Bar);
+b2.init("b2");
+
+b1.speak(); // alerts: "Hello, I am b1."
+b2.speak(); // alerts: "Hello, I am b2."
+
+

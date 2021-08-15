@@ -1,0 +1,165 @@
+<meta charset="utf-8" />
+<title>501-Inherited-Prototypes-Inline</title>
+
+
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Inconsolata">
+  
+<div id='js-div' style="width:50%;" class='left-code-scroll'>
+  <div id='js-code'>the javascript</div>
+</div>
+
+
+<div id="the-explanation" style="width:50%" class='a-collection'>
+  <div class='an-explantion'>501 - Inherited Prototypes Inline</div>
+  <div id='explanation-text'>
+    <br>
+    501-
+
+<br><br>
+
+  </div>
+
+
+  <div id="console-log"  class='a-collection'>
+    <div class='a-title'>Console Output</div>
+    <div id='log-text'></div>
+    <br>
+  </div>
+
+
+
+</div>
+
+
+
+<!--            ------------------------------------------       -->
+
+
+<script src="../consolelog.js">
+</script>
+
+<script src="../TypeCzech.js">
+</script>
+
+<link rel="stylesheet" href="../type-czech.css">
+<style>
+</style>
+
+
+
+<!--            ------------------------------------------       -->
+
+
+<script>
+  log = captureConsole("log-text");
+</script>
+
+
+
+
+
+<script id="check-code">
+/**/function First_check(First){
+/**/  function PRE_First(){ log(NL2+'PRE -First') }
+/**/  function POST_First(){ log(NL1+'POST-First') }
+/**/  function PRE_firstMethod(){ log('PRE -firstMethod') }
+/**/  function POST_firstMethod(){ log('POST-firstMethod') }
+/**/
+/**/  First_PREs = {First:PRE_First, firstMethod:PRE_firstMethod}
+/**/  First_POSTs = {First:POST_First, firstMethod:POST_firstMethod}
+/**/  First = type_czech.check(First, First_PREs, First_POSTs)
+/**/  return First
+/**/}
+
+/**/function Last_check(Last){
+/**/  function PRE_Last(){ log(LEVEL_1+'PRE-Last') }
+/**/  function POST_Last(){ log(LEVEL_1+"POST-Last") }
+/**/  function PRE_lastMethod(){ log(LEVEL_1+"PRE -lastMethod") }
+/**/  function POST_lastMethod(){ log(LEVEL_1+"POST-lastMethod") }
+/**/
+/**/  Last_PREs = {Last:PRE_Last, lastMethod:PRE_lastMethod}
+/**/  Last_POSTs = {Last:POST_Last, lastMethod:POST_lastMethod}
+/**/  Last = type_czech.check(Last, Last_PREs, Last_POSTs)
+/**/  return Last
+/**/}
+
+/**/function Full_check(Full){
+/**/  function PRE_Full(){  log(LEVEL_2+'PRE-Full') }
+/**/  function POST_Full(){ log(LEVEL_2+"POST-Full") }
+/**/  function PRE_fullMethod(){ log(LEVEL_2+"PRE -fullMethod") }
+/**/  function POST_fullMethod(){ log(LEVEL_2+"POST-fullMethod") }
+/**/
+/**/  Full_PREs = {Full:PRE_Full, fullMethod:PRE_fullMethod}
+/**/  Full_POSTs= {Full:POST_Full, fullMethod:POST_fullMethod}
+/**/  Full = type_czech.check(Full, Full_PREs, Full_POSTs)
+/**/  return Full
+/**/}
+
+function First(f_name) {
+  this.f_name = f_name
+  log(NL+`CONS-First :${f_name}`)
+  this.firstMethod = function(a_date) { 
+    log(NL+`RUN -firstMethod :${this.f_name} `, a_date) 
+  }
+}
+
+function Last(l_name) {
+  this.l_name = l_name
+  log(NL+LEVEL_1+`CONS-Last :${l_name}`)
+  this.lastMethod = function (a_year) {
+    log(LEVEL_1+`RUN -lastMethod :${a_year} ${this.f_name} ${this.l_name}`)
+  }
+}
+
+function Full(salu) {
+  this.salu = salu
+  log(NL+LEVEL_2+`CONS-Full :${salu}`)
+  this.fullMethod = function (a_book) {
+      log(LEVEL_2+`RUN -fullMethod :${a_book} ${this.salu} ${this.l_name}`)
+    }
+}
+
+/**/  TYPE_CZECH_START = true
+/**/  
+/**/  if (TYPE_CZECH_START) {
+/**/    type_czech = TypeCzech('LOG-ERRORS')
+/**/    First = First_check(First)
+/**/    Last = Last_check(Last)
+/**/    Full = Full_check(Full)
+/**/  } 
+
+/**/  function PRE_Person(){  log(LEVEL_3+'PRE-Person') }
+/**/  function POST_Person(){ log(LEVEL_3+"POST-Person") }
+/**/  Person = type_czech.check(Person, PRE_Person, POST_Person)
+
+function Person(salu, f_name, l_name){
+  log(LEVEL_3+`CONS-Person :${salu} ${f_name} ${l_name}`)
+  person_full = new Full(salu)
+  person_last = new Last(l_name)
+  person_first = new First(f_name)
+  Object.setPrototypeOf(person_full, person_last)
+  Object.setPrototypeOf(person_last, person_first)
+  return person_full
+}
+
+mary_shelley = Person('Ms', 'Mary', 'Shelley')
+linesConsole(1)
+mary_shelley.firstMethod(new Date(1818,1,1))
+linesConsole(1)
+mary_shelley.lastMethod(1931)
+linesConsole(1)
+mary_shelley.fullMethod('Frankenstein')
+
+</script>
+
+
+
+
+
+
+<script>
+
+  jsToDiv('js-code', "check-code");       //only color the non-checking 
+
+</script>

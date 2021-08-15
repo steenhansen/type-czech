@@ -1,0 +1,155 @@
+<meta charset="utf-8" />
+<title>103-Extended-Classes-Production</title>
+
+
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Inconsolata">
+  
+<div id='js-div' style="width:53%; " class='left-code-scroll'>
+  <div id='js-code'>the javascript</div>
+</div>
+
+
+<div id="the-explanation" style="width:47%" class='a-collection'>
+  <div class='an-explantion'>103 - Extended Classes Production</div>
+  <div id='explanation-text'>
+    <br>
+    <ul>
+      <li>When TypeCzech is turned on then TypeCzech.js, TypeCzech_First.js,
+         TypeCzech_Last, and TypeCzech_Full.js are all imported
+      <li>No testing code is imported when TypeCzech is turned off</li>
+      </ul>
+
+<pre>
+/**/  TYPE_CZECH_START = false
+</pre>
+
+
+<br><br>
+
+  </div>
+
+
+  <div id="console-log"  class='a-collection'>
+    <div class='a-title'>Console Output</div>
+    <div id='log-text'></div>
+    <br>
+  </div>
+
+
+
+</div>
+
+
+
+
+
+<!--            ------------------------------------------       -->
+
+
+
+
+
+<script src="../../consolelog.js">
+</script>
+
+<script src="./ordered-import.js"></script>
+
+<link rel="stylesheet" href="../../type-czech.css">
+<style>
+</style>
+
+
+
+
+
+<!--            ------------------------------------------       -->
+
+
+
+
+
+<script>
+  log = captureConsole("log-text");
+</script>
+
+
+
+<script id="check-code">
+function init_First(){
+  class First { 
+    constructor(f_name) { 
+      this.f_name = f_name
+      log(NL+`CONS-First :${f_name}`) 
+    }
+    firstMethod(a_date) { 
+      log(NL+`RUN -firstMethod :${this.f_name} `, a_date)
+    }
+  }
+ return First
+}
+
+function init_Last(First){
+  class Last extends First{  
+    constructor(f_name, l_name) {
+      super(f_name)
+      this.l_name = l_name
+      log(NL+LEVEL_1+`CONS-Last :${f_name} ${l_name}`)
+    }
+    lastMethod(a_year){ 
+      let last_mess = `RUN -lastMethod :${a_year} ${this.f_name} ${this.l_name}`
+      log(LEVEL_1+last_mess)
+    }
+  }
+  return Last
+}
+
+function init_Full(Last){
+  class Full extends Last {
+    constructor(salu, f_name, l_name) {
+      super(f_name, l_name)
+      this.salu = salu
+      log(NL+LEVEL_2+`CONS-Full :${salu} ${f_name} ${l_name}`) 
+    }
+    fullMethod(a_book){
+      let full_mess = `RUN -fullMethod :${a_book} ${this.salu} ${this.l_name}`
+      log(LEVEL_2+full_mess)
+    }
+  }
+  return Full
+}
+
+onLoaded = (_loaded_files, _import_errors) => {
+  ted_chiang = new Full('Mr', 'Ted', 'Chiang')
+  ted_chiang.firstMethod(new Date(2008,10,15))
+  ted_chiang.lastMethod(2009)
+  ted_chiang.fullMethod('Exhalation')
+}
+
+/**/  TYPE_CZECH_START = true
+
+/**/  if (TYPE_CZECH_START) {
+/**/    TYPE_CZECH_COMMANDS = ['LOG-ERRORS']
+/**/    const CHECKING_CLASS_FILES = ['../../TypeCzech.js',
+/**/                                  './TypeCzech_First.js',
+/**/                                  './TypeCzech_Last.js',
+/**/                                  './TypeCzech_Full.js'  ]
+  orderedImport(CHECKING_CLASS_FILES, onLoaded)
+} else {
+  First = init_First()
+  Last = init_Last(First)
+  Full = init_Full(Last)
+  onLoaded([])
+}
+</script>
+
+
+
+
+
+
+
+
+<script>
+  jsToDiv('js-code', "check-code");       //only color the non-checking 
+</script>

@@ -1,0 +1,140 @@
+<meta charset="utf-8" />
+<title>603-Created-OOLO-Production</title>
+
+
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Inconsolata">
+  
+<div id='js-div' style="width:50%; "  >
+  <div id='js-code'>the javascript</div>
+</div>
+
+
+<div id="the-explanation" style="width:50%" class='a-collection'>
+  <div class='an-explantion'>603 - Created OOLO Production</div>
+  <div id='explanation-text'>
+    <br>
+ 
+    603-Created-OOLO-Production
+<br><br>
+
+  </div>
+
+
+  <div id="console-log"  class='a-collection'>
+    <div class='a-title'>Console Output</div>
+    <div id='log-text'></div>
+    <br>
+  </div>
+
+
+
+</div>
+
+
+
+
+<!--            ------------------------------------------       -->
+
+
+<script src="../../consolelog.js">
+</script>
+
+<script src="./ordered-import.js"></script>
+
+<link rel="stylesheet" href="../../type-czech.css">
+<style>
+</style>
+
+
+
+
+<!--            ------------------------------------------       -->
+
+
+
+<script>
+  log = captureConsole("log-text");
+</script>
+
+
+
+<script  id="check-code">
+function First(f_name) {
+  FIRST_TEMPLATE = {
+    oolo_type: 'First',
+    firstMethod(a_date){
+      log(NL+`RUN -firstMethod :${this.f_name} `, a_date) 
+    },
+    instanceOf(){
+      return this.oolo_type
+    }
+  }
+  first_object = Object.create(FIRST_TEMPLATE)
+  first_object.f_name = f_name
+  log(NL+`CONS-First :${f_name}`)
+  return first_object
+}
+
+function Last(f_name, l_name) {
+  LAST_TEMPLATE = {
+    oolo_type: 'Last',
+    lastMethod(a_year){
+      log(LEVEL_1+`RUN -lastMethod :${a_year} ${this.f_name} ${this.l_name}`) 
+    }
+  }
+  first = First(f_name)
+  Object.setPrototypeOf(LAST_TEMPLATE, first)
+  last_object = Object.create(LAST_TEMPLATE)
+  last_object.l_name = l_name
+  last_object.type = 'Last'
+  log(NL+LEVEL_1+`CONS-Last :${l_name}`)
+  return last_object
+}
+
+function Full(salu, f_name, l_name) {
+  FULL_TEMPLATE = {
+    oolo_type: 'Full',
+    fullMethod(a_book){
+      log(LEVEL_2+`RUN -fullMethod :${a_book} ${this.salu} ${this.l_name}`)
+    }
+  }
+  last = Last(f_name, l_name) 
+  Object.setPrototypeOf(FULL_TEMPLATE, last)
+  full_object = Object.create(FULL_TEMPLATE)
+  full_object.salu = salu
+  log(NL+LEVEL_2+`CONS-Full :${salu}`)
+  return full_object
+}
+
+onLoaded = (_loaded_files, _import_errors) => {  
+  margaret_atwood = Full('Ms.', 'Margaret', 'Atwood');
+margaret_atwood.firstMethod( new Date(1985,1,1))
+margaret_atwood.lastMethod(1987)
+margaret_atwood.fullMethod("The Handmaid's Tale")
+}
+
+/**/  TYPE_CZECH_START = true
+if (TYPE_CZECH_START) {
+/**/  TYPE_CZECH_COMMANDS = ['LOG-ERRORS']
+/**/  const CHECKING_CLASS_FILES = ['../../TypeCzech.js',
+/**/                                './TypeCzech_First.js',
+/**/                                './TypeCzech_Last.js',
+/**/                                './TypeCzech_Full.js'  ]
+/**/  orderedImport(CHECKING_CLASS_FILES, onLoaded)
+} else
+  onLoaded([], [])
+</script>
+  
+  
+
+
+
+
+
+<script>
+
+
+  jsToDiv('js-code', "check-code");   //only color the non-checking 
+
+</script>
