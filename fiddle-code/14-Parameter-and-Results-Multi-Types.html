@@ -1,0 +1,226 @@
+<!DOCTYPE html><meta charset="utf-8" />
+<title>14-Parameter-and-Results-Multi-Scalar-Types</title>
+
+
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Inconsolata">
+
+<div id='js-div' style="width:55%">
+  <div id='js-code'>the javascript</div>
+</div>
+
+ 
+
+<div id="the-explanation" style="width:45%">
+  <div class='an-explantion'>14 - Parameter and Result Multi Scalar Types</div>
+  <div id='explanation-text'>
+    <br>
+
+   This page deals with functions that have more than one parameter, and function
+   results that are arrays. The next page deals with checking single parameter
+   types, and single type function results.
+
+
+    <div>
+      <div style="float:left; width:16%; margin-left:5px">
+        <li style="list-style: none;"><b>Valid Types</b></li>
+       </div>
+    
+      <div style="float:left; width:16%">
+        <ul>
+          <li>Boolean</li>
+          <li>RegExp</li>
+    
+        </ul>
+      </div>
+     
+      <div style="float:left; width:13%">
+        <ul>
+          <li>Date</li>
+          <li>String</li>
+        </ul>
+      </div>
+     
+      <div style="float:left; width:16%">
+        <ul>
+          <li>Function</li>
+          <li>Symbol</li>
+        </ul>
+      </div>
+
+      <div style="float:left; width:16%">
+        <ul>
+          <li>Number</li>
+          <li>BigInt</li>
+        </ul>
+      </div>
+
+      
+      <div style="float:left; width:1%">
+        <ul>
+          <li>Array</li>
+          <li>Object</li>
+        </ul>
+      </div>
+    
+    </div>
+    <br><br>  <br><br>
+    The Person() function's signatures.
+    <ul>
+      <li>Input : [ 'String', 'String', 'Date' ]</li>
+      
+      <li>Output : [ 'Number', 'String', 'String' ]</li>
+      </ul>
+      
+
+
+An error occurs because Alan Turing's birthdate is a number, 1912, not a Date().
+
+<br><br>
+And, Avicii has his last name deliberatly set to undefined, causing the Person() 
+return result to not match the correct signature.
+<br><br>
+ Try-catches are used to limit the number of errors in the console.
+<br><br>
+
+
+</div>
+
+
+<div id="console-log"  class='a-collection'>
+  <div class='a-title'>Console Output</div>
+  <div id='log-text'></div>
+  <br>
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<!--            -------------TYPE 1-----------------------------       -->
+
+
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/consolelog.js">
+</script>
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/TypeCzech.js">
+</script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/type-czech.css">
+<style>
+</style>
+
+
+
+
+<!--            -----------------TYPE 1-------------------------       -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  log = captureConsole("log-text");
+</script>
+
+
+
+
+<script id="check-code">
+
+/**/  if (typeof TypeCzech === 'function')
+/**/    type_czech = TypeCzech('THROW-EXCEPTIONS')
+/**/  else
+/**/    type_czech = { check: (nop) => nop, stats: (nop) => nop, is_active: false }
+/**/  
+/**/  PRE_Person = (typeof PRE_Person === 'undefined') ? undefined : PRE_Person
+/**/  POST_Person = (typeof POST_Person === 'undefined') ? undefined : POST_Person
+/**/  
+/**/  function PRE_Person(f_name, l_name, b_date){
+/**/    return type_czech.valid(arguments, ['String', 'String', 'Date'])
+/**/  }
+/**/  
+/**/  function POST_Person(an_array){
+/**/    return type_czech.valid(arguments, ['Number', 'String', 'String'])
+/**/  }
+/**/  
+/**/  Person = type_czech.check(Person, PRE_Person, POST_Person)
+
+function Person(f_name, l_name, b_date){
+  birth_year = b_date.getFullYear()
+  if (l_name === '')
+    l_name = undefined                   // deliberate POST error
+  return [birth_year, f_name, l_name];
+}
+
+chuck = Person('Charles', 'Windsor', new Date(1948,11,14))
+log(chuck)
+linesConsole(1)
+
+try {
+  alan_turing = Person('Alan', 'Turing', 1912)
+}catch (type_error) {
+  log(type_error)
+}
+
+try {
+  alan_turing = Person('Avicii', '', new Date(1955,5,5))
+}catch (type_error) {
+  log(type_error)
+}
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+<script>
+
+  jsToDiv('js-code', "check-code");
+
+ 
+
+  
+  // fromToBoldText(483, 486, 'code', 1)  // g', 'Date'])
+  // fromToBoldText(1032, 1035, 'code', 1)  // n', 'Turing', 1912)
+
+  // fromToBoldText(220, 225, 'log', 1)    //,'Number']
+  // fromToBoldText(268, 271, 'log', 1)    //',1912]
+  // fromToBoldText(316, 319, 'log', 1)    //,'Date']
+
+
+
+
+
+</script>

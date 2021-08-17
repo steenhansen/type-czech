@@ -1,0 +1,173 @@
+<!DOCTYPE html><meta charset="utf-8" />
+<title>28-Accept-Null-and-Undefined-Values</title>
+
+
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Inconsolata">
+  
+<div id='js-div' style="width:40%">
+  <div id='js-code'>the javascript</div>
+</div>
+
+
+<div id="the-explanation" style="width:60%">
+  <div class='an-explantion'>28 - Accept Null and Undefined Values</div>
+  <div id='explanation-text'>
+    <br>
+ When using the 'UNDEF-OK' option with TypeCzech creation, 'null' and 'undefined' values are allowed
+ to pass through error free in parameter type checking. The values 'null' and 'undefined' are still however
+ considered empty &amp; valueless. In other words, null and undefined are treated as type wildcards.
+    <ul>
+      <li style='float:left; width:50%'><b>null</b> - absence of any value</li>
+      <li><b>undefined</b> - an un-assigned value</li>
+    </ul>
+
+
+
+The 'UNDEF-OK' option is only useful with type shapes, and thus these functions:
+<ul>
+  <li><b>valid</b>(actual_arguments, expected_shape)</li>
+  <li><b>validExtras</b>(actual_arguments, expected_shape)</li>
+  <li><b>validUnion</b>(actual_arguments, possible_shapes)</li>
+  <li><b>validUnionExtras</b>(actual_arguments, possible_shapes)</li>
+</ul>
+
+<br>
+
+
+ </div>
+
+
+  <div id="console-log"  class='a-collection'>
+    <div class='a-title'>Console Output</div>
+    <div id='log-text'></div>
+    <br>
+  </div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--            -------------------TYPE 1-----------------------       -->
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/consolelog.js">
+</script>
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/TypeCzech.js">
+</script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/type-czech.css">
+<style>
+</style>
+
+
+
+<!--            -----------------TYPE 1-------------------------       -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  log = captureConsole("log-text");
+</script>
+
+
+
+<script id="check-code">
+
+/**/  if (typeof TypeCzech === 'function')
+/**/    type_czech = TypeCzech('UNDEF-OK','LOG-ERRORS')
+/**/  else
+/**/    type_czech = { check: (nop) => nop,
+/**/                   stats: (nop) => nop,
+/**/                   is_active: false }
+/**/  
+/**/  PRE_Person = (typeof PRE_Person === 'undefined')
+/**/               ? undefined : PRE_Person
+/**/  
+/**/  function PRE_Person(person_obj){
+/**/    let {f_name, l_name} = person_obj
+/**/    person_type = {f_name:'String', l_name:'String'}
+/**/    return type_czech.valid(arguments, person_type)
+/**/  }
+/**/  
+/**/  function POST_Person(person_array){
+/**/    let [f_name, l_name] = person_array
+/**/    person_type = ['String', 'String']
+/**/    return type_czech.valid(arguments, person_type)
+/**/  }
+/**/  
+/**/  Person=type_czech.check(Person,PRE_Person,POST_Person)
+
+function Person(person_obj){
+  let {f_name, l_name} = person_obj
+  return [ f_name, l_name ]
+}
+
+sting = Person({f_name: 'Sting', l_name:undefined})
+log(sting)
+
+linesConsole(1)
+
+madonna = Person({f_name: 'Madonna', l_name:null})
+log(madonna)
+
+linesConsole(1)
+
+alan = Person({f_name: 'Alan', l_name:'Turing'})
+log(alan)
+
+linesConsole(1)
+
+marvin = Person({f_name: 'Marvin', l_name:12})
+log(marvin)
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+<script>
+  
+
+   jsToDiv('js-code', "check-code");
+
+  //  fromToBoldText(75, 84, 'code', 1)  //'UNDEF-OK'
+  // fromToBoldText(1030, 1040, 'code', 1)  //  l_name:null
+
+  // fromToBoldText(47, 50, 'log', 1)    //null 
+
+
+</script>

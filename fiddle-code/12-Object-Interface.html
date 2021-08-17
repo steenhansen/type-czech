@@ -1,0 +1,170 @@
+<!DOCTYPE html><meta charset="utf-8" />
+<title>12-Object-Interface</title>
+
+
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Inconsolata">
+
+
+<div id='js-div' style="width:50%">
+ 
+  <div id='js-code'>the javascript</div>
+</div>
+
+
+<div id="the-explanation" style="width:50%">
+  <div class='an-explantion'>12 - Object Interface</div>
+  <div id='explanation-text'>
+    <br>
+    Interfaces are supposed to only check functions, but type_czech.objectInterface()
+    checks for other types as well if so wished.
+    <br><br>
+
+    This code checks for the methods functionOne(), functionTwo(), and the number property
+     aNumber being in an object.
+<pre>
+TWO_FUNC_INTERFACE = { functionOne: 'Function', 
+                       functionTwo: 'Function', 
+                       aNumber: 'Number'}
+
+an_issue = type_czech.objectInterface(some_object, TWO_FUNC_INTERFACE);
+</pre>
+
+
+    In the examples to the left, the first person() function parameter is checked to 
+    see if it implements the showPerson() function, if not it fails the interface.
+    <br><br>
+  Type-Czech is set to throws exceptions in this example to cut down on the number
+  of error messages.
+  <br><br>
+  </div>
+
+  <div id="console-log"  class='a-collection'>
+    <div class='a-title'>Console Output</div>
+    <div id='log-text'></div>
+    <br>
+  </div>
+
+  
+
+</div>
+
+
+
+
+
+
+<!--            --------------------TYPE 1----------------------       -->
+
+
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/consolelog.js">
+</script>
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/TypeCzech.js">
+</script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/type-czech.css">
+<style>
+</style>
+
+
+
+
+<!--            -------------------TYPE 1-----------------------       -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  log = captureConsole("log-text");
+</script>
+
+
+
+<script id="check-code">
+
+
+/**/  if (typeof TypeCzech === 'function')
+/**/    type_czech = TypeCzech('THROW-EXCEPTIONS')
+/**/  else
+/**/    type_czech = { check: (nop) => nop, stats: (nop) => nop,
+/**/                                          is_active: false }
+/**/
+/**/  PRE_callMethod = (typeof PRE_callMethod === 'undefined')
+/**/                   ? undefined : PRE_callMethod
+/**/
+/**/  function PRE_callMethod(an_object){
+/**/    THE_INTERFACE = {showPerson: 'Function'}
+/**/    return type_czech.objectInterface(an_object, THE_INTERFACE);
+/**/  }
+/**/  
+/**/  callMethod = type_czech.check(callMethod, PRE_callMethod)
+
+function callMethod(an_object){
+  an_object.showPerson()
+}
+
+show_person = (x) => log(`A object with a showPerson()`)
+has_showPerson = {showPerson: show_person}
+callMethod(has_showPerson)
+
+linesConsole(4)
+
+no_showPerson = {a_key:'not-a-function'}
+try{
+  callMethod(no_showPerson)
+} catch(interface_error){
+  log(no_showPerson)
+  log('has no showPerson()')
+  linesConsole(2)
+  log(interface_error)
+}
+
+
+linesConsole(4)
+
+wrong_showPerson = {showPerson:'a-string'}
+try{
+  callMethod(wrong_showPerson)
+} catch(interface_error){
+  log(wrong_showPerson)
+  log('has no showPerson()')
+  linesConsole(2)
+  log(interface_error)
+}
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+
+  jsToDiv('js-code', "check-code");
+
+  // fromToBoldText(427, 450, 'code', 1)  // showPerson: 'Function'
+  // fromToBoldText(810, 833, 'code', 1)  // {a_key:'not-a-function'}
+
+  // fromToBoldText(29, 78, 'log', 1)    // { "a_key": "not-a-function" }        has no showPerson()
+
+</script>

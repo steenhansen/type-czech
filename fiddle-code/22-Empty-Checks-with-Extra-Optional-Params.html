@@ -1,0 +1,181 @@
+<!DOCTYPE html><meta charset="utf-8" />
+<title>22-Empty-Checks-with-Extra-Optional-Params</title>
+
+
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Inconsolata">
+  
+<div id='js-div' style="width:62%">
+
+  <div id='js-code'>the javascript</div>
+</div>
+
+
+
+<div id="the-explanation" style="width:38%">
+  <div class='an-explantion'>22 - Empty Checks with Extra Optional Parameters</div>
+  <div id='explanation-text'>
+    <br>
+
+
+
+
+    Extra optional parameter values are not checked for being empty or valueless, they are just ignored. 
+    As long as the correct declared shape of empty states is not violated, any additional elective 
+    parameters will be overlooked when using 
+    type_czech.valuelessExtras(arguments, expected_empty).
+    <br><br>
+  
+    There is no way of specifying optional keys, and optional array elements.
+    
+    <br><br>
+    Objects specify their mandatory keys and types, whilst arrays just check the
+    begining elements for types, and ignore the rest undescribed elements.
+      
+    <br><br>
+
+
+
+
+
+
+
+</div>
+
+
+<div id="console-log"  class='a-collection'>
+  <div class='a-title'>Console Output</div>
+  <div id='log-text'></div>
+  <br>
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<!--            ----------------------TYPE 1--------------------       -->
+
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/consolelog.js">
+</script>
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/TypeCzech.js">
+</script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/type-czech.css">
+<style>
+</style>
+
+
+
+
+<!--            ---------------------TYPE 1---------------------       -->
+
+
+
+
+
+
+
+
+
+
+<script>
+  log = captureConsole("log-text");
+</script>
+
+
+
+
+<script id="check-code">
+
+
+/**/  if (typeof TypeCzech === 'function')
+/**/    type_czech = TypeCzech('LOG-ERRORS')
+/**/  else
+/**/    type_czech = { check: (nop) => nop, stats: (nop) => nop, is_active: false }
+/**/  
+/**/  PRE_Person = (typeof PRE_Person === 'undefined') ? undefined : PRE_Person
+/**/  POST_Person = (typeof POST_Person === 'undefined') ? undefined : POST_Person
+/**/
+/**/  function PRE_Person(person_obj){
+/**/    return type_czech.valuelessExtras(arguments, {f_name:'EMPTY-OK', l_name:'EMPTY-ERROR'})
+/**/  }
+/**/  
+/**/  function POST_Person(object_1){
+/**/    return type_czech.valuelessExtras(arguments, ['EMPTY-OK', 'EMPTY-ERROR'])
+/**/  }
+/**/  
+/**/  Person = type_czech.check(Person, PRE_Person, POST_Person)
+
+function Person(person_obj){
+  let {f_name, l_name, extra_1, extra_2, extra_3, extra_4} = person_obj
+  the_person = [f_name, l_name]
+  if (typeof extra_1 !== 'undefined'){
+    the_extras = [extra_1]
+    if (typeof extra_2 !== 'undefined') the_extras.push(extra_2)
+    if (typeof extra_3 !== 'undefined') the_extras.push(extra_3)
+    if (typeof extra_4 !== 'undefined') the_extras.push(extra_4)
+    the_person.push(the_extras)
+  }
+  return the_person
+}
+
+alan_turing = Person({f_name:'Guy', l_name:'Lafleur', extra_1:10})
+log(alan_turing)
+
+linesConsole(3)
+
+
+bob_uncle1 = Person({f_name:'Hakeem', l_name:'Olajuwon'})
+log( bob_uncle1)
+
+linesConsole(3)
+
+bob_uncle2 = Person({f_name:'Dan', l_name:'Fouts', extra_1: 'Air Coryell'})
+log(bob_uncle2)
+
+
+linesConsole(3)
+
+bob_uncle3 = Person({f_name:'John', l_name:'McEnroe',
+                     extra_1: '', extra_2: 1959, extra_3: 'vs. Bjorn Borg'})
+log(bob_uncle3)
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  
+
+  jsToDiv('js-code', "check-code");
+  
+  // fromToBoldText(451, 491, 'code', 1)  // {f_name:'EMPTY-OK', l_name:'EMPTY-ERROR'})
+  // fromToBoldText(600, 626, 'code', 1)  //   ['EMPTY-OK', 'EMPTY-ERROR'])
+  // fromToBoldText(1217, 1226, 'code', 1)  // extra_1:10
+
+  // fromToBoldText(27, 38, 'log', 1)    //  [ 10 ]
+
+
+
+  
+</script>

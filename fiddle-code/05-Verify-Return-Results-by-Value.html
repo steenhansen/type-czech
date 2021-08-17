@@ -1,0 +1,165 @@
+<!DOCTYPE html><meta charset="utf-8" />
+<title>05-Verify-Return-Results-by-Value</title>
+
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Inconsolata">
+
+
+<div id='js-div' style="width:50%">
+  <div id='js-code'>the javascript</div>
+</div>
+
+
+<div id="the-explanation" style="width:50%">
+  <div class='an-explantion'>05 - Verify Return Results by Value</div>
+  <div id='explanation-text'>
+    <br>
+
+
+    POST function checking is good for invariate verification to give warnings
+    when there are issues with the state of the data after a function is called. 
+    It is like a detachable assert statement.
+  <br><br>
+    In the example to the left, two Persons fail the return result validation:
+
+    <ul>
+      <li>Catherine had incorrect upper and lowercase characters</li>
+      <li>Atahualpa does not have a valid regnal number in l_name</li>
+    </ul>
+    <br>
+
+
+
+    If only a POST checking function is needed to verify function results, without
+    a PRE checking function, then this form must be used.
+<pre>
+Person = type_czech.check(Person, undefined, POST_Person) 
+</pre>
+
+
+
+  </div>
+
+  <div id="console-log"  class='a-collection'>
+    <div class='a-title'>Console Output</div>
+    <div id='log-text'></div>
+    <br>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<!--            ------------------TYPE 1------------------------       -->
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/consolelog.js">
+</script>
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/TypeCzech.js">
+</script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/type-czech.css">
+<style>
+</style>
+
+
+
+
+<!--            --------------------TYPE 1----------------------       -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  log = captureConsole("log-text");
+</script>
+
+
+
+
+<script id="check-code">
+
+
+/**/  if (typeof TypeCzech === 'function')
+/**/    type_czech = TypeCzech('LOG-ERRORS')
+/**/  else
+/**/    type_czech = { check: (nop) => nop, stats: (nop) => nop,
+/**/                                          is_active: false }
+/**/
+/**/  POST_Person =(typeof POST_Person==='undefined') ? undefined:POST_Person
+/**/
+/**/  function POST_Person(first_last){
+/**/    royal_name = new RegExp(/^[A-Z][a-z]*\s[A-Z]*$/);
+/**/    if (!first_last.match(royal_name))
+/**/      return NL+`POST, name is not formated royally - ${first_last}`
+/**/
+/**/    return ''
+/**/  }
+/**/
+/**/  Person = type_czech.check(Person, undefined, POST_Person) 
+
+function Person(f_name, l_name){
+  first_last = f_name + ' ' + l_name
+  return first_last
+}
+
+cleopatra = Person('Cleopatra', 'VII')
+linesConsole(2)
+log('out A : ', cleopatra)
+
+linesConsole(1)
+
+catherine = Person('cATHERINE', 'II')
+log(NL +'out C : ', catherine)
+
+linesConsole(2)
+
+atahualpa = Person('Atahualpa')
+linesConsole(1)
+log('out D : ', atahualpa)
+
+linesConsole(2)
+
+louis = Person('Louis', 'XIV')
+linesConsole(1)
+log('out D : ', louis)
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+<script>
+
+  jsToDiv('js-code', "check-code");
+
+  // fromToBoldText(391, 396, 'code', 1)  // (/^[A-Z][
+  // fromToBoldText(823, 831, 'code', 1)  //  Person('cATHERINE', 'II')
+  // fromToBoldText(63, 74, 'log', 1)    // ally - cATHERINE II
+
+
+</script>

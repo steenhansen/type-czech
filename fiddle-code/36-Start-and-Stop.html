@@ -1,0 +1,191 @@
+<!DOCTYPE html><meta charset="utf-8" />
+<title>36-Start-and-Stop</title>
+
+
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Inconsolata">
+  
+  <div id='js-div' style="width:55%">
+  <div id='js-code'>the javascript</div>
+</div>
+
+<div id="the-explanation" style="width:45%">
+  <div class='an-explantion'>36 - Turn-On, Turn-Off, and Show TypeCzech Counting</div>
+  <div id='explanation-text'>
+    <br>
+
+    TypeCzech can stop and start checking parameters with:
+    <ul>
+      <li><b>type_czech.checkBegin()</b></li>
+      <li><b>type_czech.checkEnd()</b></li>
+    </ul>
+    TypeCzech defaults to checking parameters when initilized.
+    
+    Show the number of errors and checks found with:
+    <ul>
+      <li><b>type_czech.failureTally()</b></li>
+      <li><b>type_czech.checkTally()</b></li>
+    </ul>
+
+    To get the errors/checks ratio use type_czech.failureRatio().
+
+  </div>
+
+
+  <div id="console-log"  class='a-collection'>
+    <div class='a-title'>Console Output</div>
+    <div id='log-text'></div>
+    <br>
+  </div>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--            ----------------TYPE 1--------------------------       -->
+
+
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/consolelog.js">
+</script>
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/TypeCzech.js">
+</script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/type-czech.css">
+<style>
+</style>
+
+
+
+
+
+
+<!--            ---------------TYPE 1---------------------------       -->
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  log = captureConsole("log-text");
+</script>
+
+
+<script id="check-code">
+
+/**/  if (typeof TypeCzech === 'function')
+/**/    type_czech = TypeCzech('THROW-EXCEPTIONS')
+/**/  else
+/**/    type_czech = { check: (nop) => nop, stats: (nop) => nop, is_active: false }
+/**/  
+/**/  PRE_Person = (typeof PRE_Person === 'undefined') ? undefined : PRE_Person
+/**/  
+/**/  function PRE_Person(){
+/**/    return type_czech.valid(arguments, ['String', 'String'])
+/**/  }
+/**/  
+/**/  Person = type_czech.check(Person, PRE_Person)
+
+function Person(f_name, l_name){
+  log('valid name: ', `${f_name} ${l_name}`)
+  return [f_name, l_name]
+}
+
+try {
+  Person('Elizabeth', 1)
+} catch (e) {
+  log('Exception: Elizabeth 1 - not counted')
+}
+
+linesConsole(2)
+
+
+/**/  type_czech.checkBegin()
+
+
+Person('Prince', 'Charles')
+
+ linesConsole(2)
+
+try {
+Person('Elizabeth', 2)
+} catch (e) {
+  log('Exception: Elizabeth 2 - counted')
+}
+
+linesConsole(4)
+
+/**/  type_czech.checkEnd()
+/**/  failure_ratio = type_czech.failureRatio()
+/**/  failure_tally = type_czech.failureTally()
+/**/  check_tally = type_czech.checkTally()
+
+log( 'Counted errors/checks : ', failure_ratio)
+
+linesConsole(2)
+
+log( 'Counted errors : ',  failure_tally )
+
+linesConsole(2)
+
+log( 'Counted checks : ', check_tally )
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  
+
+  jsToDiv('js-code', "check-code");
+
+  // fromToBoldText(1064, 1100, 'code', 1)  //sole.log( 'Counted errors : ',  failure_tally )
+
+  // fromToBoldText(126, 143, 'log', 1)    //Counted errors : 1
+
+
+</script>

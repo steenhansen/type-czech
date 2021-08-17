@@ -1,0 +1,140 @@
+<!DOCTYPE html><meta charset="utf-8" />
+<title>09-Mutated-Window-Parameters</title>
+
+
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Inconsolata">
+
+
+<div id='js-div' style="width:55%">
+  <div id='js-code'>the javascript</div>
+</div>
+
+
+<div id="the-explanation" style="width:45%">
+  <div class='an-explantion'>09 - Mutated Window Parameter</div>
+  <div id='explanation-text'>
+    <br>
+    The Window object can also be monitored for mutations in functions.
+    <br><br>
+    
+  </div>
+
+  <div id="console-log"  class='a-collection'>
+    <div class='a-title'>Console Output</div>
+    <div id='log-text'></div>
+    <br>
+  </div>
+
+
+</div>
+
+
+
+
+
+
+<!--            ------------------TYPE 1------------------------       -->
+
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/consolelog.js">
+</script>
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/TypeCzech.js">
+</script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/type-czech.css">
+<style>
+</style>
+
+
+
+<!--            -----------------TYPE 1-------------------------       -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  log = captureConsole("log-text");
+</script>
+
+
+<script id="check-code">
+
+/**/  if (typeof TypeCzech === 'function')
+/**/    type_czech = TypeCzech('LOG-ERRORS')
+/**/  else
+/**/    type_czech = { check: (nop) => nop, stats: (nop) => nop, is_active: false }
+/**/  
+/**/  PRE_change = (typeof PRE_change === 'undefined') ? undefined : PRE_change
+/**/
+/**/  POST_change = (typeof POST_change === 'undefined') ? undefined:POST_change
+/**/  
+/**/  function PRE_change(window_object){
+/**/    type_czech.snapshot('windowChange', 'window_object', window_object)
+/**/  }
+/**/    
+/**/  function POST_change(){
+/**/    return type_czech.mutated('windowChange', 'window_object')
+/**/  }
+/**/  
+/**/  windowChange = type_czech.check(windowChange, PRE_change, POST_change) 
+
+function windowChange(window_object, add_number){
+  if (add_number === 99999999) 
+    window_object[add_number]=add_number
+}
+
+
+log('Look in the Console, error message is long')
+
+linesConsole(3)
+
+windowChange({global_window:window})
+
+windowChange({global_window:window}, 99999999) // error - window_object was mutatated
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+
+
+   jsToDiv('js-code', "check-code");
+
+  //  fromToBoldText(742, 811, 'code', 1)  //if (add_number === 99999999) window_object[add_number]=add_number
+  
+  // fromToBoldText(951, 958, 'code', 1)  // window}, 99999999) // error
+
+  // fromToBoldText(140, 154, 'log', 1)    //   from {'global_window':{'C
+
+  // fromToBoldText(323, 357, 'log', 1)    //   to {'99999999':99999999,'global_window':
+
+
+
+
+
+</script>

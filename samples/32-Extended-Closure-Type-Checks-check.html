@@ -1,4 +1,4 @@
-<meta charset="utf-8" />
+<!DOCTYPE html><meta charset="utf-8" />
 <title>32-Extended-Closure-Type-Checks-check</title>
 
 
@@ -57,7 +57,7 @@ fuction First{}
 
 
 
-<!--            ------------------------------------------       -->
+<!--            ---------------TYPE 1---------------------------       -->
 
 
 
@@ -76,7 +76,7 @@ fuction First{}
 
 
 
-<!--            ------------------------------------------       -->
+<!--            ----------------TYPE 1--------------------------       -->
 
 
 
@@ -99,8 +99,9 @@ fuction First{}
 
 
 <script id="check-code">
+/**/      type_czech = TypeCzech('LOG-ERRORS')
+/**/  //  type_czech = TypeCzech('NO-CHECKING')
 
-/**/  type_czech = TypeCzech('LOG-ERRORS')
 /**/  function PRE_First(){ log(NL2+'PRE -First') }
 /**/  function POST_First(){ log(NL1+'POST-First') }
 /**/  function PRE_firstMethod(){ log(NL2+'PRE-firstMethod') }

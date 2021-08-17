@@ -1,0 +1,152 @@
+<!DOCTYPE html><meta charset="utf-8" />
+<title>02-Validate-Parameters-by-Value</title>
+
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Inconsolata">
+
+
+<div id='js-div' style="width:50%">
+  <div id='js-code'>the javascript</div>
+</div>
+
+
+<div id="the-explanation" style="width:50%">
+  <div class='an-explantion'>02 - Validate Parameters by Value</div>
+  <div id='explanation-text'>
+    <br>
+    Programmatical checks can be performed before your functions are 
+    executed with removable PRE testing functions. Scalar arguments cannot
+    be affected, but object and array reference parameters can, so care must be 
+    taken not to mutate objects and arrays inside the Type-Czech checking functions.
+    <br><br>
+    Errors are delivered by non-empty string values, thus a return value of '' indicates
+    all is well. No return value from PRE checking functions is also indicative
+    of no error.
+    <br><br>
+
+    In the example to the left, two Persons fail the return result validation:
+    <ul>
+      <li>Atahualpa did not have a regnal number in l_name</li>
+      <li>Louis' regnal number of 14 is not in the known set</li>
+    </ul>
+    <br>
+
+
+
+ 
+  </div>
+
+  <div id="console-log"  class='a-collection'>
+    <div class='a-title'>Console Output</div>
+    <div id='log-text'></div>
+    <br>
+  </div>
+
+</div>
+
+
+
+
+
+
+<!--            ----------------TYPE 1--------------------------       -->
+
+
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/consolelog.js">
+</script>
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/TypeCzech.js">
+</script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/type-czech.css">
+<style>
+</style>
+
+
+
+<!--            ------------------TYPE 1------------------------       -->
+
+
+
+
+
+
+
+<script>
+  log = captureConsole("log-text");
+</script>
+
+
+
+
+<script id="check-code">
+
+/**/      type_czech = TypeCzech('LOG-ERRORS')
+/**/  //  type_czech = TypeCzech('NO-CHECKING')
+/**/
+/**/  function PRE_Person(f_name, l_name){
+/**/    if (arguments.length !== 2) 
+/**/      return `PRE: ${arguments.length} parameters, not 2`
+/**/
+/**/    const regnal_numbers = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII']
+/**/    if (!regnal_numbers.includes(l_name))
+/**/      return `PRE: bad regnal number '${l_name}'`
+/**/
+/**/    return ''
+/**/  }
+/**/
+/**/  Person = type_czech.check(Person, PRE_Person) 
+
+function Person(f_name, l_name){
+  first_last = f_name + ' ' + l_name
+  return first_last
+}
+
+cleopatra = Person('Cleopatra', 'VII')
+linesConsole(2)
+log('out A : ', cleopatra)
+
+linesConsole(1)
+
+catherine = Person('Catherine', 'II')
+log(NL +'out C : ', catherine)
+
+linesConsole(2)
+
+atahualpa = Person('Atahualpa')
+linesConsole(1)
+log('out D : ', atahualpa)
+
+linesConsole(2)
+
+louis = Person('Louis', 'XIV')
+linesConsole(1)
+log('out D : ', louis)
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  
+
+  jsToDiv('js-code', "check-code");
+
+  // fromToBoldText(227, 268, 'code', 1)  // Person('issac', 'Newton')
+  // fromToBoldText(799, 801, 'code', 1)  // Person('issac', 'Newton')
+  // fromToBoldText(124, 126, 'log', 1)    // out C : "issac none Newton"
+
+</script>

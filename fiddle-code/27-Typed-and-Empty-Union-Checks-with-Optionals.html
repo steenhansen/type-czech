@@ -1,0 +1,175 @@
+<!DOCTYPE html><meta charset="utf-8" />
+<title>27-Typed-and-Empty-Union-Checks-with-Optionals</title>
+
+
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Inconsolata">
+
+
+
+<div id='js-div' style="width:47%">
+  <div id='js-code'>the javascript</div>
+</div>
+
+<div id="the-explanation" style="width:53%">
+  <div class='an-explantion'>27 - Typed and Empty Union Checks with Optionals</div>
+  <div id='explanation-text'>
+    <br>
+    
+    Overloaded functions with more than one type of parameter signature, and extra typeless 
+    optional arguments, can be type checked.
+<pre>
+type_czech.validUnionExtras(arguments, type_signatures)
+</pre>
+    
+Overloaded functions with more than one type of parameter signature, and extra typeless 
+optional arguments, can be checked against empty valueless values.
+<pre>
+type_czech.valuelessUnionExtras(arguments, empty_signatures)
+</pre>
+
+
+  </div>
+
+
+  <div id="console-log"  class='a-collection'>
+    <div class='a-title'>Console Output</div>
+    <div id='log-text'></div>
+    <br>
+  </div>
+
+
+
+  
+</div>
+
+
+
+
+
+
+<!--            -----------------------TYPE 1-------------------       -->
+
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/consolelog.js">
+</script>
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/TypeCzech.js">
+</script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/type-czech.css">
+<style>
+</style>
+
+
+
+
+<!--            ------------------TYPE 1------------------------       -->
+
+
+
+
+
+
+
+
+
+<script>
+  log = captureConsole("log-text");
+</script>
+
+
+<script id="check-code">
+
+/**/  if (typeof TypeCzech === 'function')
+/**/    type_czech = TypeCzech('LOG-ERRORS')   
+/**/  else
+/**/    type_czech = { check: (nop) => nop, stats: (nop) => nop,
+/**/                                          is_active: false }
+/**/
+/**/  PRE_numberArrays = (typeof PRE_numberArrays === 'undefined')
+/**/                      ? undefined : PRE_numberArrays
+/**/
+/**/  STRING_THEN_NUMBER_ARRAY = ['String', ['Number'] ]
+/**/  NUMBER_ARRAY_THEN_STRING = [ ['Number'], 'String']
+/**/  PRE_types = [ STRING_THEN_NUMBER_ARRAY, NUMBER_ARRAY_THEN_STRING ]
+/**/
+/**/  FIRST_EMPTY_ERROR = ['EMPTY-ERROR','EMPTY-OK']
+/**/  SECOND_EMPTY_ERROR = ['EMPTY-OK','EMPTY-ERROR']
+/**/  PRE_empties = [ FIRST_EMPTY_ERROR, SECOND_EMPTY_ERROR ]
+/**/
+/**/  function PRE_numberArrays(param_1, param_2, optional_3) {
+/**/    type_error = type_czech.validUnionExtras(arguments, PRE_types)
+/**/    if (type_error) return type_error
+/**/
+/**/    empty_error = type_czech.valuelessUnionExtras(arguments,
+/**/                                                        PRE_empties)
+/**/    if (empty_error) return empty_error
+/**/  }
+/**/
+/**/  numberArrays = type_czech.check(numberArrays, PRE_numberArrays)
+
+function numberArrays(param_1, param_2, optional_3) {
+  log('Optional value :', optional_3)
+}
+
+numberArrays('a-string', [1], 'un-checked-1')
+
+linesConsole(2)
+
+numberArrays([2], 'b-string', 'un-checked-2')
+
+linesConsole(2)
+
+numberArrays('', [3], 'un-checked-3')
+
+linesConsole(2)
+
+numberArrays([], '4', 'un-checked-4')
+
+linesConsole(2)
+
+numberArrays({no_type_match:5}, 5, 'error-un-checked-5')
+
+linesConsole(2)
+
+numberArrays([], '', 'error-un-checked-6')
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  
+
+  jsToDiv('js-code', "check-code");         /// red green blue yellow
+
+  // fromToBoldText(586, 598, 'code', 1)  // ['EMPTY-ERROR'
+  // fromToBoldText(651, 663, 'code', 1)  // ,'EMPTY-ERROR']
+  // fromToBoldText(1527, 1532, 'code', 1)  // [], ''
+
+  // fromToBoldText(729, 733, 'log', 1)    //[],''
+  // fromToBoldText(783, 795, 'log', 1)    //[['EMPTY-ERROR'
+  // fromToBoldText(821, 833, 'log', 1)    //,'EMPTY-ERROR']]
+
+
+
+
+
+
+
+
+
+</script>

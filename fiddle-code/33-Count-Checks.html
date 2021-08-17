@@ -1,0 +1,142 @@
+<!DOCTYPE html><meta charset="utf-8" />
+<title>33-Count-Checks</title>
+
+
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Inconsolata">
+
+<div id='js-div' style="width:55%">
+  <div id='js-code'>the javascript</div>
+</div>
+
+
+<div id="the-explanation" style="width:45%">
+  <div class='an-explantion'>33 - Count Parameter Checking Function Calls</div>
+  <div id='explanation-text'>
+    <br>
+
+  To have good visibility of parameter checking in test suites 
+  use the <span class='text-1'>'CONSOLE-COUNT'</span> initialization option for TypeCzech. Option order 
+  is not important. 
+
+  <pre>  type_czech = TypeCzech('LOG-ERRORS', 'CONSOLE-COUNT')</pre>
+
+<br>
+
+
+
+  </div>
+
+  <div id="console-log"  class='a-collection'>
+    <div class='a-title'>Console Output</div>
+    <div id='log-text'></div>
+    <br>
+  </div>
+
+
+
+</div>
+
+
+
+
+
+
+
+<!--            ---------------TYPE 1---------------------------       -->
+
+
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/consolelog.js">
+</script>
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/TypeCzech.js">
+</script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/type-czech.css">
+<style>
+</style>
+
+
+
+
+
+
+<!--            ---------------TYPE 1---------------------------       -->
+
+
+
+
+
+
+
+
+<script>
+  log = captureConsole("log-text");
+</script>
+
+
+
+
+
+<script id="check-code">
+
+
+/**/  if (typeof TypeCzech === 'function')
+/**/      type_czech = TypeCzech('CONSOLE-COUNT', 'LOG-ERRORS')
+/**/  else
+/**/    type_czech = { check: (nop) => nop, stats: (nop) => nop, is_active: false }
+/**/  
+/**/  PRE_Person = (typeof PRE_Person === 'undefined') ? undefined : PRE_Person
+/**/  
+/**/  function PRE_Person(f_name, l_name){
+/**/    if (f_name.toLowerCase() === 'the')
+/**/      return "Error, Pre_Person, 'The' is an unusual first name"
+/**/  }
+/**/  
+/**/  Person = type_czech.check(Person, PRE_Person) 
+
+function Person(f_name, l_name){
+}
+
+Person('Elizabeth', 'I')
+
+linesConsole(2)
+
+Person('Prince', 'Charles')
+
+linesConsole(2)
+
+alan_turing = Person('Alan', 'Turing')
+
+linesConsole(2)
+
+space_baby = Person('The', 'Batman')
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  
+   jsToDiv('js-code', "check-code");
+
+  //  fromToBoldText(77, 105, 'code', 1)  // 'CONSOLE-COUNT', 'LOG-ERRORS'
+
+  // fromToBoldText(220, 225, 'log', 1)    //TypeCzech('LOG-ERRORS', 'CONSOLE-COUNT')
+
+</script>

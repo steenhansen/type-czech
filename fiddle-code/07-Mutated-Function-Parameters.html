@@ -1,0 +1,160 @@
+<!DOCTYPE html><meta charset="utf-8" />
+<title>07-Mutated-Function-Parameters</title>
+
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Inconsolata">
+
+
+<div id='js-div' style="width:50%">
+  <div id='js-code'>the javascript</div>
+</div>
+
+
+<div id="the-explanation" style="width:50%">
+  <div class='an-explantion'>07 - Mutated Function Parameters</div>
+  <div id='explanation-text'>
+    <br>
+    Objects and Arrays can be guarded from mutations in function calls with
+    snapshot() recording the entry value, and mutated() giving errors
+    when referential variables get unwanted changes.
+
+    <br><br>
+    It can be somewhat disconcerting to view the error messages as object keys 
+    are sorted for easy comparing. 
+   <br> <br>
+
+  </div>
+
+  <div id="console-log"  class='a-collection'>
+    <div class='a-title'>Console Output</div>
+    <div id='log-text'></div>
+    <br>
+  </div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--            ---------------------TYPE 1---------------------       -->
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/consolelog.js">
+</script>
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/TypeCzech.js">
+</script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/type-czech.css">
+<style>
+</style>
+
+
+
+<!--            --------------------TYPE 1----------------------       -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  log = captureConsole("log-text");
+</script>
+
+
+
+
+<script id="check-code">
+
+/**/  if (typeof TypeCzech === 'function')
+/**/    type_czech = TypeCzech('LOG-ERRORS')
+/**/  else
+/**/    type_czech = { check: (nop) => nop, stats: (nop) => nop,
+/**/                                          is_active: false }
+/**/  
+/**/  PRE_Person = (typeof PRE_Person === 'undefined')
+/**/                  ? undefined : PRE_Person
+/**/
+/**/  POST_Person = (typeof POST_Person === 'undefined')
+/**/                   ? undefined:POST_Person
+/**/  
+/**/  function PRE_Person(a_person){
+/**/    type_czech.snapshot('Person-Obj-Arr', 'a_person', a_person)
+/**/  }
+/**/  
+/**/  function POST_Person(){
+/**/    poss_mutation_err = type_czech.mutated('Person-Obj-Arr', 'a_person')
+/**/    return poss_mutation_err
+/**/  }
+/**/  
+/**/  PersonArray  = type_czech.check(PersonArray, PRE_Person, POST_Person) 
+/**/  PersonObject = type_czech.check(PersonObject, PRE_Person, POST_Person) 
+
+function PersonArray(name_array){
+  let [f_name, l_name] =name_array
+  if ( !l_name ){
+    name_array.push('missing-last-name')
+  }
+}
+
+function PersonObject(name_object){
+  let {f_name, l_name} =name_object
+  if ( !l_name ){
+    name_object.l_name = 'missing-last-name'
+  }
+}
+
+cleopatra = PersonArray(['Cleopatra', 'VII'])
+
+catherine = PersonArray(['Catherine'])
+
+linesConsole(2)
+
+atahualpa = PersonObject({f_name:'Atahualpa'})
+
+louis = PersonObject({f_name:'Louis', l_name:'XIV'})
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  
+
+   jsToDiv('js-code', "check-code");
+
+  //  fromToBoldText(988, 1012, 'code', 1)  //push('missing-last-name')
+  // fromToBoldText(1234, 1246, 'code', 1)  // ['Catherine']
+  // fromToBoldText(87, 151, 'log', 1)    //  from ['Catherine']   to ['Catherine','missing-last-name']
+
+
+
+</script>

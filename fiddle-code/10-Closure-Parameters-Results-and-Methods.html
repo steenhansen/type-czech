@@ -1,0 +1,173 @@
+<!DOCTYPE html><meta charset="utf-8" />
+<title>10-Closure-Parameters-Results-and-Methods</title>
+
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Inconsolata">
+
+
+<div id='js-div' style="width:52%">
+ 
+  <div id='js-code'>the javascript</div>
+</div>
+
+
+<div id="the-explanation" style="width:48%">
+  <div class='an-explantion'>10 - Closure Parameters, Results, and Methods</div>
+  <div id='explanation-text'>
+    <br>
+
+Closures with multiple PRE and POST checking functions must be wrapped up in 
+objects like below for everything to be linked up.
+<pre>
+function PRE_check_yourClosure(init_closure){ // before closure }
+
+function POST_check_yourClosure(result_closure){ // after closure }
+
+function PRE_check_yourFunction(function_input){ // before function }
+
+function POST_check_yourFunction(function_output){ // after function }
+
+yourClosure_PRE_checks = {yourClosure:PRE_check_yourClosure,
+                          yourFunction:PRE_check_yourFunction}
+
+yourClosure_POST_checks = {yourClosure:POST_check_yourClosure,
+                           yourFunction:POST_check_yourFunction}
+
+yourClosure = type_czech.check(yourClosure, 
+                               yourClosure_PRE_checks,
+                               yourClosure_POST_checks)
+
+function yourClosure(init_closure){
+  yourFunction = function(function_input){ 
+    return function_output
+   }
+
+  result_object = yourFunction
+  return result_closure
+}
+</pre>
+
+
+
+
+  </div>
+
+
+  <div id="console-log"  class='a-collection'>
+    <div class='a-title'>Console Output</div>
+    <div id='log-text'></div>
+    <br>
+  </div>
+
+</div>
+
+
+
+<!--            ----------------TYPE 1--------------------------       -->
+
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/consolelog.js">
+</script>
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/TypeCzech.js">
+</script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/type-czech.css">
+<style>
+</style>
+
+
+<!--            ----------------TYPE 1--------------------------       -->
+
+
+
+
+
+
+
+
+
+<script>
+  log = captureConsole("log-text");
+</script>
+
+
+<script id="check-code">
+
+
+/**/  if (typeof TypeCzech === 'function')
+/**/    type_czech = TypeCzech('LOG-ERRORS')
+/**/  else
+/**/    type_czech = { check: (nop) => nop, stats: (nop) => nop,
+/**/                                          is_active: false }
+/**/  
+/**/  PRE_Person  = (typeof PRE_Person === 'undefined')  ?undefined:PRE_Person
+/**/  PRE_show    = (typeof PRE_show === 'undefined')    ?undefined:PRE_show
+/**/  POST_Person = (typeof POST_Person === 'undefined') ?undefined:POST_Person
+/**/  POST_show   = (typeof POST_show === 'undefined')   ?undefined:POST_show
+/**/
+/**/  function PRE_Person(person_name){
+/**/    log('PRE_Person :', person_name)
+/**/  }
+/**/  
+/**/  function PRE_show(born_year){
+/**/    log(NL+'PRE_show :', born_year)
+/**/  }
+/**/  
+/**/  function POST_Person(person_object){
+/**/    log(NL2+'POST_Person :', person_object)
+/**/  }
+/**/  
+/**/  function POST_show(name_year){
+/**/    log(NL2+'POST_show :', name_year)
+/**/  }
+/**/  
+/**/  Person_PREs = {Person:PRE_Person, show:PRE_show}
+/**/  Person_POSTs = {Person:POST_Person, show:POST_show}
+/**/  
+/**/  Person = type_czech.check(Person, Person_PREs, Person_POSTs)
+
+function Person(person_name){
+  log(NL2+'in Person() :', person_name)
+  show = function (born_year) {
+    name_year =  person_name + ' - ' + born_year
+    log(NL2+'in show() :', name_year)
+    return name_year
+  }
+  person_object = {show}
+  return person_object
+}
+
+issac_newton = Person('Issac Newton')
+issac_newton.show(1642)
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+<script>
+  
+
+  jsToDiv('js-code', "check-code");
+  
+  
+  // fromToBoldText(935, 957, 'code', 1)  // NL2+'POST_show :', name_year)
+
+  // fromToBoldText(173, 204, 'log', 1)    // POST_show :"Issac Newton - 1642"
+
+  
+
+
+</script>

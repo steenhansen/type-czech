@@ -1,0 +1,144 @@
+<!DOCTYPE html><meta charset="utf-8" />
+<title>20-Multiple-Empty-Params-and-Results</title>
+
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Inconsolata">
+
+
+
+<div id='js-div' style="width:50%">
+        <div id='js-code'>the javascript</div>
+</div>
+
+
+
+<div id="the-explanation" style="width:50%">
+  <div class='an-explantion'>20 - Multiple Empty Parameters and Results</div>
+
+  <div id='explanation-text'>
+    <br>
+
+To see if a function has multiple parameters or return results that lack content, such as empty strings, arrays with 
+no elements, or an objects with no properties use type_czech.valueless().
+
+<br><br>
+Null and undefined values are also considered to be empty with no value.
+<br><br>
+
+
+</div>
+
+<div id="console-log"  class='a-collection'>
+  <div class='a-title'>Console Output</div>
+  <div id='log-text'></div>
+  <br>
+</div>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+<!--            -------------------TYPE 1-----------------------       -->
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/consolelog.js">
+</script>
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/TypeCzech.js">
+</script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/type-czech.css">
+<style>
+</style>
+
+
+
+
+
+
+<!--            --------------------TYPE 1----------------------       -->
+
+
+
+
+
+
+
+
+<script>
+  log = captureConsole("log-text");
+</script>
+
+
+
+
+<script id="check-code">
+
+/**/  if (typeof TypeCzech === 'function')
+/**/    type_czech = TypeCzech('LOG-ERRORS')
+/**/  else
+/**/    type_czech = { check: (nop) => nop, stats: (nop) => nop,
+/**/                                          is_active: false }
+/**/
+/**/  PRE_Person=(typeof PRE_Person === 'undefined') ?undefined:PRE_Person
+/**/  POST_Person=(typeof POST_Person==='undefined')?undefined:POST_Person
+/**/
+/**/  PRE_Person_EMPTYS = ['EMPTY-ERROR', 'EMPTY-OK', 'EMPTY-ERROR']
+/**/  POST_Person_EMPTYS = {l_name:'EMPTY-ERROR', b_date:'EMPTY-OK'}
+/**/
+/**/  function PRE_Person(f_name, l_name, b_date){
+/**/    return type_czech.valueless(arguments, PRE_Person_EMPTYS)
+/**/  }
+/**/  function POST_Person(person_obj){
+/**/    return type_czech.valueless(arguments, POST_Person_EMPTYS)
+/**/  }
+/**/
+/**/  Person = type_czech.check(Person, PRE_Person, POST_Person)
+
+function Person(f_name, l_name, b_date){
+  person_obj = {l_name, b_date}
+  return person_obj
+}
+
+chuck = Person('Charles', 'Windsor', new Date(1948,0,14))
+log(chuck)
+
+linesConsole(3)
+
+boudica = Person('Queen', 'Boudica', new Date(''))
+log(boudica)
+
+linesConsole(3)
+
+string = Person('Sting', '', new Date(1912,6,23))
+log(string)
+
+</script>
+
+
+
+
+
+
+
+
+
+<script>
+  
+  jsToDiv('js-code', "check-code");
+
+  
+  // fromToBoldText(486, 506, 'code', 1)  // {l_name:'EMPTY-ERROR'
+  // fromToBoldText(1116, 1117, 'code', 1)  // ''
+
+  // fromToBoldText(601, 612, 'log', 1)    //{'l_name':''
+  // fromToBoldText(661, 683, 'log', 1)    //{'l_name':'EMPTY-ERROR
+
+
+</script>

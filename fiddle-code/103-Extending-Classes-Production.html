@@ -1,4 +1,4 @@
-<meta charset="utf-8" />
+<!DOCTYPE html><meta charset="utf-8" />
 <title>103-Extended-Classes-Production</title>
 
 
@@ -14,20 +14,33 @@
   <div class='an-explantion'>103 - Extended Classes Production</div>
   <div id='explanation-text'>
     <br>
+
+    <br>
+    TypeCzech's general example of an author where:
     <ul>
-      <li>When TypeCzech is turned on then TypeCzech.js, TypeCzech_First.js,
-         TypeCzech_Last, and TypeCzech_Full.js are all imported
-      <li>No testing code is imported when TypeCzech is turned off</li>
-      </ul>
+      <li><b>First</b> controls an author's first name</li>
+      <li><b>Last</b> handles an author's first and last name</li>
+      <li><b>Full</b> deals with an author's salutation, first, and last name</li>    
+      <li>Safely removable supporting TypeCzech test code begins with /**/</li>    
+    </ul>
+    Extended classes are used for inheritance:
+    <ul>
+          <li>When TypeCzech is turned off no JavaScript code is imported</li>
+          <li>With TypeCzech turned on, the supporting test code is imported:
+            <ul> 
+              <li class='floating_li'>TypeCzech.js</li> 
+              <li class='floating_li'>TypeCzech_First.js</li> 
+              <li class='floating_li'>TypeCzech_Last</li>
+              <li class='floating_li'>TypeCzech_Full.js</li>
+              <br>  <br><br>
+          </ul>
+          </li>
+          <li>Production class declarations <b>must</b> interleave with TypeCzech calls
+            to have the PRE and POST checking functions be correctly linked before use </li>
+    </ul>
 
-<pre>
-/**/  TYPE_CZECH_START = false
-</pre>
 
-
-<br><br>
-
-  </div>
+</div>
 
 
   <div id="console-log"  class='a-collection'>
@@ -44,26 +57,23 @@
 
 
 
-<!--            ------------------------------------------       -->
+<!--            ----------------TYPE 2--------------------------       -->
 
 
 
 
-
-<script src="../../consolelog.js">
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/consolelog.js">
 </script>
 
-<script src="./ordered-import.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/real-examples/ordered-import.js">
+</script>
 
-<link rel="stylesheet" href="../../type-czech.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/type-czech.css">
 <style>
 </style>
 
 
-
-
-
-<!--            ------------------------------------------       -->
+<!--            ------------TYPE 2------------------------------       -->
 
 
 
@@ -71,6 +81,13 @@
 
 <script>
   log = captureConsole("log-text");
+
+  const TYPE_CZECH_JS =  'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/TypeCzech.js';
+
+  const TC_FIRST_JS = 'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/real-examples/103-Extending-Classes-Production/TypeCzech_First.js';
+  const TC_LAST_JS = 'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/real-examples/103-Extending-Classes-Production/TypeCzech_Last.js';
+  const TC_FULL_JS =   'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/real-examples/103-Extending-Classes-Production/TypeCzech_Full.js';
+
 </script>
 
 
@@ -126,16 +143,18 @@ onLoaded = (_loaded_files, _import_errors) => {
   ted_chiang.fullMethod('Exhalation')
 }
 
-/**/  TYPE_CZECH_START = true
+/**/      TYPE_CZECH_START = true
+/**/  //  TYPE_CZECH_START = false
 
 /**/  if (TYPE_CZECH_START) {
 /**/    TYPE_CZECH_COMMANDS = ['LOG-ERRORS']
-/**/    const CHECKING_CLASS_FILES = ['../../TypeCzech.js',
-/**/                                  './TypeCzech_First.js',
-/**/                                  './TypeCzech_Last.js',
-/**/                                  './TypeCzech_Full.js'  ]
-  orderedImport(CHECKING_CLASS_FILES, onLoaded)
-} else {
+/**/    const CHECKING_CLASS_FILES = [
+/**/          TYPE_CZECH_JS,
+/**/          TC_FIRST_JS,
+/**/          TC_LAST_JS,
+/**/          TC_FULL_JS  ]
+/**/    orderedImport(CHECKING_CLASS_FILES, onLoaded)
+/**/  } else {
   First = init_First()
   Last = init_Last(First)
   Full = init_Full(Last)

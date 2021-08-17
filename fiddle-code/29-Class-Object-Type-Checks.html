@@ -1,0 +1,197 @@
+<!DOCTYPE html><meta charset="utf-8" />
+<title id='title-id'>29-Class-Object-Type-Checks</title>
+
+
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Inconsolata">
+  
+<div id='js-div' style="width:56%; " class='a-collection'>
+  <div id='js-code'>the javascript</div>
+</div>
+
+
+<div id="the-explanation" style="width:44%" class='a-collection'>
+  <div class='an-explantion'>29 - Class Object Type Checks</div>
+  <div id='explanation-text'>
+    <br>
+        Class objects can have their types checked.
+    The below function shows the object inheritance lineage.
+
+<pre>
+type_czech.objectPrototypes(an_object)
+</pre>
+
+This is how to get the final object type.
+<pre>
+type_czech.objectType(an_object)
+</pre>
+
+
+Finally, you can interogate an object to see if it is an instance of a class.
+<pre>
+type_czech.objectIsA(an_object)
+</pre>
+
+
+
+
+<br><br>
+
+
+  </div>
+
+
+  <div id="console-log"  class='a-collection'>
+    <div class='a-title'>Console Output</div>
+    <div id='log-text'></div>
+    <br>
+  </div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--            ---------------TYPE 1---------------------------       -->
+
+
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/consolelog.js">
+</script>
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/TypeCzech.js">
+</script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/type-czech.css">
+<style>
+</style>
+
+
+
+<!--            -----------------TYPE 1-------------------------       -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  log = captureConsole("log-text");
+</script>
+
+
+
+
+
+<script id="check-code">
+
+/**/  type_czech = TypeCzech('LOG-ERRORS')
+
+class First { 
+  constructor(f_name) {
+    this.f_name = f_name
+  }
+}
+
+class Last extends First{  
+  constructor(f_name, l_name) {
+    super(f_name)
+    this.l_name = l_name
+  }
+}
+
+class Full extends Last {
+  constructor(salu, f_name, l_name) {
+    super(f_name, l_name)
+    this.salu = salu
+  }
+}
+
+linesConsole(1)
+
+ted_chiang = new Full('Mr', 'Ted', 'Chiang')
+
+all_prototypes = type_czech.objectPrototypes(ted_chiang)
+log('All-Prototypes : ', all_prototypes)
+
+linesConsole(1)
+
+object_type = type_czech.objectType(ted_chiang)
+log('Object-Type : ', object_type)
+
+linesConsole(2)
+
+isa_Full = type_czech.objectIsA(ted_chiang, 'Full')
+log('Is a Full : ', isa_Full)
+
+linesConsole(2)
+
+isa_Last = type_czech.objectIsA(ted_chiang, 'Last')
+log('Is a Last : ', isa_Last)
+
+linesConsole(2)
+
+isa_First = type_czech.objectIsA(ted_chiang, 'First')
+log('Is a First : ', isa_First)
+
+linesConsole(2)
+
+isa_Object = type_czech.objectIsA(ted_chiang, 'Object')
+log('Is an Object : ', isa_Object)
+
+linesConsole(2)
+
+isa_object = type_czech.objectIsA(ted_chiang, 'object')
+log('Is an object : ', isa_object)
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+
+
+  jsToDiv('js-code', "check-code");
+
+  //  fromToBoldText(232, 248, 'code', 1)  // Full extends Last
+  //  fromToBoldText(361, 395, 'code', 1)  // new Full('Mr', 'Ted', 'Chiang')
+
+  //  fromToBoldText(722, 754, 'code', 1)  //type_czech.objectIsA(ted_chiang, 'Last')
+
+  //  fromToBoldText(99, 114, 'log', 1)  // Is a Last : true
+
+</script>

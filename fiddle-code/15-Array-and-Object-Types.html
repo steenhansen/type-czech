@@ -1,0 +1,189 @@
+<!DOCTYPE html><meta charset="utf-8" />
+<title>15-Parameter-and-Results-Multi-Types</title>
+
+
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Inconsolata">
+
+<div id='js-div' style="width:42%">
+  <div id='js-code'>the javascript</div>
+</div>
+
+ 
+
+<div id="the-explanation" style="width:58%">
+  <div class='an-explantion'>15 - Array and Object Types with Parameter and Results</div>
+  <div id='explanation-text'>
+    <br>
+
+    Typeless arrays can be checked for without giving any dimensionality,
+    if [ ]s are used then an array must define at least one type.
+
+    <ul>
+      <li>Valid Type:  'Array'</li>
+      
+      <li>Not Valid Type : '[ ]'</li>
+      <li>Valid Type : [ 'String' ]</li>
+    </ul>
+
+    And, 'Object' can also be a type without specifying any properties.
+    But if { }s are used then an object must define at least one key and value.
+    
+
+
+<ul>
+  <li>Valid Type : 'Object'</li>
+  <li>Not Valid Type : '{ }'</li>
+  <li>Valid Type : { a_key: 'String' }</li>
+</ul>
+
+
+Alan Turing is used to show the error messages that occur when an object is validated against the 
+'array' type in the PRE_Person() checking function. 
+
+
+The reverse, testing an array against the 'object' type gives a lengthy error message from 
+the POST_Person() function.
+
+<br><br>
+</div>
+
+
+<div id="console-log"  class='a-collection'>
+  <div class='a-title'>Console Output</div>
+  <div id='log-text'></div>
+  <br>
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--            --------------------TYPE 1----------------------       -->
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/consolelog.js">
+</script>
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/TypeCzech.js">
+</script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/type-czech.css">
+<style>
+</style>
+
+
+
+
+<!--            --------------------TYPE 1----------------------       -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  log = captureConsole("log-text");
+</script>
+
+
+
+<script id="check-code">
+
+/**/  if (typeof TypeCzech === 'function')
+/**/    type_czech = TypeCzech('LOG-ERRORS')
+/**/  else
+/**/    type_czech = { check: (nop) => nop, stats: (nop) => nop,
+/**/                                          is_active: false }
+/**/  
+/**/  PRE_Person = (typeof PRE_Person === 'undefined')
+/**/               ? undefined : PRE_Person
+/**/
+/**/  POST_Person = (typeof POST_Person === 'undefined')
+/**/                ? undefined : POST_Person
+/**/  
+/**/  function PRE_Person(an_array){
+/**/    return type_czech.valid(arguments, 'Array')
+/**/  }
+/**/  
+/**/  function POST_Person(an_object){
+/**/    return type_czech.valid(arguments, 'Object')
+/**/  }
+/**/  
+/**/  Person = type_czech.check(Person, PRE_Person, POST_Person)
+
+function Person(person_array_or_obj){
+  if (Array.isArray(person_array_or_obj)){
+    let person_iterable = [...person_array_or_obj]
+    let result_object = {}
+    person_iterable.forEach( (a_value, the_index) => {
+      property_key = 'prop'+the_index
+      result_object[property_key] = a_value;
+    })
+    return result_object
+  }else {
+    result_array = Object.values(person_array_or_obj)
+    return result_array
+  }
+}
+
+chuck_array = ['Charles', new Date(1948,11,14), true, 17]
+chuck_object = Person(chuck_array)
+log(chuck_object)
+
+linesConsole(2)
+
+alan_object = {f_name:'Alan', l_name:'Turing'}
+alan_turing = Person(alan_object)
+linesConsole(2)
+log(alan_turing)
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+<script>
+
+  jsToDiv('js-code', "check-code");
+
+ 
+
+  // fromToBoldText(532, 536, 'code', 1)  //  'Array')
+  // fromToBoldText(1286, 1317, 'code', 1)  //  {f_name:'Alan', l_name:'Turing'}
+
+  // fromToBoldText(236, 241, 'log', 1)    //'Object'
+  // fromToBoldText(266, 300, 'log', 1)    //{'f_name':'Alan','l_name':'Turing'}
+
+  // fromToBoldText(325, 329, 'log', 1)    //'Array'
+
+
+
+</script>

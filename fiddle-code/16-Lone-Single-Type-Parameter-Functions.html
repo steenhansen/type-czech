@@ -1,0 +1,181 @@
+<!DOCTYPE html><meta charset="utf-8" />
+<title>16-Lone-Single-Type-Parameter-Functions </title>
+
+
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Inconsolata">
+
+
+<div id='js-div' style="width:50%">
+ 
+  <div id='js-code'>the javascript</div>
+</div>
+
+
+<div id="the-explanation" style="width:50%">
+  <div class='an-explantion'>16 - Lone Single Type Parameter Functions</div>
+  <div id='explanation-text'>
+<br>
+    
+    To check for exactly one parameter, as with PRE_exactly1Str(), the arguments length has to 
+    be checked, otherwise the extra parameters are just ignored.
+
+    <br><br>
+    Undefined values are printed as 'un-defined' in error messages to distinguish the 
+    undefined value from the 'undefined' string which look the same when printed in the console. 
+
+    <br><br>
+    So when only checking a single lone parameter, leave off the array brackets - [ ], to verfiy
+    that there is only one number being passed into the function.
+
+<pre>
+
+type_czech.valid(arguments, 'Number')              // one number
+
+type_czech.valid(arguments, ['Number', 'Number'])  // two numbers
+
+type_czech.valid(arguments, ['Date', 'String'])    // two values
+
+</pre>
+
+
+
+</div>
+
+
+  <div id="console-log"  class='a-collection'>
+    <div class='a-title'>Console Output</div>
+    <div id='log-text'></div>
+    <br>
+  </div>
+
+
+
+
+</div>
+
+
+
+
+
+
+<!--            -------------------TYPE 1-----------------------       -->
+
+
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/consolelog.js">
+</script>
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/TypeCzech.js">
+</script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/type-czech.css">
+<style>
+</style>
+
+
+
+<!--            -----------------TYPE 1-------------------------       -->
+
+
+
+
+
+
+<script>
+  log = captureConsole("log-text");
+</script>
+
+
+
+<script id="check-code">
+
+/**/  if (typeof TypeCzech === 'function')
+/**/    type_czech = TypeCzech('LOG-ERRORS')
+/**/  else
+/**/    type_czech = { check: (nop) => nop, stats: (nop) => nop,
+/**/                                                      is_active: false }
+/**/  PRE_exactly1Str = (typeof PRE_exactly1Str === 'undefined')
+/**/                    ? undefined : PRE_exactly1Str
+/**/  PRE_exactly2Strs = (typeof PRE_exactly2Strs === 'undefined')
+/**/                     ? undefined : PRE_exactly2Strs
+/**/  
+/**/  function PRE_exactly1Str(string_1){
+/**/    num_args = arguments.length
+/**/    if (num_args !== 1) return `PRE, not 1 but ${num_args} params`
+/**/    ONE_STRING_SPEC = 'String'
+/**/    return type_czech.valid(arguments, ONE_STRING_SPEC)
+/**/  }
+/**/  
+/**/  function PRE_exactly2Strs(string_1, string_2){
+/**/     TWO_STRINGS_SPEC = ['String', 'String']
+/**/     return type_czech.valid(arguments, TWO_STRINGS_SPEC)
+/**/  }
+/**/  
+/**/  exactly1Str = type_czech.check(exactly1Str, PRE_exactly1Str)
+/**/  exactly2Strs = type_czech.check(exactly2Strs, PRE_exactly2Strs)
+
+function exactly1Str(one_string) {
+  return one_string
+}
+
+function exactly2Strs(string_1, string_2) {
+  return [string_1, string_2]
+}
+
+log('EXPECT_1_GOT_1 : ', exactly1Str('One'))
+
+linesConsole(2)
+
+expect_1_got_2 =  exactly1Str('1-one', '2-two') 
+linesConsole(1)
+log('EXPECT_1_GOT_2 : ')
+log(expect_1_got_2)
+
+
+
+linesConsole(5)
+
+
+
+expect_2_got_1 =  exactly2Strs('one-1') 
+linesConsole(1)
+log('EXPECT_2_GOT_1 : ')
+log(expect_2_got_1)
+
+linesConsole(2)
+
+expect_2_got_2 =  exactly2Strs('ONE', 'TWO') 
+log('EXPECT_2_GOT_2 : ', expect_2_got_2)
+
+linesConsole(1)
+
+expect_2_got_3 =  exactly2Strs('one', 'two', 'three') 
+log('EXPECT_2_GOT_3 : ', expect_2_got_3)
+
+
+
+</script>
+
+
+
+
+
+
+
+
+<script>
+
+  jsToDiv('js-code', "check-code");
+
+  // fromToBoldText(833, 852, 'code', 1)  //  ['String', 'String']
+  // fromToBoldText(1402, 1408, 'code', 1)  //  exactly2Strs('one-1') 
+
+  // fromToBoldText(403, 410, 'log', 1)    //'String'
+  // fromToBoldText(434, 440, 'log', 1)    //'one-1'
+  // fromToBoldText(465, 483, 'log', 1)    //PE '['String','String']'
+
+
+
+
+</script>

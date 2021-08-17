@@ -1,4 +1,4 @@
-<meta charset="utf-8" />
+<!DOCTYPE html><meta charset="utf-8" />
 <title>31-Extended-Class-Type-Checks</title>
 
 
@@ -59,7 +59,7 @@ class Full extends Last {...}
 
 
 
-<!--            ------------------------------------------       -->
+<!--            -------------TYPE 1-----------------------------       -->
 
 
 
@@ -78,7 +78,7 @@ class Full extends Last {...}
 
 
 
-<!--            ------------------------------------------       -->
+<!--            --------------TYPE 1----------------------------       -->
 
 
 
@@ -99,14 +99,14 @@ class Full extends Last {...}
 
 
 <script id="check-code">
-
+/**/      type_czech = TypeCzech('LOG-ERRORS')
+/**/  //  type_czech = TypeCzech('NO-CHECKING')
 
 class First { 
   constructor(f_name) { this.f_name = f_name 
                         log(NL+`CONS-First :${f_name}`) }
   firstMethod(a_date) { log(NL+`RUN -firstMethod :${this.f_name} `, a_date) }  
 }
-/**/  type_czech = TypeCzech('LOG-ERRORS')
 /**/  function PRE_First(){ log(NL2+'PRE -First') }
 /**/  function POST_First(){ log(NL1+'POST-First') }
 /**/  function PRE_firstMethod(){ log('PRE -firstMethod') }

@@ -1,0 +1,159 @@
+<!DOCTYPE html><meta charset="utf-8" />
+<title>17-Arrays-with-One-Type</title>
+
+
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Inconsolata">
+
+
+<div id='js-div' style="width:47%">
+ 
+  <div id='js-code'>the javascript</div>
+</div>
+
+
+<div id="the-explanation" style="width:53%">
+  <div class='an-explantion'>17 - Arrays with One Type</div>
+  <div id='explanation-text'>
+<br>
+  Arrays with one type of element can be easily checked for compliance.
+<br>
+<pre>
+
+type_czech.valid(arguments, 'String')        // one string
+
+type_czech.valid(arguments, ['String'])  // array of any number of strings 0 ...
+
+type_czech.valid(arguments, ['String', 'String']) // array of exactly 2 strings
+
+type_czech.valid(arguments, [ ['String'] ]) // arrays of string arrays
+
+
+</pre>
+
+  </div>
+
+  <div id="console-log"  class='a-collection'>
+    <div class='a-title'>Console Output</div>
+    <div id='log-text'></div>
+    <br>
+  </div>
+
+
+</div>
+
+
+
+
+
+
+
+
+<!--            ----------------TYPE 1--------------------------       -->
+
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/consolelog.js">
+</script>
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/TypeCzech.js">
+</script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/type-czech.css">
+<style>
+</style>
+
+
+
+<!--            ------------------TYPE 1------------------------       -->
+
+
+
+
+
+<script>
+  log = captureConsole("log-text");
+</script>
+
+<script id="check-code">
+
+/**/  if (typeof TypeCzech === 'function')
+/**/    type_czech = TypeCzech('LOG-ERRORS')
+/**/  else
+/**/    type_czech = { check: (nop) => nop, stats: (nop) => nop,
+/**/                                          is_active: false }
+/**/  
+/**/  PRE_arrayOfStrings = (typeof PRE_arrayOfStrings === 'undefined')
+/**/                       ? undefined : PRE_arrayOfStrings
+/**/
+/**/  PRE_arrOfArrOfNum = (typeof PRE_arrOfArrOfNum === 'undefined')
+/**/                       ? undefined : PRE_arrOfArrOfNum
+/**/
+/**/  function PRE_arrayOfStrings(an_array){
+/**/    return type_czech.valid(arguments, ['String'])
+/**/  }
+/**/ 
+/**/  function PRE_arrOfArrOfNum(an_array_of_array){
+/**/    return type_czech.valid(arguments, [ ['Number'] ])
+/**/  }
+/**/  
+/**/  arrayOfSrings = type_czech.check(arrayOfSrings, PRE_arrayOfStrings)
+/**/  
+/**/  arrOfArrOfNum = type_czech.check(arrOfArrOfNum, PRE_arrOfArrOfNum)
+
+function arrayOfSrings(an_array) { 
+  str_array = [...an_array]
+  return str_array
+}
+
+function arrOfArrOfNum(an_array_of_array) { 
+  num_array_of_array = [...an_array_of_array]
+  return num_array_of_array
+}
+
+array_0_strs = arrayOfSrings([])
+log('0 strings : ', array_0_strs)
+
+linesConsole(2)
+
+array_1_str = arrayOfSrings(['z'])
+log('1 string : ', array_1_str)
+
+linesConsole(2)
+
+array_6_strs = arrayOfSrings(['a', 'b', 'c', 'd', 'e', 'f'])
+log('6 strings : ', array_6_strs)
+
+linesConsole(2)
+
+
+
+nums_3x3 = [ [1,2,3], [4,5,6], [7,8,9] ]
+array_n_n_9 = arrOfArrOfNum(nums_3x3)
+log('9 nums_3x3 : ', array_n_n_9)
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+<script>
+  
+
+  jsToDiv('js-code', "check-code");
+
+  // fromToBoldText(594, 603, 'code', 1)  // , ['String'])
+  // fromToBoldText(1291, 1320, 'code', 1)  // s(['a', 'b', 'c', 'd', 'e', 'f'])
+
+  // fromToBoldText(47, 90, 'log', 1)    //[ "a", "b", "c", "d", "e", "f" ]
+
+
+
+</script>

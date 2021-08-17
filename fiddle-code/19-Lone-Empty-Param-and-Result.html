@@ -1,0 +1,198 @@
+<!DOCTYPE html><meta charset="utf-8" />
+<title>19-Lone-Empty-Param-and-Result</title>
+
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Inconsolata">
+
+
+
+<div id='js-div' style="width:40%">
+        <div id='js-code'>the javascript</div>
+</div>
+
+
+
+<div id="the-explanation" style="width:60%">
+  <div class='an-explantion'>19 - Lone Empty Parameter and Result</div>
+
+  <div id='explanation-text'>
+    <br>
+    Use type_czech.valueless(arguments, expected_empty) to verify that a lone parameter or return result is not empty or valueless.
+    Good for ensuring that a function's single string, array, and object parameter and or result has a useful value.
+
+    When a parameter corresponds to 'EMPTY-ERROR' and its contents are valueless then an error occurs.
+
+    <div>
+      <div style="margin-top:10px; float:left; width:17%">
+        <b>Empty or <br>Valueless Data</b>
+      </div>
+
+      <div style="float:left; width:15%">
+        <ul>
+          <li>null</li>
+          <li>undefined</li>
+    
+        </ul>
+      </div>
+    
+      <div style="float:left; width:24%">
+        <ul>
+          <li><b>''</b> - empty string</li>
+          <li>NaN - not a number</li>
+    
+        </ul>
+      </div>
+     
+      <div style="float:right; width:26%">
+        <ul>
+          <li><b>[ ]</b> - no elements in array</li>
+          <li><b>{ }</b> - no members in object</li>
+        </ul>
+      </div>
+     
+     
+      <div>
+        <ul>
+          <li>new Date('')</li>
+          <li>new RegExp('')</li>
+        </ul>
+      </div>
+    
+    </div>
+
+
+
+<div>
+         <ul>
+              <li style="float:left; width:22%;list-style: none;"><b>Empty Categories</b></li>
+              <li style="float:left; width:22%;">'<b>EMPTY-OK</b>'<br>
+                Valueless is ok</li>
+              <li style="float:left; width:22%;">'<b>EMPTY-ER</b>'<br>
+                Valueless is an Error</li>
+              <li style="float:left;">'<b>EMPTY-IGNORE</b>' &nbsp;&nbsp;functions, symbols,
+                </li>
+                <span style='float:right;'>and booleans cannot be empty&nbsp;</span>
+        </ul>
+</div>
+
+<br><br><br>
+
+The odd error message for the empty array, [ ], stems from the fact that the function 
+arguments object is array-like. This is a bad error message edge case.
+<br>
+
+
+
+
+
+
+
+</div>
+
+
+
+<div id="console-log"  class='a-collection'>
+  <div class='a-title'>Console Output</div>
+  <div id='log-text'></div>
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<!--            -------------------------TYPE 1-----------------       -->
+
+
+
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/consolelog.js">
+</script>
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/TypeCzech.js">
+</script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/type-czech.css">
+<style>
+</style>
+
+
+
+
+
+<!--            -----------------TYPE 1-------------------------       -->
+
+
+
+
+
+
+
+
+
+<script>
+  log = captureConsole("log-text");
+</script>
+
+
+
+<script id="check-code">
+
+/**/  if (typeof TypeCzech === 'function')
+/**/    type_czech = TypeCzech('LOG-ERRORS')
+/**/  else
+/**/    type_czech = { check: (nop) => nop, 
+/**/                   stats: (nop) => nop,
+/**/                   is_active: false }
+/**/
+/**/  PRE_hasValue = (typeof PRE_hasValue === 'undefined') 
+/**/                  ? undefined : PRE_hasValue
+/**/
+/**/  function PRE_hasValue(arguments){
+/**/    return type_czech.valueless(arguments, 'EMPTY-ERROR')
+/**/  }
+/**/
+/**/  hasValue = type_czech.check(hasValue, PRE_hasValue)
+
+function hasValue(a_var) { }
+
+hasValue(['is-ok'])
+
+hasValue('')
+
+hasValue(new Date(''))
+
+hasValue({})
+
+hasValue(NaN)
+
+hasValue([])
+
+</script>
+
+
+
+
+
+
+
+
+
+<script>
+
+  jsToDiv('js-code', "check-code");
+
+  // fromToBoldText(437, 449, 'code', 1)  // 'EMPTY-ERROR'
+  // fromToBoldText(651, 652, 'code', 1)  // []
+
+  // fromToBoldText(1196, 1235, 'log', 1)    //You cannot compare an array with a non-array
+  // fromToBoldText(1372, 1373, 'log', 1)    //VALUE []
+  // fromToBoldText(1399, 1411, 'log', 1)    //'EMPTY-ERROR'
+
+
+
+</script>

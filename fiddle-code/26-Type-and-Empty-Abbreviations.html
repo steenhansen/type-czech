@@ -1,0 +1,251 @@
+<!DOCTYPE html><meta charset="utf-8" />
+<title>26-Type-and-Empty-Abbreviations</title>
+
+
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Inconsolata">
+  
+<div id='js-div' style="width:50%">
+  <div id='js-code'>the javascript</div>
+</div>
+
+<div id="the-explanation" style="width:50%">
+  <div class='an-explantion'>26 - Type and Empty Abbreviations</div>
+  <div id='explanation-text'>
+    <br>
+
+     Abbreviations can be used to make type and empty assertions shorter.
+
+    <div>
+      <div style="float:left; width:20%; margin-left:10px">
+        <li style="list-style: none;"><b>Type Shortcuts</b></li>
+          </div>
+    
+      <div style="float:left; width:16%">
+        <ul>
+          <li><b>B</b> - Boolean</li>
+          <li><b>R</b> - RegExp</li>
+    
+        </ul>
+      </div>
+     
+      <div style="float:left; width:13%">
+        <ul>
+          <li><b>D</b> - Date</li>
+          <li><b>S</b> - String</li>
+        </ul>
+      </div>
+     
+      <div style="float:left; width:16%">
+        <ul>
+          <li><b>F</b> - Function</li>
+          <li><b>Y</b> - sYmbol</li>
+        </ul>
+      </div>
+
+      <div style="float:left; width:16%">
+        <ul>
+          <li><b>N</b> - Number</li>
+          <li><b>I</b> - BigInt</li>
+        </ul>
+      </div>
+
+      <div style="float:left; width:16%">
+        <ul>
+          <li><b>A</b> - Array</li>
+          <li><b>O</b> - Object</li>
+        </ul>
+      </div>
+    
+    </div>
+
+    <div>
+      <div style="float:left; width:25%">
+        <li style="list-style: none;"><b>Empty Shortcuts</b></li>
+      </div>
+    
+      <div style="float:left; width:25%">
+        <ul>
+          <li>'<b>EM-OK</b>' <br> 'EMPTY-OK'</li>
+        </ul>
+      </div>
+     
+      <div style="float:left; width:25%">
+        <ul>
+          <li>'<b>EM-ER</b>' <br> 'EMPTY-ERROR'</li>
+        </ul>
+      </div>
+
+      <div style="float:left; width:25%">
+        <ul>
+          <li>'<b>EM-IG</b>' <br> 'EMPTY-IGNORE'</li>
+        </ul>
+      </div>
+    
+    </div>
+
+<br>
+    The Pre_Person() function first verifies that an object is the construction parameter,
+    then that object is tested for the correct keys and types, finally
+    all keys are checked for being valueless.
+    
+    <br><br>
+    After which the POST_Person() function first certifies that the constructor
+    returns an array result, then the two elements are established to be the 
+    correctly ordered types, lastly the last name is checked for not being empty.
+    A valueless birth date returned is allowed.
+    <br><br>
+    The errors:
+     <ul>
+      <li>Queen Boudica does not have a valid birth date for PRE check, but this is OK on POST check</li>
+      <li>Madonna has no last name which causes two error messages in both PRE and POST</li>
+    </ul>
+
+    <br>
+ </div>
+
+
+ <div id="console-log"  class='a-collection'>
+  <div class='a-title'>Console Output</div>
+  <div id='log-text'></div>
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--            ------------------TYPE 1------------------------       -->
+
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/consolelog.js">
+</script>
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/TypeCzech.js">
+</script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/type-czech.css">
+<style>
+</style>
+
+
+
+
+<!--            -------------------TYPE 1-----------------------       -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  log = captureConsole("log-text");
+</script>
+
+
+
+<script id="check-code">
+
+/**/  if (typeof TypeCzech === 'function')
+/**/    type_czech = TypeCzech('LOG-ERRORS')
+/**/  else
+/**/    type_czech = { check: (nop) => nop, stats: (nop) => nop,
+/**/                                          is_active: false }
+/**/
+/**/  PRE_Person=(typeof PRE_Person === 'undefined') ?undefined:PRE_Person
+/**/  POST_Person=(typeof POST_Person==='undefined') ? undefined:POST_Person
+/**/
+/**/  function PRE_Person(){
+/**/    object_issue =  type_czech.valid(arguments, 'O')
+/**/    if (object_issue) return object_issue
+/**/
+/**/    person_types = {f_name:'S', l_name:'S', b_date:'D'}
+/**/    type_issue = type_czech.valid(arguments, person_types)
+/**/    if (type_issue) return type_issue
+/**/
+/**/    person_empties = {f_name:'EM-ER', l_name:'EM-ER', b_date:'EM-ER'}
+/**/    return type_czech.valueless(arguments, person_empties)
+/**/  }
+/**/
+/**/  function POST_Person(){
+/**/    array_issue = type_czech.valid(arguments, 'A')
+/**/    if (array_issue) return array_issue
+/**/
+/**/    type_issue = type_czech.valid(arguments, ['S', 'D'])
+/**/    if (type_issue) return type_issue
+/**/
+/**/    return type_czech.valueless(arguments, ['EM-ER', 'EM-OK'])
+/**/  }
+/**/  
+/**/  Person=type_czech.check(Person, PRE_Person, POST_Person)
+
+function Person(a_person){
+  let {f_name, l_name, b_date} = a_person
+  person_array = [l_name, b_date]
+  return person_array
+}
+
+al_data = {f_name:'Al', l_name:'Jones', b_date: new Date(1948,0,14)}
+al_person = Person(al_data)
+log(al_person)
+
+linesConsole(2)
+
+boudica_data = {f_name:'Queen', l_name:'Boudica', b_date:new Date('')}
+boudica_person = Person(boudica_data)
+log(boudica_person)
+
+linesConsole(2)
+
+string_data = {f_name:'Madonna', l_name:'', b_date: new Date(1912,6,23)} 
+string_person = Person(string_data)
+log(string_person)
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  
+
+  jsToDiv('js-code', "check-code");
+
+  // fromToBoldText(741, 754, 'code', 1)  // l_name:'EM-ER'
+  // fromToBoldText(1657, 1665, 'code', 1)  // l_name:''
+
+  // fromToBoldText(648, 658, 'log', 1)    //'l_name':''
+  // fromToBoldText(725, 740, 'log', 1)    //'l_name':'EM-ER'
+
+</script>

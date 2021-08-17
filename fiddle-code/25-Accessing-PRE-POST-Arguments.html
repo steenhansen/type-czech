@@ -1,0 +1,191 @@
+<!DOCTYPE html><meta charset="utf-8" />
+<title>25-Accessing-PRE-POST-Arguments</title>
+
+
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Inconsolata">
+  
+<div id='js-div' style="width:50%">
+  <div id='js-code'>the javascript</div>
+</div>
+
+<div id="the-explanation" style="width:50%">
+  <div class='an-explantion'>25 - PRE and POST Arguments</div>
+  <div id='explanation-text'>
+    <br>
+      The arguments object serves as a useful default parameter variable,
+      thus normal functions are much easier to use with Type-Czech than arrow functions 
+      which lack the arguments object.
+      Both standard parameters and the argument object can be used in PRE and POST
+      checking functions, such as this page's examples.
+     <br><br>
+
+      Checking for exactly one string parameter only via parameter name.
+      <pre>type_czech.valid(single_parameter, 'String')</pre>
+
+      Seeking exactly one string parameter only via arguments object.
+      <pre>type_czech.valid(arguments, 'String')</pre>
+
+      Validating an array of strings via parameter names with a length of exactly 3.
+      <pre>type_czech.valid([first_str, second_str, third_str], ['String'])</pre>
+      
+      Looking for an array of strings with any number of element via arguments object.
+      <pre>type_czech.valid(arguments, ['String'])</pre>
+
+      
+
+      
+      So an array of exactly one element, must be checked for a length of one also
+      as there is no canonical represention of an array of one element, only a
+      single element or an array of 0 or more elements.
+<pre>
+string_array_issue = type_czech.valid(arguments, ['String'])
+if (string_array_issue) return string_array_issue
+if (arguments.length !== 1) return 'Error, array does not have one element'
+return ''
+</pre>
+
+
+
+ </div>
+
+ <div id="console-log"  class='a-collection'>
+  <div class='a-title'>Console Output</div>
+  <div style='margin-top:-32px;' id='log-text'></div>
+
+</div>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<!--            ------------------TYPE 1------------------------       -->
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/consolelog.js">
+</script>
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/TypeCzech.js">
+</script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/type-czech.css">
+<style>
+</style>
+
+
+
+<!--            ----------------------TYPE 1--------------------       -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  log = captureConsole("log-text");
+</script>
+
+
+
+
+<script id="check-code">
+
+/**/  if (typeof TypeCzech === 'function')
+/**/    type_czech = TypeCzech('LOG-ERRORS')
+/**/  else
+/**/    type_czech = { check: (nop) => nop, stats: (nop) => nop,
+/**/                                          is_active: false }
+/**/
+/**/  PRE_Person =(typeof PRE_Person==='undefined') ? undefined : PRE_Person
+/**/  POST_Person=(typeof POST_Person==='undefined') ? undefined:POST_Person
+/**/
+/**/  function PRE_Person(f_name, l_name){
+/**/    preP(`(f_name,l_name)=Alan,Turing          =`,f_name+','+l_name)
+/**/    preP(`    [arguments]={0:"Alan",1:"Turing"}=`,arguments)
+/**/    preP(`   arguments[0]=Alan                 =`,arguments[0])
+/**/    preP(`   arguments[1]=Turing               =`,arguments[1])
+/**/    pre_issues_a = type_czech.valid(arguments,      ['String','String'])
+/**/    pre_issues_b = type_czech.valid(arguments,      ['String'])
+/**/    pre_issues_c = type_czech.valid([f_name,l_name],['String'])
+/**/    pre_issues_d = type_czech.valid(f_name,          'String')
+/**/    return pre_issues_a + pre_issues_b + pre_issues_c + pre_issues_d
+/**/  }
+/**/  
+/**/  function POST_Person(person_o){
+/**/    let {f_name, l_name} = person_o
+/**/    postP(` person_o=Object{f_name:"Alan",l_name:"Turing"}=`,person_o)
+/**/    postP(`arguments={0:{f_name:"Alan",l_name:"Turing"}}  =`,arguments)
+/**/    postP(`   f_name=Alan                                 =`,f_name)
+/**/    postP(`   l_name=Turing                               =`,l_name)
+/**/    post_issues_a = type_czech.valid(arguments, 'Object')
+/**/    post_issues_b = type_czech.valid(person_o, 'Object')
+/**/    post_signature = {f_name:'String', l_name:'String'}
+/**/    post_issues_c = type_czech.valid(person_o, post_signature)
+/**/    return post_issues_a + post_issues_b + post_issues_c
+/**/  }
+/**/  
+/**/  Person=type_czech.check(Person, PRE_Person, POST_Person)
+
+function Person(f_name, l_name){
+  return { f_name, l_name }
+}
+
+Person('Alan', 'Turing')
+
+/**/  // convenience console logs
+/**/
+/**/  function postP(some_text, the_var) {
+/**/    log(NL2 + 'POST ' + some_text, the_var)
+/**/  }
+/**/  function preP(some_text, the_var) {
+/**/    log(NL2 + 'PRE ' + some_text, the_var)
+/**/  }
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+
+  jsToDiv('js-code', "check-code");
+
+  // fromToBoldText(420, 433, 'code', 1)  // f_name, l_name
+  // fromToBoldText(564, 572, 'code', 1)  // arguments
+  // fromToBoldText(1915, 1930, 'code', 1)  // 'Alan', 'Turing'
+
+  // fromToBoldText(102, 135, 'log', 1)    //{ "0": "Alan", "1": "Turing" }
+
+</script>

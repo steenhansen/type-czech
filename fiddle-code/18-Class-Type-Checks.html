@@ -1,0 +1,182 @@
+<!DOCTYPE html><meta charset="utf-8" />
+<title>18-Class-Type-Checks</title>
+
+
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Inconsolata">
+  
+<div id='js-div' style="width:55%; " class='a-collection'>
+  <div id='js-code'>the javascript</div>
+</div>
+
+
+<div id="the-explanation" style="width:45%" class='a-collection'>
+  <div class='an-explantion'>18 - Class Type Checks</div>
+  <div id='explanation-text'>
+    <br>
+
+    When confirming class types, two checks are needed to ensure an 
+    object is viable as methods can be accidentally deleted.
+
+    <br><br>
+    The object should be first checked for a valid type, to make sure the 
+    expected prototype methods are there.
+<pre>
+type_czech.valid(class_variable, "the-class-name")
+</pre>
+
+Then, the object's interface should be checked just in case a needed method
+no longer resides in the object. In the example to the left, the showPerson() method is deleted. Checking the 
+objects type doesn't reveal any issues. But the missing method is caught
+by the below call.
+<pre>
+type_czech.objectInterface(a_person, MY_INTERFACE)
+</pre>
+
+Note that the Person Class must be declared before the below linking code, or
+a reference error is generated stating 
+"can't access lexical declaration 'Person' before initialization"
+<pre>
+/**/  Person=type_czech.check(Person, undefined, POST_Person)
+</pre>
+
+
+
+
+  </div>
+  <div id="console-log"  class='a-collection'>
+    <div class='a-title'>Console Output</div>
+    <div id='log-text'></div>
+    <br>
+  </div>
+
+
+</div>
+
+
+
+
+
+
+
+<!--            -----------------TYPE 1-------------------------       -->
+
+
+
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/consolelog.js">
+</script>
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/TypeCzech.js">
+</script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/type-czech.css">
+<style>
+</style>
+
+
+
+
+
+<!--            -------------------TYPE 1-----------------------       -->
+
+
+
+
+
+
+
+
+
+
+<script>
+  log = captureConsole("log-text");
+</script>
+
+
+
+
+<script id="check-code">
+
+/**/  if (typeof TypeCzech === 'function')
+/**/    type_czech = TypeCzech('LOG-ERRORS')
+/**/  else
+/**/    type_czech = { check: (nop) => nop, stats: (nop) => nop, is_active: false }
+/**/  
+/**/  MY_INTERFACE = {showPerson: 'Function'}
+/**/
+/**/  POST_Person = (typeof POST_Person === 'undefined') ? undefined : POST_Person
+/**/
+/**/  function POST_Person(a_person){
+/**/    interface_error = type_czech.objectInterface(arguments, MY_INTERFACE)
+/**/    if (interface_error) return interface_error
+/**/    return type_czech.valid(arguments, "Person")
+/**/  }
+
+class Person {
+  constructor(f_name) {
+    this.f_name = f_name
+   }
+  showPerson() {return this.f_name }
+}
+
+/**/
+/**/  Person=type_czech.check(Person, undefined, POST_Person)
+/**/
+
+a_person = new Person('Bob')
+log('showPerson() call before deletion : ', a_person.showPerson())
+
+linesConsole(2)
+
+const person_proto = Object.getPrototypeOf(a_person);
+delete person_proto.showPerson
+
+person_type_issue = type_czech.valid(a_person, "Person")
+if (person_type_issue){
+  log('person_type_issue', person_type_issue)
+}
+
+interface_error = type_czech.objectInterface(a_person, MY_INTERFACE)
+if (interface_error){
+  log('Interface Error : ', interface_error)
+}
+
+linesConsole(2)
+
+try{
+  log('a-person', a_person.showPerson())
+} catch (e) {
+  log('showPerson exception error : ', e.message)
+}
+
+
+linesConsole(2)
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+<script>
+  
+   jsToDiv('js-code', "check-code");
+
+ 
+
+  // fromToBoldText(212, 235, 'code', 1)  //  MY_INTERFACE = {showPerson: 'Function'}
+  // fromToBoldText(898, 927, 'code', 1)  // delete person_proto.showPerson;
+  // fromToBoldText(1086, 1132, 'code', 1)  // type_czech.objectInterface(a_person, MY_INTERFACE)
+
+  // fromToBoldText(99, 125, 'log', 1)    //actual type of 'showPerson' is 'undefined'
+  // fromToBoldText(157, 188, 'log', 1)    //not the expected 'Function' type"
+
+
+</script>

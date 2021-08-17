@@ -1,0 +1,167 @@
+<!DOCTYPE html><meta charset="utf-8" />
+<title>13-Class-Interface</title>
+
+
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Inconsolata">
+
+
+<div id='js-div' style="width:55%">
+ 
+  <div id='js-code'>the javascript</div>
+</div>
+
+
+<div id="the-explanation" style="width:45%">
+  <div class='an-explantion'>13 - Class Interface</div>
+  <div id='explanation-text'>
+    <br>
+     Checking interfaces with inherited classes.
+    <br><br>
+    
+  </div>
+
+  <div id="console-log"  class='a-collection'>
+    <div class='a-title'>Console Output</div>
+    <div id='log-text'></div>
+    <br>
+  </div>
+
+  
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--            ------------------------TYPE 1------------------       -->
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/consolelog.js">
+</script>
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/TypeCzech.js">
+</script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/type-czech.css">
+<style>
+</style>
+
+
+
+<!--            ---------------TYPE 1---------------------------       -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  log = captureConsole("log-text");
+</script>
+
+
+
+<script id="check-code">
+
+
+class FirstName { 
+  constructor(f_name) { }
+  firstMethod() { }
+}
+
+class LastName extends FirstName{  
+  constructor(f_name, l_name) { super(f_name) }
+  lastMethod() { }
+}
+
+class FullName extends LastName {
+  constructor(salu, f_name, l_name) { super(f_name, l_name) }
+  fullMethod() { }
+}
+
+/**/  if (typeof TypeCzech === 'function')
+/**/    type_czech = TypeCzech('LOG-ERRORS')
+/**/  else
+/**/    type_czech = { check: (nop) => nop, stats: (nop) => nop, is_active: false }
+/**/
+/**/  LAST_INTERFACE = { firstMethod: 'Function',
+/**/                     lastMethod:'Function'}
+/**/  
+/**/  FULL_INTERFACE = { firstMethod: 'Function',
+/**/                     lastMethod:'Function',
+/**/                     fullMethod: 'Function'}
+
+a_last_name = new LastName('William', 'Gibson')
+
+a_full_name = new FullName('Mr', 'Alan', 'Kay')
+
+log('William Gibson has firstMethod() and lastMethod()')
+last_ok = type_czech.objectInterface(a_last_name, LAST_INTERFACE)
+linesConsole(1)
+log('Interface Issue : ', last_ok)
+
+linesConsole(2)
+
+log('Mr Alan Kay has firstMethod(), lastMethod(), and fullMethod()')
+full_ok = type_czech.objectInterface(a_full_name, FULL_INTERFACE)
+linesConsole(1)
+log('Interface Issue : ',full_ok)
+
+linesConsole(2)
+
+log('William Gibson missing FullMethod()')
+full_interface_issue = type_czech.objectInterface(a_last_name, FULL_INTERFACE)
+linesConsole(1)
+log(full_interface_issue)
+
+
+</script>
+
+
+
+
+
+
+ 
+
+
+
+
+
+<script>
+
+  jsToDiv('js-code', "check-code");
+
+  // fromToBoldText(592, 605, 'code', 1)  // FULL_INTERFACE 
+
+  // fromToBoldText(752, 780, 'code', 1)  // a_last_name = new LastName('William', 'Gibson')
+  // fromToBoldText(1298, 1311, 'code', 1)  // a_last_name, FULL_INTERFACE)
+
+  // fromToBoldText(151, 185, 'log', 1)    //William Gibson missing FullMethod()
+
+</script>

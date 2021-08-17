@@ -1,4 +1,4 @@
-<meta charset="utf-8" />
+<!DOCTYPE html><meta charset="utf-8" />
 <title>201-Chained-Closures-Inline</title>
 
 
@@ -13,10 +13,31 @@
 <div id="the-explanation" style="width:47%" class='a-collection'>
   <div class='an-explantion'>201 - Chained Closures Inline</div>
   <div id='explanation-text'>
+    
+    
+    
+    
+    
     <br>
-    201 - Extended Closures One File All Inlined
+    TypeCzech's general example of an author where:
+    <ul>
+      <li><b>First</b> controls an author's first name</li>
+      <li><b>Last</b> handles an author's first and last name</li>
+      <li><b>Full</b> deals with an author's salutation, first, and last name</li>    
+      <li>Safely removable supporting TypeCzech test code begins with /**/</li>    
+    </ul>
+     <br>
+    Closures are used for inheritance:
+        <ul>
+          <li>All JavaScript is in one file, no code imports</li>
+          <li>Production class declarations <b>must</b> interleave with TypeCzech calls
+              to have the PRE and POST checking functions be correctly linked to before use </li>
+          </ul>
+    <br>
 
-<br><br>
+
+
+
 
   </div>
 
@@ -35,24 +56,21 @@
 
 
 
-<!--            ------------------------------------------       -->
+<!--            --------------------TYPE 1----------------------       -->
 
 
-<script src="../consolelog.js">
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/consolelog.js">
 </script>
 
-
-<script src="../TypeCzech.js">
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/TypeCzech.js">
 </script>
 
-
-
-<link rel="stylesheet" href="../type-czech.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/type-czech.css">
 <style>
 </style>
 
 
-<!--            ------------------------------------------       -->
+<!--            -----------------TYPE 1-------------------------       -->
 
 
 
@@ -74,9 +92,9 @@
 
 <script id="check-code">
 /**/function First_check(First){
-/**/  function PRE_First(){ log(NL2+'PRE -First') }
-/**/  function POST_First(){ log(NL1+'POST-First') }
-/**/  function PRE_firstMethod(){ log('PRE -firstMethod') }
+/**/  function PRE_First(f_name){ log(NL2+'PRE -First') }
+/**/  function POST_First(First){ log(NL1+'POST-First') }
+/**/  function PRE_firstMethod(a_date){ log('PRE -firstMethod') }
 /**/  function POST_firstMethod(){ log('POST-firstMethod') }
 /**/
 /**/  First_PREs = {First:PRE_First, firstMethod:PRE_firstMethod}
@@ -86,9 +104,9 @@
 /**/}
 
 /**/function Last_check(Last){
-/**/  function PRE_Last(){ log(LEVEL_1+'PRE-Last') }
-/**/  function POST_Last(){ log(LEVEL_1+"POST-Last") }
-/**/  function PRE_lastMethod(){ log(LEVEL_1+"PRE -lastMethod") }
+/**/  function PRE_Last(f_name, l_name){ log(LEVEL_1+'PRE-Last') }
+/**/  function POST_Last(Last){ log(LEVEL_1+"POST-Last") }
+/**/  function PRE_lastMethod(a_year){ log(LEVEL_1+"PRE -lastMethod") }
 /**/  function POST_lastMethod(){ log(LEVEL_1+"POST-lastMethod") }
 /**/
 /**/  Last_PREs = {Last:PRE_Last, lastMethod:PRE_lastMethod}
@@ -98,9 +116,9 @@
 /**/}
 
 /**/function Full_check(Full){
-/**/  function PRE_Full(){  log(LEVEL_2+'PRE-Full') }
-/**/  function POST_Full(){ log(LEVEL_2+"POST-Full") }
-/**/  function PRE_fullMethod(){ log(LEVEL_2+"PRE -fullMethod") }
+/**/  function PRE_Full(salu, f_name, l_name){  log(LEVEL_2+'PRE-Full') }
+/**/  function POST_Full(Full){ log(LEVEL_2+"POST-Full") }
+/**/  function PRE_fullMethod(a_book){ log(LEVEL_2+"PRE -fullMethod") }
 /**/  function POST_fullMethod(){ log(LEVEL_2+"POST-fullMethod") }
 /**/
 /**/  Full_PREs = {Full:PRE_Full, fullMethod:PRE_fullMethod}
@@ -140,7 +158,9 @@ function init_Full(Last){
   }
   return Full
 }
-TYPE_CZECH_START = true
+
+/**/      TYPE_CZECH_START = true
+/**/  //  TYPE_CZECH_START = false
 
 if (TYPE_CZECH_START) {
   type_czech = TypeCzech('LOG-ERRORS')

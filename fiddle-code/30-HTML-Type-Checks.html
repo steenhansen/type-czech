@@ -1,0 +1,193 @@
+<!DOCTYPE html><meta charset="utf-8" />
+<title id='title-id'>30-HTML-Type-Checks</title>
+
+
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Inconsolata">
+  
+<div id='js-div' style="width:56%; " class='a-collection'>
+  <div id='js-code'>the javascript</div>
+</div>
+
+
+<div id="the-explanation" style="width:44%" class='a-collection'>
+  <div class='an-explantion'>30 - HTML Element Type Check</div>
+  <div id='explanation-text'>
+    <br>
+         HTML elements can have their types checked.
+         
+<pre>
+html_type = type_czech.objectType(html_element)
+</pre>
+
+
+  <br>
+         HTML elemnts can also be queried for their prototypes chain.
+
+
+<pre>
+html_prototypes = type_czech.objectPrototypes(an_html_element)
+</pre>
+
+
+
+
+<br>
+And finally, HTML elements can also be asked their object type.
+<pre>
+isa_HTMLElement = type_czech.objectIsA(js_div, 'HTMLElement')
+</pre>
+
+<br><br>
+
+  </div>
+
+
+  <div id="console-log"  class='a-collection'>
+    <div class='a-title'>Console Output</div>
+    <div id='log-text'></div>
+    <br>
+  </div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--            ---------------------TYPE 1---------------------       -->
+
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/consolelog.js">
+</script>
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/TypeCzech.js">
+</script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/type-czech.css">
+<style>
+</style>
+
+
+
+
+
+
+<!--            -----------------TYPE 1-------------------------       -->
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  log = captureConsole("log-text");
+</script>
+
+
+
+
+
+<script id="check-code">
+
+
+/**/  if (typeof TypeCzech === 'function')
+/**/    type_czech = TypeCzech('LOG-ERRORS')
+/**/  else
+/**/    type_czech = {check: nop=>nop, stats: nop=>nop, is_active: false}
+/**/
+/**/  PRE_submitButn=(typeof PRE_submitButn==='undefined') ? undefined:PRE_submitButn
+/**/
+/**/  function PRE_submitButn(html_id, button_type){
+/**/    html_element = document.getElementById(html_id)
+/**/    html_type = type_czech.objectType(html_element)
+/**/    if (html_type !== 'HTMLButtonElement')
+/**/      return `PRE, '${html_id}' is an ${html_type}, not an HTMLButtonElement`
+/**/  }
+/**/
+/**/  submitButn=type_czech.check(submitButn, PRE_submitButn)
+
+/**/  PRE_DivSpan=(typeof PRE_DivSpan==='undefined') ? undefined:PRE_DivSpan
+/**/  POST_DivSpan=(typeof POST_DivSpan==='undefined') ?undefined:POST_DivSpan
+/**/
+/**/  function PRE_divSpan(){
+/**/    return type_czech.valid(arguments,  ['HTMLDivElement','HTMLSpanElement'])
+/**/  }
+/**/
+/**/  function POST_divSpan(div_elem){
+/**/    html_type = type_czech.objectType(div_elem)
+/**/    if (html_type !== 'HTMLButtonElement')
+/**/      return `POST_divSpan() - an ${html_type}, not an HTMLButtonElement`
+/**/  }
+/**/
+/**/  divSpan=type_czech.check(divSpan, PRE_divSpan, POST_divSpan)
+
+function submitButn(html_id, button_type) {
+  html_element = document.getElementById(html_id)
+  html_element.type = button_type
+}
+
+div_cant_be_a_submit = submitButn('js-div', 'submit')
+
+linesConsole(2)
+
+js_div = document.getElementById('js-div')
+log('Prototypes of js-div:', type_czech.objectPrototypes(js_div))
+
+linesConsole(2)
+
+isa_HTMLElement = type_czech.objectIsA(js_div, 'HTMLElement')
+log('js_div is a HTMLElement : ', isa_HTMLElement)
+
+linesConsole(2)
+
+function divSpan(div_elem, span_elem) { 
+  return div_elem
+}
+
+a_div = document.getElementById('js-div')
+missing_span = document.getElementById('no-such-span')
+divSpan(a_div, missing_span)
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+
+  jsToDiv('js-code', "check-code");
+
+  // fromToBoldText(893, 909, 'code', 1)  // vElement','HTMLSpanElement']
+  // fromToBoldText(1823, 1834, 'code', 1)  // v, missing_span)
+
+  // fromToBoldText(395, 398, 'log', 1)  // HTMLDivElement',null
+
+</script>

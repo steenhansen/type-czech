@@ -1,0 +1,216 @@
+<!DOCTYPE html><meta charset="utf-8" />
+<title>35-Throw-or-Log</title>
+
+
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Inconsolata">
+  
+<div id='js-div' style="width:45%">
+  <div id='js-code'>the javascript</div>
+</div>
+
+
+<div id="the-explanation" style="width:55%">
+  <div class='an-explantion'>35 - Throw, Log, or Ignore TypeCzech Parameter Checks</div>
+  <div id='explanation-text'>
+    <br>
+    The TypeCzech library will only check parameters when either 'THROW-EXCEPTIONS'
+     or 'LOG-ERRORS' is the command on initialization. 
+
+    <ul>
+      <li>
+        <b>THROW-EXCEPTIONS</b> causes errors to throw an exception and possibly halt
+      </li>
+      <li>
+        <b>LOG-ERRORS</b> causes parameter errors to be logged in the console
+        </li>
+    </ul>
+<pre>
+type_czech = TypeCzech('LOG-ERRORS')
+</pre>
+    <br>
+    The other two possible options are 'UNDEF-OK' and 'CONSOLE-COUNT'
+
+    <ul>
+      <li>
+        <b>UNDEF-OK</b> accepts typeless null and undefined values when checking parameter type shapes
+        without any type errors. In other words null and undefined are like wild cards.
+      </li>
+      <li>
+        <b>CONSOLE-COUNT</b> output a run count of parameter checking functions in Console so when 
+          testing, can view if parameter tests are actually executing
+        </li>
+    </ul>
+
+Option order is un-important, the below two examples produces the same output
+<pre>
+type_czech = TypeCzech('LOG-ERRORS', 'UNDEF-OK', 'CONSOLE-COUNT')
+</pre>
+
+<pre>
+type_czech = TypeCzech('UNDEF-OK', 'CONSOLE-COUNT', 'LOG-ERRORS')
+</pre>
+
+<br>
+
+Note that no parameter checking occurs with 
+<pre>
+type_czech = TypeCzech()
+</pre>
+and
+<pre>
+type_czech = TypeCzech('NO-CHECKING')
+</pre>
+Thus parameter checking can be easily turned off when changing from development to production code.
+
+<br><br>
+
+  </div>
+
+
+  <div id="console-log"  class='a-collection'>
+    <div class='a-title'>Console Output</div>
+    <div id='log-text'></div>
+    <br>
+  </div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--            -------------------TYPE 1-----------------------       -->
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/consolelog.js">
+</script>
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/TypeCzech.js">
+</script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/type-czech.css">
+<style>
+</style>
+
+
+
+
+
+<!--            -------------TYPE 1-----------------------------       -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  log = captureConsole("log-text");
+</script>
+
+
+
+<script id="check-code">
+
+/**/  function PRE_Person(f_name){
+/**/    if (f_name.length>9) 
+/**/      return `PRE: f_name '${f_name}' too long`
+/**/  }
+/**/  
+/**/  Person_LOG   = (f_name) => Person(f_name)
+/**/  Person_THROW = (f_name) => Person(f_name)
+/**/  
+/**/  Person_NONE  = (f_name) => Person(f_name)
+/**/  Person_OFF   = (f_name) => Person(f_name)
+/**/  
+/**/  type_czech_LOG = TypeCzech('LOG-ERRORS')
+/**/  Person_LOG = type_czech_LOG.check(Person_LOG, PRE_Person) 
+/**/  
+/**/  type_czech_THROW = TypeCzech('THROW-EXCEPTIONS')
+/**/  Person_THROW = type_czech_THROW.check(Person_THROW, PRE_Person) 
+/**/  
+/**/  type_czech_NONE = TypeCzech('NO-CHECKING')
+/**/  Person_NONE = type_czech_NONE.check(Person_NONE, PRE_Person) 
+/**/  
+/**/  type_czech_OFF = TypeCzech()
+/**/  Person_OFF = type_czech_OFF.check(Person_OFF, PRE_Person) 
+
+function Person(f_name){
+  log(NL+f_name+' at Person()')
+}
+
+Person_LOG('Evangeline')
+
+linesConsole(2)
+
+try {
+  Person_THROW('Persephone')
+} catch (e) {
+  log('The thrown error - ', e)
+}
+
+linesConsole(1)
+
+Person_NONE('Evangeline')
+
+linesConsole(1)
+
+Person_OFF('Persephone')
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+
+  jsToDiv('js-code', "check-code");
+
+  // fromToBoldText(464, 479, 'code', 1)  // type_czech_THROW
+  // fromToBoldText(918, 943, 'code', 1)  // Person_THROW('Persephone')
+
+  // fromToBoldText(77, 109, 'log', 1)    //"PRE: f_name 'Persephone' too long"
+
+
+</script>

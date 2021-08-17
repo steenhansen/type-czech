@@ -1,4 +1,4 @@
-<meta charset="utf-8" />
+<!DOCTYPE html><meta charset="utf-8" />
 <title>202-Chained-Closures-Imported</title>
 
 
@@ -13,10 +13,40 @@
 <div id="the-explanation" style="width:65%" class='a-collection'>
   <div class='an-explantion'>202 - Chained Closures Imported</div>
   <div id='explanation-text'>
-    <br>
- 
 
-<br><br>
+
+    TypeCzech's general example of an author where:
+    <ul> 
+      <li class='floating_li'><b>First</b> controls an author's first name</li> 
+      <li class='floating_li'>Safely removable supporting TypeCzech test code begins with /**/</li>
+      <li class='floating_li'><b>Last</b> handles an author's first and last name</li> 
+      <li class='floating_li'><b>Full</b> deals with an author's salutation, first, and last name</li>
+      <br>  <br><br>
+  </ul>
+
+    Closures are used for inheritance:
+    <ul>
+      <li>When TypeCzech is turned off, only production code is imported:
+                  <ul> 
+                    <li class='floating_li'>First.js</li> 
+                    <li class='floating_li'>Last.js</li> 
+                    <li class='floating_li'>Full.js</li>
+                  </ul>
+                  <br><br>
+      </li>
+      <li>With TypeCzech turned on, the supporting test code is imported:
+        <ul> 
+          <li class='floating_li'>TypeCzech.js</li> 
+          <li class='floating_li'>TypeCzech_First.js</li> 
+          <li class='floating_li'>TypeCzech_Last</li>
+          <li class='floating_li'>TypeCzech_Full.js</li>
+          <br>  <br>
+      </ul>
+       </li>
+      <li>Production closures declarations <b>must</b> interleave with TypeCzech calls
+        to have the PRE and POST checking functions be correctly linked before use </li>
+      </ul>
+
 
   </div>
 
@@ -33,50 +63,55 @@
 
 
 
-<!--            ------------------------------------------       -->
+<!--            ------------TYPE 2------------------------------       -->
 
 
-<script src="../../consolelog.js">
+
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/consolelog.js">
 </script>
 
-<script src="./ordered-import.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/real-examples/ordered-import.js">
+</script>
 
-<link rel="stylesheet" href="../../type-czech.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/type-czech.css">
 <style>
 </style>
 
 
-
-<!--            ------------------------------------------       -->
+<!--            -----------TYPE 2-------------------------------       -->
 
 
 
 <script>
   log = captureConsole("log-text");
+
+  
+  const TYPE_CZECH_JS =  'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/TypeCzech.js';
+  const FIRST_JS = 'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/real-examples/202-Extending-Closures-Imports/First.js';
+  const LAST_JS = 'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/real-examples/202-Extending-Closures-Imports/Last.js';
+  const FULL_JS =   'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/real-examples/202-Extending-Closures-Imports/Full.js';
+
+  const TC_FIRST_JS = 'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/real-examples/202-Extending-Closures-Imports/TypeCzech_First.js';
+  const TC_LAST_JS = 'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/real-examples/202-Extending-Closures-Imports/TypeCzech_Last.js';
+  const TC_FULL_JS =   'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/real-examples/202-Extending-Closures-Imports/TypeCzech_Full.js';
+
+
 </script>
 
 
 
 <script  id="check-code">
-
-
 const CHECKING_CLASS_FILES = [
-'../../TypeCzech.js',
-  './First.js',
-  './TypeCzech_First.js',
-  './Last.js',
-  './TypeCzech_Last.js',
-  './Full.js',
-  './TypeCzech_Full.js'
-]
+  TYPE_CZECH_JS, FIRST_JS, TC_FIRST_JS,
+                 LAST_JS, TC_LAST_JS,
+                 FULL_JS, TC_FULL_JS ]
 
 const NOT_CHECKING_CLASS_FILES = [
-  './First.js',
-  './Last.js',
-  './Full.js' 
-]
+  FIRST_JS, LAST_JS, FULL_JS ]
 
-/**/  TYPE_CZECH_START = true
+/**/      TYPE_CZECH_START = true
+/**/  //  TYPE_CZECH_START = false
 
 let class_files
 if (TYPE_CZECH_START) {

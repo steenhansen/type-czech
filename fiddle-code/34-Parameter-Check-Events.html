@@ -1,0 +1,194 @@
+<!DOCTYPE html><meta charset="utf-8" />
+<title>34-Parameter-Check-Events</title>
+
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Inconsolata">
+
+<div id='js-div' style="width:52%">
+  <div id='js-code'>the javascript</div>
+</div>
+
+<div id="the-explanation" style="width:48%">
+  <div class='an-explantion'>34 - Parameter Check Events</div>
+  <div id='explanation-text'>
+    <br>
+
+  To enable testing of function parameters without having to watch and display the Console, TypeCzech
+has events that can signal errors. 
+
+<ul>
+  <li>
+    <b>onStart</b> - event runs when TypeCzech starts (green)
+  </li>
+  <li>
+  <b>onCheck</b> - event executes every time a parameter check function is called (blue)
+  </li>
+  <li>
+  <b>onError</b> - event is run when TypeCzech finds an error 
+  </li>
+</ul>
+
+To write custom events pass in an object with 'onStart', 'onCheck', and 'onError' keys 
+refering to functions to run accordingly.
+<pre>
+  CUSTOM_COLORS = {
+  backBlink: (back_color) => {
+    document.body.style.background = back_color
+    setTimeout(() => { document.body.style.background = 'white' }, 100)
+  },
+  onStart: () => CUSTOM_COLORS.backBlink('green'),
+  onCheck: () => CUSTOM_COLORS.backBlink('blue'),
+  onError: () => CUSTOM_COLORS.backBlink('red')
+};
+
+type_czech = TypeCzech('LOG-ERRORS', CUSTOM_COLORS)
+</pre>
+<br>
+
+The above example can be attained with the default event object as below.
+
+<pre>   type_czech = TypeCzech('LOG-ERRORS', TypeCzech().TYPE_CZECH_EVENTS)  </pre>
+
+
+The example to the left changes the <b>tab title</b> on running checks.
+
+<br><br>
+
+
+  </div>
+
+
+  <div id="console-log"  class='a-collection'>
+    <div class='a-title'>Console Output</div>
+    <div id='log-text'></div>
+    <br>
+  </div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<!--            -------------TYPE 1-----------------------------       -->
+
+
+
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/consolelog.js">
+</script>
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/TypeCzech.js">
+</script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/type-czech.css">
+<style>
+</style>
+
+
+<!--            ----------------TYPE 1--------------------------       -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  log = captureConsole("log-text");
+</script>
+
+
+
+
+<script id="check-code">
+
+
+
+/**/  TYPE_CZECH_TITLE = {
+/**/    titleUpdate: (check_error_count) => {
+/**/      document.title = check_error_count
+/**/    },
+/**/    onStart: (start_mess) => 
+/**/         TYPE_CZECH_TITLE.titleUpdate(start_mess),
+/**/    onCheck: (check_error_count) =>
+/**/         TYPE_CZECH_TITLE.titleUpdate(`checks=${check_error_count}=errors`),
+/**/    onError: (check_error_count) =>
+/**/         TYPE_CZECH_TITLE.titleUpdate(`checks=${check_error_count}=errors`)
+/**/  };
+/**/  
+/**/  if (typeof TypeCzech === 'function')
+/**/    type_czech = TypeCzech(TYPE_CZECH_TITLE, 'LOG-ERRORS')   
+/**/  else
+/**/    type_czech = { check: (nop)=>nop, stats: (nop)=>nop, is_active: false }
+/**/  
+/**/  PRE_Person = (typeof PRE_Person === 'undefined') ? undefined : PRE_Person
+/**/  
+/**/  function PRE_Person(f_name, l_name){
+/**/    if (l_name === 'Badgers')
+/**/      return "We don't need no stinking badgers!"
+/**/  }
+/**/  
+/**/  Person = type_czech.check(Person, PRE_Person) 
+
+function Person(f_name, l_name){
+}
+
+window.setTimeout( ()=> Person('Elizabeth', 'II'), 1000);
+
+window.setTimeout( ()=> Person('The', 'Badgers'), 2000);
+
+window.setTimeout( ()=> Person('Alan', 'Turing'), 3000);
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+<script>
+  
+
+   jsToDiv('js-code', "check-code");
+
+  //  fromToBoldText(7, 22, 'code', 1)  // TYPE_CZECH_TITLE = {
+  // fromToBoldText(550, 565, 'code', 1)  //TypeCzech(TYPE_CZECH_TITLE,
+
+
+  window.setTimeout(function (){
+
+}, 2100);
+
+</script>

@@ -1,0 +1,182 @@
+<!DOCTYPE html><meta charset="utf-8" />
+<title>11-Class-Parameters-Results-and-Methods</title>
+
+
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Inconsolata">
+
+
+<div id='js-div' style="width:50%">
+ 
+  <div id='js-code'>the javascript</div>
+</div>
+
+
+
+<div id="the-explanation" style="width:50%">
+ 
+  <div class='an-explantion'>11 - Class Parameters, Results, and Methods</div>
+  <div id='explanation-text'>
+    <br>
+
+    Classes with multiple PRE and POST checking functions must be wrapped up in 
+    objects like below for everything to be linked up.
+<pre>
+function PRE_check_yourClass(init_const){ // before constructor }
+
+function POST_check_yourClass(result_object){ // after constructor }
+
+function PRE_check_yourMethod(method_input){ // before method }
+
+function POST_check_yourMethod(method_output){ // after method }
+
+yourClass_PRE_checks = {yourClass:PRE_check_yourClass,
+                        yourMethod:PRE_check_yourMethod}
+
+yourClass_POST_checks = {yourClass:POST_check_yourClass,
+                         yourMethod:POST_check_yourMethod}
+
+class yourClass {
+  constructor(init_const){ }
+  yourMethod(method_input){ 
+    return method_output
+  }
+}
+
+yourClass = type_czech.check(yourClass, 
+                             yourClass_PRE_checks,
+                             yourClass_POST_checks)
+
+</pre> 
+<br>
+Note that the type_czech.check() call must come after the class declaration, otherwise
+you get the below ReferenceError.
+<pre>
+can't access lexical declaration 'yourClass' before initialization
+</pre>
+
+
+
+  </div>
+
+  <div id="console-log"  class='a-collection'>
+    <div class='a-title'>Console Output</div>
+    <div id='log-text'></div>
+    <br>
+  </div>
+
+
+</div>
+
+
+
+
+
+
+
+<!--            ---------------TYPE 1---------------------------       -->
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/consolelog.js">
+</script>
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/TypeCzech.js">
+</script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/type-czech.css">
+<style>
+</style>
+
+
+
+<!--            ------------------TYPE 1------------------------       -->
+
+
+
+
+
+
+
+
+<script>
+  log = captureConsole("log-text");
+</script>
+
+
+
+<script id="check-code">
+
+
+/**/  if (typeof TypeCzech === 'function')
+/**/    type_czech = TypeCzech('LOG-ERRORS')
+/**/  else
+/**/    type_czech = { check: (nop) => nop, stats: (nop) => nop,
+/**/                                          is_active: false }
+/**/  
+/**/  PRE_Person =(typeof PRE_Person==='undefined') ?undefined:PRE_Person
+/**/  PRE_show =(typeof PRE_show === 'undefined') ? undefined:PRE_show
+/**/  POST_Person=(typeof POST_Person==='undefined') ?undefined:POST_Person
+/**/  POST_show =(typeof POST_show === 'undefined') ? undefined:POST_show
+/**/
+/**/  function PRE_Person(person_name){
+/**/    log('PRE_Person :', person_name)
+/**/  }
+/**/
+/**/  function PRE_show(born_year){
+/**/    log(NL+'PRE_show :', born_year)
+/**/  }
+/**/  
+/**/  function POST_Person(person_object){
+/**/    log(NL2+'POST_Person :', person_object)
+/**/  }
+/**/  
+/**/  function POST_show(name_year){
+/**/    log(NL2+'POST_show :', name_year)
+/**/  }
+/**/  
+/**/  PRE_Person = {Person:PRE_Person, show:PRE_show}
+/**/  POST_Person = {Person:POST_Person, show:POST_show}
+
+class Person {
+  constructor(person_name) {
+    this.person_name = person_name
+    log(NL2+'in Person() :', person_name)
+  }
+  show(born_year){
+    let name_year =  this.person_name + ' - ' + born_year
+    log(NL2+'in show() :', name_year)
+    return name_year
+  }
+}
+
+/**/
+/**/  Person = type_czech.check(Person, PRE_Person, POST_Person)
+/**/
+
+issac_newton = new Person('issac Newton')
+issac_newton.show(1642)
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+<script>
+  
+
+  jsToDiv('js-code', "check-code");
+
+  
+  // fromToBoldText(914, 936, 'code', 1)  // NL2+'POST_show :', name_year)
+
+  // fromToBoldText(206, 237, 'log', 1)    // POST_show :"Issac Newton - 1642"
+
+
+
+</script>

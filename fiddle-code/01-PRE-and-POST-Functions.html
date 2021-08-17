@@ -1,0 +1,150 @@
+<!DOCTYPE html><meta charset="utf-8" />
+<title>01-PRE-and-POST-Funtions</title>
+
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Inconsolata">
+  
+<div id='js-div' style="width:50%;" class='a-collection'>
+  <div id='js-code'>the javascript</div>
+</div>
+
+
+<div id="the-explanation" style="width:50%" class='a-collection'>
+  <div class='an-explantion'>01 - What is Type-Czech?</div>
+  <div id='explanation-text'>
+    <br>
+      Type-Czech is a library that enables checking functions to be called before
+      and after your functions run. These special functions can check for correct types,
+      certain argument values, and mutation of parameters.
+    <br><br>
+    Type-Czech requires ECMAScript 2015 (ES6).
+    <br><br>
+    In the example to the left, the function PRE_Person() is executed before
+    the Person() function while POST_Person() is run after the Person() function is finished.
+      <br><br>
+      The Person() function's input and output variables and values are accessable 
+      for inspection.
+      <br><br>
+      The PRE &amp;POST checking functions signal errors by returning an error message;
+      an empty string "" means no error as shown in with PRE_Person(). Type-Czech can be set to simply
+      log error messages to the console, or to stop execution via an exception as below.
+
+<pre>
+type_czech = TypeCzech('THROW-EXCEPTIONS')
+</pre>
+
+There are several ways to turn off the Type-Czech library for production use.
+For example when using the below code, no PRE/POST checking functions are called.
+<pre>
+type_czech = TypeCzech()
+</pre>
+
+The PRE &amp;POST checking functions are linked to the function to be checked via this odd
+looking function call.
+<pre>
+Person = type_czech.check(Person, PRE_Person, POST_Person)
+</pre>
+
+
+Removable Type-Czech specific code in example is shown with a leading /**/ to distinguish 
+the difference between the testing code and normal source code.
+<pre>
+/**/  highlights Type-Czech specific code
+</pre>
+
+
+
+
+  </div>
+
+
+<div id="console-log"  class='a-collection'>
+  <div class='a-title'>Console Output</div>
+  <div id='log-text'></div>
+  <br>
+</div>
+
+</div>
+
+
+
+
+<!--            ------------------TYPE 1------------------------       -->
+
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/consolelog.js">
+</script>
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/TypeCzech.js">
+</script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/type-czech.css">
+<style>
+</style>
+
+
+
+
+
+<!--            ---------------------TYPE 1---------------------       -->
+
+
+
+
+
+<script>
+  log = captureConsole("log-text");
+</script>
+
+
+<script id="check-code">
+
+
+/**/      type_czech = TypeCzech('LOG-ERRORS')
+/**/  //  type_czech = TypeCzech('NO-CHECKING')
+/**/
+/**/  function PRE_Person(f_name){
+/**/    log('PRE_Person() :', f_name)
+/**/    NO_ERROR = ''
+/**/    return NO_ERROR
+/**/  }
+/**/
+/**/  function POST_Person(person_result){
+/**/    log(NL2 + 'POST_Person() :', person_result)
+/**/    POST_ERROR = NL2 + 'Error Message - if result is not an empty string'
+/**/    return POST_ERROR
+/**/  }
+/**/
+/**/  Person = type_czech.check(Person, PRE_Person, POST_Person)
+
+function Person(f_name) {
+  person_result = f_name.toUpperCase()
+  first_to_upper = f_name + ' to ' + person_result
+  log(NL2 + 'Person() :', first_to_upper)
+  return person_result
+}
+
+Person('bob')
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+<script>
+
+   jsToDiv('js-code', "check-code");
+
+  // fromToBoldText(105, 116, 'code', 1)  // 'PRE_Person() :'
+  // fromToBoldText(1, 12, 'log', 1)    // PRE_Person() :
+
+</script>

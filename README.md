@@ -28,11 +28,13 @@ Missing from TypeCzech:
 This example shows:
  - type_czech.valid() ensuring that the parameters to aLottery() are a string, then an array of numbers, and finally a date
  - type_czech.valueless() complaining when parameters are found to be empty and valueless
- - [live on jsFiddle](https://jsfiddle.net/steen_hansen/nve4d3ah/3/)
 
   /**/ // Lines starting this way are supporting TypeCzech test code and are safely removable
-  
-    /**/  type_czech = TypeCzech('LOG-ERRORS')
+
+[LOG-ERRORS on jsFiddle](https://jsfiddle.net/steen_hansen/nve4d3ah/3/?00-ReadMe-Example)
+
+    /**/      type_czech = TypeCzech('LOG-ERRORS')
+    /**/  //  type_czech = TypeCzech('NO-CHECKING')
     /**/
     /**/  LOTTERY_SIGNATURE = ['String', ['Number'], 'Date']
     /**/
@@ -45,11 +47,12 @@ This example shows:
     /**/  aLottery = type_czech.check(aLottery, PRE_aLottery) 
 
     function aLottery(lottery_name, lucky_numbers, draw_date){
-      // just check parameters
+      the_lottery = `${lottery_name} ::: ${lucky_numbers} :::`
+      console.log(the_lottery, draw_date)
     }
 
     aLottery('El Gordo', [1,2,3,4,5,0], new Date('jun 14 1999'))
-    >>
+    >> El Gordo ::: 1,2,3,4,5,0 :::1999-06-14
 
     aLottery('Lotto 649', [1,2,3,4,5,6])
     >>PRE_aLottery() aLottery() PRE-FUNC: Index '2' is supposed to be a 'Date', but is missing : ['Lotto 649',[1,2,3,4,5,6]]
@@ -57,6 +60,7 @@ This example shows:
     >>                ACTUAL TYPES ['String','Array']
     >>                ACTUAL VALUE ['Lotto 649',[1,2,3,4,5,6]]
     >>               EXPECTED TYPE ['String',['Number'],'Date']
+    >> Lotto 649 ::: 1,2,3,4,5,6 :::
 
     aLottery('Oz Lotto', ['fourty-two'], new Date('jun 14 1999'))
     >>PRE_aLottery() aLottery() PRE-FUNC:  INDEX '0' is assumed to be a 'Number', but is mistakenly a 'String'
@@ -64,6 +68,7 @@ This example shows:
     >>                ACTUAL TYPES ['String','Array','Date']
     >>                ACTUAL VALUE ['Oz Lotto',['fourty-two'],'1999-06-14T07:00:00.000Z']
     >>               EXPECTED TYPE ['String',['Number'],'Date']
+    >> Oz Lotto ::: fourty-two :::1999-06-14
 
     aLottery('Mega Millions', 17, new Date('jun 14 1999'))
     >>PRE_aLottery() aLottery() PRE-FUNC: Parameter is meant to be 'Array' but is of the wrong type of 'Number':17
@@ -71,6 +76,7 @@ This example shows:
     >>                ACTUAL TYPES ['String','Number','Date']
     >>                ACTUAL VALUE ['Mega Millions',17,'1999-06-14T07:00:00.000Z']
     >>               EXPECTED TYPE ['String',['Number'],'Date']
+    >> Mega Millions ::: 17 :::1999-06-14
 
     aLottery('Powerball', [], new Date('jun 14 1999'))
     >>PRE_aLottery() aLottery() PRE-FUNC: INDEX '1' is erroneously empty :
@@ -78,6 +84,7 @@ This example shows:
     >>                  ACTUAL TYPES ['String','Array','Date']
     >>                  ACTUAL VALUE ['Powerball',[],'1999-06-14T07:00:00.000Z']
     >>               EMPTY ASSERTION ['EMPTY-ERROR']
+    >> Powerball ::: :::1999-06-14
 
     aLottery('', [1,2,3,4,5,26], new Date('Dec 31 1999'))
     >>PRE_aLottery() aLottery() PRE-FUNC: INDEX '0' is erroneously empty :
@@ -85,9 +92,45 @@ This example shows:
     >>                  ACTUAL TYPES ['String','Array','Date']
     >>                  ACTUAL VALUE ['',[1,2,3,4,5,26],'1999-12-31T08:00:00.000Z']
     >>               EMPTY ASSERTION ['EMPTY-ERROR']
+    >> ::: 1,2,3,4,5,26 :::1999-12-31
+    
+  [NO-CHECKING on jsFiddle](https://jsfiddle.net/steen_hansen/nve4d3ah/3/?00-ReadMe-Example)
 
+    /**/  //  type_czech = TypeCzech('LOG-ERRORS') 
+    /**/      type_czech = TypeCzech('NO-CHECKING')
+    /**/
+    /**/  LOTTERY_SIGNATURE = ['String', ['Number'], 'Date']
+    /**/
+    /**/  function PRE_aLottery(lottery_name, lucky_numbers, draw_date){
+    /**/    type_issue = type_czech.valid(arguments, LOTTERY_SIGNATURE)
+    /**/    if (type_issue) return type_issue
+    /**/    return type_czech.valueless(arguments, ['EMPTY-ERROR'])
+    /**/  }
+    /**/
+    /**/  aLottery = type_czech.check(aLottery, PRE_aLottery) 
 
+    function aLottery(lottery_name, lucky_numbers, draw_date){
+      the_lottery = `${lottery_name} ::: ${lucky_numbers} :::`
+      console.log(the_lottery, draw_date)
+    }
 
+    aLottery('El Gordo', [1,2,3,4,5,0], new Date('jun 14 1999'))
+    >> El Gordo ::: 1,2,3,4,5,0 :::1999-06-14
+
+    aLottery('Lotto 649', [1,2,3,4,5,6])
+    >> Lotto 649 ::: 1,2,3,4,5,6 :::
+
+    aLottery('Oz Lotto', ['fourty-two'], new Date('jun 14 1999'))
+    >> Oz Lotto ::: fourty-two :::1999-06-14
+
+    aLottery('Mega Millions', 17, new Date('jun 14 1999'))
+    >> Mega Millions ::: 17 :::1999-06-14
+
+    aLottery('Powerball', [], new Date('jun 14 1999'))
+    >> Powerball ::: :::1999-06-14
+
+    aLottery('', [1,2,3,4,5,26], new Date('Dec 31 1999'))
+    >> ::: 1,2,3,4,5,26 :::1999-12-31
 
 
 

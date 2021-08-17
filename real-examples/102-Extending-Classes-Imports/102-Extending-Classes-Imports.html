@@ -1,4 +1,4 @@
-<meta charset="utf-8" />
+<!DOCTYPE html><meta charset="utf-8" />
 <title>102-Extended-Classes-Imported</title>
 
 
@@ -80,7 +80,7 @@
 
 
 
-<!--            ------------------------------------------       -->
+<!--            --------------TYPE 2----------------------------       -->
 
 <script src="../../consolelog.js">
 </script>
@@ -93,7 +93,7 @@
 
 
 
-<!--            ------------------------------------------       -->
+<!--            --------------TYPE 2----------------------------       -->
 
 
 
@@ -118,27 +118,14 @@ const NOT_CHECKING_CLASS_FILES = [
   './Full.js' 
 ]
 
-/**/  TYPE_CZECH_START = true
+/**/      TYPE_CZECH_START = true
+/**/  //  TYPE_CZECH_START = false
 
 let class_files
 if (TYPE_CZECH_START) {
 /**/  TYPE_CZECH_COMMANDS = ['LOG-ERRORS']
-// const CHECKING_CLASS_FILES = [
-//   '../../TypeCzech.js',
-//   './First.js',
-//   './TypeCzech_First.js',
-//   './Last.js',
-//   './TypeCzech_Last.js',
-//   './Full.js',
-//   './TypeCzech_Full.js'
-// ]
 /**/  class_files = CHECKING_CLASS_FILES
 } else {
-//   const NOT_CHECKING_CLASS_FILES = [
-//   './First.js',
-//   './Last.js',
-//   './Full.js' 
-// ]
   class_files = NOT_CHECKING_CLASS_FILES
 }
 
