@@ -44,19 +44,6 @@ https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/real-examples/ordered-
 
 
 <!--            ----------TYPE 1--------------------------------       -->
-
-
-
-
-
-
-
-
-
-
-
-
-
 <script src="../../consolelog.js">
 </script>
 
@@ -65,9 +52,6 @@ https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/real-examples/ordered-
 <link rel="stylesheet" href="../../type-czech.css">
 <style>
 </style>
-
-
-
 <!--            ---------------TYPE 1---------------------------       -->
 
 

@@ -2,16 +2,18 @@
 # TypeCzech
 
 Enjoy some TypeScript benefits without the drawbacks of:
-- compilation time
-- new language syntax
-- compile time only checks
-- fragile entanglement
 
-The idea is to have detachable JavaScript checking routines run before and after your 
-own functions that test types, emptiness, and mutations. These PRE and POST routines can be 
+  - compilation time
+  - new language syntax
+  - compile time only checks
+  - fragile entanglement
+
+The central idea is to have detachable JavaScript checking routines run before and after your 
+own functions that can test types, emptiness, and mutations. These PRE and POST routines can be 
 turned on or off at run-time.
 
 With TypeCzech you can:
+
  - check function parameter types
  - ensure strings, arrays, and objects are not empty
  - test function arguments and results for distinct properties
@@ -20,18 +22,19 @@ With TypeCzech you can:
  - ignore types of extra optional parameters
 
 Missing from TypeCzech:
+
  - type inference
  - checking types of optional function parameters
 
 ## TypeCzech Example:
 
 This example shows:
+
  - type_czech.valid() ensuring that the parameters to aLottery() are a string, then an array of numbers, and finally a date
  - type_czech.valueless() complaining when parameters are found to be empty and valueless
+ - /**/  Lines starting this way are supporting TypeCzech test code and are safely removable
 
-  /**/ // Lines starting this way are supporting TypeCzech test code and are safely removable
-
-[LOG-ERRORS on jsFiddle](https://jsfiddle.net/steen_hansen/nve4d3ah/3/?00-ReadMe-Example)
+[Below program with LOG-ERRORS on jsFiddle](https://jsfiddle.net/steen_hansen/0xtpLwsc/1/?00-Readme-Example-On). All type mismatches are printed in the console.
 
     /**/      type_czech = TypeCzech('LOG-ERRORS')
     /**/  //  type_czech = TypeCzech('NO-CHECKING')
@@ -94,7 +97,7 @@ This example shows:
     >>               EMPTY ASSERTION ['EMPTY-ERROR']
     >> ::: 1,2,3,4,5,26 :::1999-12-31
     
-  [NO-CHECKING on jsFiddle](https://jsfiddle.net/steen_hansen/nve4d3ah/3/?00-ReadMe-Example)
+  [Below program with NO-CHECKING on jsFiddle](https://jsfiddle.net/steen_hansen/cwfsubtv/2/?00-Readme-Example-Off ). Type errors are ignored.
 
     /**/  //  type_czech = TypeCzech('LOG-ERRORS') 
     /**/      type_czech = TypeCzech('NO-CHECKING')
@@ -151,4 +154,5 @@ This example shows:
 ## Created by
 
 [Steen Hansen](https://github.com/steenhansen)
+
 
