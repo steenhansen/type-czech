@@ -1030,7 +1030,7 @@ if (typeof exports === 'undefined') {
           const func_str = check_function.toString();
           const func_parts = func_str.match(PARAMS_OF_FUNCTION);
           const func_name_params = `${func_parts[0]})`;
-          const funct_params = func_name_params.replace(/^function /, '')
+          const funct_params = func_name_params.replace(/^function /, '');
           const param_names = func_parts[2];
           const param_array = param_names.split(', ');
           if (param_array.includes('arguments')) {
@@ -3333,11 +3333,11 @@ if (typeof exports === 'undefined') {
 
       /*
 
-      type_czech.snapshot('my-func', 'my_array', 12);
-      //Uncaught TypeCzech.snapshot()'s 3rd parameter is not an Array or Object but instead a 'Number'
+      type_czech.mutateSnapshot('my-func', 'my_array', 12);
+      //Uncaught TypeCzech.mutateSnapshot()'s 3rd parameter is not an Array or Object but instead a 'Number'
 
       var my_array = [1,2,3];
-      type_czech.snapshot('my-func', 'my_array', my_array);
+      type_czech.mutateSnapshot('my-func', 'my_array', my_array);
       my_array.push(4);
       type_czech.mutated('my-func', 'my_array', my_array);
       //The reference variable 'my_array' in function 'my-func()' changed values
@@ -3350,7 +3350,7 @@ if (typeof exports === 'undefined') {
       //          END-SAME ~ ]"
 
       var my_obj = {a:1, b:2, c:3};
-      type_czech.snapshot('my-func', 'my_obj', my_obj);
+      type_czech.mutateSnapshot('my-func', 'my_obj', my_obj);
       delete my_obj.b;
       my_obj.b=7;
       type_czech.mutated('my-func', 'my_obj', my_obj);
@@ -3364,17 +3364,17 @@ if (typeof exports === 'undefined') {
       //          END-SAME ~ ,'c':3}
 
     */
-      function snapshot(func_name, var_name, collection_ref) {
-        consolelog('///snapshot ENTER', func_name, var_name, collection_ref);
+      function mutateSnapshot(func_name, var_name, collection_ref) {
+        consolelog('///mutateSnapshot ENTER', func_name, var_name, collection_ref);
         const num_parameters = arguments.length;
         if (num_parameters !== 3) {
-          let error_55 = `TypeCzech.snapshot() needs 3 parameters, not ${num_parameters}`;
+          let error_55 = `TypeCzech.mutateSnapshot() needs 3 parameters, not ${num_parameters}`;
           error_55 = _consoleError(error_55, 'TC@55');
           throw error_55;
         }
         if (!_isCollection(collection_ref)) {
           const collection_type = _aTypeOf(collection_ref);
-          let error_56 = `TypeCzech.snapshot()'s 3rd parameter is not an array/object but instead a '${collection_type}'`;
+          let error_56 = `TypeCzech.mutateSnapshot()'s 3rd parameter is not an array/object but instead a '${collection_type}'`;
           error_56 = _consoleError(error_56, 'TC@56');
           throw error_56;
         }
@@ -3392,7 +3392,7 @@ if (typeof exports === 'undefined') {
         }
         const no_cycles_stacks = _cycle.decycle(t_reference_stacks);
         const ref_stacks_str = _fast_json_stable_stringify(no_cycles_stacks);
-        consolelog('///snapshot EXIT', ref_stacks_str);
+        consolelog('///mutateSnapshot EXIT', ref_stacks_str);
       }
 
       function mutated(func_name, var_name) {
@@ -3401,7 +3401,7 @@ if (typeof exports === 'undefined') {
         let error_string = '';
         const have_varname = t_reference_stacks[func_varname];
         if (!have_varname) {
-          const error_47 = `No record of a snapshot('${func_varname}', a_var)`;
+          const error_47 = `No record of a mutateSnapshot('${func_varname}', a_var)`;
           error_string = _consoleError(error_47, 'TC@47');
         } else {
           const newest_instance = t_reference_stacks[func_varname].pop();
@@ -3582,6 +3582,8 @@ if (typeof exports === 'undefined') {
         checkTally,
         failureRatio,
         failureTally,
+        mutateSnapshot,
+        mutated,
         objectIsA,
         objectInterface,
         objectPrototypes,
@@ -3596,8 +3598,6 @@ if (typeof exports === 'undefined') {
         valuelessExtras,
         valuelessUnion,
         valuelessUnionExtras,
-        snapshot,
-        mutated,
       };
     } // _TypeCzech()
   };
