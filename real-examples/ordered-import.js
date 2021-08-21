@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 function orderedImport(class_urls, onLoaded) {
-  const import_errors = [];
+  let import_errors = [];
 
   const importScript = (src_url) => new Promise((resolve, reject) => {
     const already_loaded = document.querySelector(`head > script[src="${src_url}"]`);
@@ -55,6 +55,9 @@ function orderedImport(class_urls, onLoaded) {
         });
       } else {
         import_errors.push('There are no files to import');
+      }
+      if (import_errors.length === 0) {
+        import_errors = false;
       }
       return [loaded_files, import_errors];
     })
