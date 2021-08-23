@@ -1839,7 +1839,7 @@ if (typeof exports === 'undefined') {
         const check_array_type = _aTypeOf(check_array);
         if (check_array_type !== 'Array') {
           const check_str = _toStr(check_array);
-          const error_98 = `Variable 'check_array' must be an array but is instead a '${check_array_type}', : ${check_str}`;
+          const error_98 = `Variable '${check_array}' must be an array but is instead a '${check_array_type}', : ${check_str}`;
           error_string = _consoleError(error_98, 'TC@98');
         } else {
           check_array.forEach((check_element, element_index) => {
@@ -2275,7 +2275,7 @@ if (typeof exports === 'undefined') {
         const check_array_type = _aTypeOf(check_array);
         if (check_array_type !== 'Array') {
           const check_str = _toStr(check_array);
-          const error_97 = `Variable 'check_array' must be an array but is instead a '${check_array_type}', : ${check_str}`;
+          const error_97 = `Variable '${check_array}' must be an array but is instead a '${check_array_type}', : ${check_str}`;
           error_string = _consoleError(error_97, 'TC@97');
         } else {
           check_array.forEach((element, array_index) => {
@@ -2335,8 +2335,12 @@ if (typeof exports === 'undefined') {
         return error_string;
       }
 
-      function emptyArrayNotArrayError(check_array_type, check_str) {
-        const error_96 = `Variable 'check_array' must be an array but is a '${check_array_type}', : ${check_str}`;
+
+
+
+
+      function emptyArrayNotArrayError(check_array, check_array_type, check_str) {
+        const error_96 = `Variable '${check_array}' must be an array but is a '${check_array_type}', : ${check_str}`;
         const error_string = _consoleError(error_96, 'TC@96');
         return error_string;
       }
@@ -2356,7 +2360,7 @@ if (typeof exports === 'undefined') {
           const shallow_length = shallow_array.length;
           const check_array_type = _aTypeOf(check_array);
           if (check_array_type !== 'Array') {
-            error_string = emptyArrayNotArrayError(check_array_type, check_str);
+            error_string = emptyArrayNotArrayError(check_array, check_array_type, check_str);
           } else {
             check_array.forEach((check_element, element_index) => {
               const var_type = _aTypeOf(check_element);

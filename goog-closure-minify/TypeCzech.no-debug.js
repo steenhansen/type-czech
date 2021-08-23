@@ -130,6 +130,8 @@ if (typeof exports === 'undefined') {
 
       const CZECH_ERROR_INDENT = '\n\t\t';
 
+      const PARAMS_OF_FUNCTION = /([^(]*\()([^)]*)/;
+
       const START_OF_FUNCTION_LEN = 30;
 
       const EMPTY_REGEXP = '/(?:)/';
@@ -957,7 +959,7 @@ if (typeof exports === 'undefined') {
           return real_types;
         }
 
-        function actualVsExpected(list_of_parameters, exception_str, any_errors) {
+        function actualVsExpected(list_of_parameters, exception_str, any_errors, func_name_params) {
           
           const [shape_check, type_of_error, expected_shape] = any_errors;
           let arg_list = getHtmlTypes(list_of_parameters);
@@ -972,27 +974,29 @@ if (typeof exports === 'undefined') {
           const expected_json = _jsonStr(expected_shape);
           let new_exception = exception_str + type_of_error;
           new_exception += CZECH_ERROR_INDENT + shape_check;
-          let actual_types = '   ACTUAL TYPES';
-          let actual_text = '   ACTUAL VALUE';
-          let expected_text = 'EMPTY ASSERTION'; // for valueless() errors EMPTY
+          let actual_types = '    ACTUAL TYPES';
+          let actual_text = '    ACTUAL VALUE';
+          let expected_text = ' EMPTY ASSERTION'; // for valueless() errors EMPTY
+          const called_function = 'CALLING FUNCTION';
           if (shape_check === MESS_TYPE_VERIFY
                 || shape_check === MESS_TYPE_EXTRAS
                 || shape_check === MESS_TYPE_ONE_OF
                 || shape_check === MESS_TYPE_ONE_OF_EXTRAS) {
-            actual_types = ' ACTUAL TYPES';
-            actual_text = ' ACTUAL VALUE';
-            expected_text = 'EXPECTED TYPE'; // for valid() errors TYPE
+            actual_types = '    ACTUAL TYPES';
+            actual_text = '    ACTUAL VALUE';
+            expected_text = '   EXPECTED TYPE'; // for valid() errors TYPE
           }
           new_exception += `${CZECH_ERROR_INDENT}${actual_types} ${arg_list}`;
           new_exception += `${CZECH_ERROR_INDENT}${actual_text} ${param_values}`;
           new_exception += `${CZECH_ERROR_INDENT}${expected_text} ${expected_json}`;
+          new_exception += `${CZECH_ERROR_INDENT}${called_function} ${func_name_params}`;
           new_exception += CZECH_ERROR_INDENT;
           
           return new_exception;
         }
 
         // any_errors ==> string_or_3array_errors
-        function outputCheck(any_errors, checking_name, target_name, list_of_parameters) {
+        function outputCheck(any_errors, checking_name, target_name, list_of_parameters, func_name_params) {
           
           const func_name_type = target_name.split(BEFORE_APPLY_TYPE);
           const function_name = func_name_type[0];
@@ -1009,7 +1013,7 @@ if (typeof exports === 'undefined') {
             if (typeof any_errors === 'string') {
               exception_str = any_errors;
             } else {
-              exception_str = actualVsExpected(list_of_parameters, exception_str, any_errors);
+              exception_str = actualVsExpected(list_of_parameters, exception_str, any_errors, func_name_params);
             }
             if (OP_THROW_EXCEPTIONS) {
               throw exception_str;
@@ -1020,17 +1024,36 @@ if (typeof exports === 'undefined') {
           }
         }
 
+        // function PRE_aLottery(lottery_name, arguments, draw_date)
+        function argumentsParamWarn(check_function) {
+          
+          const func_str = check_function.toString();
+          const func_parts = func_str.match(PARAMS_OF_FUNCTION);
+          const func_name_params = `${func_parts[0]})`;
+          const funct_params = func_name_params.replace(/^function /, '');
+          const param_names = func_parts[2];
+          const param_array = param_names.split(', ');
+          if (param_array.includes('arguments')) {
+            const arguments_error = `Parameter 'arguments' shadows arguments object : ${func_parts[0]})`;
+            _coloredConsole(arguments_error, TRACE_COLORS);
+          }
+          
+          return funct_params;
+        }
+
         function applyNoThis(target_name, list_of_parameters, the_check) {
           
+          const funct_params = argumentsParamWarn(the_check);
           // eslint-disable-next-line prefer-spread
           const the_errors = the_check.apply(null, list_of_parameters);
-          outputCheck(the_errors, the_check.name, target_name, list_of_parameters);
+          outputCheck(the_errors, the_check.name, target_name, list_of_parameters, funct_params);
         }
 
         function applyWithThis(target_name, this_arg, list_of_parameters, the_check) {
           
+          const funct_params = argumentsParamWarn(the_check);
           const the_errors = the_check.apply(this_arg, list_of_parameters);
-          outputCheck(the_errors, the_check.name, target_name, list_of_parameters);
+          outputCheck(the_errors, the_check.name, target_name, list_of_parameters, funct_params);
         }
 
         function failureRatio_() {
@@ -1816,7 +1839,7 @@ if (typeof exports === 'undefined') {
         const check_array_type = _aTypeOf(check_array);
         if (check_array_type !== 'Array') {
           const check_str = _toStr(check_array);
-          const error_98 = `Variable 'check_array' must be an array but is instead a '${check_array_type}', : ${check_str}`;
+          const error_98 = `Variable '${check_array}' must be an array but is instead a '${check_array_type}', : ${check_str}`;
           error_string = _consoleError(error_98, 'TC@98');
         } else {
           check_array.forEach((check_element, element_index) => {
@@ -2252,7 +2275,7 @@ if (typeof exports === 'undefined') {
         const check_array_type = _aTypeOf(check_array);
         if (check_array_type !== 'Array') {
           const check_str = _toStr(check_array);
-          const error_97 = `Variable 'check_array' must be an array but is instead a '${check_array_type}', : ${check_str}`;
+          const error_97 = `Variable '${check_array}' must be an array but is instead a '${check_array_type}', : ${check_str}`;
           error_string = _consoleError(error_97, 'TC@97');
         } else {
           check_array.forEach((element, array_index) => {
@@ -2312,8 +2335,12 @@ if (typeof exports === 'undefined') {
         return error_string;
       }
 
-      function emptyArrayNotArrayError(check_array_type, check_str) {
-        const error_96 = `Variable 'check_array' must be an array but is a '${check_array_type}', : ${check_str}`;
+
+
+
+
+      function emptyArrayNotArrayError(check_array, check_array_type, check_str) {
+        const error_96 = `Variable '${check_array}' must be an array but is a '${check_array_type}', : ${check_str}`;
         const error_string = _consoleError(error_96, 'TC@96');
         return error_string;
       }
@@ -2333,7 +2360,7 @@ if (typeof exports === 'undefined') {
           const shallow_length = shallow_array.length;
           const check_array_type = _aTypeOf(check_array);
           if (check_array_type !== 'Array') {
-            error_string = emptyArrayNotArrayError(check_array_type, check_str);
+            error_string = emptyArrayNotArrayError(check_array, check_array_type, check_str);
           } else {
             check_array.forEach((check_element, element_index) => {
               const var_type = _aTypeOf(check_element);
@@ -3310,11 +3337,11 @@ if (typeof exports === 'undefined') {
 
       /*
 
-      type_czech.snapshot('my-func', 'my_array', 12);
-      //Uncaught TypeCzech.snapshot()'s 3rd parameter is not an Array or Object but instead a 'Number'
+      type_czech.mutateSnapshot('my-func', 'my_array', 12);
+      //Uncaught TypeCzech.mutateSnapshot()'s 3rd parameter is not an Array or Object but instead a 'Number'
 
       var my_array = [1,2,3];
-      type_czech.snapshot('my-func', 'my_array', my_array);
+      type_czech.mutateSnapshot('my-func', 'my_array', my_array);
       my_array.push(4);
       type_czech.mutated('my-func', 'my_array', my_array);
       //The reference variable 'my_array' in function 'my-func()' changed values
@@ -3327,7 +3354,7 @@ if (typeof exports === 'undefined') {
       //          END-SAME ~ ]"
 
       var my_obj = {a:1, b:2, c:3};
-      type_czech.snapshot('my-func', 'my_obj', my_obj);
+      type_czech.mutateSnapshot('my-func', 'my_obj', my_obj);
       delete my_obj.b;
       my_obj.b=7;
       type_czech.mutated('my-func', 'my_obj', my_obj);
@@ -3341,17 +3368,17 @@ if (typeof exports === 'undefined') {
       //          END-SAME ~ ,'c':3}
 
     */
-      function snapshot(func_name, var_name, collection_ref) {
+      function mutateSnapshot(func_name, var_name, collection_ref) {
         
         const num_parameters = arguments.length;
         if (num_parameters !== 3) {
-          let error_55 = `TypeCzech.snapshot() needs 3 parameters, not ${num_parameters}`;
+          let error_55 = `TypeCzech.mutateSnapshot() needs 3 parameters, not ${num_parameters}`;
           error_55 = _consoleError(error_55, 'TC@55');
           throw error_55;
         }
         if (!_isCollection(collection_ref)) {
           const collection_type = _aTypeOf(collection_ref);
-          let error_56 = `TypeCzech.snapshot()'s 3rd parameter is not an array/object but instead a '${collection_type}'`;
+          let error_56 = `TypeCzech.mutateSnapshot()'s 3rd parameter is not an array/object but instead a '${collection_type}'`;
           error_56 = _consoleError(error_56, 'TC@56');
           throw error_56;
         }
@@ -3378,7 +3405,7 @@ if (typeof exports === 'undefined') {
         let error_string = '';
         const have_varname = t_reference_stacks[func_varname];
         if (!have_varname) {
-          const error_47 = `No record of a snapshot('${func_varname}', a_var)`;
+          const error_47 = `No record of a mutateSnapshot('${func_varname}', a_var)`;
           error_string = _consoleError(error_47, 'TC@47');
         } else {
           const newest_instance = t_reference_stacks[func_varname].pop();
@@ -3559,6 +3586,8 @@ if (typeof exports === 'undefined') {
         checkTally,
         failureRatio,
         failureTally,
+        mutateSnapshot,
+        mutated,
         objectIsA,
         objectInterface,
         objectPrototypes,
@@ -3573,8 +3602,6 @@ if (typeof exports === 'undefined') {
         valuelessExtras,
         valuelessUnion,
         valuelessUnionExtras,
-        snapshot,
-        mutated,
       };
     } // _TypeCzech()
   };

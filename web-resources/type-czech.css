@@ -67,8 +67,8 @@ li{
 
 
 .text-1{ color:red; font-weight: bold; }
-.text-2{ color: red; font-weight: bold; }
-.text-3{ color: red; font-weight: bold; }
+.text-2{ color: rgb(0, 0, 255); font-weight: bold; }
+.text-3{ color: rgb(0, 255, 0); font-weight: bold; }
 .text-4{ color: red; font-weight: bolder; }
 .text-5{ color: red; font-weight: bolder; }
 .text-6{ color: red; font-weight: bolder; }

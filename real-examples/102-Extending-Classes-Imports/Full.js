@@ -9,7 +9,7 @@ function Full() {
     }
 
     fullMethod(a_book) {
-      log(`${LEVEL_2}fullMethod :${a_book} ${this.salu} ${this.l_name}`)
+      log(`${LEVEL_2}RUN -fullMethod :${a_book} ${this.salu} ${this.l_name}`)
     }
   }
   return Full

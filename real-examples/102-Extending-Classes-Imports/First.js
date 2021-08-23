@@ -8,7 +8,7 @@ function First() {
     }
 
     firstMethod(a_date) {
-      log(`${NL}firstMethod :${this.f_name} `, a_date)
+      log(`${NL}RUN -firstMethod :${this.f_name} `, a_date)
     }
   }
   return First

@@ -1,53 +1,13 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>501-Inherited-Prototypes-Inline</title>
-
+<title>37-Readme-Example-Lambda</title>
 
 <link rel="stylesheet"
   href="https://fonts.googleapis.com/css?family=Inconsolata">
   
-<div id='js-div' style="width:52%;" class='code-scroll'>
+<div id='js-div' style="width:50%;">
   <div id='js-code'>the javascript</div>
-</div>
 
-
-<div id="the-explanation" style="width:48%" >
-  <div class='an-explantion'>501 - Inherited Prototypes Inline</div>
-  <div id='explanation-text'>
-    
-    
-    
-    <br>
-TypeCzech's general example of an author where:
-<ul>
-  <li><b>First</b> controls an author's first name</li>
-  <li><b>Last</b> handles an author's first and last name</li>
-  <li><b>Full</b> deals with an author's salutation, first, and last name</li>    
-  <li>Safely removable supporting TypeCzech test code begins with /**/</li>    
-</ul>
-<br>
-Prototypes are used for inheritance:
-    <ul>
-      <li>All JavaScript is in one file, no code imports</li>
-      <li>Production prototype declarations <b>must</b> interleave with TypeCzech calls
-          to have the PRE and POST checking functions be correctly linked to before use </li>
-      </ul>
-<br>
-
-
-
-
-
-
-  </div>
-
-
-  <div id="console-log"  >
-    <div class='a-title'>Console Output</div>
-    <div id='log-text'></div>
-    <br>
-  </div>
-
-  <br>
+  <br><br>
   <div id='js-fiddles'>
     jsFiddles:
     <a title="00-Readme-Example" href="https://jsfiddle.net/steen_hansen/0xtpLwsc/?00-Readme-Example">00</a>
@@ -170,12 +130,46 @@ Prototypes are used for inheritance:
       <a title="603-Extending-OOLO-Production.html" href="https://jsfiddle.net/steen_hansen/ktezbg7c/?603-Extending-OOLO-Production">603</a>
   
     </div>
+  
+  
+</div>
+
+
+<div id="the-explanation" style="width:50%" class='code-scroll'>
+  <div class='an-explantion'>37 - Readme Example Lambda</div>
+  <div id='explanation-text'>
+    <br>
+    When using arrow functions with TypeCzech, the ordering of function
+    declarations must be done with care as function hoisting does not occur.
+
+    <br><br>
+    Here both the actual production arrow function of aLottery(), and
+    the checking arrow function of PRE_aLottery() must be declared before
+    they are linked via
+<pre>
+aLottery = type_czech.check(aLottery, PRE_aLottery)
+</pre>
+Otherwise a function not defined error will occur.
+    <br><br>
+
+  </div>
+
+
+<div id="console-log">
+  <div class='a-title'>Console Output</div>
+  <div id='log-text'></div>
+  <br>
+
+
+
+</div>
 
 </div>
 
 
 
-<!--            -----------TYPE 1-------------------------------       -->
+
+<!--            -------------------TYPE 1-----------------------       -->
 
 
 <script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@master/consolelog.js">
@@ -190,7 +184,9 @@ Prototypes are used for inheritance:
 
 
 
-<!--            -----------TYPE 1-------------------------------       -->
+
+<!--            --------------------TYPE 1----------------------       -->
+
 
 
 <script>
@@ -198,103 +194,59 @@ Prototypes are used for inheritance:
 </script>
 
 
-
-
-
 <script id="check-code">
-/**/function First_check(First){
-/**/  function PRE_First(f_name){ log(NL2+'PRE -First') }
-/**/  function POST_First(First){ log(NL1+'POST-First') }
-/**/  function PRE_firstMethod(a_date){ log('PRE -firstMethod') }
-/**/  function POST_firstMethod(){ log('POST-firstMethod') }
-/**/
-/**/  First_PREs = {First:PRE_First, firstMethod:PRE_firstMethod}
-/**/  First_POSTs = {First:POST_First, firstMethod:POST_firstMethod}
-/**/  First = type_czech.check(First, First_PREs, First_POSTs)
-/**/  return First
-/**/}
+/**/  //  <script src="../TypeCzech.js">
 
-/**/function Last_check(Last){
-/**/  function PRE_Last(f_name, l_name){ log(LEVEL_1+'PRE-Last') }
-/**/  function POST_Last(Last){ log(LEVEL_1+"POST-Last") }
-/**/  function PRE_lastMethod(a_year){ log(LEVEL_1+"PRE -lastMethod") }
-/**/  function POST_lastMethod(){ log(LEVEL_1+"POST-lastMethod") }
-/**/
-/**/  Last_PREs = {Last:PRE_Last, lastMethod:PRE_lastMethod}
-/**/  Last_POSTs = {Last:POST_Last, lastMethod:POST_lastMethod}
-/**/  Last = type_czech.check(Last, Last_PREs, Last_POSTs)
-/**/  return Last
-/**/}
-
-/**/function Full_check(Full){
-/**/  function PRE_Full(salu, f_name, l_name){  log(LEVEL_2+'PRE-Full') }
-/**/  function POST_Full(Full){ log(LEVEL_2+"POST-Full") }
-/**/  function PRE_fullMethod(a_book){ log(LEVEL_2+"PRE -fullMethod") }
-/**/  function POST_fullMethod(){ log(LEVEL_2+"POST-fullMethod") }
-/**/
-/**/  Full_PREs = {Full:PRE_Full, fullMethod:PRE_fullMethod}
-/**/  Full_POSTs= {Full:POST_Full, fullMethod:POST_fullMethod}
-/**/  Full = type_czech.check(Full, Full_PREs, Full_POSTs)
-/**/  return Full
-/**/}
-
-function First(f_name) {
-  this.f_name = f_name
-  log(NL+`CONS-First :${f_name}`)
-  this.firstMethod = function(a_date) { 
-    log(NL+`RUN -firstMethod :${this.f_name} `, a_date) 
-  }
+aLottery = (lottery_name, lucky_numbers, draw_date) => {
+  the_lottery = `${lottery_name} ::: ${lucky_numbers} :::`
+  console.log(the_lottery, draw_date)
 }
 
-function Last(l_name) {
-  this.l_name = l_name
-  log(NL+LEVEL_1+`CONS-Last :${l_name}`)
-  this.lastMethod = function (a_year) {
-    log(LEVEL_1+`RUN -lastMethod :${a_year} ${this.f_name} ${this.l_name}`)
-  }
-}
-
-function Full(salu) {
-  this.salu = salu
-  log(NL+LEVEL_2+`CONS-Full :${salu}`)
-  this.fullMethod = function (a_book) {
-      log(LEVEL_2+`RUN -fullMethod :${a_book} ${this.salu} ${this.l_name}`)
-    }
-}
-
-/**/  TYPE_CZECH_START = true
-/**/  //TYPE_CZECH_START = false
+/**/  type_czech = TypeCzech('LOG-ERRORS')
+/**/  //type_czech = TypeCzech('NO-CHECKING')
 /**/
-/**/  if (TYPE_CZECH_START) {
-/**/    type_czech = TypeCzech('LOG-ERRORS')
-/**/    First = First_check(First)
-/**/    Last = Last_check(Last)
-/**/    Full = Full_check(Full)
-/**/  } 
+/**/  LOTTERY_SIGNATURE = ['String', ['Number'], 'Date']
+/**/
+/**/  PRE_aLottery = (lottery_name, lucky_numbers, draw_date) =>{
+/**/    the_arguments = [lottery_name, lucky_numbers, draw_date]
+/**/    type_issue = type_czech.valid(the_arguments, LOTTERY_SIGNATURE)
+/**/    if (type_issue) return type_issue
+/**/
+/**/    empty_issue =  type_czech.valueless(the_arguments, ['EMPTY-ERROR'])
+/**/    return empty_issue
+/**/  }
+/**/
+/**/  aLottery = type_czech.check(aLottery, PRE_aLottery)
 
-/**/  function PRE_Person(salu, f_name, l_name){  log(LEVEL_3+'PRE-Person') }
-/**/  function POST_Person(Person){ log(LEVEL_3+"POST-Person") }
-/**/  Person = type_czech.check(Person, PRE_Person, POST_Person)
+aLottery('El Gordo', [1,2,3,4,5,0], new Date('jun 14 1999'))
 
-function Person(salu, f_name, l_name){
-  log(LEVEL_3+`CONS-Person :${salu} ${f_name} ${l_name}`)
-  person_full = new Full(salu)
-  person_last = new Last(l_name)
-  person_first = new First(f_name)
-  Object.setPrototypeOf(person_full, person_last)
-  Object.setPrototypeOf(person_last, person_first)
-  return person_full
-}
-
-mary_shelley = Person('Ms', 'Mary', 'Shelley')
 linesConsole(1)
-mary_shelley.firstMethod(new Date(1818,1,1))
-linesConsole(1)
-mary_shelley.lastMethod(1931)
-linesConsole(1)
-mary_shelley.fullMethod('Frankenstein')
 
+aLottery('Lotto 649', [1,2,3,4,5,6])
+
+linesConsole(3)
+
+aLottery('Oz Lotto', ['fourty-two'], new Date('jun 14 1999'))
+
+linesConsole(2)
+
+aLottery('Mega Millions', 17, new Date('jun 14 1999'))
+
+linesConsole(2)
+
+aLottery('Powerball', [], new Date('jun 14 1999'))
+
+linesConsole(2)
+
+aLottery('', [1,2,3,4,5,26], new Date('Dec 31 1999'))
 </script>
+  
+  
+  
+  
+
+
+
 
 
 
@@ -303,16 +255,26 @@ mary_shelley.fullMethod('Frankenstein')
 
 <script>
 
-jsToDiv('js-code', "check-code");      
+   jsToDiv('js-code', "check-code");
+
+   fromToBoldText(331, 340, 'code', 1)  //  ['Number'],
+  fromToBoldText(902, 915, 'code', 1)  // 'Oz Lotto', ['fourty-two']
+
+  fromToBoldText(676, 689, 'log', 1)    // ['fourty-two']
+  fromToBoldText(740, 749, 'log', 1)    // ,['Number']
 
 
-fromToBoldText(1667, 1682, 'code', 1)  //RUN -firstMethod
-  fromToBoldText(1864, 1878, 'code', 2)  // RUN -lastMethod
-  fromToBoldText(2069, 2083, 'code', 3)  // RUN -fullMethod
+///////////////////////
 
- 
-fromToBoldText(327, 342, 'log', 1)    //RUN -firstMethod
-fromToBoldText(409, 423, 'log', 2)    //RUN -lastMethod
-fromToBoldText(516, 530, 'log', 3)    //RUN -fullMethod
+
+
+
+
+fromToBoldText(665, 679, 'code', 2)  // ['EMPTY-ERROR']
+  fromToBoldText(1022, 1023, 'code', 2)  // 'Powerball', [],
+
+  fromToBoldText(1499, 1500, 'log', 2)    //'Powerball',[] 
+  fromToBoldText(1541, 1555, 'log', 2)    //['EMPTY-ERROR']
+
 
 </script>

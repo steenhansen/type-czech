@@ -9,7 +9,7 @@ function Last() {
     }
 
     lastMethod(a_year) {
-      log(`${LEVEL_1}lastMethod :${a_year} ${this.f_name} ${this.l_name}`)
+      log(`${LEVEL_1}RUN -lastMethod :${a_year} ${this.f_name} ${this.l_name}`)
     }
   }
   return Last

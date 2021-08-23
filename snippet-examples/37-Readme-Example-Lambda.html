@@ -1,50 +1,11 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>601-Created-OOLO-Inline</title>
-
+<title>37-Readme-Example-Lambda</title>
 
 <link rel="stylesheet"
   href="https://fonts.googleapis.com/css?family=Inconsolata">
   
-<div id='js-div' style="width:50%;" class='code-scroll'>
+<div id='js-div' style="width:49%;">
   <div id='js-code'>the javascript</div>
-</div>
-
-
-<div id="the-explanation" style="width:50%" >
-  <div class='an-explantion'>601 - Created OOLO Inline</div>
-  <div id='explanation-text'>
-
-    <br>
-    TypeCzech's general example of an author where:
-    <ul>
-      <li><b>First</b> controls an author's first name</li>
-      <li><b>Last</b> handles an author's first and last name</li>
-      <li><b>Full</b> deals with an author's salutation, first, and last name</li>    
-      <li>Safely removable supporting TypeCzech test code begins with /**/</li>    
-    </ul>
-     <br>
-     OOLO create()s are used for inheritance:
-        <ul>
-          <li>All JavaScript is in one file, no code imports</li>
-          <li>Production class declarations <b>must</b> interleave with TypeCzech calls
-              to have the PRE and POST checking functions be correctly linked to before use </li>
-          </ul>
-    <br>
-
-
-
-   Note this OOLO version kills the instanceof operator, use instanceOf() instead.
-
-<br><br>
-
-  </div>
-
-
-  <div id="console-log"  >
-    <div class='a-title'>Console Output</div>
-    <div id='log-text'></div>
-    <br>
-  </div>
 
   <br><br>
   <div id='js-fiddles'>
@@ -169,14 +130,44 @@
       <a title="603-Extending-OOLO-Production.html" href="../real-examples/603-Extending-OOLO-Production/603-Extending-OOLO-Production.html">603</a>
   
     </div>
+  
 
+</div>
+
+
+<div id="the-explanation" style="width:51%" class='code-scroll'>
+  <div class='an-explantion'>37 - Readme Example Lambda</div>
+  <div id='explanation-text'>
+    <br>
+    When using arrow functions with TypeCzech, the ordering of function
+    declarations must be done with care as function hoisting does not occur.
+
+    <br><br>
+    Here both the actual production arrow function of aLottery(), and
+    the checking arrow function of PRE_aLottery() must be declared before
+    they are linked via
+<pre>
+aLottery = type_czech.check(aLottery, PRE_aLottery)
+</pre>
+Otherwise a function not defined error will occur.
+    <br><br>
+
+  </div>
+
+
+<div id="console-log">
+  <div class='a-title'>Console Output</div>
+  <div id='log-text'></div>
+  <br>
+</div>
 
 </div>
 
 
 
 
-<!--            -----------------TYPE 1-------------------------       -->
+<!--            ------------------TYPE 1------------------------       -->
+
 
 <script src="../consolelog.js">
 </script>
@@ -190,113 +181,69 @@
 
 
 
-<!--            -----------------TYPE 1-------------------------       -->
+
+
+<!--            -------------------TYPE 1-----------------------       -->
+
+
+
 
 
 <script>
   log = captureConsole("log-text");
 </script>
 
+
 <script id="check-code">
-/**/function First_check(First){
-/**/  function PRE_First(f_name){ log(NL2+'PRE -First') }
-/**/  function POST_First(First){ log(NL1+'POST-First') }
-/**/  function PRE_firstMethod(a_date){ log(NL+'PRE -firstMethod') }
-/**/  function POST_firstMethod(){ log('POST-firstMethod') }
-/**/
-/**/  First_PREs = {First:PRE_First, firstMethod:PRE_firstMethod}
-/**/  First_POSTs = {First:POST_First, firstMethod:POST_firstMethod}
-/**/  First = type_czech.check(First, First_PREs, First_POSTs)
-/**/  return First
-/**/}
+/**/  //  <script src="../TypeCzech.js">
 
-/**/function Last_check(Last){
-/**/  function PRE_Last(f_name, l_name){ log(LEVEL_1+'PRE -Last') }
-/**/  function POST_Last(Last){ log(LEVEL_1+'POST-Last') }
-/**/  function PRE_lastMethod(a_year){ log(LEVEL_1+'PRE -lastMethod') }
-/**/  function POST_lastMethod(){ log(LEVEL_1+'POST-lastMethod') }
-/**/
-/**/  Last_PREs = {Last:PRE_Last, lastMethod:PRE_lastMethod}
-/**/  Last_POSTs = {Last:POST_Last, lastMethod:POST_lastMethod}
-/**/  Last = type_czech.check(Last, Last_PREs, Last_POSTs)
-/**/  return Last
-/**/}
-
-/**/function Full_check(Full){
-/**/  function PRE_Full(salu, f_name, l_name){ log(LEVEL_2+'PRE -Full') }
-/**/  function POST_Full(Full){ log(LEVEL_2+'POST-Full') }
-/**/  function PRE_fullMethod(a_book){ log(LEVEL_2+'PRE -fullMethod') }
-/**/  function POST_fullMethod(){ log(LEVEL_2+'POST-fullMethod') }
-/**/
-/**/  Full_PREs = {Full:PRE_Full, fullMethod:PRE_fullMethod}
-/**/  Full_POSTs = {Full:POST_Full, fullMethod:POST_fullMethod}
-/**/  Full = type_czech.check(Full, Full_PREs, Full_POSTs)
-/**/  return Full
-/**/}
-
-function First(f_name) {
-  FIRST_TEMPLATE = {
-    oolo_type: 'First',
-    firstMethod(a_date){
-      log(NL+`RUN -firstMethod :${this.f_name} `, a_date) 
-    },
-    instanceOf(){
-      return this.oolo_type
-    }
-  }
-  first_object = Object.create(FIRST_TEMPLATE)
-  first_object.f_name = f_name
-  log(NL+`CONS-First :${f_name}`)
-  return first_object
+aLottery = (lottery_name, lucky_numbers, draw_date) => {
+  the_lottery = `${lottery_name} ::: ${lucky_numbers} :::`
+  console.log(the_lottery, draw_date)
 }
 
-function Last(f_name, l_name) {
-  LAST_TEMPLATE = {
-    oolo_type: 'Last',
-    lastMethod(a_year){
-      log(LEVEL_1+`RUN -lastMethod :${a_year} ${this.f_name} ${this.l_name}`) 
-    }
-  }
-  first = First(f_name)
-  Object.setPrototypeOf(LAST_TEMPLATE, first)
-  last_object = Object.create(LAST_TEMPLATE)
-  last_object.l_name = l_name
-  last_object.type = 'Last'
-  log(NL+LEVEL_1+`CONS-Last :${l_name}`)
-  return last_object
-}
-
-function Full(salu, f_name, l_name) {
-  FULL_TEMPLATE = {
-    oolo_type: 'Full',
-    fullMethod(a_book){
-      log(LEVEL_2+`RUN -fullMethod :${a_book} ${this.salu} ${this.l_name}`)
-    }
-  }
-  last = Last(f_name, l_name) 
-  Object.setPrototypeOf(FULL_TEMPLATE, last)
-  full_object = Object.create(FULL_TEMPLATE)
-  full_object.salu = salu
-  log(NL+LEVEL_2+`CONS-Full :${salu}`)
-  return full_object
-}
-
-/**/  TYPE_CZECH_START = true
-/**/  //TYPE_CZECH_START = false
+/**/  type_czech = TypeCzech('LOG-ERRORS')
+/**/  //type_czech = TypeCzech('NO-CHECKING')
 /**/
-/**/  if (TYPE_CZECH_START) {
-/**/    type_czech = TypeCzech('LOG-ERRORS')
-/**/    First = First_check(First)
-/**/    Last = Last_check(Last)
-/**/    Full = Full_check(Full)
-/**/  } 
+/**/  LOTTERY_SIGNATURE = ['String', ['Number'], 'Date']
+/**/
+/**/  PRE_aLottery = (lottery_name, lucky_numbers, draw_date) =>{
+/**/    the_arguments = [lottery_name, lucky_numbers, draw_date]
+/**/    type_issue = type_czech.valid(the_arguments, LOTTERY_SIGNATURE)
+/**/    if (type_issue) return type_issue
+/**/
+/**/    empty_issue =  type_czech.valueless(the_arguments, ['EMPTY-ERROR'])
+/**/    return empty_issue
+/**/  }
+/**/
+/**/  aLottery = type_czech.check(aLottery, PRE_aLottery)
 
-margaret_atwood = Full('Ms.', 'Margaret', 'Atwood');
-margaret_atwood.firstMethod( new Date(1985,1,1))
-margaret_atwood.lastMethod(1987)
-margaret_atwood.fullMethod("The Handmaid's Tale")
+aLottery('El Gordo', [1,2,3,4,5,0], new Date('jun 14 1999'))
 
+linesConsole(1)
+
+aLottery('Lotto 649', [1,2,3,4,5,6])
+
+linesConsole(3)
+
+aLottery('Oz Lotto', ['fourty-two'], new Date('jun 14 1999'))
+
+linesConsole(2)
+
+aLottery('Mega Millions', 17, new Date('jun 14 1999'))
+
+linesConsole(2)
+
+aLottery('Powerball', [], new Date('jun 14 1999'))
+
+linesConsole(2)
+
+aLottery('', [1,2,3,4,5,26], new Date('Dec 31 1999'))
 </script>
+
+
+
+
 
 
 
@@ -305,16 +252,28 @@ margaret_atwood.fullMethod("The Handmaid's Tale")
 
 <script>
 
-jsToDiv('js-code', "check-code");      
+   jsToDiv('js-code', "check-code");
+
+  fromToBoldText(331, 340, 'code', 1)  //  ['Number'],
+  fromToBoldText(902, 915, 'code', 1)  // 'Oz Lotto', ['fourty-two']
+
+  fromToBoldText(676, 689, 'log', 1)    // ['fourty-two']
+  fromToBoldText(740, 749, 'log', 1)    // ,['Number']
 
 
-fromToBoldText(1646, 1661, 'code', 1)  //RUN -firstMethod
-  fromToBoldText(2009, 2023, 'code', 2)  // RUN -lastMethod
-  fromToBoldText(2441, 2455, 'code', 3)  // RUN -fullMethod
+///////////////////////
 
- 
-fromToBoldText(210, 225, 'log', 1)    //RUN -firstMethod
-fromToBoldText(296, 311, 'log', 2)    //RUN -lastMethod
-fromToBoldText(406, 420, 'log', 3)    //RUN -fullMethod
+
+
+
+
+fromToBoldText(665, 679, 'code', 2)  // ['EMPTY-ERROR']
+  fromToBoldText(1022, 1023, 'code', 2)  // 'Powerball', [],
+
+  fromToBoldText(1499, 1500, 'log', 2)    //'Powerball',[] 
+  fromToBoldText(1541, 1555, 'log', 2)    //['EMPTY-ERROR']
+
+
+
 
 </script>
