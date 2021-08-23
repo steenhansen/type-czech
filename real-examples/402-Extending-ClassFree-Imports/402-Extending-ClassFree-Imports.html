@@ -216,6 +216,19 @@
 
 
 <script>
+    
+function copyAndColor(){
+  jsToDiv('js-code', "check-code");      
+
+  fromToBoldText(917, 927, 'code', 1)  //firstMethod
+  fromToBoldText(964, 973, 'code', 2)  // lastMethod
+  fromToBoldText(996, 1005, 'code', 3)  // fullMethod
+  
+  fromToBoldText(521, 536, 'log', 1)    //firstMethod
+  fromToBoldText(603, 617, 'log', 2)    //lastMethod
+  fromToBoldText(710, 724, 'log', 3)    //fullMethod
+}
+
   log = captureConsole("log-text");
 </script>
 
@@ -265,6 +278,7 @@ onLoaded = ([_loaded_files, _import_errors]) => {
 
   frank_herbet.extra='should be undefined'
   log(NL2+'Ignored extra ==', frank_herbet.extra)
+  copyAndColor()
 }
 
 orderedImport(class_files, onLoaded)
@@ -275,11 +289,3 @@ orderedImport(class_files, onLoaded)
   
 
 
-
-
-<script>
-
-
-  jsToDiv('js-code', "check-code");   //only color the non-checking 
-
-</script>

@@ -154,7 +154,7 @@ function _shapeObjectInArray_19008(error_number){
   const before_str = beforeCheck(check_array, object_type);
   const actual = type_czech._shapeObjectInArray(check_array, object_type, exact_shape);
   afterCheck(check_array, object_type, before_str, error_id);
-  const expected = `TC@98 - Variable 'check_array' must be an array but is instead a 'Object', : {'c':{'r':11},'d':{'r':22},'e':{'r':33}}`; 
+  const expected = `TC@98 - Variable '[object Object]' must be an array but is instead a 'Object', : {'c':{'r':11},'d':{'r':22},'e':{'r':33}}`; 
   if (actual!==expected) _throw(`${error_id} _shapeObjectInArray() misfired with : ${actual}`);
   failed_shapeObjectInArray +=type_czech.failureTally();
   passed_shapeObjectInArray ++;
