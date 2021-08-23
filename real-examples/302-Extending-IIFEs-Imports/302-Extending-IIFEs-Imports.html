@@ -5,12 +5,12 @@
 <link rel="stylesheet"
   href="https://fonts.googleapis.com/css?family=Inconsolata">
   
-<div id='js-div' style="width:35%; " >
+<div id='js-div' style="width:50%; " >
   <div id='js-code'>the javascript</div>
 </div>
 
 
-<div id="the-explanation" style="width:65%" >
+<div id="the-explanation" style="width:50%" >
   <div class='an-explantion'>302 - IIFE Modules Imported</div>
   <div id='explanation-text'>
 
@@ -24,6 +24,9 @@
       <li class='floating_li'><b>Full</b> deals with an author's salutation, first, and last name</li>
       <br>  <br><br>
   </ul>
+
+  <br><br>
+
     IIFEs are used for inheritance:
     <ul>
       <li>When TypeCzech is turned off, only production code is imported:
@@ -204,12 +207,12 @@
 
 
 
-<script src="../../consolelog.js">
+<script src="../../web-resources/consolelog.js">
 </script>
 
-<script src="./../ordered-import.js"></script>
+<script src="../../web-resources/ordered-import.js"></script>
 
-<link rel="stylesheet" href="../../type-czech.css">
+<link rel="stylesheet" href="../../web-resources/type-czech.css">
 <style>
 </style>
 
@@ -227,6 +230,19 @@
 
 
 <script>
+  
+function copyAndColor(){
+  jsToDiv('js-code', "check-code");      
+
+  fromToBoldText(861, 871, 'code', 1)  //firstMethod
+  fromToBoldText(899, 908, 'code', 2)  // lastMethod
+  fromToBoldText(922, 931, 'code', 3)  // fullMethod
+  
+  fromToBoldText(225, 240, 'log', 1)    //firstMethod
+  fromToBoldText(311, 325, 'log', 2)    //lastMethod
+  fromToBoldText(418, 432, 'log', 3)    //fullMethod
+}
+
   log = captureConsole("log-text");
 </script>
 
@@ -272,6 +288,7 @@ onLoaded = ([_loaded_files, _import_errors]) => {
   pkd.lastMethod(1985)
   linesConsole(1)
   pkd.fullMethod('The Man in the High Castle')
+  copyAndColor()
 }
 
 orderedImport(class_files, onLoaded)
@@ -284,10 +301,3 @@ orderedImport(class_files, onLoaded)
 
 
 
-
-<script>
-
-
-  jsToDiv('js-code', "check-code");   //only color the non-checking 
-
-</script>

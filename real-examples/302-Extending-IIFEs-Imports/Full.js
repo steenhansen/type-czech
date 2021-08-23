@@ -6,7 +6,7 @@ function Full() {
       last = Last(f_name, l_name)
       log(NL+LEVEL_2+`CONS-Full :${salu} ${f_name} ${l_name}`)
       fullMethod = function (a_book) { 
-        log(LEVEL_2+`fullMethod :${a_book} ${salu} ${l_name}`) 
+        log(LEVEL_2+`RUN -fullMethod :${a_book} ${salu} ${l_name}`) 
       }
       return {fullMethod, firstMethod:last.firstMethod, lastMethod:last.lastMethod}
     }
