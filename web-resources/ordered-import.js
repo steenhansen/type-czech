@@ -11,7 +11,7 @@ function orderedImport(class_urls, onLoaded) {
     js_script.src = src_url;
     js_script.async = true;
     js_script.onload = () => {
-      const no_min_src = src_url.replace('-min', '');
+      const no_min_src = src_url.replace('.min', '');
       const fname_no_js = /([A-Z_a-z]+)(\.js)$/;
       const class_names = no_min_src.match(fname_no_js);
       const file_function = class_names[1];
