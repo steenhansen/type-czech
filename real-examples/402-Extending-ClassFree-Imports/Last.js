@@ -1,4 +1,5 @@
 /* eslint-disable */
+  function Last(spec) {
 
   function Last(spec) {
     let {l_name} = spec
@@ -10,4 +11,6 @@
     last_object = {f_name, l_name, firstMethod, lastMethod}
       return Object.freeze(last_object)
 
+  }
+  return Last
   }

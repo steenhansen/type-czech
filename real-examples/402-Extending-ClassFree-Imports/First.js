@@ -1,4 +1,5 @@
 /* eslint-disable */
+function First() {
 
   function First(spec) {
     let {f_name} = spec
@@ -9,3 +10,5 @@
     first_object = {f_name, firstMethod}
     return Object.freeze(first_object)
   }
+  return First
+}

@@ -1,5 +1,7 @@
 /* eslint-disable */
 
+function Full() {
+
   function Full(spec) {
     let {salu} = spec
     let {f_name, l_name, firstMethod, lastMethod} = Last(spec)
@@ -11,4 +13,5 @@
     return Object.freeze(full_object)
 
   }
-
+  return Full
+}

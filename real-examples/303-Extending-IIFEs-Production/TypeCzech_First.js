@@ -5,7 +5,7 @@ function TypeCzech_First() {
     function PRE_First(f_name) { log(`${NL}PRE-First`) }
     function POST_First(First) { log(`${NL}POST-First`) }
     function PRE_firstMethod(a_date) { log(`${NL}PRE-firstMethod`) }
-    function POST_firstMethod() { log(`${NL}POST-firstMethod`) }
+    function POST_firstMethod() { log(`POST-firstMethod`) }
 
     First_PREs = { First: PRE_First, firstMethod: PRE_firstMethod }
     First_POSTs = { First: POST_First, firstMethod: POST_firstMethod }
