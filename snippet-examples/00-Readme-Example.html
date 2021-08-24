@@ -37,9 +37,9 @@
       
       <a title="13-Class-Interface.html" href="../snippet-examples/13-Class-Interface.html">13</a>
       
-      <a title="14-Parameter-and-Results-Multi-Scalar-Types.html" href="../snippet-examples/14-Parameter-and-Results-Multi-Scalar-Types.html">14</a>
+      <a title="14-Parameter-and-Results-Multi-Types.html" href="../snippet-examples/14-Parameter-and-Results-Multi-Types.html">14</a>
       
-      <a title="15-Parameter-and-Results-Multi-Types.html" href="../snippet-examples/15-Parameter-and-Results-Multi-Types.html">15</a>
+      <a title="15-Array-and-Object-Types.html" href="../snippet-examples/15-Array-and-Object-Types.html">15</a>
       
       <a title="16-Lone-Single-Type-Parameter-Functions.html" href="../snippet-examples/16-Lone-Single-Type-Parameter-Functions.html">16</a>
       
@@ -136,8 +136,46 @@
 <div id="the-explanation" style="width:51%" class='code-scroll'>
   <div class='an-explantion'>00 - Readme Example</div>
   <div id='explanation-text'>
-    
-  </div>
+    <br>
+ In this example, the checking function PRE_aLottery(), which is executed before
+ the production function aLottery() is turned on via
+<pre>
+type_czech = TypeCzech('LOG-ERRORS')
+
+  or
+
+type_czech = TypeCzech('THROW-EXCEPTIONS')
+</pre>
+
+TypeCzech monitoring is turned off via
+<pre>
+type_czech = TypeCzech('NO-CHECKING')
+
+  or
+
+type_czech = TypeCzech()
+</pre>
+ 
+ When TypeCzech is turned on, PRE_aLottery() ensures that aLottery()'s parameters
+  are a String, an Array 
+ of Numbers, and a Date with the type_czech.valid() call.
+<br><br>
+ PRE_aLottery() also gives warning when parameters are empty with the type_czech.valueless() call. This means that an error
+ occurs when the lottery_name is an empty string, and/or if there are no numbers in the lucky_numbers array. 
+ <br><br>
+TypeCzech functions are best used with the arguments object, the below is valid also.
+<pre>
+function PRE_aLottery(lottery_name, lucky_numbers, draw_date){
+  the_parameters = [lottery_name, lucky_numbers, draw_date]
+  type_issue = type_czech.valid(the_parameters, LOTTERY_SIGNATURE)
+  if (type_issue) return type_issue
+  return type_czech.valueless(the_parameters, ['EMPTY-ERROR'])
+}
+</pre>
+
+
+
+</div>
 
 
 <div id="console-log"  >
