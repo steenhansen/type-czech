@@ -5,12 +5,12 @@
 <link rel="stylesheet"
   href="https://fonts.googleapis.com/css?family=Inconsolata">
   
-<div id='js-div' style="width:55%; " class='code-scroll'>
+<div id='js-div' style="width:56%; " class='code-scroll'>
   <div id='js-code'>the javascript</div>
 </div>
 
 
-<div id="the-explanation" style="width:45%" >
+<div id="the-explanation" style="width:44%" >
   <div class='an-explantion'>301 - IIFE Modules Inline</div>
   <div id='explanation-text'>
  
@@ -226,7 +226,7 @@
 First = (f_name) => (
   function(f_name) {
     log(NL+`CONS-First :${f_name}`)
-    firstMethod = function(a_date) { log(NL+`RUN -firstMethod :${f_name} `, a_date) }
+    firstMethod = function(a_date) { log(NL+`RUN -firstMethod :${f_name} `, a_date)}
     return { firstMethod } 
   }
 )(f_name)
@@ -294,11 +294,6 @@ linesConsole(1)
 pkd.lastMethod(1985)
 linesConsole(1)
 pkd.fullMethod('The Man in the High Castle')
-
-
-
-
-
 </script>
 
 
@@ -313,8 +308,8 @@ jsToDiv('js-code', "check-code");
 
 
 fromToBoldText(125, 140, 'code', 1)  //RUN -firstMethod
-  fromToBoldText(403, 417, 'code', 2)  // RUN -lastMethod
-  fromToBoldText(757, 771, 'code', 3)  // RUN -fullMethod
+  fromToBoldText(402, 416, 'code', 2)  // RUN -lastMethod
+  fromToBoldText(756, 770, 'code', 3)  // RUN -fullMethod
 
  
 fromToBoldText(227, 242, 'log', 1)    //RUN -firstMethod

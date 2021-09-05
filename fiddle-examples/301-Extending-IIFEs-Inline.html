@@ -5,12 +5,12 @@
 <link rel="stylesheet"
   href="https://fonts.googleapis.com/css?family=Inconsolata">
   
-<div id='js-div' style="width:55%; " class='code-scroll'>
+<div id='js-div' style="width:56%; " class='code-scroll'>
   <div id='js-code'>the javascript</div>
 </div>
 
 
-<div id="the-explanation" style="width:45%" >
+<div id="the-explanation" style="width:44%" >
   <div class='an-explantion'>301 - IIFE Modules Inline</div>
   <div id='explanation-text'>
  
@@ -133,7 +133,7 @@
       
       <a title="37-Readme-Example-Lambda.html" href="https://jsfiddle.net/steen_hansen/cwfsubtv/?37-Readme-Example-Lambda" target="_blank">37</a>
   
-      <a title="38-Variadic-Functions.html" href="https://jsfiddle.net/steen_hansen/1umwvht5/?38-Variadic-Functions.html">38</a>
+      <a title="38-Variadic-Functions.html" href="https://jsfiddle.net/steen_hansen/1umwvht5/?38-Variadic-Functions.html" target="_blank">38</a>
 
       &nbsp;&nbsp;
   
@@ -194,13 +194,13 @@
 
 
 
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@0e507cb79aa1e42f57b79fd0085c3e9011ac26d0/web-resources/consolelog.js">
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@dbde87d054ff6b3200a26e4528c3074cd21a5761/web-resources/consolelog.js">
 </script>
 
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@0e507cb79aa1e42f57b79fd0085c3e9011ac26d0/web-resources/TypeCzech.min.js">
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@dbde87d054ff6b3200a26e4528c3074cd21a5761/web-resources/TypeCzech.min.js">
 </script>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@0e507cb79aa1e42f57b79fd0085c3e9011ac26d0/web-resources/type-czech.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@dbde87d054ff6b3200a26e4528c3074cd21a5761/web-resources/type-czech.css">
 <style>
 </style>
 
@@ -222,7 +222,7 @@
 First = (f_name) => (
   function(f_name) {
     log(NL+`CONS-First :${f_name}`)
-    firstMethod = function(a_date) { log(NL+`RUN -firstMethod :${f_name} `, a_date) }
+    firstMethod = function(a_date) { log(NL+`RUN -firstMethod :${f_name} `, a_date)}
     return { firstMethod } 
   }
 )(f_name)
@@ -290,11 +290,6 @@ linesConsole(1)
 pkd.lastMethod(1985)
 linesConsole(1)
 pkd.fullMethod('The Man in the High Castle')
-
-
-
-
-
 </script>
 
 
@@ -309,9 +304,8 @@ jsToDiv('js-code', "check-code");
 
 
 fromToBoldText(125, 140, 'code', 1)  //RUN -firstMethod
-  fromToBoldText(403, 417, 'code', 2)  // RUN -lastMethod
-  fromToBoldText(757, 771, 'code', 3)  // RUN -fullMethod
-
+  fromToBoldText(402, 416, 'code', 2)  // RUN -lastMethod
+  fromToBoldText(756, 770, 'code', 3)  // RUN -fullMethod
  
 fromToBoldText(227, 242, 'log', 1)    //RUN -firstMethod
 fromToBoldText(313, 327, 'log', 2)    //RUN -lastMethod

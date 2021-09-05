@@ -9,6 +9,47 @@
   <div id='js-code'>the javascript</div>
 
   
+
+  
+</div>
+
+
+<div id="the-explanation" style="width:36%" >
+  <div class='an-explantion'>32 - Extended Closure Type Checks</div>
+  <div id='explanation-text'>
+    <br>
+    It is possible to get PRE and POST checking on closures
+    that will be extended; both on its creation and the contained functions.
+    
+    <br><br>
+    But unlike with classes, closure declarations can be in any order with respect
+    to Type-Czech because of function hoisting.
+With the example to the left, the functions and the type_czech.check() 
+calls can be in any order, as below.
+<pre>
+/**/ Full = type_czech.check(Full, ...)
+function Full {}
+function Last {}
+/**/ Last = type_czech.check(Last, ...)
+/**/ First = type_czech.check(First, ...)
+fuction First{}
+</pre>
+        The ordering and depth of executions is recorded in the console to 
+        highlight the different stages and states.
+    <br><br>
+    
+  </div>
+
+
+
+
+  <div id="console-log" >
+    <div class='a-title'>Console Output</div>
+    <div id='log-text'></div>
+    <br>
+  </div>
+
+
   <br>
   <div id='js-fiddles'>
     jsFiddles:
@@ -88,7 +129,7 @@
       
       <a title="37-Readme-Example-Lambda.html" href="https://jsfiddle.net/steen_hansen/cwfsubtv/?37-Readme-Example-Lambda" target="_blank">37</a>
   
-      <a title="38-Variadic-Functions.html" href="https://jsfiddle.net/steen_hansen/1umwvht5/?38-Variadic-Functions.html">38</a>
+      <a title="38-Variadic-Functions.html" href="https://jsfiddle.net/steen_hansen/1umwvht5/?38-Variadic-Functions.html" target="_blank">38</a>
 
       &nbsp;&nbsp;
   
@@ -134,47 +175,6 @@
       <a title="603-Extending-OOLO-Production.html" href="https://jsfiddle.net/steen_hansen/ktezbg7c/?603-Extending-OOLO-Production" target="_blank">603</a>
   
     </div>
-  
-</div>
-
-
-<div id="the-explanation" style="width:36%" >
-  <div class='an-explantion'>32 - Extended Closure Type Checks</div>
-  <div id='explanation-text'>
-    <br>
-    It is possible to get PRE and POST checking on closures
-    that will be extended; both on its creation and the contained functions.
-    
-    <br><br>
-    But unlike with classes, closure declarations can be in any order with respect
-    to Type-Czech because of function hoisting.
-With the example to the left, the functions and the type_czech.check() 
-calls can be in any order, as below.
-<pre>
-/**/ Full = type_czech.check(Full, ...)
-function Full {}
-function Last {}
-/**/ Last = type_czech.check(Last, ...)
-/**/ First = type_czech.check(First, ...)
-fuction First{}
-</pre>
-        The ordering and depth of executions is recorded in the console to 
-        highlight the different stages and states.
-    <br><br>
-    
-  </div>
-
-
-
-
-  <div id="console-log" >
-    <div class='a-title'>Console Output</div>
-    <div id='log-text'></div>
-    <br>
-  </div>
-
-
-
 
 
 
@@ -190,13 +190,13 @@ fuction First{}
 
 
 
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@0e507cb79aa1e42f57b79fd0085c3e9011ac26d0/web-resources/consolelog.js">
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@dbde87d054ff6b3200a26e4528c3074cd21a5761/web-resources/consolelog.js">
 </script>
 
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@0e507cb79aa1e42f57b79fd0085c3e9011ac26d0/web-resources/TypeCzech.min.js">
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@dbde87d054ff6b3200a26e4528c3074cd21a5761/web-resources/TypeCzech.min.js">
 </script>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@0e507cb79aa1e42f57b79fd0085c3e9011ac26d0/web-resources/type-czech.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@dbde87d054ff6b3200a26e4528c3074cd21a5761/web-resources/type-czech.css">
 <style>
 </style>
 
@@ -270,7 +270,6 @@ function Full(salu, f_name, l_name){
   fullMethod = function (a_book) { log(LEVEL_2+`fullMethod :${a_book} ${salu} ${l_name}`) }
   return {fullMethod, firstMethod:last.firstMethod, lastMethod:last.lastMethod}
 }
-
 william_gibson = Full('Mr', 'William', 'Gibson')
 william_gibson.firstMethod(new Date(1984,6,1))
 william_gibson.lastMethod(1985)
