@@ -8,7 +8,7 @@
 ### No Library
 
     /**/  // TypeCzech = 'src not included in this page'
-
+    /**/
     /**/  if (typeof TypeCzech === 'function')
     /**/    type_czech = TypeCzech('LOG-ERRORS')
     /**/  else

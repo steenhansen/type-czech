@@ -14,7 +14,7 @@
 
 
 <div id="the-explanation" style="width:49%" >
-  <div class='an-explantion'>503 - Inherited Prototypes Production</div>
+  <div class='an-explantion'>503 - Inherited Prototypes Production - Recommended</div>
   <div id='explanation-text'>
    
    
@@ -134,6 +134,8 @@
       
       <a title="37-Readme-Example-Lambda.html" href="https://jsfiddle.net/steen_hansen/cwfsubtv/?37-Readme-Example-Lambda" target="_blank">37</a>
   
+      <a title="38-Variadic-Functions.html" href="https://jsfiddle.net/steen_hansen/1umwvht5/?38-Variadic-Functions.html">38</a>
+
       &nbsp;&nbsp;
   
       <a title="101-Extending-Classes-Inline.html" href="https://jsfiddle.net/steen_hansen/cnLrm6ad/?101-Extending-Classes-Inline" target="_blank">101</a>
@@ -195,13 +197,13 @@
 
 
 
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@c65104ee57e5cec5df551f5dd5ec3902d11a0401/web-resources/consolelog.js">
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@0e507cb79aa1e42f57b79fd0085c3e9011ac26d0/web-resources/consolelog.js">
 </script>
 
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@c65104ee57e5cec5df551f5dd5ec3902d11a0401/web-resources/ordered-import.js">
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@0e507cb79aa1e42f57b79fd0085c3e9011ac26d0/web-resources/ordered-import.js">
 </script>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@c65104ee57e5cec5df551f5dd5ec3902d11a0401/web-resources/type-czech.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@0e507cb79aa1e42f57b79fd0085c3e9011ac26d0/web-resources/type-czech.css">
 <style>
 </style>
 
@@ -226,12 +228,12 @@ function copyAndColor(){
 
   log = captureConsole("log-text");
 
-  const TYPE_CZECH_JS =  'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@c65104ee57e5cec5df551f5dd5ec3902d11a0401/web-resources/TypeCzech.min.js';
+  const TYPE_CZECH_JS =  'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@0e507cb79aa1e42f57b79fd0085c3e9011ac26d0/web-resources/TypeCzech.min.js';
 
-  const TC_FIRST_JS = 'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@c65104ee57e5cec5df551f5dd5ec3902d11a0401/real-examples/503-Extending-Prototypes-Production/TypeCzech_First.js';
-  const TC_LAST_JS = 'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@c65104ee57e5cec5df551f5dd5ec3902d11a0401/real-examples/503-Extending-Prototypes-Production/TypeCzech_Last.js';
-  const TC_FULL_JS =   'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@c65104ee57e5cec5df551f5dd5ec3902d11a0401/real-examples/503-Extending-Prototypes-Production/TypeCzech_Full.js';
-  const TC_PERSON_JS =   'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@c65104ee57e5cec5df551f5dd5ec3902d11a0401/real-examples/503-Extending-Prototypes-Production/TypeCzech_Person.js';
+  const TC_FIRST_JS = 'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@0e507cb79aa1e42f57b79fd0085c3e9011ac26d0/real-examples/503-Extending-Prototypes-Production/TypeCzech_First.js';
+  const TC_LAST_JS = 'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@0e507cb79aa1e42f57b79fd0085c3e9011ac26d0/real-examples/503-Extending-Prototypes-Production/TypeCzech_Last.js';
+  const TC_FULL_JS =   'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@0e507cb79aa1e42f57b79fd0085c3e9011ac26d0/real-examples/503-Extending-Prototypes-Production/TypeCzech_Full.js';
+  const TC_PERSON_JS =   'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@0e507cb79aa1e42f57b79fd0085c3e9011ac26d0/real-examples/503-Extending-Prototypes-Production/TypeCzech_Person.js';
 
 
 </script>
@@ -293,7 +295,7 @@ onLoaded = ([_loaded_files, _import_errors]) => {
 /**/  TYPE_CZECH_START = true
 /**/  //TYPE_CZECH_START = false
 /**/
-/**/  if (TYPE_CZECH_START) {
+/**/  if (typeof orderedImport === 'function' && TYPE_CZECH_START) {
 /**/    TYPE_CZECH_COMMANDS = ['LOG-ERRORS']
 /**/    const CHECKING_CLASS_FILES = [
 /**/          TYPE_CZECH_JS,

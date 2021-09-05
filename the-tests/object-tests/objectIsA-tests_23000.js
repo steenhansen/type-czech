@@ -9,9 +9,9 @@
 let passed_objectIsA = 0;
 let failed_objectIsA = 0;
 
-_objectIsA_23001(23001);
-_objectIsA_23002(23002);
-_objectIsA_23003(23003);
+_objectIsA_23001();
+_objectIsA_23002();
+_objectIsA_23003();
 
 total_fails += failed_objectIsA;
 console.log('_objectIsA failed tests', failed_objectIsA);
@@ -19,9 +19,10 @@ console.log('_objectIsA failed tests', failed_objectIsA);
 total_checks += passed_objectIsA;
 console.log('_objectIsA passed tests', passed_objectIsA);
 
-function _objectIsA_23001(error_number) {
-  const type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
-  const error_id = errorLabel(error_number);
+function _objectIsA_23001() {
+  type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  TYPE_CZECH_current_test_number = '23001';
+  error_id = errorLabel(TYPE_CZECH_current_test_number);
 
   if (type_czech.objectIsA([], 'Array')) {
     passed_objectIsA += 1;
@@ -164,9 +165,10 @@ function _objectIsA_23001(error_number) {
   }
 }
 
-function _objectIsA_23002(error_number) {
-  const type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
-  const error_id = errorLabel(error_number);
+function _objectIsA_23002() {
+  type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  TYPE_CZECH_current_test_number = '23002';
+  error_id = errorLabel(TYPE_CZECH_current_test_number);
 
   class First { constructor() { } }
   class Last extends First { constructor() { super(); } }
@@ -198,30 +200,32 @@ function _objectIsA_23002(error_number) {
   }
 }
 
-function _objectIsA_23003(error_number) {
-  const type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
-  const error_id = errorLabel(error_number);
+function _objectIsA_23003() {
+  if (typeof document !== 'undefined') {
+    type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+    TYPE_CZECH_current_test_number = '23003';
+    error_id = errorLabel(TYPE_CZECH_current_test_number);
+    a_div = document.createElement('div');
 
-  const a_div = document.createElement('div');
+    if (type_czech.objectIsA(a_div, 'HTMLDivElement')) {
+      passed_objectIsA += 1;
+    } else {
+      failed_objectIsA += 1;
+      console.log(`${error_id} type_czech.objectIsA(a_div, 'HTMLDivElement')`);
+    }
 
-  if (type_czech.objectIsA(a_div, 'HTMLDivElement')) {
-    passed_objectIsA += 1;
-  } else {
-    failed_objectIsA += 1;
-    console.log(`${error_id} type_czech.objectIsA(a_div, 'HTMLDivElement')`);
-  }
+    if (!type_czech.objectIsA(a_div, 'htmlDivElement')) {
+      passed_objectIsA += 1;
+    } else {
+      failed_objectIsA += 1;
+      console.log(`${error_id} type_czech.objectIsA(a_div, 'HTMLDivElement')`);
+    }
 
-  if (!type_czech.objectIsA(a_div, 'htmlDivElement')) {
-    passed_objectIsA += 1;
-  } else {
-    failed_objectIsA += 1;
-    console.log(`${error_id} type_czech.objectIsA(a_div, 'HTMLDivElement')`);
-  }
-
-  if (type_czech.objectIsA(window, 'Window')) {
-    passed_objectIsA += 1;
-  } else {
-    failed_objectIsA += 1;
-    console.log(`${error_id} type_czech.objectIsA(window, 'Window')`);
+    if (type_czech.objectIsA(window, 'Window')) {
+      passed_objectIsA += 1;
+    } else {
+      failed_objectIsA += 1;
+      console.log(`${error_id} type_czech.objectIsA(window, 'Window')`);
+    }
   }
 }

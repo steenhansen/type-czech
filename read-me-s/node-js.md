@@ -2,24 +2,25 @@
 
 
 
-# NodeJs Example
+# Node.js
+
 
 To run 'node node-example.js'
 
-    const { TypeCzech } = require('./TypeCzech.js');
-
-    const type_czech = TypeCzech('LOG-ERRORS');
-    // const type_czech = TypeCzech('NO-CHECKING');
-
-    const LOTTERY_SIGNATURE = ['String', ['Number'], 'Date'];
-
-    function PRE_aLottery(lottery_name, lucky_numbers, draw_date) {
-      const type_issue = type_czech.valid(arguments, LOTTERY_SIGNATURE);
-      if (type_issue) return type_issue;
-      return type_czech.valueless(arguments, ['EMPTY-ERROR']);
-    }
-
-    aLottery = type_czech.check(aLottery, PRE_aLottery);
+    /**/  const { TypeCzech } = require('./TypeCzech.js');
+    /**/  
+    /**/  const type_czech = TypeCzech('LOG-ERRORS');
+    /**/  // const type_czech = TypeCzech('NO-CHECKING');
+    /**/  
+    /**/  const LOTTERY_SIGNATURE = ['String', ['Number'], 'Date'];
+    /**/  
+    /**/  function PRE_aLottery(lottery_name, lucky_numbers, draw_date) {
+    /**/    const type_issue = type_czech.valid(arguments, LOTTERY_SIGNATURE);
+    /**/    if (type_issue) return type_issue;
+    /**/    return type_czech.valueless(arguments, ['EMPTY-ERROR']);
+    /**/  }
+    /**/  
+    /**/  aLottery = type_czech.check(aLottery, PRE_aLottery);
 
     function aLottery(lottery_name, lucky_numbers, draw_date) {
       const the_lottery = `::: ${lottery_name} ::: ${lucky_numbers} :::`;

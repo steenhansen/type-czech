@@ -1,6 +1,30 @@
 
 ## How To:
 
+### Check parameter type:
+
+    /**/  type_czech = TypeCzech('THROW-EXCEPTIONS')
+    /**/  
+    /**/  function PRE_aString(a_string){
+    /**/    return type_czech.valid(arguments, 'String')
+    /**/  }
+    /**/  
+    /**/  aString = type_czech.check(aString, PRE_aString) 
+
+    function aString(an_str){
+    }
+
+    aString('a-string')
+    >>
+    
+    aString(99)          
+    >>Uncaught  PRE_aString() aString() PRE-FUNC: The variable '99', which is a 'Number', is not a 'String'
+    >>                valid(arguments, expected_types)
+    >>                 ACTUAL TYPES 'Number'
+    >>                 ACTUAL VALUE 99
+    >>                EXPECTED TYPE 'String'
+    >>        CALLING FUNCTION PRE_aString(a_string)
+
 ### Check for a positive parameter number:
 
     /**/  type_czech = TypeCzech('LOG-ERRORS')
@@ -97,29 +121,6 @@
     expectsAsc(4444,333,2,1)       
     >>Error, array is not ascending : 4444,333,2,1
 
-### Check parameter type:
-
-    /**/  type_czech = TypeCzech('THROW-EXCEPTIONS')
-    /**/  
-    /**/  function PRE_aString(a_string){
-    /**/    return type_czech.valid(arguments, 'String')
-    /**/  }
-    /**/  
-    /**/  aString = type_czech.check(aString, PRE_aString) 
-
-    function aString(an_str){
-    }
-
-    aString('a-string')
-    >>
-    
-    aString(99)          
-    >>Uncaught  PRE_aString() aString() PRE-FUNC: The variable '99', which is a 'Number', is not a 'String'
-    >>                valid(arguments, expected_types)
-    >>                 ACTUAL TYPES 'Number'
-    >>                 ACTUAL VALUE 99
-    >>                EXPECTED TYPE 'String'
-    >>        CALLING FUNCTION PRE_aString(a_string)
 
 
 ### Check parameter has a value:
@@ -233,10 +234,34 @@
     >>               EXPECTED TYPE '[['Number']]'
     >>       CALLING FUNCTION POST_arrArrRes()
 
+### Check array parameter is an array of exactly 3 numbers
 
+    /**/  type_czech = TypeCzech('LOG-ERRORS') 
+    /**/  
+    /**/  function PRE_arrOf3Nums(arr_of_3_nums){
+    /**/    arr_len = arr_of_3_nums.length
+    /**/    if (arr_len !== 3) return `Array length is ${arr_len} <> 3`
+    /**/    return type_czech.valid(arguments, ['Number'])
+    /**/  }
+    /**/  
+    /**/  arrOf3Nums = type_czech.check(arrOf3Nums, PRE_arrOf3Nums) 
 
+    function arrOf3Nums(arr_of_3_nums){
+    }
 
+    arrOf3Nums([1,2,3]) 
+    >>
 
+    arrOf3Nums([1,2,3,4])
+    >>Array length is 4 <> 3
+
+    arrOf3Nums(['one',2,3])
+    >>PRE_arrOf3Nums() arrOf3Nums() PRE-FUNC: INDEX '0' is asserted to be a 'Number', but is fallaciously a 'String' : one
+    >>               valid(arguments, expected_types)
+    >>                   ACTUAL TYPES 'Array'
+    >>                   ACTUAL VALUE ['one',2,3]
+    >>                  EXPECTED TYPE ['Number']
+    >>               CALLING FUNCTION PRE_arrOf3Nums(arr_of_3_nums)
 
 ### Check for mutations, type errors, empty parameters
     /**/  if (typeof TypeCzech === 'function') 
@@ -322,3 +347,112 @@
     >>              CALLING FUNCTION PRE_isElvis(name_object)
 
 
+
+
+
+
+
+
+
+
+# BELOW-USED-TO-BE-IN-MAIN-READ-ME
+
+
+#### Check parameter for Number type
+    /**/  type_czech = TypeCzech('LOG-ERRORS')
+    /**/
+    /**/  function PRE_numFunc(a_number){
+    /**/    return type_czech.valid(a_number, 'Number') 
+    /**/  }
+    /**/
+    /**/  numFunc = type_czech.check(numFunc, PRE_numFunc) 
+
+    function numFunc(a_number){
+      console.log('a-number', a_number)
+    }
+    
+    numFunc(17)
+    >>a-number 17
+    
+    numFunc('error-not-a-number')
+    >>PRE_numFunc() numFunc() PRE-FUNC: The variable 'error-not-a-number', which is a 'String', is not a 'Number'
+    >>     valid(arguments, expected_types)
+    >>         ACTUAL TYPES 'String'
+    >>         ACTUAL VALUE 'error-not-a-number'
+    >>        EXPECTED TYPE 'Number'
+    >>     CALLING FUNCTION PRE_numFunc(a_number)
+    >>a-number error-not-a-number
+
+
+
+#### Check parameter for Array type
+    /**/  type_czech = TypeCzech('THROW-EXCEPTIONS')
+    /**/
+    /**/  function PRE_arrayFunc(an_array){
+    /**/    return type_czech.valid(an_array, 'Array') 
+    /**/  }
+    /**/  
+    /**/  arrayFunc = type_czech.check(arrayFunc, PRE_arrayFunc) 
+    
+    function arrayFunc(an_array){
+      console.log('an_array', an_array)
+    }
+    
+    arrayFunc(['a', 17, false])
+    >>an_array Array(3) [ "a", 17, false ]
+
+    arrayFunc('error-not-an-array')
+    >>Uncaught  PRE_arrayFunc() arrayFunc() PRE-FUNC: The variable 'error-not-an-array', which is a 'String', is not a 'Array'
+    >>                valid(arguments, expected_types)
+    >>                    ACTUAL TYPES 'String'
+    >>                    ACTUAL VALUE 'error-not-an-array'
+    >>                   EXPECTED TYPE 'Array'
+    >>                CALLING FUNCTION PRE_arrayFunc(an_array)
+
+#### Check parameter for Array of Numbers type
+    /**/  type_czech = TypeCzech('THROW-EXCEPTIONS')
+    /**/
+    /**/  function PRE_numArray(a_num_arr){
+    /**/    return type_czech.valid(a_num_arr, ['Number']) 
+    /**/  }
+    /**/  
+    /**/  numArray = type_czech.check(numArray, PRE_numArray) 
+    
+    function numArray(a_num_arr){
+      console.log('a_num_arr', a_num_arr)
+    }
+    
+    numArray([99, 13, 256])
+    >>a_num_arr Array(3) [ 99, 13, 256 ]
+
+    numArray([42, 17, false])
+    >>Uncaught  PRE_numArray() numArray() PRE-FUNC: INDEX '2' is asserted to be a 'Number', but is fallaciously a 'Boolean' : false
+    >>                valid(arguments, expected_types)
+    >>                    ACTUAL TYPES 'Array'
+    >>                    ACTUAL VALUE [42,17,false]
+    >>                   EXPECTED TYPE ['Number']
+    >>                CALLING FUNCTION PRE_numArray(a_num_arr)
+
+#### Check parameter for Array of Array of Numbers type
+    /**/  type_czech = TypeCzech('THROW-EXCEPTIONS')
+    /**/
+    /**/  function PRE_numArrArr(a_num_arr){
+    /**/    return type_czech.valid(arguments, [ ['Number'] ]) 
+    /**/  }
+    /**/  
+    /**/  numArrArr = type_czech.check(numArrArr, PRE_numArrArr) 
+
+    function numArrArr(a_num_arr){
+      console.log('a_num_arr', a_num_arr)
+    }
+    
+    numArrArr([[99, 13, 256]])
+    >>a_num_arr Array [ (3) [99, 13, 256] ]
+
+    numArrArr([[42, 17, false]])
+    >>Uncaught  PRE_numArrArr() numArrArr() PRE-FUNC: INDEX '2' is asserted to be a 'Number', but is fallaciously a 'Boolean' : false
+    >>                valid(arguments, expected_types)
+    >>                    ACTUAL TYPES 'Array'
+    >>                    ACTUAL VALUE [[42,17,false]]
+    >>                   EXPECTED TYPE [['Number']]
+    >>                CALLING FUNCTION PRE_numArrArr(a_num_arr)

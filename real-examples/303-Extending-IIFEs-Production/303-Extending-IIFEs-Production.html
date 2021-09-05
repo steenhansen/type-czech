@@ -11,7 +11,7 @@
 
 
 <div id="the-explanation" style="width:43%" >
-  <div class='an-explantion'>303 - IIFE Modules Production</div>
+  <div class='an-explantion'>303 - IIFE Modules Production - Recommended</div>
   <div id='explanation-text'>
 
 
@@ -133,6 +133,8 @@
       
       <a title="37-Readme-Example-Lambda.html" href="../../snippet-examples/37-Readme-Example-Lambda.html">37</a>
   
+      <a title="38-Variadic-Functions.html" href="../../snippet-examples/38-Variadic-Functions.html">38</a>
+
       &nbsp;&nbsp;
   
       <a title="101-Extending-Classes-Inline.html" href="../../real-examples/101-Extending-Classes-Inline.html">101</a>
@@ -285,7 +287,7 @@ onLoaded = ([_loaded_files, _import_errors]) => {
 /**/  TYPE_CZECH_START = true
 /**/  //TYPE_CZECH_START = false
 /**/
-/**/  if (TYPE_CZECH_START) {
+/**/  if (typeof orderedImport === 'function' && TYPE_CZECH_START) {
 /**/    TYPE_CZECH_COMMANDS = ['LOG-ERRORS']
 /**/    const CHECKING_CLASS_FILES = ['../../TypeCzech.js',
 /**/                                  './TypeCzech_First.js',

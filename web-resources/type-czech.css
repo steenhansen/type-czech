@@ -28,6 +28,7 @@
 }
 #js-div{
   float:left;
+  height:98vh;
 }
 #js-fiddles{ 
   float:left;  
@@ -39,7 +40,6 @@
   tab-size: 4;
   -moz-tab-size: 4;
   margin-left: 8px;
-  /* margin-top: -32px;  */
   overflow-x:auto; 
 }
 #js-files{
@@ -51,6 +51,7 @@
 #the-explanation{
   float:right; 
   background-color: #dddddd; 
+  height:98vh;
 }
 ul{
   padding-left: 16px; 

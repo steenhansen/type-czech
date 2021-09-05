@@ -2,6 +2,32 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-console */
 
+
+
+
+
+
+/*
+  Since console.log() is wrapped, use console.old() to only log to console.
+
+  Example: console.old('window', window)
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 REPLACE_NL_TAB_TAB = new RegExp(/\\n\\t\\t/g);
 MATCH_NL_TAB_TAB = new RegExp(/\n\t\t/g);
 CONSOLE_LOG_NEWLINE = '|';
@@ -35,7 +61,6 @@ const NBSP_REGEX = new RegExp(/~/, 'g');
 const UNDEFINED_AS_STR = 'un-defined';
 
 function startCurlyDates(log_text) {
-  //   'MANU':'Toyota',
   const no_news = log_text.replace(/\n/g, '');
   const p11 = no_news.replace(/([^}]),'/, "$1,'");
   const p3 = p11.split("},'");
@@ -220,6 +245,9 @@ function captureConsole(div_id) {
       if (Number.isNaN(value)) {
         return '-NaN-';
       }
+      if (typeof value === 'bigint') {
+        return `${value}n`;
+      }
       if (typeof value === 'function' || (value && value.constructor === RegExp)) {
         const func_text = String(value);
         const func_start = func_text.substring(0, 30);
@@ -228,7 +256,6 @@ function captureConsole(div_id) {
       }
       return value;
     }
-
     json_quotes = JSON.stringify(args[0], _stringifyReplacer, 2);
     if (json_quotes[0] === '"') {
       json_str = json_quotes.slice(1, -1);
@@ -300,7 +327,12 @@ function captureConsole(div_id) {
     } else {
       htmlNoColor(args[0]);
       if (typeof args[1] !== 'undefined') {
-        const json_1 = JSON.stringify(args[1]);
+        let json_1;
+        if (typeof args[1] === 'bigint') {
+          json_1 = `${args[1]}n`;
+        } else {
+          json_1 = JSON.stringify(args[1]);
+        }
         htmlNoColor(json_1);
       }
     }

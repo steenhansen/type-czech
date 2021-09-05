@@ -8,8 +8,8 @@ Enjoy some TypeScript benefits without the drawbacks of:
   - compile time only checks
   - fragile entanglement
 
-The central idea is to have detachable JavaScript checking routines run before and after your 
-own functions that can test types, emptiness, and mutations. These PRE and POST routines can be 
+The central idea is to have detachable JavaScript parameter checking routines run before and after your 
+own functions to test types, emptiness, and mutations. These PRE and POST routines can be 
 turned on or off at run-time.
 
 With TypeCzech you can:
@@ -19,12 +19,12 @@ With TypeCzech you can:
  - test function arguments and results for distinct properties
  - catch reference mutations in function parameters
  - establish if an object matches an interface
- - ignore types of extra optional parameters
 
 Missing from TypeCzech:
 
  - type inference
  - checking types of optional function parameters
+ - generics
 
 ## TypeCzech Example:
 
@@ -102,119 +102,60 @@ This example shows:
     >>            CALLING FUNCTION PRE_aLottery(lottery_name, lucky_numbers, draw_date)
     >>::: 1,2,3,4,5,26 :::1999-12-31
 
-#### Check parameter for Number type
-    /**/  type_czech = TypeCzech('LOG-ERRORS')
-    /**/
-    /**/  function PRE_numFunc(a_number){
-    /**/    return type_czech.valid(a_number, 'Number') 
-    /**/  }
-    /**/
-    /**/  numFunc = type_czech.check(numFunc, PRE_numFunc) 
 
-    function numFunc(a_number){
-      console.log('a-number', a_number)
-    }
-    
-    numFunc(17)
-    >>a-number 17
-    
-    numFunc('error-not-a-number')
-    >>PRE_numFunc() numFunc() PRE-FUNC: The variable 'error-not-a-number', which is a 'String', is not a 'Number'
-    >>     valid(arguments, expected_types)
-    >>         ACTUAL TYPES 'String'
-    >>         ACTUAL VALUE 'error-not-a-number'
-    >>        EXPECTED TYPE 'Number'
-    >>     CALLING FUNCTION PRE_numFunc(a_number)
-    >>a-number error-not-a-number
+
+## Examples
+
+
+### [How To Snippets](/read-me-s/how-to-snippets.md)
 
 
 
-#### Check parameter for Array type
-    /**/  type_czech = TypeCzech('THROW-EXCEPTIONS')
-    /**/
-    /**/  function PRE_arrayFunc(an_array){
-    /**/    return type_czech.valid(an_array, 'Array') 
-    /**/  }
-    /**/  
-    /**/  arrayFunc = type_czech.check(arrayFunc, PRE_arrayFunc) 
-    
-    function arrayFunc(an_array){
-      console.log('an_array', an_array)
-    }
-    
-    arrayFunc(['a', 17, false])
-    >>an_array Array(3) [ "a", 17, false ]
 
-    arrayFunc('error-not-an-array')
-    >>Uncaught  PRE_arrayFunc() arrayFunc() PRE-FUNC: The variable 'error-not-an-array', which is a 'String', is not a 'Array'
-    >>                valid(arguments, expected_types)
-    >>                    ACTUAL TYPES 'String'
-    >>                    ACTUAL VALUE 'error-not-an-array'
-    >>                   EXPECTED TYPE 'Array'
-    >>                CALLING FUNCTION PRE_arrayFunc(an_array)
 
-#### Check parameter for Array of Numbers type
-    /**/  type_czech = TypeCzech('THROW-EXCEPTIONS')
-    /**/
-    /**/  function PRE_numArray(a_num_arr){
-    /**/    return type_czech.valid(a_num_arr, ['Number']) 
-    /**/  }
-    /**/  
-    /**/  numArray = type_czech.check(numArray, PRE_numArray) 
-    
-    function numArray(a_num_arr){
-      console.log('a_num_arr', a_num_arr)
-    }
-    
-    numArray([99, 13, 256])
-    >>a_num_arr Array(3) [ 99, 13, 256 ]
+### [Self-Contained Live TypeCzech Fiddles](/read-me-s/live-fiddle-samples.md)
 
-    numArray([42, 17, false])
-    >>Uncaught  PRE_numArray() numArray() PRE-FUNC: INDEX '2' is asserted to be a 'Number', but is fallaciously a 'Boolean' : false
-    >>                valid(arguments, expected_types)
-    >>                    ACTUAL TYPES 'Array'
-    >>                    ACTUAL VALUE [42,17,false]
-    >>                   EXPECTED TYPE ['Number']
-    >>                CALLING FUNCTION PRE_numArray(a_num_arr)
+### [Self-Contained Browsable Examples](/read-me-s/web-browserable-examples.md)
 
-#### Check parameter for Array of Array of Numbers type
-    /**/  type_czech = TypeCzech('THROW-EXCEPTIONS')
-    /**/
-    /**/  function PRE_numArrArr(a_num_arr){
-    /**/    return type_czech.valid(arguments, [ ['Number'] ]) 
-    /**/  }
-    /**/  
-    /**/  numArrArr = type_czech.check(numArrArr, PRE_numArrArr) 
 
-    function numArrArr(a_num_arr){
-      console.log('a_num_arr', a_num_arr)
-    }
-    
-    numArrArr([[99, 13, 256]])
-    >>a_num_arr Array [ (3) [99, 13, 256] ]
 
-    numArrArr([[42, 17, false]])
-    >>Uncaught  PRE_numArrArr() numArrArr() PRE-FUNC: INDEX '2' is asserted to be a 'Number', but is fallaciously a 'Boolean' : false
-    >>                valid(arguments, expected_types)
-    >>                    ACTUAL TYPES 'Array'
-    >>                    ACTUAL VALUE [[42,17,false]]
-    >>                   EXPECTED TYPE [['Number']]
-    >>                CALLING FUNCTION PRE_numArrArr(a_num_arr)
 
-## [Example Style](/read-me/example-style.md)
+## [TypeCzech Methods](/read-me-s/methods.md)
 
-## [How To Snippets](/read-me/how-to-snippets.md)
 
-## [Detaching TypeCzech for Production](/read-me/detaching-checking-code.md)
 
-## [Self-Contained Live TypeCzech Fiddles](/read-me/live-fiddle-samples.md)
 
-## [Self-Contained Browsable Examples](/read-me/web-browserable-examples.md)
+
+
+## [Node.js](/read-me-s/node-js.md)
+
+
+
+
+
+
+## [Tests](/read-me-s/node-and-web-tests.md)
+
+
+
+
+## [Example Style](/read-me-s/example-style.md)
+
+
+
+## [Detaching TypeCzech for Production](/read-me-s/detaching-checking-code.md)
+
+
+
+## [_Dependencies](/read-me-s/_Dependencies.md)
 
 
 ## Created by
 
 [Steen Hansen](https://github.com/steenhansen)
+
+
+Note that these above example programs can be run in the console when TypeCzech/web-resources/test-console-repl.html is loaded in a web browser.
 
 
 
