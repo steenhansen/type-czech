@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-passed_shapeVariable = 0;
+tested_shapeVariable = 0;
 failed_shapeVariable = 0;
 
  _shapeVariable_22001();
@@ -15,8 +15,8 @@ _shapeVariable_22006();
 total_fails += failed_shapeVariable;
 console.log('_shapeVariable failed tests', failed_shapeVariable);
 
-total_checks += passed_shapeVariable;
-console.log('_shapeVariable passed tests', passed_shapeVariable);
+total_checks += tested_shapeVariable;
+console.log('_shapeVariable passed tests', tested_shapeVariable);
 
 
 
@@ -50,7 +50,7 @@ function _shapeVariable_22001(){
   }
   if (typeof failed_shapeVariable !== 'undefined') {
     failed_shapeVariable +=type_czech.failureTally();
-    passed_shapeVariable ++;
+    tested_shapeVariable ++;
   }
 }
 
@@ -90,7 +90,7 @@ function _shapeVariable_22002(){
   }
   if (typeof failed_shapeVariable !== 'undefined') {
     failed_shapeVariable +=type_czech.failureTally();
-    passed_shapeVariable ++;
+    tested_shapeVariable ++;
   }
 }
 
@@ -130,7 +130,7 @@ function _shapeVariable_22003(){
   }
   if (typeof failed_shapeVariable !== 'undefined') {
     failed_shapeVariable +=type_czech.failureTally();
-    passed_shapeVariable ++;
+    tested_shapeVariable ++;
   }
 }
 
@@ -169,7 +169,7 @@ function _shapeVariable_22004(){
   }
   if (typeof failed_shapeVariable !== 'undefined') {
     failed_shapeVariable +=type_czech.failureTally();
-    passed_shapeVariable ++;
+    tested_shapeVariable ++;
   }
 }
 
@@ -209,7 +209,7 @@ function _shapeVariable_22005(){
   }
   if (typeof failed_shapeVariable !== 'undefined') {
     failed_shapeVariable +=type_czech.failureTally();
-    passed_shapeVariable ++;
+    tested_shapeVariable ++;
   }
 }
 
@@ -250,7 +250,7 @@ function _shapeVariable_22006(){
   }
   if (typeof failed_shapeVariable !== 'undefined') {
     failed_shapeVariable +=type_czech.failureTally();
-    passed_shapeVariable ++;
+    tested_shapeVariable ++;
   }
 }
 
@@ -286,7 +286,7 @@ function _shapeVariable_22007(){
   }
   if (typeof failed_shapeVariable !== 'undefined') {
     failed_shapeVariable +=type_czech.failureTally();
-    passed_shapeVariable ++;
+    tested_shapeVariable ++;
   }
 }
 
@@ -320,6 +320,6 @@ function _shapeVariable_22008(){
   }
   if (typeof failed_shapeVariable !== 'undefined') {
     failed_shapeVariable +=type_czech.failureTally();
-    passed_shapeVariable ++;
+    tested_shapeVariable ++;
   }
 }

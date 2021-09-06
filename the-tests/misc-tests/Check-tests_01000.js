@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-passed_check = 0;
+tested_check = 0;
 
 failed_check = 0;
 
@@ -12,8 +12,8 @@ check_01004();
  total_fails += failed_check;
  console.log('check failed tests', failed_check)
 
-total_checks += passed_check;
-console.log('check passed tests', passed_check)
+total_checks += tested_check;
+console.log('check passed tests', tested_check)
 
 function check_01001(){
   type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS'
@@ -43,7 +43,7 @@ function check_01001(){
   }
   if (typeof failed_check !== 'undefined') {
     failed_check +=type_czech.failureTally();
-    passed_check ++;
+    tested_check ++;
   }
 }
 
@@ -70,7 +70,7 @@ function check_01002(){
   }
   if (typeof failed_check !== 'undefined') {
     failed_check +=type_czech.failureTally();
-    passed_check ++;
+    tested_check ++;
   }
 }
 
@@ -95,7 +95,7 @@ function check_01003(){
   }
   if (typeof failed_check !== 'undefined') {
     failed_check +=type_czech.failureTally();
-    passed_check ++;
+    tested_check ++;
   }
 }
 
@@ -120,6 +120,6 @@ function check_01004(){
   }
   if (typeof failed_check !== 'undefined') {
     failed_check +=type_czech.failureTally();
-    passed_check ++;
+    tested_check ++;
   }
 }

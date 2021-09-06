@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-passed_objectInterface = 0;
+tested_objectInterface = 0;
 failed_objectInterface = 0;
 
 
@@ -12,8 +12,8 @@ _objectInterface_25003();
 total_fails += failed_objectInterface;
 console.log('_objectInterface failed tests', failed_objectInterface)
 
-total_checks += passed_objectInterface;
-console.log('_objectInterface passed tests', passed_objectInterface)
+total_checks += tested_objectInterface;
+console.log('_objectInterface passed tests', tested_objectInterface)
 
 
 function _objectInterface_25001() {
@@ -25,7 +25,7 @@ function _objectInterface_25001() {
     failed_objectInterface += 1;
     console.log(`${error_id} type_czech.objectInterface(new Date('1999-12-31')`);
   } else {
-    passed_objectInterface += 1;
+    tested_objectInterface += 1;
   }
 }
 
@@ -40,8 +40,10 @@ function _objectInterface_25002() {
       failed_objectInterface += 1;
       console.log(`${error_id} type_czech.objectInterface(document.createElement('div'))`);
     } else {
-      passed_objectInterface += 1;
+      tested_objectInterface += 1;
     }
+  } else {
+    tested_objectInterface += 1;
   }
 }
 
@@ -60,7 +62,9 @@ function _objectInterface_25003() {
       failed_objectInterface += 1;
       console.log(`${error_id} type_czech.objectInterface(document.createElement('div'))`);
     } else {
-      passed_objectInterface += 1;
+      tested_objectInterface += 1;
     }
+  } else {
+    tested_objectInterface += 1;
   }
 }

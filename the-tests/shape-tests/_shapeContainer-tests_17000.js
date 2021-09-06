@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-passed_shapeContainer = 0;
+tested_shapeContainer = 0;
 
 failed_shapeContainer = 0;
 
@@ -25,8 +25,8 @@ _shapeContainer_17103();
 total_fails += failed_shapeContainer;
 console.log('_shapeContainer failed tests', failed_shapeContainer);
 
-total_checks += passed_shapeContainer;
-console.log('_shapeContainer passed tests', passed_shapeContainer);
+total_checks += tested_shapeContainer;
+console.log('_shapeContainer passed tests', tested_shapeContainer);
 
 function _shapeContainer_17001(){
   type_czech=TypeCzech('LOG-ERRORS', 'DEBUG-ERROR-TAGS'
@@ -48,7 +48,7 @@ function _shapeContainer_17001(){
   }
   if (typeof failed_shapeContainer !== 'undefined') {
     failed_shapeContainer +=type_czech.failureTally();
-    passed_shapeContainer ++;
+    tested_shapeContainer ++;
   }
 }
 
@@ -73,7 +73,7 @@ function _shapeContainer_17002(){
   }
   if (typeof failed_shapeContainer !== 'undefined') {
     failed_shapeContainer +=type_czech.failureTally();
-    passed_shapeContainer ++;
+    tested_shapeContainer ++;
   }
 }
 
@@ -97,7 +97,7 @@ function _shapeContainer_17003(){
   }
   if (typeof failed_shapeContainer !== 'undefined') {
     failed_shapeContainer +=type_czech.failureTally();
-    passed_shapeContainer ++;
+    tested_shapeContainer ++;
   }
 }
 
@@ -123,7 +123,7 @@ function _shapeContainer_17004(){
   }
   if (typeof failed_shapeContainer !== 'undefined') {
     failed_shapeContainer +=type_czech.failureTally();
-    passed_shapeContainer ++;
+    tested_shapeContainer ++;
   }
 }
 
@@ -149,7 +149,7 @@ function _shapeContainer_17005(){
   }
   if (typeof failed_shapeContainer !== 'undefined') {
     failed_shapeContainer +=type_czech.failureTally();
-    passed_shapeContainer ++;
+    tested_shapeContainer ++;
   }
 }
 
@@ -180,7 +180,7 @@ function _shapeContainer_17006(){
   }
   if (typeof failed_shapeContainer !== 'undefined') {
     failed_shapeContainer +=type_czech.failureTally();
-    passed_shapeContainer ++;
+    tested_shapeContainer ++;
   }
 }
 
@@ -206,7 +206,7 @@ function _shapeContainer_17007(){
   }
   if (typeof failed_shapeContainer !== 'undefined') {
     failed_shapeContainer +=type_czech.failureTally();
-    passed_shapeContainer ++;
+    tested_shapeContainer ++;
   }
 }
 
@@ -231,7 +231,7 @@ function _shapeContainer_17008(){
   }
   if (typeof failed_shapeContainer !== 'undefined') {
     failed_shapeContainer +=type_czech.failureTally();
-    passed_shapeContainer ++;
+    tested_shapeContainer ++;
   }
 }
 
@@ -256,7 +256,7 @@ function _shapeContainer_17009(){
   }
   if (typeof failed_shapeContainer !== 'undefined') {
     failed_shapeContainer +=type_czech.failureTally();
-    passed_shapeContainer ++;
+    tested_shapeContainer ++;
   }
 }
 
@@ -282,7 +282,7 @@ function _shapeContainer_17101(){
   }
   if (typeof failed_shapeContainer !== 'undefined') {
     failed_shapeContainer +=type_czech.failureTally();
-    passed_shapeContainer ++;
+    tested_shapeContainer ++;
   }
 }
 
@@ -312,7 +312,7 @@ function _shapeContainer_17102(){
   }
   if (typeof failed_shapeContainer !== 'undefined') {
     failed_shapeContainer +=type_czech.failureTally();
-    passed_shapeContainer ++;
+    tested_shapeContainer ++;
   }
 }
 
@@ -340,7 +340,7 @@ function _shapeContainer_17103(){
   }
   if (typeof failed_shapeContainer !== 'undefined') {
     failed_shapeContainer +=type_czech.failureTally();
-    passed_shapeContainer ++;
+    tested_shapeContainer ++;
   }
 }
 
@@ -402,7 +402,7 @@ function _shapeContainer_17103(){
 //   }
 //   if (typeof failed_shapeContainer !== 'undefined') {
 //     failed_shapeContainer +=type_czech.failureTally();
-//     passed_shapeContainer ++;
+//     tested_shapeContainer ++;
 //   }
 // }
 

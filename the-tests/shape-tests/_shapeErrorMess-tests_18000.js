@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-passed_shapeErrorMess = 0;
+tested_shapeErrorMess = 0;
 
 failed_shapeErrorMess = 0;
 
@@ -11,8 +11,8 @@ _shapeErrorMess_18002(18002);
 total_fails += failed_shapeErrorMess;
 console.log('_shapeErrorMess failed tests', failed_shapeErrorMess)
 
-total_checks += passed_shapeErrorMess;
-console.log('_shapeErrorMess passed tests', passed_shapeErrorMess)
+total_checks += tested_shapeErrorMess;
+console.log('_shapeErrorMess passed tests', tested_shapeErrorMess)
 
 function _shapeErrorMess_18001(error_number){
   type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS'
@@ -34,7 +34,7 @@ function _shapeErrorMess_18001(error_number){
   }
   if (typeof failed_shapeErrorMess !== 'undefined') {
     failed_shapeErrorMess +=type_czech.failureTally();
-    passed_shapeErrorMess ++;
+    tested_shapeErrorMess ++;
   }
 }
 
@@ -58,6 +58,6 @@ function _shapeErrorMess_18002(error_number){
   }
   if (typeof failed_shapeErrorMess !== 'undefined') {
     failed_shapeErrorMess +=type_czech.failureTally();
-    passed_shapeErrorMess ++;
+    tested_shapeErrorMess ++;
   }
 }

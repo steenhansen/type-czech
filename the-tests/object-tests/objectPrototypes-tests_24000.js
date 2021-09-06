@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-passed_objectPrototypes = 0;
+tested_objectPrototypes = 0;
 failed_objectPrototypes = 0;
 
 
@@ -12,8 +12,8 @@ _objectPrototypes_24003();
 total_fails += failed_objectPrototypes;
 console.log('_objectPrototypes failed tests', failed_objectPrototypes)
 
-total_checks += passed_objectPrototypes;
-console.log('_objectPrototypes passed tests', passed_objectPrototypes)
+total_checks += tested_objectPrototypes;
+console.log('_objectPrototypes passed tests', tested_objectPrototypes)
 
 
 function _objectPrototypes_24001() {
@@ -28,7 +28,7 @@ function _objectPrototypes_24001() {
     failed_objectPrototypes += 1;
     console.log(`${error_id} type_czech.objectPrototypes(new Date('1999-12-31')`);
   } else {
-    passed_objectPrototypes += 1;
+    tested_objectPrototypes += 1;
   }
 }
 
@@ -46,8 +46,10 @@ function _objectPrototypes_24002() {
       failed_objectPrototypes += 1;
       console.log(`${error_id} type_czech.objectPrototypes(document.createElement('div'))`);
     } else {
-      passed_objectPrototypes += 1;
+      tested_objectPrototypes += 1;
     }
+  } else {
+    tested_objectPrototypes += 1;
   }
 }
 
@@ -69,7 +71,9 @@ function _objectPrototypes_24003() {
       failed_objectPrototypes += 1;
       console.log(`${error_id} type_czech.objectPrototypes(document.createElement('div'))`);
     } else {
-      passed_objectPrototypes += 1;
-    }
+      tested_objectPrototypes += 1;
+    } 
+  } else {
+    tested_objectPrototypes += 1;
   }
 }

@@ -4,35 +4,32 @@
  
  
 01000 Check-tests.js                
- 2000 HasInterface-tests.js         
- 3000 Valueless-tests.js             
- 4000 ValuelessUnion-tests.js        
- 5000 Valid-tests.js                
- 6000 ValidExtras-tests.js          
- 7000 ValidUnion-tests.js           
- 8000 ValidUnionExtras-tests.js     
- 9000 _aTypeOf-tests.js             
+02000 HasInterface-tests.js         
+03000 Valueless-tests.js             
+04000 ValuelessUnion-tests.js        
+05000 Valid-tests.js                
+06000 ValidExtras-tests.js          
+07000 ValidUnion-tests.js           
+08000 ValidUnionExtras-tests.js     
+09000 _aTypeOf-tests.js             
+
 10000 _isCollection-tests.js        
 11000 _isEmpty-tests.js             
 12000 _missingKey-tests.js          
-13000 _ParametersCheck-tests.js     
-14000 _shapeArrayInArray-tests.js          FREEEEeeeeeeeeeeeeeeeeeeeeeeeeee
+13000 _ParametersCheck-tests.js    
+14000 _mutatedVariables-tests_14000.js
 15000 _shapeArrayTypes-tests.js     
 16000 _shapeCollectionTypes-tests.js
 17000 _shapeContainer-tests.js      
 18000 _shapeErrorMess-tests.js      
-
-19000 _shapeObjectInArray-tests.js  FREEEEeeeeeeeeeeeeeeeeeeeeeeeeee
+19000 _refDiff-tests_19000.js
 
 20000 _shapePropertyType-tests.js   
 21000 _shapeScalar-tests.js         
 22000 _shapeVariable-tests.js
 23000 objectIsA-tests.js
-
 24000 objectPrototypes-tests_24000.js
-
 25000 objectType-tests_25000.js
-
 26000 TypeCzech-tests_26000.js
-
 27000 variadic-tests-27000.js
+28000 _shrinkDiffs-tests_28000.js

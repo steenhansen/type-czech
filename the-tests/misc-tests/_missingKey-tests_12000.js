@@ -1,16 +1,16 @@
 /* eslint-disable */
 
-passed_missingKey = 0;
+tested_missingKey = 0;
 
 failed_missingKey = 0;
 
 _missingKey_12001(12001);
 
-total_checks += failed_missingKey;
+total_fails += failed_missingKey;
 console.log('_missingKey failed tests', failed_missingKey)
 
-total_checks += passed_missingKey;
-console.log('_missingKey passed tests', passed_missingKey)
+total_checks += tested_missingKey;
+console.log('_missingKey passed tests', tested_missingKey)
 
 function _missingKey_12001(error_number){
   type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS'
@@ -30,6 +30,6 @@ function _missingKey_12001(error_number){
   }
   if (typeof failed_missingKey !== 'undefined') {
     failed_missingKey +=type_czech.failureTally();
-    passed_missingKey ++;
+    tested_missingKey ++;
   }
 }

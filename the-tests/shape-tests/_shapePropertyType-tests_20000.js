@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-passed_shapePropertyType = 0;
+tested_shapePropertyType = 0;
 
 failed_shapePropertyType = 0;
 
@@ -12,8 +12,8 @@ _shapePropertyType_20004(20004);
 total_fails += failed_shapePropertyType;
 console.log('_shapePropertyType failed tests', failed_shapePropertyType);
 
-total_checks += passed_shapePropertyType;
-console.log('_shapePropertyType passed tests', passed_shapePropertyType);
+total_checks += tested_shapePropertyType;
+console.log('_shapePropertyType passed tests', tested_shapePropertyType);
 
 function _shapePropertyType_20001(error_number){
   type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS'
@@ -35,7 +35,7 @@ function _shapePropertyType_20001(error_number){
   }
   if (typeof failed_shapePropertyType !== 'undefined') {
     failed_shapePropertyType +=type_czech.failureTally();
-    passed_shapePropertyType ++;
+    tested_shapePropertyType ++;
   }
 }
 
@@ -60,7 +60,7 @@ function _shapePropertyType_20002(error_number){
   }
   if (typeof failed_shapePropertyType !== 'undefined') {
     failed_shapePropertyType +=type_czech.failureTally();
-    passed_shapePropertyType ++;
+    tested_shapePropertyType ++;
   }
 }
 
@@ -85,7 +85,7 @@ function _shapePropertyType_20003(error_number){
   }
   if (typeof failed_shapePropertyType !== 'undefined') {
     failed_shapePropertyType +=type_czech.failureTally();
-    passed_shapePropertyType ++;
+    tested_shapePropertyType ++;
   }
 }
 
@@ -109,6 +109,6 @@ function _shapePropertyType_20004(error_number){
   }
   if (typeof failed_shapePropertyType !== 'undefined') {
     failed_shapePropertyType +=type_czech.failureTally();
-    passed_shapePropertyType ++;
+    tested_shapePropertyType ++;
   }
 }

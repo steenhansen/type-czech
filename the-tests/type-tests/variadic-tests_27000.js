@@ -3,7 +3,7 @@
 
 ///           empty????
 
-passed_variadic_types = 0;
+tested_variadic_types = 0;
 
 failed_variadic_types = 0;
 
@@ -21,8 +21,8 @@ total_fails += failed_variadic_types;
 console.log('variadic failed tests', failed_variadic_types)
 
 
-total_checks += passed_variadic_types;
-console.log('variadic passed tests', passed_variadic_types)
+total_checks += tested_variadic_types;
+console.log('variadic passed tests', tested_variadic_types)
 
 
 
@@ -52,7 +52,7 @@ function variadic_27001(){
     _throw( errorMessage(error_id, ['No Exception', 'Exception'],  "yourFunc(1,2,3,4,5,6,7,8,9) === type_czech.valid(arguments, ['Number']) ") );
   }
   if (typeof failed_variadic_types !== 'undefined') {
-    passed_variadic_types ++;
+    tested_variadic_types ++;
   }
 }
 
@@ -88,7 +88,7 @@ function variadic_27002(){
   }
   if (typeof failed_variadic_types !== 'undefined') {
     failed_variadic_types +=type_czech.failureTally();
-    passed_variadic_types ++;
+    tested_variadic_types ++;
   }
 }
 
@@ -119,7 +119,7 @@ function variadic_27003(){
   }
   if (typeof failed_variadic_types !== 'undefined') {
     failed_variadic_types +=type_czech.failureTally();
-    passed_variadic_types ++;
+    tested_variadic_types ++;
   }
 }
 
@@ -152,7 +152,7 @@ function variadic_27101(){
   }
   if (typeof failed_variadic_types !== 'undefined') {
     failed_variadic_types +=type_czech.failureTally();
-    passed_variadic_types ++;
+    tested_variadic_types ++;
   }
 }
 
@@ -183,7 +183,7 @@ function variadic_27102(){
   }
   if (typeof failed_variadic_types !== 'undefined') {
     failed_variadic_types +=type_czech.failureTally();
-    passed_variadic_types ++;
+    tested_variadic_types ++;
   }
 }
 
@@ -215,7 +215,7 @@ function variadic_27201(){
   }
   if (typeof failed_variadic_types !== 'undefined') {
     failed_variadic_types +=type_czech.failureTally();
-    passed_variadic_types ++;
+    tested_variadic_types ++;
   }
 }
 
@@ -248,6 +248,6 @@ function variadic_27202(){
   }
   if (typeof failed_variadic_types !== 'undefined') {
     failed_variadic_types +=type_czech.failureTally();
-    passed_variadic_types ++;
+    tested_variadic_types ++;
   }
 }

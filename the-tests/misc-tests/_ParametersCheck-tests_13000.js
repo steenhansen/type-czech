@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-passed_ParametersCheck = 0;
+tested_ParametersCheck = 0;
 failed_ParametersCheck = 0;
 
 _ParametersCheck_13001(13001);
@@ -8,8 +8,8 @@ _ParametersCheck_13001(13001);
 total_fails += failed_ParametersCheck;
 console.log('_ParametersCheck failed tests', failed_ParametersCheck)
 
-total_checks += passed_ParametersCheck;
-console.log('_ParametersCheck passed tests', passed_ParametersCheck)
+total_checks += tested_ParametersCheck;
+console.log('_ParametersCheck passed tests', tested_ParametersCheck)
 
 function _ParametersCheck_13001(error_number){
   type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS'
@@ -36,7 +36,7 @@ function _ParametersCheck_13001(error_number){
   }
   if (typeof failed_ParametersCheck !== 'undefined') {
     failed_ParametersCheck +=type_czech.failureTally();
-    passed_ParametersCheck ++;
+    tested_ParametersCheck ++;
   }
 }
 

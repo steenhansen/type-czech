@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-passed_shapeArrayTypes = 0;
+tested_shapeArrayTypes = 0;
 failed_shapeArrayTypes = 0;
 _shapeArrayTypes_15001(15001);
 _shapeArrayTypes_15002(15002);
@@ -8,8 +8,8 @@ _shapeArrayTypes_15002(15002);
 total_fails += failed_shapeArrayTypes;
 console.log('_shapeArrayTypes failed tests', failed_shapeArrayTypes);
 
-total_checks += passed_shapeArrayTypes;
-console.log('_shapeArrayTypes passed tests', passed_shapeArrayTypes);
+total_checks += tested_shapeArrayTypes;
+console.log('_shapeArrayTypes passed tests', tested_shapeArrayTypes);
 
 function _shapeArrayTypes_15001(error_number){
   type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS'
@@ -31,7 +31,7 @@ function _shapeArrayTypes_15001(error_number){
   }
   if (typeof failed_shapeArrayTypes !== 'undefined') {
     failed_shapeArrayTypes +=type_czech.failureTally();
-    passed_shapeArrayTypes ++;
+    tested_shapeArrayTypes ++;
   }
 }
 
@@ -55,6 +55,6 @@ function _shapeArrayTypes_15002(error_number){
   }
   if (typeof failed_shapeArrayTypes !== 'undefined') {
     failed_shapeArrayTypes +=type_czech.failureTally();
-    passed_shapeArrayTypes ++;
+    tested_shapeArrayTypes ++;
   }
 }

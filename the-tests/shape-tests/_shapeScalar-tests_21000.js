@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-passed_shapeScalar = 0;
+tested_shapeScalar = 0;
 
 failed_shapeScalar = 0;
 
@@ -17,8 +17,8 @@ _shapeScalar_21008(21008);
 total_fails += failed_shapeScalar;
 console.log('_shapeScalar failed tests', failed_shapeScalar);
 
-total_checks += passed_shapeScalar;
-console.log('_shapeScalar passed tests', passed_shapeScalar);
+total_checks += tested_shapeScalar;
+console.log('_shapeScalar passed tests', tested_shapeScalar);
 
 function _shapeScalar_21001(error_number){
   type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS'
@@ -39,7 +39,7 @@ function _shapeScalar_21001(error_number){
   }
   if (typeof failed_shapeScalar !== 'undefined') {
     failed_shapeScalar +=type_czech.failureTally();
-    passed_shapeScalar ++;
+    tested_shapeScalar ++;
   }
 }
 
@@ -62,7 +62,7 @@ function _shapeScalar_21002(error_number){
   }
   if (typeof failed_shapeScalar !== 'undefined') {
     failed_shapeScalar +=type_czech.failureTally();
-    passed_shapeScalar ++;
+    tested_shapeScalar ++;
   }
 }
 
@@ -85,7 +85,7 @@ function _shapeScalar_21003(error_number){
   }
   if (typeof failed_shapeScalar !== 'undefined') {
     failed_shapeScalar +=type_czech.failureTally();
-    passed_shapeScalar ++;
+    tested_shapeScalar ++;
   }
 }
 
@@ -108,7 +108,7 @@ function _shapeScalar_21004(error_number){
   }
   if (typeof failed_shapeScalar !== 'undefined') {
     failed_shapeScalar +=type_czech.failureTally();
-    passed_shapeScalar ++;
+    tested_shapeScalar ++;
   }
 }
 
@@ -131,7 +131,7 @@ function _shapeScalar_21005(error_number){
   }
   if (typeof failed_shapeScalar !== 'undefined') {
     failed_shapeScalar +=type_czech.failureTally();
-    passed_shapeScalar ++;
+    tested_shapeScalar ++;
   }
 }
 
@@ -154,7 +154,7 @@ function _shapeScalar_21006(error_number){
   }
   if (typeof failed_shapeScalar !== 'undefined') {
     failed_shapeScalar +=type_czech.failureTally();
-    passed_shapeScalar ++;
+    tested_shapeScalar ++;
   }
 }
 
@@ -177,7 +177,7 @@ function _shapeScalar_21007(error_number){
   }
   if (typeof failed_shapeScalar !== 'undefined') {
     failed_shapeScalar +=type_czech.failureTally();
-    passed_shapeScalar ++;
+    tested_shapeScalar ++;
   }
 }
 
@@ -200,7 +200,7 @@ function _shapeScalar_21008(error_number){
   }
   if (typeof failed_shapeScalar !== 'undefined') {
     failed_shapeScalar +=type_czech.failureTally();
-    passed_shapeScalar ++;
+    tested_shapeScalar ++;
   }
 }
 

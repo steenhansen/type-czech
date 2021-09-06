@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-passed_objectInterface = 0;
+tested_objectInterface = 0;
 failed_objectInterface = 0;
 
 
@@ -12,8 +12,8 @@ failed_objectInterface = 0;
 total_fails += failed_objectInterface;
 console.log('_objectInterface failed tests', failed_objectInterface)
 
-total_checks += passed_objectInterface;
-console.log('_objectInterface passed tests', passed_objectInterface)
+total_checks += tested_objectInterface;
+console.log('_objectInterface passed tests', tested_objectInterface)
 
 
 function _objectInterface_02001() {
@@ -25,7 +25,7 @@ function _objectInterface_02001() {
     failed_objectInterface += 1;
     console.log(`${error_id} type_czech.objectInterface({show: (x) => x}, {show:'Function'})`);
   } else {
-    passed_objectInterface += 1;
+    tested_objectInterface += 1;
   }
 }
 
@@ -40,7 +40,7 @@ function _objectInterface_02002() {
     failed_objectInterface += 1;
     console.log(`${error_id} type_czech.objectInterface({show: (x) => x}, {noShow:'Function'})`);
   } else {
-    passed_objectInterface += 1;
+    tested_objectInterface += 1;
   }
 }
 
@@ -55,6 +55,6 @@ function _objectInterface_02003() {
     failed_objectInterface += 1;
     console.log(`${error_id} type_czech.objectInterface({show: (x) => x}, {noShow:'Function'})`);
   } else {
-    passed_objectInterface += 1;
+    tested_objectInterface += 1;
   }
 }

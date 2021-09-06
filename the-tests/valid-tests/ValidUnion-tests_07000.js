@@ -2,7 +2,7 @@
 
 /* eslint-disable */
 
-passed_validUnion = 0;
+tested_validUnion = 0;
 failed_validUnion = 0;
 
 validUnion_07001();
@@ -16,8 +16,8 @@ validUnion_07007();
 total_fails += failed_validUnion;
 console.log('validUnionExtras failed tests', failed_validUnion)
 
-total_checks += passed_validUnion;
-console.log('validUnionExtras passed tests', passed_validUnion)
+total_checks += tested_validUnion;
+console.log('validUnionExtras passed tests', tested_validUnion)
 
 function validUnion_07001(){
   TYPE_CZECH_current_test_number = '07001';
@@ -39,7 +39,7 @@ function validUnion_07001(){
   }
   if (typeof failed_validUnion !== 'undefined') {
     failed_validUnion +=type_czech.failureTally();
-    passed_validUnion ++;
+    tested_validUnion ++;
   }
 }
 
@@ -66,7 +66,7 @@ function validUnion_07002(){
   }
   if (typeof failed_validUnion !== 'undefined') {
     failed_validUnion +=type_czech.failureTally();
-    passed_validUnion ++;
+    tested_validUnion ++;
   }
 }
 
@@ -92,7 +92,7 @@ function validUnion_07003(){
   }
   if (typeof failed_validUnion !== 'undefined') {
     failed_validUnion +=type_czech.failureTally();
-    passed_validUnion ++;
+    tested_validUnion ++;
   }
 }
 
@@ -118,7 +118,7 @@ function validUnion_07004(){
   }
   if (typeof failed_validUnion !== 'undefined') {
     failed_validUnion +=type_czech.failureTally();
-    passed_validUnion ++;
+    tested_validUnion ++;
   }
 }
 
@@ -146,7 +146,7 @@ function validUnion_07005(){
   }
   if (typeof failed_validUnion !== 'undefined') {
     failed_validUnion +=type_czech.failureTally();
-    passed_validUnion ++;
+    tested_validUnion ++;
   }
 }
 
@@ -175,7 +175,7 @@ function validUnion_07006(){
   }
   if (typeof failed_validUnion !== 'undefined') {
     failed_validUnion +=type_czech.failureTally();
-    passed_validUnion ++;
+    tested_validUnion ++;
   }
 }
 
@@ -203,6 +203,6 @@ function validUnion_07007(){
   }
   if (typeof failed_validUnion !== 'undefined') {
     failed_validUnion +=type_czech.failureTally();
-    passed_validUnion ++;
+    tested_validUnion ++;
   }
 }

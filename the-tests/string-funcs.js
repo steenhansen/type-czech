@@ -85,9 +85,16 @@ function errorLabel(error_number) {
   return error_id;
 }
 
+function oneLineString(multiline_str) {
+  const no_newlines = multiline_str.replace(/\r?\n|\r/g, ' ');
+  const single_spaces = no_newlines.replace(/\s\s+/g, ' ');
+  return single_spaces;
+}
+
 try {
   // eslint-disable-next-line object-curly-newline
-  const test_funcs = { errorLabel, beforeCheck, afterCheck, actualAndExpected, errorMessage };
+  const test_funcs = { errorLabel, beforeCheck, afterCheck,
+     actualAndExpected, errorMessage, _throw, oneLineString };
   module.exports = test_funcs;
 } catch (e) {
   //

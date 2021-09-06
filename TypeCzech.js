@@ -2036,13 +2036,9 @@ type_czech._shapeContainer( [456,789] , [["Number"], ['String']], 'TYPE-EXTRAS',
 222 TC@36 - Parameter is meant to be 'Array' but is of the wrong type of 'Number':789 consolelog.js:165:13
 333 TC@36 - Parameter is meant to be 'Array' but is of the wrong type of 'Number':456
 
-
 type_czech._shapeContainer( [[456,789], ['a','b'], 3] , [["Number"], ['String'], "Boolean"], 'TYPE-EXTRAS', 179);
 
-
-
-
-type_czech._shapeContainer( {a:1} , [["Number"], ['String']], 'TYPE-EXTRAS', 179);  DOES NOT CALL _shapeArrayInArray
+type_czech._shapeContainer( {a:1} , [["Number"], ['String']], 'TYPE-EXTRAS', 179);
 
 type_czech._shapeContainer( [{a:1}, 'sdf'] , [{a:"Number"}, ['String']], 'TYPE-EXTRAS', 179);
 
@@ -2058,12 +2054,7 @@ type_czech._shapeContainer( [  [[1], [2]], [[1], ['a']] ] , [ [["Number"]], [['N
 3 TC@44 -  INDEX '0' is assumed to be a 'Number', but is mistakenly a 'String'.
 2 TC@44 -  INDEX '0' is assumed to be a 'Number', but is mistakenly a 'String'.
 
-
-
 type_czech._shapeContainer( [  [[1, false], [2, false]], [[1, false], [2, false]] ] , [ [["Number", "B"]], [['Number', "B"]] ], 'TYPE-EXTRAS', 179);
-
-
-
 
 type_czech._shapeContainer( [  [[1, false], [2, false]], [[1, false], [2, 2]] ] , [ [["Number", "B"]], [['Number', "B"]] ], 'TYPE-EXTRAS', 179);
 1 TC@36 - Parameter is meant to be 'String' but is of the wrong type of 'Array':[1,false]
@@ -3792,8 +3783,6 @@ type_czech._shapeContainer( [  [[1, false], [2, false]], [[1, false], [2, 2]] ] 
         _missingKey,
         _unionChecks,
         _refDiff,
-
-     //   _shapeArrayInArray,
         _shapeArrayTypes,
         _shapeCheck,
         _shapeCollectionTypes,

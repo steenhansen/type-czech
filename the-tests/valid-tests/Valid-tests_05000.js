@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-passed_valid = 0;
+tested_valid = 0;
 
 failed_valid = 0;
 
@@ -27,8 +27,8 @@ valid_05018();
 total_fails += failed_valid;
 console.log('valid failed tests', failed_valid);
 
-total_checks += passed_valid;
-console.log('valid passed tests', passed_valid);
+total_checks += tested_valid;
+console.log('valid passed tests', tested_valid);
 
 function valid_05001(){
   type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS'
@@ -52,7 +52,7 @@ function valid_05001(){
   }
   if (typeof failed_valid !== 'undefined') {
     failed_valid +=type_czech.failureTally();
-    passed_valid ++;
+    tested_valid ++;
   }
 }
 
@@ -76,7 +76,7 @@ function valid_05002(){
   }
   if (typeof failed_valid !== 'undefined') {
     failed_valid +=type_czech.failureTally();
-    passed_valid ++;
+    tested_valid ++;
   }
 }
 
@@ -100,7 +100,7 @@ function valid_05003(){
   }
   if (typeof failed_valid !== 'undefined') {
     failed_valid +=type_czech.failureTally();
-    passed_valid ++;
+    tested_valid ++;
   }
 }
 
@@ -126,7 +126,7 @@ function valid_05004(){
   }
   if (typeof failed_valid !== 'undefined') {
     failed_valid +=type_czech.failureTally();
-    passed_valid ++;
+    tested_valid ++;
   }
 }
 
@@ -152,7 +152,7 @@ function valid_05005(){
   }
   if (typeof failed_valid !== 'undefined') {
     failed_valid +=type_czech.failureTally();
-    passed_valid ++;
+    tested_valid ++;
   }
 }
 
@@ -176,7 +176,7 @@ function valid_05006(){
   }
   if (typeof failed_valid !== 'undefined') {
     failed_valid +=type_czech.failureTally();
-    passed_valid ++;
+    tested_valid ++;
   }
 }
 
@@ -200,7 +200,7 @@ function valid_05007(){
   }
   if (typeof failed_valid !== 'undefined') {
     failed_valid +=type_czech.failureTally();
-    passed_valid ++;
+    tested_valid ++;
   }
 }
 
@@ -226,7 +226,7 @@ function valid_05008(){
   }
   if (typeof failed_valid !== 'undefined') {
     failed_valid +=type_czech.failureTally();
-    passed_valid ++;
+    tested_valid ++;
   }
 }
 
@@ -252,7 +252,7 @@ function valid_05009(){
   }
   if (typeof failed_valid !== 'undefined') {
     failed_valid +=type_czech.failureTally();
-    passed_valid ++;
+    tested_valid ++;
   }
 }
 
@@ -278,7 +278,7 @@ function valid_05010(){
   }
   if (typeof failed_valid !== 'undefined') {
     failed_valid +=type_czech.failureTally();
-    passed_valid ++;
+    tested_valid ++;
   }
 }
 
@@ -304,7 +304,7 @@ function valid_05011(){
   }
   if (typeof failed_valid !== 'undefined') {
     failed_valid +=type_czech.failureTally();
-    passed_valid ++;
+    tested_valid ++;
   }
 }
 
@@ -328,7 +328,7 @@ function valid_05012(){
   }
   if (typeof failed_valid !== 'undefined') {
     failed_valid +=type_czech.failureTally();
-    passed_valid ++;
+    tested_valid ++;
   }
 }
 
@@ -354,7 +354,7 @@ function valid_05013(){
   }
   if (typeof failed_valid !== 'undefined') {
     failed_valid +=type_czech.failureTally();
-    passed_valid ++;
+    tested_valid ++;
   }
 }
 
@@ -380,7 +380,7 @@ function valid_05014(){
   }
   if (typeof failed_valid !== 'undefined') {
     failed_valid +=type_czech.failureTally();
-    passed_valid ++;
+    tested_valid ++;
   }
 }
 
@@ -404,7 +404,7 @@ function valid_05015(){
   }
   if (typeof failed_valid !== 'undefined') {
     failed_valid +=type_czech.failureTally();
-    passed_valid ++;
+    tested_valid ++;
   }
 }
 
@@ -428,7 +428,7 @@ error_id = errorLabel(TYPE_CZECH_current_test_number);
   }
   if (typeof failed_valid !== 'undefined') {
     failed_valid +=type_czech.failureTally();
-    passed_valid ++;
+    tested_valid ++;
   }
 }
 
@@ -452,7 +452,7 @@ function valid_05017(){
   }
   if (typeof failed_valid !== 'undefined') {
     failed_valid +=type_czech.failureTally();
-    passed_valid ++;
+    tested_valid ++;
   }
 }
 
@@ -476,7 +476,7 @@ function valid_05018(){
   }
   if (typeof failed_valid !== 'undefined') {
     failed_valid +=type_czech.failureTally();
-    passed_valid ++;
+    tested_valid ++;
   }
 }
 

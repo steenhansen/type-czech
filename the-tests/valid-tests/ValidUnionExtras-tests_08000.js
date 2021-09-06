@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-passed_validUnionExtras = 0;
+tested_validUnionExtras = 0;
 
 failed_validUnionExtras = 0;
 
@@ -22,8 +22,8 @@ validUnionExtras_08010();
 total_fails += failed_validUnionExtras;
 console.log('validUnionExtras failed tests', failed_validUnionExtras)
 
-total_checks += passed_validUnionExtras;
-console.log('validUnionExtras passed tests', passed_validUnionExtras)
+total_checks += tested_validUnionExtras;
+console.log('validUnionExtras passed tests', tested_validUnionExtras)
 
 function validUnionExtras_08001(){
   TYPE_CZECH_current_test_number = '08001';
@@ -47,7 +47,7 @@ function validUnionExtras_08001(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -75,7 +75,7 @@ function validUnionExtras_08002(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -100,7 +100,7 @@ function validUnionExtras_08003(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -125,7 +125,7 @@ function validUnionExtras_08004(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -152,7 +152,7 @@ function validUnionExtras_08005(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -177,7 +177,7 @@ function validUnionExtras_08006(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -209,7 +209,7 @@ function validUnionExtras_08007(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -236,7 +236,7 @@ function validUnionExtras_08008(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -263,7 +263,7 @@ function validUnionExtras_08009(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -291,6 +291,6 @@ function validUnionExtras_08010(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }

@@ -2,7 +2,7 @@
 
 
 
-passed_validUnionExtras = 0;
+tested_validUnionExtras = 0;
 failed_validUnionExtras = 0;
 
 
@@ -96,8 +96,8 @@ validExtras_06506_undef_ok();
 total_fails += failed_validUnionExtras;
 console.log('validExtras failed tests', failed_validUnionExtras)
 
-total_checks += passed_validUnionExtras;
-console.log('validExtras passed tests', passed_validUnionExtras)
+total_checks += tested_validUnionExtras;
+console.log('validExtras passed tests', tested_validUnionExtras)
 
 
 
@@ -122,7 +122,7 @@ function validExtras_06001(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -149,7 +149,7 @@ function validExtras_06002(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -174,7 +174,7 @@ function validExtras_06003(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -202,7 +202,7 @@ function validExtras_06004(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
   
 }
@@ -230,7 +230,7 @@ function validExtras_06005(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -255,7 +255,7 @@ function validExtras_06006(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -282,7 +282,7 @@ function validExtras_06007(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -307,7 +307,7 @@ function validExtras_06008(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -334,7 +334,7 @@ function validExtras_06009(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -361,7 +361,7 @@ function validExtras_06010(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -385,7 +385,7 @@ function validExtras_06011(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -412,7 +412,7 @@ function validExtras_06012(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -437,7 +437,7 @@ function validExtras_06013(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -463,7 +463,7 @@ function validExtras_06014(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -487,7 +487,7 @@ function validExtras_06015(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -513,7 +513,7 @@ function validExtras_06016(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -537,7 +537,7 @@ function validExtras_06017(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -563,7 +563,7 @@ function validExtras_06018(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -589,7 +589,7 @@ function validExtras_06019(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -615,7 +615,7 @@ function validExtras_06020(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -639,7 +639,7 @@ function validExtras_06021(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -665,7 +665,7 @@ function validExtras_06022(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -689,7 +689,7 @@ function validExtras_06023(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -715,7 +715,7 @@ function validExtras_06024(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -739,7 +739,7 @@ function validExtras_06025(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -765,7 +765,7 @@ function validExtras_06026(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -789,7 +789,7 @@ function validExtras_06027(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -813,7 +813,7 @@ function validExtras_06028(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -837,7 +837,7 @@ function validExtras_06029(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -863,7 +863,7 @@ function validExtras_06030(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -887,7 +887,7 @@ function validExtras_06031(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -911,7 +911,7 @@ function validExtras_06032(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -936,7 +936,7 @@ function validExtras_06033(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -960,7 +960,7 @@ function validExtras_06034(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -984,7 +984,7 @@ function validExtras_06035(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -1010,7 +1010,7 @@ function validExtras_06036(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -1034,7 +1034,7 @@ function validExtras_06037(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -1060,7 +1060,7 @@ function validExtras_06038(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -1084,7 +1084,7 @@ function validExtras_06039(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -1108,7 +1108,7 @@ function validExtras_06040(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -1132,7 +1132,7 @@ function validExtras_06041(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -1156,7 +1156,7 @@ function validExtras_06042(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -1180,7 +1180,7 @@ function validExtras_06043(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -1204,7 +1204,7 @@ function validExtras_06044(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -1229,7 +1229,7 @@ function validExtras_06045(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -1253,7 +1253,7 @@ function validExtras_06046(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -1279,7 +1279,7 @@ function validExtras_06047(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -1303,7 +1303,7 @@ function validExtras_06048(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -1326,7 +1326,7 @@ function validExtras_06049(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -1352,7 +1352,7 @@ function validExtras_06050(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -1379,7 +1379,7 @@ function validExtras_06051(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -1405,7 +1405,7 @@ function validExtras_06052(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -1431,7 +1431,7 @@ function validExtras_06053(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -1457,7 +1457,7 @@ function validExtras_06054(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -1483,7 +1483,7 @@ function validExtras_06055(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -1507,7 +1507,7 @@ function validExtras_06056(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -1534,7 +1534,7 @@ function validExtras_06057(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -1561,7 +1561,7 @@ function validExtras_06058(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -1585,7 +1585,7 @@ function validExtras_06059(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -1609,7 +1609,7 @@ function validExtras_06060(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -1633,7 +1633,7 @@ function validExtras_06061(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -1659,7 +1659,7 @@ function validExtras_06062(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -1685,7 +1685,7 @@ function validExtras_06063(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -1711,7 +1711,7 @@ function validExtras_06064(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -1735,7 +1735,7 @@ function validExtras_06065(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -1768,7 +1768,7 @@ function validExtras_06066(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -1814,7 +1814,7 @@ function validExtras_06501_undef_ok(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -1840,7 +1840,7 @@ function validExtras_06502_undef_ok(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -1866,7 +1866,7 @@ function validExtras_06503_undef_ok(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -1892,7 +1892,7 @@ function validExtras_06504_undef_ok(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -1918,7 +1918,7 @@ function validExtras_06505_undef_ok(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 
@@ -1942,7 +1942,7 @@ function validExtras_06506_undef_ok(){
   }
   if (typeof failed_validUnionExtras !== 'undefined') {
     failed_validUnionExtras +=type_czech.failureTally();
-    passed_validUnionExtras ++;
+    tested_validUnionExtras ++;
   }
 }
 

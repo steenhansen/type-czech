@@ -2,7 +2,7 @@
 
 /* eslint-disable */
 
-passed_valuelessUnion = 0;
+tested_valuelessUnion = 0;
 
 failed_valuelessUnion = 0;
 
@@ -13,8 +13,8 @@ total_fails += failed_valuelessUnion;
 console.log('validUnionExtras failed tests', failed_valuelessUnion)
 
 
-total_checks += passed_valuelessUnion;
-console.log('validUnionExtras passed tests', passed_valuelessUnion)
+total_checks += tested_valuelessUnion;
+console.log('validUnionExtras passed tests', tested_valuelessUnion)
 
 function valuelessUnion_04001(){
   TYPE_CZECH_current_test_number = '04001';
@@ -38,7 +38,7 @@ function valuelessUnion_04001(){
   }
   if (typeof failed_valuelessUnion !== 'undefined') {
     failed_valuelessUnion +=type_czech.failureTally();
-    passed_valuelessUnion ++;
+    tested_valuelessUnion ++;
   }
 }
 
