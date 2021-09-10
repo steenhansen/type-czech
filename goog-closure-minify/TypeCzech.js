@@ -104,12 +104,12 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
 
       const BEFORE_APPLY_TYPE = '() ';
 
-      // The valid options to TypeCzech
+      // The conform options to TypeCzech
 
       let OP_THROW_EXCEPTIONS = false; // 'THROW-EXCEPTIONS'
       let OP_LOG_ERRORS = false; //       'LOG-ERRORS'   'NO-CHECKING' stops checking
 
-      // 'UNDEF-OK' only affects valid(), validExtras(), validUnion(), and validUnionExtras()
+      // 'UNDEF-OK' only affects conform(), conformExtras(), conformUnion(), and objectConformExtras()
       let OP_UNDEF_OK = false; //            'UNDEF-OK'
       let OP_CONSOLE_COUNT = false; //       'CONSOLE-COUNT'
       let OP_DEBUG_ERROR_TAGS = false;//     'DEBUG-ERROR-TAGS' show "TC@22" (for) fast finding
@@ -123,15 +123,15 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
       // eslint-disable-next-line no-useless-concat
       const ARGU_MENTS = 'argu' + 'ments';
 
-      const MESS_TYPE_VERIFY = `valid(${ARGU_MENTS}, expected_types)`;
-      const MESS_TYPE_EXTRAS = `validExtras(${ARGU_MENTS}, expected_types)`;
-      const MESS_TYPE_ONE_OF = `validUnion(${ARGU_MENTS}, expected_types)`;
-      const MESS_TYPE_ONE_OF_EXTRAS = `validUnionExtras(${ARGU_MENTS}, expected_types)`;
+      const MESS_TYPE_VERIFY = `conform(${ARGU_MENTS}, expected_types)`;
+      const MESS_TYPE_EXTRAS = `conformExtras(${ARGU_MENTS}, expected_types)`;
+      const MESS_TYPE_OBJECT_EXTRAS = `objectConformExtras(${ARGU_MENTS}, expected_types)`;
+      const MESS_EMPTY_OBJECT_EXTRAS = `objectValuelessExtras(${ARGU_MENTS}, expected_types)`;
+      const MESS_TYPE_ONE_OF = `conformUnion(${ARGU_MENTS}, expected_types)`;
 
       const MESS_EMPTY_VERIFY = `valueless(${ARGU_MENTS}, expected_emptys)`;
       const MESS_EMPTY_EXTRAS = `valuelessExtras(${ARGU_MENTS}, expected_emptys)`;
       const MESS_EMPTY_ONE_OF = `valuelessUnion(${ARGU_MENTS}, expected_emptys)`;
-      const MESS_EMPTY_ONE_OF_EXTRAS = `valuelessUnionExtras(${ARGU_MENTS}, expected_emptys)`;
 
       const TRACE_COLORS = 'background: #ee0; color: #00F';
       const ERROR_COLORS = 'background: #ee0; color: #F00';
@@ -688,6 +688,9 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
       type_czech._toStr({a:` ' " `});
       //"{'a':\" ' \\\" \"}"
 
+      type_czech._toStr({a:''});
+      //"{'a':''}"
+
       type_czech._toStr({a:1, b:22, c:33});
       //{'a':1,'B':22,'c':33}
 
@@ -774,8 +777,13 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
           // eslint-disable-next-line no-restricted-syntax
           for (const [key, value] of Object.entries(a_collection)) {
             const value_json = _toStr(value);
-            const object_json = `'${key}':${value_json}`;
-            collection_elems.push(object_json);
+            let object_as_str;
+            if (_aTypeOf(value) === 'String') {
+              object_as_str = `'${key}':'${value_json}'`;
+            } else {
+              object_as_str = `'${key}':${value_json}`;
+            }
+            collection_elems.push(object_as_str);
           }
           collection_str = `{${collection_elems.join()}}`;
         }
@@ -861,7 +869,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
             const pos_lower_type = possible_badcase.toLowerCase();
             if (LOWER_TYPES_TO_CORRECT[pos_lower_type]) {
               const looks_like_type = LOWER_TYPES_TO_CORRECT[pos_lower_type];
-              const error_33 = `The type '${possible_badcase}' is not a valid type, but it looks just like '${looks_like_type}'`;
+              const error_33 = `The type '${possible_badcase}' is not a conform type, but it looks just like '${looks_like_type}'`;
               error_string = _consoleError(error_33, 'TC@33');
             }
           }
@@ -963,7 +971,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         : variable_type === 'Object' ? true // {}
           : variable_type === 'String' ? true // ''
             : variable_type === 'RegExp' ? true // new RegExp()
-              : variable_type === 'Date' ? true // new Date("invalid")     isNaN(new Date("invalid"))
+              : variable_type === 'Date' ? true // new Date("inconform")     isNaN(new Date("inconform"))
                 : variable_type === 'Number');
 
       /* type_czech = TypeCzech('LOG-ERRORS')
@@ -1040,13 +1048,13 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         consolelog('///_arrayRecurseLevel ENTER', parameters_obj, TYPE_CZECH_current_test_number);
         /*
         VARIADIC_ARRAY_TYPE_FIXED
-            function PRE_yourFunc() { return type_czech.valid([...arguments], ['Number']) }
+            function PRE_yourFunc() { return type_czech.conform([...arguments], ['Number']) }
             yourFunc = type_czech.check(yourFunc, PRE_yourFunc)
             function yourFunc(){}
             yourFunc(1,2,3,4,5,6,7,8,9)
 
         NOT_VARIADIC_ARRAY_TYPE
-            function PRE_yourFunc() { return type_czech.valid(arguments, ['Number']) }
+            function PRE_yourFunc() { return type_czech.conform(arguments, ['Number']) }
             yourFunc = type_czech.check(yourFunc, PRE_yourFunc)
             function yourFunc(){}
             yourFunc([1,2,3,4,5,6,7,8,9])
@@ -1154,7 +1162,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         let onParamError = () => ''; // console.log('default onParamError');
 
         let p_PRE_POST_calls = []; // so can do stats on number of checks on PRE/POST functions
-        let p_check_count = 0; //     count number of parameter checks to validate test count
+        let p_check_count = 0; //     count number of parameter checks to conformate test count
         let p_failure_count = 0; //   count errors so far
         let p_call_traps = false; //  turn parameter checking on/off
 
@@ -1222,17 +1230,15 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
           const expected_json = _jsonStr(expected_shape);
           let new_exception = exception_str + type_of_error;
           new_exception += CZECH_ERROR_INDENT + shape_check;
-          let actual_types = '    ACTUAL TYPES';
-          let actual_text = '    ACTUAL VALUE';
-          let expected_text = ' EMPTY ASSERTION'; // for valueless() errors EMPTY
+          const actual_types = '    ACTUAL TYPES';
+          const actual_text = '    ACTUAL VALUE';
+          let expected_text = ' EMPTY ASSERTION'; // for valueless() EMPTY errors
           const called_function = 'CALLING FUNCTION';
           if (shape_check === MESS_TYPE_VERIFY
                 || shape_check === MESS_TYPE_EXTRAS
-                || shape_check === MESS_TYPE_ONE_OF
-                || shape_check === MESS_TYPE_ONE_OF_EXTRAS) {
-            actual_types = '    ACTUAL TYPES';
-            actual_text = '    ACTUAL VALUE';
-            expected_text = '   EXPECTED TYPE'; // for valid() errors TYPE
+                || shape_check === MESS_TYPE_OBJECT_EXTRAS
+                || shape_check === MESS_TYPE_ONE_OF) {
+            expected_text = '   EXPECTED TYPE'; // for conform() TYPE errors
           }
           new_exception += `${CZECH_ERROR_INDENT}${actual_types} ${arg_list}`;
           new_exception += `${CZECH_ERROR_INDENT}${actual_text} ${param_values}`;
@@ -1980,7 +1986,7 @@ const _cycle = {};
       /* type_czech = TypeCzech('LOG-ERRORS')
 
       type_czech._shapeErrorMess([, , "boolean"], ["super", "man"])
-      //TC@03 - Index '2' is supposed to be a 'boolean', but is missing : ['super','man']
+      //TC@03 - Element '2' is supposed to be a 'boolean', but is missing : ['super','man']
 
       */
       function _shapeErrorMess(shallow_array, check_array) {
@@ -1988,7 +1994,7 @@ const _cycle = {};
         const extra_shapes = Object.entries(shallow_array);
         const [extra_index, extra_type] = extra_shapes[0];
         const check_arr_str = _toStr(check_array);
-        const error_3 = `Index '${extra_index}' is supposed to be a '${extra_type}', but is missing : ${check_arr_str}`;
+        const error_3 = `Element '${extra_index}' is supposed to be a '${extra_type}', but is missing : ${check_arr_str}`;
         const error_string = _consoleError(error_3, 'TC@03');
         consolelog('///_shapeErrorMess EXIT', error_string);
         return error_string;
@@ -2000,16 +2006,16 @@ const _cycle = {};
       //""
 
       type_czech._shapeContainer([456,789] , ["number"], 'TYPE-EXTRAS', 179);
-      //"TC@33 - The type 'number' is not a valid type, but it looks just like 'Number'"
+      //"TC@33 - The type 'number' is not a conform type, but it looks just like 'Number'"
 
       type_czech._shapeContainer([456,789] , ["is-bad"], 'TYPE-EXTRAS', 179);
-      //"TC@45 - INDEX '1' is asserted to be a 'is-bad', but is fallaciously a 'Number' : 789"
+      //"TC@45 - ELEMENT '1' is asserted to be a 'is-bad', but is fallaciously a 'Number' : 789"
 
       type_czech._shapeContainer({X:33}, {r:'N'}, 'TYPE-EXTRAS', 179);
       //TC@46 -  The key 'r', which has a type of 'N', is missing in the checked object
 
       type_czech._shapeContainer({X:33}, {r:'number'}, 'TYPE-EXTRAS', 179);
-      //"TC@33 - The type 'number' is not a valid type, but it looks just like 'Number'"
+      //"TC@33 - The type 'number' is not a conform type, but it looks just like 'Number'"
 
        type_czech._shapeContainer({X:33}, {X:'String'}, 'TYPE-EXTRAS', 179);
       //"TC@43 - Property 'X' is indicated to be a 'String', but is inaccurately a 'Number' : 33"
@@ -2036,13 +2042,9 @@ type_czech._shapeContainer( [456,789] , [["Number"], ['String']], 'TYPE-EXTRAS',
 222 TC@36 - Parameter is meant to be 'Array' but is of the wrong type of 'Number':789 consolelog.js:165:13
 333 TC@36 - Parameter is meant to be 'Array' but is of the wrong type of 'Number':456
 
-
 type_czech._shapeContainer( [[456,789], ['a','b'], 3] , [["Number"], ['String'], "Boolean"], 'TYPE-EXTRAS', 179);
 
-
-
-
-type_czech._shapeContainer( {a:1} , [["Number"], ['String']], 'TYPE-EXTRAS', 179);  DOES NOT CALL _shapeArrayInArray
+type_czech._shapeContainer( {a:1} , [["Number"], ['String']], 'TYPE-EXTRAS', 179);
 
 type_czech._shapeContainer( [{a:1}, 'sdf'] , [{a:"Number"}, ['String']], 'TYPE-EXTRAS', 179);
 
@@ -2052,18 +2054,13 @@ type_czech._shapeContainer( [  [1], [2] ] , [["Number"], ['Number']], 'TYPE-EXTR
 
 ////////////////////////////////
 type_czech._shapeContainer( [  [[1], [2]], [[1], ['a']] ] , [ [["Number"]], [['Number']] ], 'TYPE-EXTRAS', 179);
-3 TC@44 -  INDEX '0' is assumed to be a 'Number', but is mistakenly a 'String'.
-1 TC@44 -  INDEX '0' is assumed to be a 'Number', but is mistakenly a 'String'.
+3 TC@44 -  ELEMENT '0' is assumed to be a 'Number', but is mistakenly a 'String'.
+1 TC@44 -  ELEMENT '0' is assumed to be a 'Number', but is mistakenly a 'String'.
 
-3 TC@44 -  INDEX '0' is assumed to be a 'Number', but is mistakenly a 'String'.
-2 TC@44 -  INDEX '0' is assumed to be a 'Number', but is mistakenly a 'String'.
-
-
+3 TC@44 -  ELEMENT '0' is assumed to be a 'Number', but is mistakenly a 'String'.
+2 TC@44 -  ELEMENT '0' is assumed to be a 'Number', but is mistakenly a 'String'.
 
 type_czech._shapeContainer( [  [[1, false], [2, false]], [[1, false], [2, false]] ] , [ [["Number", "B"]], [['Number', "B"]] ], 'TYPE-EXTRAS', 179);
-
-
-
 
 type_czech._shapeContainer( [  [[1, false], [2, false]], [[1, false], [2, 2]] ] , [ [["Number", "B"]], [['Number', "B"]] ], 'TYPE-EXTRAS', 179);
 1 TC@36 - Parameter is meant to be 'String' but is of the wrong type of 'Array':[1,false]
@@ -2104,10 +2101,10 @@ type_czech._shapeContainer( [  [[1, false], [2, false]], [[1, false], [2, 2]] ] 
       //""
 
       type_czech._arrayOfOneType([1,false,3], 'Number', 'TYPE-VERIFY');
-      //TC@45 - INDEX '1' is asserted to be a 'Number', but is fallaciously a 'Boolean' : false
+      //TC@45 - ELEMENT '1' is asserted to be a 'Number', but is fallaciously a 'Boolean' : false
 
       type_czech._arrayOfOneType(["as",false,3], 'S', 'TYPE-VERIFY');
-      //TC@45 - INDEX '2' is asserted to be a 'String', but is fallaciously a 'Number' : 3
+      //TC@45 - ELEMENT '2' is asserted to be a 'String', but is fallaciously a 'Number' : 3
 
     */
       const _arrayOfOneType = (check_array, array_type, check_type, array_recurse_level) => {
@@ -2129,7 +2126,7 @@ type_czech._shapeContainer( [  [[1, false], [2, false]], [[1, false], [2, 2]] ] 
                 let error_local = looksLikeType(type_of_array);
                 if (!error_local) {
                   const show_element = _toStr(check_element);
-                  const error_45 = `INDEX '${element_index}' is asserted to be a '${type_of_array}',`
+                  const error_45 = `ELEMENT '${element_index}' is asserted to be a '${type_of_array}',`
                                 + ` but is fallaciously a '${variable_type}' : ${show_element}`;
                   error_local = _consoleError(error_45, 'TC@45');
                 }
@@ -2165,16 +2162,16 @@ type_czech._shapeContainer( [  [[1, false], [2, false]], [[1, false], [2, 2]] ] 
       /* type_czech = TypeCzech('LOG-ERRORS')
 
       type_czech._wrongType('string', 0, 'Date');
-      //"TC@44 -  INDEX '0' is assumed to be a 'string', but is mistakenly a 'Date'. "
+      //"TC@44 -  ELEMENT '0' is assumed to be a 'string', but is mistakenly a 'Date'. "
 
       type_czech._wrongType('Noomber', 0, 'Number');
-      //TC@44 -  INDEX '0' is assumed to be a 'Noomber', but is mistakenly a 'Number'. VALID TYPES = A:Array, I:BigInt, B:Boolean, D:Date, F:Function, N:Number, O:Object, R:RegExp, S:String, Y:Symbol
+      //TC@44 -  ELEMENT '0' is assumed to be a 'Noomber', but is mistakenly a 'Number'. VALID TYPES = A:Array, I:BigInt, B:Boolean, D:Date, F:Function, N:Number, O:Object, R:RegExp, S:String, Y:Symbol
 
       type_czech._wrongType(null, 2, 'Number');
-      //"TC@44 -  INDEX '0' is assumed to be a 'null', but is mistakenly a 'Number'. "
+      //"TC@44 -  ELEMENT '0' is assumed to be a 'null', but is mistakenly a 'Number'. "
 
       type_czech._wrongType(undefined, 2, 'Number');
-      //"TC@44 -  INDEX '0' is assumed to be a 'undefined', but is mistakenly a 'Number'. "
+      //"TC@44 -  ELEMENT '0' is assumed to be a 'undefined', but is mistakenly a 'Number'. "
 
       */
       const _wrongType = (expected_type, element_index, real_type) => {
@@ -2192,7 +2189,7 @@ type_czech._shapeContainer( [  [[1, false], [2, false]], [[1, false], [2, 2]] ] 
         }
         error_string = looksLikeType(expected_string);
         if (!error_string) {
-          const error_44 = ` INDEX '${element_index}' is assumed to be a '${expected_string}',`
+          const error_44 = ` ELEMENT '${element_index}' is assumed to be a '${expected_string}',`
           + ` but is mistakenly a '${real_type}'.${show_real_types}`;
           error_string = _consoleError(error_44, 'TC@44');
         }
@@ -2206,7 +2203,7 @@ type_czech._shapeContainer( [  [[1, false], [2, false]], [[1, false], [2, 2]] ] 
       //""
 
       type_czech._shapeArrayTypes([ 13, 14, 15 ], ['Number', 'B', 'D'], 'TYPE-EXTRAS');
-      //TC@44 - INDEX '2' is assumed to be a 'Date', but is mistakenly a 'Number'
+      //TC@44 - ELEMENT '2' is assumed to be a 'Date', but is mistakenly a 'Number'
 
       type_czech._shapeArrayTypes(["bob", "newheart", 1 , 2], ["String", "String"], 'TYPE-EXTRAS');
       //""
@@ -2220,7 +2217,7 @@ type_czech._shapeContainer( [  [[1, false], [2, false]], [[1, false], [2, 2]] ] 
         let error_string = '';
         if (array_shape.length === 1 && check_array.length > 1) {
           if (array_recurse_level === _POS_VARIAD_ARR_L_0) {
-            error_string = "Use type_czech.valid( [...arguments], ['the-var-type']) for VARIADIC function parameters";
+            error_string = "Use type_czech.conform( [...arguments], ['the-var-type']) for VARIADIC function parameters";
           } else {
             error_string = _arrayOfOneType(check_array, array_shape[0], check_type, array_recurse_level + 1);
           }
@@ -2263,7 +2260,7 @@ type_czech._shapeContainer( [  [[1, false], [2, false]], [[1, false], [2, 2]] ] 
       //""
 
       type_czech._shapePropertyType({r:"not-real"}, 'r', 11);
-      //TC@40 - The type 'not-real' is not valid
+      //TC@40 - The type 'not-real' is not conform
 
         type_czech._shapePropertyType({r:"N"}, 'r', undefined);
       //TC@41 - Key 'r' was supposed to be a 'Number' but was instead 'undefined'
@@ -2278,29 +2275,29 @@ type_czech._shapeContainer( [  [[1, false], [2, false]], [[1, false], [2, 2]] ] 
       const _shapePropertyType = (property_type, property_key, check_variable) => {
         consolelog('///_shapePropertyType ENTER', property_type, property_key, check_variable, TYPE_CZECH_current_test_number);
         let error_string = '';
-        const valid_type = _shortToLongType(property_type[property_key]);
-        if (!_isPlainJsType(valid_type)) {
-          error_string = looksLikeType(valid_type);
+        const conform_type = _shortToLongType(property_type[property_key]);
+        if (!_isPlainJsType(conform_type)) {
+          error_string = looksLikeType(conform_type);
           if (!error_string) {
-            const error_40 = `The type '${valid_type}' is not valid`;
+            const error_40 = `The type '${conform_type}' is not conform`;
             error_string = _consoleError(error_40, 'TC@40');
           }
         } else {
           const variable_type = _aTypeOf(check_variable);
-          if (valid_type !== variable_type) {
+          if (conform_type !== variable_type) {
             if (OP_UNDEF_OK && variable_type === 'null') {
               // ingore nulls if OP_UNDEF_OK
             } else if (OP_UNDEF_OK && variable_type === 'undefined') {
               // ingore undefined if OP_UNDEF_OK
             } else if (typeof check_variable === 'undefined') {
-              const error_41 = `Key '${property_key}' was given to be a '${valid_type}' but was instead 'undefined'`;
+              const error_41 = `Key '${property_key}' was given to be a '${conform_type}' but was instead 'undefined'`;
               error_string = _consoleError(error_41, 'TC@41');
             } else if (variable_type === 'null') {
-              const error_42 = `Key '${property_key}' was determined to be a '${valid_type}' but was instead 'null'`;
+              const error_42 = `Key '${property_key}' was determined to be a '${conform_type}' but was instead 'null'`;
               error_string = _consoleError(error_42, 'TC@42');
             } else {
               const check_str = _toStr(check_variable);
-              const error_43 = `Property '${property_key}' is indicated to be a '${valid_type}',`
+              const error_43 = `Property '${property_key}' is indicated to be a '${conform_type}',`
                           + ` but is inaccurately a '${variable_type}' : ${check_str}`;
               error_string = _consoleError(error_43, 'TC@43');
             }
@@ -2324,7 +2321,7 @@ type_czech._shapeContainer( [  [[1, false], [2, false]], [[1, false], [2, 2]] ] 
 
       type_czech._shapeCollectionTypes({a:[123], b:[789]},  {a:["S"]}, 'TYPE-VERIFY');
       //TC@99 - Wrong Type in a Collection [{'a':[123],'B':[789]}], expected [{'a':['S']}]
-      //               TC@44 - INDEX '0' is assumed to be a 'String', but is mistakenly a 'Number'"
+      //               TC@44 - ELEMENT '0' is assumed to be a 'String', but is mistakenly a 'Number'"
 
       type_czech._shapeCollectionTypes({ X: 33 }, { r: "N" }, 'TYPE-EXTRAS');
       //TC@99 - TC@46 -  The key 'r', which has a type of 'N', is missing in the checked object
@@ -2333,7 +2330,7 @@ type_czech._shapeContainer( [  [[1, false], [2, false]], [[1, false], [2, 2]] ] 
       function _shapeCollectionTypes(check_object, object_shape, check_type, array_recurse_level) {
         consolelog('///_shapeCollectionTypes ENTER', check_object, object_shape, check_type, array_recurse_level, TYPE_CZECH_current_test_number);
         const error_strings = [];
-        const valid_shallow = { ...object_shape };
+        const conform_shallow = { ...object_shape };
         const check_entries = Object.entries(check_object);
         check_entries.forEach((shape_entry) => {
           let error_string = '';
@@ -2341,10 +2338,10 @@ type_czech._shapeContainer( [  [[1, false], [2, false]], [[1, false], [2, 2]] ] 
           if (_isCollection(check_var_or_obj)) {
             const correct_shape = object_shape[check_key];
             error_string += _shapeContainer(check_object[check_key], correct_shape, check_type, array_recurse_level);
-            delete valid_shallow[check_key];
-          } else if (Object.prototype.hasOwnProperty.call(valid_shallow, check_key)) {
-            error_string += _shapePropertyType(valid_shallow, check_key, check_var_or_obj);
-            delete valid_shallow[check_key];
+            delete conform_shallow[check_key];
+          } else if (Object.prototype.hasOwnProperty.call(conform_shallow, check_key)) {
+            error_string += _shapePropertyType(conform_shallow, check_key, check_var_or_obj);
+            delete conform_shallow[check_key];
           } else if (check_type === TYPE_VERIFY) {
             const error_39 = `Extra key in checked object - (${check_key}:'${check_var_or_obj}')`;
             error_string = _consoleError(error_39, 'TC@39');
@@ -2359,7 +2356,7 @@ type_czech._shapeContainer( [  [[1, false], [2, false]], [[1, false], [2, 2]] ] 
         if (error_strings.length > 0) {
           error_strings.forEach((empty_error) => { error_99 += empty_error; });
         }
-        error_99 += _missingKey(valid_shallow);
+        error_99 += _missingKey(conform_shallow);
         return error_99;
       }
 
@@ -2375,7 +2372,7 @@ type_czech._shapeContainer( [  [[1, false], [2, false]], [[1, false], [2, 2]] ] 
       //""
 
       type_czech._shapeScalar({} ,"capybara");
-      //TC@33 - The type 'capybara' is not valid
+      //TC@33 - The type 'capybara' is not conform
 
       type_czech._shapeScalar(undefined, "N");
       //TC@34 - The variable 'undefined', is not a 'N'
@@ -2390,7 +2387,7 @@ type_czech._shapeContainer( [  [[1, false], [2, false]], [[1, false], [2, 2]] ] 
         let variable_str;
         let error_string = '';
         if (expected_long_type === 'null' || expected_long_type === 'undefined') {
-          const error_17 = `The type '${expected_long_type}' is not a valid type`;
+          const error_17 = `The type '${expected_long_type}' is not a conform type`;
           error_string = _consoleError(error_17, 'TC@17');
         } else if (!_isPlainJsType(expected_long_type)) {
           const actual_type = _anObjectsType(actual_value);
@@ -2482,7 +2479,7 @@ type_czech._shapeContainer( [  [[1, false], [2, false]], [[1, false], [2, 2]] ] 
       /* type_czech = TypeCzech('LOG-ERRORS')
 
       type_czech._emptyErrorMess(['EMPTY-ERROR', 'EMPTY-OK'], ['first', 'middle', 'last']);
-      //TC@29 - INDEX '0' is supposed to be a 'EMPTY-ERROR', but is missing : ['first','middle','last']
+      //TC@29 - ELEMENT '0' is supposed to be a 'EMPTY-ERROR', but is missing : ['first','middle','last']
 
       */
       function _emptyErrorMess(shallow_array, check_array) {
@@ -2490,7 +2487,7 @@ type_czech._shapeContainer( [  [[1, false], [2, false]], [[1, false], [2, 2]] ] 
         const extra_shapes = Object.entries(shallow_array);
         const [extra_index, extra_type] = extra_shapes[0];
         const check_str = _jsonStr(check_array);
-        const error_29 = `INDEX '${extra_index}' is promised to be a '${extra_type}', but is missing : ${check_str}`;
+        const error_29 = `ELEMENT '${extra_index}' is promised to be a '${extra_type}', but is missing : ${check_str}`;
         const error_string = _consoleError(error_29, 'TC@29');
         consolelog('///_emptyErrorMess EXIT', error_string);
         return error_string;
@@ -2502,13 +2499,13 @@ type_czech._shapeContainer( [  [[1, false], [2, false]], [[1, false], [2, 2]] ] 
       //""
 
       type_czech._emptyError('EMPTY-ERROR', '', 0, ['', 17], 'String', 'EMPTY-VERIFY');
-      //TC@30 - INDEX '0' is incorrectly empty : ['',17]
+      //TC@30 - ELEMENT '0' is incorrectly empty : ['',17]
 
       type_czech._emptyError('EMPTY-ERROR', false, 0, [false, 17], 'Boolean', 'EMPTY-VERIFY');
-      //TC@31 - INDEX '0' is a boolean, 'false', not an Array/Object/String/Date, it cannot by empty : [false,17]
+      //TC@31 - ELEMENT '0' is a boolean, 'false', not an Array/Object/String/Date, it cannot by empty : [false,17]
 
       type_czech._emptyError('bad-EMPTY', 'a-string', 0, ['a-string', 17], 'String', 'EMPTY-VERIFY');
-      //TC@32 - INDEX '0' is wrong type, 'bad-EMPTY', only [EM-ER, EMPTY-ERROR, EMPTY-OK, EM-OK] allowed  : ['a-string',17]
+      //TC@32 - ELEMENT '0' is wrong type, 'bad-EMPTY', only [EM-ER, EMPTY-ERROR, EMPTY-OK, EM-OK] allowed  : ['a-string',17]
 
       */
       function _emptyError(empty_type, check_element, element_index, check_array, variable_type, check_type, array_recurse_level) {
@@ -2518,7 +2515,7 @@ type_czech._shapeContainer( [  [[1, false], [2, false]], [[1, false], [2, 2]] ] 
         const check_str = _jsonStr(check_array);
         if (empty_type === 'EMPTY-ERROR' || empty_type === 'EM-ER') {
           if (_isEmpty(check_element)) {
-            const error_30 = `INDEX '${element_index}' is erroneously empty :`;
+            const error_30 = `ELEMENT '${element_index}' is erroneously empty :`;
             error_string = _consoleError(error_30, 'TC@30');
           } else {
             error_string = '';
@@ -2528,7 +2525,7 @@ type_czech._shapeContainer( [  [[1, false], [2, false]], [[1, false], [2, 2]] ] 
           // eslint-disable-next-line no-use-before-define
           error_string = _emptyContainer(check_array[element_index], empty_type, check_type, array_recurse_level);
         } else if (_aTypeOf(empty_type) === 'String') {
-          const error_32 = `INDEX '${element_index}' is incorrect  type, '${empty_type}', only`
+          const error_32 = `ELEMENT '${element_index}' is incorrect  type, '${empty_type}', only`
                       + ` [EM-ER, EMPTY-ERROR, EMPTY-OK, EM-OK, EMPTY-IGNORE, EM-IG] allowed  : ${check_str}`;
           error_string = _consoleError(error_32, 'TC@32');
         } else {
@@ -2545,7 +2542,7 @@ type_czech._shapeContainer( [  [[1, false], [2, false]], [[1, false], [2, 2]] ] 
       //""
 
       type_czech._emptyArrayInArray([[11], [NaN], [17]], ["EM-ER"], 'EMPTY-VERIFY');
-      //TC@30 - INDEX '0' is erroneously empty :  inside [1]
+      //TC@30 - ELEMENT '0' is erroneously empty :  inside [1]
 
       type_czech._emptyArrayInArray([["a-s", "", "c-s"], ["x-s",  "y-s", "z-s"]],   ["EM-ER", "EM-ER", "EM-ER"], 'EMPTY-VERIFY');
       //
@@ -2589,7 +2586,7 @@ type_czech._shapeContainer( [  [[1, false], [2, false]], [[1, false], [2, 2]] ] 
       //""
 
       type_czech._emptyArrayTypes(['first', 'middle', ''], ['EMPTY-ERROR', 'EMPTY-OK', 'EMPTY-ERROR'], 'EMPTY-VERIFY');
-      //"TC@30 - INDEX '2' is erroneously empty :"
+      //"TC@30 - ELEMENT '2' is erroneously empty :"
 
       type_czech._emptyArrayTypes(['first', 'middle', 'last'], ['EMPTY-ERROR', "EMPTY-OK"], 'EMPTY-VERIFY');
       //TC@20 - The parameter array ['first','middle','last'] does not have the same number of elements as ['EMPTY-ERROR','EMPTY-OK'].  Lengths are different 3 !== 2.
@@ -2598,7 +2595,7 @@ type_czech._shapeContainer( [  [[1, false], [2, false]], [[1, false], [2, 2]] ] 
       //""
 
       type_czech._emptyArrayTypes(['', ''], ['EMPTY-OK', 'EMPTY-ERROR'], 'EMPTY-EXTRAS');
-      //TC@30 - INDEX '1' is erroneously empty :
+      //TC@30 - ELEMENT '1' is erroneously empty :
 
       type_czech._emptyArrayTypes(['an-str', 'an-str'], ['EMPTY-OK', 'EMPTY-ERROR'], 'EMPTY-EXTRAS');
       //""
@@ -2702,11 +2699,11 @@ type_czech._shapeContainer( [  [[1, false], [2, false]], [[1, false], [2, 2]] ] 
               error_string = _consoleError(error_8, 'TC@08');
             }
           } else {
-            const error_9 = `Cannot be invalid '${check_key}' ${long_empty}' is a ${check_var_or_obj} :: ${current_type}`;
+            const error_9 = `Cannot be inconform '${check_key}' ${long_empty}' is a ${check_var_or_obj} :: ${current_type}`;
             error_string = _consoleError(error_9, 'TC@09');
           }
         } else if (long_empty !== EMPTY_OK && long_empty !== EMPTY_IG) {
-          const error_10 = `bad invalid key '${_toStr(long_empty)}', must be either EMPTY-OK -ER -IG`;
+          const error_10 = `bad inconform key '${_toStr(long_empty)}', must be either EMPTY-OK -ER -IG`;
           error_string = _consoleError(error_10, 'TC@10');
         }
         consolelog('///_emptyKeysChecked EXIT', error_string);
@@ -2737,12 +2734,12 @@ type_czech._shapeContainer( [  [[1, false], [2, false]], [[1, false], [2, 2]] ] 
       const _emptyCollectionTypes = (check_object, object_shape, check_type, array_recurse_level) => {
         consolelog('///_emptyCollectionTypes ENTER', check_object, object_shape, check_type, array_recurse_level, TYPE_CZECH_current_test_number);
         const error_strings = [];
-        const valid_shallow = { ...object_shape };
+        const conform_shallow = { ...object_shape };
         const check_entries = Object.entries(check_object);
         check_entries.forEach((empty_entry) => {
           let error_string = '';
           const [check_key, check_var_or_obj] = empty_entry;
-          const empty_choice = _shortToLongEmpty(valid_shallow[check_key]);
+          const empty_choice = _shortToLongEmpty(conform_shallow[check_key]);
           if (_isCollection(check_var_or_obj)) {
             const correct_empty = object_shape[check_key];
             const long_empty = _shortToLongEmpty(correct_empty);
@@ -2754,10 +2751,10 @@ type_czech._shapeContainer( [  [[1, false], [2, false]], [[1, false], [2, 2]] ] 
               // eslint-disable-next-line no-use-before-define
               error_string += _emptyContainer(check_object[check_key], long_empty, check_type, array_recurse_level);
             }
-            delete valid_shallow[check_key];
-          } else if (Object.prototype.hasOwnProperty.call(valid_shallow, check_key)) {
+            delete conform_shallow[check_key];
+          } else if (Object.prototype.hasOwnProperty.call(conform_shallow, check_key)) {
             error_string = _emptyKeysChecked(empty_choice, check_var_or_obj, check_key);
-            delete valid_shallow[check_key];
+            delete conform_shallow[check_key];
           } else if (check_type === EMPTY_VERIFY) {
             const error_27 = `Extra key in checked object - (${check_key}:'${check_var_or_obj}')`;
             error_string = _consoleError(error_27, 'TC@27');
@@ -2772,7 +2769,7 @@ type_czech._shapeContainer( [  [[1, false], [2, false]], [[1, false], [2, 2]] ] 
         if (error_strings.length > 0) {
           error_strings.forEach((empty_error) => { error_13 += empty_error; });
         }
-        error_13 += _missingKey(valid_shallow);
+        error_13 += _missingKey(conform_shallow);
         // if (error_13) {
         //   error_13 = _consoleError(error_13, 'TC@13');            // looks like _missingKey() does this
         // }
@@ -2786,10 +2783,10 @@ type_czech._shapeContainer( [  [[1, false], [2, false]], [[1, false], [2, 2]] ] 
       //""
 
       type_czech._emptyContainer([""], ['EMPTY-ERROR'], 'EMPTY-VERIFY');
-      //TC@30 - INDEX '0' is incorrectly empty : ['']
+      //TC@30 - ELEMENT '0' is incorrectly empty : ['']
 
       type_czech._emptyContainer({zero:0}, ['EMPTY-ERROR'], 'EMPTY-VERIFY');
-      //TC@30 - INDEX 'zero' is incorrectly empty : {'zero':0}
+      //TC@30 - ELEMENT 'zero' is incorrectly empty : {'zero':0}
 
       type_czech._emptyContainer([''], ['EMPTY-OK', 'EMPTY-ERROR'], 'EMPTY-EXTRAS');
       //TC@20 - The parameter array [\"\"] does not have the same number of elements as [\"EMPTY-OK\",\"EMPTY-ER\"].  Lengths are different 1 !== 2.
@@ -2875,10 +2872,10 @@ type_czech._shapeContainer( [  [[1, false], [2, false]], [[1, false], [2, 2]] ] 
       //""
 
       type_czech._emptyVariable([""], ['EMPTY-ERROR'], 'EMPTY-VERIFY');
-      //TC@30 - INDEX '0' is incorrectly empty : ['']
+      //TC@30 - ELEMENT '0' is incorrectly empty : ['']
 
       type_czech._emptyVariable({zero:0}, ['EMPTY-ERROR'], 'EMPTY-VERIFY');
-      //TC@30 - INDEX 'zero' is incorrectly empty : {'zero':0}
+      //TC@30 - ELEMENT 'zero' is incorrectly empty : {'zero':0}
 
       */
       function _emptyVariable(check_variable, variable_type, check_type, array_recurse_level) {
@@ -2918,7 +2915,7 @@ type_czech._shapeContainer( [  [[1, false], [2, false]], [[1, false], [2, 2]] ] 
       //""
 
       type_czech._doUnionEmpty([['',12], [['EM-ER','EM-ER'],['EM-ER','EM-OK']]], 'EMPTY-VERIFY');
-      //TC@30 - INDEX '0' is erroneously empty : TC@29 - INDEX '0' is promised to be a 'EM-ER', but is missing : ['',12]
+      //TC@30 - ELEMENT '0' is erroneously empty : TC@29 - ELEMENT '0' is promised to be a 'EM-ER', but is missing : ['',12]
 
       */
       function _doUnionEmpty(type_parameters, check_type, array_recurse_level) {
@@ -3083,9 +3080,10 @@ type_czech._shapeContainer( [  [[1, false], [2, false]], [[1, false], [2, 2]] ] 
       }
 
       // we can see the error arrays get made!!!
-      function error3Array(command_type, invalid_error, shape_list) {
-        consolelog('///error3Array ENTER', command_type, invalid_error, shape_list, TYPE_CZECH_current_test_number);
-        const error_3_array = [command_type, invalid_error, shape_list];
+      function error3Array(command_type, inconform_error, shape_list) {
+        consolelog('///error3Array ENTER', command_type, inconform_error, shape_list, TYPE_CZECH_current_test_number);
+        const shape_list_str = _toStr(shape_list);
+        const error_3_array = [command_type, inconform_error, shape_list_str];
         consolelog('///error3Array EXIT', error_3_array);
         return error_3_array;
       }
@@ -3147,9 +3145,21 @@ type_czech._shapeContainer( [  [[1, false], [2, false]], [[1, false], [2, 2]] ] 
       //TC@15 - TypeCzech.fail-98() called with a second parameter as a non-array shape of 2
 
       type_czech._unionChecks([1, [2]], 'fail-97');
-      //TC@61 - TypeCzech.fail-97() needs at least 2 choices for an either, not 1 [2] in the second parameter
+      //TC@50 - TypeCzech.fail-97()  needs at least 2 choices for a union, not 1 of [2]
 
       type_czech._unionChecks([1, [2, 3]], 'pass-96');
+      //""
+
+      type_czech._unionChecks(['a-str-or-num', ['String', 'Number']], 'pass-95');
+      //""
+
+      type_czech._unionChecks(['a-str-or-num-or-date', ['String', 'Number', 'Date']], 'pass-94');
+      //""
+
+      type_czech._unionChecks([           ['a-str', 12345],   [  ['String','Number'],['String','Date']  ]              ], 'pass-93');
+      //""
+
+      type_czech._unionChecks([   ['a-str', new Date('june 4, 1999')],   [  ['String','Number'],['String','Date']  ]              ], 'pass-93');
       //""
 
       */
@@ -3166,6 +3176,10 @@ type_czech._shapeContainer( [  [[1, false], [2, false]], [[1, false], [2, 2]] ] 
             const error_15 = `TypeCzech.${method_name}() called with a second parameter`
                           + ` as a non-array shape of ${exact_str}`;
             error_string = _consoleError(error_15, 'TC@15');
+          } else if (shapes_lists.length < 2) {
+            const shapes_lists_str = _toStr(shapes_lists);
+            const error_50 = `TypeCzech.${method_name}()  needs at least 2 choices for a union, not ${shapes_lists.length} of ${shapes_lists_str}`;
+            error_string = _consoleError(error_50, 'TC@50');
           }
         }
         consolelog('///_unionChecks EXIT', error_string);
@@ -3175,10 +3189,10 @@ type_czech._shapeContainer( [  [[1, false], [2, false]], [[1, false], [2, 2]] ] 
       /* type_czech = TypeCzech('LOG-ERRORS')
 
       type_czech.valueless([12, 'a-string', false], ['EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR']);
-      //TC@31 - INDEX '2' is a boolean, 'false', not an array/object/string/Date, it cannot by empty : [12,'a-string',false]
+      //TC@31 - ELEMENT '2' is a boolean, 'false', not an array/object/string/Date, it cannot by empty : [12,'a-string',false]
 
       type_czech.valueless([12, [], 'a-string'], ['EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR']);
-      //TC@30 - INDEX '1' is erroneously empty : [12,[],'a-string']
+      //TC@30 - ELEMENT '1' is erroneously empty : [12,[],'a-string']
 
       type_czech.valueless([12, [], 'a-string'], ['EMPTY-ERROR', 'EMPTY-OK', 'EMPTY-ERROR']);
       //""
@@ -3201,9 +3215,9 @@ type_czech._shapeContainer( [  [[1, false], [2, false]], [[1, false], [2, 2]] ] 
         let error_str_3arr = _twoArrays([parameters_array, shape_list], 'valueless', MESS_EMPTY_VERIFY);
         if (error_str_3arr === '') {
           const array_recurse_level = _arrayRecurseLevel(parameters_obj);
-          const invalid_error = _emptyCheck(parameters_array, shape_list, EMPTY_VERIFY, array_recurse_level);
-          if (invalid_error) {
-            error_str_3arr = error3Array(MESS_EMPTY_VERIFY, invalid_error, shape_list);
+          const inconform_error = _emptyCheck(parameters_array, shape_list, EMPTY_VERIFY, array_recurse_level);
+          if (inconform_error) {
+            error_str_3arr = error3Array(MESS_EMPTY_VERIFY, inconform_error, shape_list);
           } else {
             error_str_3arr = '';
           }
@@ -3216,45 +3230,45 @@ type_czech._shapeContainer( [  [[1, false], [2, false]], [[1, false], [2, 2]] ] 
 
       //problem is that the first parameter is always the parameters of a function, []
 
-      type_czech.valid({}, 'an-object');
-      //TC@33 - The type 'an-object' is not valid
+      type_czech.conform({}, 'an-object');
+      //TC@33 - The type 'an-object' is not conform
 
-      type_czech.valid({cyl:4, fuel:"gasoline", snuck:"extra"}, {cyl:"Number", fuel:"String"});
+      type_czech.conform({cyl:4, fuel:"gasoline", snuck:"extra"}, {cyl:"Number", fuel:"String"});
       //TC@39 - Extra key in checked object - (snuck:'extra')
 
-      type_czech.valid({cyl:4, fuel:"gasoline"}, {cyl:"Number", fuel:"String", snuck:"Boolean"});
+      type_czech.conform({cyl:4, fuel:"gasoline"}, {cyl:"Number", fuel:"String", snuck:"Boolean"});
       //TC@46 - The key 'snuck', which has a type of 'Boolean', is missing in the checked object
 
-      type_czech.valid({cyl:4, fuel:"gasoline"}, {cyl:"Number", fuel:"String"});
+      type_czech.conform({cyl:4, fuel:"gasoline"}, {cyl:"Number", fuel:"String"});
       //""
 
-      type_czech.valid([1,2,3], ["N", "N"]);
-      //TC@44 - INDEX '2' is assumed to be a 'undefined', but is mistakenly a 'Number' : 3
+      type_czech.conform([1,2,3], ["N", "N"]);
+      //TC@44 - ELEMENT '2' is assumed to be a 'undefined', but is mistakenly a 'Number' : 3
 
-      type_czech.valid([1,2,3], ["N", "N", "N"]);
+      type_czech.conform([1,2,3], ["N", "N", "N"]);
       //""
 
-      type_czech.valid([1,2], ["N", "N", "N"]);
-      //TC@03 - Index '2' is supposed to be a 'N', but is missing : [1,2]
+      type_czech.conform([1,2], ["N", "N", "N"]);
+      //TC@03 - Element '2' is supposed to be a 'N', but is missing : [1,2]
 
-      type_czech.valid([[['a']]], [["N"]]);
-      //TC@44 - INDEX '0' is assumed to be a 'Number', but is mistakenly a 'Array' : ['a']
+      type_czech.conform([[['a']]], [["N"]]);
+      //TC@44 - ELEMENT '0' is assumed to be a 'Number', but is mistakenly a 'Array' : ['a']
 
-      type_czech.valid([], 'Array');
+      type_czech.conform([], 'Array');
       //""
 
-      type_czech.valid({}, 'Object');
+      type_czech.conform({}, 'Object');
       //""
 
-      type_czech.valid('a-string', ['String']);
+      type_czech.conform('a-string', ['String']);
       //""
 
       */
-      function valid(parameters_obj, shape_list) {
-        consolelog('///valid ENTER', parameters_obj, shape_list, TYPE_CZECH_current_test_number);
+      function conform(parameters_obj, shape_list) {
+        consolelog('///conform ENTER', parameters_obj, shape_list, TYPE_CZECH_current_test_number);
         const parameters_array = _getParameters(parameters_obj);
-        consolelog('///valid START', parameters_array, shape_list);
-        let error_str_3arr = _twoArrays([parameters_array, shape_list], 'valid', MESS_TYPE_VERIFY);
+        consolelog('///conform START', parameters_array, shape_list);
+        let error_str_3arr = _twoArrays([parameters_array, shape_list], 'conform', MESS_TYPE_VERIFY);
         if (error_str_3arr === '') {
           const array_recurse_level = _arrayRecurseLevel(parameters_obj);
           const type_error = _shapeCheck(parameters_array, shape_list, TYPE_VERIFY, array_recurse_level);
@@ -3264,81 +3278,291 @@ type_czech._shapeContainer( [  [[1, false], [2, false]], [[1, false], [2, 2]] ] 
             error_str_3arr = '';
           }
         }
-        consolelog('///valid EXIT', error_str_3arr);
+        consolelog('///conform EXIT', error_str_3arr);
         return error_str_3arr;
       }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       /* type_czech = TypeCzech('LOG-ERRORS')
 
       type_czech.valuelessExtras([12, 'a-string', false], ['EMPTY-ERROR', 'EMPTY-ERROR']);
       //""
 
+      type_czech.valuelessExtras([12, '', 'extra-1', 'extra-2'], ['EMPTY-ERROR', 'EMPTY-ERROR']);
+      //valuelessExtras(arguments, expected_emptys)
+      //TC@30 - ELEMENT '1' is erroneously empty :
+      //Array [ "EMPTY-ERROR", "EMPTY-ERROR" ]
+
+      type_czech.valuelessExtras([  1234, 'not-empty', ['not-empty'], {a:''}  ], ['EMPTY-ERROR']);
+      //Uncaught TC@18 - TypeCzech.valuelessExtras() needs each array to have at least two types to work
+
+      type_czech.valuelessExtras([  1234, 'not-empty', ['not-empty'], {}  ], ['EMPTY-ERROR', 'EMPTY-ERROR']);
+      //""
+
       */
       function valuelessExtras(parameters_obj, shape_list) {
         consolelog('///valuelessExtras ENTER', parameters_obj, shape_list, TYPE_CZECH_current_test_number);
         const parameters_array = _getParameters(parameters_obj);
+        if (parameters_array.length < 2 || shape_list.length < 2) {
+          let error_18 = 'TypeCzech.valuelessExtras() needs each array to have at least two types to work';
+          error_18 = _consoleError(error_18, 'TC@18');
+          throw error_18;
+        }
         consolelog('///valuelessExtras START', parameters_array, shape_list);
         let error_str_3arr = _twoArrays([parameters_array, shape_list], 'valuelessExtras', MESS_EMPTY_EXTRAS);
         if (error_str_3arr === '') {
-          const array_recurse_level = _arrayRecurseLevel(parameters_obj);
-          const invalid_error = _emptyCheck(parameters_array, shape_list, EMPTY_EXTRAS, array_recurse_level);
-          if (invalid_error) {
-            error_str_3arr = error3Array(MESS_EMPTY_EXTRAS, invalid_error, shape_list);
+          if (_aTypeOf(parameters_array) !== 'Array' || _aTypeOf(shape_list) !== 'Array') {
+            let error_37 = 'TypeCzech.valuelessExtras() needs two arrays to work';
+            error_37 = _consoleError(error_37, 'TC@37');
+            throw error_37;
           } else {
-            error_str_3arr = '';
+            const array_recurse_level = _arrayRecurseLevel(parameters_obj);
+            const inconform_error = _emptyCheck(parameters_array, shape_list, EMPTY_EXTRAS, array_recurse_level);
+            if (inconform_error) {
+              error_str_3arr = error3Array(MESS_EMPTY_EXTRAS, inconform_error, shape_list);
+            } else {
+              error_str_3arr = '';
+            }
           }
         }
         consolelog('///valuelessExtras ENTER', error_str_3arr);
         return error_str_3arr;
       }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       /* type_czech = TypeCzech('LOG-ERRORS')
 
-      //Both parameters must be arrays of at least 2 entries, or error.
-      //We cannot handle single-type arrays with validExtras()
+      type_czech.objectConformExtras({a:123}, ["Number"]);
+      //Uncaught TC@02 - TypeCzech.objectConformExtras() needs two Objects to work
 
-      //Does not make sense. The extra 17 doesn't work. Does this match
-      //function(['String'], 'Number') or function(['String', 'Number']) ?
-      type_czech.validExtras(['a-string', 17], ['String']);
-      //"INDEX '1' is asserted to be a 'String', but is fallaciously a 'Number' : 17"
+      type_czech.objectConformExtras({a:123}, {a:"String"});
+      //"objectConformExtras(arguments, expected_types)"
+      //"TC@43 - Property 'a' is indicated to be a 'String', but is inaccurately a 'Number' : 123"
+      //"{'a':'String'}"
 
-      //Does not make sense either, missing a number in the parameters.
-      type_czech.validExtras(['a-string'], ['String', 'Number']);
-      //"TypeCzech.validExtras() comparing actual 'String' parameter, with a value of 'a-string', opposed to the expected shape of [\"String\",\"Number\"]. They should be the same type; both []s, or both 'String's."
-
-      type_czech.validExtras(['a-string', 17], ['String', 'Number']);
+      type_czech.objectConformExtras({a:123, b:"extra"}, {a:"Number"});
       //""
 
-      type_czech.validExtras(['a-string', 17, {}], ['String', 'Number']);
+      type_czech.objectConformExtras({a:123}, {a:"Number"});
       //""
-
-      type_czech.validExtras([1,2,3], ["N", "N"]);
-      //""
-
-        type_czech.validExtras([1,2,3], ["N", "N", "N"]);
-      //""
-
-      type_czech.validExtras([1,2], ["N", "N", "N"]);
-      //TC@03 - Index '2' is supposed to be a 'N', but is missing : [1,2]
 
       */
-      function validExtras(parameters_obj, shape_list) {
-        consolelog('///validExtras ENTER', parameters_obj, shape_list, TYPE_CZECH_current_test_number);
+      function objectConformExtras(parameters_obj, shape_list) {
+        consolelog('///objectConformExtras ENTER', parameters_obj, shape_list, TYPE_CZECH_current_test_number);
         const parameters_array = _getParameters(parameters_obj);
-        consolelog('///validExtras START', parameters_array, shape_list);
-        let error_str_3arr = _twoArrays([parameters_array, shape_list], 'validExtras', MESS_TYPE_EXTRAS);
+        if (_aTypeOf(parameters_array) !== 'Object' || _aTypeOf(shape_list) !== 'Object') {
+          let error_02 = 'TypeCzech.objectConformExtras() needs two Objects to work';
+          error_02 = _consoleError(error_02, 'TC@02');
+          throw error_02;
+        }
+
+        consolelog('///objectConformExtras START', parameters_array, shape_list);
+        let error_str_3arr = _twoArrays([parameters_array, shape_list], 'objectConformExtras', MESS_TYPE_OBJECT_EXTRAS);
         if (error_str_3arr === '') {
           const array_recurse_level = _arrayRecurseLevel(parameters_obj);
           const type_error = _shapeCheck(parameters_array, shape_list, TYPE_EXTRAS, array_recurse_level);
           if (type_error) {
-            error_str_3arr = error3Array(MESS_TYPE_EXTRAS, type_error, shape_list);
+            error_str_3arr = error3Array(MESS_TYPE_OBJECT_EXTRAS, type_error, shape_list);
           } else {
             error_str_3arr = '';
           }
         }
-        consolelog('///validExtras EXIT', error_str_3arr);
+        consolelog('///objectConformExtras EXIT', error_str_3arr);
         return error_str_3arr;
       }
+
+
+
+
+
+
+
+
+
+
+      /* type_czech = TypeCzech('LOG-ERRORS')
+
+      type_czech.objectValuelessExtras({a:123}, ["EMPTY-ERROR"]);
+      //Uncaught TC@02 - TypeCzech.objectValuelessExtras() needs two Objects to work
+
+      type_czech.objectValuelessExtras({a:''}, {a:"EMPTY-ERROR"});
+      //"objectValuelessExtras(arguments, expected_types)"
+      //"TC@08 - 'a' is a 'String' which is reputed to be 'EMPTY-ERROR' but has a value of ''."
+      //{a:"EMPTY-ERROR"}
+
+      type_czech.objectValuelessExtras({a:123, b:"extra"}, {a:"EMPTY-ERROR"});
+      //""
+
+      type_czech.objectValuelessExtras({a:123}, {a:"EMPTY-ERROR"});
+      //""
+
+      */
+      function objectValuelessExtras(parameters_obj, shape_list) {
+        consolelog('///objectValuelessExtras ENTER', parameters_obj, shape_list, TYPE_CZECH_current_test_number);
+        const parameters_array = _getParameters(parameters_obj);
+        if (_aTypeOf(parameters_array) !== 'Object' || _aTypeOf(shape_list) !== 'Object') {
+          let error_22 = 'TypeCzech.objectValuelessExtras() needs two Objects to work';
+          error_22 = _consoleError(error_22, 'TC@22');
+          throw error_22;
+        }
+
+        consolelog('///objectValuelessExtras START', parameters_array, shape_list);
+        let error_str_3arr = _twoArrays([parameters_array, shape_list], 'objectValuelessExtras', MESS_EMPTY_OBJECT_EXTRAS);
+        if (error_str_3arr === '') {
+          const array_recurse_level = _arrayRecurseLevel(parameters_obj);
+          const type_error = _emptyCheck(parameters_array, shape_list, TYPE_EXTRAS, array_recurse_level);
+          if (type_error) {
+            error_str_3arr = error3Array(MESS_EMPTY_OBJECT_EXTRAS, type_error, shape_list);
+          } else {
+            error_str_3arr = '';
+          }
+        }
+        consolelog('///objectValuelessExtras EXIT', error_str_3arr);
+        return error_str_3arr;
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      /* type_czech = TypeCzech('LOG-ERRORS')
+
+      type_czech.conformExtras(17, 'N');
+      type_czech.conformExtras(17, ['N']);
+      type_czech.conformExtras([17], 'N');
+      type_czech.conformExtras([17], ['Number']);                   // NB first array transformed into a number
+      type_czech.conformExtras([17], ['Number', 'Number']);
+      //Uncaught TC@54 - TypeCzech.conformExtras() needs 2 arrays to work
+
+      type_czech.conformExtras([17, 'abc'], ['Number']);
+      //Uncaught TC@57 - TypeCzech.conformExtras() needs each array to have at least 2 types to work
+
+      type_czech.conformExtras([17, 'abc'], ['N', 'S']);
+      //""
+
+      type_czech.conformExtras(['a-string', 17, false], ['S', 'N']);
+      //""
+
+      type_czech.conformExtras([1,2,3], ["N", "N"]);
+      //""
+
+      type_czech.conformExtras([1,2,3], ["N", "N", "N"]);
+      //""
+
+      type_czech.conformExtras([1,2], ["N", "N", "N"]);
+      //"conformExtras(arguments, expected_types)"
+      //"TC@03 - Element '2' is supposed to be a 'N', but is missing : [1,2]"
+      //"['N','N','N']"
+      */
+      function conformExtras(parameters_obj, shape_list) {
+        consolelog('///conformExtras ENTER', parameters_obj, shape_list, TYPE_CZECH_current_test_number);
+        const parameters_array = _getParameters(parameters_obj);
+        if (parameters_array.length < 2 || shape_list.length < 2) {
+          let error_01 = 'TypeCzech.conformExtras() needs each array to have at least two types to work';
+          error_01 = _consoleError(error_01, 'TC@01');
+          throw error_01;
+        }
+        consolelog('///conformExtras START', parameters_array, shape_list);
+        let error_str_3arr = _twoArrays([parameters_array, shape_list], 'conformExtras', MESS_TYPE_EXTRAS);
+        if (error_str_3arr === '') {
+          if (_aTypeOf(parameters_array) !== 'Array' || _aTypeOf(shape_list) !== 'Array') {
+            let error_54 = 'TypeCzech.conformExtras() needs two arrays to work';
+            error_54 = _consoleError(error_54, 'TC@54');
+            throw error_54;
+          } else {
+            const array_recurse_level = _arrayRecurseLevel(parameters_obj);
+            const type_error = _shapeCheck(parameters_array, shape_list, TYPE_EXTRAS, array_recurse_level);
+            if (type_error) {
+              error_str_3arr = error3Array(MESS_TYPE_EXTRAS, type_error, shape_list);
+            } else {
+              error_str_3arr = '';
+            }
+          }
+        }
+        consolelog('///conformExtras EXIT', error_str_3arr);
+        return error_str_3arr;
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       /* type_czech = TypeCzech('LOG-ERRORS')
 
@@ -3346,10 +3570,11 @@ type_czech._shapeContainer( [  [[1, false], [2, false]], [[1, false], [2, 2]] ] 
       //TC@15 - TypeCzech.valuelessUnion() called with a second parameter as a non-array shape of "EMPTY-OK"
 
       type_czech.valuelessUnion([12, false, 'a string'], ['EMPTY-OK']);
-      //TC@61 - TypeCzech.valuelessUnion() needs at least 2 choices for an either, not 1 ["EMPTY-OK"] in the second parameter
+      //TC@50 - TypeCzech.valuelessUnion()  needs at least 2 choices for a union, not 1 EMPTY-OK
 
       type_czech.valuelessUnion([12, 0, 'is-error'], [['EM-ER','EM-ER'],['EM-ER','EM-OK']]);
-      //TC@23 - The variable \n~~~~~'[12,0,'is-error']'\nwhich is a 'Array', does not match any in the list \n~~~~~['EM-ER','EM-ER'], \n~~~~~['EM-ER','EM-OK']
+      //valuelessUnion(arguments, expected_emptys)
+      //TC@20 - The parameter array [12,0,'is-error'] does not have the same number of elements as ['EM-ER','EM-OK'].  Lengths are different 3 !== 2.
 
       type_czech.valuelessUnion([12, 0], [['EM-ER','EM-ER'],['EM-ER','EM-OK']]);
       //""
@@ -3358,7 +3583,7 @@ type_czech._shapeContainer( [  [[1, false], [2, false]], [[1, false], [2, 2]] ] 
       //TC@23 - The variable \n~~~~~'{'a':0,'B':12}'\nwhich is a 'Object', does not match any in the list \n~~~~~{'a':'EM-ER','B':'EM-ER'}, \n~~~~~{'a':'EM-ER','B':'EM-OK'}
 
       type_czech.valuelessUnion( {a:0, b:12});
-      //TC@51 - TypeCzech.valuelessUnion() needs 2 parameters, not 1
+      //TC@15 - TypeCzech.valuelessUnion() called with a second parameter as a non-array shape of undefined
 
       */
       function valuelessUnion(parameters_obj, shapes_lists) {
@@ -3381,18 +3606,23 @@ type_czech._shapeContainer( [  [[1, false], [2, false]], [[1, false], [2, 2]] ] 
 
       /* type_czech = TypeCzech('LOG-ERRORS')
 
-      type_czech.validUnion(17, [ "String", "number" ]);
+      type_czech.conformUnion(17, [ "String", "Number" ]);
       //""
 
-      type_czech.validUnion({a:17, b:false}, [{a:"number"}, {a:"String"}]);
-      //TC@22 - The variable \n~~~~~{'a':17,'B':false}\n, which is a 'Object', is not in the list \n~~~~~{'a':'Number'}, \n~~~~~{'a':'String'}
+      type_czech.conformUnion({a:17, b:false}, [{a:"Number"}, {a:"String"}]);
+      //conformUnion(arguments, expected_types)
+      //TC@43 - Property 'a' is indicated to be a 'String', but is inaccurately a 'Number' : 17TC@39 - Extra key in checked object - (b:'false')
+
+      type_czech.conformUnion({a:17, b:false}, [{a:"Number", b:"Boolean"}, {a:"String"}]);
+      //""
 
       */
-      function validUnion(parameters_obj, possible_shapes) {
-        consolelog('///validUnion ENTER', parameters_obj, possible_shapes, TYPE_CZECH_current_test_number);
+      function conformUnion(parameters_obj, possible_shapes) {
+        consolelog('///conformUnion ENTER', parameters_obj, possible_shapes, TYPE_CZECH_current_test_number);
         const parameters_array = _getParameters(parameters_obj);
-        consolelog('///validUnion START', parameters_array, possible_shapes);
-        let error_str_3arr = _unionChecks([parameters_array, possible_shapes], 'validUnion');
+        consolelog('///conformUnion START', parameters_array, possible_shapes);
+        let error_str_3arr = _unionChecks([parameters_array, possible_shapes], 'conformUnion');
+
         if (error_str_3arr === '') {
           const array_recurse_level = _arrayRecurseLevel(parameters_obj);
           const exact_error = _doUnionShape([parameters_array, possible_shapes], TYPE_VERIFY, array_recurse_level);
@@ -3402,73 +3632,37 @@ type_czech._shapeContainer( [  [[1, false], [2, false]], [[1, false], [2, 2]] ] 
             error_str_3arr = '';
           }
         }
-        consolelog('///validUnion ENTER', error_str_3arr);
+        consolelog('///conformUnion ENTER', error_str_3arr);
         return error_str_3arr;
       }
 
       /* type_czech = TypeCzech('LOG-ERRORS')
 
-      type_czech.valuelessUnionExtras([12, false, 'a string'], 'EMPTY-OK');
-      //TC@15 - TypeCzech.valuelessUnionExtras() called with a second parameter as a non-array shape of "EMPTY-OK"
+      function check_func(a_num){ if (a_num>0) return 'only neg nums'}
+      function your_func(a_num){ console.log('user-func', a_num)}
+      your_func = type_czech.check(your_func, check_func);
+      your_func(54321)
+      //only neg nums
 
-      type_czech.valuelessUnionExtras([12, false, 'a string'], ['EMPTY-OK']);
-      //TC@61 - TypeCzech.valuelessUnionExtras() needs at least 2 choices for an either, not 1 ["EMPTY-OK"] in the second parameter
+      function check_func(a_num){return type_czech.conform(a_num, 'String') }
+      function your_func(a_num){ console.log('user-func', a_num)}
+      your_func = type_czech.check(your_func, check_func);
+      your_func(54321)
+      //...The variable '54321', which is a 'Number', is not a 'String'...
 
-      // OK AS [12,0] matches ['EM-ER','EM-OK']
-      type_czech.valuelessUnionExtras([12, 0, 'not-checked'], [['EM-ER','EM-ER'],['EM-ER','EM-OK']]);
+     function check_func(){return type_czech.conform(arguments, 'String') }
+      function your_func(a_num){ console.log('user-func', a_num)}
+      your_func = type_czech.check(your_func, check_func);
+      your_func(12345)
+      //...The variable '12345', which is a 'Number', is not a 'String'...
+
+     function check_func(){return type_czech.conform(arguments, ['S', 'S']) }
+      function your_func(a_num){ console.log('user-func', a_num)}
+      your_func = type_czech.check(your_func, check_func);
+      your_func('str-1', 'str-2')
       //""
 
       */
-      function valuelessUnionExtras(parameters_obj, shapes_lists) {
-        consolelog('///valuelessUnionExtras ENTER', parameters_obj, shapes_lists, TYPE_CZECH_current_test_number);
-        const parameters_array = _getParameters(parameters_obj);
-        consolelog('///valuelessUnionExtras START', parameters_array, shapes_lists);
-        let error_str_3arr = _unionChecks([parameters_array, shapes_lists], 'valuelessUnionExtras');
-        if (error_str_3arr === '') {
-          const array_recurse_level = _arrayRecurseLevel(parameters_obj);
-          const loose_error = _doUnionEmpty([parameters_array, shapes_lists], EMPTY_EXTRAS, array_recurse_level);
-          if (loose_error) {
-            error_str_3arr = error3Array(MESS_EMPTY_ONE_OF_EXTRAS, loose_error, shapes_lists);
-          } else {
-            error_str_3arr = '';
-          }
-        }
-        consolelog('///valuelessUnionExtras EXIT', error_str_3arr);
-        return error_str_3arr;
-      }
-
-      /* type_czech = TypeCzech('LOG-ERRORS')
-
-      type_czech.validUnionExtras(17, [ "String", "Number" ]);
-      //""
-
-      type_czech.validUnionExtras({a:17, b:false}, [{a:"Number"}, {a:"String"}]);
-      //""
-
-      type_czech.validUnionExtras(17, [ "String", "Boolean" ]);
-      //"validUnionExtras(argu_ments, expected_types)"
-      //"The variable '17', which is a 'Number', is not a 'Boolean'"
-      //Array [ "String", "boolean" ]
-
-      */
-      function validUnionExtras(parameters_obj, possible_shapes) {
-        consolelog('///validUnionExtras ENTER', parameters_obj, possible_shapes, TYPE_CZECH_current_test_number);
-        const parameters_array = _getParameters(parameters_obj);
-        consolelog('///validUnionExtras START', parameters_array, possible_shapes);
-        let error_str_3arr = _unionChecks([parameters_array, possible_shapes], 'validUnionExtras');
-        if (error_str_3arr === '') {
-          const array_recurse_level = _arrayRecurseLevel(parameters_obj);
-          const loose_error = _doUnionShape([parameters_array, possible_shapes], TYPE_EXTRAS, array_recurse_level);
-          if (loose_error) {
-            error_str_3arr = error3Array(MESS_TYPE_ONE_OF_EXTRAS, loose_error, possible_shapes);
-          } else {
-            error_str_3arr = '';
-          }
-        }
-        consolelog('///validUnionExtras EXIT', error_str_3arr);
-        return error_str_3arr;
-      }
-
       function check(user_function, pre_check, post_check) {
         consolelog('///check ENTER', user_function, pre_check, post_check, TYPE_CZECH_current_test_number);
         let check_result;
@@ -3792,8 +3986,6 @@ type_czech._shapeContainer( [  [[1, false], [2, false]], [[1, false], [2, 2]] ] 
         _missingKey,
         _unionChecks,
         _refDiff,
-
-     //   _shapeArrayInArray,
         _shapeArrayTypes,
         _shapeCheck,
         _shapeCollectionTypes,
@@ -3823,24 +4015,24 @@ type_czech._shapeContainer( [  [[1, false], [2, false]], [[1, false], [2, 2]] ] 
         checkBegin,
         checkEnd,
         checkTally,
+        conform, // type_czech.conform(arguments, ['Number', 'String'])
+        conformExtras, // type_czech.conformExtras(arguments, ['Number', 'String'])
+        conformUnion, // type_czech.conformUnion(arguments, [['Number'], ['String']])
         failureRatio,
         failureTally,
         mutateSnapshot,
         mutated,
+        objectConformExtras, // type_czech.objectConformExtras({a:123, b:"extra"}, {a:"Number"})
         objectIsA,
         objectInterface,
         objectPrototypes,
         objectType,
+        objectValuelessExtras, // type_czech.objectValuelessExtras({a:123, b:"extra"}, {a:"EMPTY-ERROR"})
         stats,
         statsReset,
-        valid,
-        validExtras,
-        validUnion,
-        validUnionExtras,
-        valueless,
-        valuelessExtras,
-        valuelessUnion,
-        valuelessUnionExtras,
+        valueless, // type_czech.valueless(arguments, ['EMPTY-ERROR', 'EMPTY-OK'])
+        valuelessExtras, // type_czech.valuelessExtras(arguments, ['EMPTY-ERROR', 'EMPTY-OK'])
+        valuelessUnion, // type_czech.conformUnion(arguments, [['EMPTY-ERROR'], ['EMPTY-OK']])
       };
     } // _TypeCzech()
   };
