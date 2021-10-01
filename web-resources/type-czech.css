@@ -92,3 +92,7 @@ pre{
   float:left;
   margin-right: 36px;
 }
+
+span{
+  overflow-wrap:anywhere;
+}

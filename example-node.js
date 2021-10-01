@@ -1,20 +1,18 @@
-/* eslint-disable no-multi-spaces */
-/* eslint-disable no-unused-vars, no-use-before-define */
-/* eslint-disable prefer-rest-params, no-func-assign, no-console */
+/* eslint-disable */
+
 /**/  const { TypeCzech } = require('./TypeCzech.js');
 /**/
 /**/  const type_czech = TypeCzech('LOG-ERRORS');
-/**/  // const type_czech = TypeCzech('NO-CHECKING');
 /**/
 /**/  const LOTTERY_SIGNATURE = ['String', ['Number'], 'Date'];
 /**/
 /**/  function PRE_aLottery(lottery_name, lucky_numbers, draw_date) {
-/**/    const type_issue = type_czech.valid(arguments, LOTTERY_SIGNATURE);
+/**/    const type_issue = type_czech.check_type(arguments, LOTTERY_SIGNATURE);
 /**/    if (type_issue) return type_issue;
-/**/    return type_czech.valueless(arguments, ['EMPTY-ERROR']);
+/**/    return type_czech.check_empty(arguments, ['EMPTY-ERROR']);
 /**/  }
 /**/
-/**/  aLottery = type_czech.check(aLottery, PRE_aLottery);
+/**/  aLottery = type_czech.link(aLottery, PRE_aLottery);
 
 function aLottery(lottery_name, lucky_numbers, draw_date) {
   const the_lottery = `::: ${lottery_name} ::: ${lucky_numbers} :::`;

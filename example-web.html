@@ -61,20 +61,17 @@
 
 
 <script id="check-code">
-/**/  //  <script src="../TypeCzech.js">
-
 /**/  type_czech = TypeCzech('LOG-ERRORS')
-/**/  //type_czech = TypeCzech('NO-CHECKING')
 /**/
 /**/  LOTTERY_SIGNATURE = ['String', ['Number'], 'Date']
 /**/
 /**/  function PRE_aLottery(lottery_name, lucky_numbers, draw_date){
-/**/    type_issue = type_czech.valid(arguments, LOTTERY_SIGNATURE)
+/**/    type_issue = type_czech.check_type(arguments, LOTTERY_SIGNATURE)
 /**/    if (type_issue) return type_issue
-/**/    return type_czech.valueless(arguments, ['EMPTY-ERROR'])
+/**/    return type_czech.check_empty(arguments, ['EMPTY-ERROR'])
 /**/  }
 /**/
-/**/  aLottery = type_czech.check(aLottery, PRE_aLottery) 
+/**/  aLottery = type_czech.link(aLottery, PRE_aLottery) 
 
 function aLottery(lottery_name, lucky_numbers, draw_date){
   the_lottery = `${lottery_name} ::: ${lucky_numbers} :::`

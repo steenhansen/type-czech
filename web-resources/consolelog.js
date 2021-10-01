@@ -24,6 +24,7 @@
 
 
 
+//  const CZECH_ERROR_INDENT = '\n\t\t';
 
 
 
@@ -219,8 +220,10 @@ function captureConsole(div_id) {
   function htmlNoColor(args) {
     let div_text4;
     if (typeof args === 'object') {
+//      console.old('first')
       div_text4 = jsonStr(args);
     } else if (typeof args === 'string') {
+  //    console.old('second')
       const single_chars = args.split('');
       let accum_span = '';
       // eslint-disable-next-line no-restricted-syntax
@@ -232,6 +235,7 @@ function captureConsole(div_id) {
       const div_text3 = accum_span.replace(NEW_LINE_REGEX, '<br>');
       div_text4 = div_text3.replace(NBSP_REGEX, '&nbsp;');
     } else {
+    //  console.old('thired')
       div_text4 = jsonStr(args);
     }
     div_console.innerHTML += div_text4;
@@ -286,8 +290,22 @@ function captureConsole(div_id) {
 
   console.old = console.log;
 
+  function consoleError(the_error) {
+    error_mess = the_error.message;
+    error_mess = error_mess.replace(/\n/g, '|');
+    error_mess = error_mess.replace(/\t/g, '~');
+    htmlNoColor(error_mess);
+  }
+
   console.log = function newConsoleLog(...args) {
     realConsole(args);
+    if (args[0]) {
+      if (args[0] instanceof Error) {
+        const the_error = args[0];
+        consoleError(the_error);
+        return;
+      }
+    }
     let console_type;
     const first_arg = args[0];
     const second_arg = args[1];

@@ -1,0 +1,399 @@
+<!DOCTYPE html><meta charset="utf-8" />
+<title>401-ClassFree-Constructors-Inline</title>
+
+
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Inconsolata">
+  
+<div id='js-div' style="width:60%;" class='code-scroll'>
+  <div id='js-code'>the javascript</div>
+</div>
+
+
+<div id="the-explanation" style="width:40%" >
+  <div class='an-explantion'>401 - ClassFree Constructors Inline</div>
+  <div id='explanation-text'>
+
+
+
+
+
+
+    <br>
+    TypeCzech's general example of an author where:
+    <ul>
+      <li><b>First</b> controls an author's first name</li>
+      <li><b>Last</b> handles an author's first and last name</li>
+      <li><b>Full</b> deals with an author's salutation, first, and last name</li>    
+      <li>Safely removable supporting TypeCzech test code begins with /**/</li>    
+    </ul>
+     <br>
+     ClassFree constructors are used for inheritance:
+        <ul>
+          <li>All JavaScript is in one file, no code imports</li>
+          <li>Production class declarations <b>must</b> interleave with TypeCzech calls
+              to have the PRE and POST checking functions be correctly linked to before use </li>
+          </ul>
+    <br>
+
+
+
+
+
+
+  </div>
+
+
+  <div id="console-log"  >
+    <div class='a-title'>Console Output</div>
+    <div id='log-text'></div>
+    <br>
+  </div>
+
+  <br><br>
+  <div id='js-fiddles'>
+    jsFiddles:
+    <a title="00-Readme-Example" href="../example-snippets/00-Readme-Example.html">00</a>
+  
+    <a title="01-PRE-and-POST-Funtions" href="../example-snippets/01-PRE-and-POST-Functions.html">01</a>
+  
+    <a title="02-Validate-Parameters-by-Value.html" href="../example-snippets/02-Validate-Parameters-by-Value.html">02</a>
+      
+      <a title="03-Turn-Off-Library-Not-Loaded.html" href="../example-snippets/03-Turn-Off-Library-Not-Loaded.html">03</a>
+      
+      <a title="04-Turn-Off-No-Check-Functions.html" href="../example-snippets/04-Turn-Off-No-Check-Functions.html">04</a>
+      
+      <a title="05-Verify-Return-Results-by-Value.html" href="../example-snippets/05-Verify-Return-Results-by-Value.html">05</a>
+      
+      <a title="06-Validate-Parameters-and-Results.html" href="../example-snippets/06-Validate-Parameters-and-Results.html">06</a>
+      
+      <a title="07-Mutated-Function-Parameters.html" href="../example-snippets/07-Mutated-Function-Parameters.html">07</a>
+      
+      <a title="08-Mutated-Recursive-Function-Parameters.html" href="../example-snippets/08-Mutated-Recursive-Function-Parameters.html">08</a>
+      
+      <a title="09-Mutated-Window-Parameters.html" href="../example-snippets/09-Mutated-Window-Parameters.html">09</a>
+      
+      <a title="10-Closure-Parameters-Results-and-Methods.html" href="../example-snippets/10-Closure-Parameters-Results-and-Methods.html">10</a>
+      
+      <a title="11-Class-Parameters-Results-and-Methods.html" href="../example-snippets/11-Class-Parameters-Results-and-Methods.html">11</a>
+      
+      <a title="12-Object-Object-Properties.html" href="../example-snippets/12-Object-Object-Properties.html">12</a>
+      
+      <a title="13-Class-Interface.html" href="../example-snippets/13-Class-Interface.html">13</a>
+      
+      <a title="14-Parameter-and-Results-Multi-Types.html" href="../example-snippets/14-Parameter-and-Results-Multi-Types.html">14</a>
+      
+      <a title="15-Array-and-Object-Types.html" href="../example-snippets/15-Array-and-Object-Types.html">15</a>
+      
+      <a title="16-Lone-Single-Type-Parameter-Functions.html" href="../example-snippets/16-Lone-Single-Type-Parameter-Functions.html">16</a>
+      
+      <a title="17-Arrays-with-One-Type.html" href="../example-snippets/17-Arrays-with-One-Type.html">17</a>
+      
+      <a title="18-Class-Type-Checks.html" href="../example-snippets/18-Class-Type-Checks.html">18</a>
+      
+      <a title="19-Lone-Empty-Param-and-Result.html" href="../example-snippets/19-Lone-Empty-Param-and-Result.html">19</a>
+      
+      <a title="20-Multiple-Empty-Params-and-Results.html" href="../example-snippets/20-Multiple-Empty-Params-and-Results.html">20</a>
+      
+      <a title="21-Type-Check-with-Extra-Optional-Params.html" href="../example-snippets/21-Type-Check-with-Extra-Optional-Params.html">21</a>
+      
+      <a title="22-Empty-Checks-with-Extra-Optional-Params.html" href="../example-snippets/22-Empty-Checks-with-Extra-Optional-Params.html">22</a>
+      
+      <a title="23-Typed-Union-Checks.html" href="../example-snippets/23-Typed-Union-Checks.html">23</a>
+      
+      <a title="24-Empty-and-Valueless-Union-Checks.html" href="../example-snippets/24-Empty-and-Valueless-Union-Checks.html">24</a>
+      
+      <a title="25-Accessing-PRE-POST-Arguments.html" href="../example-snippets/25-Accessing-PRE-POST-Arguments.html">25</a>
+      
+      <a title="26-Type-and-Empty-Abbreviations.html" href="../example-snippets/26-Type-and-Empty-Abbreviations.html">26</a>
+      
+      <a title="27-Type-and-Empty-Object-Extras.html" href="../example-snippets/27-Type-and-Empty-Object-Extras.html">27</a>
+      
+      <a title="28-Accept-Null-and-Undefined-Values.html" href="../example-snippets/28-Accept-Null-and-Undefined-Values.html">28</a>
+      
+      <a title="29-Class-Object-Type-Checks.html" href="../example-snippets/29-Class-Object-Type-Checks.html">29</a>
+      
+      <a title="30-HTML-Type-Checks.html" href="../example-snippets/30-HTML-Type-Checks.html">30</a>
+      
+      <a title="31-Extended-Class-Type-Checks.html" href="../example-snippets/31-Extended-Class-Type-Checks.html">31</a>
+      
+      <a title="32-Extended-Closure-Type-Checks-check.html" href="../example-snippets/32-Extended-Closure-Type-Checks-check.html">32</a>
+      
+      <a title="33-Count-Checks.html" href="../example-snippets/33-Count-Checks.html">33</a>
+      
+      <a title="34-Parameter-Check-Events.html" href="../example-snippets/34-Parameter-Check-Events.html">34</a>
+      
+      <a title="35-Throw-or-Log.html" href="../example-snippets/35-Throw-or-Log.html">35</a>
+      
+      <a title="36-Start-and-Stop.html" href="../example-snippets/36-Start-and-Stop.html">36</a>
+      
+      <a title="37-Readme-Example-Lambda.html" href="../example-snippets/37-Readme-Example-Lambda.html">37</a>
+  
+      <a title="38-Variadic-Functions.html" href="../example-snippets/38-Variadic-Functions.html">38</a>
+
+      &nbsp;&nbsp;
+  
+      <a title="101-Extending-Classes-Inline.html" href="../examples-web/101-Extending-Classes-Inline.html">101</a>
+      
+      <a title="102-Extending-Classes-Imports.html" href="../examples-web/102-Extending-Classes-Imports/102-Extending-Classes-Imports.html">102</a>
+      
+      <a title="103-Extending-Classes-Production.html" href="../examples-web/103-Extending-Classes-Production/103-Extending-Classes-Production.html">103</a>
+      
+      
+      <a title="201-Extending-Closures-Inline.html" href="../examples-web/201-Extending-Closures-Inline.html">201</a>
+      
+      <a title="202-Extending-Closures-Imports.html" href="../examples-web/202-Extending-Closures-Imports/202-Extending-Closures-Imports.html">202</a>
+      
+      <a title="203-Extending-Closures-Production.html" href="../examples-web/203-Extending-Closures-Production/203-Extending-Closures-Production.html">203</a>
+  
+      
+      <a title="301-Extending-IIFEs-Inline.html" href="../examples-web/301-Extending-IIFEs-Inline.html">301</a>
+      
+      <a title="302-Extending-IIFEs-Imports.html" href="../examples-web/302-Extending-IIFEs-Imports/302-Extending-IIFEs-Imports.html">302</a>
+      
+      <a title="303-Extending-IIFEs-Production.html" href="../examples-web/303-Extending-IIFEs-Production/303-Extending-IIFEs-Production.html">303</a>
+      
+      
+      <a title="401-Extending-ClassFree-Inline.html" href="../examples-web/401-Extending-ClassFree-Inline.html">401</a>
+      
+      <a title="402-Extending-ClassFree-Imports.html" href="../examples-web/402-Extending-ClassFree-Imports/402-Extending-ClassFree-Imports.html">402</a>
+      
+      <a title="403-Extending-ClassFree-Production.html" href="../examples-web/403-Extending-ClassFree-Production/403-Extending-ClassFree-Production.html">403</a>
+      
+      
+      <a title="501-Extending-Prototypes-Inline.html" href="../examples-web/501-Extending-Prototypes-Inline.html">501</a>
+      
+      <a title="502-Extending-Prototypes-Imports.html" href="../examples-web/502-Extending-Prototypes-Imports/502-Extending-Prototypes-Imports.html">502</a>
+      
+      <a title="503-Extending-Prototypes-Inline.html" href="../examples-web/503-Extending-Prototypes-Production/503-Extending-Prototypes-Production.html">503</a>
+      
+      
+      <a title="601-Extending-OLOO-Inline.html" href="../examples-web/601-Extending-OLOO-Inline.html">601</a>
+      
+      <a title="602-Extending-OLOO-Imports.html" href="../examples-web/602-Extending-OLOO-Imports/602-Extending-OLOO-Imports.html">602</a>
+      
+      <a title="603-Extending-OLOO-Production.html" href="../examples-web/603-Extending-OLOO-Production/603-Extending-OLOO-Production.html">603</a>
+  
+    </div>
+  
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!--            ------------------TYPE 1------------------------       -->
+
+
+
+
+<script src="../web-resources/consolelog.js">
+</script>
+
+
+<script src="../TypeCzech.js">
+</script>
+
+
+
+<link rel="stylesheet" href="../web-resources/type-czech.css">
+<style>
+</style>
+
+
+
+
+
+<!--            -------------------TYPE 1-----------------------       -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  log = captureConsole("log-text");
+</script>
+
+<script id="check-code">
+/**/function First_check(First){
+/**/  function PRE_First(spec){
+/**/    log(NL2+'PRE -First') 
+/**/    pre_first_sig = { f_name: 'String' }
+/**/    type_issue = type_czech.check_objectTypeExtra(arguments, pre_first_sig)
+/**/    if (type_issue) return type_issue;
+/**/    return type_czech.check_objectEmptyExtra(arguments, {f_name: 'EMPTY-ERROR' });
+/**/  }
+/**/  function POST_First(First){
+/**/    log(NL1+'POST-First') 
+/**/    return type_czech.check_type(First, { firstMethod: 'Function' })
+/**/  }
+/**/  function PRE_firstMethod(a_date){
+/**/    log('PRE -firstMethod') 
+/**/    return type_czech.check_type(arguments, 'Date')
+/**/  }
+/**/  function POST_firstMethod(a_date){
+/**/    log('POST-firstMethod') 
+/**/    return type_czech.check_type(arguments, 'Date')
+/**/  }
+/**/
+/**/  First_PREs = {First:PRE_First, firstMethod:PRE_firstMethod}
+/**/  First_POSTs = {First:POST_First, firstMethod:POST_firstMethod}
+/**/  First = type_czech.link(First, First_PREs, First_POSTs)
+/**/  return First
+/**/}
+
+/**/function Last_check(Last){
+/**/  function PRE_Last(spec){
+/**/    log(LEVEL_1+'PRE-Last') 
+/**/    pre_last_sig = { f_name: 'String', l_name: 'String' }
+/**/    type_issue = type_czech.check_objectTypeExtra(arguments, pre_last_sig)
+/**/    if (type_issue) return type_issue;
+/**/    return type_czech.check_objectEmptyExtra(arguments, {l_name: 'EMPTY-ERROR' });
+/**/  }
+/**/  function POST_Last(Last){
+/**/    log(LEVEL_1+"POST-Last") 
+/**/    post_last_sig = {firstMethod:'Function', lastMethod:'Function'}
+/**/    return type_czech.check_type(Last, post_last_sig)
+/**/  }
+/**/  function PRE_lastMethod(a_year){
+/**/    log(LEVEL_1+"PRE -lastMethod")
+/**/    return type_czech.check_type(arguments, 'Number')
+/**/  }
+/**/  function POST_lastMethod(a_year){
+/**/    log(LEVEL_1+"POST-lastMethod") 
+/**/    return type_czech.check_type(arguments, 'Number')
+/**/  }
+/**/
+/**/  Last_PREs = {Last:PRE_Last, lastMethod:PRE_lastMethod}
+/**/  Last_POSTs = {Last:POST_Last, lastMethod:POST_lastMethod}
+/**/  Last = type_czech.link(Last, Last_PREs, Last_POSTs)
+/**/  return Last
+/**/}
+
+/**/function Full_check(Full){
+/**/  function PRE_Full(spec){  
+/**/    log(LEVEL_2+'PRE-Full') 
+/**/    pre_full_sig = {salu:'String', f_name:'String', l_name:'String'}
+/**/    return type_czech.check_type(arguments, pre_full_sig)
+/**/}
+/**/  function POST_Full(Full){
+/**/    log(LEVEL_2+"POST-Full") 
+/**/    return type_czech.check_type(Full, {firstMethod:'Function',
+/**/              lastMethod:'Function', fullMethod: 'Function', 
+/**/              showName: 'Function' })
+/**/   }
+/**/  function PRE_fullMethod(a_book){
+/**/    log(LEVEL_2+"PRE -fullMethod") 
+/**/    return type_czech.check_type(arguments, 'String')
+/**/  }
+/**/  function POST_fullMethod(a_book){
+/**/    log(LEVEL_2+"POST-fullMethod") 
+/**/    return type_czech.check_type(arguments, 'String')
+/**/  }
+/**/
+/**/  Full_PREs = {Full:PRE_Full, fullMethod:PRE_fullMethod}
+/**/  Full_POSTs= {Full:POST_Full, fullMethod:POST_fullMethod}
+/**/  Full = type_czech.link(Full, Full_PREs, Full_POSTs)
+/**/  return Full
+/**/}
+
+First = function (spec) {
+  let {f_name} = spec
+  log(NL+`CONS-First :${f_name}`)
+  firstMethod = function(a_date) { 
+    log(NL+`RUN -firstMethod :${f_name} `, a_date) 
+    return a_date
+  }
+  first_object = {firstMethod}
+  return Object.freeze(first_object)
+}
+
+Last = function (spec) {
+  let {f_name, l_name} = spec
+  let {firstMethod} = First(spec)
+  log(NL+LEVEL_1+`CONS-Last :${f_name} ${l_name}`)
+  lastMethod = function (a_year) {
+    log(LEVEL_1+`RUN -lastMethod :${a_year} ${f_name} ${l_name}`)
+    return a_year
+  }
+  last_object = {firstMethod, lastMethod}
+  return Object.freeze(last_object)
+}
+
+Full = function (spec) {
+  let {f_name, l_name, salu} = spec
+  let {firstMethod, lastMethod} = Last(spec)
+  log(NL+LEVEL_2+`CONS-Full :${salu} ${f_name} ${l_name}`)
+  fullMethod = function (a_book) {
+    log(LEVEL_2+`RUN -fullMethod :${a_book} ${salu} ${l_name}`)
+    return a_book
+  }
+  function showName() {
+    const the_name = `${salu} ${f_name} ${l_name}`
+    console.log('Name: ', the_name)
+  }
+  full_object = {showName, firstMethod, lastMethod, fullMethod}
+  return Object.freeze(full_object)
+}
+
+/**/  TYPE_CZECH_START = true
+/**/  //TYPE_CZECH_START = false
+/**/
+/**/  if (TYPE_CZECH_START) {
+/**/    type_czech = TypeCzech('LOG-ERRORS')
+/**/    First = First_check(First)
+/**/    Last = Last_check(Last)
+/**/    Full = Full_check(Full)
+/**/  }
+
+const frank_herbet = Full({salu: 'Mr', f_name:'Frank', l_name:'Herbert'})
+linesConsole(1)
+frank_herbet.firstMethod(new Date(1965,7,1))
+linesConsole(1)
+frank_herbet.lastMethod(1966)
+linesConsole(1)
+frank_herbet.fullMethod('Dune')
+linesConsole(1)
+frank_herbet.showName();
+
+frank_herbet.extra='should be undefined'
+log(NL2+'Ignored extra ==', frank_herbet.extra)
+
+</script>
+
+
+
+
+
+<script>
+
+jsToDiv('js-code', "check-code");      
+
+
+fromToBoldText(1662, 1677, 'code', 1)  //RUN -firstMethod
+  fromToBoldText(1986, 2000, 'code', 2)  // RUN -lastMethod
+  fromToBoldText(2353, 2367, 'code', 3)  // RUN -fullMethod
+
+ 
+fromToBoldText(224, 239, 'log', 1)    //RUN -firstMethod
+fromToBoldText(307, 321, 'log', 2)    //RUN -lastMethod
+fromToBoldText(415, 429, 'log', 3)    //RUN -fullMethod
+
+
+
+</script>

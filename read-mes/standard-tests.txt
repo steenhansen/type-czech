@@ -1,0 +1,44 @@
+
+    type_czech = TypeCzech('LOG-ERRORS')
+    type_czech = TypeCzech('NO-ERROR-MESSAGES')
+
+
+    function yourFunc(){ }
+
+    console.log('^pass^-----------')
+    yourFunc([1])                      // A array
+    yourFunc(234n)                     // B bigint
+    yourFunc(false)                    // C boolean
+    yourFunc(new Date('2005-06-07'))   // D date
+    yourFunc(a=>a+8)                   // E function
+    yourFunc(9)                        // F number
+    yourFunc({b:10})                   // G object
+    yourFunc(/d/)                      // H regex
+    yourFunc('an-str')                 // I string
+    yourFunc(Symbol('sym'))            // J symbol
+    yourFunc([])                       // K empty array
+    yourFunc(new Date(''))             // L empty date
+    yourFunc(NaN)                      // M empty number
+    yourFunc({})                       // N empty object
+    yourFunc(/(?:)/)                   // O empty regex
+    yourFunc('')                       // P empty string
+    yourFunc(null)                     // Q empty null
+    yourFunc(undefined)                // R empty undefined
+    yourFunc()                         // S empty nothing
+    yourFunc([11,12,13])               // T multi array
+    yourFunc(14,15,16)                 // U multi args
+    yourFunc([[17,18,19]])             // V multi in single
+    yourFunc([20], [21])               // W two singles
+    yourFunc([22,23,24], [25,26,27])   // X two multis
+    yourFunc({d:{}})                   // Y empty in object
+    yourFunc([{e:[28,{f:[29]}]}])      // Z empty in object
+    yourFunc(['',''] )                 // 0 empty - [str str]
+    yourFunc([[],[]] )                 // 1 empty - [arr arr]
+    yourFunc([{},{}] )                 // 2 empty - [obj obj]
+    yourFunc({g:[]},{h:[]})            // 3 empty - {arr arr}
+    yourFunc({i:''},{j:''})            // 4 empty - {str str}
+    yourFunc({k:{}},{l:{}})            // 5 empty - {obj obj}
+    fail_tests = type_czech.countFails()
+    total_tests = type_czech.countTally()
+    passing_tests = total_tests - fail_tests
+    console.log('C. pass, fail : ', passing_tests, fail_tests)
