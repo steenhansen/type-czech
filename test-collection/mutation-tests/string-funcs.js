@@ -20,8 +20,6 @@ function afterCheck(prog_data, shape_data, before_str, location_str) {
   }
 }
 
-
-
 function errorMessage(error_number, actual_and_expect) {
   const [actual_out, expected_out] = actual_and_expect;
   const err_message = `test_ShapeCheck_test ${error_number}:`

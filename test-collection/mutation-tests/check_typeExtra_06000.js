@@ -122,7 +122,7 @@ function check_typeExtra_06002(){
   afterCheck(check_object, check_type_shape, before_str, error_id);
   expected_array = [`check_typeExtra(arguments, expected_types)`,
   `TC@33 - The type 'date' is not a check_type type, but it looks just like 'Date'`,
-  `['String','date']`];
+  `["String","date"]`];
   actual_str = arrayErrorToString(actual_array);
   expected_str = arrayErrorToString(expected_array);
   if (actual_str !== expected_str) {
@@ -305,7 +305,7 @@ function check_typeExtra_06007(){
   afterCheck(check_object, check_type_shape, before_str, error_id);
   expected_array =  [`check_typeExtra(arguments, expected_types)`,
   `TC@45 - ELEMENT '1' is asserted to be a 'Number', but is fallaciously a 'String' : def`,
-  `['Number','String',['Number']]`];
+  `["Number","String",["Number"]]`];
   actual_str = arrayErrorToString(actual_array);
   expected_str = arrayErrorToString(expected_array);
   if (actual_str !== expected_str) {
@@ -377,7 +377,7 @@ function check_typeExtra_06009(){
   afterCheck(check_object, check_type_shape, before_str, error_id);
   expected_array =[`check_typeExtra(arguments, expected_types)`,
   `TC@43 - Property 'b' is indicated to be a 'Number', but is inaccurately a 'String' : def`,
-  `['Number','String',{'a':'Number','b':'Number'}]`];
+  `["Number","String",{a:"Number",b:"Number"}]`];
   actual_str = arrayErrorToString(actual_array);
   expected_str = arrayErrorToString(expected_array);
   if (actual_str !== expected_str) {
@@ -413,8 +413,8 @@ function check_typeExtra_06010(){
   actual_array = type_czech.check_typeExtra(check_object, check_type_shape);
   afterCheck(check_object, check_type_shape, before_str, error_id);
   expected_array =[`check_typeExtra(arguments, expected_types)`,
-  `TC@03 - Element '2' is supposed to be a 'date', but is missing : ['super','man']`,
-  `['String','String','date']`];
+  `TC@03 - Element '2' is supposed to be a 'date', but is missing : ["super","man"]`,
+  `["String","String","date"]`];
   actual_str = arrayErrorToString(actual_array);
   expected_str = arrayErrorToString(expected_array);
   if (actual_str !== expected_str) {
@@ -1095,7 +1095,7 @@ function check_typeExtra_06066(){
   afterCheck(check_object, check_type_shape, before_str, error_id);
   expected_array = [`check_typeExtra(arguments, expected_types)`,
   `TC@44 -  ELEMENT '1' is assumed to be a 'Date', but is mistakenly a 'Number'.`,
-  `['String','Date']`];
+  `["String","Date"]`];
   actual_str = arrayErrorToString(actual_array);
   expected_str = arrayErrorToString(expected_array);
   if (actual_str !== expected_str) {

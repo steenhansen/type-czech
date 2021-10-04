@@ -1,10 +1,74 @@
 
+why _isEmpty
+    _missingKey
 
 
 
 
-working on _check_mutated().md .....
+101-604
 
+
+kill 09 with 38
+
+
+
+
+OLD                                         NEW
+08-Mutated-Recursive-Function-Parameters    08-Mutated-Recursive-Function-Parameters
+09-Mutated-Window-Parameters.html           09-Closure-Parameters-Results-and-Methods 
+10-Closure-Parameters-Results-and-Methods   10-Class-Parameters-Results-and-Methods
+11-Class-Parameters-Results-and-Methods     11-Object-Properties
+12-Object-Properties                        12-Class-Interface 
+13-Class-Interface                          13-Parameter-and-Results-Multi-Types
+14-Parameter-and-Results-Multi-Types        14-Array-and-Object-Types
+15-Array-and-Object-Types                   15-Lone-Single-Type-Parameter-Functions
+16-Lone-Single-Type-Parameter-Functions     16-Arrays-with-One-Type
+17-Arrays-with-One-Type                     17-Variadic-Functions 
+18-Class-Type-Checks                        18-Class-Type-Checks
+    ...                                             ....
+37-Readme-Example-Lambda                    37-Readme-Example-Lambda
+38-Variadic-Functions
+
+TC@22, 23, 31, 35, 38
+
+
+
+_cycle().md
+
+
+
+
+//      var a = [];
+//      a[0] = a;
+//      return JSON.stringify(_cycle.decycle(a));
+
+
+      return JSON.stringify(_cycle.decycle(window));
+
+
+
+
+    type_czech._fast_json_stable_stringify({c:2, a:1, b:123n});
+    //{'a':1,'b':'123n','c':2}
+
+
+MIX CYCLE, AND WINDOW, AND STABLE FOR A TEST....
+
+
+
+
+
+
+
+check_typeEither
+check_emptyEither
+
+
+
+check_variadicType
+
+
+check_variadicEmpty
 
 
 
@@ -17,3 +81,24 @@ mutation tests now have to use arguments object, cannot just use arrays anymore 
 
 
 
+
+
+
+
+ <a title="09-Mutated-Window-Parameters.html" href="https://jsfiddle.net/steen_hansen/hrvucjzm/?09-Mutated-Window-Parameters" target="_blank">09</a>
+      
+      <a title="10-Closure-Parameters-Results-and-Methods.html" href="https://jsfiddle.net/steen_hansen/r8L3mp40/?10-Closure-Parameters-Results-and-Methods" target="_blank">10</a>
+      
+      <a title="11-Class-Parameters-Results-and-Methods.html" href="https://jsfiddle.net/steen_hansen/Lhwov8y9/?11-Class-Parameters-Results-and-Methods" target="_blank">11</a>
+      
+      <a title="12-Object-Object-Properties.html" href="https://jsfiddle.net/steen_hansen/qp29Ljd1/?12-Object-Object-Properties" target="_blank">12</a>
+      
+      <a title="13-Class-Interface.html" href="https://jsfiddle.net/steen_hansen/og2sk4b9/?13-Class-Interface" target="_blank">13</a>
+      
+      <a title="14-Parameter-and-Results-Multi-Scalar-Types.html" href="https://jsfiddle.net/steen_hansen/rh79bLwa/?14-Parameter-and-Results-Multi-Scalar-Types" target="_blank">14</a>
+      
+      <a title="15-Parameter-and-Results-Multi-Types.html" href="https://jsfiddle.net/steen_hansen/1ref2ot7/?15-Parameter-and-Results-Multi-Types" target="_blank">15</a>
+      
+      <a title="16-Lone-Single-Type-Parameter-Functions.html" href="https://jsfiddle.net/steen_hansen/zkhfLw0u/?16-Lone-Single-Type-Parameter-Functions" target="_blank">16</a>
+      
+      <a title="17-Arrays-with-One-Type.html" href="https://jsfiddle.net/steen_hansen/bsw3yp5c/?17-Arrays-with-One-Type" target="_blank">17</a>

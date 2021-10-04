@@ -53,7 +53,7 @@ function _check_interface_02002() {
   }
   expected_array = ["check_interface(arguments, expected_types)",
     "actual type of 'noShow' is 'undefined', with a value of 'undefined', not the expected 'Function' type",
-    "{'noShow':'Function'}"];
+    '{noShow:"Function"}'];
 
     actual_str = arrayErrorToString(interface_issue);
     expected_str = arrayErrorToString(expected_array);
@@ -86,7 +86,7 @@ function _check_interface_02003() {
   }
   expected_array = ["check_interface(arguments, expected_types)",
     "actual type of 'show' is 'Number', with a value of '17', not the expected 'Function' type",
-    "{'show':'Function'}"];
+    '{show:"Function"}'];
     actual_str = arrayErrorToString(interface_issue);
     expected_str = arrayErrorToString(expected_array);
 

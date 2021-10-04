@@ -1,10 +1,10 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>38-Variadic-Functions</title>
+<title>17-Variadic-Functions</title>
 
 <link rel="stylesheet"
   href="https://fonts.googleapis.com/css?family=Inconsolata">
   
-<div id='js-div' style="width:49%;">
+<div id='js-div' style="width:45%;">
   <div id='js-code'>the javascript</div>
 
   <br><br>
@@ -28,23 +28,27 @@
       
       <a title="08-Mutated-Recursive-Function-Parameters.html" href="../example-snippets/08-Mutated-Recursive-Function-Parameters.html">08</a>
       
-      <a title="09-Mutated-Window-Parameters.html" href="../example-snippets/09-Mutated-Window-Parameters.html">09</a>
+       
+     
+      <a title="09-Closure-Parameters-Results-and-Methods.html" href="../example-snippets/09-Closure-Parameters-Results-and-Methods.html">09</a>
+              
+      <a title="10-Class-Parameters-Results-and-Methods.html" href="../example-snippets/10-Class-Parameters-Results-and-Methods.html">10</a>
       
-      <a title="10-Closure-Parameters-Results-and-Methods.html" href="../example-snippets/10-Closure-Parameters-Results-and-Methods.html">10</a>
+      <a title="11-Object-Properties.html" href="../example-snippets/11-Object-Properties.html">11</a>
       
-      <a title="11-Class-Parameters-Results-and-Methods.html" href="../example-snippets/11-Class-Parameters-Results-and-Methods.html">11</a>
+      <a title="12-Class-Interface.html" href="../example-snippets/12-Class-Interface.html">12</a>
       
-      <a title="12-Object-Object-Properties.html" href="../example-snippets/12-Object-Object-Properties.html">12</a>
+      <a title="13-Parameter-and-Results-Multi-Types.html" href="../example-snippets/13-Parameter-and-Results-Multi-Types.html">13</a>
       
-      <a title="13-Class-Interface.html" href="../example-snippets/13-Class-Interface.html">13</a>
+      <a title="14-Array-and-Object-Types.html" href="../example-snippets/14-Array-and-Object-Types.html">14</a>
       
-      <a title="14-Parameter-and-Results-Multi-Types.html" href="../example-snippets/14-Parameter-and-Results-Multi-Types.html">14</a>
+      <a title="15-Lone-Single-Type-Parameter-Functions.html" href="../example-snippets/15-Lone-Single-Type-Parameter-Functions.html">15</a>
       
-      <a title="15-Array-and-Object-Types.html" href="../example-snippets/15-Array-and-Object-Types.html">15</a>
+      <a title="16-Arrays-with-One-Type.html" href="../example-snippets/16-Arrays-with-One-Type.html">16</a>
       
-      <a title="16-Lone-Single-Type-Parameter-Functions.html" href="../example-snippets/16-Lone-Single-Type-Parameter-Functions.html">16</a>
-      
-      <a title="17-Arrays-with-One-Type.html" href="../example-snippets/17-Arrays-with-One-Type.html">17</a>
+      <a title="17-Variadic-Functions.html" href="../example-snippets/17-Variadic-Functions.html">17</a>
+
+
       
       <a title="18-Class-Type-Checks.html" href="../example-snippets/18-Class-Type-Checks.html">18</a>
       
@@ -86,7 +90,7 @@
       
       <a title="37-Readme-Example-Lambda.html" href="../example-snippets/37-Readme-Example-Lambda.html">37</a>
   
-      <a title="38-Variadic-Functions.html" href="../example-snippets/38-Variadic-Functions.html">38</a>
+
 
       &nbsp;&nbsp;
   
@@ -137,22 +141,37 @@
 </div>
 
 
-<div id="the-explanation" style="width:51%">
-  <div class='an-explantion'>38 Variadic Functions</div>
+<div id="the-explanation" style="width:55%">
+  <div class='an-explantion'>17 &mdash; Variadic Functions</div>
   <div id='explanation-text'>
     <br>
-    Variadic functions can also be checked by TypeCzech, but the 
-    arguments object cannot be directly passed to TypeCzech.check_type() it
-    must be transformed into an array. 
+    Variadic functions with one type can easily be checked by TypeCzech without
+    resorting to checking multiple different possible signature types as 
+    the below example does.
+    
 
-    <br><br>
-The arguments object is converted into a standard array via:
+    <br>
 <pre>
-[...arguments]
+function PRE_oneToThreeStrings() {
+  if (!type_czech.check_type(arguments, 'String')) return ''
+  if (!type_czech.check_type(arguments, ['String', 'String'])) return ''
+  if (!type_czech.check_type(arguments, ['String', 'String', 'String'])) return ''
+  return 'Error, not ONE to THREE strings but - ' + arguments.length
+}
+oneToThreeStrings = type_czech.link(oneToThreeStrings, PRE_oneToThreeStrings)
+function oneToThreeStrings() {}
+
+oneToThreeStrings()
+oneToThreeStrings('s-1', 's-2')
+oneToThreeStrings('s-1', 's-2', 's-3', 's-4')
 </pre>
-And thus you get this construction which is used in the examples to the left
+Here check_variadicType() accomplishes the same task as above.
 <pre>
-type_czech.check_type([...arguments], ['Number'])
+function PRE_oneToThreeStrings() {
+  if (arguments.length > 3) 
+    return 'Error, not ONE to THREE strings but - ' + arguments.length
+  return type_czech.check_variadicType(arguments, ['String'])
+}
 </pre>
   </div>
 
@@ -216,21 +235,18 @@ function variadicFunc () {
 /**/
 /**/  variadicFunc = type_czech.link(variadicFunc, PRE_variadicFunc)
 
- variadicFunc(0,1,2)
+variadicFunc(0,1,2)
 
 
- linesConsole(2)
-
- variadicFunc(0,1,2,'Three',4,5,6)
-
-linesConsole(5)
+linesConsole(2)
 
 
 
 
 
+variadicFunc(0,1,2,'Three',4,5,6)
 
-
+linesConsole(2)
 
 
 
@@ -246,11 +262,15 @@ function variadicArrs () {
 /**/
 /**/  variadicArrs = type_czech.link(variadicArrs, PRE_variadicArrs)
 
-variadicArrs( [1], [1,2], [1,2,3], [1,2,3,4])
+variadicArrs( [1], [1,2], [1,2,3], [1,2,3,4] )
 
-linesConsole(2)
+linesConsole(3)
 
-variadicArrs( [1], [1,2], [1,'two',3], [1,2,3,4])
+
+
+
+
+variadicArrs( [1], [1,2], [1,'two',3], [1,2,3,4] )
 
 </script>
 
@@ -265,24 +285,41 @@ variadicArrs( [1], [1,2], [1,'two',3], [1,2,3,4])
 
 <script>
 
-   jsToDiv('js-code', "check-code");
+jsToDiv('js-code', "check-code");
 
-  fromToBoldText(426, 432, 'code', 1)  //  Three
+fromToBoldText(404, 408, 'code', 3)  //  variadicFunc(0,1,2)
 
-  fromToBoldText(293, 299, 'log', 1)    // Three
-  fromToBoldText(334, 341, 'log', 1)    // Number
+fromToBoldText(1, 5, 'log', 3)    // 0,1,2
 
+
+
+///////////////////////
+
+fromToBoldText(429, 447, 'code', 1)  //  variadicFunc(0,1,2,'Three',4,5,6)o
+
+fromToBoldText(308, 314, 'log', 1)    // [0,1,2,"Three",4,5,6]
+fromToBoldText(348, 357, 'log', 1)    //["Number"]
+
+fromToBoldText(411, 427, 'log', 1)    // 0,1,2,Three,4,5,6
 
 ///////////////////////
 
 
 
+fromToBoldText(747, 776, 'code', 3)  // variadicArrs( [1], [1,2], [1,2,3], [1,2,3,4])
+
+fromToBoldText(428, 457, 'log', 3)    // [1] [1,2] [1,2,3] [1,2,3,4]
+
+///////////////////////
+
+fromToBoldText(799, 832, 'code', 2)  // [1,'two',3]
+
+fromToBoldText(734, 738, 'log', 2)    // [1,"two",3] 
+fromToBoldText(779, 790, 'log', 2)    // [["Number"]]
+ 
+fromToBoldText(844, 875, 'log', 2)    // [1,two,3]
 
 
-fromToBoldText(800, 804, 'code', 2)  // two
-
-  fromToBoldText(704, 708, 'log', 2)    // two 
-  fromToBoldText(751, 758, 'log', 2)    // Number
 
 
 

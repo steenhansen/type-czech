@@ -43,7 +43,7 @@ module.exports = function create_Full(type_czech, Last) {
 /**/    // eslint-disable-next-line no-shadow
 /**/    function POST_Full(Full) {
 /**/      console.log('POST-Full');
-/**/      return type_czech.check_objectType(Full, { salu: 'String', fullMethod: 'Function' });
+/**/      return type_czech.check_interface(Full, { salu: 'String', fullMethod: 'Function' });
 /**/     }
 /**/
 /**/    function PRE_fullMethod(a_book) {

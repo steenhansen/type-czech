@@ -29,14 +29,14 @@ module.exports = function create_Last(type_czech, First) {
 /**/      console.log('PRE -Last');
 /**/      const type_issue = type_czech.check_type([f_name, l_name], ['String', 'String']);
 /**/      if (type_issue) return type_issue;
-/**/      return type_czech.check_empty(arguments, ['EMPTY-ERROR']);
+/**/      return type_czech.check_empty(arguments, ['EMPTY-ERROR', 'EMPTY-ERROR']);
 /**/    }
 /**/
 /**/    // eslint-disable-next-line no-shadow
 /**/    function POST_Last(Last) {
 /**/      console.log('POST-Last');
 /**/      const last_return_signature = { f_name: 'String', l_name: 'String', firstMethod: 'Function', lastMethod: 'Function' };
-/**/      return type_czech.check_objectType(Last, last_return_signature);
+/**/      return type_czech.check_interface(Last, last_return_signature);
 /**/    }
 /**/
 /**/    function PRE_lastMethod(a_year) {

@@ -34,9 +34,6 @@ global.total_checks = 0;
 global.total_fails = 0;
 global.show_random = false;
 
-
-////////////  start white box tests below  //////////////////////////
-
 require('./mutation-tests/link_01000.js');
 require('./mutation-tests/check_interface_02000.js');
 require('./mutation-tests/check_empty_03000.js');
@@ -44,7 +41,7 @@ require('./mutation-tests/check_emptyEither_04000.js');
 require('./mutation-tests/check_type_05000.js');
 require('./mutation-tests/check_typeExtra_06000.js');
 require('./mutation-tests/check_typeEither_07000.js');
-//require('./mutation-tests/_08000.js');
+require('./mutation-tests/_cycle_08000.js');
 require('./mutation-tests/_aTypeOf_09000.js');
 
 require('./mutation-tests/_isCollection_10000.js');
@@ -63,23 +60,19 @@ require('./mutation-tests/_shapeScalar_21000.js');
 require('./mutation-tests/_shapeVariable_22000.js');
 require('./mutation-tests/typeIsA_23000.js');
 require('./mutation-tests/typeProtos_24000.js');
-require('./mutation-tests/typeOf_25000.js');
+require('./mutation-tests/typeIs_25000.js');
 
-//require('./mutation-tests/_26000.js');
-//require('./mutation-tests/_27000.js');
+require('./mutation-tests/_fast_json_stable_stringify_26000.js');
+require('./mutation-tests/_jsonStr_27000.js');
 
 require('./mutation-tests/_shrinkDiffs_28000.js');
-//require('./mutation-tests/_29000.js');
+require('./mutation-tests/_toStr_29000.js');
 
 require('./mutation-tests/check_emptyExtra_30000.js');
 require('./mutation-tests/_eitherChecks_31000.js');
 
-
 require('./library-tests/typeCzech_90000.js');
 require('./library-tests/variadic_91000.js');
-
-
-////////////  start black box tests below  //////////////////////////
 
 require('../read-mes/_check_empty().md');
 require('../read-mes/_check_emptyEither().md');
@@ -105,7 +98,7 @@ require('../read-mes/_link().md');
 require('../read-mes/_mutateSnapshot().md');
 
 require('../read-mes/_typeIsA().md');
-require('../read-mes/_typeOf().md');
+require('../read-mes/_typeIs().md');
 require('../read-mes/_typeProtos().md');
 
 require('./dynamic-generative/random-signatures.js');

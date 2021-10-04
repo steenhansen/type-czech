@@ -150,6 +150,7 @@ function captureConsole(div_id) {
   const div_console = document.getElementById(div_id);
 
   function realConsole(args) {
+ //   console.old(args);
     const not_colored = Array.from(args);
     if (typeof not_colored[0] === 'string') {
       not_colored[0] = not_colored[0].replace(/<br>/gi, '');
@@ -163,6 +164,7 @@ function captureConsole(div_id) {
       not_colored[1] = not_colored[1].replace(/&nbsp;/gi, ' ');
       not_colored[1] = not_colored[1].replace(/~/gi, ' ');
     }
+  //  console.old(not_colored);
     console.old(...not_colored);
   }
 
@@ -298,6 +300,7 @@ function captureConsole(div_id) {
   }
 
   console.log = function newConsoleLog(...args) {
+    //console.old('newConsoleLog', arguments)
     realConsole(args);
     if (args[0]) {
       if (args[0] instanceof Error) {

@@ -1,6 +1,6 @@
 
 /*
-## typeOf()
+## typeIsA()
 A. Check that a single parameter of any type is not empty.
 */
 
@@ -32,22 +32,22 @@ A. Check that a single parameter of any type is not empty.
     A_yourFunc('', 'String')                      // pass 16 P empty string
     A_yourFunc(null, 'null')                      // pass 17 Q empty null
     A_yourFunc(undefined, 'undefined')            // pass 18 R empty undefined
-    A_yourFunc([11,12,13], 'Array')               // pass 19 T multi array
-    A_yourFunc([[17,18,19]], 'Array')             // pass 20 V multi in single
-    A_yourFunc({d:{}}, 'Object')                  // pass 21 Y empty in object
-    A_yourFunc([{e:[28,{f:[29]}]}], 'Array')      // pass 22 Z empty in object
-    A_yourFunc(['',''], 'Array')                  // pass 23 0 empty - [str str]
-    A_yourFunc([[],[]], 'Array')                  // pass 24 1 empty - [arr arr]
-    A_yourFunc([{},{}], 'Array')                  // pass 27 2 empty - [obj obj]
-    A_yourFunc()                        // pass 1 S empty nothing
-    A_yourFunc(14,15,16)                // fail 2 U multi args
-    A_yourFunc([20], [21])              // fail 3 W two singles
-    A_yourFunc([22,23,24], [25,26,27])  // fail 4 X two multis
-    A_yourFunc({g:[]},{h:[]})           // fail 5 3 empty - {arr arr}
-    A_yourFunc({i:''},{j:''})           // fail 6 4 empty - {str str}
-    A_yourFunc({k:{}},{l:{}})           // fail 7 5 empty - {obj obj}
+    A_yourFunc()                                  // pass 19 S empty nothing
+    A_yourFunc([11,12,13], 'Array')               // pass 20 T multi array
+    A_yourFunc([[17,18,19]], 'Array')             // pass 21 V multi in single
+    A_yourFunc({d:{}}, 'Object')                  // pass 22 Y empty in object
+    A_yourFunc([{e:[28,{f:[29]}]}], 'Array')      // pass 23 Z empty in object
+    A_yourFunc(['',''], 'Array')                  // pass 24 0 empty - [str str]
+    A_yourFunc([[],[]], 'Array')                  // pass 25 1 empty - [arr arr]
+    A_yourFunc([{},{}], 'Array')                  // pass 26 2 empty - [obj obj]
+    A_yourFunc(14,15,16)                // fail 1 U multi args
+    A_yourFunc([20], [21])              // fail 2 W two singles
+    A_yourFunc([22,23,24], [25,26,27])  // fail 3 X two multis
+    A_yourFunc({g:[]},{h:[]})           // fail 4 3 empty - {arr arr}
+    A_yourFunc({i:''},{j:''})           // fail 5 4 empty - {str str}
+    A_yourFunc({k:{}},{l:{}})           // fail 6 5 empty - {obj obj}
                 expected_tests = 32
-                expected_fails = 7
+                expected_fails = 6
     if (expected_tests !== total_tests) 
         throw `A. _typeIsA().md ${expected_tests} expected_tests !== ${total_tests} total_tests`
     else if (expected_fails !== fail_tests) 

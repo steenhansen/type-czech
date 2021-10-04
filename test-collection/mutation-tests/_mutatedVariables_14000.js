@@ -28,7 +28,7 @@ function _mutatedVariables_14001(){
   var my_array = [1,2,3];    
   type_czech.mutateSnapshot('_mutatedVariables_14001', 'my_array', my_array);
   my_array.push(4);
-  actual = type_czech.check_mutated('_mutatedVariables_14001', 'my_array', my_array);
+  actual = type_czech.check_mutated('_mutatedVariables_14001', 'my_array');
   actual_one_line = oneLineString(actual);
 
   expected = `TC@48 - The reference variable 'my_array' in function '_mutatedVariables_14001()' changed values from [1,2,3] to [1,2,3,4] START-SAME ~ [1,2,3 PRE-DIFF ~ ] POST-DIFF ~ ,4]`; 
@@ -106,10 +106,10 @@ function _mutatedVariables_14003(){
   error_id = errorLabel(TYPE_CZECH_current_test_number);
   var my_obj = {a:1, b:2, c:3};       // REAL TEST
   type_czech.mutateSnapshot('_mutatedVariables_14003', 'my_obj', my_obj);
-  my_obj.b=7;
-  actual = type_czech.check_mutated('_mutatedVariables_14003', 'my_obj', my_obj);
+  my_obj.b="7";
+  actual = type_czech.check_mutated('_mutatedVariables_14003', 'my_obj');
   actual_one_line = oneLineString(actual);
-  expected = `TC@48 - The reference variable 'my_obj' in function '_mutatedVariables_14003()' changed values from {'a':1,'b':2,'c':3} to {'a':1,'b':7,'c':3} START-SAME ~ {'a':1,'b': PRE-DIFF ~ 2,'c':3} POST-DIFF ~ 7,'c':3}`; 
+  expected = `TC@48 - The reference variable 'my_obj' in function '_mutatedVariables_14003()' changed values from {"a":1,"b":2,"c":3} to {"a":1,"b":"7","c":3} START-SAME ~ {"a":1,"b": PRE-DIFF ~ 2,"c":3} POST-DIFF ~ "7","c":3}`; 
   
    
 if (actual_one_line !== expected) {
@@ -176,7 +176,8 @@ function _mutatedVariables_14004(){
   }
 
   actual_one_line = oneLineString(actual);
-  expected = `Error: TC@48 - The reference variable 'growing_array' in function 'recurseArr()' changed values from [1,2,3] to [1,2,'THREE'] START-SAME ~ [1,2, PRE-DIFF ~ 3] POST-DIFF ~ 'THREE']`; 
+  //console.log('1799  ;asdfasdfasdf', actual)
+  expected = `Error: TC@48 - The reference variable 'growing_array' in function 'recurseArr()' changed values from [1,2,3] to [1,2,"THREE"] START-SAME ~ [1,2, PRE-DIFF ~ 3] POST-DIFF ~ "THREE"]`; 
   
   
   if (actual_one_line !== expected) {

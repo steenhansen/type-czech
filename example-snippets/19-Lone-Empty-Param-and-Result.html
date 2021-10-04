@@ -30,23 +30,27 @@
             
             <a title="08-Mutated-Recursive-Function-Parameters.html" href="../example-snippets/08-Mutated-Recursive-Function-Parameters.html">08</a>
             
-            <a title="09-Mutated-Window-Parameters.html" href="../example-snippets/09-Mutated-Window-Parameters.html">09</a>
+           
+     
+            <a title="09-Closure-Parameters-Results-and-Methods.html" href="../example-snippets/09-Closure-Parameters-Results-and-Methods.html">09</a>
+              
+            <a title="10-Class-Parameters-Results-and-Methods.html" href="../example-snippets/10-Class-Parameters-Results-and-Methods.html">10</a>
             
-            <a title="10-Closure-Parameters-Results-and-Methods.html" href="../example-snippets/10-Closure-Parameters-Results-and-Methods.html">10</a>
+            <a title="11-Object-Properties.html" href="../example-snippets/11-Object-Properties.html">11</a>
             
-            <a title="11-Class-Parameters-Results-and-Methods.html" href="../example-snippets/11-Class-Parameters-Results-and-Methods.html">11</a>
+            <a title="12-Class-Interface.html" href="../example-snippets/12-Class-Interface.html">12</a>
             
-            <a title="12-Object-Object-Properties.html" href="../example-snippets/12-Object-Object-Properties.html">12</a>
+            <a title="13-Parameter-and-Results-Multi-Types.html" href="../example-snippets/13-Parameter-and-Results-Multi-Types.html">13</a>
             
-            <a title="13-Class-Interface.html" href="../example-snippets/13-Class-Interface.html">13</a>
+            <a title="14-Array-and-Object-Types.html" href="../example-snippets/14-Array-and-Object-Types.html">14</a>
             
-            <a title="14-Parameter-and-Results-Multi-Types.html" href="../example-snippets/14-Parameter-and-Results-Multi-Types.html">14</a>
+            <a title="15-Lone-Single-Type-Parameter-Functions.html" href="../example-snippets/15-Lone-Single-Type-Parameter-Functions.html">15</a>
             
-            <a title="15-Array-and-Object-Types.html" href="../example-snippets/15-Array-and-Object-Types.html">15</a>
+            <a title="16-Arrays-with-One-Type.html" href="../example-snippets/16-Arrays-with-One-Type.html">16</a>
             
-            <a title="16-Lone-Single-Type-Parameter-Functions.html" href="../example-snippets/16-Lone-Single-Type-Parameter-Functions.html">16</a>
-            
-            <a title="17-Arrays-with-One-Type.html" href="../example-snippets/17-Arrays-with-One-Type.html">17</a>
+            <a title="17-Variadic-Functions.html" href="../example-snippets/17-Variadic-Functions.html">17</a>
+
+
             
             <a title="18-Class-Type-Checks.html" href="../example-snippets/18-Class-Type-Checks.html">18</a>
             
@@ -88,7 +92,7 @@
             
             <a title="37-Readme-Example-Lambda.html" href="../example-snippets/37-Readme-Example-Lambda.html">37</a>
         
-            <a title="38-Variadic-Functions.html" href="../example-snippets/38-Variadic-Functions.html">38</a>
+
 
             &nbsp;&nbsp;
         
@@ -142,7 +146,7 @@
 
 
 <div id="the-explanation" style="width:68%" >
-  <div class='an-explantion'>19 - Lone Empty Parameter and Result</div>
+  <div class='an-explantion'>19 &mdash; Lone Empty Parameter and Result</div>
 
   <div id='explanation-text'>
     Use type_czech.check_empty(arguments, expected_empty) to verify that a lone parameter or return result is not empty or check_empty.
@@ -194,16 +198,16 @@
          <ul>
               <li style="float:left; width:20%;list-style: none;"><b>Empty Categories</b></li>
               <li style="float:left; width:20%;">'<b>EMPTY-OK</b>'<br>
-                Valueless is ok</li>
+                Valueless variable<br>is ok</li>
               <li style="float:left; width:20%;">'<b>EMPTY-ER</b>'<br>
-                Valueless is an Error</li>
+                Valueless variable <br>is an Error</li>
               <li>'<b>EMPTY-IGNORE</b>'&nbsp;&nbsp;&nbsp;Functions, Symbols, BigInts,
                 </li>
                 <span style='float:right; padding-right:8px'>and Booleans cannot be empty</span>
         </ul>
 </div>
 
-<br>
+<br><br>
 
 
 
@@ -279,9 +283,9 @@
 /**/  if (typeof PRE_hasValue === 'undefined')
 /**/    PRE_hasValue = undefined
 /**/  else
-/**/    PRE_hasValue =PRE_hasValue
+/**/    PRE_hasValue = PRE_hasValue
 /**/  
-/**/  function PRE_hasValue(arguments){
+/**/  function PRE_hasValue(a_variable){
 /**/    return type_czech.check_empty(
 /**/                   arguments, 'EMPTY-ERROR')
 /**/  }
@@ -289,9 +293,13 @@
 /**/  hasValue = type_czech.link(hasValue,
 /**/                              PRE_hasValue)
 
-function hasValue(a_var) { }
+function hasValue(a_variable) {
+  return a_variable
+ }
 
-hasValue(['is-ok'])
+log(hasValue(['is-ok']))
+
+linesConsole(1)
 
 hasValue('')
 
@@ -302,6 +310,7 @@ hasValue({})
 hasValue(NaN)
 
 hasValue([])
+
 </script>
 
 
@@ -316,12 +325,19 @@ hasValue([])
 
   jsToDiv('js-code', "check-code");
 
-  fromToBoldText(437, 449, 'code', 1)  // 'EMPTY-ERROR'
-  fromToBoldText(651, 652, 'code', 1)  // []
+  fromToBoldText(628, 636, 'code', 3)  // ['is-ok'])
+  fromToBoldText(1, 13, 'log', 3)  // [ "is-ok" ]
 
 
-  fromToBoldText(1440, 1441, 'log', 1)    //VALUE []
-  fromToBoldText(1468, 1480, 'log', 1)    //'EMPTY-ERROR'
+  fromToBoldText(664, 675, 'code', 1)    //new Date('')
+  fromToBoldText(414, 427, 'log', 1)    // 'Invalid Date'
+  fromToBoldText(534, 537, 'log', 1)    // null
+  fromToBoldText(564, 574, 'log', 1)    //EMPTY-ERROR
+
+  fromToBoldText(702, 704, 'code', 2)    //NaN
+  fromToBoldText(1039, 1043, 'log', 2)    //'NaN'
+  fromToBoldText(1152, 1154, 'log', 2)    //NaN
+  fromToBoldText(1181, 1191, 'log', 2)    //EMPTY-ERROR
 
 
 

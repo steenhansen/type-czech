@@ -50,7 +50,7 @@ in checking functions that run before the actual production function.
         typeIsA
         check_interface
         typeProtos
-        typeOf
+        typeIs
 
         stats
         statsReset

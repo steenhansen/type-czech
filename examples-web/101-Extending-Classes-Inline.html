@@ -11,7 +11,7 @@
 
 
 <div id="the-explanation" style="width:45%" >
-  <div class='an-explantion'>101 - Extended Classes Inline</div>
+  <div class='an-explantion'>101 &mdash; Extended Classes Inline</div>
   <div id='explanation-text'>
 
 
@@ -64,24 +64,26 @@
       
       <a title="08-Mutated-Recursive-Function-Parameters.html" href="../example-snippets/08-Mutated-Recursive-Function-Parameters.html">08</a>
       
-      <a title="09-Mutated-Window-Parameters.html" href="../example-snippets/09-Mutated-Window-Parameters.html">09</a>
+       
+      <a title="09-Closure-Parameters-Results-and-Methods.html" href="../example-snippets/09-Closure-Parameters-Results-and-Methods.html">09</a>
+              
+      <a title="10-Class-Parameters-Results-and-Methods.html" href="../example-snippets/10-Class-Parameters-Results-and-Methods.html">10</a>
       
-      <a title="10-Closure-Parameters-Results-and-Methods.html" href="../example-snippets/10-Closure-Parameters-Results-and-Methods.html">10</a>
+      <a title="11-Object-Properties.html" href="../example-snippets/11-Object-Properties.html">11</a>
       
-      <a title="11-Class-Parameters-Results-and-Methods.html" href="../example-snippets/11-Class-Parameters-Results-and-Methods.html">11</a>
+      <a title="12-Class-Interface.html" href="../example-snippets/12-Class-Interface.html">12</a>
       
-      <a title="12-Object-Object-Properties.html" href="../example-snippets/12-Object-Object-Properties.html">12</a>
+      <a title="13-Parameter-and-Results-Multi-Types.html" href="../example-snippets/13-Parameter-and-Results-Multi-Types.html">13</a>
       
-      <a title="13-Class-Interface.html" href="../example-snippets/13-Class-Interface.html">13</a>
+      <a title="14-Array-and-Object-Types.html" href="../example-snippets/14-Array-and-Object-Types.html">14</a>
       
-      <a title="14-Parameter-and-Results-Multi-Types.html" href="../example-snippets/14-Parameter-and-Results-Multi-Types.html">14</a>
+      <a title="15-Lone-Single-Type-Parameter-Functions.html" href="../example-snippets/15-Lone-Single-Type-Parameter-Functions.html">15</a>
       
-      <a title="15-Array-and-Object-Types.html" href="../example-snippets/15-Array-and-Object-Types.html">15</a>
+      <a title="16-Arrays-with-One-Type.html" href="../example-snippets/16-Arrays-with-One-Type.html">16</a>
       
-      <a title="16-Lone-Single-Type-Parameter-Functions.html" href="../example-snippets/16-Lone-Single-Type-Parameter-Functions.html">16</a>
-      
-      <a title="17-Arrays-with-One-Type.html" href="../example-snippets/17-Arrays-with-One-Type.html">17</a>
-      
+      <a title="17-Variadic-Functions.html" href="../example-snippets/17-Variadic-Functions.html">17</a>
+
+
       <a title="18-Class-Type-Checks.html" href="../example-snippets/18-Class-Type-Checks.html">18</a>
       
       <a title="19-Lone-Empty-Param-and-Result.html" href="../example-snippets/19-Lone-Empty-Param-and-Result.html">19</a>
@@ -122,7 +124,7 @@
       
       <a title="37-Readme-Example-Lambda.html" href="../example-snippets/37-Readme-Example-Lambda.html">37</a>
   
-      <a title="38-Variadic-Functions.html" href="../example-snippets/38-Variadic-Functions.html">38</a>
+ 
 
       &nbsp;&nbsp;
   
@@ -222,7 +224,7 @@
 /**/  function POST_First(First){
 /**/    log(NL1+'POST-First')
 /**/    const first_return_signature = {f_name:'String', firstMethod:'Function'}
-/**/    return type_czech.check_objectType(First, first_return_signature)
+/**/    return type_czech.check_interface(First, first_return_signature)
 /**/  }
 /**/  function PRE_firstMethod(a_date){
 /**/    log('PRE -firstMethod') 
@@ -244,13 +246,13 @@
 /**/    log(LEVEL_1+'PRE-Last') 
 /**/    type_issue = type_czech.check_type([f_name, l_name], ['String', 'String'])
 /**/    if (type_issue) return type_issue;
-/**/    return type_czech.check_variadicEmpty(arguments, ['EMPTY-ERROR']);
+/**/    return type_czech.check_empty(arguments, ['EMPTY-ERROR', 'EMPTY-ERROR']);
 /**/  }
 /**/  function POST_Last(Last){
 /**/    log(LEVEL_1+"POST-Last") 
 /**/    last_return_signature = { f_name: 'String', l_name: 'String', 
 /**/               firstMethod: 'Function', lastMethod: 'Function' }
-/**/    return type_czech.check_objectType(Last, last_return_signature)
+/**/    return type_czech.check_interface(Last, last_return_signature)
 /**/  }
 /**/  function PRE_lastMethod(a_year){
 /**/    log(LEVEL_1+"PRE -lastMethod") 
@@ -276,7 +278,7 @@
 /**/    log(LEVEL_2+"POST-Full") 
 /**/    full_return_signature = {salu:'String', f_name:'String', l_name: 'String',
 /**/        firstMethod:'Function', lastMethod:'Function', fullMethod:'Function'}
-/**/    return type_czech.check_objectType(Full, full_return_signature)
+/**/    return type_czech.check_interface(Full, full_return_signature)
 /**/  }
 /**/  function PRE_fullMethod(a_book){
 /**/    log(LEVEL_2+"PRE -fullMethod") 

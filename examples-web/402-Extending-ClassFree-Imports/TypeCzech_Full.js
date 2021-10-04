@@ -6,11 +6,11 @@ function TypeCzech_Full() {
     function PRE_Full(spec){  
       log(LEVEL_2+'PRE-Full') 
       pre_full_sig = {salu:'String', f_name:'String', l_name:'String'}
-      return type_czech.check_type(arguments, pre_full_sig)
+      return type_czech.check_typeExtra(arguments, pre_full_sig)
     }
     function POST_Full(Full){
       log(LEVEL_2+"POST-Full") 
-      return type_czech.check_type(Full, {firstMethod:'Function',
+      return type_czech.check_interface(Full, {firstMethod:'Function',
                 lastMethod:'Function', fullMethod: 'Function', 
                 showName: 'Function' })
      }

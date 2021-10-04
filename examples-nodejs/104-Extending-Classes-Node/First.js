@@ -34,7 +34,7 @@ module.exports = function create_First(type_czech) {
 /**/    function POST_First(First) {
 /**/      console.log('POST-First');
 /**/      const first_return_signature = { f_name: 'String', firstMethod: 'Function' };
-/**/      return type_czech.check_objectType(First, first_return_signature);
+/**/      return type_czech.check_interface(First, first_return_signature);
 /**/    }
 /**/
 /**/    function PRE_firstMethod(a_date) {

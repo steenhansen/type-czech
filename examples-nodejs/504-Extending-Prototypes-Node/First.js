@@ -32,7 +32,7 @@ module.exports = function create_First(type_czech) {
 /**/    // eslint-disable-next-line no-shadow
 /**/    function POST_First(First) {
 /**/      console.log('POST-First');
-/**/      return type_czech.check_objectType(First, { firstMethod: 'Function' });
+/**/      return type_czech.check_interface(First, { firstMethod: 'Function' });
 /**/    }
 /**/
 /**/    function PRE_firstMethod(a_date) {

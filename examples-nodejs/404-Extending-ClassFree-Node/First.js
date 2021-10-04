@@ -27,15 +27,15 @@ module.exports = function create_First(type_czech) {
 /**/    function PRE_First(spec) {
 /**/      console.log('PRE -First');
 /**/      const pre_first_sig = { f_name: 'String' };
-/**/      const type_issue = type_czech.check_objectTypeExtra(arguments, pre_first_sig);
+/**/      const type_issue = type_czech.check_typeExtra(arguments, pre_first_sig);
 /**/      if (type_issue) return type_issue;
-/**/      return type_czech.check_objectEmptyExtra(arguments, { f_name: 'EMPTY-ERROR' });
+/**/      return type_czech.check_emptyExtra(arguments, { f_name: 'EMPTY-ERROR' });
 /**/    }
 /**/
 /**/    // eslint-disable-next-line no-shadow
 /**/    function POST_First(First) {
 /**/      console.log('POST-First');
-/**/      return type_czech.check_type(First, { firstMethod: 'Function' });
+/**/      return type_czech.check_interface(First, { firstMethod: 'Function' });
 /**/    }
 /**/
 /**/    function PRE_firstMethod(a_date) {

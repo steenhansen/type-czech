@@ -404,7 +404,7 @@ function _shapeContainer_17102(){
   before_str = beforeCheck(check_container, container_shape);
   actual = type_czech._shapeContainer(check_container, container_shape, exact_shape, type_czech._NOT_VARIAD_ARR_L_179);
   afterCheck(check_container, container_shape, before_str, error_id);
-  expected = "TC@46 -  The key 'A', which has a type of '{'B':[['N','N'],['N','N']]}', is missing in the checked object"; 
+  expected = `TC@46 -  The key 'A', which has a type of '{B:[["N","N"],["N","N"]]}', is missing in the checked object`; 
  
   if (actual !== expected) {
     console.log(error_id);
@@ -443,7 +443,7 @@ function _shapeContainer_17103(){
   before_str = beforeCheck(check_container, container_shape);
   actual = type_czech._shapeContainer(check_container, container_shape, exact_shape, type_czech._NOT_VARIAD_ARR_L_179);
   afterCheck(check_container, container_shape, before_str, error_id);
-  expected = "TC@46 -  The key 'B', which has a type of '[['N','N'],['N','N']]', is missing in the checked object"; 
+  expected = `TC@46 -  The key 'B', which has a type of '[["N","N"],["N","N"]]', is missing in the checked object`; 
 
   if (actual !== expected) {
     console.log(error_id);

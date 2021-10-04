@@ -10,7 +10,7 @@
 05000 check_type-tests_05000.js                
 06000 check_typeExtra-tests.js          
 07000 check_typeEither-tests.js           
-                        08000 check_objectTypeExtra-tests_08000.js     
+                        08000 check_interfaceExtra-tests_08000.js     
 09000 _aTypeOf-tests.js             
 
 10000 _isCollection-tests.js        
@@ -29,7 +29,7 @@
 22000 _shapeVariable-tests.js
 23000 typeIsA-tests.js
 24000 typeProtos-tests_24000.js
-25000 typeOf-tests_25000.js
+25000 typeIs-tests_25000.js
 26000 TypeCzech-tests_26000.js
 27000 variadic-tests-27000.js
 28000 _shrinkDiffs-tests_28000.js

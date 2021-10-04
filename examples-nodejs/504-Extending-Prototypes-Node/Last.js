@@ -32,7 +32,7 @@ module.exports = function create_Last(type_czech, First) {
 /**/    // eslint-disable-next-line no-shadow
 /**/    function POST_Last(Last) {
 /**/      console.log('POST-Last');
-/**/     return type_czech.check_objectType(Last, { l_name: 'String', lastMethod: 'Function' });
+/**/     return type_czech.check_interface(Last, { l_name: 'String', lastMethod: 'Function' });
 /**/    }
 /**/
 /**/    function PRE_lastMethod(a_year) {

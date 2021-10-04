@@ -11,7 +11,7 @@
     
     function A_yourFunc(an_arg, the_answer){
       the_prototypes = type_czech.typeProtos(an_arg)
-      first_prototype = the_prototypes[0][0]
+      first_prototype = the_prototypes[0]
       if (first_prototype !== the_answer) {
         fail_tests += 1
       }

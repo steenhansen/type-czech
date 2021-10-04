@@ -10,7 +10,7 @@ function TypeCzech_Full() {
     function POST_Full(Full){ 
       log(LEVEL_2+'POST-Full')
       post_full_signature = { salu: 'String', fullMethod: 'Function' }
-      return type_czech.check_objectType(Full, post_full_signature)
+      return type_czech.check_interface(Full, post_full_signature)
     }
     function PRE_fullMethod(a_book){ 
       log(LEVEL_2+'PRE -fullMethod')

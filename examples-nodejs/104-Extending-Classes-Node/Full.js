@@ -42,7 +42,7 @@ module.exports = function create_Full(type_czech, Last) {
 /**/      console.log('POST-Full');
 /**/      const full_return_signature = { salu: 'String', f_name: 'String', l_name: 'String',
 /**/                                firstMethod: 'Function', lastMethod: 'Function', fullMethod: 'Function' };
-/**/      return type_czech.check_objectType(Full, full_return_signature);
+/**/      return type_czech.check_interface(Full, full_return_signature);
 /**/     }
 /**/
 /**/    function PRE_fullMethod(a_book) {

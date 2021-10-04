@@ -1,70 +1,15 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>11-Class-Parameters-Results-and-Methods</title>
+<title>11-Object-Properties</title>
 
 
 <link rel="stylesheet"
   href="https://fonts.googleapis.com/css?family=Inconsolata">
 
 
-<div id='js-div' style="width:50%">
+<div id='js-div' style="width:44%">
  
   <div id='js-code'>the javascript</div>
-</div>
-
-
-
-<div id="the-explanation" style="width:50%">
- 
-  <div class='an-explantion'>11 - Class Parameters, Results, and Methods</div>
-  <div id='explanation-text'>
-    <br>
-
-    Classes with multiple PRE and POST checking functions must be wrapped up in 
-    objects like below for everything to be linked up.
-<pre>
-function PRE_check_yourClass(init_const){ // before constructor }
-
-function POST_check_yourClass(result_object){ // after constructor }
-
-function PRE_check_yourMethod(method_input){ // before method }
-
-function POST_check_yourMethod(method_output){ // after method }
-
-yourClass_PRE_checks = {yourClass:PRE_check_yourClass,
-                        yourMethod:PRE_check_yourMethod}
-
-yourClass_POST_checks = {yourClass:POST_check_yourClass,
-                         yourMethod:POST_check_yourMethod}
-
-class yourClass {
-  constructor(init_const){ }
-  yourMethod(method_input){ 
-    return method_output
-  }
-}
-
-yourClass = type_czech.link(yourClass, 
-                             yourClass_PRE_checks,
-                             yourClass_POST_checks)
-
-</pre> 
-Note that the type_czech.link() call must come after the class declaration, otherwise
-you get the below ReferenceError.
-<pre>
-can't access lexical declaration 'yourClass' before initialization
-</pre>
-
-
-
-  </div>
-
-  <div id="console-log"  >
-    <div class='a-title'>Console Output</div>
-    <div id='log-text'></div>
-    <br>
-  </div>
-
-
+  <br>
   <div id='js-fiddles'>
     jsFiddles:
     <a title="00-Readme-Example" href="../example-snippets/00-Readme-Example.html">00</a>
@@ -85,23 +30,27 @@ can't access lexical declaration 'yourClass' before initialization
       
       <a title="08-Mutated-Recursive-Function-Parameters.html" href="../example-snippets/08-Mutated-Recursive-Function-Parameters.html">08</a>
       
-      <a title="09-Mutated-Window-Parameters.html" href="../example-snippets/09-Mutated-Window-Parameters.html">09</a>
+       
+     
+      <a title="09-Closure-Parameters-Results-and-Methods.html" href="../example-snippets/09-Closure-Parameters-Results-and-Methods.html">09</a>
+              
+      <a title="10-Class-Parameters-Results-and-Methods.html" href="../example-snippets/10-Class-Parameters-Results-and-Methods.html">10</a>
       
-      <a title="10-Closure-Parameters-Results-and-Methods.html" href="../example-snippets/10-Closure-Parameters-Results-and-Methods.html">10</a>
+      <a title="11-Object-Properties.html" href="../example-snippets/11-Object-Properties.html">11</a>
       
-      <a title="11-Class-Parameters-Results-and-Methods.html" href="../example-snippets/11-Class-Parameters-Results-and-Methods.html">11</a>
+      <a title="12-Class-Interface.html" href="../example-snippets/12-Class-Interface.html">12</a>
       
-      <a title="12-Object-Object-Properties.html" href="../example-snippets/12-Object-Object-Properties.html">12</a>
+      <a title="13-Parameter-and-Results-Multi-Types.html" href="../example-snippets/13-Parameter-and-Results-Multi-Types.html">13</a>
       
-      <a title="13-Class-Interface.html" href="../example-snippets/13-Class-Interface.html">13</a>
+      <a title="14-Array-and-Object-Types.html" href="../example-snippets/14-Array-and-Object-Types.html">14</a>
       
-      <a title="14-Parameter-and-Results-Multi-Types.html" href="../example-snippets/14-Parameter-and-Results-Multi-Types.html">14</a>
+      <a title="15-Lone-Single-Type-Parameter-Functions.html" href="../example-snippets/15-Lone-Single-Type-Parameter-Functions.html">15</a>
       
-      <a title="15-Array-and-Object-Types.html" href="../example-snippets/15-Array-and-Object-Types.html">15</a>
+      <a title="16-Arrays-with-One-Type.html" href="../example-snippets/16-Arrays-with-One-Type.html">16</a>
       
-      <a title="16-Lone-Single-Type-Parameter-Functions.html" href="../example-snippets/16-Lone-Single-Type-Parameter-Functions.html">16</a>
-      
-      <a title="17-Arrays-with-One-Type.html" href="../example-snippets/17-Arrays-with-One-Type.html">17</a>
+      <a title="17-Variadic-Functions.html" href="../example-snippets/17-Variadic-Functions.html">17</a>
+
+
       
       <a title="18-Class-Type-Checks.html" href="../example-snippets/18-Class-Type-Checks.html">18</a>
       
@@ -143,7 +92,7 @@ can't access lexical declaration 'yourClass' before initialization
       
       <a title="37-Readme-Example-Lambda.html" href="../example-snippets/37-Readme-Example-Lambda.html">37</a>
   
-      <a title="38-Variadic-Functions.html" href="../example-snippets/38-Variadic-Functions.html">38</a>
+
 
       &nbsp;&nbsp;
   
@@ -189,7 +138,55 @@ can't access lexical declaration 'yourClass' before initialization
       <a title="603-Extending-OLOO-Production.html" href="../examples-web/603-Extending-OLOO-Production/603-Extending-OLOO-Production.html">603</a>
   
     </div>
+</div>
+
+
+<div id="the-explanation" style="width:56%">
+  <div class='an-explantion'>11 &mdash; Object Properties</div>
+  <div id='explanation-text'> 
+    <br>
+    Object structure can be checked with type_czech.check_type().
+    <br><br>
+
+    This code checks that the properties of funcOne and funcTwo are both
+    functions. And the property a_number must be a Number type. Missing or 
+    extra properties will cause errors.
+<pre>
+FUNC_NUM_FUNC_STRUCTURE = { funcOne: 'Function', 
+                            a_number: 'Number',
+                            funcTwo: 'Function' }
+func_num_func_obj = {funcOne: x=>x, a_number:12, funcTwo: y=>y}
+check_error = type_czech.check_type(func_num_func_obj, FUNC_NUM_FUNC_STRUCTURE)
+</pre>
+
+The below example shows how to ignore some properties, while still type checking
+at least one property. Here we only ensure that the property funcOne is a 
+Function, the extra property my_string is ignored.
+<pre>
+FUNC_ONE_ONLY_STRUCTURE = { funcOne: 'Function'}
+func_num_func_obj = {funcOne: x=>x, my_string:'some-string'}
+check_error = type_czech.check_typeExtra(func_num_func_obj, FUNC_ONE_ONLY_STRUCTURE)
+</pre>
+
+
+    In the examples to the left, the first person() function parameter is checked to 
+    see if it implements the showPerson() function, if not it fails the check_type() call.
+    <br><br>
+  Type-Czech is set to throws exceptions in this example to cut down on the number
+  of error messages.
+  <br><br>
+  </div>
+
+  <div id="console-log"  >
+    <div class='a-title'>Console Output</div>
+    <div id='log-text'></div>
+    <br>
+  </div>
+
+  <br>
+
   
+
 
 </div>
 
@@ -198,8 +195,9 @@ can't access lexical declaration 'yourClass' before initialization
 
 
 
+<!--            -----------------TYPE 1------------------------       -->
 
-<!--            ----------------TYPE 1--------------------------       -->
+
 
 <script src="../web-resources/consolelog.js">
 </script>
@@ -216,7 +214,16 @@ can't access lexical declaration 'yourClass' before initialization
 
 
 
-<!--            -------------------TYPE 1-----------------------       -->
+
+
+
+<!--            ------------------TYPE 1------------------------       -->
+
+
+
+
+
+
 
 
 
@@ -233,52 +240,55 @@ can't access lexical declaration 'yourClass' before initialization
 
 <script id="check-code">
 /**/  if (typeof TypeCzech === 'function')
-/**/    type_czech = TypeCzech('LOG-ERRORS')
+/**/    type_czech = TypeCzech('THROW-EXCEPTIONS')
 /**/  else
 /**/    type_czech = { link: (nop) => nop, is_active: false }
-/**/  
-/**/  PRE_Person =(typeof PRE_Person==='undefined') ?undefined:PRE_Person
-/**/  PRE_show =(typeof PRE_show === 'undefined') ? undefined:PRE_show
-/**/  POST_Person=(typeof POST_Person==='undefined') ?undefined:POST_Person
-/**/  POST_show =(typeof POST_show === 'undefined') ? undefined:POST_show
 /**/
-/**/  function PRE_Person(person_name){
-/**/    log('PRE_Person :', person_name)
-/**/  }
+/**/  PRE_callMethod = (typeof PRE_callMethod === 'undefined')
+/**/                   ? undefined : PRE_callMethod
 /**/
-/**/  function PRE_show(born_year){
-/**/    log(NL+'PRE_show :', born_year)
+/**/  function PRE_callMethod(an_object){
+/**/    WANTED_PROPS = {showPerson: 'Function'}
+/**/    return type_czech.check_typeExtra(an_object, WANTED_PROPS);
 /**/  }
 /**/  
-/**/  function POST_Person(person_object){
-/**/    log(NL2+'POST_Person :', person_object)
-/**/  }
-/**/  
-/**/  function POST_show(name_year){
-/**/    log(NL2+'POST_show :', name_year)
-/**/  }
-/**/  
-/**/  PRE_Person = {Person:PRE_Person, show:PRE_show}
-/**/  POST_Person = {Person:POST_Person, show:POST_show}
+/**/  callMethod = type_czech.link(callMethod, PRE_callMethod)
 
-class Person {
-  constructor(person_name) {
-    this.person_name = person_name
-    log(NL2+'in Person() :', person_name)
-  }
-  show(born_year){
-    let name_year =  this.person_name + ' - ' + born_year
-    log(NL2+'in show() :', name_year)
-    return name_year
-  }
+function callMethod(an_object){
+  an_object.showPerson()
 }
 
-/**/
-/**/  Person = type_czech.link(Person, PRE_Person, POST_Person)
-/**/
+show_person = (x) => log(`A object with a showPerson()`)
+has_showPerson = {showPerson: show_person}
+callMethod(has_showPerson)
 
-issac_newton = new Person('issac Newton')
-issac_newton.show(1642)
+linesConsole(2)
+
+no_showPerson = {a_key:'not-a-function'}
+try{
+  callMethod(no_showPerson)
+} catch(interface_error){
+  log(no_showPerson)
+  log('has no showPerson()')
+  linesConsole(2)
+  log(interface_error)
+}
+
+
+linesConsole(2)
+
+wrong_showPerson = {showPerson:'a-string'}
+try{
+  callMethod(wrong_showPerson)
+} catch(interface_error){
+  log(wrong_showPerson)
+  log('has no showPerson()')
+  linesConsole(2)
+  log(interface_error)
+}
+
+
+
 </script>
 
 
@@ -289,25 +299,35 @@ issac_newton.show(1642)
 
 
 
+
+
 <script>
-  
 
   jsToDiv('js-code', "check-code");
 
-  
-  fromToBoldText(683, 690, 'code', 1)  // PRE_show 
+   fromToBoldText(664, 688, 'code', 1)  //  {showPerson: show_person}
 
-  fromToBoldText(882, 890, 'code', 2)  // POST_show
+   fromToBoldText(17, 28, 'log', 1)    //showPerson()
 
-  fromToBoldText(1161, 1164, 'code', 3)  //show
-
-  fromToBoldText(1433, 1436, 'code', 3)  //show
+  // //////////////////
 
 
+  fromToBoldText(734, 757, 'code', 2)  //  {a_key:'not-a-function'}
 
-  fromToBoldText(156, 163, 'log', 1)    // PRE_show 
+    fromToBoldText(29, 59, 'log', 2)    //{ "a_key": "not-a-function" }
+    fromToBoldText(300, 325, 'log', 2)    // ACTUAL VALUE {'a_key':'not-a-function'}
 
-  fromToBoldText(175, 180, 'log', 3)    // in show()
-  fromToBoldText(206, 214, 'log', 2)    //POST_show
+
+
+/////////////
+
+  fromToBoldText(913, 935, 'code', 3)  // wrong_showPerson = {showPerson:'a-string'}
+
+  fromToBoldText(419, 448, 'log', 3)    //{ "showPerson": "a-string" }
+  fromToBoldText(698, 722, 'log', 3)    // ACTUAL VALUE {'showPerson':'a-string'}
+
+
+
+
 
 </script>

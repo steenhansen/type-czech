@@ -11,7 +11,7 @@ function TypeCzech_First() {
     }
     function POST_First(First){ 
       log(NL1+'POST-First') 
-      return type_czech.check_objectType(First, { firstMethod: 'Function' })
+      return type_czech.check_interface(First, { firstMethod: 'Function' })
     }
     function PRE_firstMethod(a_date){
       log('PRE -firstMethod') 

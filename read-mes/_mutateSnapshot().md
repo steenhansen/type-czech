@@ -48,7 +48,7 @@ A. Check that a single parameter of any type is not empty.
     A_yourFunc()                            // fail 15 S empty nothing
     A_yourFunc(14,15,16)                    // fail 16 U multi args
                 expected_tests = 32
-                expected_fails = 16
+                expected_fails = 32
     if (expected_tests !== total_tests) 
         throw `A. _mutateSnapshot().md ${expected_tests} expected_tests !== ${total_tests} total_tests`
     else if (expected_fails !== fail_tests) 
@@ -58,10 +58,229 @@ A. Check that a single parameter of any type is not empty.
     else
       total_checks += expected_tests
 
+/*
+### B. mutateSnapshot() check internal Type-Czech stack structure 
+*/
+
+    stack_str = ''
+    type_czech = TypeCzech('NO-ERROR-MESSAGES')
+    function B_PRE_recurseArr(growing_array){
+      type_czech.mutateSnapshot('B_PRE_recurseArr', 'growing_array', growing_array)
+      stack_str = type_czech._mutateStacks()
+    }
+    function B_POST_recurseArr(growing_array){
+      return type_czech.check_mutated('B_PRE_recurseArr', 'growing_array')
+    }
+    B_recurseArr = type_czech.link(B_recurseArr, B_PRE_recurseArr, B_POST_recurseArr)
+    function B_recurseArr(growing_array, stop_recurse){
+      next_index = growing_array.length + 1
+      if (next_index === stop_recurse){
+        // do nothing
+      } else{
+        if (next_index === 4){
+          growing_array[2] = 'THREE'                 // mutate previous entry
+        }
+        new_array = [...growing_array, next_index]
+        B_recurseArr(new_array, stop_recurse)
+      }
+    }
+
+     B_expected_first_stack = `{"B_PRE_recurseArr-growing_array":[{"collection_ref":[1],"func_name":"B_PRE_recurseArr","pre_collect_str":"[1]","var_name":"growing_array"},{"collection_ref":[1,2],"func_name":"B_PRE_recurseArr","pre_collect_str":"[1,2]","var_name":"growing_array"},{"collection_ref":[1,2,3],"func_name":"B_PRE_recurseArr","pre_collect_str":"[1,2,3]","var_name":"growing_array"}]}`
+    B_recurseArr([1], 4)
+    if (stack_str === B_expected_first_stack){
+      if (typeof total_checks === 'undefined')
+        console.log('no-issues: pass')
+      else
+        total_checks += 1
+    } else {
+      throw `B. _mutateSnapshot().md first had un-expected stack list values`
+    }
+
+
+
+    B_expected_second_stack = `{"B_PRE_recurseArr-growing_array":[{"collection_ref":[1],"func_name":"B_PRE_recurseArr","pre_collect_str":"[1]","var_name":"growing_array"},{"collection_ref":[1,2],"func_name":"B_PRE_recurseArr","pre_collect_str":"[1,2]","var_name":"growing_array"},{"collection_ref":[1,2,"THREE"],"func_name":"B_PRE_recurseArr","pre_collect_str":"[1,2,3]","var_name":"growing_array"},{"collection_ref":[1,2,"THREE",4],"func_name":"B_PRE_recurseArr","pre_collect_str":"[1,2,\\\"THREE\\\",4]","var_name":"growing_array"},{"collection_ref":[1,2,"THREE",4,5],"func_name":"B_PRE_recurseArr","pre_collect_str":"[1,2,\\\"THREE\\\",4,5]","var_name":"growing_array"}]}`
+    B_recurseArr([1], 6)
+    if (B_expected_second_stack === stack_str){
+      if (typeof total_checks === 'undefined')
+        console.log('no-issues: pass')
+      else
+        total_checks += 1
+    } else {
+      console.log(stack_str)
+      throw `B. _mutateSnapshot().md second had un-expected stack list values`
+    }
 
 
 
 
+
+
+
+
+
+
+/*
+### C. mutateSnapshot() fail from non-string function name
+*/
+
+    type_czech = TypeCzech('NO-ERROR-MESSAGES')
+    function C_PRE_yourFunc(c_collection) {
+      type_czech.mutateSnapshot({a:12}, 'var-name', c_collection)
+    }
+    C_yourFunc = type_czech.link(C_yourFunc, C_PRE_yourFunc) 
+    function C_yourFunc(c_collection) { }
+    
+    try {
+      C_yourFunc([1,2,3])
+      is_correct = false
+    } catch (e) {
+      is_correct = true
+    }
+
+
+    if (is_correct){
+      if (typeof total_checks === 'undefined')
+        console.log('no-issues: pass')
+      else
+        total_checks += 1
+    } else {
+      throw `C. _mutateSnapshot().md did not fail - TC@01`
+    }
+
+/*
+### D. mutateSnapshot() fail from non-string variable name
+*/
+
+    type_czech = TypeCzech('NO-ERROR-MESSAGES')
+    function D_PRE_yourFunc(d_collection) {
+      type_czech.mutateSnapshot('func-name', {b:13}, d_collection)
+    }
+    D_yourFunc = type_czech.link(D_yourFunc, D_PRE_yourFunc) 
+    function D_yourFunc(d_collection) { }
+    try {
+      D_yourFunc([1,2,3])
+      is_correct = false
+    } catch (e) {
+      is_correct = true
+    }
+    if (is_correct){
+      if (typeof total_checks === 'undefined')
+        console.log('no-issues: pass')
+      else
+        total_checks += 1
+    } else {
+      throw `D. _mutateSnapshot().md did not fail - TC@02`
+    }
+
+/*
+### E. mutateSnapshot() fail from scalar variable
+*/
+
+    type_czech = TypeCzech('NO-ERROR-MESSAGES')
+    function E_PRE_yourFunc(e_scalar) {
+      type_czech.mutateSnapshot('func-name', 'var-name', 'not a collection')
+    }
+    E_yourFunc = type_czech.link(E_yourFunc, E_PRE_yourFunc) 
+    function E_yourFunc(e_scalar) { }
+    try {
+      E_yourFunc('a-scalar')
+      is_correct = false
+    } catch (e) {
+      is_correct = true
+    }
+    if (is_correct){
+      if (typeof total_checks === 'undefined')
+        console.log('no-issues: pass')
+      else
+        total_checks += 1
+    } else {
+      throw `E. _mutateSnapshot().md did not fail - TC@56`
+    }
+
+
+/*
+### F. mutateSnapshot() fail from not enough parameters
+*/
+
+    type_czech = TypeCzech('NO-ERROR-MESSAGES')
+    function F_PRE_yourFunc(f_variable) {
+      type_czech.mutateSnapshot('func-name', 'var-name')
+    }
+    F_yourFunc = type_czech.link(F_yourFunc, F_PRE_yourFunc) 
+    function F_yourFunc(f_variable) { }
+    try {
+      F_yourFunc('a-scalar')
+      is_correct = false
+    } catch (e) {
+      is_correct = true
+    }
+    if (is_correct){
+      if (typeof total_checks === 'undefined')
+        console.log('no-issues: pass')
+      else
+        total_checks += 1
+    } else {
+      throw `F. _mutateSnapshot().md did not fail - TC@55`
+    }
+
+
+
+/*
+### G. mutateSnapshot() is ok with cyclic array
+*/
+
+    type_czech = TypeCzech('NO-ERROR-MESSAGES')
+    function G_PRE_yourFunc(cyclic_array) {
+      return type_czech.mutateSnapshot('func-name', 'var-name', cyclic_array)
+    }
+    G_yourFunc = type_czech.link(G_yourFunc, G_PRE_yourFunc) 
+    function G_yourFunc(cyclic_array) { }
+    try {
+      cyclic_array = []
+      cyclic_array[0] = cyclic_array
+      G_yourFunc(cyclic_array)
+      is_correct = true
+    } catch (e) {
+      console.log('e', e)
+      is_correct = false
+    }
+    if (is_correct){
+      if (typeof total_checks === 'undefined')
+        console.log('no-issues: pass')
+      else
+        total_checks += 1
+    } else {
+      throw `G. _mutateSnapshot().md could not handle cyclic array`
+    }
+
+
+/*
+### H. mutateSnapshot() is ok with cyclic object
+*/
+
+    type_czech = TypeCzech('NO-ERROR-MESSAGES')
+    function H_PRE_yourFunc(cyclic_object) {
+      return type_czech.mutateSnapshot('func-name', 'var-name', cyclic_object)
+    }
+    H_yourFunc = type_czech.link(H_yourFunc, H_PRE_yourFunc) 
+    function H_yourFunc(cyclic_array) { }
+    try {
+      cyclic_object = {}
+      cyclic_object.a = cyclic_object
+      H_yourFunc(cyclic_object)
+      is_correct = true
+    } catch (e) {
+      console.log('e', e)
+      is_correct = false
+    }
+    if (is_correct){
+      if (typeof total_checks === 'undefined')
+        console.log('no-issues: pass')
+      else
+        total_checks += 1
+    } else {
+      throw `H. _mutateSnapshot().md could not handle cyclic object`
+    }
 
 
 

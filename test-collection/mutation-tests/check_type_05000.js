@@ -50,7 +50,7 @@ function check_type_05001(){
   afterCheck(check_object, check_type_shape, before_str, error_id);
   expected_array =[`check_type(arguments, expected_types)`,
   `TC@39 - Extra key in checked object - (sneak:'extra')`,
-  `{'cylinders':'Number','fuel':'String'}`];
+  `{cylinders:"Number",fuel:"String"}`];
   actual_str = arrayErrorToString(actual_array);
   expected_str = arrayErrorToString(expected_array);
   if (actual_str !== expected_str) {
@@ -289,7 +289,7 @@ function check_type_05008(){
   afterCheck(check_object, check_type_shape, before_str, error_id);
   expected_array =[`check_type(arguments, expected_types)`,
   `TC@39 - Extra key in checked object - (sneak:'extra')`,
-  `{'cylinders':'Number','fuel':'String'}`];
+  `{cylinders:"Number",fuel:"String"}`];
   actual_str = arrayErrorToString(actual_array);
   expected_str = arrayErrorToString(expected_array);
   if (actual_str !== expected_str) {
@@ -394,7 +394,7 @@ function check_type_05011(){
   afterCheck(check_object, check_type_shape, before_str, error_id);
   expected_array =[`check_type(arguments, expected_types)`,
   `TC@40 - The type 'null' is not check_type`,
-  `{'a':[{'b':[{'c':'String'}]}],'z':'null'}`];
+  `{a:[{b:[{c:"String"}]}],z:"null"}`];
   actual_str = arrayErrorToString(actual_array);
   expected_str = arrayErrorToString(expected_array);
   if (actual_str !== expected_str) {

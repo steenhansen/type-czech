@@ -572,7 +572,7 @@ function EmptyCheck_03015(){
   afterCheck(check_object, check_type_shape, before_str, error_id);
   expected_array = [`check_empty(arguments, expected_emptys)`,
   `TC@08 - 'str' is a 'String' which is reputed to be 'EMPTY-ERROR' but has a value of ''.`,
-  `{'str':'EMPTY-ERROR'}`];
+  `{str:"EMPTY-ERROR"}`];
   actual_str = arrayErrorToString(actual_array);
   expected_str = arrayErrorToString(expected_array);
   if (actual_str !== expected_str) {
@@ -675,7 +675,7 @@ function EmptyCheck_03018(){
   afterCheck(check_object, check_type_shape, before_str, error_id);
   expected_array = [`check_empty(arguments, expected_emptys)`,
   `TC@08 - 'numx' is a 'Number' which is reputed to be 'EMPTY-ERROR' but has a value of NaN.`,
-  `{'numx':'EMPTY-ERROR'}`];
+  `{numx:"EMPTY-ERROR"}`];
   actual_str = arrayErrorToString(actual_array);
   expected_str = arrayErrorToString(expected_array);
   if (actual_str !== expected_str) {
@@ -744,7 +744,7 @@ function EmptyCheck_03020(){
   afterCheck(check_object, check_type_shape, before_str, error_id);
   expected_array = [`check_empty(arguments, expected_emptys)`,
   `TC@10 - bad incheck_type key 'MT-WRONG-d', must be either EMPTY-OK -ER -IG`,
-  `{'num_q':'MT-WRONG-d'}`];
+  `{num_q:"MT-WRONG-d"}`];
   actual_str = arrayErrorToString(actual_array);
   expected_str = arrayErrorToString(expected_array);
   if (actual_str !== expected_str) {
@@ -779,7 +779,7 @@ function EmptyCheck_03021(){
   afterCheck(check_object, check_type_shape, before_str, error_id);
   expected_array = [`check_empty(arguments, expected_emptys)`,
   `TC@27 - Extra key in checked object - (num_JJ:'18')TC@46 -  The key 'num_y', which has a type of 'EMPTY-OK', is missing in the checked object`,
-  `{'num_y':'EMPTY-OK'}`];
+  `{num_y:"EMPTY-OK"}`];
   actual_str = arrayErrorToString(actual_array);
   expected_str = arrayErrorToString(expected_array);
   if (actual_str !== expected_str) {
@@ -847,7 +847,7 @@ function EmptyCheck_03023(){
   afterCheck(check_object, check_type_shape, before_str, error_id);
   expected_array = [`check_empty(arguments, expected_emptys)`,
   `TC@30 - ELEMENT '0' is erroneously empty :`,
-  `{'str':['EMPTY-ERROR']}`];
+  `{str:["EMPTY-ERROR"]}`];
   actual_str = arrayErrorToString(actual_array);
   expected_str = arrayErrorToString(expected_array);
   if (actual_str !== expected_str) {
@@ -948,7 +948,7 @@ function EmptyCheck_03026(){
   afterCheck(check_object, check_type_shape, before_str, error_id);
   expected_array = [`check_empty(arguments, expected_emptys)`,
   `TC@30 - ELEMENT '0' is erroneously empty :`,
-  `{'str':['EMPTY-ERROR']}`];
+  `{str:["EMPTY-ERROR"]}`];
   actual_str = arrayErrorToString(actual_array);
   expected_str = arrayErrorToString(expected_array);
   if (actual_str !== expected_str) {
@@ -1017,7 +1017,7 @@ function EmptyCheck_03028(){
   afterCheck(check_object, check_type_shape, before_str, error_id);
   expected_array = [`check_empty(arguments, expected_emptys)`,
   `TC@32 - ELEMENT '0' is incorrect  type, 'MT-WRONG-e', only [EM-ER, EMPTY-ERROR, EMPTY-OK, EM-OK, EMPTY-IGNORE, EM-IG] allowed  : [18]`,
-  `{'str':['MT-WRONG-e']}`];
+  `{str:["MT-WRONG-e"]}`];
   actual_str = arrayErrorToString(actual_array);
   expected_str = arrayErrorToString(expected_array);
   if (actual_str !== expected_str) {
@@ -1085,7 +1085,7 @@ function EmptyCheck_03030(){
   afterCheck(check_object, check_type_shape, before_str, error_id);
   expected_array = [`check_empty(arguments, expected_emptys)`,
   `TC@08 - 'str' is a 'String' which is reputed to be 'EMPTY-ERROR' but has a value of ''.`,
-  `{'str':'EMPTY-ERROR'}`];
+  `{str:"EMPTY-ERROR"}`];
   actual_str = arrayErrorToString(actual_array);
   expected_str = arrayErrorToString(expected_array);
   if (actual_str !== expected_str) {
@@ -1219,7 +1219,7 @@ function EmptyCheck_03034(){
   afterCheck(check_object, check_type_shape, before_str, error_id);
   expected_array = [`check_empty(arguments, expected_emptys)`,
   `TC@10 - bad incheck_type key 'MT-WRONG-a', must be either EMPTY-OK -ER -IG`,
-  `{'num_q':'MT-WRONG-a'}`];
+  `{num_q:"MT-WRONG-a"}`];
   actual_str = arrayErrorToString(actual_array);
   expected_str = arrayErrorToString(expected_array);
   if (actual_str !== expected_str) {
@@ -1254,7 +1254,7 @@ function EmptyCheck_03035(){
   afterCheck(check_object, check_type_shape, before_str, error_id);
   expected_array = [`check_empty(arguments, expected_emptys)`,
   `TC@27 - Extra key in checked object - (num_JJ:'18')TC@46 -  The key 'num_y', which has a type of 'EMPTY-OK', is missing in the checked object`,
-  `{'num_y':'EMPTY-OK'}`];
+  `{num_y:"EMPTY-OK"}`];
   actual_str = arrayErrorToString(actual_array);
   expected_str = arrayErrorToString(expected_array);
   if (actual_str !== expected_str) {
@@ -1289,7 +1289,7 @@ function EmptyCheck_03036(){
   afterCheck(check_object, check_type_shape, before_str, error_id);
   expected_array =[`check_empty(arguments, expected_emptys)`,
   `TC@27 - Extra key in checked object - (num_TTTTTTT:'18')TC@46 -  The key 'num_iiiii', which has a type of 'EMPTY-OK', is missing in the checked object`,
-  `[{'num_iiiii':'EMPTY-OK'}]`];
+  `[{num_iiiii:"EMPTY-OK"}]`];
   actual_str = arrayErrorToString(actual_array);
   expected_str = arrayErrorToString(expected_array);
   if (actual_str !== expected_str) {

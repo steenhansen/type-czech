@@ -11,7 +11,7 @@ function TypeCzech_Last() {
     function POST_Last(Last){
       log(LEVEL_1+"POST-Last")
       post_last_signature = { l_name: 'String', lastMethod: 'Function' }
-      return type_czech.check_objectType(Last, post_last_signature)
+      return type_czech.check_interface(Last, post_last_signature)
     }
     function PRE_lastMethod(a_year){ 
       log(LEVEL_1+"PRE -lastMethod")

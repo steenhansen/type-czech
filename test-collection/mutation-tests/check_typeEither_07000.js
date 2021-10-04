@@ -35,7 +35,7 @@ function check_typeEither_07001(){
   before_str = beforeCheck(check_object, check_type_shape);
   actual = type_czech.check_typeEither(check_object, check_type_shape);
   afterCheck(check_object, check_type_shape, before_str, error_id);
-  expected_array = `TC@15 - TypeCzech.check_typeEither() called with a second parameter as a non-array shape of {'a':1}`;  
+  expected_array = `TC@15 - TypeCzech.check_typeEither() called with a second parameter as a non-array shape of {"a":1}`;  
   actual_str = arrayErrorToString(actual);
   expected_str = arrayErrorToString(expected_array);
    if (actual_str !== expected_str) {
@@ -72,7 +72,7 @@ function check_typeEither_07002(){
   before_str = beforeCheck(check_object, check_type_shape);
   actual = type_czech.check_typeEither(check_object, check_type_shape);
   afterCheck(check_object, check_type_shape, before_str, error_id);
-  expected_array = `TC@50 - TypeCzech.check_typeEither()  needs at least 2 choices for a union, not 1 of ['String']`;
+  expected_array = `TC@50 - TypeCzech.check_typeEither()  needs at least 2 choices for a union, not 1 of ["String"]`;
 
   actual_str = arrayErrorToString(actual);
   expected_str = arrayErrorToString(expected_array);
@@ -178,7 +178,7 @@ function check_typeEither_07005(){
   afterCheck(check_object, check_type_shape, before_str, error_id);
   expected_array = [`check_typeEither(arguments, expected_types)`,
   `TC@43 - Property 'c' is indicated to be a 'String', but is inaccurately a 'Boolean' : false`,
-  `[{'a':'Number','b':{'c':'Number'}},{'a':'Number','b':{'c':'String'}}]`];
+  `[{a:"Number",b:{c:"Number"}},{a:"Number",b:{c:"String"}}]`];
   actual_str = arrayErrorToString(actual);
   expected_str = arrayErrorToString(expected_array);
    if (actual_str !== expected_str) {
@@ -217,7 +217,7 @@ function check_typeEither_07006(){
   afterCheck(check_object, check_type_shape, before_str, error_id);
   expected_array = [`check_typeEither(arguments, expected_types)`,
   `TC@43 - Property 'v_2' is indicated to be a 'Number', but is inaccurately a 'Boolean' : falseTC@39 - Extra key in checked object - (v_extra:'more than this')`,
-  `[{'v_1':'String','v_2':'Boolean'},{'v_1':'String','v_2':'Number'}]`];
+  `[{v_1:"String",v_2:"Boolean"},{v_1:"String",v_2:"Number"}]`];
 
   actual_str = arrayErrorToString(actual);
  expected_str = arrayErrorToString(expected_array);

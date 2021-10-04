@@ -1,24 +1,43 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>09-Mutated-Window-Parameters</title>
+<title>15-Lone-Single-Type-Parameter-Functions </title>
 
 
 <link rel="stylesheet"
   href="https://fonts.googleapis.com/css?family=Inconsolata">
 
 
-<div id='js-div' style="width:55%">
+<div id='js-div' style="width:50%">
+ 
   <div id='js-code'>the javascript</div>
 </div>
 
 
-<div id="the-explanation" style="width:45%">
-  <div class='an-explantion'>09 - Mutated Window Parameter</div>
+<div id="the-explanation" style="width:50%" class='code-scroll'>
+  <div class='an-explantion'>15 &mdash; Lone Single Type Parameter Functions</div>
   <div id='explanation-text'>
-    <br>
-    The Window object can also be monitored for mutations in functions.
-    <br><br>
+<br>
     
-  </div>
+    To check for exactly one parameter, as with PRE_exactly1Str(), the arguments length has to 
+    be checked, otherwise the extra parameters are just ignored.
+
+    <br><br>
+    Undefined values are printed as 'un-defined' in error messages to distinguish the 
+    undefined value from the 'undefined' string which look the same when printed in the console. 
+
+    <br><br>
+    So when only checking a single lone parameter, leave off the array brackets - [ ], to verfiy
+    that there is only one number being passed into the function.
+
+<pre>
+type_czech.check_type(arguments, 'Number')              // one number
+type_czech.check_type(arguments, ['Number', 'Number'])  // two numbers
+type_czech.check_type(arguments, ['Date', 'String'])    // two values
+</pre>
+
+
+
+</div>
+
 
   <div id="console-log"  >
     <div class='a-title'>Console Output</div>
@@ -26,7 +45,6 @@
     <br>
   </div>
 
-  <br><br>
   <div id='js-fiddles'>
     jsFiddles:
     <a title="00-Readme-Example" href="../example-snippets/00-Readme-Example.html">00</a>
@@ -47,23 +65,27 @@
       
       <a title="08-Mutated-Recursive-Function-Parameters.html" href="../example-snippets/08-Mutated-Recursive-Function-Parameters.html">08</a>
       
-      <a title="09-Mutated-Window-Parameters.html" href="../example-snippets/09-Mutated-Window-Parameters.html">09</a>
+     
+     
+      <a title="09-Closure-Parameters-Results-and-Methods.html" href="../example-snippets/09-Closure-Parameters-Results-and-Methods.html">09</a>
+              
+      <a title="10-Class-Parameters-Results-and-Methods.html" href="../example-snippets/10-Class-Parameters-Results-and-Methods.html">10</a>
       
-      <a title="10-Closure-Parameters-Results-and-Methods.html" href="../example-snippets/10-Closure-Parameters-Results-and-Methods.html">10</a>
+      <a title="11-Object-Properties.html" href="../example-snippets/11-Object-Properties.html">11</a>
       
-      <a title="11-Class-Parameters-Results-and-Methods.html" href="../example-snippets/11-Class-Parameters-Results-and-Methods.html">11</a>
+      <a title="12-Class-Interface.html" href="../example-snippets/12-Class-Interface.html">12</a>
       
-      <a title="12-Object-Object-Properties.html" href="../example-snippets/12-Object-Object-Properties.html">12</a>
+      <a title="13-Parameter-and-Results-Multi-Types.html" href="../example-snippets/13-Parameter-and-Results-Multi-Types.html">13</a>
       
-      <a title="13-Class-Interface.html" href="../example-snippets/13-Class-Interface.html">13</a>
+      <a title="14-Array-and-Object-Types.html" href="../example-snippets/14-Array-and-Object-Types.html">14</a>
       
-      <a title="14-Parameter-and-Results-Multi-Types.html" href="../example-snippets/14-Parameter-and-Results-Multi-Types.html">14</a>
+      <a title="15-Lone-Single-Type-Parameter-Functions.html" href="../example-snippets/15-Lone-Single-Type-Parameter-Functions.html">15</a>
       
-      <a title="15-Array-and-Object-Types.html" href="../example-snippets/15-Array-and-Object-Types.html">15</a>
+      <a title="16-Arrays-with-One-Type.html" href="../example-snippets/16-Arrays-with-One-Type.html">16</a>
       
-      <a title="16-Lone-Single-Type-Parameter-Functions.html" href="../example-snippets/16-Lone-Single-Type-Parameter-Functions.html">16</a>
-      
-      <a title="17-Arrays-with-One-Type.html" href="../example-snippets/17-Arrays-with-One-Type.html">17</a>
+      <a title="17-Variadic-Functions.html" href="../example-snippets/17-Variadic-Functions.html">17</a>
+
+
       
       <a title="18-Class-Type-Checks.html" href="../example-snippets/18-Class-Type-Checks.html">18</a>
       
@@ -105,7 +127,7 @@
       
       <a title="37-Readme-Example-Lambda.html" href="../example-snippets/37-Readme-Example-Lambda.html">37</a>
   
-      <a title="38-Variadic-Functions.html" href="../example-snippets/38-Variadic-Functions.html">38</a>
+
 
       &nbsp;&nbsp;
   
@@ -151,7 +173,8 @@
       <a title="603-Extending-OLOO-Production.html" href="../examples-web/603-Extending-OLOO-Production/603-Extending-OLOO-Production.html">603</a>
   
     </div>
-  
+
+
 
 </div>
 
@@ -161,6 +184,7 @@
 
 
 <!--            ---------------TYPE 1---------------------------       -->
+
 
 
 <script src="../web-resources/consolelog.js">
@@ -179,14 +203,8 @@
 
 
 
-<!--            ----------------TYPE 1--------------------------       -->
 
-
-
-
-
-
-
+<!--            ---------------TYPE 1---------------------------       -->
 
 
 
@@ -198,45 +216,70 @@
 </script>
 
 
+
 <script id="check-code">
 /**/  if (typeof TypeCzech === 'function')
 /**/    type_czech = TypeCzech('LOG-ERRORS')
 /**/  else
 /**/    type_czech = { link: (nop) => nop, is_active: false }
+/**/  PRE_exactly1Str = (typeof PRE_exactly1Str === 'undefined')
+/**/                    ? undefined : PRE_exactly1Str
+/**/  PRE_exactly2Strs = (typeof PRE_exactly2Strs === 'undefined')
+/**/                     ? undefined : PRE_exactly2Strs
 /**/  
-/**/  PRE_change = (typeof PRE_change === 'undefined') ? undefined : PRE_change
-/**/
-/**/  POST_change = (typeof POST_change === 'undefined') ? undefined:POST_change
-/**/  
-/**/  function PRE_change(window_object){
-/**/    type_czech.mutateSnapshot('windowChange', 'window_object', window_object)
+/**/  function PRE_exactly1Str(string_1){
+/**/    num_args = arguments.length
+/**/    if (num_args !== 1) return `PRE, not 1 but ${num_args} params`
+/**/    ONE_STRING_SPEC = 'String'
+/**/    return type_czech.check_type(arguments, ONE_STRING_SPEC)
 /**/  }
-/**/    
-/**/  function POST_change(){
-/**/    return type_czech.check_mutated('windowChange', 'window_object')
+/**/  
+/**/  function PRE_exactly2Strs(string_1, string_2){
+/**/     TWO_STRINGS_SPEC = ['String', 'String']
+/**/     return type_czech.check_type(arguments, TWO_STRINGS_SPEC)
 /**/  }
 /**/  
-/**/  windowChange = type_czech.link(windowChange, PRE_change, POST_change) 
+/**/  exactly1Str = type_czech.link(exactly1Str, PRE_exactly1Str)
+/**/  exactly2Strs = type_czech.link(exactly2Strs, PRE_exactly2Strs)
 
-function windowChange(window_object, add_number){
-  if (add_number === 99999999) 
-    window_object[add_number]=add_number
+function exactly1Str(one_string) {
+  return one_string
 }
 
+function exactly2Strs(string_1, string_2) {
+  return [string_1, string_2]
+}
 
-log('Look in the Console, error message is long')
+log('EXPECT_1_GOT_1 : ', exactly1Str('One'))
+
+linesConsole(2)
+
+expect_1_got_2 =  exactly1Str('1-one', '2-two') 
+linesConsole(1)
+log('EXPECT_1_GOT_2 : ')
+log(expect_1_got_2)
+
+
 
 linesConsole(3)
 
-windowChange({global_window:window})
 
-windowChange({global_window:window}, 99999999) // error - window_object was mutatated
 
+expect_2_got_1 =  exactly2Strs('one-1') 
+linesConsole(1)
+log('EXPECT_2_GOT_1 : ')
+log(expect_2_got_1)
+
+linesConsole(2)
+
+expect_2_got_2 =  exactly2Strs('ONE', 'TWO') 
+log('EXPECT_2_GOT_2 : ', expect_2_got_2)
+
+linesConsole(1)
+
+expect_2_got_3 =  exactly2Strs('one', 'two', 'three') 
+log('EXPECT_2_GOT_3 : ', expect_2_got_3)
 </script>
-
-
-
-
 
 
 
@@ -247,16 +290,14 @@ windowChange({global_window:window}, 99999999) // error - window_object was muta
 
 <script>
 
+  jsToDiv('js-code', "check-code");
 
-   jsToDiv('js-code', "check-code");
+  fromToBoldText(831, 850, 'code', 1)  //  ['String', 'String']
+  fromToBoldText(1363, 1383, 'code', 1)  //  exactly2Strs('one-1') 
 
-   fromToBoldText(767, 774, 'code', 1)  //if (add_number === 99999999) window_object[add_number]=add_number
-  
-  fromToBoldText(949, 956, 'code', 1)  // window}, 99999999) // error
-
-
-  fromToBoldText(323, 341, 'log', 1)    //   to {'99999999':99999999,'global_window':
-
+  fromToBoldText(404, 411, 'log', 1)    //'String'
+  fromToBoldText(438, 444, 'log', 1)    //'one-1'
+  fromToBoldText(492, 512, 'log', 1)    //PE '['String','String']'
 
 
 

@@ -26,7 +26,7 @@ module.exports = function create_Person(type_czech, First, Last, Full) {
 /**/    }
 /**/    // eslint-disable-next-line no-shadow
 /**/    function POST_Person(Person) {
-/**/      return type_czech.check_objectType(Person, { salu: 'String', fullMethod: 'Function' });
+/**/      return type_czech.check_interface(Person, { salu: 'String', fullMethod: 'Function' });
 /**/     }
 /**/
 /**/    Person = type_czech.link(Person, PRE_Person, POST_Person);

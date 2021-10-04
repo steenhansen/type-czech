@@ -104,7 +104,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
       let OP_NO_ERROR_MESSAGES = false; // 'NO-ERROR-MESSAGES'
       let OP_LOG_ERRORS = false; //       'LOG-ERRORS'   'NO-CHECKING' stops checking
 
-      // 'UNDEF-OK' only affects check_type(), check_typeExtra(), check_typeEither(), and check_objectTypeExtra()
+      // 'UNDEF-OK' only affects check_type(), check_typeExtra(), check_typeEither(), and check_TypeExtra()
       let OP_UNDEF_OK = false; //            'UNDEF-OK'
       let OP_CONSOLE_COUNT = false; //       'CONSOLE-COUNT'
       let OP_DEBUG_ERROR_TAGS = false;//     'DEBUG-ERROR-TAGS' show "TC@22" (for) fast finding
@@ -185,11 +185,6 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         S: 'String',
         Y: 'Symbol',
       };
-
-      const POSSIBLE_LOWER_VALIDS = ['a', 'array', 'i', 'bigint', 'b', 'boolean', 'd', 'date', 'f', 'function',
-        'n', 'number', 'o', 'object', 'r', 'regexp', 's', 'string', 'y', 'symbol'];
-
-      const VALID_TYPES_MESS = 'VALID TYPES = A:Array, I:BigInt, B:Boolean, D:Date, F:Function, N:Number, O:Object, R:RegExp, S:String, Y:Symbol';
 
       const UNDEFINED_AS_STR = 'undefined';
       const NULL_AS_STR = 'null';
@@ -291,6 +286,9 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
 
       /* type_czech = TypeCzech('LOG-ERRORS')
 
+      type_czech._toStr(234n);
+      //"234n"
+
       type_czech._toStr(undefined);
       //"-un-defined-"
 
@@ -302,9 +300,6 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
 
       type_czech._toStr({a:''});
       //"{'a':''}"
-
-      type_czech._toStr({a:1, b:22, c:33});
-      //{'a':1,'B':22,'c':33}
 
       type_czech._toStr([ "super", "man" ]);
       //['super','man']
@@ -324,6 +319,13 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
       type_czech._toStr({big_int:{big_int:{big_int:{big_int:{big_int:{big_int:{big_int:189n}}}}}}});
       //"{'big_int':{'big_int':{'big_int':{'big_int':{'big_int':{'big_int':{'big_int':189n}}}}}}}"
 
+      type_czech._toStr(Symbol('sym'))
+      // "Symbol(sym)"
+
+      type_czech._toStr({a:1, b:22, c:33});
+      //{'a':1,'B':22,'c':33}
+
+      type_czech._toStr("")
       */
 
       function _toStr(maybe_undef) {
@@ -344,17 +346,23 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
           } else if (maybe_undef === QUOTED_NAN_STR_VALUE) {
             to_str = NAN_AS_STR;
           } else {
-            const no_string_postfix = maybe_undef.replace(/string"/g, '"');
+            let no_string_postfix = maybe_undef.replace(/string"/g, '"');
             if (no_string_postfix.startsWith('"{') && no_string_postfix.endsWith('}"')) {
               const bracket_end = no_string_postfix.length - 1;
               to_str = no_string_postfix.substring(1, bracket_end);
             } else {
-              const no_double_quotes = no_string_postfix.replace(/"/g, "'");
-              to_str = no_double_quotes;
+              no_string_postfix = no_string_postfix.replace(/"$/g, '');
+              no_string_postfix = no_string_postfix.replace(/^"/g, '');
+              if (no_string_postfix.length === 0) {
+                no_string_postfix = "''";
+              }
+              to_str = no_string_postfix;
             }
           }
         } else if (typeof maybe_undef === 'symbol') {
           to_str = maybe_undef.toString();
+          to_str = to_str.replace(/\(/g, "('");
+          to_str = to_str.replace(/\)/g, "')");
         } else {
           // eslint-disable-next-line no-use-before-define
           const double_quotes = _jsonStr(maybe_undef);
@@ -383,6 +391,8 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
       type_czech._stringifyReplacer('not-used', function(x,y,z){console.log(x,y,z)});
       //"function(x,y,z){console.log(x, ..."
 
+        type_czech._stringifyReplacer('not-used', Symbol("sym"));
+        // Symbol("sym")
       */
       function _stringifyReplacer(_key, value) {
         
@@ -401,6 +411,8 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
           replaced_value = `${func_start} ...`;
         } else if (typeof value === 'string') {
           replaced_value = `${value}string`;
+        } else if (typeof value === 'symbol') {
+          replaced_value = _toStr(value);
         } else {
           replaced_value = value;
         }
@@ -408,8 +420,10 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         return replaced_value;
       }
 
-
       /* type_czech = TypeCzech('LOG-ERRORS')
+
+      type_czech._jsonStr(234n);
+      //'-un-defined-'
 
       type_czech._jsonStr(undefined);
       //'-un-defined-'
@@ -419,6 +433,10 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
 
       type_czech._jsonStr([1n,[2n,[3n,[4n]]]]);
       //"['1n',['2n',['3n',['4n']]]]"
+
+      type_czech._jsonStr(Symbol("sym"))
+
+      type_czech._jsonStr("")
 
       */
       function _jsonStr(an_object) {
@@ -632,18 +650,14 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
       function typeProtos(a_var) {
         
         let the_prototypes = false;
-        let the_instances = false;
         if (a_var !== null && typeof a_var !== 'undefined') {
           const proto_sequence = [];
-          const proto_instances = [];
-
           // eslint-disable-next-line no-inner-declarations
           function nextPrototype(an_object) {
             const current_proto = Object.getPrototypeOf(an_object);
             if (current_proto !== null) {
               const proto_type = current_proto.constructor.name;
               proto_sequence.push(proto_type);
-              proto_instances.push(an_object);
               nextPrototype(current_proto);
             }
           }
@@ -656,7 +670,6 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
           } else {
             nextPrototype(a_var);
             the_prototypes = proto_sequence;
-            the_instances = proto_instances;
           }
         } else if (a_var === null) {
           the_prototypes = [NULL_AS_STR];
@@ -664,30 +677,30 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
           the_prototypes = [UNDEFINED_AS_STR];
         }
         
-        return [the_prototypes, the_instances];
+        return the_prototypes;
       }
 
       /* type_czech = TypeCzech('LOG-ERRORS')
 
-      type_czech.typeOf(1999);
+      type_czech.typeIs(1999);
       //'Number'
 
-      type_czech.typeOf(new Date('1999-12-31'));
+      type_czech.typeIs(new Date('1999-12-31'));
       //Date
 
-      type_czech.typeOf(document.createElement('div'));
+      type_czech.typeIs(document.createElement('div'));
       //"HTMLDivElement"
 
       { class First { constructor() { } }
         class Last extends First { constructor() { super() } }
-        type_czech.typeOf(new Last()); }
+        type_czech.typeIs(new Last()); }
       //Last
 
       */
-      function typeOf(a_var) {
+      function typeIs(a_var) {
         
         // eslint-disable-next-line no-unused-vars
-        const [the_prototypes, the_instances] = typeProtos(a_var);
+        const the_prototypes = typeProtos(a_var);
         let child_type = false;
         if (the_prototypes) {
           child_type = the_prototypes.shift();
@@ -775,7 +788,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
       function _aTypeOf(a_variable) {
         
         let a_type_of = '';
-        const is_html_var = typeOf(a_variable);
+        const is_html_var = typeIs(a_variable);
         if (is_html_var) {
           a_type_of = is_html_var;
         } else if (a_variable === null) {
@@ -888,7 +901,11 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
           a_collection.forEach((an_element) => {
             const array_json = _toStr(an_element);
             if (_aTypeOf(an_element) === 'String') {
-              collection_elems.push(`'${array_json}'`);
+              if (array_json === "''") {
+                collection_elems.push('""');
+              } else {
+                collection_elems.push(`"${array_json}"`);
+              }
             } else {
               collection_elems.push(array_json);
             }
@@ -900,9 +917,13 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
             const value_json = _toStr(value);
             let object_as_str;
             if (_aTypeOf(value) === 'String') {
-              object_as_str = `'${key}':'${value_json}'`;
+              if (value_json === "''") {
+                object_as_str = `${key}:""`;
+              } else {
+                object_as_str = `${key}:"${value_json}"`;
+              }
             } else {
-              object_as_str = `'${key}':${value_json}`;
+              object_as_str = `${key}:${value_json}`;
             }
             collection_elems.push(object_as_str);
           }
@@ -1161,18 +1182,14 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
             let an_error = '';
             const expected_short = expected_interface[test_key];
             const expected_type = _shortToLongType(expected_short);
-            if (expected_type !== 'Function') {
-              an_error = `check_interface() only allows functions, not {${test_key}:'${expected_type}'}`;
-            } else {
-              const introspect_value = introspect_array[test_key];
-              if (!introspect_value) {
-                an_error = 'missing key';
-              }
-              const introspect_type = _aTypeOf(introspect_value);
-              if (expected_type !== introspect_type) {
-                an_error = `actual type of '${test_key}' is '${introspect_type}', with a value `
-                          + `of '${introspect_value}', not the expected '${expected_type}' type`;
-              }
+            const introspect_value = introspect_array[test_key];
+            if (!introspect_value) {
+              an_error = 'missing key';
+            }
+            const introspect_type = _aTypeOf(introspect_value);
+            if (expected_type !== introspect_type) {
+              an_error = `actual type of '${test_key}' is '${introspect_type}', with a value `
+                        + `of '${introspect_value}', not the expected '${expected_type}' type`;
             }
             if (an_error && !error_mess) {
               error_mess = an_error;
@@ -1254,7 +1271,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
           
           const real_types = [];
           list_of_parameters.forEach((a_variable) => {
-            const is_html_type = typeOf(a_variable);
+            const is_html_type = typeIs(a_variable);
             if (is_html_type) {
               real_types.push(`'${is_html_type}'`);
             } else {
@@ -1278,7 +1295,6 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
             const param_with_brackets = _toStr(list_of_parameters);
             param_values = param_with_brackets.substring(1, param_with_brackets.length - 1);
           }
-          const expected_json = _jsonStr(expected_shape);
           let new_exception = exception_str + type_of_error;
           new_exception += CZECH_ERROR_INDENT + shape_check;
           const actual_types = '    ACTUAL TYPES';
@@ -1294,7 +1310,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
           }
           new_exception += `${CZECH_ERROR_INDENT}${actual_types} ${arg_list}`;
           new_exception += `${CZECH_ERROR_INDENT}${actual_text} ${param_values}`;
-          new_exception += `${CZECH_ERROR_INDENT}${expected_text} ${expected_json}`;
+          new_exception += `${CZECH_ERROR_INDENT}${expected_text} ${expected_shape}`;
           new_exception += `${CZECH_ERROR_INDENT}${called_function} ${func_name_params}`;
           new_exception += CZECH_ERROR_INDENT;
           
@@ -1708,7 +1724,6 @@ const _cycle = {};
 ////////////////////////////////////////////////////////////////////////////////if (typeof JSON.decycle !== "function") {
   _cycle.decycle = function decycle(object, replacer) {
       "use strict";
-
 // Make a deep copy of an object or array, assuring that there is at most
 // one instance of each object or array in the resulting structure. The
 // duplicate references (which might be forming cycles) are replaced with
@@ -1802,85 +1817,78 @@ const _cycle = {};
 
 
 ////////////////////////////////////////////////////////////////////////////////if (typeof JSON.retrocycle !== "function") {
-  _cycle.retrocycle = function retrocycle($) {
-      "use strict";
+//   _cycle.retrocycle = function retrocycle($) {
+//       "use strict";
 
-// Restore an object that was reduced by decycle. Members whose values are
-// objects of the form
-//      {$ref: PATH}
-// are replaced with references to the value found by the PATH. This will
-// restore cycles. The object will be mutated.
+// // Restore an object that was reduced by decycle. Members whose values are
+// // objects of the form
+// //      {$ref: PATH}
+// // are replaced with references to the value found by the PATH. This will
+// // restore cycles. The object will be mutated.
 
-// The eval function is used to locate the values described by a PATH. The
-// root object is kept in a $ variable. A regular expression is used to
-// assure that the PATH is extremely well formed. The regexp contains nested
-// * quantifiers. That has been known to have extremely bad performance
-// problems on some browsers for very long strings. A PATH is expected to be
-// reasonably short. A PATH is allowed to belong to a very restricted subset of
-// Goessner's JSONPath.
+// // The eval function is used to locate the values described by a PATH. The
+// // root object is kept in a $ variable. A regular expression is used to
+// // assure that the PATH is extremely well formed. The regexp contains nested
+// // * quantifiers. That has been known to have extremely bad performance
+// // problems on some browsers for very long strings. A PATH is expected to be
+// // reasonably short. A PATH is allowed to belong to a very restricted subset of
+// // Goessner's JSONPath.
 
-// So,
-//      var s = '[{"$ref":"$"}]';
-//      return _cycle.retrocycle(JSON.parse(s));
-// produces an array containing a single element which is the array itself.
+// // So,
+// //      var s = '[{"$ref":"$"}]';
+// //      return _cycle.retrocycle(JSON.parse(s));
+// // produces an array containing a single element which is the array itself.
 
-      var px = /^\$(?:\[(?:\d+|"(?:[^\\"\u0000-\u001f]|\\(?:[\\"\/bfnrt]|u[0-9a-zA-Z]{4}))*")\])*$/;
+//       var px = /^\$(?:\[(?:\d+|"(?:[^\\"\u0000-\u001f]|\\(?:[\\"\/bfnrt]|u[0-9a-zA-Z]{4}))*")\])*$/;
 
-      (function rez(value) {
+//       (function rez(value) {
 
-// The rez function walks recursively through the object looking for $ref
-// properties. When it finds one that has a value that is a path, then it
-// replaces the $ref object with a reference to the value that is found by
-// the path.
+// // The rez function walks recursively through the object looking for $ref
+// // properties. When it finds one that has a value that is a path, then it
+// // replaces the $ref object with a reference to the value that is found by
+// // the path.
 
-          if (value && typeof value === "object") {
-              if (Array.isArray(value)) {
-                  value.forEach(function (element, i) {
-                      if (typeof element === "object" && element !== null) {
-                          var path = element.$ref;
-                          if (typeof path === "string" && px.test(path)) {
-                              value[i] = eval(path);
-                          } else {
-                              rez(element);
-                          }
-                      }
-                  });
-              } else {
-                  Object.keys(value).forEach(function (name) {
-                      var item = value[name];
-                      if (typeof item === "object" && item !== null) {
-                          var path = item.$ref;
-                          if (typeof path === "string" && px.test(path)) {
-                              value[name] = eval(path);
-                          } else {
-                              rez(item);
-                          }
-                      }
-                  });
-              }
-          }
-      }($));
-      return $;
-  };
+//           if (value && typeof value === "object") {
+//               if (Array.isArray(value)) {
+//                   value.forEach(function (element, i) {
+//                       if (typeof element === "object" && element !== null) {
+//                           var path = element.$ref;
+//                           if (typeof path === "string" && px.test(path)) {
+//                               value[i] = eval(path);
+//                           } else {
+//                               rez(element);
+//                           }
+//                       }
+//                   });
+//               } else {
+//                   Object.keys(value).forEach(function (name) {
+//                       var item = value[name];
+//                       if (typeof item === "object" && item !== null) {
+//                           var path = item.$ref;
+//                           if (typeof path === "string" && px.test(path)) {
+//                               value[name] = eval(path);
+//                           } else {
+//                               rez(item);
+//                           }
+//                       }
+//                   });
+//               }
+//           }
+//       }($));
+//       return $;
+//   };
 ////////////////////////////////////////////////////////////////////////////////}
 
       // /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    
-      JSON.stringify()
-      _jsonStr()
-      
+     
     /*  type_czech = TypeCzech('LOG-ERRORS')
     type_czech._fast_json_stable_stringify({c:2, a:1, b:123n});
     //{'a':1,'b':'123n','c':2}
 
-    Note that JSON.stringify() has been replaced with _jsonStr() to address BigInt bug
-    Uncaught TypeError: BigInt value can't be serialized in JSON
-
-    https://github.com/epoberezkin/fast-json-stable-stringify
+     https://github.com/epoberezkin/fast-json-stable-stringify
 
     https://github.com/epoberezkin/fast-json-stable-stringify/blob/master/index.js
 
@@ -1933,10 +1941,22 @@ const _cycle = {};
                 node = node.toJSON();
             }
 
-            if (node === undefined) return;
+if (Number.isNaN(node)) return 'NaN';            
+if (node === undefined) return 'undefined';
+//if (node === undefined) return;
+
             if (typeof node == 'number') return isFinite(node) ? '' + node : 'null';
-//          if (typeof node !== 'object') return JSON.stringify(node);
-            if (typeof node !== 'object') return _jsonStr(node);
+
+      
+if (typeof node === 'bigint') return JSON.stringify(node+"n");            
+if (typeof node === 'symbol') return node.toString();   
+if (typeof node === 'function' || (node && node.constructor === RegExp)) {
+  const func_text = String(node);
+  const func_start = func_text.substring(0, START_OF_FUNCTION_LEN);
+  replaced_value = `${func_start} ...`; 
+  return replaced_value
+}
+          if (typeof node !== 'object') return JSON.stringify(node);
 
             var i, out;
             if (Array.isArray(node)) {
@@ -1951,8 +1971,7 @@ const _cycle = {};
             if (node === null) return 'null';
 
             if (seen.indexOf(node) !== -1) {
-//              if (cycles) return JSON.stringify('__cycle__');
-                if (cycles) return _jsonStr('__cycle__');
+              if (cycles) return JSON.stringify('__cycle__');
                 throw new TypeError('Converting circular structure to JSON');
             }
 
@@ -1964,8 +1983,7 @@ const _cycle = {};
                 var value = stringify(node[key]);
                 if (!value) continue;
                 if (out) out += ',';
-//              out += JSON.stringify(key) + ':' + value;
-                out += _jsonStr(key)       + ':' + value;
+              out += JSON.stringify(key) + ':' + value;
             }
             seen.splice(seenIndex, 1);
             return '{' + out + '}';
@@ -2155,26 +2173,6 @@ type_czech._shapeContainer( [  [[1, false], [2, false]], [[1, false], [2, 2]] ] 
 
       /* type_czech = TypeCzech('LOG-ERRORS')
 
-      type_czech._showRealTypes('no-such-type');
-      //"VALID TYPES = A:Array, I:BigInt, B:Boolean, D:Date, F:Function, N:Number, O:Object, R:RegExp, S:String, Y:Symbol"
-
-      type_czech._showRealTypes('string');
-      //""
-
-      */
-      function _showRealTypes(possible_type) {
-        
-        let show_real_types = '';
-        const lower_possible = possible_type.toLowerCase();
-        if (!POSSIBLE_LOWER_VALIDS.includes(lower_possible)) {
-          show_real_types = ` ${VALID_TYPES_MESS}`;
-        }
-        
-        return show_real_types;
-      }
-
-      /* type_czech = TypeCzech('LOG-ERRORS')
-
       type_czech._wrongType('string', 0, 'Date');
       //"TC@44 -  ELEMENT '0' is assumed to be a 'string', but is mistakenly a 'Date'. "
 
@@ -2191,7 +2189,6 @@ type_czech._shapeContainer( [  [[1, false], [2, false]], [[1, false], [2, 2]] ] 
       const _wrongType = (expected_type, element_index, real_type) => {
         
         let error_string = '';
-        let show_real_types = '';
         let expected_string = '';
         if (expected_type === null) {
           expected_string = 'null';
@@ -2199,12 +2196,11 @@ type_czech._shapeContainer( [  [[1, false], [2, false]], [[1, false], [2, 2]] ] 
           expected_string = 'undefined';
         } else {
           expected_string = expected_type;
-          show_real_types = _showRealTypes(expected_type);
         }
         error_string = looksLikeType(expected_string);
         if (!error_string) {
           const error_44 = ` ELEMENT '${element_index}' is assumed to be a '${expected_string}',`
-          + ` but is mistakenly a '${real_type}'.${show_real_types}`;
+          + ` but is mistakenly a '${real_type}'.`;
           error_string = _consoleError(error_44, 'TC@44');
         }
         
@@ -3574,9 +3570,9 @@ this should be an error????
         const shape_str = _toStr(shape_list);
         
         let error_str_3arr;
-        if (typeOf(shape_list) === 'String') {
+        if (typeIs(shape_list) === 'String') {
           error_str_3arr = extraEmptys(parameters_obj[0], shape_list);
-        } else if (typeOf(shape_list) === 'Object') {
+        } else if (typeIs(shape_list) === 'Object') {
           error_str_3arr = extraEmptys(parameters_obj, shape_list);
         } else if (parameters_array.length < 2 || shape_list.length < 2) {
           error_str_3arr = error3Array(MESS_EMPTY_EXTRAS,
@@ -3697,9 +3693,9 @@ this should be an error????
         const shape_str = _toStr(shape_list);
         
         let error_str_3arr;
-        if (typeOf(shape_list) === 'String') {
+        if (typeIs(shape_list) === 'String') {
           error_str_3arr = extraTypes(parameters_obj[0], shape_list);
-        } else if (typeOf(shape_list) === 'Object') {
+        } else if (typeIs(shape_list) === 'Object') {
           error_str_3arr = extraTypes(parameters_obj, shape_list);
         } else if (parameters_array.length < 2 || shape_list.length < 2) {
           error_str_3arr = error3Array(MESS_TYPE_EXTRAS,
@@ -3971,49 +3967,7 @@ this should be an error????
       /* type_czech = TypeCzech('LOG-ERRORS')
 
       type_czech.mutateSnapshot('my-func', 'my_array', 12);
-      //Uncaught TypeCzech.mutateSnapshot()'s 3rd parameter is not an Array or Object but instead a 'Number'
-
-      var my_array = [1,2,3];
-      type_czech.mutateSnapshot('my-func', 'my_array', my_array);
-      my_array.push(4);
-      type_czech.check_mutated('my-func', 'my_array', my_array);
-      //The reference variable 'my_array' in function 'my-func()' changed values
-      //                from [1,2,3]
-      //                  to [1,2,3,4]
-      //
-      //        START-SAME ~ [1,2,3
-      //          PRE-DIFF ~ ``
-      //         POST-DIFF ~ `,4`
-      //          END-SAME ~ ]"
-
-      var my_obj = {a:1, b:2, c:3};
-      type_czech.mutateSnapshot('my-func', 'my_obj', my_obj);
-      delete my_obj.b;
-      my_obj.b=7;
-      type_czech.check_mutated('my-func', 'my_obj', my_obj);
-      //The reference variable 'my_obj' in function 'my-func()' changed values
-      //                from {'a':1,'B':2,'c':3}
-      //                  to {'a':1,'B':7,'c':3}
-      //
-      //        START-SAME ~ {'a':1,'B':
-      //          PRE-DIFF ~ `2`
-      //         POST-DIFF ~ `7`
-      //          END-SAME ~ ,'c':3}
-
-      var my_obj = {a:1n, b:2n, c:3n};
-      type_czech.mutateSnapshot('my-func', 'my_obj', my_obj);
-      delete my_obj.b;
-      my_obj.b=7;
-      type_czech.check_mutated('my-func', 'my_obj', my_obj);
-      //TC@48 - The reference variable 'my_obj' in function 'my-func()' changed values
-                       from {'a':'1n','b':'2n','c':'3n'}
-                       to {'a':'1n','b':7,'c':'3n'}
-
-                       START-SAME ~ {'a':'1n','b':
-                       PRE-DIFF ~ '2n','c':'3n'}
-                       POST-DIFF ~ 7,'c':'3n'}"
-
-                       /////////////////////
+      //Uncaught TC@56 - TypeCzech.mutateSnapshot()'s 3rd parameter is not an array/object but instead a 'Number'
 
       type_czech.mutateSnapshot('my-func', 'my_array', [1,2,3]);
       //{ func_name: "my-func",
@@ -4028,12 +3982,19 @@ this should be an error????
           let error_55 = `TypeCzech.mutateSnapshot() needs 3 parameters, not ${num_parameters}`;
           error_55 = _consoleError(error_55, 'TC@55');
           throw error_55;
-        }
-        if (!_isCollection(collection_ref)) {
+        } else if (!_isCollection(collection_ref)) {
           const collection_type = _aTypeOf(collection_ref);
           let error_56 = `TypeCzech.mutateSnapshot()'s 3rd parameter is not an array/object but instead a '${collection_type}'`;
           error_56 = _consoleError(error_56, 'TC@56');
           throw error_56;
+        } else if (typeof func_name !== 'string') {
+          let error_01 = `First TypeCzech.mutateSnapshot() parameter must be an un-empty string, not ${_toStr(func_name)}`;
+          error_01 = _consoleError(error_01, 'TC@01');
+          throw error_01;
+        } else if (typeof var_name !== 'string') {
+          let error_02 = `Second TypeCzech.mutateSnapshot() parameter must be an un-empty string, not ${_toStr(var_name)}`;
+          error_02 = _consoleError(error_02, 'TC@02');
+          throw error_02;
         }
         const func_varname = `${func_name}-${var_name}`;
         const no_cycles = _cycle.decycle(collection_ref);
@@ -4048,9 +4009,63 @@ this should be an error????
           t_reference_stacks[func_varname] = [ref_instance];
         }
         
-        
         return '';
       }
+
+      function _mutateStacks() {
+        const ref_stacks_str = _fast_json_stable_stringify(t_reference_stacks);
+        return ref_stacks_str;
+      }
+
+      /* type_czech = TypeCzech('LOG-ERRORS')
+
+      type_czech.check_mutated('func-name', 'var-name', 'error-param');
+      //Uncaught TC@18 - TypeCzech.check_mutated() needs 2 parameters, not 3
+
+      type_czech.check_mutated('noFunc', 'no_array');
+      //Uncaught TC@47 - No record of a mutateSnapshot('noFunc-no_array', a_var)
+
+      var my_array = [1,2,3];
+      type_czech.mutateSnapshot('my-func', 'my_array', my_array);
+      my_array.push(4);
+      type_czech.check_mutated('my-func', 'my_array');
+      //The reference variable 'my_array' in function 'my-func()' changed values
+      //                from [1,2,3]
+      //                  to [1,2,3,4]
+      //
+      //        START-SAME ~ [1,2,3
+      //          PRE-DIFF ~ ``
+      //         POST-DIFF ~ `,4`
+      //          END-SAME ~ ]"
+
+      var my_obj = {a:1, b:2, c:3};
+      type_czech.mutateSnapshot('my-func', 'my_obj', my_obj);
+      delete my_obj.b;
+      my_obj.b=7;
+      type_czech.check_mutated('my-func', 'my_obj');
+      //The reference variable 'my_obj' in function 'my-func()' changed values
+      //                from {'a':1,'B':2,'c':3}
+      //                  to {'a':1,'B':7,'c':3}
+      //
+      //        START-SAME ~ {'a':1,'B':
+      //          PRE-DIFF ~ `2`
+      //         POST-DIFF ~ `7`
+      //          END-SAME ~ ,'c':3}
+
+      var my_obj = {a:1n, b:2n, c:3n};
+      type_czech.mutateSnapshot('my-func', 'my_obj', my_obj);
+      delete my_obj.b;
+      my_obj.b=7;
+      type_czech.check_mutated('my-func', 'my_obj');
+      //TC@48 - The reference variable 'my_obj' in function 'my-func()' changed values
+                       from {'a':'1n','b':'2n','c':'3n'}
+                       to {'a':'1n','b':7,'c':'3n'}
+
+                       START-SAME ~ {'a':'1n','b':
+                       PRE-DIFF ~ '2n','c':'3n'}
+                       POST-DIFF ~ 7,'c':'3n'}"
+
+      */
 
       function check_mutated(func_name, var_name) {
         
@@ -4059,7 +4074,12 @@ this should be an error????
         const func_varname = `${func_str}-${var_str}`;
         let error_string = '';
         const have_varname = t_reference_stacks[func_varname];
-        if (!have_varname) {
+        const num_parameters = arguments.length;
+        if (num_parameters !== 2) {
+          let error_18 = `TypeCzech.check_mutated() needs 2 parameters, not ${num_parameters}`;
+          error_18 = _consoleError(error_18, 'TC@18');
+          throw error_18;
+        } else if (!have_varname) {
           const error_47 = `No record of a mutateSnapshot('${func_varname}', a_var)`;
           error_string = _consoleError(error_47, 'TC@47');
         } else {
@@ -4124,6 +4144,7 @@ this should be an error????
         _doEitherEmpty,
         _doEitherShape,
         _doubleToSingleQuotes,
+        _eitherChecks,
         _emptyArrayInArray,
         _emptyArrayTypes,
         _emptyCheck,
@@ -4145,7 +4166,7 @@ this should be an error????
         _isPlainJsType,
         _jsonStr,
         _missingKey,
-        _eitherChecks,
+        _mutateStacks,
         _refDiff,
         _shapeArrayTypes,
         _shapeCollectionTypes,
@@ -4156,7 +4177,6 @@ this should be an error????
         _shapeVariable,
         _shortToLongEmpty,
         _shortToLongType,
-        _showRealTypes,
         _shrinkDiffs,
         _specParameters,
         _stringifyReplacer,
@@ -4191,8 +4211,8 @@ this should be an error????
         link, //                yourFunc = type_czech.link(yourFunc, checkingFunc);
         mutateSnapshot, //      type_czech.mutateSnapshot('yourFunc', 'your_array', [1,2,3]);
 
+        typeIs, //              type_of = type_czech.typeIs(1234); // 'Number'
         typeIsA, //             if (type_czech.typeIsA(a_var, 'Array')) {};
-        typeOf, //              type_of = type_czech.typeOf(1234); // 'Number'
         typeProtos, //          type_protos = type_czech.typeProtos(new Object());  // ['Object']
       };
     } // _TypeCzech()

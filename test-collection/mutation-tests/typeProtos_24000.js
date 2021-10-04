@@ -24,7 +24,7 @@ function _typeProtos_24001() {
   type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
   TYPE_CZECH_current_test_number = '24001';
   error_id = errorLabel(TYPE_CZECH_current_test_number);
-  [actual_prototypes, the_instances] = type_czech.typeProtos(new Date('1999-12-31'));
+  actual_prototypes = type_czech.typeProtos(new Date('1999-12-31'));
   expected_prototypes = ["Date"]
   actual_str = actual_prototypes.toString();
   expected_str = expected_prototypes.toString();
@@ -44,7 +44,7 @@ function _typeProtos_24002() {
     TYPE_CZECH_current_test_number = '24002';
     error_id = errorLabel(TYPE_CZECH_current_test_number);
 
-    [actual_prototypes, the_instances] = type_czech.typeProtos(document.createElement('div'));
+    actual_prototypes = type_czech.typeProtos(document.createElement('div'));
     expected_prototypes =[ "HTMLDivElement", "HTMLElement", "Element", "Node", "EventTarget", "Object" ];
     actual_str = actual_prototypes.toString();
     expected_str = expected_prototypes.toString();
@@ -69,7 +69,7 @@ function _typeProtos_24003() {
     class First { constructor() { } }
     class Last extends First { constructor() { super() } }
 
-    [actual_prototypes, the_instances] = type_czech.typeProtos(new Last());
+    actual_prototypes = type_czech.typeProtos(new Last());
     expected_prototypes =[ "Last", "First", "Object" ];
     actual_str = actual_prototypes.toString();
     expected_str = expected_prototypes.toString();

@@ -28,15 +28,15 @@ module.exports = function create_Last(type_czech, First) {
 /**/    function PRE_Last(spec) {
 /**/      console.log('PRE -Last');
 /**/      const pre_last_sig = { f_name: 'String', l_name: 'String' };
-/**/      const type_issue = type_czech.check_objectTypeExtra(arguments, pre_last_sig);
+/**/      const type_issue = type_czech.check_typeExtra(arguments, pre_last_sig);
 /**/      if (type_issue) return type_issue;
-/**/      return type_czech.check_objectEmptyExtra(arguments, { l_name: 'EMPTY-ERROR' });
+/**/      return type_czech.check_emptyExtra(arguments, { l_name: 'EMPTY-ERROR' });
 /**/    }
 /**/
 /**/    // eslint-disable-next-line no-shadow
 /**/    function POST_Last(Last) {
 /**/      console.log('POST-Last');
-/**/      return type_czech.check_type(Last, { firstMethod: 'Function', lastMethod: 'Function' });
+/**/      return type_czech.check_interface(Last, { firstMethod: 'Function', lastMethod: 'Function' });
 /**/    }
 /**/
 /**/    function PRE_lastMethod(a_year) {
