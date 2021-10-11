@@ -5,12 +5,12 @@
 <link rel="stylesheet"
   href="https://fonts.googleapis.com/css?family=Inconsolata">
   
-<div id='js-div' style="width:56%; " >
+<div id='js-div' style="width:40%; " >
   <div id='js-code'>the javascript</div>
 </div>
 
 
-<div id="the-explanation" style="width:44%" >
+<div id="the-explanation" style="width:60%" >
   <div class='an-explantion'>29 &mdash; Class Object Type Checks</div>
   <div id='explanation-text'>
     <br>
@@ -18,24 +18,42 @@
     The below function shows the object inheritance lineage.
 
 <pre>
-type_czech.typeProtos(an_object)
+type_czech.typeProtos(window)
+// Array(4) [ "Window", "EventTarget", "EventTarget", "Object" ]
 </pre>
+
+<pre>
+type_czech.typeProtos(document)
+// Array(5) [ "HTMLDocument", "Document", "Node", "EventTarget", "Object" ]
+</pre>
+
+
+
+
 
 This is how to get the final object type.
 <pre>
-type_czech.typeIs(an_object)
+type_czech.typeFinal(window)
+// "Window"
+
+type_czech.typeFinal(document)
+// "HTMLDocument"
 </pre>
 
 
 Finally, you can interogate an object to see if it is an instance of a class.
 <pre>
-type_czech.typeIsA(an_object)
+type_czech.typeIsA(document, 'Node')
+// true
+
+type_czech.typeIsA(document, 'Object')
+// true
 </pre>
 
 
 
 
-<br><br>
+<br>
 
 
   </div>
@@ -128,9 +146,11 @@ type_czech.typeIsA(an_object)
       
       <a title="36-Start-and-Stop.html" href="../example-snippets/36-Start-and-Stop.html">36</a>
       
-      <a title="37-Readme-Example-Lambda.html" href="../example-snippets/37-Readme-Example-Lambda.html">37</a>
+      <a title="37-Readme-Example-Arrow-Functions.html" href="../example-snippets/37-Readme-Example-Arrow-Functions.html">37</a>
   
+      <a title="38-Every-Check.html" href="../example-snippets/38-Every-Check.html">38</a>
 
+      <a title="39-Prescribed-Use.html" href="../example-snippets/39-Prescribed-Use.html">39</a>
 
       &nbsp;&nbsp;
   
@@ -268,7 +288,7 @@ log('All-Prototypes : ', all_prototypes)
 
 linesConsole(1)
 
-object_type = type_czech.typeIs(ted_chiang)
+object_type = type_czech.typeFinal(ted_chiang)
 log('Object-Type : ', object_type)
 
 linesConsole(2)
@@ -290,6 +310,11 @@ linesConsole(2)
 
 isa_Object = type_czech.typeIsA(ted_chiang, 'Object')
 log('Is an Object : ', isa_Object)
+
+linesConsole(2)
+
+isa_Array = type_czech.typeIsA(ted_chiang, 'Array')
+log('Is an Array : ', isa_Array)
 
 linesConsole(2)
 
@@ -319,11 +344,9 @@ log('Is an object : ', isa_object)
 
   jsToDiv('js-code', "check-code");
 
-   fromToBoldText(232, 248, 'code', 1)  // Full extends Last
-   fromToBoldText(357, 387, 'code', 1)  // new Full('Mr', 'Ted', 'Chiang')
+   fromToBoldText(1033, 1040, 'code', 1)  // 'object'
 
-   fromToBoldText(667, 706, 'code', 1)  //type_czech.typeIsA(ted_chiang, 'Last')
 
-   fromToBoldText(99, 114, 'log', 1)  // Is a Last : true
+   fromToBoldText(185, 189, 'log', 1)  // : false
 
 </script>

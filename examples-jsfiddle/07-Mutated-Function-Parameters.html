@@ -5,18 +5,31 @@
   href="https://fonts.googleapis.com/css?family=Inconsolata">
 
 
-<div id='js-div' style="width:50%">
+<div id='js-div' style="width: 57%">
   <div id='js-code'>the javascript</div>
 </div>
 
 
-<div id="the-explanation" style="width:50%">
-  <div class='an-explantion'>07 - Mutated Function Parameters</div>
+<div id="the-explanation" style="width:43%" class='code-scroll'>
+  <div class='an-explantion'>07 &mdash; Mutated Function Parameters</div>
   <div id='explanation-text'>
     <br>
     Objects and Arrays can be guarded from mutations in function calls with
-    mutateSnapshot() recording the entry value, and mutated() giving errors
+    mutateSnapshot() recording the entry value, and check_mutated() giving errors
     when referential variables get unwanted changes.
+
+    <br><br>
+    Checking for variable mutation is accomplished by first creating a 
+    snapshot copy of the object or array in the PRE checking function with
+    TypeCzech.mutateSnapshot(). In the example to the left, the function name 
+    of 'PRE_check_Person' is recorded, along with the variable name of 'a_person',
+    followed finally with the variable itself.
+    
+    <br><br>
+    The POST checking function then verifies that no changes have occured 
+    in the varaible via TypeCzech.check_mutated(). The orginating function and 
+    variable name are needed to locate the specific object or array that is being
+    checked.
 
     <br><br>
     It can be somewhat disconcerting to view the error messages as object keys 
@@ -29,8 +42,6 @@
     <div class='a-title'>Console Output</div>
     <div id='log-text'></div>
     <br>
-
-    
   </div>
 
   <br><br>
@@ -54,7 +65,8 @@
       
       <a title="08-Mutated-Recursive-Function-Parameters.html" href="https://jsfiddle.net/steen_hansen/3pv5qwx8/?08-Mutated-Recursive-Function-Parameters" target="_blank">08</a>
       
- 
+
+
 
 
     
@@ -78,7 +90,10 @@
       <a title="17-Variadic-Functions.html.html" href="https://jsfiddle.net/steen_hansen/hrvucjzm/?17-Variadic-Functions.html" target="_blank">17</a>
   
 
-      
+
+
+
+
       <a title="18-Class-Type-Checks.html" href="https://jsfiddle.net/steen_hansen/063wLqfs/?18-Class-Type-Checks" target="_blank">18</a>
       
       <a title="19-Lone-Empty-Param-and-Result.html" href="https://jsfiddle.net/steen_hansen/x8h6dvj5/?19-Lone-Empty-Param-and-Result" target="_blank">19</a>
@@ -117,9 +132,12 @@
       
       <a title="36-Start-and-Stop.html" href="https://jsfiddle.net/steen_hansen/f19s52xr/?36-Start-and-Stop" target="_blank">36</a>
       
-      <a title="37-Readme-Example-Lambda.html" href="https://jsfiddle.net/steen_hansen/cwfsubtv/?37-Readme-Example-Lambda" target="_blank">37</a>
-  
+      <a title="37-Readme-Example-Arrow-Functions.html" href="https://jsfiddle.net/steen_hansen/cwfsubtv/?37-Readme-Example-Arrow-Functions" target="_blank">37</a>
 
+      
+    <a title="38-Every-Check.html" href="https://jsfiddle.net/steen_hansen/1umwvht5/?38-Every-Check" target="_blank">38</a>
+    
+    <a title="39-Prescribed-Use.html" href="https://jsfiddle.net/steen_hansen/ta7fdnrw/?39-Prescribed-Use" target="_blank">39</a>
 
       &nbsp;&nbsp;
   
@@ -167,6 +185,7 @@
     </div>
   
 
+
 </div>
 
 
@@ -181,21 +200,26 @@
 
 
 
-<!--            ---------------------TYPE 1---------------------       -->
+<!--            ----------------TYPE 1--------------------------       -->
 
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@44d744188ace09cc8a11412460915536dccf4691/web-resources/consolelog.js">
+
+<script src="../web-resources/consolelog.js">
 </script>
 
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@44d744188ace09cc8a11412460915536dccf4691/web-resources/TypeCzech.min.js">
+
+<script src="../TypeCzech.js">
 </script>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@44d744188ace09cc8a11412460915536dccf4691/web-resources/type-czech.css">
+
+
+<link rel="stylesheet" href="../web-resources/type-czech.css">
 <style>
 </style>
 
 
 
-<!--            --------------------TYPE 1----------------------       -->
+
+<!--            ------------------TYPE 1------------------------       -->
 
 
 
@@ -222,50 +246,57 @@
 /**/  else
 /**/    type_czech = { link: (nop) => nop, is_active: false }
 /**/  
-/**/  PRE_Person = (typeof PRE_Person === 'undefined')
-/**/                  ? undefined : PRE_Person
+/**/  PRE_check_Person = (typeof PRE_check_Person === 'undefined')
+/**/                  ? undefined : PRE_check_Person
 /**/
-/**/  POST_Person = (typeof POST_Person === 'undefined')
-/**/                   ? undefined:POST_Person
+/**/  POST_check_Person = (typeof POST_check_Person === 'undefined')
+/**/                   ? undefined:POST_check_Person
 /**/  
-/**/  function PRE_Person(a_person){
-/**/    type_czech.mutateSnapshot('Person-Obj-Arr', 'a_person', a_person)
+/**/  function PRE_check_Person(a_person){
+/**/    type_czech.mutateSnapshot('PRE_check_Person', 'a_person', a_person)
 /**/  }
 /**/  
-/**/  function POST_Person(){
-/**/    poss_mutation_err = type_czech.check_mutated('Person-Obj-Arr', 'a_person')
+/**/  function POST_check_Person(){
+/**/    poss_mutation_err = type_czech.check_mutated('PRE_check_Person', 'a_person')
 /**/    return poss_mutation_err
 /**/  }
 /**/  
-/**/  PersonArray  = type_czech.link(PersonArray, PRE_Person, POST_Person) 
-/**/  PersonObject = type_czech.link(PersonObject, PRE_Person, POST_Person) 
+/**/  PersonArray  = type_czech.link(PersonArray, PRE_check_Person, POST_check_Person) 
 
 function PersonArray(name_array){
   let [f_name, l_name] =name_array
-  if ( !l_name ){
+  if (!l_name){
     name_array.push('array-last-name')
   }
-}
-
-function PersonObject(name_object){
-  let {f_name, l_name} =name_object
-  if ( !l_name ){
-    name_object.l_name = 'object-last-name'
-  }
+  return `${f_name} ${l_name}`
 }
 
 cleopatra = PersonArray(['Cleopatra', 'VII'])
+log(cleopatra)
+
+linesConsole(2)
 
 catherine = PersonArray(['Catherine'])
 
 linesConsole(2)
 
+
+/**/  PersonObject =type_czech.link(PersonObject, PRE_check_Person, POST_check_Person) 
+
+function PersonObject(name_object){
+  let {f_name, l_name} =name_object
+  if (!l_name){
+    name_object.l_name = 'object-last-name'
+  }
+  return `${f_name} ${l_name}`
+}
+
 atahualpa = PersonObject({f_name:'Atahualpa'})
 
+linesConsole(2)
+
 louis = PersonObject({f_name:'Louis', l_name:'XIV'})
-
-
-
+log(louis)
 </script>
 
 
@@ -285,10 +316,26 @@ louis = PersonObject({f_name:'Louis', l_name:'XIV'})
    jsToDiv('js-code', "check-code");
 
 
-   fromToBoldText(1140, 1157, 'code', 1)  //'object-last-name'
-  fromToBoldText(1278, 1297, 'code', 1)  // {f_name:'Atahualpa'}
-  fromToBoldText(411, 437, 'log', 1)    //  'l_name':'object-last-name'
+  // fromToBoldText(1261, 1278, 'code', 3)  //['Cleopatra', 'VII']
+  //fromToBoldText(1, 13, 'log', 3)    // Cleopatra VII
 
 
+  fromToBoldText(1063, 1075, 'code', 1)  // ['Catherine']
+  fromToBoldText(920, 936, 'code', 1)  // name_array.push('array-last-name')
+
+  fromToBoldText(155, 167, 'log', 1)     // ['Catherine']
+  fromToBoldText(182, 212, 'log', 1)     // ['Catherine','array-last-name']
+
+ 
+   fromToBoldText(1364, 1383, 'code', 2)  // {f_name:'Atahualpa'}
+   fromToBoldText(1282, 1299, 'code', 2)  //name_object.l_name = 'object-last-name'
+   fromToBoldText(646, 667, 'log', 2)    //  {'f_name':'Atahualpa','l_name':'object-last-name'}
+   fromToBoldText(682, 731, 'log', 2)    //  {'f_name':'Atahualpa','l_name':'object-last-name'}
+
+
+
+  
+  //  fromToBoldText(1324, 1353, 'code', 3)  // {f_name:'Louis', l_name:'XIV'}
+  //  fromToBoldText(571, 579, 'log', 3)     // Louis XIV
 
 </script>

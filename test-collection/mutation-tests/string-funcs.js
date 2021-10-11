@@ -37,7 +37,8 @@ function oneLineString(multiline_str) {
   const multiline_safe = multiline_str.toString();
   const no_newlines = multiline_safe.replace(/\r?\n|\r/g, ' ');
   const single_spaces = no_newlines.replace(/\s\s+/g, ' ');
-  return single_spaces;
+  const chop_blank_end = single_spaces.replace(/\s$/, '');
+  return chop_blank_end;
 }
 
 function arrayErrorToString(array_or_str_error) {

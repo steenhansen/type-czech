@@ -1,33 +1,35 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>17-Arrays-with-One-Type</title>
+<title>16-Arrays-with-One-Type</title>
 
 
 <link rel="stylesheet"
   href="https://fonts.googleapis.com/css?family=Inconsolata">
 
 
-<div id='js-div' style="width:47%">
+<div id='js-div' style="width:55%">
  
   <div id='js-code'>the javascript</div>
 </div>
 
 
-<div id="the-explanation" style="width:53%">
-  <div class='an-explantion'>17 - Arrays with One Type</div>
+<div id="the-explanation" style="width:45%">
+  <div class='an-explantion'>16 &mdash; Arrays with One Type</div>
   <div id='explanation-text'>
 <br>
   Arrays with one type of element can be easily checked for compliance.
 <br>
 <pre>
+// one string
+type_czech.check_type(arguments, 'String')
 
-type_czech.check_type(arguments, 'String')        // one string
+// array of any number of strings 1 ... X
+type_czech.check_type(arguments, ['String'])
 
-type_czech.check_type(arguments, ['String'])  // array of any number of strings 0 ...
+// array of exactly 2 strings
+type_czech.check_type(arguments, ['String', 'String'])
 
-type_czech.check_type(arguments, ['String', 'String']) // array of exactly 2 strings
-
-type_czech.check_type(arguments, [ ['String'] ]) // arrays of string arrays
-
+// arrays of string arrays
+type_czech.check_type(arguments, [ ['String'] ])
 
 </pre>
 
@@ -38,6 +40,7 @@ type_czech.check_type(arguments, [ ['String'] ]) // arrays of string arrays
     <div id='log-text'></div>
     <br>
   </div>
+
   <br><br>
   <div id='js-fiddles'>
     jsFiddles:
@@ -59,7 +62,8 @@ type_czech.check_type(arguments, [ ['String'] ]) // arrays of string arrays
       
       <a title="08-Mutated-Recursive-Function-Parameters.html" href="https://jsfiddle.net/steen_hansen/3pv5qwx8/?08-Mutated-Recursive-Function-Parameters" target="_blank">08</a>
       
- 
+
+
 
 
     
@@ -83,7 +87,10 @@ type_czech.check_type(arguments, [ ['String'] ]) // arrays of string arrays
       <a title="17-Variadic-Functions.html.html" href="https://jsfiddle.net/steen_hansen/hrvucjzm/?17-Variadic-Functions.html" target="_blank">17</a>
   
 
-   
+
+
+
+
       <a title="18-Class-Type-Checks.html" href="https://jsfiddle.net/steen_hansen/063wLqfs/?18-Class-Type-Checks" target="_blank">18</a>
       
       <a title="19-Lone-Empty-Param-and-Result.html" href="https://jsfiddle.net/steen_hansen/x8h6dvj5/?19-Lone-Empty-Param-and-Result" target="_blank">19</a>
@@ -122,9 +129,12 @@ type_czech.check_type(arguments, [ ['String'] ]) // arrays of string arrays
       
       <a title="36-Start-and-Stop.html" href="https://jsfiddle.net/steen_hansen/f19s52xr/?36-Start-and-Stop" target="_blank">36</a>
       
-      <a title="37-Readme-Example-Lambda.html" href="https://jsfiddle.net/steen_hansen/cwfsubtv/?37-Readme-Example-Lambda" target="_blank">37</a>
-  
+      <a title="37-Readme-Example-Arrow-Functions.html" href="https://jsfiddle.net/steen_hansen/cwfsubtv/?37-Readme-Example-Arrow-Functions" target="_blank">37</a>
 
+      
+    <a title="38-Every-Check.html" href="https://jsfiddle.net/steen_hansen/1umwvht5/?38-Every-Check" target="_blank">38</a>
+    
+    <a title="39-Prescribed-Use.html" href="https://jsfiddle.net/steen_hansen/ta7fdnrw/?39-Prescribed-Use" target="_blank">39</a>
 
       &nbsp;&nbsp;
   
@@ -171,7 +181,9 @@ type_czech.check_type(arguments, [ ['String'] ]) // arrays of string arrays
   
     </div>
   
+  
 
+    
 </div>
 
 
@@ -181,22 +193,28 @@ type_czech.check_type(arguments, [ ['String'] ]) // arrays of string arrays
 
 
 
-<!--            ----------------TYPE 1--------------------------       -->
+<!--            ---------TYPE 1---------------------------------       -->
 
 
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@44d744188ace09cc8a11412460915536dccf4691/web-resources/consolelog.js">
+<script src="../web-resources/consolelog.js">
 </script>
 
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@44d744188ace09cc8a11412460915536dccf4691/web-resources/TypeCzech.min.js">
+
+<script src="../TypeCzech.js">
 </script>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@44d744188ace09cc8a11412460915536dccf4691/web-resources/type-czech.css">
+
+
+<link rel="stylesheet" href="../web-resources/type-czech.css">
 <style>
 </style>
 
 
 
-<!--            ------------------TYPE 1------------------------       -->
+
+
+
+<!--            --------------TYPE 1----------------------------       -->
 
 
 
@@ -212,25 +230,25 @@ type_czech.check_type(arguments, [ ['String'] ]) // arrays of string arrays
 /**/  else
 /**/    type_czech = { link: (nop) => nop, is_active: false }
 /**/  
-/**/  PRE_arrayOfStrings = (typeof PRE_arrayOfStrings === 'undefined')
-/**/                       ? undefined : PRE_arrayOfStrings
+/**/  PRE_check_arrayOfStrings = (typeof PRE_check_arrayOfStrings === 'undefined')
+/**/                       ? undefined : PRE_check_arrayOfStrings
 /**/
-/**/  PRE_arrOfArrOfNum = (typeof PRE_arrOfArrOfNum === 'undefined')
-/**/                       ? undefined : PRE_arrOfArrOfNum
+/**/  PRE_check_arrOfArrOfNum = (typeof PRE_check_arrOfArrOfNum === 'undefined')
+/**/                       ? undefined : PRE_check_arrOfArrOfNum
 /**/
-/**/  function PRE_arrayOfStrings(an_array){
+/**/  function PRE_check_arrayOfStrings(an_array){
 /**/    return type_czech.check_type(arguments, ['String'])
 /**/  }
 /**/ 
-/**/  function PRE_arrOfArrOfNum(an_array_of_array){
+/**/  function PRE_check_arrOfArrOfNum(an_array_of_array){
 /**/    return type_czech.check_type(arguments, [ ['Number'] ])
 /**/  }
 /**/  
-/**/  arrayOfSrings = type_czech.link(arrayOfSrings, PRE_arrayOfStrings)
+/**/  arrayOfStrings = type_czech.link(arrayOfStrings, PRE_check_arrayOfStrings)
 /**/  
-/**/  arrOfArrOfNum = type_czech.link(arrOfArrOfNum, PRE_arrOfArrOfNum)
+/**/  arrOfArrOfNum = type_czech.link(arrOfArrOfNum, PRE_check_arrOfArrOfNum)
 
-function arrayOfSrings(an_array) { 
+function arrayOfStrings(an_array) { 
   str_array = [...an_array]
   return str_array
 }
@@ -240,25 +258,32 @@ function arrOfArrOfNum(an_array_of_array) {
   return num_array_of_array
 }
 
-array_0_strs = arrayOfSrings([])
+array_0_strs = arrayOfStrings([])
 log('0 strings : ', array_0_strs)
 
 linesConsole(2)
 
-array_1_str = arrayOfSrings(['z'])
+array_1_str = arrayOfStrings(['z'])
 log('1 string : ', array_1_str)
 
 linesConsole(2)
 
-array_6_strs = arrayOfSrings(['a', 'b', 'c', 'd', 'e', 'f'])
+array_6_strs = arrayOfStrings(['a', 'b', 'c', 'd', 'e', 'f'])
 log('6 strings : ', array_6_strs)
 
-linesConsole(2)
-
+linesConsole(1)
 
 nums_3x3 = [ [1,2,3], [4,5,6], [7,8,9] ]
 array_n_n_9 = arrOfArrOfNum(nums_3x3)
 log('9 nums_3x3 : ', array_n_n_9)
+
+linesConsole(1)
+
+nums_err = [ [1,2,3], [4,'Five',6], [7,8, 9] ]
+array_err_9 = arrOfArrOfNum(nums_err)
+log('9 nums_3x3 Error : ', array_err_9)
+
+
 </script>
 
 
@@ -273,12 +298,12 @@ log('9 nums_3x3 : ', array_n_n_9)
 
   jsToDiv('js-code', "check-code");
 
+   fromToBoldText(1487, 1492, 'code', 1)  // , 'Five', 6
 
-  fromToBoldText(716, 729, 'code', 1)  // [ ['Number'] ]
-   fromToBoldText(1354, 1382, 'code', 1)  //  [ [1,2,3], [4,5,6], [7,8,9] ]
 
-  fromToBoldText(104, 192, 'log', 1)    //[ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ] ]
-
+  fromToBoldText(442, 447, 'log', 1)    //"Five"
+  fromToBoldText(488, 495, 'log', 1)    //""Number""
+  fromToBoldText(640, 645, 'log', 1)    //"Five"
 
 
 

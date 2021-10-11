@@ -5,12 +5,12 @@
 <link rel="stylesheet"
   href="https://fonts.googleapis.com/css?family=Inconsolata">
   
-<div id='js-div' style="width:45%">
+<div id='js-div' style="width:50%">
   <div id='js-code'>the javascript</div>
 </div>
 
 
-<div id="the-explanation" style="width:55%">
+<div id="the-explanation" style="width:50%">
   <div class='an-explantion'>35 &mdash; Throw, Log, or Ignore TypeCzech Parameter Checks</div>
   <div id='explanation-text'>
     <br>
@@ -37,7 +37,7 @@ type_czech = TypeCzech('LOG-ERRORS')
         without any type errors. In other words null and undefined are like wild cards.
       </li>
       <li>
-        <b>CONSOLE-COUNT</b> output a run count of parameter checking functions in Console so when 
+        <b>CONSOLE-COUNT</b> will output a run count of parameter checking functions in Console so when 
           testing, can view if parameter tests are actually executing
         </li>
     </ul>
@@ -57,7 +57,7 @@ Note that no parameter checking occurs with
 <pre>
 type_czech = TypeCzech()
 </pre>
-and
+nor with
 <pre>
 type_czech = TypeCzech('NO-CHECKING')
 </pre>
@@ -73,7 +73,7 @@ Thus parameter checking can be easily turned off when changing from development 
     <div id='log-text'></div>
     <br>
   </div>
-  <br><br>
+  <br>
   <div id='js-fiddles'>
     jsFiddles:
     <a title="00-Readme-Example" href="../example-snippets/00-Readme-Example.html">00</a>
@@ -153,9 +153,11 @@ Thus parameter checking can be easily turned off when changing from development 
       
       <a title="36-Start-and-Stop.html" href="../example-snippets/36-Start-and-Stop.html">36</a>
       
-      <a title="37-Readme-Example-Lambda.html" href="../example-snippets/37-Readme-Example-Lambda.html">37</a>
+      <a title="37-Readme-Example-Arrow-Functions.html" href="../example-snippets/37-Readme-Example-Arrow-Functions.html">37</a>
   
+      <a title="38-Every-Check.html" href="../example-snippets/38-Every-Check.html">38</a>
 
+      <a title="39-Prescribed-Use.html" href="../example-snippets/39-Prescribed-Use.html">39</a>
 
       &nbsp;&nbsp;
   
@@ -201,7 +203,6 @@ Thus parameter checking can be easily turned off when changing from development 
       <a title="603-Extending-OLOO-Production.html" href="../examples-web/603-Extending-OLOO-Production/603-Extending-OLOO-Production.html">603</a>
   
     </div>
-  
 
 </div>
 
@@ -272,8 +273,8 @@ Thus parameter checking can be easily turned off when changing from development 
 
 
 <script id="check-code">
-/**/  function PRE_Person(f_name){
-/**/    if (f_name.length>9) 
+/**/  function PRE_check_Person(f_name){
+/**/    if (f_name.length > 9) 
 /**/      return `PRE: f_name '${f_name}' too long`
 /**/  }
 /**/  
@@ -284,19 +285,19 @@ Thus parameter checking can be easily turned off when changing from development 
 /**/  Person_OFF   = (f_name) => Person(f_name)
 /**/  
 /**/  type_czech_LOG = TypeCzech('LOG-ERRORS')
-/**/  Person_LOG = type_czech_LOG.link(Person_LOG, PRE_Person) 
+/**/  Person_LOG = type_czech_LOG.link(Person_LOG, PRE_check_Person) 
 /**/  
 /**/  type_czech_THROW = TypeCzech('THROW-EXCEPTIONS')
-/**/  Person_THROW = type_czech_THROW.link(Person_THROW, PRE_Person) 
+/**/  Person_THROW = type_czech_THROW.link(Person_THROW, PRE_check_Person) 
 /**/  
 /**/  type_czech_NONE = TypeCzech('NO-CHECKING')
-/**/  Person_NONE = type_czech_NONE.link(Person_NONE, PRE_Person) 
+/**/  Person_NONE = type_czech_NONE.link(Person_NONE, PRE_check_Person) 
 /**/  
 /**/  type_czech_OFF = TypeCzech()
-/**/  Person_OFF = type_czech_OFF.link(Person_OFF, PRE_Person) 
+/**/  Person_OFF = type_czech_OFF.link(Person_OFF, PRE_check_Person) 
 
 function Person(f_name){
-  log(NL+f_name+' at Person()')
+  log(NL+f_name+' in Person() function')
 }
 
 Person_LOG('Evangeline')
@@ -306,21 +307,28 @@ linesConsole(2)
 try {
   Person_THROW('Persephone')
 } catch (e) {
-  log('The thrown error - ', e)
+  log('Exception - ' + e)
 }
 
-linesConsole(1)
+
+
+
+
+
+
+
+
+
+
+
+
+linesConsole(3)
 
 Person_NONE('Evangeline')
 
 linesConsole(1)
 
 Person_OFF('Persephone')
-
-
-
-
-
 </script>
 
 
@@ -339,10 +347,21 @@ Person_OFF('Persephone')
 
   jsToDiv('js-code', "check-code");
 
-  fromToBoldText(464, 479, 'code', 1)  // type_czech_THROW
-  fromToBoldText(910, 935, 'code', 1)  // Person_THROW('Persephone')
+  fromToBoldText(381, 390, 'code', 1)  // TypeCzech('LOG-ERRORS')
+  fromToBoldText(925, 934, 'code', 1)  // Person_LOG('Evangeline')
 
-  fromToBoldText(77, 109, 'log', 1)    //"PRE: f_name 'Persephone' too long"
+  fromToBoldText(1, 33, 'log', 1)    //PRE: f_name 'Evangeline' too long
+
+
+
+      fromToBoldText(507, 522, 'code', 2)  // TypeCzech('THROW-EXCEPTIONS')
+      fromToBoldText(947, 972, 'code', 2)  // Person_THROW('Persephone')
+      fromToBoldText(995, 1003, 'code', 2)  // Person_THROW('Persephone')
+    
+      fromToBoldText(66, 74, 'log', 2)    //Exception - Error:
+      fromToBoldText(98, 107, 'log', 2)    // f_name 'Persephone' too long"
+
+
 
 
 </script>

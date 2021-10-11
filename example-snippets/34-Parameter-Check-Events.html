@@ -145,8 +145,11 @@ The example to the left changes the <b>tab title</b> on running checks.
       
       <a title="36-Start-and-Stop.html" href="../example-snippets/36-Start-and-Stop.html">36</a>
       
-      <a title="37-Readme-Example-Lambda.html" href="../example-snippets/37-Readme-Example-Lambda.html">37</a>
+      <a title="37-Readme-Example-Arrow-Functions.html" href="../example-snippets/37-Readme-Example-Arrow-Functions.html">37</a>
   
+      <a title="38-Every-Check.html" href="../example-snippets/38-Every-Check.html">38</a>
+
+      <a title="39-Prescribed-Use.html" href="../example-snippets/39-Prescribed-Use.html">39</a>
 
       &nbsp;&nbsp;
   
@@ -278,14 +281,15 @@ The example to the left changes the <b>tab title</b> on running checks.
 /**/  else
 /**/    type_czech = { link: (nop)=>nop, is_active: false }
 /**/  
-/**/  PRE_Person = (typeof PRE_Person === 'undefined') ? undefined : PRE_Person
+/**/  PRE_check_Person = (typeof PRE_check_Person === 'undefined')
+/**/                     ? undefined : PRE_check_Person
 /**/  
-/**/  function PRE_Person(f_name, l_name){
+/**/  function PRE_check_Person(f_name, l_name){
 /**/    if (l_name === 'Badgers')
 /**/      return "We don't need no stinking badgers!"
 /**/  }
 /**/  
-/**/  Person = type_czech.link(Person, PRE_Person) 
+/**/  Person = type_czech.link(Person, PRE_check_Person) 
 
 function Person(f_name, l_name){
 }
@@ -319,6 +323,7 @@ window.setTimeout( ()=> Person('Alan', 'Turing'), 3000);
    fromToBoldText(545, 560, 'code', 1)  //TypeCzech(TYPE_CZECH_TITLE,
 
 
+   fromToBoldText(84, 117, 'code', 2)  // document.title = check_error_count
 
 
 

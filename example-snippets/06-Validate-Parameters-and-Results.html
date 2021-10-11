@@ -20,7 +20,7 @@ One use for the type_czech.link(your_function, before_test, after_test) construc
 to help with debugging and testing without changing the actual source code. The before and after
 conditions of functions can be viewed without asserts actually littering the functions.
 <br><br>
-Note that any function names can be used, not just PRE_function_name() and POST_function_name(),
+Note that any function names can be used, not just PRE_check_function_name() and POST_check_function_name(),
 which are used to lessen confusion.
 <pre>
 
@@ -123,9 +123,11 @@ Person = type_czech.link(Person, BEFORE_Person, person_after)
       
       <a title="36-Start-and-Stop.html" href="../example-snippets/36-Start-and-Stop.html">36</a>
       
-      <a title="37-Readme-Example-Lambda.html" href="../example-snippets/37-Readme-Example-Lambda.html">37</a>
+      <a title="37-Readme-Example-Arrow-Functions.html" href="../example-snippets/37-Readme-Example-Arrow-Functions.html">37</a>
   
+      <a title="38-Every-Check.html" href="../example-snippets/38-Every-Check.html">38</a>
 
+      <a title="39-Prescribed-Use.html" href="../example-snippets/39-Prescribed-Use.html">39</a>
 
       &nbsp;&nbsp;
   
@@ -222,10 +224,12 @@ Person = type_czech.link(Person, BEFORE_Person, person_after)
 /**/  else
 /**/    type_czech = { link: (nop) => nop, is_active: false }
 /**/
-/**/  PRE_Person =(typeof PRE_Person==='undefined') ? undefined:PRE_Person
-/**/  POST_Person =(typeof POST_Person==='undefined') ? undefined:POST_Person
+/**/  PRE_check_Person = (typeof PRE_check_Person === 'undefined')
+/**/                     ? undefined : PRE_check_Person
+/**/  POST_check_Person = (typeof POST_check_Person === 'undefined')
+/**/                      ? undefined : POST_check_Person
 /**/
-/**/  function PRE_Person(f_name, l_name){
+/**/  function PRE_check_Person(f_name, l_name){
 /**/    if (arguments.length !== 2) 
 /**/      return `PRE: ${arguments.length} parameters, not 2`
 /**/
@@ -236,15 +240,15 @@ Person = type_czech.link(Person, BEFORE_Person, person_after)
 /**/    return ''
 /**/  }
 /**/
-/**/  function POST_Person(first_last){
+/**/  function POST_check_Person(first_last){
 /**/    royal_name_2_part = new RegExp(/^[A-Z][a-z]*\s[A-Z]*$/);
 /**/    if (!first_last.match(royal_name_2_part))
-/**/      return NL+`POST: name is not formated royally - ${first_last}`
+/**/      return NL+`POST: name is not formatted royally - ${first_last}`
 /**/
 /**/    return ''
 /**/  }
 /**/
-/**/  Person = type_czech.link(Person, PRE_Person, POST_Person) 
+/**/  Person = type_czech.link(Person, PRE_check_Person, POST_check_Person) 
 
 function Person(f_name, l_name){
   first_last = f_name + ' ' + l_name
@@ -255,18 +259,18 @@ cleopatra = Person('Cleopatra', 'VII')
 linesConsole(2)
 log('out A : ', cleopatra)
 
+linesConsole(3)
+
+atahualpa = Person('Atahualpa')
 linesConsole(1)
+log('out B : ', atahualpa)
+
+linesConsole(2)
 
 catherine = Person('cATHERINE', 'II')
 log(NL +'out C : ', catherine)
 
-linesConsole(2)
-
-atahualpa = Person('Atahualpa')
-linesConsole(1)
-log('out D : ', atahualpa)
-
-linesConsole(2)
+linesConsole(3)
 
 louis = Person('Louis', 'XIV')
 linesConsole(1)
@@ -290,9 +294,17 @@ log('out D : ', louis)
 
    jsToDiv('js-code', "check-code");
 
-    fromToBoldText(448, 469, 'code', 1)  // arguments.length !== 2
-   fromToBoldText(1330, 1342, 'code', 1)  //  ('Atahualpa')
-   fromToBoldText(102, 120, 'log', 1)    // PRE: 1 parameters, not 2
+    fromToBoldText(483, 504, 'code', 1)  // arguments.length !== 2
+   fromToBoldText(1314, 1324, 'code', 1)  //  ('Atahualpa')
+   fromToBoldText(29, 47, 'log', 1)    // PRE: 1 parameters, not 2
+
+
+   fromToBoldText(871, 877, 'code', 2)  // /^[A-Z]
+   fromToBoldText(1375, 1375, 'code', 2)  //  (c)
+   fromToBoldText(174, 174, 'log', 2)    //c
+
+
+
 
 
 </script>

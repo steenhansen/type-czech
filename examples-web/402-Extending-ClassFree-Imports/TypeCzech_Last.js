@@ -3,34 +3,34 @@
 function TypeCzech_Last() {
   if (type_czech.is_active) {
 
-    function PRE_Last(spec){
+    function PRE_check_Last(spec){
       log(LEVEL_1+'PRE-Last') 
       pre_last_sig = { f_name: 'String', l_name: 'String' }
       type_issue = type_czech.check_typeExtra(arguments, pre_last_sig)
       if (type_issue) return type_issue;
       return type_czech.check_emptyExtra(arguments, {l_name: 'EMPTY-ERROR' });
     }
-    function POST_Last(Last){
+    function POST_check_Last(Last){
       log(LEVEL_1+"POST-Last") 
       post_last_sig = {firstMethod:'Function', lastMethod:'Function'}
       return type_czech.check_interface(Last, post_last_sig)
     }
-    function PRE_lastMethod(a_year){
+    function PRE_check_lastMethod(a_year){
       log(LEVEL_1+"PRE -lastMethod")
       return type_czech.check_type(arguments, 'Number')
     }
-    function POST_lastMethod(a_year){
+    function POST_check_lastMethod(a_year){
       log(LEVEL_1+"POST-lastMethod") 
       return type_czech.check_type(arguments, 'Number')
     }
 
-    // function PRE_Last(spec) { log(`${LEVEL_1}PRE-Last`) }
-    // function POST_Last(Last) { log(`${LEVEL_1}POST-Last`) }
-    // function PRE_lastMethod(a_year) { log(`${LEVEL_1}PRE-lastMethod`) }
-    // function POST_lastMethod() { log(`${LEVEL_1}POST-lastMethod`) }
+    // function PRE_check_Last(spec) { log(`${LEVEL_1}PRE-Last`) }
+    // function POST_check_Last(Last) { log(`${LEVEL_1}POST-Last`) }
+    // function PRE_check_lastMethod(a_year) { log(`${LEVEL_1}PRE-lastMethod`) }
+    // function POST_check_lastMethod() { log(`${LEVEL_1}POST-lastMethod`) }
 
-    Last_PREs = { Last: PRE_Last, lastMethod: PRE_lastMethod }
-    Last_POSTs = { Last: POST_Last, lastMethod: POST_lastMethod }
+    Last_PREs = { Last: PRE_check_Last, lastMethod: PRE_check_lastMethod }
+    Last_POSTs = { Last: POST_check_Last, lastMethod: POST_check_lastMethod }
 
     Last = type_czech.link(Last, Last_PREs, Last_POSTs)
   }

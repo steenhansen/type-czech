@@ -7,7 +7,6 @@
 
 <div id='js-div' style="width:50%">
   <div id='js-code'>the javascript</div>
-  
   <br><br>
   <div id='js-fiddles'>
     jsFiddles:
@@ -29,7 +28,8 @@
       
       <a title="08-Mutated-Recursive-Function-Parameters.html" href="https://jsfiddle.net/steen_hansen/3pv5qwx8/?08-Mutated-Recursive-Function-Parameters" target="_blank">08</a>
       
-  
+
+
 
 
     
@@ -53,7 +53,10 @@
       <a title="17-Variadic-Functions.html.html" href="https://jsfiddle.net/steen_hansen/hrvucjzm/?17-Variadic-Functions.html" target="_blank">17</a>
   
 
-   
+
+
+
+
       <a title="18-Class-Type-Checks.html" href="https://jsfiddle.net/steen_hansen/063wLqfs/?18-Class-Type-Checks" target="_blank">18</a>
       
       <a title="19-Lone-Empty-Param-and-Result.html" href="https://jsfiddle.net/steen_hansen/x8h6dvj5/?19-Lone-Empty-Param-and-Result" target="_blank">19</a>
@@ -92,9 +95,12 @@
       
       <a title="36-Start-and-Stop.html" href="https://jsfiddle.net/steen_hansen/f19s52xr/?36-Start-and-Stop" target="_blank">36</a>
       
-      <a title="37-Readme-Example-Lambda.html" href="https://jsfiddle.net/steen_hansen/cwfsubtv/?37-Readme-Example-Lambda" target="_blank">37</a>
-  
+      <a title="37-Readme-Example-Arrow-Functions.html" href="https://jsfiddle.net/steen_hansen/cwfsubtv/?37-Readme-Example-Arrow-Functions" target="_blank">37</a>
 
+      
+    <a title="38-Every-Check.html" href="https://jsfiddle.net/steen_hansen/1umwvht5/?38-Every-Check" target="_blank">38</a>
+    
+    <a title="39-Prescribed-Use.html" href="https://jsfiddle.net/steen_hansen/ta7fdnrw/?39-Prescribed-Use" target="_blank">39</a>
 
       &nbsp;&nbsp;
   
@@ -142,11 +148,12 @@
     </div>
   
 
+  
 </div>
 
 
 <div id="the-explanation" style="width:50%">
-  <div class='an-explantion'>02 - Validate Parameters by Value</div>
+  <div class='an-explantion'>02 &mdash; Validate Parameters by Value</div>
   <div id='explanation-text'>
     <br>
     Programmatical checks can be performed before your functions are 
@@ -177,6 +184,8 @@
     <br>
   </div>
 
+
+
 </div>
 
 
@@ -184,23 +193,28 @@
 
 
 
-<!--            ----------------TYPE 1--------------------------       -->
+<!--            ------------------TYPE 1------------------------       -->
 
 
 
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@44d744188ace09cc8a11412460915536dccf4691/web-resources/consolelog.js">
+<script src="../web-resources/consolelog.js">
 </script>
 
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@44d744188ace09cc8a11412460915536dccf4691/web-resources/TypeCzech.min.js">
+
+<script src="../TypeCzech.js">
 </script>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@44d744188ace09cc8a11412460915536dccf4691/web-resources/type-czech.css">
+
+
+<link rel="stylesheet" href="../web-resources/type-czech.css">
 <style>
 </style>
 
 
 
-<!--            ------------------TYPE 1------------------------       -->
+
+
+<!--            -----------------TYPE 1-------------------------       -->
 
 
 
@@ -219,7 +233,7 @@
 /**/  type_czech = TypeCzech('LOG-ERRORS')
 /**/  //type_czech = TypeCzech('NO-CHECKING')
 /**/
-/**/  function PRE_Person(f_name, l_name){
+/**/  function PRE_check_Person(f_name, l_name){
 /**/    if (arguments.length !== 2) 
 /**/      return `PRE: ${arguments.length} parameters, not 2`
 /**/
@@ -230,7 +244,7 @@
 /**/    return ''
 /**/  }
 /**/
-/**/  Person = type_czech.link(Person, PRE_Person) 
+/**/  Person = type_czech.link(Person, PRE_check_Person) 
 
 function Person(f_name, l_name){
   first_last = f_name + ' ' + l_name
@@ -241,6 +255,12 @@ cleopatra = Person('Cleopatra', 'VII')
 linesConsole(2)
 log('out A : ', cleopatra)
 
+linesConsole(2)
+
+atahualpa = Person('Atahualpa')
+linesConsole(1)
+log('out B : ', atahualpa)
+
 linesConsole(1)
 
 catherine = Person('Catherine', 'II')
@@ -248,15 +268,13 @@ log(NL +'out C : ', catherine)
 
 linesConsole(2)
 
-atahualpa = Person('Atahualpa')
-linesConsole(1)
-log('out D : ', atahualpa)
-
-linesConsole(2)
-
 louis = Person('Louis', 'XIV')
 linesConsole(1)
 log('out D : ', louis)
+
+
+
+
 </script>
 
 
@@ -275,8 +293,22 @@ log('out D : ', louis)
 
   jsToDiv('js-code', "check-code");
 
-  fromToBoldText(310, 312, 'code', 1)  // VII
-  fromToBoldText(632, 634, 'code', 1)  //  VII
+  fromToBoldText(316, 318, 'code', 1)  // VII
+  fromToBoldText(643, 645, 'code', 1)  // VII
   fromToBoldText(20, 22, 'log', 1)    // VII
+
+
+  fromToBoldText(236, 240, 'code', 2)  // not 2
+  fromToBoldText(707, 707, 'code', 2)  // )
+  fromToBoldText(43, 47, 'log', 2)    // not 2
+
+
+
+  fromToBoldText(832, 834, 'code', 3)  // XIV
+  fromToBoldText(124, 126, 'log', 3)    // XIV
+
+
+
+
 
 </script>

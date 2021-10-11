@@ -5,14 +5,13 @@
 <link rel="stylesheet"
   href="https://fonts.googleapis.com/css?family=Inconsolata">
   
-<div id='js-div' style="width:64%; " >
+<div id='js-div' style="width:63%; " >
   <div id='js-code'>the javascript</div>
-  
 </div>
 
 
-<div id="the-explanation" style="width:36%" >
-  <div class='an-explantion'>31 - Extended Class Type Checks</div>
+<div id="the-explanation" style="width:37%" >
+  <div class='an-explantion'>31 &mdash; Extended Class Type Checks</div>
   <div id='explanation-text'>
     <br>
 It is possible to get PRE and POST checking on class
@@ -28,9 +27,17 @@ objects that will be extended; both constructor functions and methods.
 As in the example to the left, calls to type_czech.link() must 
 precede class extensions.
 <pre>
+class First {...}
+
+/**/ First = type_czech.link(First, ...)
+
+class Last extends First{  
+
 /**/ Last = type_czech.link(Last, ...)
 
 class Full extends Last {...}
+
+/**/ Full = type_czech.link(Full...)
 </pre>
     The ordering and depth of executions is recorded in the console to 
     highlight the different stages and states.
@@ -46,7 +53,6 @@ class Full extends Last {...}
     <br>
   </div>
 
-  <br><br>
   <div id='js-fiddles'>
     jsFiddles:
     <a title="00-Readme-Example" href="https://jsfiddle.net/steen_hansen/0xtpLwsc/?00-Readme-Example" target="_blank">00</a>
@@ -67,7 +73,8 @@ class Full extends Last {...}
       
       <a title="08-Mutated-Recursive-Function-Parameters.html" href="https://jsfiddle.net/steen_hansen/3pv5qwx8/?08-Mutated-Recursive-Function-Parameters" target="_blank">08</a>
       
- 
+
+
 
 
     
@@ -91,7 +98,10 @@ class Full extends Last {...}
       <a title="17-Variadic-Functions.html.html" href="https://jsfiddle.net/steen_hansen/hrvucjzm/?17-Variadic-Functions.html" target="_blank">17</a>
   
 
-    
+
+
+
+
       <a title="18-Class-Type-Checks.html" href="https://jsfiddle.net/steen_hansen/063wLqfs/?18-Class-Type-Checks" target="_blank">18</a>
       
       <a title="19-Lone-Empty-Param-and-Result.html" href="https://jsfiddle.net/steen_hansen/x8h6dvj5/?19-Lone-Empty-Param-and-Result" target="_blank">19</a>
@@ -130,8 +140,12 @@ class Full extends Last {...}
       
       <a title="36-Start-and-Stop.html" href="https://jsfiddle.net/steen_hansen/f19s52xr/?36-Start-and-Stop" target="_blank">36</a>
       
-      <a title="37-Readme-Example-Lambda.html" href="https://jsfiddle.net/steen_hansen/cwfsubtv/?37-Readme-Example-Lambda" target="_blank">37</a>
+      <a title="37-Readme-Example-Arrow-Functions.html" href="https://jsfiddle.net/steen_hansen/cwfsubtv/?37-Readme-Example-Arrow-Functions" target="_blank">37</a>
 
+      
+    <a title="38-Every-Check.html" href="https://jsfiddle.net/steen_hansen/1umwvht5/?38-Every-Check" target="_blank">38</a>
+    
+    <a title="39-Prescribed-Use.html" href="https://jsfiddle.net/steen_hansen/ta7fdnrw/?39-Prescribed-Use" target="_blank">39</a>
 
       &nbsp;&nbsp;
   
@@ -192,24 +206,31 @@ class Full extends Last {...}
 
 
 
-<!--            ------------------TYPE 1------------------------       -->
+<!--            -------------TYPE 1-----------------------------       -->
 
 
 
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@44d744188ace09cc8a11412460915536dccf4691/web-resources/consolelog.js">
+
+<script src="../web-resources/consolelog.js">
 </script>
 
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@44d744188ace09cc8a11412460915536dccf4691/web-resources/TypeCzech.min.js">
+
+<script src="../TypeCzech.js">
 </script>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@44d744188ace09cc8a11412460915536dccf4691/web-resources/type-czech.css">
+
+
+<link rel="stylesheet" href="../web-resources/type-czech.css">
 <style>
 </style>
 
 
 
 
-<!--            ---------------TYPE 1---------------------------       -->
+
+
+
+<!--            --------------TYPE 1----------------------------       -->
 
 
 
@@ -238,51 +259,49 @@ class First {
                         log(NL+`CONS-First :${f_name}`) }
   firstMethod(a_date) { log(NL+`RUN -firstMethod :${this.f_name} `, a_date) }  
 }
-/**/  function PRE_First(){ log(NL2+'PRE -First') }
-/**/  function POST_First(){ log(NL1+'POST-First') }
-/**/  function PRE_firstMethod(){ log('PRE -firstMethod') }
-/**/  function POST_firstMethod(){ log('POST-firstMethod') }
+/**/  function PRE_check_First(){ log(NL1+'PRE -First') }
+/**/  function POST_check_First(){ log(NL1+'POST-First') }
+/**/  function PRE_check_firstMethod(){ log('PRE -firstMethod') }
+/**/  function POST_check_firstMethod(){ log('POST-firstMethod') }
 /**/
-/**/  First_PREs = {First:PRE_First, firstMethod:PRE_firstMethod}
-/**/  First_POSTs = {First:POST_First, firstMethod:POST_firstMethod}
+/**/  First_PREs = {First:PRE_check_First, firstMethod:PRE_check_firstMethod}
+/**/  First_POSTs = {First:POST_check_First, firstMethod:POST_check_firstMethod}
 /**/  First = type_czech.link(First, First_PREs, First_POSTs)
 
 class Last extends First{  
   constructor(f_name, l_name) { super(f_name);
                                 this.l_name = l_name
-                                log(NL+LEVEL_1+`CONS-Last :${f_name} ${l_name}`)  }
+                                log(LEVEL_1+`CONS-Last :${f_name} ${l_name}`)  }
   lastMethod(a_year){ log(LEVEL_1+`RUN -lastMethod :${a_year} ${this.f_name} ${this.l_name}`) }
 }
-/**/  function PRE_Last(){ log(LEVEL_1+'PRE-Last') }
-/**/  function POST_Last(){ log(LEVEL_1+"POST-Last") }
-/**/  function PRE_lastMethod(){ log(LEVEL_1+"PRE -lastMethod") }
-/**/  function POST_lastMethod(){ log(LEVEL_1+"POST-lastMethod") }
+/**/  function PRE_check_Last(){ log(LEVEL_1+'PRE-Last') }
+/**/  function POST_check_Last(){ log(LEVEL_1+"POST-Last") }
+/**/  function PRE_check_lastMethod(){ log(LEVEL_1+"PRE -lastMethod") }
+/**/  function POST_check_lastMethod(){ log(LEVEL_1+"POST-lastMethod") }
 /**/
-/**/  Last_PREs = {Last:PRE_Last, lastMethod:PRE_lastMethod}
-/**/  Last_POSTs = {Last:POST_Last, lastMethod:POST_lastMethod}
+/**/  Last_PREs = {Last:PRE_check_Last, lastMethod:PRE_check_lastMethod}
+/**/  Last_POSTs = {Last:POST_check_Last, lastMethod:POST_check_lastMethod}
 /**/  Last = type_czech.link(Last, Last_PREs, Last_POSTs)
 
 class Full extends Last {
   constructor(salu, f_name, l_name) { super(f_name, l_name);
                                       this.salu = salu
-                                      log(NL+LEVEL_2+`CONS-Full :${salu} ${f_name} ${l_name}`) }
+                                      log(LEVEL_2+`CONS-Full :${salu} ${f_name} ${l_name}`) }
   fullMethod(a_book){ log(LEVEL_2+`RUN -fullMethod :${a_book} ${this.salu} ${this.l_name}`) }
 }
-/**/  function PRE_Full(){  log(LEVEL_2+'PRE-Full') }
-/**/  function POST_Full(){ log(LEVEL_2+"POST-Full") }
-/**/  function PRE_fullMethod(){ log(LEVEL_2+"PRE -fullMethod") }
-/**/  function POST_fullMethod(){ log(LEVEL_2+"POST-fullMethod") }
+/**/  function PRE_check_Full(){  log(LEVEL_2+'PRE-Full') }
+/**/  function POST_check_Full(){ log(LEVEL_2+"POST-Full") }
+/**/  function PRE_check_fullMethod(){ log(LEVEL_2+"PRE -fullMethod") }
+/**/  function POST_check_fullMethod(){ log(LEVEL_2+"POST-fullMethod") }
 /**/
-/**/  Full_PREs = {Full:PRE_Full, fullMethod:PRE_fullMethod}
-/**/  Full_POSTs= {Full:POST_Full, fullMethod:POST_fullMethod}
+/**/  Full_PREs = {Full:PRE_check_Full, fullMethod:PRE_check_fullMethod}
+/**/  Full_POSTs= {Full:POST_check_Full, fullMethod:POST_check_fullMethod}
 /**/  Full = type_czech.link(Full, Full_PREs, Full_POSTs)
 
 ted_chiang = new Full('Mr', 'Ted', 'Chiang')
 linesConsole(1)
 ted_chiang.firstMethod(new Date(2008,10,15))
-linesConsole(1)
 ted_chiang.lastMethod(2009)
-linesConsole(1)
 ted_chiang.fullMethod('Exhalation')
 </script>
 
@@ -300,13 +319,14 @@ ted_chiang.fullMethod('Exhalation')
 
    jsToDiv('js-code', "check-code");
 
-   fromToBoldText(190, 199, 'code', 1)  //CONS-First
-    fromToBoldText(904, 912, 'code', 2)  //  CONS-Last
-    fromToBoldText(1665, 1673, 'code', 3)  // CONS-Full
+  fromToBoldText(190, 199, 'code', 1)  //CONS-First
+    fromToBoldText(948, 956, 'code', 2)  //  CONS-Last
+    fromToBoldText(1753, 1761, 'code', 3)  // CONS-Full
 
    
-  fromToBoldText(56, 65, 'log', 1)    //CONS-First
-  fromToBoldText(92, 100, 'log', 2)    //CONS-Last
-  fromToBoldText(149, 157, 'log', 3)    //CONS-Full
+  fromToBoldText(55, 64, 'log', 1)    //CONS-First
+  fromToBoldText(90, 98, 'log', 2)    //CONS-Last
+  fromToBoldText(146, 154, 'log', 3)    //CONS-Full
+
 
 </script>

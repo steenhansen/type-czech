@@ -41,7 +41,7 @@ require('./mutation-tests/check_emptyEither_04000.js');
 require('./mutation-tests/check_type_05000.js');
 require('./mutation-tests/check_typeExtra_06000.js');
 require('./mutation-tests/check_typeEither_07000.js');
-require('./mutation-tests/_cycle_08000.js');
+require('./mutation-tests/_cycle_loops_08000.js');
 require('./mutation-tests/_aTypeOf_09000.js');
 
 require('./mutation-tests/_isCollection_10000.js');
@@ -98,7 +98,7 @@ require('../read-mes/_link().md');
 require('../read-mes/_mutateSnapshot().md');
 
 require('../read-mes/_typeIsA().md');
-require('../read-mes/_typeIs().md');
+require('../read-mes/_typeFinal().md');
 require('../read-mes/_typeProtos().md');
 
 require('./dynamic-generative/random-signatures.js');

@@ -413,7 +413,7 @@ function check_typeExtra_06010(){
   actual_array = type_czech.check_typeExtra(check_object, check_type_shape);
   afterCheck(check_object, check_type_shape, before_str, error_id);
   expected_array =[`check_typeExtra(arguments, expected_types)`,
-  `TC@03 - Element '2' is supposed to be a 'date', but is missing : ["super","man"]`,
+  `TC@60 - Element '2' is supposed to be a 'date', but is missing : ["super","man"]`,
   `["String","String","date"]`];
   actual_str = arrayErrorToString(actual_array);
   expected_str = arrayErrorToString(expected_array);

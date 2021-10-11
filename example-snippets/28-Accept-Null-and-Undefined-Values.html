@@ -5,7 +5,7 @@
 <link rel="stylesheet"
   href="https://fonts.googleapis.com/css?family=Inconsolata">
   
-<div id='js-div' style="width:42%">
+<div id='js-div' style="width:46%">
   <div id='js-code'>the javascript</div>
   <br>
   <div id='js-fiddles'>
@@ -88,9 +88,12 @@
       
       <a title="36-Start-and-Stop.html" href="../example-snippets/36-Start-and-Stop.html">36</a>
       
-      <a title="37-Readme-Example-Lambda.html" href="../example-snippets/37-Readme-Example-Lambda.html">37</a>
+      <a title="37-Readme-Example-Arrow-Functions.html" href="../example-snippets/37-Readme-Example-Arrow-Functions.html">37</a>
 
+      <a title="38-Every-Check.html" href="../example-snippets/38-Every-Check.html">38</a>
 
+      <a title="39-Prescribed-Use.html" href="../example-snippets/39-Prescribed-Use.html">39</a>
+      
       &nbsp;&nbsp;
   
       <a title="101-Extending-Classes-Inline.html" href="../examples-web/101-Extending-Classes-Inline.html">101</a>
@@ -138,7 +141,7 @@
 </div>
 
 
-<div id="the-explanation" style="width:58%">
+<div id="the-explanation" style="width:54%">
   <div class='an-explantion'>28 &mdash; Accept Null and Undefined Values</div>
   <div id='explanation-text'>
     <br>
@@ -237,22 +240,22 @@ The 'UNDEF-OK' option is only useful with type shapes, and thus these functions:
 /**/    type_czech = { link: (nop) => nop,
 /**/                   is_active: false }
 /**/  
-/**/  PRE_Person = (typeof PRE_Person === 'undefined')
-/**/               ? undefined : PRE_Person
+/**/  PRE_check_Person = (typeof PRE_check_Person === 'undefined')
+/**/               ? undefined : PRE_check_Person
 /**/  
-/**/  function PRE_Person(person_obj){
+/**/  function PRE_check_Person(person_obj){
 /**/    let {f_name, l_name} = person_obj
 /**/    person_type = {f_name:'String', l_name:'String'}
 /**/    return type_czech.check_type(arguments, person_type)
 /**/  }
 /**/  
-/**/  function POST_Person(person_array){
+/**/  function POST_check_Person(person_array){
 /**/    let [f_name, l_name] = person_array
 /**/    person_type = ['String', 'String']
 /**/    return type_czech.check_type(arguments, person_type)
 /**/  }
 /**/  
-/**/  Person=type_czech.link(Person,PRE_Person,POST_Person)
+/**/  Person=type_czech.link(Person,PRE_check_Person,POST_check_Person)
 
 function Person(person_obj){
   let {f_name, l_name} = person_obj
@@ -294,10 +297,19 @@ log(marvin)
 
    jsToDiv('js-code', "check-code");
 
-   fromToBoldText(75, 84, 'code', 1)  //'UNDEF-OK'
-  fromToBoldText(1022, 1032, 'code', 1)  //  l_name:null
+   fromToBoldText(1151, 1159, 'code', 1)  //l_name:12
 
-  fromToBoldText(47, 50, 'log', 1)    //null 
+  fromToBoldText(322, 330, 'log', 1)  //  l_name:12
+  fromToBoldText(375, 389, 'log', 1)   // l_name:"String"
+
+
+
+  fromToBoldText(661, 680, 'code', 2)  //['String', 'String']
+
+fromToBoldText(681, 682, 'log', 2)  //  12
+fromToBoldText(720, 727, 'log', 2)   // ,"String"
+
+
 
 
 </script>

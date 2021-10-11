@@ -1,47 +1,25 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>16-Lone-Single-Type-Parameter-Functions </title>
+<title>12-Class-Interface</title>
 
 
 <link rel="stylesheet"
   href="https://fonts.googleapis.com/css?family=Inconsolata">
 
 
-<div id='js-div' style="width:50%">
+<div id='js-div' style="width:55%">
  
   <div id='js-code'>the javascript</div>
 </div>
 
 
-<div id="the-explanation" style="width:50%" class='code-scroll'>
-  <div class='an-explantion'>16 - Lone Single Type Parameter Functions</div>
+<div id="the-explanation" style="width:45%">
+  <div class='an-explantion'>12 &mdash; Class Interface</div>
   <div id='explanation-text'>
-<br>
+    <br>
+     Checking interfaces with inherited classes.
+    <br><br>
     
-    To check for exactly one parameter, as with PRE_exactly1Str(), the arguments length has to 
-    be checked, otherwise the extra parameters are just ignored.
-
-    <br><br>
-    Undefined values are printed as 'un-defined' in error messages to distinguish the 
-    undefined value from the 'undefined' string which look the same when printed in the console. 
-
-    <br><br>
-    So when only checking a single lone parameter, leave off the array brackets - [ ], to verfiy
-    that there is only one number being passed into the function.
-
-<pre>
-
-type_czech.check_type(arguments, 'Number')              // one number
-
-type_czech.check_type(arguments, ['Number', 'Number'])  // two numbers
-
-type_czech.check_type(arguments, ['Date', 'String'])    // two values
-
-</pre>
-
-
-
-</div>
-
+  </div>
 
   <div id="console-log"  >
     <div class='a-title'>Console Output</div>
@@ -70,7 +48,8 @@ type_czech.check_type(arguments, ['Date', 'String'])    // two values
       
       <a title="08-Mutated-Recursive-Function-Parameters.html" href="https://jsfiddle.net/steen_hansen/3pv5qwx8/?08-Mutated-Recursive-Function-Parameters" target="_blank">08</a>
       
- 
+
+
 
 
     
@@ -94,7 +73,10 @@ type_czech.check_type(arguments, ['Date', 'String'])    // two values
       <a title="17-Variadic-Functions.html.html" href="https://jsfiddle.net/steen_hansen/hrvucjzm/?17-Variadic-Functions.html" target="_blank">17</a>
   
 
-    
+
+
+
+
       <a title="18-Class-Type-Checks.html" href="https://jsfiddle.net/steen_hansen/063wLqfs/?18-Class-Type-Checks" target="_blank">18</a>
       
       <a title="19-Lone-Empty-Param-and-Result.html" href="https://jsfiddle.net/steen_hansen/x8h6dvj5/?19-Lone-Empty-Param-and-Result" target="_blank">19</a>
@@ -133,8 +115,12 @@ type_czech.check_type(arguments, ['Date', 'String'])    // two values
       
       <a title="36-Start-and-Stop.html" href="https://jsfiddle.net/steen_hansen/f19s52xr/?36-Start-and-Stop" target="_blank">36</a>
       
-      <a title="37-Readme-Example-Lambda.html" href="https://jsfiddle.net/steen_hansen/cwfsubtv/?37-Readme-Example-Lambda" target="_blank">37</a>
+      <a title="37-Readme-Example-Arrow-Functions.html" href="https://jsfiddle.net/steen_hansen/cwfsubtv/?37-Readme-Example-Arrow-Functions" target="_blank">37</a>
 
+      
+    <a title="38-Every-Check.html" href="https://jsfiddle.net/steen_hansen/1umwvht5/?38-Every-Check" target="_blank">38</a>
+    
+    <a title="39-Prescribed-Use.html" href="https://jsfiddle.net/steen_hansen/ta7fdnrw/?39-Prescribed-Use" target="_blank">39</a>
 
       &nbsp;&nbsp;
   
@@ -181,7 +167,7 @@ type_czech.check_type(arguments, ['Date', 'String'])    // two values
   
     </div>
   
-
+  
 
 </div>
 
@@ -190,23 +176,49 @@ type_czech.check_type(arguments, ['Date', 'String'])    // two values
 
 
 
-<!--            -------------------TYPE 1-----------------------       -->
 
 
 
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@44d744188ace09cc8a11412460915536dccf4691/web-resources/consolelog.js">
+
+
+
+
+<!--            ---------------TYPE 1---------------------------       -->
+
+
+<script src="../web-resources/consolelog.js">
 </script>
 
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@44d744188ace09cc8a11412460915536dccf4691/web-resources/TypeCzech.min.js">
+
+<script src="../TypeCzech.js">
 </script>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@44d744188ace09cc8a11412460915536dccf4691/web-resources/type-czech.css">
+
+
+<link rel="stylesheet" href="../web-resources/type-czech.css">
 <style>
 </style>
 
 
 
-<!--            -----------------TYPE 1-------------------------       -->
+
+<!--            ---------------TYPE 1---------------------------       -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -220,71 +232,63 @@ type_czech.check_type(arguments, ['Date', 'String'])    // two values
 
 
 <script id="check-code">
+class FirstName { 
+  constructor(f_name) { }
+  firstMethod() { }
+}
+
+class LastName extends FirstName{  
+  constructor(f_name, l_name) { super(f_name) }
+  lastMethod() { }
+}
+
+class FullName extends LastName {
+  constructor(salu, f_name, l_name) { super(f_name, l_name) }
+  fullMethod() { }
+}
+
 /**/  if (typeof TypeCzech === 'function')
 /**/    type_czech = TypeCzech('LOG-ERRORS')
 /**/  else
 /**/    type_czech = { link: (nop) => nop, is_active: false }
-/**/  PRE_exactly1Str = (typeof PRE_exactly1Str === 'undefined')
-/**/                    ? undefined : PRE_exactly1Str
-/**/  PRE_exactly2Strs = (typeof PRE_exactly2Strs === 'undefined')
-/**/                     ? undefined : PRE_exactly2Strs
+/**/
+/**/  LAST_INTERFACE = { firstMethod: 'Function',
+/**/                     lastMethod:'Function'}
 /**/  
-/**/  function PRE_exactly1Str(string_1){
-/**/    num_args = arguments.length
-/**/    if (num_args !== 1) return `PRE, not 1 but ${num_args} params`
-/**/    ONE_STRING_SPEC = 'String'
-/**/    return type_czech.check_type(arguments, ONE_STRING_SPEC)
-/**/  }
-/**/  
-/**/  function PRE_exactly2Strs(string_1, string_2){
-/**/     TWO_STRINGS_SPEC = ['String', 'String']
-/**/     return type_czech.check_type(arguments, TWO_STRINGS_SPEC)
-/**/  }
-/**/  
-/**/  exactly1Str = type_czech.link(exactly1Str, PRE_exactly1Str)
-/**/  exactly2Strs = type_czech.link(exactly2Strs, PRE_exactly2Strs)
+/**/  FULL_INTERFACE = { firstMethod: 'Function',
+/**/                     lastMethod:'Function',
+/**/                     fullMethod: 'Function'}
 
-function exactly1Str(one_string) {
-  return one_string
-}
+william_gibson = new LastName('William', 'Gibson')
 
-function exactly2Strs(string_1, string_2) {
-  return [string_1, string_2]
-}
+alan_kay = new FullName('Mr', 'Alan', 'Kay')
 
-log('EXPECT_1_GOT_1 : ', exactly1Str('One'))
+log('William Gibson has firstMethod() and lastMethod()')
+last_ok = type_czech.check_interface(william_gibson, LAST_INTERFACE)
+linesConsole(1)
+log('Interface Issue : ', last_ok)
 
 linesConsole(2)
 
-expect_1_got_2 =  exactly1Str('1-one', '2-two') 
+log('Mr Alan Kay has firstMethod(), lastMethod(), and fullMethod()')
+full_ok = type_czech.check_interface(alan_kay, FULL_INTERFACE)
 linesConsole(1)
-log('EXPECT_1_GOT_2 : ')
-log(expect_1_got_2)
-
-
-
-linesConsole(5)
-
-
-
-expect_2_got_1 =  exactly2Strs('one-1') 
-linesConsole(1)
-log('EXPECT_2_GOT_1 : ')
-log(expect_2_got_1)
+log('Interface Issue : ',full_ok)
 
 linesConsole(2)
 
-expect_2_got_2 =  exactly2Strs('ONE', 'TWO') 
-log('EXPECT_2_GOT_2 : ', expect_2_got_2)
-
+log('William Gibson missing FullMethod()')
+full_interface_issue = type_czech.check_interface(william_gibson, FULL_INTERFACE)
 linesConsole(1)
-
-expect_2_got_3 =  exactly2Strs('one', 'two', 'three') 
-log('EXPECT_2_GOT_3 : ', expect_2_got_3)
+log(full_interface_issue[1])
 </script>
 
 
 
+
+
+
+ 
 
 
 
@@ -294,15 +298,11 @@ log('EXPECT_2_GOT_3 : ', expect_2_got_3)
 
   jsToDiv('js-code', "check-code");
 
-  fromToBoldText(831, 850, 'code', 1)  //  ['String', 'String']
-  fromToBoldText(1363, 1383, 'code', 1)  //  exactly2Strs('one-1') 
+   fromToBoldText(687, 708, 'code', 1)  //  FULL_INTERFACE = { firstMethod: 'Function',
 
-  fromToBoldText(404, 411, 'log', 1)    //'String'
-  fromToBoldText(438, 444, 'log', 1)    //'one-1'
-  fromToBoldText(492, 512, 'log', 1)    //PE '['String','String']'
+   fromToBoldText(712, 740, 'code', 1)  // a_last_name = new LastName('William', 'Gibson')
+   fromToBoldText(1232, 1261, 'code', 1)  // a_last_name, FULL_INTERFACE)
 
-
-
-
+   fromToBoldText(209, 218, 'log', 1)    //William Gibson missing FullMethod()
 
 </script>

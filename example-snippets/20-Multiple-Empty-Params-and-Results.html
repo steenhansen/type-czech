@@ -115,9 +115,11 @@ Null and undefined values are also considered to be empty with no value.
     
     <a title="36-Start-and-Stop.html" href="../example-snippets/36-Start-and-Stop.html">36</a>
     
-    <a title="37-Readme-Example-Lambda.html" href="../example-snippets/37-Readme-Example-Lambda.html">37</a>
+    <a title="37-Readme-Example-Arrow-Functions.html" href="../example-snippets/37-Readme-Example-Arrow-Functions.html">37</a>
 
+    <a title="38-Every-Check.html" href="../example-snippets/38-Every-Check.html">38</a>
 
+    <a title="39-Prescribed-Use.html" href="../example-snippets/39-Prescribed-Use.html">39</a>
 
       &nbsp;&nbsp;
 
@@ -217,20 +219,22 @@ Null and undefined values are also considered to be empty with no value.
 /**/  else
 /**/    type_czech = { link: (nop) => nop, is_active: false }
 /**/
-/**/  PRE_Person=(typeof PRE_Person === 'undefined') ?undefined:PRE_Person
-/**/  POST_Person=(typeof POST_Person==='undefined')?undefined:POST_Person
+/**/  PRE_check_Person = (typeof PRE_check_Person === 'undefined') 
+/**/                     ? undefined : PRE_check_Person
+/**/  POST_check_Person = (typeof POST_check_Person === 'undefined')
+/**/                      ? undefined : POST_check_Person
 /**/
-/**/  PRE_Person_EMPTYS = ['EMPTY-ERROR', 'EMPTY-OK', 'EMPTY-ERROR']
-/**/  POST_Person_EMPTYS = {l_name:'EMPTY-ERROR', b_date:'EMPTY-OK'}
+/**/  PRE_check_Person_EMPTYS = ['EMPTY-ERROR', 'EMPTY-OK', 'EMPTY-ERROR']
+/**/  POST_check_Person_EMPTYS = {l_name:'EMPTY-ERROR', b_date:'EMPTY-OK'}
 /**/
-/**/  function PRE_Person(f_name, l_name, b_date){
-/**/    return type_czech.check_empty(arguments, PRE_Person_EMPTYS)
+/**/  function PRE_check_Person(f_name, l_name, b_date){
+/**/    return type_czech.check_empty(arguments, PRE_check_Person_EMPTYS)
 /**/  }
-/**/  function POST_Person(person_obj){
-/**/    return type_czech.check_empty(arguments, POST_Person_EMPTYS)
+/**/  function POST_check_Person(person_obj){
+/**/    return type_czech.check_empty(arguments, POST_check_Person_EMPTYS)
 /**/  }
 /**/
-/**/  Person = type_czech.link(Person, PRE_Person, POST_Person)
+/**/  Person = type_czech.link(Person, PRE_check_Person, POST_check_Person)
 
 function Person(f_name, l_name, b_date){
   person_obj = {l_name, b_date}
@@ -263,12 +267,21 @@ log(sting)
   
   jsToDiv('js-code', "check-code");
 
-  
-  fromToBoldText(487, 506, 'code', 1)  // {l_name:'EMPTY-ERROR'
-  fromToBoldText(1099, 1100, 'code', 1)  // ''
+  fromToBoldText(1039, 1079, 'code', 3)  // 'Charles', 'Windsor', new Date(1948,0,14)
+  fromToBoldText(1, 51, 'log', 3)   // { "l_name": "Windsor", "b_date": "1948-01-14" }
 
-  fromToBoldText(667, 675, 'log', 1)    //{'l_name':''
-  fromToBoldText(726, 747, 'log', 1)    //{'l_name':'EMPTY-ERROR
+  
+
+  fromToBoldText(1131, 1142, 'code', 1)  // new Date('')
+  fromToBoldText(218, 223, 'log', 1)   // 'Date'
+  fromToBoldText(270, 273, 'log', 1)   // null
+  fromToBoldText(327, 339, 'log', 1)   //,"EMPTY-ERROR"]
+
+
+  fromToBoldText(1183, 1184, 'code', 2)  // new Date('')
+  fromToBoldText(691, 699, 'log', 2)   // {l_name:""
+  fromToBoldText(746, 765, 'log', 2)   // {l_name:"EMPTY-ERROR",
+
 
 
 </script>

@@ -1,31 +1,11 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>13-Class-Interface</title>
-
+<title>17-Variadic-Functions</title>
 
 <link rel="stylesheet"
   href="https://fonts.googleapis.com/css?family=Inconsolata">
-
-
-<div id='js-div' style="width:55%">
- 
+  
+<div id='js-div' style="width:45%;">
   <div id='js-code'>the javascript</div>
-</div>
-
-
-<div id="the-explanation" style="width:45%">
-  <div class='an-explantion'>13 - Class Interface</div>
-  <div id='explanation-text'>
-    <br>
-     Checking interfaces with inherited classes.
-    <br><br>
-    
-  </div>
-
-  <div id="console-log"  >
-    <div class='a-title'>Console Output</div>
-    <div id='log-text'></div>
-    <br>
-  </div>
 
   <br><br>
   <div id='js-fiddles'>
@@ -48,7 +28,8 @@
       
       <a title="08-Mutated-Recursive-Function-Parameters.html" href="https://jsfiddle.net/steen_hansen/3pv5qwx8/?08-Mutated-Recursive-Function-Parameters" target="_blank">08</a>
       
- 
+
+
 
 
     
@@ -72,7 +53,10 @@
       <a title="17-Variadic-Functions.html.html" href="https://jsfiddle.net/steen_hansen/hrvucjzm/?17-Variadic-Functions.html" target="_blank">17</a>
   
 
-      
+
+
+
+
       <a title="18-Class-Type-Checks.html" href="https://jsfiddle.net/steen_hansen/063wLqfs/?18-Class-Type-Checks" target="_blank">18</a>
       
       <a title="19-Lone-Empty-Param-and-Result.html" href="https://jsfiddle.net/steen_hansen/x8h6dvj5/?19-Lone-Empty-Param-and-Result" target="_blank">19</a>
@@ -111,9 +95,12 @@
       
       <a title="36-Start-and-Stop.html" href="https://jsfiddle.net/steen_hansen/f19s52xr/?36-Start-and-Stop" target="_blank">36</a>
       
-      <a title="37-Readme-Example-Lambda.html" href="https://jsfiddle.net/steen_hansen/cwfsubtv/?37-Readme-Example-Lambda" target="_blank">37</a>
-  
+      <a title="37-Readme-Example-Arrow-Functions.html" href="https://jsfiddle.net/steen_hansen/cwfsubtv/?37-Readme-Example-Arrow-Functions" target="_blank">37</a>
 
+      
+    <a title="38-Every-Check.html" href="https://jsfiddle.net/steen_hansen/1umwvht5/?38-Every-Check" target="_blank">38</a>
+    
+    <a title="39-Prescribed-Use.html" href="https://jsfiddle.net/steen_hansen/ta7fdnrw/?39-Prescribed-Use" target="_blank">39</a>
 
       &nbsp;&nbsp;
   
@@ -160,53 +147,79 @@
   
     </div>
   
+  
+
+</div>
+
+
+<div id="the-explanation" style="width:55%">
+  <div class='an-explantion'>17 &mdash; Variadic Functions</div>
+  <div id='explanation-text'>
+    <br>
+    Variadic functions with one type can easily be checked by TypeCzech without
+    resorting to checking multiple different possible signature types as 
+    the below example does.
+    
+
+    <br>
+<pre>
+function PRE_check_oneToThreeStrings() {
+  if (!type_czech.check_type(arguments, 'String')) return ''
+  if (!type_czech.check_type(arguments, ['String', 'String'])) return ''
+  if (!type_czech.check_type(arguments, ['String', 'String', 'String'])) return ''
+  return 'Error, not ONE to THREE strings but - ' + arguments.length
+}
+oneToThreeStrings = type_czech.link(oneToThreeStrings, PRE_check_oneToThreeStrings)
+function oneToThreeStrings() {}
+
+oneToThreeStrings()
+oneToThreeStrings('s-1', 's-2')
+oneToThreeStrings('s-1', 's-2', 's-3', 's-4')
+</pre>
+Here check_variadicType() accomplishes the same task as above.
+<pre>
+function PRE_check_oneToThreeStrings() {
+  if (arguments.length > 3) 
+    return 'Error, not ONE to THREE strings but - ' + arguments.length
+  return type_czech.check_variadicType(arguments, ['String'])
+}
+</pre>
+  </div>
+
+
+<div id="console-log">
+  <div class='a-title'>Console Output</div>
+  <div id='log-text'></div>
+  <br>
+</div>
 
 </div>
 
 
 
 
+<!--            ------------------TYPE 1------------------------       -->
 
 
-
-
-
-
-
-
-
-<!--            ------------------------TYPE 1------------------       -->
-
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@44d744188ace09cc8a11412460915536dccf4691/web-resources/consolelog.js">
+<script src="../web-resources/consolelog.js">
 </script>
 
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@44d744188ace09cc8a11412460915536dccf4691/web-resources/TypeCzech.min.js">
+
+<script src="../TypeCzech.js">
 </script>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@44d744188ace09cc8a11412460915536dccf4691/web-resources/type-czech.css">
+
+
+<link rel="stylesheet" href="../web-resources/type-czech.css">
 <style>
 </style>
 
 
 
-<!--            ---------------TYPE 1---------------------------       -->
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<!--            -------------------TYPE 1-----------------------       -->
 
 
 
@@ -217,59 +230,59 @@
 </script>
 
 
-
 <script id="check-code">
-class FirstName { 
-  constructor(f_name) { }
-  firstMethod() { }
+/**/  //  <script src="../TypeCzech.js">
+
+function variadicFunc () {
+  console.log([...arguments].join())
 }
 
-class LastName extends FirstName{  
-  constructor(f_name, l_name) { super(f_name) }
-  lastMethod() { }
-}
-
-class FullName extends LastName {
-  constructor(salu, f_name, l_name) { super(f_name, l_name) }
-  fullMethod() { }
-}
-
-/**/  if (typeof TypeCzech === 'function')
-/**/    type_czech = TypeCzech('LOG-ERRORS')
-/**/  else
-/**/    type_czech = { link: (nop) => nop, is_active: false }
+/**/  type_czech = TypeCzech('LOG-ERRORS')
+/**/  //type_czech = TypeCzech('NO-CHECKING')
 /**/
-/**/  LAST_INTERFACE = { firstMethod: 'Function',
-/**/                     lastMethod:'Function'}
-/**/  
-/**/  FULL_INTERFACE = { firstMethod: 'Function',
-/**/                     lastMethod:'Function',
-/**/                     fullMethod: 'Function'}
+/**/  function PRE_check_variadicFunc() {
+/**/    return type_czech.check_variadicType(arguments, ['Number'])
+/**/  }
+/**/
+/**/  variadicFunc = type_czech.link(variadicFunc, 
+/**/                                       PRE_check_variadicFunc)
 
-a_last_name = new LastName('William', 'Gibson')
+variadicFunc(0,1,2)
 
-a_full_name = new FullName('Mr', 'Alan', 'Kay')
-
-log('William Gibson has firstMethod() and lastMethod()')
-last_ok = type_czech.check_interface(a_last_name, LAST_INTERFACE)
-linesConsole(1)
-log('Interface Issue : ', last_ok)
 
 linesConsole(2)
 
-log('Mr Alan Kay has firstMethod(), lastMethod(), and fullMethod()')
-full_ok = type_czech.check_interface(a_full_name, FULL_INTERFACE)
-linesConsole(1)
-log('Interface Issue : ',full_ok)
+
+
+
+
+variadicFunc(0,1,2,'Three',4,5,6)
 
 linesConsole(2)
 
-log('William Gibson missing FullMethod()')
-full_interface_issue = type_czech.check_interface(a_last_name, FULL_INTERFACE)
-linesConsole(1)
-log(full_interface_issue)
 
 
+
+function variadicArrs () {
+  console.log('[' + [...arguments].join(']  [') + ']')
+}
+
+/**/
+/**/  function PRE_check_variadicArrs() {
+/**/    return type_czech.check_variadicType(arguments, [['Number']])
+/**/  }
+/**/
+/**/  variadicArrs = type_czech.link(variadicArrs,
+/**/                                         PRE_check_variadicArrs)
+
+variadicArrs( [1], [1,2], [1,2,3], [1,2,3,4] )
+
+linesConsole(3)
+
+
+
+
+variadicArrs( [1], [1,2], [1,'two',3], [1,2,3,4] )
 </script>
 
 
@@ -277,22 +290,40 @@ log(full_interface_issue)
 
 
 
- 
-
 
 
 
 
 <script>
 
-  jsToDiv('js-code', "check-code");
+jsToDiv('js-code', "check-code");
+
+fromToBoldText(491, 497, 'code', 1)  //  variadicFunc(0,1,2,'Three',4,5,6)o
+
+fromToBoldText(314, 320, 'log', 1)    // [0,1,2,"Three",4,5,6]
+fromToBoldText(355, 362, 'log', 1)    //["Number"]
+
+fromToBoldText(429, 433, 'log', 1)    // 0,1,2,Three,4,5,6
+
+///////////////////////
 
 
-  fromToBoldText(592, 605, 'code', 1)  // FULL_INTERFACE 
+fromToBoldText(860, 889, 'code', 3)  // variadicArrs( [1], [1,2], [1,2,3], [1,2,3,4])
 
-fromToBoldText(752, 780, 'code', 1)  // a_last_name = new LastName('William', 'Gibson')
-fromToBoldText(1254, 1280, 'code', 1)  // a_last_name, FULL_INTERFACE)
+fromToBoldText(440, 469, 'log', 3)    // [1] [1,2] [1,2,3] [1,2,3,4]
 
-fromToBoldText(151, 185, 'log', 1)    //William Gibson missing FullMethod()
+///////////////////////
+
+fromToBoldText(926, 930, 'code', 2)  // [1,'two',3]
+
+fromToBoldText(752, 756, 'log', 2)    // [1,"two",3] 
+fromToBoldText(799, 806, 'log', 2)    // [["Number"]]
+ 
+fromToBoldText(883, 885, 'log', 2)    // [1] [1,2] [1,two,3] [1,2,3,4]
+
+
+
+
+
 
 </script>

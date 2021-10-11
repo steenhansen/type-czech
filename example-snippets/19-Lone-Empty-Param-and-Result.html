@@ -90,9 +90,11 @@
             
             <a title="36-Start-and-Stop.html" href="../example-snippets/36-Start-and-Stop.html">36</a>
             
-            <a title="37-Readme-Example-Lambda.html" href="../example-snippets/37-Readme-Example-Lambda.html">37</a>
+            <a title="37-Readme-Example-Arrow-Functions.html" href="../example-snippets/37-Readme-Example-Arrow-Functions.html">37</a>
         
+            <a title="38-Every-Check.html" href="../example-snippets/38-Every-Check.html">38</a>
 
+            <a title="39-Prescribed-Use.html" href="../example-snippets/39-Prescribed-Use.html">39</a>
 
             &nbsp;&nbsp;
         
@@ -195,19 +197,19 @@
 
 
 <div>
-         <ul>
-              <li style="float:left; width:20%;list-style: none;"><b>Empty Categories</b></li>
-              <li style="float:left; width:20%;">'<b>EMPTY-OK</b>'<br>
-                Valueless variable<br>is ok</li>
-              <li style="float:left; width:20%;">'<b>EMPTY-ER</b>'<br>
-                Valueless variable <br>is an Error</li>
+         <ul style="margin-bottom:6px">
+              <li style="float:left; width:18%;list-style: none;"><b>Empty Categories</b></li>
+              <li style="float:left; width:22%;">'<b>EMPTY-OK</b>'<br>
+                Valueless variable is ok</li>
+              <li style="float:left; width:23%;">'<b>EMPTY-ER</b>'&nbsp;Valueless<br>
+                 variable is an Error</li>
               <li>'<b>EMPTY-IGNORE</b>'&nbsp;&nbsp;&nbsp;Functions, Symbols, BigInts,
                 </li>
                 <span style='float:right; padding-right:8px'>and Booleans cannot be empty</span>
         </ul>
 </div>
 
-<br><br>
+<br>
 
 
 
@@ -280,18 +282,19 @@
 /**/    type_czech = { link: (nop) => nop, 
 /**/                   is_active: false }
 /**/
-/**/  if (typeof PRE_hasValue === 'undefined')
-/**/    PRE_hasValue = undefined
+/**/  UnDefined = 'undefined'
+/**/  if (typeof PRE_check_hasValue===UnDefined)
+/**/    PRE_check_hasValue = undefined
 /**/  else
-/**/    PRE_hasValue = PRE_hasValue
+/**/    PRE_check_hasValue = PRE_check_hasValue
 /**/  
-/**/  function PRE_hasValue(a_variable){
+/**/  function PRE_check_hasValue(a_variable){
 /**/    return type_czech.check_empty(
 /**/                   arguments, 'EMPTY-ERROR')
 /**/  }
 /**/
 /**/  hasValue = type_czech.link(hasValue,
-/**/                              PRE_hasValue)
+/**/                         PRE_check_hasValue)
 
 function hasValue(a_variable) {
   return a_variable
@@ -310,7 +313,6 @@ hasValue({})
 hasValue(NaN)
 
 hasValue([])
-
 </script>
 
 
@@ -325,19 +327,18 @@ hasValue([])
 
   jsToDiv('js-code', "check-code");
 
-  fromToBoldText(628, 636, 'code', 3)  // ['is-ok'])
+  fromToBoldText(685, 693, 'code', 3)  // ['is-ok'])
   fromToBoldText(1, 13, 'log', 3)  // [ "is-ok" ]
 
 
-  fromToBoldText(664, 675, 'code', 1)    //new Date('')
-  fromToBoldText(414, 427, 'log', 1)    // 'Invalid Date'
-  fromToBoldText(534, 537, 'log', 1)    // null
-  fromToBoldText(564, 574, 'log', 1)    //EMPTY-ERROR
+  fromToBoldText(721, 732, 'code', 1)    //new Date('')
+  fromToBoldText(520, 525, 'log', 1)    // 'Invalid Date'
+  fromToBoldText(552, 555, 'log', 1)    // null
 
-  fromToBoldText(702, 704, 'code', 2)    //NaN
-  fromToBoldText(1039, 1043, 'log', 2)    //'NaN'
-  fromToBoldText(1152, 1154, 'log', 2)    //NaN
-  fromToBoldText(1181, 1191, 'log', 2)    //EMPTY-ERROR
+
+  fromToBoldText(759, 761, 'code', 2)    //NaN
+  fromToBoldText(1160, 1167, 'log', 2)    //'NaN'
+  fromToBoldText(1194, 1196, 'log', 2)    //NaN
 
 
 

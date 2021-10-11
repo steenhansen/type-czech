@@ -61,7 +61,9 @@ li{
   padding-top:6px;
 } 
 
-
+.blue-explanation{ color: rgb(0, 0, 255); font-weight: bold; }
+.red-explanation{ color: rgb(255, 0, 0); font-weight: bold; }
+.green-explanation{ color: rgb(0, 255, 0); font-weight: bold; }
 
 .font-1{ font-family:arial}
 .text-2{ font-family: 'Inconsolata', monospace;   }
@@ -96,3 +98,21 @@ pre{
 span{
   overflow-wrap:anywhere;
 }
+
+.purp-similar {
+  color:#800080;
+  font-weight: bold;
+}
+
+table{
+  table-layout: fixed;
+  width: 570px
+}
+
+table, th, td {
+  border: 1px solid grey;
+  border-collapse: collapse;
+  font-weight: normal;
+  /* overflow: hidden; */
+}
+

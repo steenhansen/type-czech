@@ -67,4 +67,4 @@ is_active
 
 TYPE_CZECH_EVENTS
         
-        CZECH_ERROR_INDENT
+        

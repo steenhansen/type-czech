@@ -5,12 +5,12 @@
   href="https://fonts.googleapis.com/css?family=Inconsolata">
 
 
-<div id='js-div' style="width:54%">
+<div id='js-div' style="width: 57%">
   <div id='js-code'>the javascript</div>
 </div>
 
 
-<div id="the-explanation" style="width:46%">
+<div id="the-explanation" style="width:43%" class='code-scroll'>
   <div class='an-explantion'>07 &mdash; Mutated Function Parameters</div>
   <div id='explanation-text'>
     <br>
@@ -22,7 +22,7 @@
     Checking for variable mutation is accomplished by first creating a 
     snapshot copy of the object or array in the PRE checking function with
     TypeCzech.mutateSnapshot(). In the example to the left, the function name 
-    of 'PRE_Person' is recorded, along with the variable name of 'a_person',
+    of 'PRE_check_Person' is recorded, along with the variable name of 'a_person',
     followed finally with the variable itself.
     
     <br><br>
@@ -125,9 +125,11 @@
       
       <a title="36-Start-and-Stop.html" href="../example-snippets/36-Start-and-Stop.html">36</a>
       
-      <a title="37-Readme-Example-Lambda.html" href="../example-snippets/37-Readme-Example-Lambda.html">37</a>
+      <a title="37-Readme-Example-Arrow-Functions.html" href="../example-snippets/37-Readme-Example-Arrow-Functions.html">37</a>
   
+      <a title="38-Every-Check.html" href="../example-snippets/38-Every-Check.html">38</a>
 
+      <a title="39-Prescribed-Use.html" href="../example-snippets/39-Prescribed-Use.html">39</a>
 
       &nbsp;&nbsp;
   
@@ -236,36 +238,27 @@
 /**/  else
 /**/    type_czech = { link: (nop) => nop, is_active: false }
 /**/  
-/**/  PRE_Person = (typeof PRE_Person === 'undefined')
-/**/                  ? undefined : PRE_Person
+/**/  PRE_check_Person = (typeof PRE_check_Person === 'undefined')
+/**/                  ? undefined : PRE_check_Person
 /**/
-/**/  POST_Person = (typeof POST_Person === 'undefined')
-/**/                   ? undefined:POST_Person
+/**/  POST_check_Person = (typeof POST_check_Person === 'undefined')
+/**/                   ? undefined:POST_check_Person
 /**/  
-/**/  function PRE_Person(a_person){
-/**/    type_czech.mutateSnapshot('PRE_Person', 'a_person', a_person)
+/**/  function PRE_check_Person(a_person){
+/**/    type_czech.mutateSnapshot('PRE_check_Person', 'a_person', a_person)
 /**/  }
 /**/  
-/**/  function POST_Person(){
-/**/    poss_mutation_err = type_czech.check_mutated('PRE_Person', 'a_person')
+/**/  function POST_check_Person(){
+/**/    poss_mutation_err = type_czech.check_mutated('PRE_check_Person', 'a_person')
 /**/    return poss_mutation_err
 /**/  }
 /**/  
-/**/  PersonArray  = type_czech.link(PersonArray, PRE_Person, POST_Person) 
-/**/  PersonObject = type_czech.link(PersonObject, PRE_Person, POST_Person) 
+/**/  PersonArray  = type_czech.link(PersonArray, PRE_check_Person, POST_check_Person) 
 
 function PersonArray(name_array){
   let [f_name, l_name] =name_array
   if (!l_name){
     name_array.push('array-last-name')
-  }
-  return `${f_name} ${l_name}`
-}
-
-function PersonObject(name_object){
-  let {f_name, l_name} =name_object
-  if (!l_name){
-    name_object.l_name = 'object-last-name'
   }
   return `${f_name} ${l_name}`
 }
@@ -279,15 +272,23 @@ catherine = PersonArray(['Catherine'])
 
 linesConsole(2)
 
+
+/**/  PersonObject =type_czech.link(PersonObject, PRE_check_Person, POST_check_Person) 
+
+function PersonObject(name_object){
+  let {f_name, l_name} =name_object
+  if (!l_name){
+    name_object.l_name = 'object-last-name'
+  }
+  return `${f_name} ${l_name}`
+}
+
 atahualpa = PersonObject({f_name:'Atahualpa'})
 
 linesConsole(2)
 
-
 louis = PersonObject({f_name:'Louis', l_name:'XIV'})
 log(louis)
-
-
 </script>
 
 
@@ -307,21 +308,26 @@ log(louis)
    jsToDiv('js-code', "check-code");
 
 
-   fromToBoldText(1176, 1195, 'code', 3)  //['Cleopatra', 'VII']
-  fromToBoldText(1, 13, 'log', 3)    // Cleopatra VII
+  // fromToBoldText(1261, 1278, 'code', 3)  //['Cleopatra', 'VII']
+  //fromToBoldText(1, 13, 'log', 3)    // Cleopatra VII
 
 
-  fromToBoldText(1238, 1250, 'code', 1)  // ['Catherine']
-  fromToBoldText(130, 160, 'log', 1)     // ['Catherine','array-last-name']
+  fromToBoldText(1063, 1075, 'code', 1)  // ['Catherine']
+  fromToBoldText(920, 936, 'code', 1)  // name_array.push('array-last-name')
+
+  fromToBoldText(155, 167, 'log', 1)     // ['Catherine']
+  fromToBoldText(182, 212, 'log', 1)     // ['Catherine','array-last-name']
 
  
-  fromToBoldText(1279, 1298, 'code', 2)  // {f_name:'Atahualpa'}
-  fromToBoldText(394, 443, 'log', 2)    //  {'f_name':'Atahualpa','l_name':'object-last-name'}
+   fromToBoldText(1364, 1383, 'code', 2)  // {f_name:'Atahualpa'}
+   fromToBoldText(1282, 1299, 'code', 2)  //name_object.l_name = 'object-last-name'
+   fromToBoldText(646, 667, 'log', 2)    //  {'f_name':'Atahualpa','l_name':'object-last-name'}
+   fromToBoldText(682, 731, 'log', 2)    //  {'f_name':'Atahualpa','l_name':'object-last-name'}
 
 
 
   
-   fromToBoldText(1324, 1353, 'code', 3)  // {f_name:'Louis', l_name:'XIV'}
-   fromToBoldText(571, 579, 'log', 3)     // Louis XIV
+  //  fromToBoldText(1324, 1353, 'code', 3)  // {f_name:'Louis', l_name:'XIV'}
+  //  fromToBoldText(571, 579, 'log', 3)     // Louis XIV
 
 </script>

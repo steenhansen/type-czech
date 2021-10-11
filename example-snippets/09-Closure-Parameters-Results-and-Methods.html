@@ -17,7 +17,7 @@
     <br>
 
 Closures with multiple PRE and POST checking functions must be wrapped up in 
-objects like below for everything to be linked up.
+objects like below for everything to be linked up in an orderly fashion.
 <pre>
 function PRE_check_yourClosure(init_closure){ // before closure }
 
@@ -27,22 +27,22 @@ function PRE_check_yourFunction(function_input){ // before function }
 
 function POST_check_yourFunction(function_output){ // after function }
 
-yourClosure_PRE_checks = {yourClosure:PRE_check_yourClosure,
-                          yourFunction:PRE_check_yourFunction}
+yourClosure_PRE_check_checks = {yourClosure:PRE_check_yourClosure,
+                                yourFunction:PRE_check_yourFunction}
 
-yourClosure_POST_checks = {yourClosure:POST_check_yourClosure,
-                           yourFunction:POST_check_yourFunction}
+yourClosure_POST_check_checks = {yourClosure:POST_check_yourClosure,
+                                 yourFunction:POST_check_yourFunction}
 
 yourClosure = type_czech.link(yourClosure, 
-                               yourClosure_PRE_checks,
-                               yourClosure_POST_checks)
+                              yourClosure_PRE_check_checks,
+                              yourClosure_POST_check_checks)
 
 function yourClosure(init_closure){
   yourFunction = function(function_input){ 
     return function_output
    }
 
-  result_object = yourFunction
+  result_closure = yourFunction
   return result_closure
 }
 </pre>
@@ -141,9 +141,11 @@ function yourClosure(init_closure){
       
       <a title="36-Start-and-Stop.html" href="../example-snippets/36-Start-and-Stop.html">36</a>
       
-      <a title="37-Readme-Example-Lambda.html" href="../example-snippets/37-Readme-Example-Lambda.html">37</a>
+      <a title="37-Readme-Example-Arrow-Functions.html" href="../example-snippets/37-Readme-Example-Arrow-Functions.html">37</a>
   
+      <a title="38-Every-Check.html" href="../example-snippets/38-Every-Check.html">38</a>
 
+      <a title="39-Prescribed-Use.html" href="../example-snippets/39-Prescribed-Use.html">39</a>
 
       &nbsp;&nbsp;
   
@@ -233,29 +235,33 @@ function yourClosure(init_closure){
 /**/  else
 /**/    type_czech = { link: (nop) => nop, is_active: false }
 /**/  
-/**/  PRE_Person  = (typeof PRE_Person === 'undefined')  ?undefined:PRE_Person
-/**/  PRE_show    = (typeof PRE_show === 'undefined')    ?undefined:PRE_show
-/**/  POST_Person = (typeof POST_Person === 'undefined') ?undefined:POST_Person
-/**/  POST_show   = (typeof POST_show === 'undefined')   ?undefined:POST_show
+/**/  PRE_check_Person  = (typeof PRE_check_Person === 'undefined')  
+/**/                      ? undefined : PRE_check_Person
+/**/  PRE_check_show    = (typeof PRE_check_show === 'undefined')    
+/**/                      ? undefined : PRE_check_show
+/**/  POST_check_Person = (typeof POST_check_Person === 'undefined') 
+/**/                      ? undefined : POST_check_Person
+/**/  POST_check_show   = (typeof POST_check_show === 'undefined')   
+/**/                      ? undefined : POST_check_show
 /**/
-/**/  function PRE_Person(person_name){
-/**/    log('PRE_Person :', person_name)
+/**/  function PRE_check_Person(person_name){
+/**/    log('PRE_check_Person :', person_name)
 /**/  }
 /**/  
-/**/  function PRE_show(born_year){
-/**/    log(NL+'PRE_show :', born_year)
+/**/  function PRE_check_show(born_year){
+/**/    log(NL+'PRE_check_show :', born_year)
 /**/  }
 /**/  
-/**/  function POST_Person(person_object){
-/**/    log(NL2+'POST_Person :', person_object)
+/**/  function POST_check_Person(person_object){
+/**/    log(NL2+'POST_check_Person :', person_object)
 /**/  }
 /**/  
-/**/  function POST_show(name_year){
-/**/    log(NL2+'POST_show :', name_year)
+/**/  function POST_check_show(name_year){
+/**/    log(NL2+'POST_check_show :', name_year)
 /**/  }
 /**/  
-/**/  Person_PREs = {Person:PRE_Person, show:PRE_show}
-/**/  Person_POSTs = {Person:POST_Person, show:POST_show}
+/**/  Person_PREs = {Person:PRE_check_Person, show:PRE_check_show}
+/**/  Person_POSTs = {Person:POST_check_Person, show:POST_check_show}
 /**/  
 /**/  Person = type_czech.link(Person, Person_PREs, Person_POSTs)
 
@@ -288,20 +294,15 @@ issac_newton.show(1642)
 
   jsToDiv('js-code', "check-code");
   
-   fromToBoldText(704, 711, 'code', 1)  // PRE_show
-   fromToBoldText(903, 911, 'code', 2)  // POST_show 
-  
-   fromToBoldText(1203, 1208, 'code', 3)  //  show =
-    
-   fromToBoldText(1364, 1367, 'code', 3)  //  {show}
-   fromToBoldText(1447,1450, 'code', 3)  //  .show()
+   fromToBoldText(739, 756, 'code', 1)  // PRE_check_Person :
 
+   fromToBoldText(957, 975, 'code', 2)  // POST_check_Person :
 
+   fromToBoldText(1069, 1085, 'code', 3)  // POST_check_show :
 
-
-   fromToBoldText(123, 130, 'log', 1)    // PRE_show
-  fromToBoldText(139, 147, 'log', 3)    // in show()
-   fromToBoldText(173, 181, 'log', 2)    // POST_show 
+    fromToBoldText(1, 18, 'log', 1)    // PRE_check_Person :
+  fromToBoldText(64, 82, 'log', 2)    // POST_check_Person :
+   fromToBoldText(191, 207, 'log', 3)    // POST_check_show :
   
 
 

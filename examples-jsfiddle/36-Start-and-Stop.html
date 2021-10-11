@@ -10,7 +10,7 @@
 </div>
 
 <div id="the-explanation" style="width:45%">
-  <div class='an-explantion'>36 - Turn-On, Turn-Off, and Show TypeCzech Counting</div>
+  <div class='an-explantion'>36 &mdash; Turn-On, Turn-Off, and Show TypeCzech Counting</div>
   <div id='explanation-text'>
     <br>
 
@@ -27,7 +27,14 @@
       <li><b>type_czech.countTally()</b></li>
     </ul>
 
-    To get the errors/checks ratio use type_czech.failureRatio().
+
+<br>
+ Once TypeCzech is logging or throwing errors from checking functions, then the only
+way to stop the test exceptions or console logging is to is use the type_czech.countEnd()
+function. From then on all PRE and POST checking functions will not report errors, but will
+still consume
+a non-trivial amount of resources. So <b>never use type_czech.countEnd() in production</b>.
+<br><br>
 
   </div>
 
@@ -59,7 +66,8 @@
       
       <a title="08-Mutated-Recursive-Function-Parameters.html" href="https://jsfiddle.net/steen_hansen/3pv5qwx8/?08-Mutated-Recursive-Function-Parameters" target="_blank">08</a>
       
- 
+
+
 
 
     
@@ -83,7 +91,10 @@
       <a title="17-Variadic-Functions.html.html" href="https://jsfiddle.net/steen_hansen/hrvucjzm/?17-Variadic-Functions.html" target="_blank">17</a>
   
 
-      
+
+
+
+
       <a title="18-Class-Type-Checks.html" href="https://jsfiddle.net/steen_hansen/063wLqfs/?18-Class-Type-Checks" target="_blank">18</a>
       
       <a title="19-Lone-Empty-Param-and-Result.html" href="https://jsfiddle.net/steen_hansen/x8h6dvj5/?19-Lone-Empty-Param-and-Result" target="_blank">19</a>
@@ -122,9 +133,12 @@
       
       <a title="36-Start-and-Stop.html" href="https://jsfiddle.net/steen_hansen/f19s52xr/?36-Start-and-Stop" target="_blank">36</a>
       
-      <a title="37-Readme-Example-Lambda.html" href="https://jsfiddle.net/steen_hansen/cwfsubtv/?37-Readme-Example-Lambda" target="_blank">37</a>
-  
+      <a title="37-Readme-Example-Arrow-Functions.html" href="https://jsfiddle.net/steen_hansen/cwfsubtv/?37-Readme-Example-Arrow-Functions" target="_blank">37</a>
 
+      
+    <a title="38-Every-Check.html" href="https://jsfiddle.net/steen_hansen/1umwvht5/?38-Every-Check" target="_blank">38</a>
+    
+    <a title="39-Prescribed-Use.html" href="https://jsfiddle.net/steen_hansen/ta7fdnrw/?39-Prescribed-Use" target="_blank">39</a>
 
       &nbsp;&nbsp;
   
@@ -171,6 +185,7 @@
   
     </div>
   
+  
 
 
 
@@ -192,13 +207,16 @@
 
 
 
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@44d744188ace09cc8a11412460915536dccf4691/web-resources/consolelog.js">
+<script src="../web-resources/consolelog.js">
 </script>
 
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@44d744188ace09cc8a11412460915536dccf4691/web-resources/TypeCzech.min.js">
+
+<script src="../TypeCzech.js">
 </script>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@44d744188ace09cc8a11412460915536dccf4691/web-resources/type-czech.css">
+
+
+<link rel="stylesheet" href="../web-resources/type-czech.css">
 <style>
 </style>
 
@@ -207,7 +225,10 @@
 
 
 
-<!--            ---------------TYPE 1---------------------------       -->
+
+
+
+<!--            --------------TYPE 1----------------------------       -->
 
 
 
@@ -231,16 +252,17 @@
 /**/  else
 /**/    type_czech = { link: (nop) => nop, is_active: false }
 /**/  
-/**/  PRE_Person = (typeof PRE_Person === 'undefined') ? undefined : PRE_Person
-/**/  
-/**/  function PRE_Person(){
+/**/  function PRE_check_Person(){
 /**/    return type_czech.check_type(arguments, ['String', 'String'])
 /**/  }
 /**/  
-/**/  Person = type_czech.link(Person, PRE_Person)
+/**/  PRE_check_Person = (typeof PRE_check_Person === 'undefined')
+/**/                     ? undefined : PRE_check_Person
+/**/  
+/**/  Person = type_czech.link(Person, PRE_check_Person)
 
 function Person(f_name, l_name){
-  log('check_type name: ', `${f_name} ${l_name}`)
+  log('Person: ', `${f_name} ${l_name}`)
   return [f_name, l_name]
 }
 
@@ -252,9 +274,7 @@ try {
 
 linesConsole(2)
 
-
 /**/  type_czech.countBegin()
-
 
 Person('Prince', 'Charles')
 
@@ -269,19 +289,28 @@ Person('Elizabeth', 2)
 linesConsole(4)
 
 /**/  type_czech.countEnd()
-/**/  failure_ratio = type_czech.failureRatio()
-/**/  failure_tally = type_czech.countFails()
-/**/  check_tally = type_czech.countTally()
+/**/  failure_total = type_czech.countFails()
+/**/  check_total = type_czech.countTally()
 
-log( 'Counted errors/checks : ', failure_ratio)
+log( 'Counted errors : ',  failure_total)
+linesConsole(1)
+log( 'Counted checks : ', check_total)
+
+linesConsole(4)
+
+Person('Ghengis Khan - no exception')
 
 linesConsole(2)
 
-log( 'Counted errors : ',  failure_tally )
+Person('Temüjin - no exception')
 
-linesConsole(2)
+linesConsole(4)
 
-log( 'Counted checks : ', check_tally )
+/**/  failure_total = type_czech.countFails()
+/**/  check_total = type_czech.countTally()
+log( 'Counted errors : ',  failure_total)
+linesConsole(1)
+log( 'Counted checks : ', check_total)
 </script>
 
 
@@ -311,10 +340,30 @@ log( 'Counted checks : ', check_tally )
 <script>
   
 
-
   jsToDiv('js-code', "check-code");
 
-  fromToBoldText(1020, 1054, 'code', 1)  //sole.log( 'Counted errors : ',  failure_tally )
+  fromToBoldText(638, 646, 'code', 1)  //Exception
+  fromToBoldText(790, 798, 'code', 1)  //Exception
 
-  fromToBoldText(126, 143, 'log', 1)    //Counted errors : 1
+  fromToBoldText(1, 9, 'log', 1)    //Exception
+  fromToBoldText(61, 69, 'log', 1)    //Exception
+
+
+
+  fromToBoldText(1037, 1048, 'code', 2)  //Ghengis Khan - no exception
+  fromToBoldText(1076, 1082, 'code', 2)  //Temüjin - no exception
+
+  fromToBoldText(138, 149, 'log', 2)    //Ghengis Khan - no exception
+  fromToBoldText(185, 191, 'log', 2)    //Temüjin - no exception
+
+
+
+
+  fromToBoldText(93, 106, 'log', 3)  //Counted errors : 1
+  fromToBoldText(111, 124, 'log', 3)  //Counted checks : 2
+
+  fromToBoldText(218, 231, 'log', 3)    //Counted errors : 1
+  fromToBoldText(236, 249, 'log', 3)  //Counted checks : 2
+
+
 </script>

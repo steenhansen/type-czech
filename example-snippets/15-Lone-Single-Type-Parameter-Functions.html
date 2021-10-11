@@ -12,17 +12,14 @@
 </div>
 
 
-<div id="the-explanation" style="width:50%" class='code-scroll'>
+<div id="the-explanation" style="width:50%">
   <div class='an-explantion'>15 &mdash; Lone Single Type Parameter Functions</div>
   <div id='explanation-text'>
 <br>
     
-    To check for exactly one parameter, as with PRE_exactly1Str(), the arguments length has to 
-    be checked, otherwise the extra parameters are just ignored.
-
-    <br><br>
-    Undefined values are printed as 'un-defined' in error messages to distinguish the 
-    undefined value from the 'undefined' string which look the same when printed in the console. 
+    To check for exactly one parameter, as with PRE_check_exactly1Str(), the arguments length has to 
+    be checked, otherwise the extra parameters are just ignored. Note the parameter names 
+    string_1, string_2, and string_3 are place holders and the arguments object is used instead.
 
     <br><br>
     So when only checking a single lone parameter, leave off the array brackets - [ ], to verfiy
@@ -125,9 +122,11 @@ type_czech.check_type(arguments, ['Date', 'String'])    // two values
       
       <a title="36-Start-and-Stop.html" href="../example-snippets/36-Start-and-Stop.html">36</a>
       
-      <a title="37-Readme-Example-Lambda.html" href="../example-snippets/37-Readme-Example-Lambda.html">37</a>
+      <a title="37-Readme-Example-Arrow-Functions.html" href="../example-snippets/37-Readme-Example-Arrow-Functions.html">37</a>
   
+      <a title="38-Every-Check.html" href="../example-snippets/38-Every-Check.html">38</a>
 
+      <a title="39-Prescribed-Use.html" href="../example-snippets/39-Prescribed-Use.html">39</a>
 
       &nbsp;&nbsp;
   
@@ -222,25 +221,25 @@ type_czech.check_type(arguments, ['Date', 'String'])    // two values
 /**/    type_czech = TypeCzech('LOG-ERRORS')
 /**/  else
 /**/    type_czech = { link: (nop) => nop, is_active: false }
-/**/  PRE_exactly1Str = (typeof PRE_exactly1Str === 'undefined')
-/**/                    ? undefined : PRE_exactly1Str
-/**/  PRE_exactly2Strs = (typeof PRE_exactly2Strs === 'undefined')
-/**/                     ? undefined : PRE_exactly2Strs
+/**/  PRE_check_exactly1Str = (typeof PRE_check_exactly1Str === 'undefined')
+/**/                    ? undefined : PRE_check_exactly1Str
+/**/  PRE_check_exactly2Strs = (typeof PRE_check_exactly2Strs === 'undefined')
+/**/                     ? undefined : PRE_check_exactly2Strs
 /**/  
-/**/  function PRE_exactly1Str(string_1){
+/**/  function PRE_check_exactly1Str(string_1){
 /**/    num_args = arguments.length
 /**/    if (num_args !== 1) return `PRE, not 1 but ${num_args} params`
 /**/    ONE_STRING_SPEC = 'String'
 /**/    return type_czech.check_type(arguments, ONE_STRING_SPEC)
 /**/  }
 /**/  
-/**/  function PRE_exactly2Strs(string_1, string_2){
+/**/  function PRE_check_exactly2Strs(string_1, string_2){
 /**/     TWO_STRINGS_SPEC = ['String', 'String']
 /**/     return type_czech.check_type(arguments, TWO_STRINGS_SPEC)
 /**/  }
 /**/  
-/**/  exactly1Str = type_czech.link(exactly1Str, PRE_exactly1Str)
-/**/  exactly2Strs = type_czech.link(exactly2Strs, PRE_exactly2Strs)
+/**/  exactly1Str = type_czech.link(exactly1Str, PRE_check_exactly1Str)
+/**/  exactly2Strs = type_czech.link(exactly2Strs, PRE_check_exactly2Strs)
 
 function exactly1Str(one_string) {
   return one_string
@@ -252,7 +251,7 @@ function exactly2Strs(string_1, string_2) {
 
 log('EXPECT_1_GOT_1 : ', exactly1Str('One'))
 
-linesConsole(2)
+linesConsole(3)
 
 expect_1_got_2 =  exactly1Str('1-one', '2-two') 
 linesConsole(1)
@@ -261,8 +260,7 @@ log(expect_1_got_2)
 
 
 
-linesConsole(3)
-
+linesConsole(2)
 
 
 expect_2_got_1 =  exactly2Strs('one-1') 
@@ -272,10 +270,13 @@ log(expect_2_got_1)
 
 linesConsole(2)
 
+
 expect_2_got_2 =  exactly2Strs('ONE', 'TWO') 
 log('EXPECT_2_GOT_2 : ', expect_2_got_2)
 
-linesConsole(1)
+
+linesConsole(2)
+
 
 expect_2_got_3 =  exactly2Strs('one', 'two', 'three') 
 log('EXPECT_2_GOT_3 : ', expect_2_got_3)
@@ -292,12 +293,28 @@ log('EXPECT_2_GOT_3 : ', expect_2_got_3)
 
   jsToDiv('js-code', "check-code");
 
-  fromToBoldText(831, 850, 'code', 1)  //  ['String', 'String']
-  fromToBoldText(1363, 1383, 'code', 1)  //  exactly2Strs('one-1') 
 
-  fromToBoldText(404, 411, 'log', 1)    //'String'
-  fromToBoldText(438, 444, 'log', 1)    //'one-1'
-  fromToBoldText(492, 512, 'log', 1)    //PE '['String','String']'
+  fromToBoldText(567, 599, 'code', 3)  // PRE, not 1 but ${num_args} params
+  fromToBoldText(1266, 1281, 'code', 3)  //  exactly1Str('1-one', '2-two')
+
+  fromToBoldText(23, 45, 'log', 3)    //PRE, not 1 but 2 params
+
+
+
+  fromToBoldText(1363, 1369, 'code', 1)  //exactly2Strs('one-1') 
+
+  fromToBoldText(470, 476, 'log', 1) //"one-1"
+  fromToBoldText(503, 521, 'log', 1) //   EXPECTED TYPE ['String','String'] 
+  fromToBoldText(616, 643, 'log', 1) // [ "one-1", "undefined" ]
+
+
+
+  fromToBoldText(1540, 1560, 'code', 2)  //  exactly2Strs('one', 'two', 'three')       
+
+  fromToBoldText(932, 952, 'log', 2)    ///["one","two","three"]
+  fromToBoldText(979, 997, 'log', 2)     ///["String","String"]
+
+  fromToBoldText(1092, 1111, 'log', 2)     ///[ "one", "two" ]
 
 
 

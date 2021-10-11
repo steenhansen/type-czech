@@ -10,7 +10,7 @@
 </div>
 
 <div id="the-explanation" style="width:50%" class='code-scroll'>
-  <div class='an-explantion'>26 - Type and Empty Abbreviations</div>
+  <div class='an-explantion'>26 &mdash; Type and Empty Abbreviations</div>
   <div id='explanation-text'>
     <br>
 
@@ -66,31 +66,31 @@
     
       <div style="float:left; width:25%">
         <ul>
-          <li>'<b>EM-OK</b>' <br> 'EMPTY-OK'</li>
+          <li>'<b>OK</b>' <br> 'EMPTY-OK'</li>
         </ul>
       </div>
      
       <div style="float:left; width:25%">
         <ul>
-          <li>'<b>EM-ER</b>' <br> 'EMPTY-ERROR'</li>
+          <li>'<b>ER</b>' <br> 'EMPTY-ERROR'</li>
         </ul>
       </div>
 
       <div style="float:left; width:25%">
         <ul>
-          <li>'<b>EM-IG</b>' <br> 'EMPTY-IGNORE'</li>
+          <li>'<b>IG</b>' <br> 'EMPTY-IGNORE'</li>
         </ul>
       </div>
     
     </div>
 
 <br>
-    The Pre_Person() function first verifies that an object is the construction parameter,
+    The PRE_check_Person() function first verifies that an object is the construction parameter,
     then that object is tested for the correct keys and types, finally
     all keys are checked for being check_empty.
     
     <br><br>
-    After which the POST_Person() function first certifies that the constructor
+    After which the POST_check_Person() function first certifies that the constructor
     returns an array result, then the two elements are established to be the 
     correctly ordered types, lastly the last name is checked for not being empty.
     A check_empty birth date returned is allowed.
@@ -108,8 +108,8 @@
  <div id="console-log"  >
   <div class='a-title'>Console Output</div>
   <div id='log-text'></div>
+  <br>
 </div>
-
 <br><br>
 <div id='js-fiddles'>
   jsFiddles:
@@ -131,12 +131,13 @@
     
     <a title="08-Mutated-Recursive-Function-Parameters.html" href="https://jsfiddle.net/steen_hansen/3pv5qwx8/?08-Mutated-Recursive-Function-Parameters" target="_blank">08</a>
     
- 
 
 
-    
+
+
+  
     <a title="09-Closure-Parameters-Results-and-Methods.html" href="https://jsfiddle.net/steen_hansen/r8L3mp40/?09-Closure-Parameters-Results-and-Methods" target="_blank">09</a>
-      
+    
     <a title="10-Class-Parameters-Results-and-Methods.html" href="https://jsfiddle.net/steen_hansen/Lhwov8y9/?10-Class-Parameters-Results-and-Methods" target="_blank">10</a>
     
     <a title="11-Object-Object-Properties.html" href="https://jsfiddle.net/steen_hansen/qp29Ljd1/?11-Object-Object-Properties" target="_blank">11</a>
@@ -155,7 +156,10 @@
     <a title="17-Variadic-Functions.html.html" href="https://jsfiddle.net/steen_hansen/hrvucjzm/?17-Variadic-Functions.html" target="_blank">17</a>
 
 
- 
+
+
+
+
     <a title="18-Class-Type-Checks.html" href="https://jsfiddle.net/steen_hansen/063wLqfs/?18-Class-Type-Checks" target="_blank">18</a>
     
     <a title="19-Lone-Empty-Param-and-Result.html" href="https://jsfiddle.net/steen_hansen/x8h6dvj5/?19-Lone-Empty-Param-and-Result" target="_blank">19</a>
@@ -194,9 +198,12 @@
     
     <a title="36-Start-and-Stop.html" href="https://jsfiddle.net/steen_hansen/f19s52xr/?36-Start-and-Stop" target="_blank">36</a>
     
-    <a title="37-Readme-Example-Lambda.html" href="https://jsfiddle.net/steen_hansen/cwfsubtv/?37-Readme-Example-Lambda" target="_blank">37</a>
+    <a title="37-Readme-Example-Arrow-Functions.html" href="https://jsfiddle.net/steen_hansen/cwfsubtv/?37-Readme-Example-Arrow-Functions" target="_blank">37</a>
 
-
+    
+  <a title="38-Every-Check.html" href="https://jsfiddle.net/steen_hansen/1umwvht5/?38-Every-Check" target="_blank">38</a>
+  
+  <a title="39-Prescribed-Use.html" href="https://jsfiddle.net/steen_hansen/ta7fdnrw/?39-Prescribed-Use" target="_blank">39</a>
 
     &nbsp;&nbsp;
 
@@ -259,23 +266,27 @@
 
 
 
-<!--            ------------------TYPE 1------------------------       -->
+<!--            ------------TYPE 1------------------------------       -->
 
 
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@44d744188ace09cc8a11412460915536dccf4691/web-resources/consolelog.js">
+<script src="../web-resources/consolelog.js">
 </script>
 
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@44d744188ace09cc8a11412460915536dccf4691/web-resources/TypeCzech.min.js">
+
+<script src="../TypeCzech.js">
 </script>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@44d744188ace09cc8a11412460915536dccf4691/web-resources/type-czech.css">
+
+
+<link rel="stylesheet" href="../web-resources/type-czech.css">
 <style>
 </style>
 
 
 
 
-<!--            -------------------TYPE 1-----------------------       -->
+
+<!--            --------------TYPE 1----------------------------       -->
 
 
 
@@ -304,32 +315,34 @@
 /**/  else
 /**/    type_czech = { link: (nop) => nop, is_active: false }
 /**/
-/**/  PRE_Person=(typeof PRE_Person === 'undefined') ?undefined:PRE_Person
-/**/  POST_Person=(typeof POST_Person==='undefined') ? undefined:POST_Person
+/**/  PRE_check_Person = (typeof PRE_check_Person === 'undefined') 
+/**/                     ? undefined : PRE_check_Person
+/**/  POST_check_Person = (typeof POST_check_Person==='undefined') 
+/**/                      ? undefined : POST_check_Person
 /**/
-/**/  function PRE_Person(){
-/**/    object_issue =  type_czech.check_type(arguments, 'O')
-/**/    if (object_issue) return object_issue
+/**/  function PRE_check_Person(){
+/**/    redundant_object_test =  type_czech.check_type(arguments, 'O')
+/**/    if (redundant_object_test) return redundant_object_test
 /**/
 /**/    person_types = {f_name:'S', l_name:'S', b_date:'D'}
 /**/    type_issue = type_czech.check_type(arguments, person_types)
 /**/    if (type_issue) return type_issue
 /**/
-/**/    person_empties = {f_name:'EM-ER', l_name:'EM-ER', b_date:'EM-ER'}
+/**/    person_empties = {f_name:'ER', l_name:'ER', b_date:'ER'}
 /**/    return type_czech.check_empty(arguments, person_empties)
 /**/  }
 /**/
-/**/  function POST_Person(){
+/**/  function POST_check_Person(){
 /**/    array_issue = type_czech.check_type(arguments, 'A')
 /**/    if (array_issue) return array_issue
 /**/
 /**/    type_issue = type_czech.check_type(arguments, ['S', 'D'])
 /**/    if (type_issue) return type_issue
 /**/
-/**/    return type_czech.check_empty(arguments, ['EM-ER', 'EM-OK'])
+/**/    return type_czech.check_empty(arguments, ['ER', 'OK'])
 /**/  }
 /**/  
-/**/  Person=type_czech.link(Person, PRE_Person, POST_Person)
+/**/  Person=type_czech.link(Person, PRE_check_Person, POST_check_Person)
 
 function Person(a_person){
   let {f_name, l_name, b_date} = a_person
@@ -372,11 +385,21 @@ log(string_person)
 
   jsToDiv('js-code', "check-code");
 
-  fromToBoldText(741, 754, 'code', 1)  // l_name:'EM-ER'
-  fromToBoldText(1641, 1649, 'code', 1)  // l_name:''
+  fromToBoldText(1617, 1635, 'code', 1)  // b_date:new Date('')
+
+  fromToBoldText(292, 302, 'log', 1)    //b_date:null
+  fromToBoldText(355, 365, 'log', 1)    //b_date:"ER
 
 
-  fromToBoldText(685, 693, 'log', 1)    //'l_name':''
-  fromToBoldText(761, 776, 'log', 1)    //'l_name':'EM-ER'
+
+
+  fromToBoldText(1730, 1738, 'code', 2)  // l_name:''
+
+  fromToBoldText(690, 698, 'log', 2)    //l_name:""
+  fromToBoldText(757, 767, 'log', 2)    //l_name:"ER"
+
+  fromToBoldText(1017, 1018, 'log', 2)    //""
+  fromToBoldText(1058, 1061, 'log', 2)    //"ER"
+
 
 </script>

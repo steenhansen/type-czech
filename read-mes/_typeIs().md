@@ -1,6 +1,6 @@
 
 /*
-## typeIs()
+## typeFinal()
 A. Check that a single parameter of any type is not empty.
 */
 
@@ -10,7 +10,7 @@ A. Check that a single parameter of any type is not empty.
     type_czech = TypeCzech('LOG-ERRORS')
     
     function A_yourFunc(an_arg, the_answer){
-       the_type = type_czech.typeIs(an_arg)
+       the_type = type_czech.typeFinal(an_arg)
       if (the_type !== the_answer) {
         fail_tests += 1
       }
@@ -52,9 +52,9 @@ A. Check that a single parameter of any type is not empty.
                 expected_tests = 32
                 expected_fails = 7
     if (expected_tests !== total_tests) 
-        throw `A. _typeIs().md ${expected_tests} expected_tests !== ${total_tests} total_tests`
+        throw `A. _typeFinal().md ${expected_tests} expected_tests !== ${total_tests} total_tests`
     else if (expected_fails !== fail_tests) 
-        throw `A. _typeIs().md ${expected_fails} expected_fails !== ${fail_tests} fail_tests`
+        throw `A. _typeFinal().md ${expected_fails} expected_fails !== ${fail_tests} fail_tests`
     else if (typeof total_checks === 'undefined')
       console.log('no-issues: pass', expected_tests-expected_fails, ' fail', expected_fails)
     else

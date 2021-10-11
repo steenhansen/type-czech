@@ -5,13 +5,13 @@
 <link rel="stylesheet"
   href="https://fonts.googleapis.com/css?family=Inconsolata">
 
-<div id='js-div' style="width:42%">
+<div id='js-div' style="width:45%">
   <div id='js-code'>the javascript</div>
 </div>
 
  
 
-<div id="the-explanation" style="width:58%">
+<div id="the-explanation" style="width:55%">
   <div class='an-explantion'>14 &mdash; Array and Object Types with Parameter and Results</div>
   <div id='explanation-text'>
     <br>
@@ -38,12 +38,12 @@
 </ul>
 
 
-Alan Turing is used to show the error messages that occur when an object is check_typeated against the 
-'array' type in the PRE_Person() checking function. 
+Alan Turing is used to show the error messages that occur when an object is check_type()ed against the 
+'array' type in the PRE_check_Person() checking function. 
 
 
 The reverse, testing an array against the 'object' type gives a lengthy error message from 
-the POST_Person() function.
+the POST_check_Person() function.
 
 <br><br>
 </div>
@@ -136,9 +136,11 @@ the POST_Person() function.
     
     <a title="36-Start-and-Stop.html" href="../example-snippets/36-Start-and-Stop.html">36</a>
     
-    <a title="37-Readme-Example-Lambda.html" href="../example-snippets/37-Readme-Example-Lambda.html">37</a>
+    <a title="37-Readme-Example-Arrow-Functions.html" href="../example-snippets/37-Readme-Example-Arrow-Functions.html">37</a>
 
+    <a title="38-Every-Check.html" href="../example-snippets/38-Every-Check.html">38</a>
 
+    <a title="39-Prescribed-Use.html" href="../example-snippets/39-Prescribed-Use.html">39</a>
 
       &nbsp;&nbsp;
 
@@ -251,21 +253,22 @@ the POST_Person() function.
 /**/  else
 /**/    type_czech = { link: (nop) => nop, is_active: false }
 /**/  
-/**/  PRE_Person = (typeof PRE_Person === 'undefined')
-/**/               ? undefined : PRE_Person
+/**/  PRE_check_Person = (typeof PRE_check_Person === 'undefined')
+/**/               ? undefined : PRE_check_Person
 /**/
-/**/  POST_Person = (typeof POST_Person === 'undefined')
-/**/                ? undefined : POST_Person
+/**/  POST_check_Person = (typeof POST_check_Person === 'undefined')
+/**/                ? undefined : POST_check_Person
 /**/  
-/**/  function PRE_Person(an_array){
+/**/  function PRE_check_Person(an_array){
 /**/    return type_czech.check_type(arguments, 'Array')
 /**/  }
 /**/  
-/**/  function POST_Person(an_object){
+/**/  function POST_check_Person(an_object){
 /**/    return type_czech.check_type(arguments, 'Object')
 /**/  }
 /**/  
-/**/  Person = type_czech.link(Person, PRE_Person, POST_Person)
+/**/  Person = type_czech.link(Person, PRE_check_Person,
+/**/                                   POST_check_Person)
 
 function Person(person_array_or_obj){
   if (Array.isArray(person_array_or_obj)){
@@ -287,6 +290,9 @@ chuck_object = Person(chuck_array)
 log(chuck_object)
 
 linesConsole(2)
+
+
+
 
 alan_object = {f_name:'Alan', l_name:'Turing'}
 alan_turing = Person(alan_object)
@@ -312,13 +318,22 @@ log(alan_turing)
 
  
 
-  fromToBoldText(532, 536, 'code', 1)  //  'Array')
-  fromToBoldText(1278, 1309, 'code', 1)  //  {f_name:'Alan', l_name:'Turing'}
-
-  fromToBoldText(239, 244, 'log', 1)    //'Object'
-
-  fromToBoldText(329, 338, 'log', 1)    //'Array'
+  fromToBoldText(1083, 1095, 'code', 3)  //  result_object
+  fromToBoldText(1206, 1248, 'code', 3)  //  ['Charles', new Date(1948,11,14), true, 17]
+  fromToBoldText(1, 81, 'log', 3)   // { "prop0": "Charles", "prop1": "1948-12-14", "prop2": true, "prop3": 17 }
 
 
+
+
+  fromToBoldText(1321, 1352, 'code', 1)  //  {f_name:'Alan', l_name:'Turing'}
+
+  fromToBoldText(283, 313, 'log', 1)    //return result_array
+  fromToBoldText(340, 344, 'log', 1)    //Array
+
+
+  fromToBoldText(1172, 1183, 'code', 2)  //  return result_array
+  fromToBoldText(762, 778, 'log', 2)    //["Alan","Turing"]
+
+  fromToBoldText(805, 810, 'log', 2)    //'Object'
 
 </script>

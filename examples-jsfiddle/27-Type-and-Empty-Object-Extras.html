@@ -1,5 +1,5 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>27-Typed-and-Empty-Union-Checks-with-Optionals</title>
+<title>27-Type-and-Emptiness-with-Extra-Parameter-Option-Objects</title>
 
 
 <link rel="stylesheet"
@@ -7,27 +7,27 @@
 
 
 
-<div id='js-div' style="width:47%">
+<div id='js-div' style="width:53%">
   <div id='js-code'>the javascript</div>
 </div>
 
-<div id="the-explanation" style="width:53%">
-  <div class='an-explantion'>27 - Typed and Empty Union Checks with Optionals</div>
+<div id="the-explanation" style="width:47%">
+  <div class='an-explantion'>27 &mdash; Type and Emptiness with Extra Parameter Option Objects</div>
   <div id='explanation-text'>
     <br>
-    
-    Overloaded functions with more than one type of parameter signature, and extra typeless 
-    optional arguments, can be type checked.
-<pre>
-type_czech.check_typeEitherExtras(arguments, type_signatures)
-</pre>
-    
-Overloaded functions with more than one type of parameter signature, and extra typeless 
-optional arguments, can be checked against empty check_empty values.
-<pre>
-type_czech.check_emptyEitherExtras(arguments, empty_signatures)
-</pre>
+    Option objects can have extra parameters that are not checked for type nor emptiness.
+    Important wanted parameters are still checked, but unlisted arguments are ignored.
 
+<br><br>
+   In the example to the left, by using the check_interfaceExtra()
+    function, only the listed parameters of 'salu', 'f_name', and 'l_name' are checked for check_type types.
+    <br><br>
+
+
+
+    Only the parameters 'f_name' and 'l_name' are checked for emptiness with the check_objectEmptyExtra() function.
+
+    <br><br>
 
   </div>
 
@@ -38,7 +38,7 @@ type_czech.check_emptyEitherExtras(arguments, empty_signatures)
     <br>
   </div>
 
-  <br><br>
+  <br>
   <div id='js-fiddles'>
     jsFiddles:
     <a title="00-Readme-Example" href="https://jsfiddle.net/steen_hansen/0xtpLwsc/?00-Readme-Example" target="_blank">00</a>
@@ -59,7 +59,8 @@ type_czech.check_emptyEitherExtras(arguments, empty_signatures)
       
       <a title="08-Mutated-Recursive-Function-Parameters.html" href="https://jsfiddle.net/steen_hansen/3pv5qwx8/?08-Mutated-Recursive-Function-Parameters" target="_blank">08</a>
       
- 
+
+
 
 
     
@@ -83,7 +84,10 @@ type_czech.check_emptyEitherExtras(arguments, empty_signatures)
       <a title="17-Variadic-Functions.html.html" href="https://jsfiddle.net/steen_hansen/hrvucjzm/?17-Variadic-Functions.html" target="_blank">17</a>
   
 
-     
+
+
+
+
       <a title="18-Class-Type-Checks.html" href="https://jsfiddle.net/steen_hansen/063wLqfs/?18-Class-Type-Checks" target="_blank">18</a>
       
       <a title="19-Lone-Empty-Param-and-Result.html" href="https://jsfiddle.net/steen_hansen/x8h6dvj5/?19-Lone-Empty-Param-and-Result" target="_blank">19</a>
@@ -122,9 +126,12 @@ type_czech.check_emptyEitherExtras(arguments, empty_signatures)
       
       <a title="36-Start-and-Stop.html" href="https://jsfiddle.net/steen_hansen/f19s52xr/?36-Start-and-Stop" target="_blank">36</a>
       
-      <a title="37-Readme-Example-Lambda.html" href="https://jsfiddle.net/steen_hansen/cwfsubtv/?37-Readme-Example-Lambda" target="_blank">37</a>
-  
+      <a title="37-Readme-Example-Arrow-Functions.html" href="https://jsfiddle.net/steen_hansen/cwfsubtv/?37-Readme-Example-Arrow-Functions" target="_blank">37</a>
 
+      
+    <a title="38-Every-Check.html" href="https://jsfiddle.net/steen_hansen/1umwvht5/?38-Every-Check" target="_blank">38</a>
+    
+    <a title="39-Prescribed-Use.html" href="https://jsfiddle.net/steen_hansen/ta7fdnrw/?39-Prescribed-Use" target="_blank">39</a>
 
       &nbsp;&nbsp;
   
@@ -181,23 +188,28 @@ type_czech.check_emptyEitherExtras(arguments, empty_signatures)
 
 
 
-<!--            -----------------------TYPE 1-------------------       -->
+<!--            --------------TYPE 1----------------------------       -->
 
 
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@44d744188ace09cc8a11412460915536dccf4691/web-resources/consolelog.js">
+<script src="../web-resources/consolelog.js">
 </script>
 
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@44d744188ace09cc8a11412460915536dccf4691/web-resources/TypeCzech.min.js">
+
+<script src="../TypeCzech.js">
 </script>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@44d744188ace09cc8a11412460915536dccf4691/web-resources/type-czech.css">
+
+
+<link rel="stylesheet" href="../web-resources/type-czech.css">
 <style>
 </style>
 
 
 
 
-<!--            ------------------TYPE 1------------------------       -->
+
+
+<!--            ---------------TYPE 1s---------------------------       -->
 
 
 
@@ -218,53 +230,61 @@ type_czech.check_emptyEitherExtras(arguments, empty_signatures)
 /**/  else
 /**/    type_czech = { link: (nop) => nop, is_active: false }
 /**/
-/**/  PRE_numberArrays = (typeof PRE_numberArrays === 'undefined')
-/**/                      ? undefined : PRE_numberArrays
+/**/  PRE_check_personExtra = (typeof PRE_check_personExtra === 'undefined') 
+/**/                          ? undefined : PRE_check_personExtra
 /**/
-/**/  STRING_THEN_NUMBER_ARRAY = ['String', ['Number'] ]
-/**/  NUMBER_ARRAY_THEN_STRING = [ ['Number'], 'String']
-/**/  PRE_types = [ STRING_THEN_NUMBER_ARRAY, NUMBER_ARRAY_THEN_STRING ]
+/**/  PERSON_TYPE_SIGNATURE = {salu:'String', f_name:'String', l_name:'String'}
 /**/
-/**/  FIRST_EMPTY_ERROR = ['EMPTY-ERROR','EMPTY-OK']
-/**/  SECOND_EMPTY_ERROR = ['EMPTY-OK','EMPTY-ERROR']
-/**/  PRE_empties = [ FIRST_EMPTY_ERROR, SECOND_EMPTY_ERROR ]
+/**/  PERSON_EMPTIES = {f_name:'EMPTY-ERROR', l_name:'EMPTY-ERROR'}
 /**/
-/**/  function PRE_numberArrays(param_1, param_2, optional_3) {
-/**/    type_error = type_czech.check_typeEitherExtras(arguments, PRE_types)
+/**/  function PRE_check_personExtra(person_object) {
+/**/    type_error = type_czech.check_typeExtra(person_object,
+/**/                                                      PERSON_TYPE_SIGNATURE)
 /**/    if (type_error) return type_error
 /**/
-/**/    empty_error = type_czech.check_emptyEitherExtras(arguments,
-/**/                                                        PRE_empties)
+/**/    empty_error = type_czech.check_emptyExtra(person_object, PERSON_EMPTIES)
 /**/    if (empty_error) return empty_error
 /**/  }
 /**/
-/**/  numberArrays = type_czech.link(numberArrays, PRE_numberArrays)
+/**/  personExtra = type_czech.link(personExtra, PRE_check_personExtra)
 
-function numberArrays(param_1, param_2, optional_3) {
-  log('Optional value :', optional_3)
+function personExtra(person_object) {
+  let {salu, f_name, l_name, extra_1, extra_2, extra_3} = person_object
+  extra_1 = extra_1 ?? ''
+  extra_2 = extra_2 ?? ''
+  extra_3 = extra_3 ?? ''
+  person_str = `${salu} ${f_name} ${l_name}::${extra_1},${extra_2},${extra_3}`
+  log('The Person:', person_str)
 }
 
-numberArrays('a-string', [1], 'un-checked-1')
+ted_chiang = {salu:'', f_name:'Ted', l_name:'Chiang'}
+
+personExtra(ted_chiang)
 
 linesConsole(2)
 
-numberArrays([2], 'b-string', 'un-checked-2')
+mr_ted_chiang_red = {salu:'Mr', f_name:'Ted', l_name:'Chiang', extra_1:'red'}
+
+personExtra(mr_ted_chiang_red)
 
 linesConsole(2)
 
-numberArrays('', [3], 'un-checked-3')
+mr_ted_chiang_rgb = {salu:'Mr', f_name:'Ted', l_name:'Chiang', 
+                     extra_1:'red', extra_2:'', extra_3:'blue'}
 
-linesConsole(2)
+personExtra(mr_ted_chiang_rgb)
 
-numberArrays([], '4', 'un-checked-4')
 
-linesConsole(2)
+linesConsole(6)
 
-numberArrays({no_type_match:5}, 5, 'error-un-checked-5')
 
-linesConsole(2)
 
-numberArrays([], '', 'error-un-checked-6')
+
+ted = {salu:'', f_name:'Ted', l_name:''}
+
+personExtra(ted)
+
+
 
 
 </script>
@@ -285,15 +305,16 @@ numberArrays([], '', 'error-un-checked-6')
 <script>
   
 
-  jsToDiv('js-code', "check-code");         /// red green blue yellow
+  jsToDiv('js-code', "check-code");        
 
-  fromToBoldText(586, 598, 'code', 1)  // ['EMPTY-ERROR'
-  fromToBoldText(651, 663, 'code', 1)  // ,'EMPTY-ERROR']
-  fromToBoldText(1519, 1524, 'code', 1)  // [], ''
+  fromToBoldText(450, 469, 'code', 1)  //  l_name:'EMPTY-ERROR'
+  fromToBoldText(1621, 1629, 'code', 1)  // l_name:''
 
-  fromToBoldText(833, 837, 'log', 1)    //[],''
-  fromToBoldText(888, 900, 'log', 1)    //[['EMPTY-ERROR'
-  fromToBoldText(926, 938, 'log', 1)    //,'EMPTY-ERROR']]
+
+  fromToBoldText(365, 373, 'log', 1)    // l_name:""
+
+  fromToBoldText(423, 442, 'log', 1)   //  l_name:"EMPTY-ERROR"
+
 
 
 

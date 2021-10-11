@@ -6,13 +6,13 @@
   href="https://fonts.googleapis.com/css?family=Inconsolata">
 
 
-<div id='js-div' style="width:48%">
+<div id='js-div' style="width:55%">
  
   <div id='js-code'>the javascript</div>
 </div>
 
 
-<div id="the-explanation" style="width:52%">
+<div id="the-explanation" style="width:45%">
   <div class='an-explantion'>16 &mdash; Arrays with One Type</div>
   <div id='explanation-text'>
 <br>
@@ -121,9 +121,11 @@ type_czech.check_type(arguments, [ ['String'] ])
       
       <a title="36-Start-and-Stop.html" href="../example-snippets/36-Start-and-Stop.html">36</a>
       
-      <a title="37-Readme-Example-Lambda.html" href="../example-snippets/37-Readme-Example-Lambda.html">37</a>
+      <a title="37-Readme-Example-Arrow-Functions.html" href="../example-snippets/37-Readme-Example-Arrow-Functions.html">37</a>
   
+      <a title="38-Every-Check.html" href="../example-snippets/38-Every-Check.html">38</a>
 
+      <a title="39-Prescribed-Use.html" href="../example-snippets/39-Prescribed-Use.html">39</a>
 
       &nbsp;&nbsp;
   
@@ -218,25 +220,25 @@ type_czech.check_type(arguments, [ ['String'] ])
 /**/  else
 /**/    type_czech = { link: (nop) => nop, is_active: false }
 /**/  
-/**/  PRE_arrayOfStrings = (typeof PRE_arrayOfStrings === 'undefined')
-/**/                       ? undefined : PRE_arrayOfStrings
+/**/  PRE_check_arrayOfStrings = (typeof PRE_check_arrayOfStrings === 'undefined')
+/**/                       ? undefined : PRE_check_arrayOfStrings
 /**/
-/**/  PRE_arrOfArrOfNum = (typeof PRE_arrOfArrOfNum === 'undefined')
-/**/                       ? undefined : PRE_arrOfArrOfNum
+/**/  PRE_check_arrOfArrOfNum = (typeof PRE_check_arrOfArrOfNum === 'undefined')
+/**/                       ? undefined : PRE_check_arrOfArrOfNum
 /**/
-/**/  function PRE_arrayOfStrings(an_array){
+/**/  function PRE_check_arrayOfStrings(an_array){
 /**/    return type_czech.check_type(arguments, ['String'])
 /**/  }
 /**/ 
-/**/  function PRE_arrOfArrOfNum(an_array_of_array){
+/**/  function PRE_check_arrOfArrOfNum(an_array_of_array){
 /**/    return type_czech.check_type(arguments, [ ['Number'] ])
 /**/  }
 /**/  
-/**/  arrayOfSrings = type_czech.link(arrayOfSrings, PRE_arrayOfStrings)
+/**/  arrayOfStrings = type_czech.link(arrayOfStrings, PRE_check_arrayOfStrings)
 /**/  
-/**/  arrOfArrOfNum = type_czech.link(arrOfArrOfNum, PRE_arrOfArrOfNum)
+/**/  arrOfArrOfNum = type_czech.link(arrOfArrOfNum, PRE_check_arrOfArrOfNum)
 
-function arrayOfSrings(an_array) { 
+function arrayOfStrings(an_array) { 
   str_array = [...an_array]
   return str_array
 }
@@ -246,25 +248,32 @@ function arrOfArrOfNum(an_array_of_array) {
   return num_array_of_array
 }
 
-array_0_strs = arrayOfSrings([])
+array_0_strs = arrayOfStrings([])
 log('0 strings : ', array_0_strs)
 
 linesConsole(2)
 
-array_1_str = arrayOfSrings(['z'])
+array_1_str = arrayOfStrings(['z'])
 log('1 string : ', array_1_str)
 
 linesConsole(2)
 
-array_6_strs = arrayOfSrings(['a', 'b', 'c', 'd', 'e', 'f'])
+array_6_strs = arrayOfStrings(['a', 'b', 'c', 'd', 'e', 'f'])
 log('6 strings : ', array_6_strs)
 
-linesConsole(2)
-
+linesConsole(1)
 
 nums_3x3 = [ [1,2,3], [4,5,6], [7,8,9] ]
 array_n_n_9 = arrOfArrOfNum(nums_3x3)
 log('9 nums_3x3 : ', array_n_n_9)
+
+linesConsole(1)
+
+nums_err = [ [1,2,3], [4,'Five',6], [7,8, 9] ]
+array_err_9 = arrOfArrOfNum(nums_err)
+log('9 nums_3x3 Error : ', array_err_9)
+
+
 </script>
 
 
@@ -279,10 +288,12 @@ log('9 nums_3x3 : ', array_n_n_9)
 
   jsToDiv('js-code', "check-code");
 
-   fromToBoldText(716, 729, 'code', 1)  // [ ['Number'] ]
-   fromToBoldText(1354, 1382, 'code', 1)  //  [ [1,2,3], [4,5,6], [7,8,9] ]
+   fromToBoldText(1487, 1492, 'code', 1)  // , 'Five', 6
 
-  fromToBoldText(104, 192, 'log', 1)    //[ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ] ]
+
+  fromToBoldText(442, 447, 'log', 1)    //"Five"
+  fromToBoldText(488, 495, 'log', 1)    //""Number""
+  fromToBoldText(640, 645, 'log', 1)    //"Five"
 
 
 

@@ -1016,7 +1016,7 @@ function EmptyCheck_03028(){
   actual_array = type_czech.check_empty(check_object, check_type_shape);
   afterCheck(check_object, check_type_shape, before_str, error_id);
   expected_array = [`check_empty(arguments, expected_emptys)`,
-  `TC@32 - ELEMENT '0' is incorrect  type, 'MT-WRONG-e', only [EM-ER, EMPTY-ERROR, EMPTY-OK, EM-OK, EMPTY-IGNORE, EM-IG] allowed  : [18]`,
+  `TC@32 - ELEMENT '0' is incorrect  type, 'MT-WRONG-e', only [ER, EMPTY-ERROR, EMPTY-OK, OK, EMPTY-IGNORE, IG] allowed  : [18]`,
   `{str:["MT-WRONG-e"]}`];
   actual_str = arrayErrorToString(actual_array);
   expected_str = arrayErrorToString(expected_array);

@@ -7,11 +7,11 @@
 
 
 
-<div id='js-div' style="width:62%">
+<div id='js-div' style="width:53%">
   <div id='js-code'>the javascript</div>
 </div>
 
-<div id="the-explanation" style="width:38%">
+<div id="the-explanation" style="width:47%">
   <div class='an-explantion'>27 &mdash; Type and Emptiness with Extra Parameter Option Objects</div>
   <div id='explanation-text'>
     <br>
@@ -119,9 +119,12 @@
       
       <a title="36-Start-and-Stop.html" href="../example-snippets/36-Start-and-Stop.html">36</a>
       
-      <a title="37-Readme-Example-Lambda.html" href="../example-snippets/37-Readme-Example-Lambda.html">37</a>
+      <a title="37-Readme-Example-Arrow-Functions.html" href="../example-snippets/37-Readme-Example-Arrow-Functions.html">37</a>
 
+      <a title="38-Every-Check.html" href="../example-snippets/38-Every-Check.html">38</a>
 
+      <a title="39-Prescribed-Use.html" href="../example-snippets/39-Prescribed-Use.html">39</a>
+      
       &nbsp;&nbsp;
   
       <a title="101-Extending-Classes-Inline.html" href="../examples-web/101-Extending-Classes-Inline.html">101</a>
@@ -218,28 +221,30 @@
 /**/  else
 /**/    type_czech = { link: (nop) => nop, is_active: false }
 /**/
-/**/  PRE_personExtra = (typeof PRE_personExtra === 'undefined') ? undefined : PRE_personExtra
+/**/  PRE_check_personExtra = (typeof PRE_check_personExtra === 'undefined') 
+/**/                          ? undefined : PRE_check_personExtra
 /**/
 /**/  PERSON_TYPE_SIGNATURE = {salu:'String', f_name:'String', l_name:'String'}
 /**/
 /**/  PERSON_EMPTIES = {f_name:'EMPTY-ERROR', l_name:'EMPTY-ERROR'}
 /**/
-/**/  function PRE_personExtra(person_object) {
-/**/    type_error = type_czech.check_typeExtra(person_object, PERSON_TYPE_SIGNATURE)
+/**/  function PRE_check_personExtra(person_object) {
+/**/    type_error = type_czech.check_typeExtra(person_object,
+/**/                                                      PERSON_TYPE_SIGNATURE)
 /**/    if (type_error) return type_error
 /**/
 /**/    empty_error = type_czech.check_emptyExtra(person_object, PERSON_EMPTIES)
 /**/    if (empty_error) return empty_error
 /**/  }
 /**/
-/**/  personExtra = type_czech.link(personExtra, PRE_personExtra)
+/**/  personExtra = type_czech.link(personExtra, PRE_check_personExtra)
 
 function personExtra(person_object) {
   let {salu, f_name, l_name, extra_1, extra_2, extra_3} = person_object
   extra_1 = extra_1 ?? ''
   extra_2 = extra_2 ?? ''
   extra_3 = extra_3 ?? ''
-  person_str = `${salu} ${f_name} ${l_name} :: ${extra_1} ${extra_2} ${extra_3}`
+  person_str = `${salu} ${f_name} ${l_name}::${extra_1},${extra_2},${extra_3}`
   log('The Person:', person_str)
 }
 
@@ -256,11 +261,15 @@ personExtra(mr_ted_chiang_red)
 linesConsole(2)
 
 mr_ted_chiang_rgb = {salu:'Mr', f_name:'Ted', l_name:'Chiang', 
-                     extra_1:'red', extra_2:'green', extra_3:'blue'}
+                     extra_1:'red', extra_2:'', extra_3:'blue'}
 
 personExtra(mr_ted_chiang_rgb)
 
-linesConsole(2)
+
+linesConsole(6)
+
+
+
 
 ted = {salu:'', f_name:'Ted', l_name:''}
 
@@ -287,15 +296,15 @@ personExtra(ted)
 <script>
   
 
-  jsToDiv('js-code', "check-code");         /// red green blue yellow
+  jsToDiv('js-code', "check-code");        
 
-  fromToBoldText(586, 598, 'code', 1)  // l_name:'EMPTY-ERROR'
-  fromToBoldText(651, 663, 'code', 1)  //  l_name:''}
+  fromToBoldText(450, 469, 'code', 1)  //  l_name:'EMPTY-ERROR'
+  fromToBoldText(1621, 1629, 'code', 1)  // l_name:''
 
 
-  fromToBoldText(833, 837, 'log', 1)    // 'l_name':''}
+  fromToBoldText(365, 373, 'log', 1)    // l_name:""
 
-  fromToBoldText(888, 900, 'log', 1)   //  'l_name':'EMPTY-ERROR'
+  fromToBoldText(423, 442, 'log', 1)   //  l_name:"EMPTY-ERROR"
 
 
 

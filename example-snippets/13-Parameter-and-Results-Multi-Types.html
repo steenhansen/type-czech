@@ -174,9 +174,11 @@ return result to not match the correct signature.
     
     <a title="36-Start-and-Stop.html" href="../example-snippets/36-Start-and-Stop.html">36</a>
     
-    <a title="37-Readme-Example-Lambda.html" href="../example-snippets/37-Readme-Example-Lambda.html">37</a>
+    <a title="37-Readme-Example-Arrow-Functions.html" href="../example-snippets/37-Readme-Example-Arrow-Functions.html">37</a>
 
+    <a title="38-Every-Check.html" href="../example-snippets/38-Every-Check.html">38</a>
 
+    <a title="39-Prescribed-Use.html" href="../example-snippets/39-Prescribed-Use.html">39</a>
 
       &nbsp;&nbsp;
 
@@ -287,18 +289,20 @@ return result to not match the correct signature.
 /**/  else
 /**/    type_czech = { link: (nop) => nop, is_active: false }
 /**/  
-/**/  PRE_Person = (typeof PRE_Person === 'undefined') ? undefined : PRE_Person
-/**/  POST_Person = (typeof POST_Person === 'undefined') ? undefined : POST_Person
+/**/  PRE_check_Person = (typeof PRE_check_Person === 'undefined')
+/**/                     ? undefined : PRE_check_Person
+/**/  POST_check_Person = (typeof POST_check_Person === 'undefined')
+/**/                      ? undefined : POST_check_Person
 /**/  
-/**/  function PRE_Person(f_name, l_name, b_date){
+/**/  function PRE_check_Person(f_name, l_name, b_date){
 /**/    return type_czech.check_type(arguments, ['String', 'String', 'Date'])
 /**/  }
 /**/  
-/**/  function POST_Person(an_array){
+/**/  function POST_check_Person(an_array){
 /**/    return type_czech.check_type(arguments, ['Number', 'String', 'String'])
 /**/  }
 /**/  
-/**/  Person = type_czech.link(Person, PRE_Person, POST_Person)
+/**/  Person = type_czech.link(Person, PRE_check_Person, POST_check_Person)
 
 function Person(f_name, l_name, b_date){
   birth_year = b_date.getFullYear()
@@ -339,16 +343,23 @@ try {
 
   jsToDiv('js-code', "check-code");
 
- 
+  fromToBoldText(1019, 1060, 'code', 3)  // 'Charles', 'Windsor', new Date(1948,11,14)
+  fromToBoldText(1, 36, 'log', 3)    //[ 1948, "Charles", "Windsor" ]
+
+
 
   
-  fromToBoldText(483, 486, 'code', 1)  // g', 'Date'])
-  fromToBoldText(1024, 1027, 'code', 1)  // n', 'Turing', 1912)
+  fromToBoldText(1122, 1125, 'code', 1)  // 1912
+  fromToBoldText(270, 273, 'log', 1)    //1912
+  fromToBoldText(314, 319, 'log', 1)    //"Date"]
 
 
-  fromToBoldText(223, 230, 'log', 1)    //,'Number']
-  fromToBoldText(275, 278, 'log', 1)    //',1912]
-  fromToBoldText(325, 330, 'log', 1)    //,'Date']
+
+
+  fromToBoldText(1210, 1211, 'code', 2)  // ''
+  fromToBoldText(601, 609, 'log', 2)    //undefined
+  fromToBoldText(650, 657, 'log', 2)    //"String"]
+
 
 
 

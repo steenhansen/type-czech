@@ -1,11 +1,64 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>37-Readme-Example-Lambda</title>
+<title>09-Closure-Parameters-Results-and-Methods</title>
 
 <link rel="stylesheet"
   href="https://fonts.googleapis.com/css?family=Inconsolata">
-  
-<div id='js-div' style="width:50%;">
+
+
+<div id='js-div' style="width:52%">
+ 
   <div id='js-code'>the javascript</div>
+</div>
+
+
+<div id="the-explanation" style="width:48%">
+  <div class='an-explantion'>09 &mdash; Closure Parameters, Results, and Methods</div>
+  <div id='explanation-text'>
+    <br>
+
+Closures with multiple PRE and POST checking functions must be wrapped up in 
+objects like below for everything to be linked up in an orderly fashion.
+<pre>
+function PRE_check_yourClosure(init_closure){ // before closure }
+
+function POST_check_yourClosure(result_closure){ // after closure }
+
+function PRE_check_yourFunction(function_input){ // before function }
+
+function POST_check_yourFunction(function_output){ // after function }
+
+yourClosure_PRE_check_checks = {yourClosure:PRE_check_yourClosure,
+                                yourFunction:PRE_check_yourFunction}
+
+yourClosure_POST_check_checks = {yourClosure:POST_check_yourClosure,
+                                 yourFunction:POST_check_yourFunction}
+
+yourClosure = type_czech.link(yourClosure, 
+                              yourClosure_PRE_check_checks,
+                              yourClosure_POST_check_checks)
+
+function yourClosure(init_closure){
+  yourFunction = function(function_input){ 
+    return function_output
+   }
+
+  result_closure = yourFunction
+  return result_closure
+}
+</pre>
+
+
+
+
+  </div>
+
+
+  <div id="console-log"  >
+    <div class='a-title'>Console Output</div>
+    <div id='log-text'></div>
+    <br>
+  </div>
+
 
   <br><br>
   <div id='js-fiddles'>
@@ -28,7 +81,8 @@
       
       <a title="08-Mutated-Recursive-Function-Parameters.html" href="https://jsfiddle.net/steen_hansen/3pv5qwx8/?08-Mutated-Recursive-Function-Parameters" target="_blank">08</a>
       
-  
+
+
 
 
     
@@ -52,7 +106,10 @@
       <a title="17-Variadic-Functions.html.html" href="https://jsfiddle.net/steen_hansen/hrvucjzm/?17-Variadic-Functions.html" target="_blank">17</a>
   
 
-     
+
+
+
+
       <a title="18-Class-Type-Checks.html" href="https://jsfiddle.net/steen_hansen/063wLqfs/?18-Class-Type-Checks" target="_blank">18</a>
       
       <a title="19-Lone-Empty-Param-and-Result.html" href="https://jsfiddle.net/steen_hansen/x8h6dvj5/?19-Lone-Empty-Param-and-Result" target="_blank">19</a>
@@ -91,9 +148,12 @@
       
       <a title="36-Start-and-Stop.html" href="https://jsfiddle.net/steen_hansen/f19s52xr/?36-Start-and-Stop" target="_blank">36</a>
       
-      <a title="37-Readme-Example-Lambda.html" href="https://jsfiddle.net/steen_hansen/cwfsubtv/?37-Readme-Example-Lambda" target="_blank">37</a>
-  
+      <a title="37-Readme-Example-Arrow-Functions.html" href="https://jsfiddle.net/steen_hansen/cwfsubtv/?37-Readme-Example-Arrow-Functions" target="_blank">37</a>
 
+      
+    <a title="38-Every-Check.html" href="https://jsfiddle.net/steen_hansen/1umwvht5/?38-Every-Check" target="_blank">38</a>
+    
+    <a title="39-Prescribed-Use.html" href="https://jsfiddle.net/steen_hansen/ta7fdnrw/?39-Prescribed-Use" target="_blank">39</a>
 
       &nbsp;&nbsp;
   
@@ -140,61 +200,36 @@
   
     </div>
   
-  
-</div>
-
-
-<div id="the-explanation" style="width:50%" class='code-scroll'>
-  <div class='an-explantion'>37 - Readme Example Lambda</div>
-  <div id='explanation-text'>
-    <br>
-    When using arrow functions with TypeCzech, the ordering of function
-    declarations must be done with care as function hoisting does not occur.
-
-    <br><br>
-    Here both the actual production arrow function of aLottery(), and
-    the checking arrow function of PRE_aLottery() must be declared before
-    they are linked via
-<pre>
-aLottery = type_czech.link(aLottery, PRE_aLottery)
-</pre>
-Otherwise a function not defined error will occur.
-    <br><br>
-
-  </div>
-
-
-<div id="console-log">
-  <div class='a-title'>Console Output</div>
-  <div id='log-text'></div>
-  <br>
-
-
-
-</div>
 
 </div>
 
 
 
+<!--            -------------TYPE 1-----------------------------       -->
 
-<!--            -------------------TYPE 1-----------------------       -->
 
-
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@44d744188ace09cc8a11412460915536dccf4691/web-resources/consolelog.js">
+<script src="../web-resources/consolelog.js">
 </script>
 
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@44d744188ace09cc8a11412460915536dccf4691/web-resources/TypeCzech.min.js">
+
+<script src="../TypeCzech.js">
 </script>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@44d744188ace09cc8a11412460915536dccf4691/web-resources/type-czech.css">
+
+
+<link rel="stylesheet" href="../web-resources/type-czech.css">
 <style>
 </style>
 
 
 
+<!--            ---------------TYPE 1---------------------------       -->
 
-<!--            --------------------TYPE 1----------------------       -->
+
+
+
+
+
 
 
 
@@ -204,55 +239,56 @@ Otherwise a function not defined error will occur.
 
 
 <script id="check-code">
-/**/  //  <script src="../TypeCzech.js">
+/**/  if (typeof TypeCzech === 'function')
+/**/    type_czech = TypeCzech('LOG-ERRORS')
+/**/  else
+/**/    type_czech = { link: (nop) => nop, is_active: false }
+/**/  
+/**/  PRE_check_Person  = (typeof PRE_check_Person === 'undefined')  
+/**/                      ? undefined : PRE_check_Person
+/**/  PRE_check_show    = (typeof PRE_check_show === 'undefined')    
+/**/                      ? undefined : PRE_check_show
+/**/  POST_check_Person = (typeof POST_check_Person === 'undefined') 
+/**/                      ? undefined : POST_check_Person
+/**/  POST_check_show   = (typeof POST_check_show === 'undefined')   
+/**/                      ? undefined : POST_check_show
+/**/
+/**/  function PRE_check_Person(person_name){
+/**/    log('PRE_check_Person :', person_name)
+/**/  }
+/**/  
+/**/  function PRE_check_show(born_year){
+/**/    log(NL+'PRE_check_show :', born_year)
+/**/  }
+/**/  
+/**/  function POST_check_Person(person_object){
+/**/    log(NL2+'POST_check_Person :', person_object)
+/**/  }
+/**/  
+/**/  function POST_check_show(name_year){
+/**/    log(NL2+'POST_check_show :', name_year)
+/**/  }
+/**/  
+/**/  Person_PREs = {Person:PRE_check_Person, show:PRE_check_show}
+/**/  Person_POSTs = {Person:POST_check_Person, show:POST_check_show}
+/**/  
+/**/  Person = type_czech.link(Person, Person_PREs, Person_POSTs)
 
-aLottery = (lottery_name, lucky_numbers, draw_date) => {
-  the_lottery = `${lottery_name} ::: ${lucky_numbers} :::`
-  console.log(the_lottery, draw_date)
+function Person(person_name){
+  log(NL2+'in Person() :', person_name)
+  show = function (born_year) {
+    name_year =  person_name + ' - ' + born_year
+    log(NL2+'in show() :', name_year)
+    return name_year
+  }
+  person_object = {show}
+  return person_object
 }
 
-/**/  type_czech = TypeCzech('LOG-ERRORS')
-/**/  //type_czech = TypeCzech('NO-CHECKING')
-/**/
-/**/  LOTTERY_SIGNATURE = ['String', ['Number'], 'Date']
-/**/
-/**/  PRE_aLottery = (lottery_name, lucky_numbers, draw_date) =>{
-/**/    the_arguments = [lottery_name, lucky_numbers, draw_date]
-/**/    type_issue = type_czech.check_type(the_arguments, LOTTERY_SIGNATURE)
-/**/    if (type_issue) return type_issue
-/**/
-/**/    empty_issue =  type_czech.check_empty(the_arguments, ['EMPTY-ERROR'])
-/**/    return empty_issue
-/**/  }
-/**/
-/**/  aLottery = type_czech.link(aLottery, PRE_aLottery)
-
-aLottery('El Gordo', [1,2,3,4,5,0], new Date('jun 14 1999'))
-
-linesConsole(1)
-
-aLottery('Lotto 649', [1,2,3,4,5,6])
-
-linesConsole(3)
-
-aLottery('Oz Lotto', ['fourty-two'], new Date('jun 14 1999'))
-
-linesConsole(2)
-
-aLottery('Mega Millions', 17, new Date('jun 14 1999'))
-
-linesConsole(2)
-
-aLottery('Powerball', [], new Date('jun 14 1999'))
-
-linesConsole(2)
-
-aLottery('', [1,2,3,4,5,26], new Date('Dec 31 1999'))
+issac_newton = Person('Issac Newton')
+issac_newton.show(1642)
 </script>
-  
-  
-  
-  
+
 
 
 
@@ -263,24 +299,20 @@ aLottery('', [1,2,3,4,5,26], new Date('Dec 31 1999'))
 
 
 <script>
+  
 
-   jsToDiv('js-code', "check-code");
+  jsToDiv('js-code', "check-code");
+  
+   fromToBoldText(739, 756, 'code', 1)  // PRE_check_Person :
 
-   fromToBoldText(331, 340, 'code', 1)  //  ['Number'],
-  fromToBoldText(902, 915, 'code', 1)  // 'Oz Lotto', ['fourty-two']
+   fromToBoldText(957, 975, 'code', 2)  // POST_check_Person :
 
-  fromToBoldText(678, 691, 'log', 1)    // ['fourty-two']
-  fromToBoldText(742, 751, 'log', 1)    // ,['Number']
+   fromToBoldText(1069, 1085, 'code', 3)  // POST_check_show :
 
-///////////////////////
+    fromToBoldText(1, 18, 'log', 1)    // PRE_check_Person :
+  fromToBoldText(64, 82, 'log', 2)    // POST_check_Person :
+   fromToBoldText(191, 207, 'log', 3)    // POST_check_show :
+  
 
-
-
-
-
-fromToBoldText(665, 679, 'code', 2)  // ['EMPTY-ERROR']
-  fromToBoldText(1022, 1023, 'code', 2)  // 'Powerball', [],
-  fromToBoldText(1501, 1502, 'log', 2)    //'Powerball',[] 
-  fromToBoldText(1543, 1557, 'log', 2)    //['EMPTY-ERROR']
 
 </script>

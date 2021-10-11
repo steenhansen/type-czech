@@ -108,9 +108,11 @@
       
       <a title="36-Start-and-Stop.html" href="../example-snippets/36-Start-and-Stop.html">36</a>
       
-      <a title="37-Readme-Example-Lambda.html" href="../example-snippets/37-Readme-Example-Lambda.html">37</a>
+      <a title="37-Readme-Example-Arrow-Functions.html" href="../example-snippets/37-Readme-Example-Arrow-Functions.html">37</a>
   
+      <a title="38-Every-Check.html" href="../example-snippets/38-Every-Check.html">38</a>
 
+      <a title="39-Prescribed-Use.html" href="../example-snippets/39-Prescribed-Use.html">39</a>
 
       &nbsp;&nbsp;
   
@@ -248,28 +250,28 @@ class FullName extends LastName {
 /**/                     lastMethod:'Function',
 /**/                     fullMethod: 'Function'}
 
-a_last_name = new LastName('William', 'Gibson')
+william_gibson = new LastName('William', 'Gibson')
 
-a_full_name = new FullName('Mr', 'Alan', 'Kay')
+alan_kay = new FullName('Mr', 'Alan', 'Kay')
 
 log('William Gibson has firstMethod() and lastMethod()')
-last_ok = type_czech.check_interface(a_last_name, LAST_INTERFACE)
+last_ok = type_czech.check_interface(william_gibson, LAST_INTERFACE)
 linesConsole(1)
 log('Interface Issue : ', last_ok)
 
 linesConsole(2)
 
 log('Mr Alan Kay has firstMethod(), lastMethod(), and fullMethod()')
-full_ok = type_czech.check_interface(a_full_name, FULL_INTERFACE)
+full_ok = type_czech.check_interface(alan_kay, FULL_INTERFACE)
 linesConsole(1)
 log('Interface Issue : ',full_ok)
 
 linesConsole(2)
 
 log('William Gibson missing FullMethod()')
-full_interface_issue = type_czech.check_interface(a_last_name, FULL_INTERFACE)
+full_interface_issue = type_czech.check_interface(william_gibson, FULL_INTERFACE)
 linesConsole(1)
-log(full_interface_issue)
+log(full_interface_issue[1])
 </script>
 
 
@@ -287,11 +289,11 @@ log(full_interface_issue)
 
   jsToDiv('js-code', "check-code");
 
-   fromToBoldText(592, 605, 'code', 1)  // FULL_INTERFACE 
+   fromToBoldText(687, 708, 'code', 1)  //  FULL_INTERFACE = { firstMethod: 'Function',
 
-   fromToBoldText(752, 780, 'code', 1)  // a_last_name = new LastName('William', 'Gibson')
-   fromToBoldText(1254, 1280, 'code', 1)  // a_last_name, FULL_INTERFACE)
+   fromToBoldText(712, 740, 'code', 1)  // a_last_name = new LastName('William', 'Gibson')
+   fromToBoldText(1232, 1261, 'code', 1)  // a_last_name, FULL_INTERFACE)
 
-   fromToBoldText(151, 185, 'log', 1)    //William Gibson missing FullMethod()
+   fromToBoldText(209, 218, 'log', 1)    //William Gibson missing FullMethod()
 
 </script>

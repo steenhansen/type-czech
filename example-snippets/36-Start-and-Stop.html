@@ -27,6 +27,15 @@
       <li><b>type_czech.countTally()</b></li>
     </ul>
 
+
+<br>
+ Once TypeCzech is logging or throwing errors from checking functions, then the only
+way to stop the test exceptions or console logging is to is use the type_czech.countEnd()
+function. From then on all PRE and POST checking functions will not report errors, but will
+still consume
+a non-trivial amount of resources. So <b>never use type_czech.countEnd() in production</b>.
+<br><br>
+
   </div>
 
 
@@ -114,9 +123,11 @@
       
       <a title="36-Start-and-Stop.html" href="../example-snippets/36-Start-and-Stop.html">36</a>
       
-      <a title="37-Readme-Example-Lambda.html" href="../example-snippets/37-Readme-Example-Lambda.html">37</a>
+      <a title="37-Readme-Example-Arrow-Functions.html" href="../example-snippets/37-Readme-Example-Arrow-Functions.html">37</a>
   
+      <a title="38-Every-Check.html" href="../example-snippets/38-Every-Check.html">38</a>
 
+      <a title="39-Prescribed-Use.html" href="../example-snippets/39-Prescribed-Use.html">39</a>
 
       &nbsp;&nbsp;
   
@@ -229,16 +240,17 @@
 /**/  else
 /**/    type_czech = { link: (nop) => nop, is_active: false }
 /**/  
-/**/  PRE_Person = (typeof PRE_Person === 'undefined') ? undefined : PRE_Person
-/**/  
-/**/  function PRE_Person(){
+/**/  function PRE_check_Person(){
 /**/    return type_czech.check_type(arguments, ['String', 'String'])
 /**/  }
 /**/  
-/**/  Person = type_czech.link(Person, PRE_Person)
+/**/  PRE_check_Person = (typeof PRE_check_Person === 'undefined')
+/**/                     ? undefined : PRE_check_Person
+/**/  
+/**/  Person = type_czech.link(Person, PRE_check_Person)
 
 function Person(f_name, l_name){
-  log('check_type name: ', `${f_name} ${l_name}`)
+  log('Person: ', `${f_name} ${l_name}`)
   return [f_name, l_name]
 }
 
@@ -250,9 +262,7 @@ try {
 
 linesConsole(2)
 
-
 /**/  type_czech.countBegin()
-
 
 Person('Prince', 'Charles')
 
@@ -271,12 +281,24 @@ linesConsole(4)
 /**/  check_total = type_czech.countTally()
 
 log( 'Counted errors : ',  failure_total)
+linesConsole(1)
+log( 'Counted checks : ', check_total)
+
+linesConsole(4)
+
+Person('Ghengis Khan - no exception')
 
 linesConsole(2)
 
+Person('Temüjin - no exception')
+
+linesConsole(4)
+
+/**/  failure_total = type_czech.countFails()
+/**/  check_total = type_czech.countTally()
+log( 'Counted errors : ',  failure_total)
+linesConsole(1)
 log( 'Counted checks : ', check_total)
-
-
 </script>
 
 
@@ -308,9 +330,28 @@ log( 'Counted checks : ', check_total)
 
   jsToDiv('js-code', "check-code");
 
-  fromToBoldText(1020, 1054, 'code', 1)  //sole.log( 'Counted errors : ',  failure_tally )
+  fromToBoldText(638, 646, 'code', 1)  //Exception
+  fromToBoldText(790, 798, 'code', 1)  //Exception
 
-  fromToBoldText(126, 143, 'log', 1)    //Counted errors : 1
+  fromToBoldText(1, 9, 'log', 1)    //Exception
+  fromToBoldText(61, 69, 'log', 1)    //Exception
+
+
+
+  fromToBoldText(1037, 1048, 'code', 2)  //Ghengis Khan - no exception
+  fromToBoldText(1076, 1082, 'code', 2)  //Temüjin - no exception
+
+  fromToBoldText(138, 149, 'log', 2)    //Ghengis Khan - no exception
+  fromToBoldText(185, 191, 'log', 2)    //Temüjin - no exception
+
+
+
+
+  fromToBoldText(93, 106, 'log', 3)  //Counted errors : 1
+  fromToBoldText(111, 124, 'log', 3)  //Counted checks : 2
+
+  fromToBoldText(218, 231, 'log', 3)    //Counted errors : 1
+  fromToBoldText(236, 249, 'log', 3)  //Counted checks : 2
 
 
 </script>

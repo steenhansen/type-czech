@@ -6,7 +6,7 @@
   href="https://fonts.googleapis.com/css?family=Inconsolata">
 
 
-<div id='js-div' style="width:44%">
+<div id='js-div' style="width:45%">
  
   <div id='js-code'>the javascript</div>
   <br>
@@ -90,9 +90,11 @@
       
       <a title="36-Start-and-Stop.html" href="../example-snippets/36-Start-and-Stop.html">36</a>
       
-      <a title="37-Readme-Example-Lambda.html" href="../example-snippets/37-Readme-Example-Lambda.html">37</a>
+      <a title="37-Readme-Example-Arrow-Functions.html" href="../example-snippets/37-Readme-Example-Arrow-Functions.html">37</a>
   
+      <a title="38-Every-Check.html" href="../example-snippets/38-Every-Check.html">38</a>
 
+      <a title="39-Prescribed-Use.html" href="../example-snippets/39-Prescribed-Use.html">39</a>
 
       &nbsp;&nbsp;
   
@@ -141,7 +143,7 @@
 </div>
 
 
-<div id="the-explanation" style="width:56%">
+<div id="the-explanation" style="width:55%">
   <div class='an-explantion'>11 &mdash; Object Properties</div>
   <div id='explanation-text'> 
     <br>
@@ -163,18 +165,17 @@ The below example shows how to ignore some properties, while still type checking
 at least one property. Here we only ensure that the property funcOne is a 
 Function, the extra property my_string is ignored.
 <pre>
-FUNC_ONE_ONLY_STRUCTURE = { funcOne: 'Function'}
+FUNC_ONE_ONLY_STRUCT = { funcOne: 'Function'}
 func_num_func_obj = {funcOne: x=>x, my_string:'some-string'}
-check_error = type_czech.check_typeExtra(func_num_func_obj, FUNC_ONE_ONLY_STRUCTURE)
+check_error = type_czech.check_typeExtra(func_num_func_obj, FUNC_ONE_ONLY_STRUCT)
 </pre>
 
 
     In the examples to the left, the first person() function parameter is checked to 
     see if it implements the showPerson() function, if not it fails the check_type() call.
     <br><br>
-  Type-Czech is set to throws exceptions in this example to cut down on the number
-  of error messages.
-  <br><br>
+  Type-Czech is set to throw exceptions in this example.
+  <br>
   </div>
 
   <div id="console-log"  >
@@ -244,15 +245,16 @@ check_error = type_czech.check_typeExtra(func_num_func_obj, FUNC_ONE_ONLY_STRUCT
 /**/  else
 /**/    type_czech = { link: (nop) => nop, is_active: false }
 /**/
-/**/  PRE_callMethod = (typeof PRE_callMethod === 'undefined')
-/**/                   ? undefined : PRE_callMethod
+/**/  PRE_check_callMethod = 
+/**/            (typeof PRE_check_callMethod === 'undefined')
+/**/            ? undefined : PRE_check_callMethod
 /**/
-/**/  function PRE_callMethod(an_object){
+/**/  function PRE_check_callMethod(an_object){
 /**/    WANTED_PROPS = {showPerson: 'Function'}
-/**/    return type_czech.check_typeExtra(an_object, WANTED_PROPS);
+/**/    return type_czech.check_type(an_object, WANTED_PROPS)
 /**/  }
 /**/  
-/**/  callMethod = type_czech.link(callMethod, PRE_callMethod)
+/**/  callMethod = type_czech.link(callMethod, PRE_check_callMethod)
 
 function callMethod(an_object){
   an_object.showPerson()
@@ -305,26 +307,24 @@ try{
 
   jsToDiv('js-code', "check-code");
 
-   fromToBoldText(664, 688, 'code', 1)  //  {showPerson: show_person}
+   fromToBoldText(698, 722, 'code', 1)  //  {showPerson: show_person}
 
    fromToBoldText(17, 28, 'log', 1)    //showPerson()
 
   // //////////////////
 
 
-  fromToBoldText(734, 757, 'code', 2)  //  {a_key:'not-a-function'}
+  fromToBoldText(768, 791, 'code', 2)  //  {a_key:'not-a-function'}
 
-    fromToBoldText(29, 59, 'log', 2)    //{ "a_key": "not-a-function" }
-    fromToBoldText(300, 325, 'log', 2)    // ACTUAL VALUE {'a_key':'not-a-function'}
+    fromToBoldText(355, 378, 'log', 2)    // ACTUAL VALUE {'a_key':'not-a-function'}
 
 
 
 /////////////
 
-  fromToBoldText(913, 935, 'code', 3)  // wrong_showPerson = {showPerson:'a-string'}
+  fromToBoldText(947, 969, 'code', 3)  // wrong_showPerson = {showPerson:'a-string'}
 
-  fromToBoldText(419, 448, 'log', 3)    //{ "showPerson": "a-string" }
-  fromToBoldText(698, 722, 'log', 3)    // ACTUAL VALUE {'showPerson':'a-string'}
+  fromToBoldText(756, 778, 'log', 3)    // ACTUAL VALUE {'showPerson':'a-string'}
 
 
 

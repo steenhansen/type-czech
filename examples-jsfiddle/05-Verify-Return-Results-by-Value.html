@@ -7,6 +7,44 @@
 
 <div id='js-div' style="width:50%">
   <div id='js-code'>the javascript</div>
+</div>
+
+
+<div id="the-explanation" style="width:50%">
+  <div class='an-explantion'>05 &mdash; Verify Return Results by Value</div>
+  <div id='explanation-text'>
+    <br>
+
+
+    POST function checking is good for invariate verification to give warnings
+    when there are issues with the state of the data after a function is called. 
+    It is like a detachable assert statement.
+  <br><br>
+    In the example to the left, two Persons fail the return result check_typeation:
+
+    <ul>
+      <li>Catherine had incorrect upper and lowercase characters</li>
+      <li>Atahualpa does not have a check_type regnal number in l_name</li>
+    </ul>
+    <br>
+
+
+
+    If only a POST checking function is needed to verify function results, without
+    a PRE checking function, then this form must be used.
+<pre>
+Person = type_czech.link(Person, undefined, POST_check_Person) 
+</pre>
+
+
+
+  </div>
+
+  <div id="console-log"  >
+    <div class='a-title'>Console Output</div>
+    <div id='log-text'></div>
+    <br>
+  </div>
 
   <br><br>
   <div id='js-fiddles'>
@@ -29,7 +67,8 @@
       
       <a title="08-Mutated-Recursive-Function-Parameters.html" href="https://jsfiddle.net/steen_hansen/3pv5qwx8/?08-Mutated-Recursive-Function-Parameters" target="_blank">08</a>
       
- 
+
+
 
 
     
@@ -53,7 +92,10 @@
       <a title="17-Variadic-Functions.html.html" href="https://jsfiddle.net/steen_hansen/hrvucjzm/?17-Variadic-Functions.html" target="_blank">17</a>
   
 
-    
+
+
+
+
       <a title="18-Class-Type-Checks.html" href="https://jsfiddle.net/steen_hansen/063wLqfs/?18-Class-Type-Checks" target="_blank">18</a>
       
       <a title="19-Lone-Empty-Param-and-Result.html" href="https://jsfiddle.net/steen_hansen/x8h6dvj5/?19-Lone-Empty-Param-and-Result" target="_blank">19</a>
@@ -92,8 +134,12 @@
       
       <a title="36-Start-and-Stop.html" href="https://jsfiddle.net/steen_hansen/f19s52xr/?36-Start-and-Stop" target="_blank">36</a>
       
-      <a title="37-Readme-Example-Lambda.html" href="https://jsfiddle.net/steen_hansen/cwfsubtv/?37-Readme-Example-Lambda" target="_blank">37</a>
+      <a title="37-Readme-Example-Arrow-Functions.html" href="https://jsfiddle.net/steen_hansen/cwfsubtv/?37-Readme-Example-Arrow-Functions" target="_blank">37</a>
 
+      
+    <a title="38-Every-Check.html" href="https://jsfiddle.net/steen_hansen/1umwvht5/?38-Every-Check" target="_blank">38</a>
+    
+    <a title="39-Prescribed-Use.html" href="https://jsfiddle.net/steen_hansen/ta7fdnrw/?39-Prescribed-Use" target="_blank">39</a>
 
       &nbsp;&nbsp;
   
@@ -140,45 +186,8 @@
   
     </div>
   
+  
 
-</div>
-
-
-<div id="the-explanation" style="width:50%">
-  <div class='an-explantion'>05 - Verify Return Results by Value</div>
-  <div id='explanation-text'>
-    <br>
-
-
-    POST function checking is good for invariate verification to give warnings
-    when there are issues with the state of the data after a function is called. 
-    It is like a detachable assert statement.
-  <br><br>
-    In the example to the left, two Persons fail the return result check_typeation:
-
-    <ul>
-      <li>Catherine had incorrect upper and lowercase characters</li>
-      <li>Atahualpa does not have a check_type regnal number in l_name</li>
-    </ul>
-    <br>
-
-
-
-    If only a POST checking function is needed to verify function results, without
-    a PRE checking function, then this form must be used.
-<pre>
-Person = type_czech.link(Person, undefined, POST_Person) 
-</pre>
-
-
-
-  </div>
-
-  <div id="console-log"  >
-    <div class='a-title'>Console Output</div>
-    <div id='log-text'></div>
-    <br>
-  </div>
 
 </div>
 
@@ -191,22 +200,25 @@ Person = type_czech.link(Person, undefined, POST_Person)
 
 
 
-<!--            ------------------TYPE 1------------------------       -->
+<!--            ---------------TYPE 1---------------------------       -->
 
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@44d744188ace09cc8a11412460915536dccf4691/web-resources/consolelog.js">
+<script src="../web-resources/consolelog.js">
 </script>
 
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@44d744188ace09cc8a11412460915536dccf4691/web-resources/TypeCzech.min.js">
+
+<script src="../TypeCzech.js">
 </script>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@44d744188ace09cc8a11412460915536dccf4691/web-resources/type-czech.css">
+
+
+<link rel="stylesheet" href="../web-resources/type-czech.css">
 <style>
 </style>
 
 
 
 
-<!--            --------------------TYPE 1----------------------       -->
+<!--            ---------------TYPE 1s---------------------------       -->
 
 
 
@@ -234,17 +246,18 @@ Person = type_czech.link(Person, undefined, POST_Person)
 /**/  else
 /**/    type_czech = { link: (nop) => nop, is_active: false }
 /**/
-/**/  POST_Person =(typeof POST_Person==='undefined') ? undefined:POST_Person
+/**/  POST_check_Person = (typeof POST_check_Person === 'undefined')
+/**/                      ? undefined : POST_check_Person
 /**/
-/**/  function POST_Person(first_last){
+/**/  function POST_check_Person(first_last){
 /**/    royal_name = new RegExp(/^[A-Z][a-z]*\s[A-Z]*$/);
 /**/    if (!first_last.match(royal_name))
-/**/      return NL+`POST, name is not formated royally - ${first_last}`
+/**/      return NL+`POST, name is not formatted royally - ${first_last}`
 /**/
 /**/    return ''
 /**/  }
 /**/
-/**/  Person = type_czech.link(Person, undefined, POST_Person) 
+/**/  Person = type_czech.link(Person, undefined, POST_check_Person) 
 
 function Person(f_name, regnal_number){
   first_last = f_name + ' ' + regnal_number
@@ -257,16 +270,17 @@ log('out A : ', cleopatra)
 
 linesConsole(1)
 
+atahualpa = Person('Atahualpa')
+linesConsole(1)
+log('out B : ', atahualpa)
+
+linesConsole(1)
+
 catherine = Person('cATHERINE', 'II')
 log(NL +'out C : ', catherine)
 
-linesConsole(2)
 
-atahualpa = Person('Atahualpa')
 linesConsole(1)
-log('out D : ', atahualpa)
-
-linesConsole(2)
 
 louis = Person('Louis', 'XIV')
 linesConsole(1)
@@ -286,9 +300,9 @@ log('out D : ', louis)
 
   jsToDiv('js-code', "check-code");
 
-  fromToBoldText(393, 395, 'code', 1)  // (/^[A-Z][
-   fromToBoldText(828, 828, 'code', 1)  //  Person('cATHERINE', 'II')
-   fromToBoldText(62, 62, 'log', 1)    // ally - cATHERINE II
+   fromToBoldText(378, 383, 'code', 1)  // (/^[A-Z][
+   fromToBoldText(880, 880, 'code', 1)  //  Person('cATHERINE', 'II')
+   fromToBoldText(148, 148, 'log', 1)    // ally - cATHERINE II
 
 
 </script>

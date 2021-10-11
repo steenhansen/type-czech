@@ -5,46 +5,9 @@
 <link rel="stylesheet"
   href="https://fonts.googleapis.com/css?family=Inconsolata">
   
-<div id='js-div' style="width:40%">
+<div id='js-div' style="width:46%">
   <div id='js-code'>the javascript</div>
-</div>
-
-
-<div id="the-explanation" style="width:60%">
-  <div class='an-explantion'>28 - Accept Null and Undefined Values</div>
-  <div id='explanation-text'>
-    <br>
- When using the 'UNDEF-OK' option with TypeCzech creation, 'null' and 'undefined' values are allowed
- to pass through error free in parameter type checking. The values 'null' and 'undefined' are still however
- considered empty &amp; check_empty. In other words, null and undefined are treated as type wildcards.
-    <ul>
-      <li style='float:left; width:50%'><b>null</b> - absence of any value</li>
-      <li><b>undefined</b> - an un-assigned value</li>
-    </ul>
-
-
-
-The 'UNDEF-OK' option is only useful with type shapes, and thus these functions:
-<ul>
-  <li><b>check_type</b>(actual_arguments, expected_shape)</li>
-  <li><b>check_typeExtra</b>(actual_arguments, expected_shape)</li>
-  <li><b>check_typeEither</b>(actual_arguments, possible_shapes)</li>
-  <li><b>check_interfaceExtra</b>(actual_object, expected_shape)</li>
-</ul>
-
-<br>
-
-
- </div>
-
-
-  <div id="console-log"  >
-    <div class='a-title'>Console Output</div>
-    <div id='log-text'></div>
-    <br>
-  </div>
-
-  <br><br>
+  <br>
   <div id='js-fiddles'>
     jsFiddles:
     <a title="00-Readme-Example" href="https://jsfiddle.net/steen_hansen/0xtpLwsc/?00-Readme-Example" target="_blank">00</a>
@@ -65,7 +28,8 @@ The 'UNDEF-OK' option is only useful with type shapes, and thus these functions:
       
       <a title="08-Mutated-Recursive-Function-Parameters.html" href="https://jsfiddle.net/steen_hansen/3pv5qwx8/?08-Mutated-Recursive-Function-Parameters" target="_blank">08</a>
       
- 
+
+
 
 
     
@@ -89,7 +53,10 @@ The 'UNDEF-OK' option is only useful with type shapes, and thus these functions:
       <a title="17-Variadic-Functions.html.html" href="https://jsfiddle.net/steen_hansen/hrvucjzm/?17-Variadic-Functions.html" target="_blank">17</a>
   
 
-      
+
+
+
+
       <a title="18-Class-Type-Checks.html" href="https://jsfiddle.net/steen_hansen/063wLqfs/?18-Class-Type-Checks" target="_blank">18</a>
       
       <a title="19-Lone-Empty-Param-and-Result.html" href="https://jsfiddle.net/steen_hansen/x8h6dvj5/?19-Lone-Empty-Param-and-Result" target="_blank">19</a>
@@ -128,9 +95,12 @@ The 'UNDEF-OK' option is only useful with type shapes, and thus these functions:
       
       <a title="36-Start-and-Stop.html" href="https://jsfiddle.net/steen_hansen/f19s52xr/?36-Start-and-Stop" target="_blank">36</a>
       
-      <a title="37-Readme-Example-Lambda.html" href="https://jsfiddle.net/steen_hansen/cwfsubtv/?37-Readme-Example-Lambda" target="_blank">37</a>
-  
+      <a title="37-Readme-Example-Arrow-Functions.html" href="https://jsfiddle.net/steen_hansen/cwfsubtv/?37-Readme-Example-Arrow-Functions" target="_blank">37</a>
 
+      
+    <a title="38-Every-Check.html" href="https://jsfiddle.net/steen_hansen/1umwvht5/?38-Every-Check" target="_blank">38</a>
+    
+    <a title="39-Prescribed-Use.html" href="https://jsfiddle.net/steen_hansen/ta7fdnrw/?39-Prescribed-Use" target="_blank">39</a>
 
       &nbsp;&nbsp;
   
@@ -177,6 +147,42 @@ The 'UNDEF-OK' option is only useful with type shapes, and thus these functions:
   
     </div>
   
+</div>
+
+
+<div id="the-explanation" style="width:54%">
+  <div class='an-explantion'>28 &mdash; Accept Null and Undefined Values</div>
+  <div id='explanation-text'>
+    <br>
+ When using the 'UNDEF-OK' option with TypeCzech creation, 'null' and 'undefined' values are allowed
+ to pass through error free in parameter type checking. The values 'null' and 'undefined' are still however
+ considered empty &amp; check_empty. In other words, null and undefined are treated as type wildcards.
+    <ul>
+      <li style='float:left; width:50%'><b>null</b> - absence of any value</li>
+      <li><b>undefined</b> - an un-assigned value</li>
+    </ul>
+
+
+
+The 'UNDEF-OK' option is only useful with type shapes, and thus these functions:
+<ul>
+  <li><b>check_type</b>(actual_arguments, expected_shape)</li>
+  <li><b>check_typeExtra</b>(actual_arguments, expected_shape)</li>
+  <li><b>check_typeEither</b>(actual_arguments, possible_shapes)</li>
+</ul>
+
+<br>
+
+
+ </div>
+
+
+  <div id="console-log"  >
+    <div class='a-title'>Console Output</div>
+    <div id='log-text'></div>
+    <br>
+  </div>
+
 
 
 </div>
@@ -193,21 +199,26 @@ The 'UNDEF-OK' option is only useful with type shapes, and thus these functions:
 
 
 
-<!--            -------------------TYPE 1-----------------------       -->
+<!--            ------------TYPE 1------------------------------       -->
 
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@44d744188ace09cc8a11412460915536dccf4691/web-resources/consolelog.js">
+
+<script src="../web-resources/consolelog.js">
 </script>
 
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@44d744188ace09cc8a11412460915536dccf4691/web-resources/TypeCzech.min.js">
+
+<script src="../TypeCzech.js">
 </script>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@44d744188ace09cc8a11412460915536dccf4691/web-resources/type-czech.css">
+
+
+<link rel="stylesheet" href="../web-resources/type-czech.css">
 <style>
 </style>
 
 
 
-<!--            -----------------TYPE 1-------------------------       -->
+
+<!--            -------------TYPE 1s-----------------------------       -->
 
 
 
@@ -238,22 +249,22 @@ The 'UNDEF-OK' option is only useful with type shapes, and thus these functions:
 /**/    type_czech = { link: (nop) => nop,
 /**/                   is_active: false }
 /**/  
-/**/  PRE_Person = (typeof PRE_Person === 'undefined')
-/**/               ? undefined : PRE_Person
+/**/  PRE_check_Person = (typeof PRE_check_Person === 'undefined')
+/**/               ? undefined : PRE_check_Person
 /**/  
-/**/  function PRE_Person(person_obj){
+/**/  function PRE_check_Person(person_obj){
 /**/    let {f_name, l_name} = person_obj
 /**/    person_type = {f_name:'String', l_name:'String'}
 /**/    return type_czech.check_type(arguments, person_type)
 /**/  }
 /**/  
-/**/  function POST_Person(person_array){
+/**/  function POST_check_Person(person_array){
 /**/    let [f_name, l_name] = person_array
 /**/    person_type = ['String', 'String']
 /**/    return type_czech.check_type(arguments, person_type)
 /**/  }
 /**/  
-/**/  Person=type_czech.link(Person,PRE_Person,POST_Person)
+/**/  Person=type_czech.link(Person,PRE_check_Person,POST_check_Person)
 
 function Person(person_obj){
   let {f_name, l_name} = person_obj
@@ -295,10 +306,19 @@ log(marvin)
 
    jsToDiv('js-code', "check-code");
 
-   fromToBoldText(75, 84, 'code', 1)  //'UNDEF-OK'
-  fromToBoldText(1022, 1032, 'code', 1)  //  l_name:null
+   fromToBoldText(1151, 1159, 'code', 1)  //l_name:12
 
-  fromToBoldText(47, 50, 'log', 1)    //null 
+  fromToBoldText(322, 330, 'log', 1)  //  l_name:12
+  fromToBoldText(375, 389, 'log', 1)   // l_name:"String"
+
+
+
+  fromToBoldText(661, 680, 'code', 2)  //['String', 'String']
+
+fromToBoldText(681, 682, 'log', 2)  //  12
+fromToBoldText(720, 727, 'log', 2)   // ,"String"
+
+
 
 
 </script>

@@ -130,9 +130,11 @@ fuction First{}
       
       <a title="36-Start-and-Stop.html" href="../example-snippets/36-Start-and-Stop.html">36</a>
       
-      <a title="37-Readme-Example-Lambda.html" href="../example-snippets/37-Readme-Example-Lambda.html">37</a>
+      <a title="37-Readme-Example-Arrow-Functions.html" href="../example-snippets/37-Readme-Example-Arrow-Functions.html">37</a>
   
+      <a title="38-Every-Check.html" href="../example-snippets/38-Every-Check.html">38</a>
 
+      <a title="39-Prescribed-Use.html" href="../example-snippets/39-Prescribed-Use.html">39</a>
 
       &nbsp;&nbsp;
   
@@ -234,13 +236,13 @@ fuction First{}
 <script id="check-code">
 /**/  type_czech = TypeCzech('LOG-ERRORS')
 /**/  //type_czech = TypeCzech('NO-CHECKING')
-/**/  function PRE_First(){ log(NL2+'PRE -First') }
-/**/  function POST_First(){ log(NL1+'POST-First') }
-/**/  function PRE_firstMethod(){ log(NL2+'PRE-firstMethod') }
-/**/  function POST_firstMethod(){ log('POST-firstMethod') }
+/**/  function PRE_check_First(){ log(NL2+'PRE -First') }
+/**/  function POST_check_First(){ log(NL1+'POST-First') }
+/**/  function PRE_check_firstMethod(){ log(NL2+'PRE-firstMethod') }
+/**/  function POST_check_firstMethod(){ log('POST-firstMethod') }
 /**/
-/**/  First_PREs = {First:PRE_First, firstMethod:PRE_firstMethod};
-/**/  First_POSTs = {First:POST_First, firstMethod:POST_firstMethod};
+/**/  First_PREs = {First:PRE_check_First, firstMethod:PRE_check_firstMethod};
+/**/  First_POSTs = {First:POST_check_First, firstMethod:POST_check_firstMethod};
 /**/  First = type_czech.link(First, First_PREs, First_POSTs);
 
 function First(f_name){
@@ -248,13 +250,13 @@ function First(f_name){
   firstMethod = function(a_date) { log(NL+`firstMethod :${f_name} `, a_date) }
   return {firstMethod}
 }
-/**/  function PRE_Last(){ log(LEVEL_1+'PRE-Last') }
-/**/  function POST_Last(){ log(LEVEL_1+"POST-Last") }
-/**/  function PRE_lastMethod(){ log(NL+LEVEL_1+"PRE -lastMethod") }
-/**/  function POST_lastMethod(){ log(LEVEL_1+"POST-lastMethod") }
+/**/  function PRE_check_Last(){ log(LEVEL_1+'PRE-Last') }
+/**/  function POST_check_Last(){ log(LEVEL_1+"POST-Last") }
+/**/  function PRE_check_lastMethod(){ log(NL+LEVEL_1+"PRE -lastMethod") }
+/**/  function POST_check_lastMethod(){ log(LEVEL_1+"POST-lastMethod") }
 /**/
-/**/  Last_PREs = {Last:PRE_Last, lastMethod:PRE_lastMethod}
-/**/  Last_POSTs = {Last:POST_Last, lastMethod:POST_lastMethod}
+/**/  Last_PREs = {Last:PRE_check_Last, lastMethod:PRE_check_lastMethod}
+/**/  Last_POSTs = {Last:POST_check_Last, lastMethod:POST_check_lastMethod}
 /**/  Last = type_czech.link(Last, Last_PREs, Last_POSTs)
 
 function Last(f_name, l_name){
@@ -263,13 +265,13 @@ function Last(f_name, l_name){
   lastMethod = function (a_year) { log(LEVEL_1+`lastMethod :${a_year} ${f_name} ${l_name}`) }
   return {lastMethod, firstMethod:first.firstMethod}
 }
-/**/  function PRE_Full(){  log(LEVEL_2+'PRE-Full') }
-/**/  function POST_Full(){ log(LEVEL_2+"POST-Full") }
-/**/  function PRE_fullMethod(){ log(NL+LEVEL_2+"PRE -fullMethod") }
-/**/  function POST_fullMethod(){ log(LEVEL_2+"POST-fullMethod") }
+/**/  function PRE_check_Full(){  log(LEVEL_2+'PRE-Full') }
+/**/  function POST_check_Full(){ log(LEVEL_2+"POST-Full") }
+/**/  function PRE_check_fullMethod(){ log(NL+LEVEL_2+"PRE -fullMethod") }
+/**/  function POST_check_fullMethod(){ log(LEVEL_2+"POST-fullMethod") }
 /**/
-/**/  Full_PREs = {Full:PRE_Full, fullMethod:PRE_fullMethod}
-/**/  Full_POSTs= {Full:POST_Full, fullMethod:POST_fullMethod}
+/**/  Full_PREs = {Full:PRE_check_Full, fullMethod:PRE_check_fullMethod}
+/**/  Full_POSTs= {Full:POST_check_Full, fullMethod:POST_check_fullMethod}
 /**/  Full = type_czech.link(Full, Full_PREs, Full_POSTs)
 
 function Full(salu, f_name, l_name){
@@ -300,9 +302,9 @@ william_gibson.fullMethod('Neuromancer')
   
    jsToDiv('js-code', "check-code");
 
-   fromToBoldText(561, 570, 'code', 1)  //CONS-First
-    fromToBoldText(1196, 1204, 'code', 2)  //  CONS-Last
-    fromToBoldText(1897, 1905, 'code', 3)  // CONS-Full
+   fromToBoldText(607, 616, 'code', 1)  //CONS-First
+    fromToBoldText(1289, 1297, 'code', 2)  //  CONS-Last
+    fromToBoldText(2037, 2045, 'code', 3)  // CONS-Full
 
    
   fromToBoldText(56, 65, 'log', 1)    //CONS-First

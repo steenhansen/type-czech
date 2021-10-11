@@ -1,0 +1,373 @@
+<!DOCTYPE html><meta charset="utf-8" />
+<title>38-Every-Check</title>
+
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Inconsolata">
+  
+<div id='js-div' style="width:64%;" >
+  <div id='js-code'>the javascript</div>
+
+  
+</div>
+
+
+<div id="the-explanation" style="width:36%">
+  <div class='an-explantion'>38 &mdash; Every Check</div>
+  <div id='explanation-text'>
+    <br>
+    
+This page exists to highlight each possible checking function that executes within a PRE or POST test routine.
+Each of the allTypes() checking function calls, from A to J, can be executed in the console causing at least one error.
+Short cuts as, 'S' for 'String', and 'ER' for 'EMPTY-ERROR', save space.
+<br><br>
+No error for the below function call when tested in the current page's console.
+<pre>
+allTypes('John', 'Winston', 'Lennon')
+</pre>
+
+
+<span class='red-explanation'>A</span>. <span class='blue-explanation'>check_emptyExtra</span>(arguments, expected_emptys)
+<pre>
+allTypes('', '', '')  // param_1 is empty
+</pre>
+
+<span class='red-explanation'>B</span>. <span class='blue-explanation'>check_typeExtra</span>(arguments, expected_types)
+<pre>
+allTypes(7,11)  // not strings but numbers
+</pre>
+
+<span class='red-explanation'>C</span>. <span class='blue-explanation'>check_emptyEither</span>(arguments, expected_emptys)
+<pre>
+allTypes('Ringo', '', '')  // matched neither empty
+</pre>
+
+<span class='red-explanation'>D</span>. <span class='blue-explanation'>check_typeEither</span>(arguments, expected_types)
+<pre>
+allTypes('Lennon', '', 17) // param_3 not str nor obj
+</pre>
+
+<span class='red-explanation'>E</span>. <span class='blue-explanation'>check_empty</span>(arguments, expected_emptys)
+<pre>
+allTypes('Pete', 'Best', {}) // param_3 is empty {}
+</pre>
+
+<span class='red-explanation'>F</span>. <span class='blue-explanation'>check_interface</span>(arguments, expected_types)
+<pre>
+allTypes('Stuart', 'Sutcliffe', {city:5})//city num
+</pre>
+
+<span class='red-explanation'>G</span>. <span class='blue-explanation'>check_variadicEmpty</span>(arguments, expected_types)
+<pre>
+allTypes('Billy', 'Preston', '') // param_3 is empty
+</pre>
+
+<span class='red-explanation'>H</span>. <span class='blue-explanation'>check_mutated</span>(func_name, var_name)
+<pre>
+allTypes('George', 'Harrison', {city:'Bath'})//change
+</pre>
+
+
+
+
+<span class='red-explanation'>I</span>. <span class='blue-explanation'>check_type</span>(arguments, expected_types)
+<pre>
+allTypes('James', 'Paul', 'McCartney') // 17 not a str
+</pre>
+
+
+
+
+
+
+<span class='red-explanation'>J</span>. <span class='blue-explanation'>check_variadicType</span>(arguments, expected_types)
+<pre>
+allTypes('Brian', 'Epstein', {city:'Liverpool'})
+                    // return results not all Strings
+</pre>
+
+
+
+</div>
+
+
+<div id="console-log"  >
+  <div class='a-title'>Console Output</div>
+  <div id='log-text'></div>
+  <br>
+</div>
+
+<div id='js-fiddles'>
+  jsFiddles:
+  <a title="00-Readme-Example" href="../example-snippets/00-Readme-Example.html">00</a>
+
+  <a title="01-PRE-and-POST-Funtions" href="../example-snippets/01-PRE-and-POST-Functions.html">01</a>
+
+  <a title="02-Validate-Parameters-by-Value.html" href="../example-snippets/02-Validate-Parameters-by-Value.html">02</a>
+    
+    <a title="03-Turn-Off-Library-Not-Loaded.html" href="../example-snippets/03-Turn-Off-Library-Not-Loaded.html">03</a>
+    
+    <a title="04-Turn-Off-No-Check-Functions.html" href="../example-snippets/04-Turn-Off-No-Check-Functions.html">04</a>
+    
+    <a title="05-Verify-Return-Results-by-Value.html" href="../example-snippets/05-Verify-Return-Results-by-Value.html">05</a>
+    
+    <a title="06-Validate-Parameters-and-Results.html" href="../example-snippets/06-Validate-Parameters-and-Results.html">06</a>
+    
+    <a title="07-Mutated-Function-Parameters.html" href="../example-snippets/07-Mutated-Function-Parameters.html">07</a>
+    
+    <a title="08-Mutated-Recursive-Function-Parameters.html" href="../example-snippets/08-Mutated-Recursive-Function-Parameters.html">08</a>
+   
+   
+    <a title="09-Closure-Parameters-Results-and-Methods.html" href="../example-snippets/09-Closure-Parameters-Results-and-Methods.html">09</a>
+            
+    <a title="10-Class-Parameters-Results-and-Methods.html" href="../example-snippets/10-Class-Parameters-Results-and-Methods.html">10</a>
+    
+    <a title="11-Object-Properties.html" href="../example-snippets/11-Object-Properties.html">11</a>
+    
+    <a title="12-Class-Interface.html" href="../example-snippets/12-Class-Interface.html">12</a>
+    
+    <a title="13-Parameter-and-Results-Multi-Types.html" href="../example-snippets/13-Parameter-and-Results-Multi-Types.html">13</a>
+    
+    <a title="14-Array-and-Object-Types.html" href="../example-snippets/14-Array-and-Object-Types.html">14</a>
+    
+    <a title="15-Lone-Single-Type-Parameter-Functions.html" href="../example-snippets/15-Lone-Single-Type-Parameter-Functions.html">15</a>
+    
+    <a title="16-Arrays-with-One-Type.html" href="../example-snippets/16-Arrays-with-One-Type.html">16</a>
+    
+    <a title="17-Variadic-Functions.html" href="../example-snippets/17-Variadic-Functions.html">17</a>
+
+
+    
+    <a title="18-Class-Type-Checks.html" href="../example-snippets/18-Class-Type-Checks.html">18</a>
+    
+    <a title="19-Lone-Empty-Param-and-Result.html" href="../example-snippets/19-Lone-Empty-Param-and-Result.html">19</a>
+    
+    <a title="20-Multiple-Empty-Params-and-Results.html" href="../example-snippets/20-Multiple-Empty-Params-and-Results.html">20</a>
+    
+    <a title="21-Type-Check-with-Extra-Optional-Params.html" href="../example-snippets/21-Type-Check-with-Extra-Optional-Params.html">21</a>
+    
+    <a title="22-Empty-Checks-with-Extra-Optional-Params.html" href="../example-snippets/22-Empty-Checks-with-Extra-Optional-Params.html">22</a>
+    
+    <a title="23-Typed-Union-Checks.html" href="../example-snippets/23-Typed-Union-Checks.html">23</a>
+    
+    <a title="24-Empty-and-Valueless-Union-Checks.html" href="../example-snippets/24-Empty-and-Valueless-Union-Checks.html">24</a>
+    
+    <a title="25-Accessing-PRE-POST-Arguments.html" href="../example-snippets/25-Accessing-PRE-POST-Arguments.html">25</a>
+    
+    <a title="26-Type-and-Empty-Abbreviations.html" href="../example-snippets/26-Type-and-Empty-Abbreviations.html">26</a>
+    
+    <a title="27-Type-and-Empty-Object-Extras.html" href="../example-snippets/27-Type-and-Empty-Object-Extras.html">27</a>
+    
+    <a title="28-Accept-Null-and-Undefined-Values.html" href="../example-snippets/28-Accept-Null-and-Undefined-Values.html">28</a>
+    
+    <a title="29-Class-Object-Type-Checks.html" href="../example-snippets/29-Class-Object-Type-Checks.html">29</a>
+    
+    <a title="30-HTML-Type-Checks.html" href="../example-snippets/30-HTML-Type-Checks.html">30</a>
+    
+    <a title="31-Extended-Class-Type-Checks.html" href="../example-snippets/31-Extended-Class-Type-Checks.html">31</a>
+    
+    <a title="32-Extended-Closure-Type-Checks-check.html" href="../example-snippets/32-Extended-Closure-Type-Checks-check.html">32</a>
+    
+    <a title="33-Count-Checks.html" href="../example-snippets/33-Count-Checks.html">33</a>
+    
+    <a title="34-Parameter-Check-Events.html" href="../example-snippets/34-Parameter-Check-Events.html">34</a>
+    
+    <a title="35-Throw-or-Log.html" href="../example-snippets/35-Throw-or-Log.html">35</a>
+    
+    <a title="36-Start-and-Stop.html" href="../example-snippets/36-Start-and-Stop.html">36</a>
+    
+    <a title="37-Readme-Example-Arrow-Functions.html" href="../example-snippets/37-Readme-Example-Arrow-Functions.html">37</a>
+
+    <a title="38-Every-Check.html" href="../example-snippets/38-Every-Check.html">38</a>
+
+    <a title="39-Prescribed-Use.html" href="../example-snippets/39-Prescribed-Use.html">39</a>
+
+    &nbsp;&nbsp;
+
+    <a title="101-Extending-Classes-Inline.html" href="../examples-web/101-Extending-Classes-Inline.html">101</a>
+    
+    <a title="102-Extending-Classes-Imports.html" href="../examples-web/102-Extending-Classes-Imports/102-Extending-Classes-Imports.html">102</a>
+    
+    <a title="103-Extending-Classes-Production.html" href="../examples-web/103-Extending-Classes-Production/103-Extending-Classes-Production.html">103</a>
+    
+    
+    <a title="201-Extending-Closures-Inline.html" href="../examples-web/201-Extending-Closures-Inline.html">201</a>
+    
+    <a title="202-Extending-Closures-Imports.html" href="../examples-web/202-Extending-Closures-Imports/202-Extending-Closures-Imports.html">202</a>
+    
+    <a title="203-Extending-Closures-Production.html" href="../examples-web/203-Extending-Closures-Production/203-Extending-Closures-Production.html">203</a>
+
+    
+    <a title="301-Extending-IIFEs-Inline.html" href="../examples-web/301-Extending-IIFEs-Inline.html">301</a>
+    
+    <a title="302-Extending-IIFEs-Imports.html" href="../examples-web/302-Extending-IIFEs-Imports/302-Extending-IIFEs-Imports.html">302</a>
+    
+    <a title="303-Extending-IIFEs-Production.html" href="../examples-web/303-Extending-IIFEs-Production/303-Extending-IIFEs-Production.html">303</a>
+    
+    
+    <a title="401-Extending-ClassFree-Inline.html" href="../examples-web/401-Extending-ClassFree-Inline.html">401</a>
+    
+    <a title="402-Extending-ClassFree-Imports.html" href="../examples-web/402-Extending-ClassFree-Imports/402-Extending-ClassFree-Imports.html">402</a>
+    
+    <a title="403-Extending-ClassFree-Production.html" href="../examples-web/403-Extending-ClassFree-Production/403-Extending-ClassFree-Production.html">403</a>
+    
+    
+    <a title="501-Extending-Prototypes-Inline.html" href="../examples-web/501-Extending-Prototypes-Inline.html">501</a>
+    
+    <a title="502-Extending-Prototypes-Imports.html" href="../examples-web/502-Extending-Prototypes-Imports/502-Extending-Prototypes-Imports.html">502</a>
+    
+    <a title="503-Extending-Prototypes-Inline.html" href="../examples-web/503-Extending-Prototypes-Production/503-Extending-Prototypes-Production.html">503</a>
+    
+    
+    <a title="601-Extending-OLOO-Inline.html" href="../examples-web/601-Extending-OLOO-Inline.html">601</a>
+    
+    <a title="602-Extending-OLOO-Imports.html" href="../examples-web/602-Extending-OLOO-Imports/602-Extending-OLOO-Imports.html">602</a>
+    
+    <a title="603-Extending-OLOO-Production.html" href="../examples-web/603-Extending-OLOO-Production/603-Extending-OLOO-Production.html">603</a>
+  </div>
+</div>
+
+
+
+
+<!--            ------------------TYPE 1------------------------       -->
+
+<script src="../web-resources/consolelog.js">
+</script>
+
+
+<script src="../TypeCzech.js">
+</script>
+
+
+
+<link rel="stylesheet" href="../web-resources/type-czech.css">
+<style>
+</style>
+
+
+
+
+<!--            -------------------TYPE 1-----------------------       -->
+
+
+
+
+
+<script>
+  log = captureConsole("log-text");
+  function whichError(index_num, error_3_array) {
+    log(index_num)
+    return error_3_array
+  }
+</script>
+
+
+<script id="check-code">
+/**/  type_czech = TypeCzech('LOG-ERRORS')
+/**/  
+/**/  function PRE_check_allTypes(param_1, param_2, param_3){
+/**/    type_czech.mutateSnapshot('PRE_check_allTypes', 'param_3', [param_3])
+/**/
+/**/    A_emptyExtra = type_czech.check_emptyExtra(arguments,  ['ER', 'OK'])
+/**/    if (A_emptyExtra) return whichError('A. ', A_emptyExtra)
+/**/
+/**/    B_typeExtra = type_czech.check_typeExtra(arguments, ['S', 'S'])
+/**/    if (B_typeExtra) return whichError('B. ', B_typeExtra)
+/**/
+/**/    C_emptyEither=type_czech.check_emptyEither(arguments,[['ER','OK','ER'],['ER','ER','OK']])
+/**/    if (C_emptyEither) return whichError('C. ', C_emptyEither)
+/**/
+/**/    D_typeEither = type_czech.check_typeEither(arguments, [ ['S','S','S'], ['S','S','O'] ])
+/**/    if (D_typeEither) return whichError('D. ', D_typeEither)
+/**/
+/**/    if (type_czech.typeIsA(param_3, 'Object')) {
+/**/      E_empty = type_czech.check_empty(arguments, ['ER', 'ER', 'ER'])
+/**/      if (E_empty) return whichError('E. ', E_empty)
+/**/
+/**/      F_interface = type_czech.check_interface(param_3, {city:'S'})
+/**/      if (F_interface) return whichError('F. ', F_interface)
+/**/
+/**/    } else {
+/**/      G_variadicEmpty = type_czech.check_variadicEmpty(arguments, ['ER'])
+/**/      if (G_variadicEmpty) return whichError('G. ', G_variadicEmpty)
+/**/    }
+/**/  }
+/**/  function POST_check_allTypes(return_value){
+/**/    H_mutated = type_czech.check_mutated('PRE_check_allTypes', 'param_3')
+/**/    if (H_mutated) return whichError('H. ', H_mutated)
+/**/
+/**/    I_type = type_czech.check_type(return_value[0], 'S')
+/**/    if (I_type) return whichError('I. ', I_type)
+/**/
+/**/    J_variadicType = type_czech.check_variadicType(return_value, ['S'])
+/**/    if (J_variadicType) return whichError('J. ', J_variadicType)
+/**/  }
+/**/  
+/**/  allTypes = type_czech.link(allTypes, PRE_check_allTypes, POST_check_allTypes) 
+
+function allTypes(param_1, param_2, param_3){
+  third_type = type_czech.typeFinal(param_3); 
+  if (third_type === 'Object') {
+    if (param_3.city !== 'Liverpool')  param_3.city = 'Liverpool'
+    return [param_1, param_2, param_3] 
+  }
+  if (param_1 === 'James') return [17, param_2, param_3]
+  else return [param_1, param_2, param_3]
+}
+</script>
+
+<script>
+   jsToDiv('js-code', "check-code");
+
+
+
+///////////////////////
+
+
+fromToBoldText(204, 204, 'code', 1)    // A_emptyExtra 
+
+fromToBoldText(351, 351, 'code', 1)    // B_emptyExtra 
+
+fromToBoldText(491, 491, 'code', 1)    // C_emptyExtra 
+
+fromToBoldText(661, 661, 'code', 1)    // D_emptyExtra 
+
+fromToBoldText(882, 882, 'code', 1)    // E_emptyExtra 
+
+fromToBoldText(1018, 1018, 'code', 1)  // F_emptyExtra 
+
+fromToBoldText(1177, 1177, 'code', 1)  // G_emptyExtra 
+
+fromToBoldText(1394, 1394, 'code', 1)  // H_emptyExtra 
+
+fromToBoldText(1536, 1536, 'code', 1)  // I_emptyExtra 
+
+fromToBoldText(1655, 1655, 'code', 1)  // J_emptyExtra 
+
+
+
+fromToBoldText(230, 245, 'code', 2)  // A check_emptyExtra
+
+fromToBoldText(376, 390, 'code', 2)  // B check_typeExtra
+
+
+fromToBoldText(516, 532, 'code', 2)  // C  check_emptyEither
+
+fromToBoldText(687, 702, 'code', 2)  // D  check_typeEither
+
+fromToBoldText(903, 913, 'code', 2)  // E  check_empty
+
+fromToBoldText(1043, 1057, 'code', 2)  // F  check_interface
+
+fromToBoldText(1206, 1224, 'code', 2)  // G  check_variadicEmpty
+
+
+fromToBoldText(1417, 1429, 'code', 2)  // H  check_mutated
+
+fromToBoldText(1563, 1572, 'code', 2)  // I  check_type
+
+fromToBoldText(1690, 1707, 'code', 2)  // J  check_variadicType
+
+
+</script>
+

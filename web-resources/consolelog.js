@@ -24,7 +24,6 @@
 
 
 
-//  const CZECH_ERROR_INDENT = '\n\t\t';
 
 
 
@@ -59,7 +58,7 @@ let log_count = 0;
 const NEW_LINE_REGEX = new RegExp(/\|/, 'g');
 const NBSP_REGEX = new RegExp(/~/, 'g');
 
-const UNDEFINED_AS_STR = 'un-defined';
+const UNDEFINED_AS_STR = 'undefined';
 
 function startCurlyDates(log_text) {
   const no_news = log_text.replace(/\n/g, '');
@@ -246,7 +245,7 @@ function captureConsole(div_id) {
   function logArray(args) {
     function _stringifyReplacer(key, value) {
       if (typeof value === 'undefined') {
-        return 'un-defined';
+        return 'undefined';
       }
       if (Number.isNaN(value)) {
         return '-NaN-';

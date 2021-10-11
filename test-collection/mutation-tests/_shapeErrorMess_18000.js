@@ -33,7 +33,7 @@ function _shapeErrorMess_18001(){
     before_str = beforeCheck(check_array, object_type);
     actual = type_czech._shapeErrorMess(check_array, object_type, exact_shape);
     afterCheck(check_array, object_type, before_str, error_id);
-  expected = `TC@03 - Element '0' is supposed to be a '11', but is missing : ["Number"]`; 
+  expected = `TC@60 - Element '0' is supposed to be a '11', but is missing : ["Number"]`; 
 
   if (actual !== expected) {
     console.log(error_id);
@@ -68,7 +68,7 @@ function _shapeErrorMess_18002(){
     before_str = beforeCheck(check_array, object_type);
     actual = type_czech._shapeErrorMess(check_array, object_type, exact_shape);
     afterCheck(check_array, object_type, before_str, error_id);
-  expected = `TC@03 - Element '0' is supposed to be a '11', but is missing : ["Number"]`; 
+  expected = `TC@60 - Element '0' is supposed to be a '11', but is missing : ["Number"]`; 
   if (actual !== expected) {
     console.log(error_id);
     console.log('  actual=', actual);

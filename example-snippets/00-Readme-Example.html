@@ -86,8 +86,11 @@
       
       <a title="36-Start-and-Stop.html" href="../example-snippets/36-Start-and-Stop.html">36</a>
       
-      <a title="37-Readme-Example-Lambda.html" href="../example-snippets/37-Readme-Example-Lambda.html">37</a>
+      <a title="37-Readme-Example-Arrow-Functions.html" href="../example-snippets/37-Readme-Example-Arrow-Functions.html">37</a>
 
+      <a title="38-Every-Check.html" href="../example-snippets/38-Every-Check.html">38</a>
+
+      <a title="39-Prescribed-Use.html" href="../example-snippets/39-Prescribed-Use.html">39</a>
 
       &nbsp;&nbsp;
   
@@ -141,7 +144,7 @@
   <div class='an-explantion'>00 &mdash; Readme Example</div>
   <div id='explanation-text'>
     <br>
- In this example, the checking function PRE_aLottery(), which is executed before
+ In this example, the checking function PRE_check_aLottery(), which is executed before
  the production function aLottery() is turned on via
 <pre>
 type_czech = TypeCzech('LOG-ERRORS')
@@ -156,16 +159,16 @@ type_czech = TypeCzech('NO-CHECKING')
 type_czech = TypeCzech()
 </pre>
  
- When TypeCzech is turned on, PRE_aLottery() ensures that aLottery()'s parameters
+ When TypeCzech is turned on, PRE_check_aLottery() ensures that aLottery()'s parameters
   are a String, an Array 
  of Numbers, and a Date with the type_czech.check_type() call.
 <br><br>
- PRE_aLottery() also gives warning when parameters are empty with the type_czech.check_empty() call. This means that an error
+ PRE_check_aLottery() also gives warning when parameters are empty with the type_czech.check_empty() call. This means that an error
  occurs when the lottery_name is an empty string, and/or if there are no numbers in the lucky_numbers array. 
  <br><br>
 TypeCzech functions are best used with the arguments object, the below is check_type also.
 <pre>
-function PRE_aLottery(lottery_name, lucky_numbers, draw_date){
+function PRE_check_aLottery(lottery_name, lucky_numbers, draw_date){
   the_parameters = [lottery_name, lucky_numbers, draw_date]
   type_issue = type_czech.check_type(the_parameters, LOTTERY_SIGNAT)
   if (type_issue) return type_issue
@@ -226,13 +229,13 @@ function PRE_aLottery(lottery_name, lucky_numbers, draw_date){
 /**/
 /**/  LOTTERY_SIGNAT = ['String', ['Number'], 'Date']
 /**/
-/**/  function PRE_aLottery(lottery_name, lucky_numbers, draw_date){
+/**/  function PRE_check_aLottery(lottery_name, lucky_numbers, draw_date){
 /**/    type_issue = type_czech.check_type(arguments, LOTTERY_SIGNAT)
 /**/    if (type_issue) return type_issue
-/**/    return type_czech.check_variadicEmpty(arguments, ['EMPTY-ERROR']);
+/**/    return type_czech.check_variadicEmpty(arguments, ['EMPTY-ERROR'])
 /**/  }
 /**/
-/**/  aLottery = type_czech.link(aLottery, PRE_aLottery) 
+/**/  aLottery = type_czech.link(aLottery, PRE_check_aLottery) 
 
 function aLottery(lottery_name, lucky_numbers, draw_date){
   the_lottery = `${lottery_name} ::: ${lucky_numbers} :::`
@@ -241,18 +244,6 @@ function aLottery(lottery_name, lucky_numbers, draw_date){
 
 aLottery('El Gordo', [1,2,3,4,5,0], new Date('jun 14 1999'))
 
-linesConsole(1)
-
-aLottery('Lotto 649', [1,2,3,4,5,6])
-
-linesConsole(3)
-
-aLottery('Oz Lotto', ['fourty-two'], new Date('jun 14 1999'))
-
-linesConsole(2)
-
-aLottery('Mega Millions', 17, new Date('jun 14 1999'))
-
 linesConsole(2)
 
 aLottery('Powerball', [], new Date('jun 14 1999'))
@@ -260,6 +251,19 @@ aLottery('Powerball', [], new Date('jun 14 1999'))
 linesConsole(2)
 
 aLottery('', [1,2,3,4,5,26], new Date('Dec 31 1999'))
+
+linesConsole(2)
+
+aLottery('Mega Millions', 17, new Date('jun 14 1999'))
+
+linesConsole(2)
+
+aLottery('Lotto 649', [1,2,3,4,5,6])
+
+linesConsole(2)
+
+aLottery('Oz Lotto', ['fourty-two'], new Date('jun 14 1999'))
+
 </script>
 
 
@@ -275,9 +279,24 @@ aLottery('', [1,2,3,4,5,26], new Date('Dec 31 1999'))
 
    jsToDiv('js-code', "check-code");
 
-   fromToBoldText(863, 864, 'code', 1)  // 17
+   fromToBoldText(778, 779, 'code', 1)  // []
 
-   fromToBoldText(1153, 1154, 'log', 1)    // 17
-   fromToBoldText(1205, 1214, 'log', 1)    // ['Number']
+   fromToBoldText(300, 301, 'log', 1)    // []
+   fromToBoldText(340, 354, 'log', 1)    // ["EMPTY-ERROR"]
+
+
+   fromToBoldText(889, 890, 'code', 2)  // 17
+
+   fromToBoldText(1175, 1176, 'log', 2)    // 17
+   fromToBoldText(1225, 1234, 'log', 2)    // 'String'
+
+
+
+   fromToBoldText(979, 990, 'code', 3)  // ['fourty-two']
+
+   fromToBoldText(2066, 2077, 'log', 3)    //["fourty-two"]
+   fromToBoldText(2128, 2135, 'log', 3)    //  ["Number"]
+
+
 
 </script>

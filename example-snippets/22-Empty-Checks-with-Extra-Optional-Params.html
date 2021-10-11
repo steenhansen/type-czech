@@ -5,14 +5,14 @@
 <link rel="stylesheet"
   href="https://fonts.googleapis.com/css?family=Inconsolata">
   
-<div id='js-div' style="width:62%">
+<div id='js-div' style="width:54%">
 
   <div id='js-code'>the javascript</div>
 </div>
 
 
 
-<div id="the-explanation" style="width:38%">
+<div id="the-explanation" style="width:46%">
   <div class='an-explantion'>22 &mdash; Empty Checks with Extra Optional Parameters</div>
   <div id='explanation-text'>
     <br>
@@ -131,9 +131,11 @@
     
     <a title="36-Start-and-Stop.html" href="../example-snippets/36-Start-and-Stop.html">36</a>
     
-    <a title="37-Readme-Example-Lambda.html" href="../example-snippets/37-Readme-Example-Lambda.html">37</a>
+    <a title="37-Readme-Example-Arrow-Functions.html" href="../example-snippets/37-Readme-Example-Arrow-Functions.html">37</a>
 
+    <a title="38-Every-Check.html" href="../example-snippets/38-Every-Check.html">38</a>
 
+    <a title="39-Prescribed-Use.html" href="../example-snippets/39-Prescribed-Use.html">39</a>
 
       &nbsp;&nbsp;
 
@@ -238,19 +240,21 @@
 /**/  else
 /**/    type_czech = { link: (nop) => nop, is_active: false }
 /**/  
-/**/  PRE_Person = (typeof PRE_Person === 'undefined') ? undefined : PRE_Person
-/**/  POST_Person = (typeof POST_Person === 'undefined') ? undefined : POST_Person
+/**/  PRE_check_Person = (typeof PRE_check_Person === 'undefined')
+/**/                     ? undefined : PRE_check_Person
+/**/  POST_check_Person = (typeof POST_check_Person === 'undefined')
+/**/                      ? undefined : POST_check_Person
 /**/
-/**/  function PRE_Person(person_obj){
+/**/  function PRE_check_Person(person_obj){
 /**/    person_signature = {f_name:'EMPTY-OK', l_name:'EMPTY-ERROR'}
 /**/    return type_czech.check_emptyExtra(arguments, person_signature)
 /**/  }
 /**/  
-/**/  function POST_Person(object_1){
+/**/  function POST_check_Person(object_1){
 /**/    return type_czech.check_emptyExtra(arguments, ['EMPTY-OK', 'EMPTY-ERROR'])
 /**/  }
 /**/  
-/**/  Person = type_czech.link(Person, PRE_Person, POST_Person)
+/**/  Person = type_czech.link(Person, PRE_check_Person, POST_check_Person)
 
 function Person(person_obj){
   let {f_name, l_name, extra_1, extra_2, extra_3, extra_4} = person_obj
@@ -303,13 +307,26 @@ log(mc_enroe)
 
   jsToDiv('js-code', "check-code");
   
-  fromToBoldText(451, 491, 'code', 1)  // {f_name:'EMPTY-OK', l_name:'EMPTY-ERROR'})
-  fromToBoldText(600, 626, 'code', 1)  //   ['EMPTY-OK', 'EMPTY-ERROR'])
-  fromToBoldText(1209, 1218, 'code', 1)  // extra_1:10
+  fromToBoldText(496, 536, 'code', 1)  //{f_name:'EMPTY-OK', l_name:'EMPTY-ERROR'}
 
-  fromToBoldText(27, 38, 'log', 1)    //  [ 10 ]
+  fromToBoldText(279, 304, 'log', 1)    //  {f_name:"Hakeem Olajuwon"}
+  fromToBoldText(331, 370, 'log', 1)    //  {f_name:"EMPTY-OK",l_name:"EMPTY-ERROR"}
 
 
+
+
+  fromToBoldText(723, 749, 'code', 2)  //['EMPTY-OK', 'EMPTY-ERROR']
+
+  fromToBoldText(621, 649, 'log', 2)    // ["Hakeem Olajuwon",undefined]
+  fromToBoldText(676, 701, 'log', 2)    // ["EMPTY-OK","EMPTY-ERROR"]
+
+
+
+
+
+  fromToBoldText(1581, 1633, 'code', 3)  //  extra_1: '', extra_2: 1959, extra_3: 'vs. Bjorn Borg'}
+
+  fromToBoldText(878, 921, 'log', 3)    //   [ "", 1959, "vs. Bjorn Borg" ] 
 
   
 </script>

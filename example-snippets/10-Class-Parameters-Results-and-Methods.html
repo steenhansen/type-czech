@@ -30,11 +30,11 @@ function PRE_check_yourMethod(method_input){ // before method }
 
 function POST_check_yourMethod(method_output){ // after method }
 
-yourClass_PRE_checks = {yourClass:PRE_check_yourClass,
-                        yourMethod:PRE_check_yourMethod}
+yourClass_PRE_check_checks = {yourClass:PRE_check_yourClass,
+                              yourMethod:PRE_check_yourMethod}
 
-yourClass_POST_checks = {yourClass:POST_check_yourClass,
-                         yourMethod:POST_check_yourMethod}
+yourClass_POST_check_checks = {yourClass:POST_check_yourClass,
+                               yourMethod:POST_check_yourMethod}
 
 class yourClass {
   constructor(init_const){ }
@@ -44,9 +44,8 @@ class yourClass {
 }
 
 yourClass = type_czech.link(yourClass, 
-                             yourClass_PRE_checks,
-                             yourClass_POST_checks)
-
+                            yourClass_PRE_check_checks,
+                            yourClass_POST_check_checks)
 </pre> 
 Note that the type_czech.link() call must come after the class declaration, otherwise
 you get the below ReferenceError.
@@ -145,9 +144,11 @@ can't access lexical declaration 'yourClass' before initialization
       
       <a title="36-Start-and-Stop.html" href="../example-snippets/36-Start-and-Stop.html">36</a>
       
-      <a title="37-Readme-Example-Lambda.html" href="../example-snippets/37-Readme-Example-Lambda.html">37</a>
+      <a title="37-Readme-Example-Arrow-Functions.html" href="../example-snippets/37-Readme-Example-Arrow-Functions.html">37</a>
   
+      <a title="38-Every-Check.html" href="../example-snippets/38-Every-Check.html">38</a>
 
+      <a title="39-Prescribed-Use.html" href="../example-snippets/39-Prescribed-Use.html">39</a>
 
       &nbsp;&nbsp;
   
@@ -241,29 +242,33 @@ can't access lexical declaration 'yourClass' before initialization
 /**/  else
 /**/    type_czech = { link: (nop) => nop, is_active: false }
 /**/  
-/**/  PRE_Person =(typeof PRE_Person==='undefined') ?undefined:PRE_Person
-/**/  PRE_show =(typeof PRE_show === 'undefined') ? undefined:PRE_show
-/**/  POST_Person=(typeof POST_Person==='undefined') ?undefined:POST_Person
-/**/  POST_show =(typeof POST_show === 'undefined') ? undefined:POST_show
+/**/  PRE_check_Person = (typeof PRE_check_Person==='undefined')
+/**/                     ? undefined : PRE_check_Person
+/**/  PRE_check_show = (typeof PRE_check_show === 'undefined')
+/**/                   ? undefined : PRE_check_show
+/**/  POST_check_Person = (typeof POST_check_Person==='undefined')
+/**/                      ? undefined : POST_check_Person
+/**/  POST_check_show = (typeof POST_check_show === 'undefined')
+/**/                    ? undefined : POST_check_show
 /**/
-/**/  function PRE_Person(person_name){
-/**/    log('PRE_Person :', person_name)
+/**/  function PRE_check_Person(person_name){
+/**/    log('PRE_check_Person :', person_name)
 /**/  }
 /**/
-/**/  function PRE_show(born_year){
-/**/    log(NL+'PRE_show :', born_year)
+/**/  function PRE_check_show(born_year){
+/**/    log(NL+'PRE_check_show :', born_year)
 /**/  }
 /**/  
-/**/  function POST_Person(person_object){
-/**/    log(NL2+'POST_Person :', person_object)
+/**/  function POST_check_Person(person_object){
+/**/    log(NL2+'POST_check_Person :', person_object)
 /**/  }
 /**/  
-/**/  function POST_show(name_year){
-/**/    log(NL2+'POST_show :', name_year)
+/**/  function POST_check_show(name_year){
+/**/    log(NL2+'POST_check_show :', name_year)
 /**/  }
 /**/  
-/**/  PRE_Person = {Person:PRE_Person, show:PRE_show}
-/**/  POST_Person = {Person:POST_Person, show:POST_show}
+/**/  PRE_check_Person = {Person:PRE_check_Person, show:PRE_check_show}
+/**/  POST_check_Person = {Person:POST_check_Person, show:POST_check_show}
 
 class Person {
   constructor(person_name) {
@@ -278,7 +283,7 @@ class Person {
 }
 
 /**/
-/**/  Person = type_czech.link(Person, PRE_Person, POST_Person)
+/**/  Person = type_czech.link(Person, PRE_check_Person, POST_check_Person)
 /**/
 
 issac_newton = new Person('issac Newton')
@@ -299,19 +304,19 @@ issac_newton.show(1642)
   jsToDiv('js-code', "check-code");
 
   
-  fromToBoldText(683, 690, 'code', 1)  // PRE_show 
+  fromToBoldText(713, 730, 'code', 1)  // PRE_check_Person :
 
-  fromToBoldText(882, 890, 'code', 2)  // POST_show
+  fromToBoldText(929, 947, 'code', 2)  // POST_check_Person :
 
-  fromToBoldText(1161, 1164, 'code', 3)  //show
-
-  fromToBoldText(1433, 1436, 'code', 3)  //show
+  fromToBoldText(1041, 1057, 'code', 3)  //POST_check_show :
 
 
 
-  fromToBoldText(156, 163, 'log', 1)    // PRE_show 
 
-  fromToBoldText(175, 180, 'log', 3)    // in show()
-  fromToBoldText(206, 214, 'log', 2)    //POST_show
+
+  fromToBoldText(1, 18, 'log', 1)    // PRE_check_Person :
+
+  fromToBoldText(64, 82, 'log', 2)    // POST_check_Person :
+  fromToBoldText(224, 240, 'log', 3)    //POST_check_show :
 
 </script>

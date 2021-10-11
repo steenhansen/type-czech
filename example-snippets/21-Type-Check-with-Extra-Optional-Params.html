@@ -115,9 +115,11 @@
       
       <a title="36-Start-and-Stop.html" href="../example-snippets/36-Start-and-Stop.html">36</a>
       
-      <a title="37-Readme-Example-Lambda.html" href="../example-snippets/37-Readme-Example-Lambda.html">37</a>
+      <a title="37-Readme-Example-Arrow-Functions.html" href="../example-snippets/37-Readme-Example-Arrow-Functions.html">37</a>
   
+      <a title="38-Every-Check.html" href="../example-snippets/38-Every-Check.html">38</a>
 
+      <a title="39-Prescribed-Use.html" href="../example-snippets/39-Prescribed-Use.html">39</a>
 
       &nbsp;&nbsp;
   
@@ -225,19 +227,21 @@
 /**/  else
 /**/    type_czech = { link: (nop) => nop, is_active: false }
 /**/  
-/**/  PRE_Person = (typeof PRE_Person === 'undefined') ? undefined : PRE_Person
-/**/  POST_Person = (typeof POST_Person === 'undefined') ? undefined : POST_Person
+/**/  PRE_check_Person = (typeof PRE_check_Person === 'undefined')
+/**/                     ? undefined : PRE_check_Person
+/**/  POST_check_Person = (typeof POST_check_Person === 'undefined')
+/**/                      ? undefined : POST_check_Person
 /**/  
-/**/  function PRE_Person(person_obj){
+/**/  function PRE_check_Person(person_obj){
 /**/    person_signature = {f_name:'String', l_name:'String'}
 /**/    return type_czech.check_typeExtra(arguments, person_signature)
 /**/  }
 /**/  
-/**/  function POST_Person(person_arr){
+/**/  function POST_check_Person(person_arr){
 /**/    return type_czech.check_typeExtra(arguments, ['String', 'String'])
 /**/  }
 /**/  
-/**/  Person = type_czech.link(Person, PRE_Person, POST_Person)
+/**/  Person = type_czech.link(Person, PRE_check_Person, POST_check_Person)
 
 function Person(person_obj){
   let {f_name, l_name, extra_1, extra_2, extra_3, extra_4} = person_obj
@@ -259,7 +263,7 @@ linesConsole(3)
 
 
 hakeem = Person({f_name:'Hakeem Olajuwon'})
-log( hakeem)
+log(hakeem)
 
 linesConsole(3)
 
@@ -287,11 +291,22 @@ log(mc_enroe)
   jsToDiv('js-code', "check-code");
 
   
-  fromToBoldText(449, 482, 'code', 1)  // {f_name:'String', l_name:'String'}
-  fromToBoldText(589, 608, 'code', 1)  //  ['String', 'String'])
-  fromToBoldText(1191, 1200, 'code', 1)  // extra_1:10
+  fromToBoldText(498, 531, 'code', 1)  //{f_name:'String', l_name:'String'}
 
-  fromToBoldText(27, 38, 'log', 1)    //  [ 10 ]
+  fromToBoldText(272, 297, 'log', 1)    //  {f_name:"Hakeem Olajuwon"}
+  fromToBoldText(324, 356, 'log', 1)    //  {f_name:"String",l_name:"String"}
 
 
+
+  fromToBoldText(718, 737, 'code', 2)  // ['String', 'String']
+
+  fromToBoldText(645, 673, 'log', 2)    // ["Hakeem Olajuwon",undefined]
+  fromToBoldText(700, 718, 'log', 2)    // ["String","String"]
+
+
+
+
+  fromToBoldText(1568, 1625, 'code', 3)  // extra_1: 'Angry', extra_2: 1959, extra_3: 'vs. Bjorn Borg'}
+
+  fromToBoldText(897, 945, 'log', 3)    //  [ "Angry", 1959, "vs. Bjorn Borg" ]
 </script>

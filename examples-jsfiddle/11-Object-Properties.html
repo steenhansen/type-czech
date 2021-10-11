@@ -1,14 +1,15 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>14-Parameter-and-Results-Multi-Scalar-Types</title>
+<title>11-Object-Properties</title>
 
 
 <link rel="stylesheet"
   href="https://fonts.googleapis.com/css?family=Inconsolata">
 
-<div id='js-div' style="width:55%">
-  <div id='js-code'>the javascript</div>
 
-  <br><br>
+<div id='js-div' style="width:45%">
+ 
+  <div id='js-code'>the javascript</div>
+  <br>
   <div id='js-fiddles'>
     jsFiddles:
     <a title="00-Readme-Example" href="https://jsfiddle.net/steen_hansen/0xtpLwsc/?00-Readme-Example" target="_blank">00</a>
@@ -28,7 +29,9 @@
       <a title="07-Mutated-Function-Parameters.html" href="https://jsfiddle.net/steen_hansen/abh0jkL1/?07-Mutated-Function-Parameters" target="_blank">07</a>
       
       <a title="08-Mutated-Recursive-Function-Parameters.html" href="https://jsfiddle.net/steen_hansen/3pv5qwx8/?08-Mutated-Recursive-Function-Parameters" target="_blank">08</a>
-  
+      
+
+
 
 
     
@@ -52,7 +55,10 @@
       <a title="17-Variadic-Functions.html.html" href="https://jsfiddle.net/steen_hansen/hrvucjzm/?17-Variadic-Functions.html" target="_blank">17</a>
   
 
-      
+
+
+
+
       <a title="18-Class-Type-Checks.html" href="https://jsfiddle.net/steen_hansen/063wLqfs/?18-Class-Type-Checks" target="_blank">18</a>
       
       <a title="19-Lone-Empty-Param-and-Result.html" href="https://jsfiddle.net/steen_hansen/x8h6dvj5/?19-Lone-Empty-Param-and-Result" target="_blank">19</a>
@@ -91,9 +97,12 @@
       
       <a title="36-Start-and-Stop.html" href="https://jsfiddle.net/steen_hansen/f19s52xr/?36-Start-and-Stop" target="_blank">36</a>
       
-      <a title="37-Readme-Example-Lambda.html" href="https://jsfiddle.net/steen_hansen/cwfsubtv/?37-Readme-Example-Lambda" target="_blank">37</a>
-  
+      <a title="37-Readme-Example-Arrow-Functions.html" href="https://jsfiddle.net/steen_hansen/cwfsubtv/?37-Readme-Example-Arrow-Functions" target="_blank">37</a>
 
+      
+    <a title="38-Every-Check.html" href="https://jsfiddle.net/steen_hansen/1umwvht5/?38-Every-Check" target="_blank">38</a>
+    
+    <a title="39-Prescribed-Use.html" href="https://jsfiddle.net/steen_hansen/ta7fdnrw/?39-Prescribed-Use" target="_blank">39</a>
 
       &nbsp;&nbsp;
   
@@ -142,89 +151,51 @@
   
 </div>
 
- 
 
-<div id="the-explanation" style="width:45%">
-  <div class='an-explantion'>14 - Parameter and Result Multi Scalar Types</div>
-  <div id='explanation-text'>
+<div id="the-explanation" style="width:55%">
+  <div class='an-explantion'>11 &mdash; Object Properties</div>
+  <div id='explanation-text'> 
     <br>
+    Object structure can be checked with type_czech.check_type().
+    <br><br>
 
-   This page deals with functions that have more than one parameter, and function
-   results that are arrays. The next page deals with checking single parameter
-   types, and single type function results.
+    This code checks that the properties of funcOne and funcTwo are both
+    functions. And the property a_number must be a Number type. Missing or 
+    extra properties will cause errors.
+<pre>
+FUNC_NUM_FUNC_STRUCTURE = { funcOne: 'Function', 
+                            a_number: 'Number',
+                            funcTwo: 'Function' }
+func_num_func_obj = {funcOne: x=>x, a_number:12, funcTwo: y=>y}
+check_error = type_czech.check_type(func_num_func_obj, FUNC_NUM_FUNC_STRUCTURE)
+</pre>
 
-
-    <div>
-      <div style="float:left; width:16%; margin-left:5px">
-        <li style="list-style: none;"><b>Valid Types</b></li>
-       </div>
-    
-      <div style="float:left; width:16%">
-        <ul>
-          <li>Boolean</li>
-          <li>RegExp</li>
-    
-        </ul>
-      </div>
-     
-      <div style="float:left; width:13%">
-        <ul>
-          <li>Date</li>
-          <li>String</li>
-        </ul>
-      </div>
-     
-      <div style="float:left; width:16%">
-        <ul>
-          <li>Function</li>
-          <li>Symbol</li>
-        </ul>
-      </div>
-
-      <div style="float:left; width:16%">
-        <ul>
-          <li>Number</li>
-          <li>BigInt</li>
-        </ul>
-      </div>
-
-      
-      <div style="float:left; width:1%">
-        <ul>
-          <li>Array</li>
-          <li>Object</li>
-        </ul>
-      </div>
-    
-    </div>
-    <br><br>  <br><br>
-    The Person() function's signatures.
-    <ul>
-      <li>Input : [ 'String', 'String', 'Date' ]</li>
-      
-      <li>Output : [ 'Number', 'String', 'String' ]</li>
-      </ul>
-      
+The below example shows how to ignore some properties, while still type checking
+at least one property. Here we only ensure that the property funcOne is a 
+Function, the extra property my_string is ignored.
+<pre>
+FUNC_ONE_ONLY_STRUCT = { funcOne: 'Function'}
+func_num_func_obj = {funcOne: x=>x, my_string:'some-string'}
+check_error = type_czech.check_typeExtra(func_num_func_obj, FUNC_ONE_ONLY_STRUCT)
+</pre>
 
 
-An error occurs because Alan Turing's birthdate is a number, 1912, not a Date().
-
-<br><br>
-And, Avicii has his last name deliberatly set to undefined, causing the Person() 
-return result to not match the correct signature.
-<br><br>
- Try-catches are used to limit the number of errors in the console.
-<br><br>
-
-
-</div>
-
-
-<div id="console-log"  >
-  <div class='a-title'>Console Output</div>
-  <div id='log-text'></div>
+    In the examples to the left, the first person() function parameter is checked to 
+    see if it implements the showPerson() function, if not it fails the check_type() call.
+    <br><br>
+  Type-Czech is set to throw exceptions in this example.
   <br>
-</div>
+  </div>
+
+  <div id="console-log"  >
+    <div class='a-title'>Console Output</div>
+    <div id='log-text'></div>
+    <br>
+  </div>
+
+  <br>
+
+  
 
 
 </div>
@@ -234,32 +205,29 @@ return result to not match the correct signature.
 
 
 
+<!--            -----------------TYPE 1------------------------       -->
 
 
 
-
-<!--            -------------TYPE 1-----------------------------       -->
-
-
-
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@44d744188ace09cc8a11412460915536dccf4691/web-resources/consolelog.js">
-</script>
-
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@44d744188ace09cc8a11412460915536dccf4691/web-resources/TypeCzech.min.js">
+<script src="../web-resources/consolelog.js">
 </script>
 
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@44d744188ace09cc8a11412460915536dccf4691/web-resources/type-czech.css">
+<script src="../TypeCzech.js">
+</script>
+
+
+
+<link rel="stylesheet" href="../web-resources/type-czech.css">
 <style>
 </style>
 
 
 
 
-<!--            -----------------TYPE 1-------------------------       -->
 
 
-
+<!--            ------------------TYPE 1------------------------       -->
 
 
 
@@ -280,49 +248,61 @@ return result to not match the correct signature.
 
 
 
-
 <script id="check-code">
 /**/  if (typeof TypeCzech === 'function')
 /**/    type_czech = TypeCzech('THROW-EXCEPTIONS')
 /**/  else
 /**/    type_czech = { link: (nop) => nop, is_active: false }
-/**/  
-/**/  PRE_Person = (typeof PRE_Person === 'undefined') ? undefined : PRE_Person
-/**/  POST_Person = (typeof POST_Person === 'undefined') ? undefined : POST_Person
-/**/  
-/**/  function PRE_Person(f_name, l_name, b_date){
-/**/    return type_czech.check_type(arguments, ['String', 'String', 'Date'])
+/**/
+/**/  PRE_check_callMethod = 
+/**/            (typeof PRE_check_callMethod === 'undefined')
+/**/            ? undefined : PRE_check_callMethod
+/**/
+/**/  function PRE_check_callMethod(an_object){
+/**/    WANTED_PROPS = {showPerson: 'Function'}
+/**/    return type_czech.check_type(an_object, WANTED_PROPS)
 /**/  }
 /**/  
-/**/  function POST_Person(an_array){
-/**/    return type_czech.check_type(arguments, ['Number', 'String', 'String'])
-/**/  }
-/**/  
-/**/  Person = type_czech.link(Person, PRE_Person, POST_Person)
+/**/  callMethod = type_czech.link(callMethod, PRE_check_callMethod)
 
-function Person(f_name, l_name, b_date){
-  birth_year = b_date.getFullYear()
-  if (l_name === '')
-    l_name = undefined                   // deliberate POST error
-  return [birth_year, f_name, l_name];
+function callMethod(an_object){
+  an_object.showPerson()
 }
 
-chuck = Person('Charles', 'Windsor', new Date(1948,11,14))
-log(chuck)
-linesConsole(1)
+show_person = (x) => log(`A object with a showPerson()`)
+has_showPerson = {showPerson: show_person}
+callMethod(has_showPerson)
 
-try {
-  alan_turing = Person('Alan', 'Turing', 1912)
-}catch (type_error) {
-  log(type_error)
+linesConsole(2)
+
+no_showPerson = {a_key:'not-a-function'}
+try{
+  callMethod(no_showPerson)
+} catch(interface_error){
+  log(no_showPerson)
+  log('has no showPerson()')
+  linesConsole(2)
+  log(interface_error)
 }
 
-try {
-  alan_turing = Person('Avicii', '', new Date(1955,5,5))
-}catch (type_error) {
-  log(type_error)
+
+linesConsole(2)
+
+wrong_showPerson = {showPerson:'a-string'}
+try{
+  callMethod(wrong_showPerson)
+} catch(interface_error){
+  log(wrong_showPerson)
+  log('has no showPerson()')
+  linesConsole(2)
+  log(interface_error)
 }
+
+
+
 </script>
+
+
 
 
 
@@ -336,16 +316,24 @@ try {
 
   jsToDiv('js-code', "check-code");
 
- 
+   fromToBoldText(698, 722, 'code', 1)  //  {showPerson: show_person}
 
-  
-  fromToBoldText(483, 486, 'code', 1)  // g', 'Date'])
-  fromToBoldText(1024, 1027, 'code', 1)  // n', 'Turing', 1912)
+   fromToBoldText(17, 28, 'log', 1)    //showPerson()
+
+  // //////////////////
 
 
-  fromToBoldText(223, 230, 'log', 1)    //,'Number']
-  fromToBoldText(275, 278, 'log', 1)    //',1912]
-  fromToBoldText(325, 330, 'log', 1)    //,'Date']
+  fromToBoldText(768, 791, 'code', 2)  //  {a_key:'not-a-function'}
+
+    fromToBoldText(355, 378, 'log', 2)    // ACTUAL VALUE {'a_key':'not-a-function'}
+
+
+
+/////////////
+
+  fromToBoldText(947, 969, 'code', 3)  // wrong_showPerson = {showPerson:'a-string'}
+
+  fromToBoldText(756, 778, 'log', 3)    // ACTUAL VALUE {'showPerson':'a-string'}
 
 
 

@@ -89,9 +89,11 @@
       
       <a title="36-Start-and-Stop.html" href="../example-snippets/36-Start-and-Stop.html">36</a>
       
-      <a title="37-Readme-Example-Lambda.html" href="../example-snippets/37-Readme-Example-Lambda.html">37</a>
+      <a title="37-Readme-Example-Arrow-Functions.html" href="../example-snippets/37-Readme-Example-Arrow-Functions.html">37</a>
   
-
+      <a title="38-Every-Check.html" href="../example-snippets/38-Every-Check.html">38</a>
+      
+      <a title="39-Prescribed-Use.html" href="../example-snippets/39-Prescribed-Use.html">39</a>
 
       &nbsp;&nbsp;
   
@@ -178,13 +180,13 @@ All calls to Person below are still intercepted by the stand in type_czech.link(
 So when there is no Type-Czech library, an extra function call tax is incurred.
 Because the below code 
 <pre>
-  Person = type_czech.link(Person, PRE_Person)
+  Person = type_czech.link(Person, PRE_check_Person)
 
   Person(arguments);
 </pre>
 Is transformed into this code, which has an extra function call and an extra return.
 <pre>
-  NEW_Person = function InterceptedPerson (arguments){
+  Person = function InterceptedPerson (arguments){
     return Person(arguments);
   }
 </pre>
@@ -270,7 +272,7 @@ Of course one can always not load any Type-Czech code to production also.
 /**/  else
 /**/    type_czech = { link: (nop) => nop, is_active: false }
 /**/
-/**/  function PRE_Person(f_name, l_name){
+/**/  function PRE_check_Person(f_name, l_name){
 /**/    if (arguments.length !== 2) 
 /**/      return `PRE: ${arguments.length} parameters, not 2`
 /**/
@@ -281,7 +283,7 @@ Of course one can always not load any Type-Czech code to production also.
 /**/    return ''
 /**/  }
 /**/
-/**/  Person = type_czech.link(Person, PRE_Person) 
+/**/  Person = type_czech.link(Person, PRE_check_Person) 
 
 function Person(f_name, l_name){
   first_last = f_name + ' ' + l_name
@@ -292,15 +294,18 @@ cleopatra = Person('Cleopatra', 'VII')
 linesConsole(2)
 log('out A : ', cleopatra)
 
+linesConsole(2)
+
+atahualpa = Person('Atahualpa')
+log('out B : ', atahualpa)
+
+
+
 linesConsole(1)
 
 catherine = Person('catherine', 'II')
 log(NL +'out C : ', catherine)
 
-linesConsole(2)
-
-atahualpa = Person('Atahualpa')
-log('out D : ', atahualpa)
 
 linesConsole(2)
 
@@ -324,9 +329,19 @@ log('out D : ', louis)
 
 
 
-  fromToBoldText(450, 452, 'code', 1)  // VII
-  fromToBoldText(773, 775, 'code', 1)  //  VII
+  fromToBoldText(388, 390, 'code', 1)  // VII
+  fromToBoldText(716, 718, 'code', 1)  // VII
   fromToBoldText(20, 22, 'log', 1)    // VII
+
+
+  fromToBoldText(308, 312, 'code', 2)  // not 2
+  fromToBoldText(780, 780, 'code', 2)  // )
+  fromToBoldText(43, 51, 'log', 2)    // not 2
+
+
+
+  fromToBoldText(905, 907, 'code', 3)  // XIV
+  fromToBoldText(91, 93, 'log', 3)    // XIV
 
 
 </script>

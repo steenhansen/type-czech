@@ -22,7 +22,7 @@ function _check_interface_25001() {
   type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
   TYPE_CZECH_current_test_number = '25001';
   error_id = errorLabel(TYPE_CZECH_current_test_number);
-  actual_type = type_czech.typeIs(new Date('1999-12-31'));
+  actual_type = type_czech.typeFinal(new Date('1999-12-31'));
   if (actual_type !== 'Date') {
     failed_check_interface += 1;
     console.log(`${error_id} type_czech.check_interface(new Date('1999-12-31')`);
@@ -39,7 +39,7 @@ function _check_interface_25002() {
     TYPE_CZECH_current_test_number = '25002';
     error_id = errorLabel(TYPE_CZECH_current_test_number);
 
-    actual_type = type_czech.typeIs(document.createElement('div'));
+    actual_type = type_czech.typeFinal(document.createElement('div'));
     if (actual_type !== 'HTMLDivElement') {
       failed_check_interface += 1;
       console.log(`${error_id} type_czech.check_interface(document.createElement('div'))`);
@@ -61,7 +61,7 @@ function _check_interface_25003() {
     class First { constructor() { } }
     class Last extends First { constructor() { super() } }
 
-    actual_type = type_czech.typeIs(new Last());
+    actual_type = type_czech.typeFinal(new Last());
     if (actual_type !== "Last") {
       failed_check_interface += 1;
       console.log(`${error_id} type_czech.check_interface(document.createElement('div'))`);

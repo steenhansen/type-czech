@@ -6,8 +6,15 @@
 */
 
     type_czech = TypeCzech('NO-ERROR-MESSAGES')
+    fail_count = 0
     function A_PRE_yourFunc(the_arg) {
-      return type_czech.check_mutated(the_arg, the_arg)
+      try {
+        return type_czech.check_mutated(the_arg, the_arg)
+      } catch (e) {
+        expected_start = 'No record of an entry for mutateSnapshot('
+        if (e.startsWith(expected_start))
+          fail_count++ ///console.log('e', e)
+      }
     }
                 A_yourFunc = type_czech.link(A_yourFunc, A_PRE_yourFunc) 
                 function A_yourFunc(){ }
@@ -46,12 +53,12 @@
     A_yourFunc({k:{}},{l:{}})          // fail 32 5 empty - {obj obj}
                 expected_tests = 32
                 expected_fails = 32
-    fail_tests = type_czech.countFails()
+    //fail_tests = type_czech.countFails()
     total_tests = type_czech.countTally()
     if (expected_tests !== total_tests) 
         throw `A. _check_mutated().md ${expected_tests} expected_tests !== ${total_tests} total_tests`
-    else if (expected_fails !== fail_tests) 
-        throw `A. _check_mutated().md ${expected_fails} expected_fails !== ${fail_tests} fail_tests`
+    else if (expected_fails !== fail_count) 
+        throw `A. _check_mutated().md ${expected_fails} expected_fails !== ${fail_count} fail_count`
     else if (typeof total_checks === 'undefined')
       console.log('no-issues: pass', expected_tests-expected_fails, ' fail', expected_fails)
     else

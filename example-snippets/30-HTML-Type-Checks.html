@@ -2,43 +2,122 @@
 <title id='title-id'>30-HTML-Type-Checks</title>
 
 
-<link rel="stylesheet"
-  href="https://fonts.googleapis.com/css?family=Inconsolata">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
   
-<div id='js-div' style="width:58%; ">
+<div id='js-div' style="width:53%; ">
   <div id='js-code'>the javascript</div>
 </div>
 
 
-<div id="the-explanation" style="width:42%" >
+<div id="the-explanation" style="width:47%" >
   <div class='an-explantion'>30 &mdash; HTML Element Type Checks</div>
+  
   <div id='explanation-text'>
     <br>
+
+    Error found by PRE_check_changeToSubmit() when attempting to set a-table to
+    have the type of 'submit'.
+    <table id='a-table'>
+
+      <tr>
+        <th style='text-align: left;'>function changeToSubmit(id)</th>
+        <th>Change HTML Element to Submit Button</th>
+      </tr>
+
+      <tr><th>
+          Change plain button into a Submit button
+      </th><th>
+          <button id='submit-button' type="button" disabled>Plain-Button</button>
+      </th></tr>
+     
+      <tr><th>
+          Error, change a-table into a Submit button
+      </th><th>
+        <div class="red-explanation">a-table cannot be a Submit button</div>
+      </th></tr>
+
+    </table>
+
+<br>
+
          HTML elements can have their types checked.
          
 <pre>
-html_type = type_czech.typeIs(html_element)
+a_div = document.querySelector('div')
+div_type = type_czech.typeFinal(a_div)    //HTMLDivElement
 </pre>
 
 
-  <br>
          HTML elements can also be queried for their prototypes chain.
 
 
 <pre>
-html_prototypes = type_czech.typeProtos(an_html_element)
+a_div = document.querySelector('div')
+div_protos=type_czech.typeProtos(a_div)//["HTMLDivElement","HTMLElement 
 </pre>
 
 
+And finally, HTML elements can also be asked their object type.
+<pre>
+a_div = document.querySelector('div')
+isa_HTMLElem = type_czech.typeIsA(a_div, 'HTMLElement')  // true
+</pre>
+
+
+
+
+
+
+
+Two errors are found by PRE_check_alterImgHref() when trying to set a-div to have a location
+address, in blue text. And, when incorrectly setting a-picture's src location to a local anchor
+in green text.
+<table>
+
+  <tr>
+    <th style='width:60%; text-align: left;'>function alterImgHref(id, addr)</th>
+    <th>Alter Image or Href Address</th>
+  </tr>
+
+  <tr><th>
+    Alter a Link's Address from cnn.com to xe.com
+  </th><th>
+    <a id='a-link' href='http://www.cnn.com'>was CNN.com, now XE.com</a>
+  </th></tr>
+ 
+  <tr><th>
+    Alter an Image's Address from BEFORE to AFTER
+  </th><th>
+    <div style='background-color: green; width:186px; height:24px; overflow:clip; margin-left:auto; margin-right:auto; margin-top:2px'>
+
+      <img style=" margin-left:-100px; margin-top:-12px" id='an-image' 
+     src="https://via.placeholder.com/400x40/800080/ffffff?text=via.placeholder.com%20-%20BEFORE">  
+
+   </div>
+  </th></tr>
+
+  <tr><th>
+    <div id='a-div'>Error, alter a-div's Address</div>
+  </th><th>
+    <div class="blue-explanation">a-div is a div</div> 
+  </th></tr>
+
+
+
+  <tr><th>
+    Error, alter a-picture's Address
+    to a <span class="green-explanation"># Local Anchor</span>
+  </th><th>
+    <img id='a-picture' 
+    style='margin:2px;'
+    src="https://via.placeholder.com/400x40/800080/ffffff?text=via.placeholder.com%20-%20BEFORE">
+  </th></tr>
+
+</table>
 
 
 <br>
-And finally, HTML elements can also be asked their object type.
-<pre>
-isa_HTMLElement = type_czech.typeIsA(js_div, 'HTMLElement')
-</pre>
 
-<br><br>
 
   </div>
 
@@ -129,9 +208,11 @@ isa_HTMLElement = type_czech.typeIsA(js_div, 'HTMLElement')
       
       <a title="36-Start-and-Stop.html" href="../example-snippets/36-Start-and-Stop.html">36</a>
       
-      <a title="37-Readme-Example-Lambda.html" href="../example-snippets/37-Readme-Example-Lambda.html">37</a>
+      <a title="37-Readme-Example-Arrow-Functions.html" href="../example-snippets/37-Readme-Example-Arrow-Functions.html">37</a>
   
+      <a title="38-Every-Check.html" href="../example-snippets/38-Every-Check.html">38</a>
 
+      <a title="39-Prescribed-Use.html" href="../example-snippets/39-Prescribed-Use.html">39</a>
 
       &nbsp;&nbsp;
   
@@ -178,6 +259,8 @@ isa_HTMLElement = type_czech.typeIsA(js_div, 'HTMLElement')
   
     </div>
 
+
+    
 </div>
 
 
@@ -230,6 +313,11 @@ isa_HTMLElement = type_czech.typeIsA(js_div, 'HTMLElement')
 
 <script>
   log = captureConsole("log-text");
+
+  BEFORE_PLACEHOLDER_COM_IMAGE = 'https://via.placeholder.com/400x40/800080/ffffff?text=via.placeholder.com%20-%20BEFORE'
+
+  AFTER_PLACEHOLDER_COM_IMAGE = 'https://via.placeholder.com/400x40/800080/ffffff?text=via.placeholder.com%20-%20AFTER'
+
 </script>
 
 
@@ -237,64 +325,59 @@ isa_HTMLElement = type_czech.typeIsA(js_div, 'HTMLElement')
 
 
 <script id="check-code">
-/**/  if (typeof TypeCzech === 'function')
-/**/    type_czech = TypeCzech('LOG-ERRORS')
-/**/  else
-/**/    type_czech = {link: nop=>nop, is_active: false}
+/**/  type_czech = TypeCzech('LOG-ERRORS')
 /**/
-/**/  function PRE_submitButn(html_id, button_type){
+/**/  function PRE_check_changeToSubmit(html_id, button_type){
 /**/    html_element = document.getElementById(html_id)
-/**/    html_type = type_czech.typeIs(html_element)
+/**/    html_type = type_czech.typeFinal(html_element)
 /**/    if (html_type !== 'HTMLButtonElement')
-/**/      return `PRE, '${html_id}' is an ${html_type}, not an HTMLButtonElement` +
-/**/            `${NL} Divs do not have a 'type' that can be set to '${button_type}'`
+/**/      return `Error '${html_id}' is ${html_type} not HTMLButtonElement`
 /**/  }
-/**/
-/**/  PRE_submitButn=(typeof PRE_submitButn==='undefined') ? undefined:PRE_submitButn
-/**/
-/**/  submitButn=type_czech.link(submitButn, PRE_submitButn)
+/**/  PRE_check_changeToSubmit = (typeof PRE_check_changeToSubmit==='undefined') 
+/**/                             ? undefined : PRE_check_changeToSubmit
+/**/  changeToSubmit=type_czech.link(changeToSubmit, PRE_check_changeToSubmit)
 
-function submitButn(html_id, button_type) {
+function changeToSubmit(html_id){
   html_element = document.getElementById(html_id)
-  html_element.type = button_type
+  html_element.type = 'submit'
+  html_element.disabled = false
+}
+changeToSubmit('submit-button')
+
+changeToSubmit('a-table')
+
+linesConsole(2)
+
+/**/  function PRE_check_alterImgHref(image_href_id, source_addr){
+/**/    html_element = document.getElementById(image_href_id)
+/**/    ANCHOR_OR_IMAGE = ['HTMLAnchorElement','HTMLImageElement']
+/**/    type_issue=type_czech.check_typeEither(html_element, ANCHOR_OR_IMAGE)
+/**/    if (type_issue) return type_issue
+/**/
+/**/    html_type = type_czech.typeFinal(html_element)
+/**/    is_local_anchor = source_addr[0] === '#'
+/**/    if (is_local_anchor && html_type === 'HTMLImageElement')
+/**/      return `Error, image src is a local anchor '${source_addr}'`
+/**/  }
+/**/  PRE_check_alterImgHref = (typeof PRE_check_alterImgHref==='undefined')
+/**/                           ? undefined : PRE_check_alterImgHref
+/**/  alterImgHref=type_czech.link(alterImgHref, PRE_check_alterImgHref)
+
+function alterImgHref(image_href_id, source_addr) {
+  html_element = document.getElementById(image_href_id)
+  if (type_czech.typeFinal(html_element) === 'HTMLAnchorElement')
+    html_element.href = source_addr
+  else
+    html_element.src = source_addr
 }
 
-div_cant_be_a_submit = submitButn('js-div', 'submit')
+alterImgHref('a-link', 'http://www.xe.com')
 
+alterImgHref('an-image', AFTER_PLACEHOLDER_COM_IMAGE)
 
-linesConsole(4)
+alterImgHref('a-div', 'http://www.xe.com')
 
-
-
-the_explanation = document.getElementById('the-explanation');
-the_prototypes = type_czech.typeProtos(the_explanation)
-log('Prototypes of the-explanation:', the_prototypes)
-
-linesConsole(4)
-
-
-
-isa_HTMLElement = type_czech.typeIs(the_explanation)
-log('the_explanation is a HTMLDivElement : ', isa_HTMLElement)
-
-linesConsole(4)
-
-
-
-/**/  function PRE_divSpan(){
-/**/    return type_czech.check_type(arguments,  ['HTMLDivElement','HTMLSpanElement'])
-/**/  }
-/**/
-/**/  PRE_DivSpan=(typeof PRE_DivSpan==='undefined') ? undefined:PRE_DivSpan
-/**/  POST_DivSpan=(typeof POST_DivSpan==='undefined') ?undefined:POST_DivSpan
-/**/
-/**/  divSpan=type_czech.link(divSpan, PRE_divSpan)
-
-function divSpan(div_elem, span_elem) { return div_elem }
-
-console_log_div = document.getElementById('console-log')
-missing_span = document.getElementById('no-such-span')
-divSpan(console_log_div, missing_span)
+alterImgHref('a-picture', '#local-anchor-error')
 </script>
 
 
@@ -315,18 +398,30 @@ divSpan(console_log_div, missing_span)
 
   jsToDiv('js-code', "check-code");
 
-  fromToBoldText(356, 388, 'code', 1)  //html_type !== 'HTMLButtonElement'
-  fromToBoldText(893, 910, 'code', 1)  //'js-div', 'submit'
+  fromToBoldText(323, 343, 'code', 1)  //not HTMLButtonElement
+  fromToBoldText(786, 792, 'code', 1)  //('a-table
 
-  fromToBoldText(6, 34, 'log', 1)  // 'js-div' is an HTMLDivElement
-  fromToBoldText(108, 115, 'log', 1)  // 'submit'
+  fromToBoldText(8, 14, 'log', 1)  // Error 'a-table'
+  fromToBoldText(37, 57, 'log', 1)  // not HTMLButtonElement
+
 
   /////////////////////////////////////////////////
 
-  fromToBoldText(1709, 1722, 'code', 2)  //d('no-such-span')
-  fromToBoldText(1750, 1761, 'code', 2)  //missing_span
+  fromToBoldText(952, 991, 'code', 2)  //['HTMLAnchorElement','HTMLImageElement']
+  fromToBoldText(1954, 1958, 'code', 2)  //('a-div',
 
-  fromToBoldText(585, 588, 'log', 2)  //  ACTUAL TYPES ['HTMLDivElement',null]
-  fromToBoldText(669, 685, 'log', 2)  //   EXPECTED TYPE ['HTMLDivElement','HTMLSpanElement']
+
+  fromToBoldText(286, 290, 'log', 2)  // ["a-div"
+  fromToBoldText(339, 378, 'log', 2)  // ['HTMLAnchorElement','HTMLImageElement']
+
+
+  /////////////////////////////////////////////////
+
+  fromToBoldText(2011, 2029, 'code', 3)  //#local-anchor-error
+
+
+  fromToBoldText(500, 518, 'log', 3)  // #local-anchor-error
+
+
 
 </script>

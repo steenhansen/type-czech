@@ -88,9 +88,11 @@
       
       <a title="36-Start-and-Stop.html" href="../example-snippets/36-Start-and-Stop.html">36</a>
       
-      <a title="37-Readme-Example-Lambda.html" href="../example-snippets/37-Readme-Example-Lambda.html">37</a>
+      <a title="37-Readme-Example-Arrow-Functions.html" href="../example-snippets/37-Readme-Example-Arrow-Functions.html">37</a>
   
+      <a title="38-Every-Check.html" href="../example-snippets/38-Every-Check.html">38</a>
 
+      <a title="39-Prescribed-Use.html" href="../example-snippets/39-Prescribed-Use.html">39</a>
 
       &nbsp;&nbsp;
   
@@ -152,13 +154,13 @@
 
     <br>
 <pre>
-function PRE_oneToThreeStrings() {
+function PRE_check_oneToThreeStrings() {
   if (!type_czech.check_type(arguments, 'String')) return ''
   if (!type_czech.check_type(arguments, ['String', 'String'])) return ''
   if (!type_czech.check_type(arguments, ['String', 'String', 'String'])) return ''
   return 'Error, not ONE to THREE strings but - ' + arguments.length
 }
-oneToThreeStrings = type_czech.link(oneToThreeStrings, PRE_oneToThreeStrings)
+oneToThreeStrings = type_czech.link(oneToThreeStrings, PRE_check_oneToThreeStrings)
 function oneToThreeStrings() {}
 
 oneToThreeStrings()
@@ -167,7 +169,7 @@ oneToThreeStrings('s-1', 's-2', 's-3', 's-4')
 </pre>
 Here check_variadicType() accomplishes the same task as above.
 <pre>
-function PRE_oneToThreeStrings() {
+function PRE_check_oneToThreeStrings() {
   if (arguments.length > 3) 
     return 'Error, not ONE to THREE strings but - ' + arguments.length
   return type_czech.check_variadicType(arguments, ['String'])
@@ -229,11 +231,12 @@ function variadicFunc () {
 /**/  type_czech = TypeCzech('LOG-ERRORS')
 /**/  //type_czech = TypeCzech('NO-CHECKING')
 /**/
-/**/  function PRE_variadicFunc() {
+/**/  function PRE_check_variadicFunc() {
 /**/    return type_czech.check_variadicType(arguments, ['Number'])
 /**/  }
 /**/
-/**/  variadicFunc = type_czech.link(variadicFunc, PRE_variadicFunc)
+/**/  variadicFunc = type_czech.link(variadicFunc, 
+/**/                                       PRE_check_variadicFunc)
 
 variadicFunc(0,1,2)
 
@@ -256,11 +259,12 @@ function variadicArrs () {
 }
 
 /**/
-/**/  function PRE_variadicArrs() {
+/**/  function PRE_check_variadicArrs() {
 /**/    return type_czech.check_variadicType(arguments, [['Number']])
 /**/  }
 /**/
-/**/  variadicArrs = type_czech.link(variadicArrs, PRE_variadicArrs)
+/**/  variadicArrs = type_czech.link(variadicArrs,
+/**/                                         PRE_check_variadicArrs)
 
 variadicArrs( [1], [1,2], [1,2,3], [1,2,3,4] )
 
@@ -269,9 +273,7 @@ linesConsole(3)
 
 
 
-
 variadicArrs( [1], [1,2], [1,'two',3], [1,2,3,4] )
-
 </script>
 
 
@@ -287,37 +289,28 @@ variadicArrs( [1], [1,2], [1,'two',3], [1,2,3,4] )
 
 jsToDiv('js-code', "check-code");
 
-fromToBoldText(404, 408, 'code', 3)  //  variadicFunc(0,1,2)
+fromToBoldText(491, 497, 'code', 1)  //  variadicFunc(0,1,2,'Three',4,5,6)o
 
-fromToBoldText(1, 5, 'log', 3)    // 0,1,2
+fromToBoldText(314, 320, 'log', 1)    // [0,1,2,"Three",4,5,6]
+fromToBoldText(355, 362, 'log', 1)    //["Number"]
 
-
-
-///////////////////////
-
-fromToBoldText(429, 447, 'code', 1)  //  variadicFunc(0,1,2,'Three',4,5,6)o
-
-fromToBoldText(308, 314, 'log', 1)    // [0,1,2,"Three",4,5,6]
-fromToBoldText(348, 357, 'log', 1)    //["Number"]
-
-fromToBoldText(411, 427, 'log', 1)    // 0,1,2,Three,4,5,6
+fromToBoldText(429, 433, 'log', 1)    // 0,1,2,Three,4,5,6
 
 ///////////////////////
 
 
+fromToBoldText(860, 889, 'code', 3)  // variadicArrs( [1], [1,2], [1,2,3], [1,2,3,4])
 
-fromToBoldText(747, 776, 'code', 3)  // variadicArrs( [1], [1,2], [1,2,3], [1,2,3,4])
-
-fromToBoldText(428, 457, 'log', 3)    // [1] [1,2] [1,2,3] [1,2,3,4]
+fromToBoldText(440, 469, 'log', 3)    // [1] [1,2] [1,2,3] [1,2,3,4]
 
 ///////////////////////
 
-fromToBoldText(799, 832, 'code', 2)  // [1,'two',3]
+fromToBoldText(926, 930, 'code', 2)  // [1,'two',3]
 
-fromToBoldText(734, 738, 'log', 2)    // [1,"two",3] 
-fromToBoldText(779, 790, 'log', 2)    // [["Number"]]
+fromToBoldText(752, 756, 'log', 2)    // [1,"two",3] 
+fromToBoldText(799, 806, 'log', 2)    // [["Number"]]
  
-fromToBoldText(844, 875, 'log', 2)    // [1,two,3]
+fromToBoldText(883, 885, 'log', 2)    // [1] [1,2] [1,two,3] [1,2,3,4]
 
 
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>12-Object-Object-Properties</title>
+<title>10-Class-Parameters-Results-and-Methods</title>
 
 
 <link rel="stylesheet"
@@ -12,31 +12,49 @@
 </div>
 
 
+
 <div id="the-explanation" style="width:50%">
-  <div class='an-explantion'>12 - Object FIX ME</div>
+ 
+  <div class='an-explantion'>10 &mdash; Class Parameters, Results, and Methods</div>
   <div id='explanation-text'>
     <br>
-    Interfaces are supposed to only check functions, but type_czech.check_interface()
-    checks for other types as well if so wished.
-    <br><br>
 
-    This code checks for the methods functionOne(), functionTwo(), and the number property
-     aNumber being in an object.
+    Classes with multiple PRE and POST checking functions must be wrapped up in 
+    objects like below for everything to be linked up.
 <pre>
-TWO_FUNC_INTERFACE = { functionOne: 'Function', 
-                       functionTwo: 'Function', 
-                       aNumber: 'Number'}
+function PRE_check_yourClass(init_const){ // before constructor }
 
-an_issue = type_czech.check_interface(some_object, TWO_FUNC_INTERFACE);
+function POST_check_yourClass(result_object){ // after constructor }
+
+function PRE_check_yourMethod(method_input){ // before method }
+
+function POST_check_yourMethod(method_output){ // after method }
+
+yourClass_PRE_check_checks = {yourClass:PRE_check_yourClass,
+                              yourMethod:PRE_check_yourMethod}
+
+yourClass_POST_check_checks = {yourClass:POST_check_yourClass,
+                               yourMethod:POST_check_yourMethod}
+
+class yourClass {
+  constructor(init_const){ }
+  yourMethod(method_input){ 
+    return method_output
+  }
+}
+
+yourClass = type_czech.link(yourClass, 
+                            yourClass_PRE_check_checks,
+                            yourClass_POST_check_checks)
+</pre> 
+Note that the type_czech.link() call must come after the class declaration, otherwise
+you get the below ReferenceError.
+<pre>
+can't access lexical declaration 'yourClass' before initialization
 </pre>
 
 
-    In the examples to the left, the first person() function parameter is checked to 
-    see if it implements the showPerson() function, if not it fails the interface.
-    <br><br>
-  Type-Czech is set to throws exceptions in this example to cut down on the number
-  of error messages.
-  <br><br>
+
   </div>
 
   <div id="console-log"  >
@@ -45,7 +63,7 @@ an_issue = type_czech.check_interface(some_object, TWO_FUNC_INTERFACE);
     <br>
   </div>
 
-  <br><br>
+
   <div id='js-fiddles'>
     jsFiddles:
     <a title="00-Readme-Example" href="https://jsfiddle.net/steen_hansen/0xtpLwsc/?00-Readme-Example" target="_blank">00</a>
@@ -66,7 +84,8 @@ an_issue = type_czech.check_interface(some_object, TWO_FUNC_INTERFACE);
       
       <a title="08-Mutated-Recursive-Function-Parameters.html" href="https://jsfiddle.net/steen_hansen/3pv5qwx8/?08-Mutated-Recursive-Function-Parameters" target="_blank">08</a>
       
-   
+
+
 
 
     
@@ -90,7 +109,11 @@ an_issue = type_czech.check_interface(some_object, TWO_FUNC_INTERFACE);
       <a title="17-Variadic-Functions.html.html" href="https://jsfiddle.net/steen_hansen/hrvucjzm/?17-Variadic-Functions.html" target="_blank">17</a>
   
 
-   <a title="18-Class-Type-Checks.html" href="https://jsfiddle.net/steen_hansen/063wLqfs/?18-Class-Type-Checks" target="_blank">18</a>
+
+
+
+
+      <a title="18-Class-Type-Checks.html" href="https://jsfiddle.net/steen_hansen/063wLqfs/?18-Class-Type-Checks" target="_blank">18</a>
       
       <a title="19-Lone-Empty-Param-and-Result.html" href="https://jsfiddle.net/steen_hansen/x8h6dvj5/?19-Lone-Empty-Param-and-Result" target="_blank">19</a>
       
@@ -128,8 +151,12 @@ an_issue = type_czech.check_interface(some_object, TWO_FUNC_INTERFACE);
       
       <a title="36-Start-and-Stop.html" href="https://jsfiddle.net/steen_hansen/f19s52xr/?36-Start-and-Stop" target="_blank">36</a>
       
-      <a title="37-Readme-Example-Lambda.html" href="https://jsfiddle.net/steen_hansen/cwfsubtv/?37-Readme-Example-Lambda" target="_blank">37</a>
+      <a title="37-Readme-Example-Arrow-Functions.html" href="https://jsfiddle.net/steen_hansen/cwfsubtv/?37-Readme-Example-Arrow-Functions" target="_blank">37</a>
 
+      
+    <a title="38-Every-Check.html" href="https://jsfiddle.net/steen_hansen/1umwvht5/?38-Every-Check" target="_blank">38</a>
+    
+    <a title="39-Prescribed-Use.html" href="https://jsfiddle.net/steen_hansen/ta7fdnrw/?39-Prescribed-Use" target="_blank">39</a>
 
       &nbsp;&nbsp;
   
@@ -176,7 +203,7 @@ an_issue = type_czech.check_interface(some_object, TWO_FUNC_INTERFACE);
   
     </div>
   
-
+  
 
 </div>
 
@@ -185,30 +212,25 @@ an_issue = type_czech.check_interface(some_object, TWO_FUNC_INTERFACE);
 
 
 
-<!--            --------------------TYPE 1----------------------       -->
 
+<!--            ----------------TYPE 1--------------------------       -->
 
-
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@44d744188ace09cc8a11412460915536dccf4691/web-resources/consolelog.js">
+<script src="../web-resources/consolelog.js">
 </script>
 
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@44d744188ace09cc8a11412460915536dccf4691/web-resources/TypeCzech.min.js">
+
+<script src="../TypeCzech.js">
 </script>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@44d744188ace09cc8a11412460915536dccf4691/web-resources/type-czech.css">
+
+
+<link rel="stylesheet" href="../web-resources/type-czech.css">
 <style>
 </style>
 
 
 
-
 <!--            -------------------TYPE 1-----------------------       -->
-
-
-
-
-
-
 
 
 
@@ -225,55 +247,56 @@ an_issue = type_czech.check_interface(some_object, TWO_FUNC_INTERFACE);
 
 <script id="check-code">
 /**/  if (typeof TypeCzech === 'function')
-/**/    type_czech = TypeCzech('THROW-EXCEPTIONS')
+/**/    type_czech = TypeCzech('LOG-ERRORS')
 /**/  else
 /**/    type_czech = { link: (nop) => nop, is_active: false }
+/**/  
+/**/  PRE_check_Person = (typeof PRE_check_Person==='undefined')
+/**/                     ? undefined : PRE_check_Person
+/**/  PRE_check_show = (typeof PRE_check_show === 'undefined')
+/**/                   ? undefined : PRE_check_show
+/**/  POST_check_Person = (typeof POST_check_Person==='undefined')
+/**/                      ? undefined : POST_check_Person
+/**/  POST_check_show = (typeof POST_check_show === 'undefined')
+/**/                    ? undefined : POST_check_show
 /**/
-/**/  PRE_callMethod = (typeof PRE_callMethod === 'undefined')
-/**/                   ? undefined : PRE_callMethod
+/**/  function PRE_check_Person(person_name){
+/**/    log('PRE_check_Person :', person_name)
+/**/  }
 /**/
-/**/  function PRE_callMethod(an_object){
-/**/    THE_INTERFACE = {showPerson: 'Function'}
-/**/    return type_czech.check_interface(an_object, THE_INTERFACE);
+/**/  function PRE_check_show(born_year){
+/**/    log(NL+'PRE_check_show :', born_year)
 /**/  }
 /**/  
-/**/  callMethod = type_czech.link(callMethod, PRE_callMethod)
+/**/  function POST_check_Person(person_object){
+/**/    log(NL2+'POST_check_Person :', person_object)
+/**/  }
+/**/  
+/**/  function POST_check_show(name_year){
+/**/    log(NL2+'POST_check_show :', name_year)
+/**/  }
+/**/  
+/**/  PRE_check_Person = {Person:PRE_check_Person, show:PRE_check_show}
+/**/  POST_check_Person = {Person:POST_check_Person, show:POST_check_show}
 
-function callMethod(an_object){
-  an_object.showPerson()
+class Person {
+  constructor(person_name) {
+    this.person_name = person_name
+    log(NL2+'in Person() :', person_name)
+  }
+  show(born_year){
+    let name_year =  this.person_name + ' - ' + born_year
+    log(NL2+'in show() :', name_year)
+    return name_year
+  }
 }
 
-show_person = (x) => log(`A object with a showPerson()`)
-has_showPerson = {showPerson: show_person}
-callMethod(has_showPerson)
+/**/
+/**/  Person = type_czech.link(Person, PRE_check_Person, POST_check_Person)
+/**/
 
-linesConsole(4)
-
-no_showPerson = {a_key:'not-a-function'}
-try{
-  callMethod(no_showPerson)
-} catch(interface_error){
-  log(no_showPerson)
-  log('has no showPerson()')
-  linesConsole(2)
-  log(interface_error)
-}
-
-
-linesConsole(4)
-
-wrong_showPerson = {showPerson:'a-string'}
-try{
-  callMethod(wrong_showPerson)
-} catch(interface_error){
-  log(wrong_showPerson)
-  log('has no showPerson()')
-  linesConsole(2)
-  log(interface_error)
-}
-
-
-
+issac_newton = new Person('issac Newton')
+issac_newton.show(1642)
 </script>
 
 
@@ -284,15 +307,25 @@ try{
 
 
 
-
-
 <script>
+  
 
   jsToDiv('js-code', "check-code");
 
+  
+  fromToBoldText(713, 730, 'code', 1)  // PRE_check_Person :
 
-  fromToBoldText(427, 450, 'code', 1)  // {showPerson: 'Function'}
-   fromToBoldText(735, 759, 'code', 1)  //  {showPerson: show_person}
+  fromToBoldText(929, 947, 'code', 2)  // POST_check_Person :
 
-   fromToBoldText(17, 28, 'log', 1)    //showPerson()
+  fromToBoldText(1041, 1057, 'code', 3)  //POST_check_show :
+
+
+
+
+
+  fromToBoldText(1, 18, 'log', 1)    // PRE_check_Person :
+
+  fromToBoldText(64, 82, 'log', 2)    // POST_check_Person :
+  fromToBoldText(224, 240, 'log', 3)    //POST_check_show :
+
 </script>

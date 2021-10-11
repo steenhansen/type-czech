@@ -33,7 +33,7 @@
     If only a POST checking function is needed to verify function results, without
     a PRE checking function, then this form must be used.
 <pre>
-Person = type_czech.link(Person, undefined, POST_Person) 
+Person = type_czech.link(Person, undefined, POST_check_Person) 
 </pre>
 
 
@@ -127,9 +127,12 @@ Person = type_czech.link(Person, undefined, POST_Person)
       
       <a title="36-Start-and-Stop.html" href="../example-snippets/36-Start-and-Stop.html">36</a>
       
-      <a title="37-Readme-Example-Lambda.html" href="../example-snippets/37-Readme-Example-Lambda.html">37</a>
+      <a title="37-Readme-Example-Arrow-Functions.html" href="../example-snippets/37-Readme-Example-Arrow-Functions.html">37</a>
   
+      <a title="38-Every-Check.html" href="../example-snippets/38-Every-Check.html">38</a>
 
+      <a title="39-Prescribed-Use.html" href="../example-snippets/39-Prescribed-Use.html">39</a>
+      
       &nbsp;&nbsp;
   
       <a title="101-Extending-Classes-Inline.html" href="../examples-web/101-Extending-Classes-Inline.html">101</a>
@@ -234,17 +237,18 @@ Person = type_czech.link(Person, undefined, POST_Person)
 /**/  else
 /**/    type_czech = { link: (nop) => nop, is_active: false }
 /**/
-/**/  POST_Person =(typeof POST_Person==='undefined') ? undefined:POST_Person
+/**/  POST_check_Person = (typeof POST_check_Person === 'undefined')
+/**/                      ? undefined : POST_check_Person
 /**/
-/**/  function POST_Person(first_last){
+/**/  function POST_check_Person(first_last){
 /**/    royal_name = new RegExp(/^[A-Z][a-z]*\s[A-Z]*$/);
 /**/    if (!first_last.match(royal_name))
-/**/      return NL+`POST, name is not formated royally - ${first_last}`
+/**/      return NL+`POST, name is not formatted royally - ${first_last}`
 /**/
 /**/    return ''
 /**/  }
 /**/
-/**/  Person = type_czech.link(Person, undefined, POST_Person) 
+/**/  Person = type_czech.link(Person, undefined, POST_check_Person) 
 
 function Person(f_name, regnal_number){
   first_last = f_name + ' ' + regnal_number
@@ -257,16 +261,17 @@ log('out A : ', cleopatra)
 
 linesConsole(1)
 
+atahualpa = Person('Atahualpa')
+linesConsole(1)
+log('out B : ', atahualpa)
+
+linesConsole(1)
+
 catherine = Person('cATHERINE', 'II')
 log(NL +'out C : ', catherine)
 
-linesConsole(2)
 
-atahualpa = Person('Atahualpa')
 linesConsole(1)
-log('out D : ', atahualpa)
-
-linesConsole(2)
 
 louis = Person('Louis', 'XIV')
 linesConsole(1)
@@ -286,9 +291,9 @@ log('out D : ', louis)
 
   jsToDiv('js-code', "check-code");
 
-   fromToBoldText(393, 395, 'code', 1)  // (/^[A-Z][
-   fromToBoldText(828, 828, 'code', 1)  //  Person('cATHERINE', 'II')
-   fromToBoldText(62, 62, 'log', 1)    // ally - cATHERINE II
+   fromToBoldText(378, 383, 'code', 1)  // (/^[A-Z][
+   fromToBoldText(880, 880, 'code', 1)  //  Person('cATHERINE', 'II')
+   fromToBoldText(148, 148, 'log', 1)    // ally - cATHERINE II
 
 
 </script>

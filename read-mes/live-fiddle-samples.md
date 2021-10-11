@@ -150,8 +150,8 @@ https://jsfiddle.net/steen_hansen/f19s52xr/?36-Start-and-Stop
 ) 36 - Turn-On, Turn-Off, and Show TypeCzech Counting
 
 
-[37-Readme-Example-Lambda.html](
-https://jsfiddle.net/steen_hansen/cwfsubtv/?37-Readme-Example-Lambda        
+[37-Readme-Example-Arrow-Functions.html](
+https://jsfiddle.net/steen_hansen/cwfsubtv/?37-Readme-Example-Arrow-Functions        
 ) 37 - Readme Example Lambda
 
 

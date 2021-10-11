@@ -5,12 +5,12 @@
 <link rel="stylesheet"
   href="https://fonts.googleapis.com/css?family=Inconsolata">
   
-<div id='js-div' style="width:55%; " >
+<div id='js-div' style="width:51%; " >
   <div id='js-code'>the javascript</div>
 </div>
 
 
-<div id="the-explanation" style="width:45%" >
+<div id="the-explanation" style="width:49%" >
   <div class='an-explantion'>18 &mdash; Class Type Checks</div>
   <div id='explanation-text'>
     <br>
@@ -37,7 +37,7 @@ Note that the Person Class must be declared before the below linking code, or
 a reference error is generated stating 
 "can't access lexical declaration 'Person' before initialization"
 <pre>
-/**/  Person=type_czech.link(Person, undefined, POST_Person)
+/**/  Person=type_czech.link(Person, undefined, POST_check_Person)
 </pre>
 
 
@@ -131,9 +131,11 @@ a reference error is generated stating
       
       <a title="36-Start-and-Stop.html" href="../example-snippets/36-Start-and-Stop.html">36</a>
       
-      <a title="37-Readme-Example-Lambda.html" href="../example-snippets/37-Readme-Example-Lambda.html">37</a>
+      <a title="37-Readme-Example-Arrow-Functions.html" href="../example-snippets/37-Readme-Example-Arrow-Functions.html">37</a>
   
+      <a title="38-Every-Check.html" href="../example-snippets/38-Every-Check.html">38</a>
 
+      <a title="39-Prescribed-Use.html" href="../example-snippets/39-Prescribed-Use.html">39</a>
 
       &nbsp;&nbsp;
   
@@ -237,9 +239,10 @@ a reference error is generated stating
 /**/  
 /**/  MY_INTERFACE = {showPerson: 'Function'}
 /**/
-/**/  POST_Person = (typeof POST_Person === 'undefined') ? undefined : POST_Person
+/**/  POST_check_Person = (typeof POST_check_Person === 'undefined')
+/**/                      ? undefined : POST_check_Person
 /**/
-/**/  function POST_Person(a_person){
+/**/  function POST_check_Person(a_person){
 /**/    interface_error = type_czech.check_interface(arguments, MY_INTERFACE)
 /**/    if (interface_error) return interface_error
 /**/    return type_czech.check_type(arguments, "Person")
@@ -253,7 +256,7 @@ class Person {
 }
 
 /**/
-/**/  Person=type_czech.link(Person, undefined, POST_Person)
+/**/  Person=type_czech.link(Person, undefined, POST_check_Person)
 /**/
 
 a_person = new Person('Bob')
@@ -261,17 +264,21 @@ log('showPerson() call before deletion : ', a_person.showPerson())
 
 linesConsole(2)
 
-const person_proto = Object.getPrototypeOf(a_person);
+const person_proto = Object.getPrototypeOf(a_person)
 delete person_proto.showPerson
 
 person_type_issue = type_czech.check_type(a_person, "Person")
 if (person_type_issue){
   log('person_type_issue', person_type_issue)
+} else {
+  log("a_person is still a 'Person' ")
 }
+
+linesConsole(2)
 
 interface_error = type_czech.check_interface(a_person, MY_INTERFACE)
 if (interface_error){
-  log('Interface Error : ', interface_error)
+  log('Interface Error : ', interface_error[1])
 }
 
 linesConsole(2)
@@ -300,12 +307,26 @@ linesConsole(2)
 
  
 
-  fromToBoldText(212, 235, 'code', 1)  //  MY_INTERFACE = {showPerson: 'Function'}
-  fromToBoldText(893, 922, 'code', 1)  // delete person_proto.showPerson;
-  fromToBoldText(1073, 1122, 'code', 1)  // type_czech.check_interface(a_person, MY_INTERFACE)
 
-  fromToBoldText(99, 125, 'log', 1)    // 'showPerson' is 'undefined'
-  fromToBoldText(157, 188, 'log', 1)    //not the expected 'Function' type"
+
+   fromToBoldText(1109, 1139, 'code', 3)  //  a_person is still a 'Person' 
+
+fromToBoldText(42, 69, 'log', 3)    //a_person is still a 'Person'
+
+
+
+fromToBoldText(930, 959, 'code', 2)  //  delete person_proto.showPerson
+
+fromToBoldText(89, 142, 'log', 2)    //Interface missing key 'showPerson' in checked objec
+
+
+
+
+
+
+  fromToBoldText(1310, 1330, 'code', 1)  //  a_person.showPerson()
+
+  fromToBoldText(172, 210, 'log', 1)    //"a_person.showPerson is not a function"
 
 
 </script>

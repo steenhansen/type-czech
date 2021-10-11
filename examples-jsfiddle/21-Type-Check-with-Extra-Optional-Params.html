@@ -4,14 +4,15 @@
 <link rel="stylesheet"
   href="https://fonts.googleapis.com/css?family=Inconsolata">
 
-<div id='js-div' style="width:55%">
+<div id='js-div' style="width:58%">
   <div id='js-code'>the javascript</div>
 </div>
 
-<div id="the-explanation" style="width:45%">
-  <div class='an-explantion'>21 - Type Check with Extra Optional Parameters</div>
+<div id="the-explanation" style="width:42%">
+  <div class='an-explantion'>21 &mdash; Type Check with Extra Optional Parameters</div>
   <div id='explanation-text'>
     <br>
+
 
   Extra optional parameter values are not checked for correct type, they are just ignored. 
   As long as the correct declared type shape is not violated, any additional elective 
@@ -19,7 +20,7 @@
   type_czech.check_typeExtra(arguments, expected_types).
   <br><br>
 
-  There is no way of specifying optional keys, and optional array elements.
+  There is WRONG no way of specifying optional keys, and optional array elements.
   
   <br><br>
   Objects specify their mandatory keys and types, whilst arrays just check the
@@ -32,6 +33,7 @@
     <div id='log-text'></div>
     <br>
   </div>
+
   <br><br>
   <div id='js-fiddles'>
     jsFiddles:
@@ -53,7 +55,8 @@
       
       <a title="08-Mutated-Recursive-Function-Parameters.html" href="https://jsfiddle.net/steen_hansen/3pv5qwx8/?08-Mutated-Recursive-Function-Parameters" target="_blank">08</a>
       
-  
+
+
 
 
     
@@ -77,7 +80,10 @@
       <a title="17-Variadic-Functions.html.html" href="https://jsfiddle.net/steen_hansen/hrvucjzm/?17-Variadic-Functions.html" target="_blank">17</a>
   
 
-     
+
+
+
+
       <a title="18-Class-Type-Checks.html" href="https://jsfiddle.net/steen_hansen/063wLqfs/?18-Class-Type-Checks" target="_blank">18</a>
       
       <a title="19-Lone-Empty-Param-and-Result.html" href="https://jsfiddle.net/steen_hansen/x8h6dvj5/?19-Lone-Empty-Param-and-Result" target="_blank">19</a>
@@ -116,9 +122,12 @@
       
       <a title="36-Start-and-Stop.html" href="https://jsfiddle.net/steen_hansen/f19s52xr/?36-Start-and-Stop" target="_blank">36</a>
       
-      <a title="37-Readme-Example-Lambda.html" href="https://jsfiddle.net/steen_hansen/cwfsubtv/?37-Readme-Example-Lambda" target="_blank">37</a>
-  
+      <a title="37-Readme-Example-Arrow-Functions.html" href="https://jsfiddle.net/steen_hansen/cwfsubtv/?37-Readme-Example-Arrow-Functions" target="_blank">37</a>
 
+      
+    <a title="38-Every-Check.html" href="https://jsfiddle.net/steen_hansen/1umwvht5/?38-Every-Check" target="_blank">38</a>
+    
+    <a title="39-Prescribed-Use.html" href="https://jsfiddle.net/steen_hansen/ta7fdnrw/?39-Prescribed-Use" target="_blank">39</a>
 
       &nbsp;&nbsp;
   
@@ -165,7 +174,8 @@
   
     </div>
   
-
+  
+    
 </div>
 
 
@@ -177,27 +187,29 @@
 
 
 
-<!--            --------------------TYPE 1----------------------       -->
+<!--            -----------------TYPE 1-------------------------       -->
 
 
 
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@44d744188ace09cc8a11412460915536dccf4691/web-resources/consolelog.js">
+
+<script src="../web-resources/consolelog.js">
 </script>
 
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@44d744188ace09cc8a11412460915536dccf4691/web-resources/TypeCzech.min.js">
+
+<script src="../TypeCzech.js">
 </script>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@44d744188ace09cc8a11412460915536dccf4691/web-resources/type-czech.css">
+
+
+<link rel="stylesheet" href="../web-resources/type-czech.css">
 <style>
 </style>
 
 
 
-<!--            ------------------TYPE 1------------------------       -->
 
 
-
-
+<!--            ----------------TYPE 1--------------------------       -->
 
 
 
@@ -224,18 +236,21 @@
 /**/  else
 /**/    type_czech = { link: (nop) => nop, is_active: false }
 /**/  
-/**/  PRE_Person = (typeof PRE_Person === 'undefined') ? undefined : PRE_Person
-/**/  POST_Person = (typeof POST_Person === 'undefined') ? undefined : POST_Person
+/**/  PRE_check_Person = (typeof PRE_check_Person === 'undefined')
+/**/                     ? undefined : PRE_check_Person
+/**/  POST_check_Person = (typeof POST_check_Person === 'undefined')
+/**/                      ? undefined : POST_check_Person
 /**/  
-/**/  function PRE_Person(person_obj){
-/**/    return type_czech.check_typeExtra(arguments, {f_name:'String', l_name:'String'})
+/**/  function PRE_check_Person(person_obj){
+/**/    person_signature = {f_name:'String', l_name:'String'}
+/**/    return type_czech.check_typeExtra(arguments, person_signature)
 /**/  }
 /**/  
-/**/  function POST_Person(person_arr){
+/**/  function POST_check_Person(person_arr){
 /**/    return type_czech.check_typeExtra(arguments, ['String', 'String'])
 /**/  }
 /**/  
-/**/  Person = type_czech.link(Person, PRE_Person, POST_Person)
+/**/  Person = type_czech.link(Person, PRE_check_Person, POST_check_Person)
 
 function Person(person_obj){
   let {f_name, l_name, extra_1, extra_2, extra_3, extra_4} = person_obj
@@ -257,7 +272,7 @@ linesConsole(3)
 
 
 hakeem = Person({f_name:'Hakeem Olajuwon'})
-log( hakeem)
+log(hakeem)
 
 linesConsole(3)
 
@@ -270,6 +285,8 @@ linesConsole(3)
 mc_enroe = Person({f_name:'John', l_name:'McEnroe',
                      extra_1: 'Angry', extra_2: 1959, extra_3: 'vs. Bjorn Borg'})
 log(mc_enroe)
+
+
 </script>
 
 
@@ -283,11 +300,22 @@ log(mc_enroe)
   jsToDiv('js-code', "check-code");
 
   
-  fromToBoldText(449, 482, 'code', 1)  // {f_name:'String', l_name:'String'}
-  fromToBoldText(589, 608, 'code', 1)  //  ['String', 'String'])
-  fromToBoldText(1191, 1200, 'code', 1)  // extra_1:10
+  fromToBoldText(498, 531, 'code', 1)  //{f_name:'String', l_name:'String'}
 
-  fromToBoldText(27, 38, 'log', 1)    //  [ 10 ]
+  fromToBoldText(272, 297, 'log', 1)    //  {f_name:"Hakeem Olajuwon"}
+  fromToBoldText(324, 356, 'log', 1)    //  {f_name:"String",l_name:"String"}
 
 
+
+  fromToBoldText(718, 737, 'code', 2)  // ['String', 'String']
+
+  fromToBoldText(645, 673, 'log', 2)    // ["Hakeem Olajuwon",undefined]
+  fromToBoldText(700, 718, 'log', 2)    // ["String","String"]
+
+
+
+
+  fromToBoldText(1568, 1625, 'code', 3)  // extra_1: 'Angry', extra_2: 1959, extra_3: 'vs. Bjorn Borg'}
+
+  fromToBoldText(897, 945, 'log', 3)    //  [ "Angry", 1959, "vs. Bjorn Borg" ]
 </script>

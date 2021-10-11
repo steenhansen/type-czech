@@ -1,51 +1,89 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>15-Parameter-and-Results-Multi-Types</title>
+<title>13-Parameter-and-Results-Multi-Types</title>
 
 
 <link rel="stylesheet"
   href="https://fonts.googleapis.com/css?family=Inconsolata">
 
-<div id='js-div' style="width:42%">
+<div id='js-div' style="width:55%">
   <div id='js-code'>the javascript</div>
 </div>
 
  
 
-<div id="the-explanation" style="width:58%">
-  <div class='an-explantion'>15 - Array and Object Types with Parameter and Results</div>
+<div id="the-explanation" style="width:45%">
+  <div class='an-explantion'>13 &mdash; Parameter and Result Multi Scalar Types</div>
   <div id='explanation-text'>
     <br>
 
-    Typeless arrays can be checked for without giving any dimensionality,
-    if [ ]s are used then an array must define at least one type.
+   This page deals with functions that have more than one parameter, and function
+   results that are arrays. The next page deals with checking single parameter
+   types, and single type function results.
 
-    <ul>
-      <li>Valid Type:  'Array'</li>
-      
-      <li>Not Valid Type : '[ ]'</li>
-      <li>Valid Type : [ 'String' ]</li>
-    </ul>
 
-    And, 'Object' can also be a type without specifying any properties.
-    But if { }s are used then an object must define at least one key and value.
+    <div>
+      <div style="float:left; width:16%; margin-left:5px">
+        <li style="list-style: none;"><b>Valid Types</b></li>
+       </div>
     
+      <div style="float:left; width:16%">
+        <ul>
+          <li>Boolean</li>
+          <li>RegExp</li>
+    
+        </ul>
+      </div>
+     
+      <div style="float:left; width:13%">
+        <ul>
+          <li>Date</li>
+          <li>String</li>
+        </ul>
+      </div>
+     
+      <div style="float:left; width:16%">
+        <ul>
+          <li>Function</li>
+          <li>Symbol</li>
+        </ul>
+      </div>
+
+      <div style="float:left; width:16%">
+        <ul>
+          <li>Number</li>
+          <li>BigInt</li>
+        </ul>
+      </div>
+
+      
+      <div style="float:left; width:1%">
+        <ul>
+          <li>Array</li>
+          <li>Object</li>
+        </ul>
+      </div>
+    
+    </div>
+    <br><br>  <br><br>
+    The Person() function's signatures.
+    <ul>
+      <li>Input : [ 'String', 'String', 'Date' ]</li>
+      
+      <li>Output : [ 'Number', 'String', 'String' ]</li>
+      </ul>
+      
 
 
-<ul>
-  <li>Valid Type : 'Object'</li>
-  <li>Not Valid Type : '{ }'</li>
-  <li>Valid Type : { a_key: 'String' }</li>
-</ul>
-
-
-Alan Turing is used to show the error messages that occur when an object is check_typeated against the 
-'array' type in the PRE_Person() checking function. 
-
-
-The reverse, testing an array against the 'object' type gives a lengthy error message from 
-the POST_Person() function.
+An error occurs because Alan Turing's birthdate is a number, 1912, not a Date().
 
 <br><br>
+And, Avicii has his last name deliberatly set to undefined, causing the Person() 
+return result to not match the correct signature.
+<br><br>
+ Try-catches are used to limit the number of errors in the console.
+<br><br>
+
+
 </div>
 
 
@@ -54,6 +92,7 @@ the POST_Person() function.
   <div id='log-text'></div>
   <br>
 </div>
+
 <br><br>
 <div id='js-fiddles'>
   jsFiddles:
@@ -75,12 +114,13 @@ the POST_Person() function.
     
     <a title="08-Mutated-Recursive-Function-Parameters.html" href="https://jsfiddle.net/steen_hansen/3pv5qwx8/?08-Mutated-Recursive-Function-Parameters" target="_blank">08</a>
     
-   
 
 
-    
+
+
+  
     <a title="09-Closure-Parameters-Results-and-Methods.html" href="https://jsfiddle.net/steen_hansen/r8L3mp40/?09-Closure-Parameters-Results-and-Methods" target="_blank">09</a>
-      
+    
     <a title="10-Class-Parameters-Results-and-Methods.html" href="https://jsfiddle.net/steen_hansen/Lhwov8y9/?10-Class-Parameters-Results-and-Methods" target="_blank">10</a>
     
     <a title="11-Object-Object-Properties.html" href="https://jsfiddle.net/steen_hansen/qp29Ljd1/?11-Object-Object-Properties" target="_blank">11</a>
@@ -99,7 +139,10 @@ the POST_Person() function.
     <a title="17-Variadic-Functions.html.html" href="https://jsfiddle.net/steen_hansen/hrvucjzm/?17-Variadic-Functions.html" target="_blank">17</a>
 
 
-  
+
+
+
+
     <a title="18-Class-Type-Checks.html" href="https://jsfiddle.net/steen_hansen/063wLqfs/?18-Class-Type-Checks" target="_blank">18</a>
     
     <a title="19-Lone-Empty-Param-and-Result.html" href="https://jsfiddle.net/steen_hansen/x8h6dvj5/?19-Lone-Empty-Param-and-Result" target="_blank">19</a>
@@ -138,8 +181,12 @@ the POST_Person() function.
     
     <a title="36-Start-and-Stop.html" href="https://jsfiddle.net/steen_hansen/f19s52xr/?36-Start-and-Stop" target="_blank">36</a>
     
-    <a title="37-Readme-Example-Lambda.html" href="https://jsfiddle.net/steen_hansen/cwfsubtv/?37-Readme-Example-Lambda" target="_blank">37</a>
+    <a title="37-Readme-Example-Arrow-Functions.html" href="https://jsfiddle.net/steen_hansen/cwfsubtv/?37-Readme-Example-Arrow-Functions" target="_blank">37</a>
 
+    
+  <a title="38-Every-Check.html" href="https://jsfiddle.net/steen_hansen/1umwvht5/?38-Every-Check" target="_blank">38</a>
+  
+  <a title="39-Prescribed-Use.html" href="https://jsfiddle.net/steen_hansen/ta7fdnrw/?39-Prescribed-Use" target="_blank">39</a>
 
     &nbsp;&nbsp;
 
@@ -187,6 +234,7 @@ the POST_Person() function.
   </div>
 
 
+
 </div>
 
 
@@ -198,26 +246,30 @@ the POST_Person() function.
 
 
 
+<!--            ------------------TYPE 1------------------------       -->
 
 
 
-<!--            --------------------TYPE 1----------------------       -->
-
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@44d744188ace09cc8a11412460915536dccf4691/web-resources/consolelog.js">
-</script>
-
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@44d744188ace09cc8a11412460915536dccf4691/web-resources/TypeCzech.min.js">
+<script src="../web-resources/consolelog.js">
 </script>
 
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@44d744188ace09cc8a11412460915536dccf4691/web-resources/type-czech.css">
+<script src="../TypeCzech.js">
+</script>
+
+
+
+<link rel="stylesheet" href="../web-resources/type-czech.css">
 <style>
 </style>
 
 
 
 
-<!--            --------------------TYPE 1----------------------       -->
+
+<!--            ----------------TYPE 1s--------------------------       -->
+
+
 
 
 
@@ -239,55 +291,54 @@ the POST_Person() function.
 
 
 
+
 <script id="check-code">
 /**/  if (typeof TypeCzech === 'function')
-/**/    type_czech = TypeCzech('LOG-ERRORS')
+/**/    type_czech = TypeCzech('THROW-EXCEPTIONS')
 /**/  else
 /**/    type_czech = { link: (nop) => nop, is_active: false }
 /**/  
-/**/  PRE_Person = (typeof PRE_Person === 'undefined')
-/**/               ? undefined : PRE_Person
-/**/
-/**/  POST_Person = (typeof POST_Person === 'undefined')
-/**/                ? undefined : POST_Person
+/**/  PRE_check_Person = (typeof PRE_check_Person === 'undefined')
+/**/                     ? undefined : PRE_check_Person
+/**/  POST_check_Person = (typeof POST_check_Person === 'undefined')
+/**/                      ? undefined : POST_check_Person
 /**/  
-/**/  function PRE_Person(an_array){
-/**/    return type_czech.check_type(arguments, 'Array')
+/**/  function PRE_check_Person(f_name, l_name, b_date){
+/**/    return type_czech.check_type(arguments, ['String', 'String', 'Date'])
 /**/  }
 /**/  
-/**/  function POST_Person(an_object){
-/**/    return type_czech.check_type(arguments, 'Object')
+/**/  function POST_check_Person(an_array){
+/**/    return type_czech.check_type(arguments, ['Number', 'String', 'String'])
 /**/  }
 /**/  
-/**/  Person = type_czech.link(Person, PRE_Person, POST_Person)
+/**/  Person = type_czech.link(Person, PRE_check_Person, POST_check_Person)
 
-function Person(person_array_or_obj){
-  if (Array.isArray(person_array_or_obj)){
-    let person_iterable = [...person_array_or_obj]
-    let result_object = {}
-    person_iterable.forEach( (a_value, the_index) => {
-      property_key = 'prop'+the_index
-      result_object[property_key] = a_value;
-    })
-    return result_object
-  }else {
-    result_array = Object.values(person_array_or_obj)
-    return result_array
-  }
+function Person(f_name, l_name, b_date){
+  birth_year = b_date.getFullYear()
+  if (l_name === '')
+    l_name = undefined                   // deliberate POST error
+  return [birth_year, f_name, l_name];
 }
 
-chuck_array = ['Charles', new Date(1948,11,14), true, 17]
-chuck_object = Person(chuck_array)
-log(chuck_object)
+chuck = Person('Charles', 'Windsor', new Date(1948,11,14))
+log(chuck)
 
-linesConsole(2)
+linesConsole(3)
 
-alan_object = {f_name:'Alan', l_name:'Turing'}
-alan_turing = Person(alan_object)
-linesConsole(2)
-log(alan_turing)
+try {
+  alan_turing = Person('Alan', 'Turing', 1912)
+}catch (type_error) {
+  log(type_error)
+}
+
+linesConsole(3)
+
+try {
+  alan_turing = Person('Avicii', '', new Date(1955,5,5))
+}catch (type_error) {
+  log(type_error)
+}
 </script>
-
 
 
 
@@ -301,14 +352,26 @@ log(alan_turing)
 
   jsToDiv('js-code', "check-code");
 
- 
+  fromToBoldText(1019, 1060, 'code', 3)  // 'Charles', 'Windsor', new Date(1948,11,14)
+  fromToBoldText(1, 36, 'log', 3)    //[ 1948, "Charles", "Windsor" ]
 
-  fromToBoldText(532, 536, 'code', 1)  //  'Array')
-  fromToBoldText(1278, 1309, 'code', 1)  //  {f_name:'Alan', l_name:'Turing'}
 
-  fromToBoldText(239, 244, 'log', 1)    //'Object'
 
-  fromToBoldText(329, 338, 'log', 1)    //'Array'
+  
+  fromToBoldText(1122, 1125, 'code', 1)  // 1912
+  fromToBoldText(270, 273, 'log', 1)    //1912
+  fromToBoldText(314, 319, 'log', 1)    //"Date"]
+
+
+
+
+  fromToBoldText(1210, 1211, 'code', 2)  // ''
+  fromToBoldText(601, 609, 'log', 2)    //undefined
+  fromToBoldText(650, 657, 'log', 2)    //"String"]
+
+
+
+
 
 
 </script>

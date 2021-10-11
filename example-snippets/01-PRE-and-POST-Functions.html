@@ -87,9 +87,11 @@
       
       <a title="36-Start-and-Stop.html" href="../example-snippets/36-Start-and-Stop.html">36</a>
       
-      <a title="37-Readme-Example-Lambda.html" href="../example-snippets/37-Readme-Example-Lambda.html">37</a>
+      <a title="37-Readme-Example-Arrow-Functions.html" href="../example-snippets/37-Readme-Example-Arrow-Functions.html">37</a>
   
+      <a title="38-Every-Check.html" href="../example-snippets/38-Every-Check.html">38</a>
 
+      <a title="39-Prescribed-Use.html" href="../example-snippets/39-Prescribed-Use.html">39</a>
   
         &nbsp;&nbsp;
   
@@ -148,14 +150,14 @@
     <br><br>
     Type-Czech requires ECMAScript 2015 (ES6).
     <br><br>
-    In the example to the left, the function PRE_Person() is executed before
-    the Person() function while POST_Person() is run after the Person() function is finished.
+    In the example to the left, the function PRE_check_Person() is executed before
+    the Person() function while POST_check_Person() is run after the Person() function is finished.
       <br><br>
       The Person() function's input and output variables and values are accessable 
       for inspection.
       <br><br>
       The PRE &amp;POST checking functions signal errors by returning an error message;
-      an empty string "" means no error as shown in with PRE_Person(). Type-Czech can be set to simply
+      an empty string "" means no error as shown in with PRE_check_Person(). Type-Czech can be set to simply
       log error messages to the console, or to stop execution via an exception as below.
 
 <pre>
@@ -171,7 +173,7 @@ type_czech = TypeCzech()
 The PRE &amp;POST checking functions are linked to the function to be checked via this odd
 looking function call.
 <pre>
-Person = type_czech.link(Person, PRE_Person, POST_Person)
+Person = type_czech.link(Person, PRE_check_Person, POST_check_Person)
 </pre>
 
 
@@ -237,19 +239,19 @@ the difference between the testing code and normal source code.
 /**/  type_czech = TypeCzech('LOG-ERRORS')
 /**/  //type_czech = TypeCzech('NO-CHECKING')
 /**/
-/**/  function PRE_Person(f_name){
-/**/    log('PRE_Person() :', f_name)
+/**/  function PRE_check_Person(f_name){
+/**/    log('PRE_check_Person() :', f_name)
 /**/    NO_ERROR = ''
 /**/    return NO_ERROR
 /**/  }
 /**/
-/**/  function POST_Person(person_result){
-/**/    log(NL2 + 'POST_Person() :', person_result)
+/**/  function POST_check_Person(person_result){
+/**/    log(NL2 + 'POST_check_Person() :', person_result)
 /**/    POST_ERROR = NL2 + 'Error Message - if result is not an empty string'
 /**/    return POST_ERROR
 /**/  }
 /**/
-/**/  Person = type_czech.link(Person, PRE_Person, POST_Person)
+/**/  Person = type_czech.link(Person, PRE_check_Person, POST_check_Person)
 
 function Person(f_name) {
   person_result = f_name.toUpperCase()
@@ -278,7 +280,14 @@ Person('bob')
 
    jsToDiv('js-code', "check-code");
 
-   fromToBoldText(142, 156, 'code', 1)  // 'PRE_Person() :'
-   fromToBoldText(1, 12, 'log', 1)    // PRE_Person() :
+   fromToBoldText(110, 125, 'code', 1)  // 'PRE_check_Person() 
+   fromToBoldText(502, 517, 'code', 1)  // 'PRE_check_Person() 
+   fromToBoldText(1, 18, 'log', 1)    // PRE_check_Person() 
+
+
+   fromToBoldText(254, 270, 'code', 2)  // 'POST_check_Person() 
+   fromToBoldText(520, 536, 'code', 2)  // 'POST_check_Person() 
+   fromToBoldText(52, 70, 'log', 2)    // POST_check_Person() 
+
 
 </script>

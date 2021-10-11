@@ -5,12 +5,12 @@
 <link rel="stylesheet"
   href="https://fonts.googleapis.com/css?family=Inconsolata">
   
-<div id='js-div' style="width:52%;" class='code-scroll'>
+<div id='js-div' style="width:59%;" class='code-scroll'>
   <div id='js-code'>the javascript</div>
 </div>
 
 
-<div id="the-explanation" style="width:48%" >
+<div id="the-explanation" style="width:41%" >
   <div class='an-explantion'>501 &mdash; Inherited Prototypes Inline</div>
   <div id='explanation-text'>
     
@@ -120,9 +120,12 @@ Prototypes are used for inheritance:
       
       <a title="36-Start-and-Stop.html" href="../example-snippets/36-Start-and-Stop.html">36</a>
       
-      <a title="37-Readme-Example-Lambda.html" href="../example-snippets/37-Readme-Example-Lambda.html">37</a>
+      <a title="37-Readme-Example-Arrow-Functions.html" href="../example-snippets/37-Readme-Example-Arrow-Functions.html">37</a>
 
-
+      <a title="38-Every-Check.html" href="../example-snippets/38-Every-Check.html">38</a>
+    
+      <a title="39-Prescribed-Use.html" href="../example-snippets/39-Prescribed-Use.html">39</a>
+      
       &nbsp;&nbsp;
   
       <a title="101-Extending-Classes-Inline.html" href="../examples-web/101-Extending-Classes-Inline.html">101</a>
@@ -204,79 +207,79 @@ Prototypes are used for inheritance:
 
 <script id="check-code">
 /**/function First_check(First){
-/**/  function PRE_First(f_name){ 
+/**/  function PRE_check_First(f_name){ 
 /**/    log(NL2+'PRE -First') 
 /**/    type_issue = type_czech.check_type(f_name, 'String')
 /**/    if (type_issue) return type_issue;
 /**/    return type_czech.check_empty(arguments, 'EMPTY-ERROR');
 /**/  }
-/**/  function POST_First(First){ 
+/**/  function POST_check_First(First){ 
 /**/    log(NL1+'POST-First') 
 /**/    return type_czech.check_interface(First, { firstMethod: 'Function' })
 /**/  }
-/**/  function PRE_firstMethod(a_date){
+/**/  function PRE_check_firstMethod(a_date){
 /**/    log('PRE -firstMethod') 
 /**/    return type_czech.check_type(arguments, 'Date')
 /**/  }
-/**/  function POST_firstMethod(a_date){
+/**/  function POST_check_firstMethod(a_date){
 /**/    log('POST-firstMethod') 
 /**/     return type_czech.check_type(arguments, 'Date')
 /**/  }
 /**/
-/**/  First_PREs = {First:PRE_First, firstMethod:PRE_firstMethod}
-/**/  First_POSTs = {First:POST_First, firstMethod:POST_firstMethod}
+/**/  First_PREs = {First:PRE_check_First, firstMethod:PRE_check_firstMethod}
+/**/  First_POSTs = {First:POST_check_First, firstMethod:POST_check_firstMethod}
 /**/  First = type_czech.link(First, First_PREs, First_POSTs)
 /**/  return First
 /**/}
 
 /**/function Last_check(Last){
-/**/  function PRE_Last(l_name){ 
+/**/  function PRE_check_Last(l_name){ 
 /**/    log(LEVEL_1+'PRE-Last')
 /**/    type_issue = type_czech.check_type(l_name, 'String')
 /**/    if (type_issue) return type_issue;
 /**/    return type_czech.check_empty(arguments, 'EMPTY-ERROR');
 /**/  }
-/**/  function POST_Last(Last){
+/**/  function POST_check_Last(Last){
 /**/    log(LEVEL_1+"POST-Last")
 /**/    post_last_signature = { l_name: 'String', lastMethod: 'Function' }
 /**/    return type_czech.check_interface(Last, post_last_signature)
 /**/  }
-/**/  function PRE_lastMethod(a_year){ 
+/**/  function PRE_check_lastMethod(a_year){ 
 /**/    log(LEVEL_1+"PRE -lastMethod")
 /**/    return type_czech.check_type(arguments, 'Number')
 /**/  }
-/**/  function POST_lastMethod(a_year){ 
+/**/  function POST_check_lastMethod(a_year){ 
 /**/    log(LEVEL_1+"POST-lastMethod")
 /**/    return type_czech.check_type(arguments, 'Number')
 /**/  }
 /**/
-/**/  Last_PREs = {Last:PRE_Last, lastMethod:PRE_lastMethod}
-/**/  Last_POSTs = {Last:POST_Last, lastMethod:POST_lastMethod}
+/**/  Last_PREs = {Last:PRE_check_Last, lastMethod:PRE_check_lastMethod}
+/**/  Last_POSTs = {Last:POST_check_Last, lastMethod:POST_check_lastMethod}
 /**/  Last = type_czech.link(Last, Last_PREs, Last_POSTs)
 /**/  return Last
 /**/}
 
 /**/function Full_check(Full){
-/**/  function PRE_Full(salu){
+/**/  function PRE_check_Full(salu){
 /**/    log(LEVEL_2+'PRE-Full') 
 /**/    return type_czech.check_type(arguments, 'String')
 /**/  }
-/**/  function POST_Full(Full){
+/**/  function POST_check_Full(Full){
 /**/    log(LEVEL_2+"POST-Full") 
 /**/    post_full_signature = { salu: 'String', fullMethod: 'Function' }
 /**/    return type_czech.check_interface(Full, post_full_signature)
 /**/  }
-/**/  function PRE_fullMethod(a_book){ 
+/**/  function PRE_check_fullMethod(a_book){ 
 /**/    log(LEVEL_2+"PRE -fullMethod") 
 /**/    return type_czech.check_type(arguments, 'String')
 /**/  }
-/**/  function POST_fullMethod(a_book){
+/**/  function POST_check_fullMethod(a_book){
 /**/    log(LEVEL_2+"POST-fullMethod") 
 /**/    return type_czech.check_type(arguments, 'String')
 /**/  }
 /**/
-/**/  Full_PREs = {Full:PRE_Full, fullMethod:PRE_fullMethod}
-/**/  Full_POSTs= {Full:POST_Full, fullMethod:POST_fullMethod}
+/**/  Full_PREs = {Full:PRE_check_Full, fullMethod:PRE_check_fullMethod}
+/**/  Full_POSTs= {Full:POST_check_Full, fullMethod:POST_check_fullMethod}
 /**/  Full = type_czech.link(Full, Full_PREs, Full_POSTs)
 /**/  return Full
 /**/}
@@ -322,9 +325,9 @@ function Full(salu) {
 /**/    Full = Full_check(Full)
 /**/  } 
 
-/**/  function PRE_Person(salu, f_name, l_name){  log(LEVEL_3+'PRE-Person') }
-/**/  function POST_Person(Person){ log(LEVEL_3+"POST-Person") }
-/**/  Person = type_czech.link(Person, PRE_Person, POST_Person)
+/**/  function PRE_check_Person(salu, f_name, l_name){  log(LEVEL_3+'PRE-Person') }
+/**/  function POST_check_Person(Person){ log(LEVEL_3+"POST-Person") }
+/**/  Person = type_czech.link(Person, PRE_check_Person, POST_check_Person)
 
 function Person(salu, f_name, l_name){
   log(LEVEL_3+`CONS-Person :${salu} ${f_name} ${l_name}`)

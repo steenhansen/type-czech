@@ -107,9 +107,11 @@
       
       <a title="36-Start-and-Stop.html" href="../example-snippets/36-Start-and-Stop.html">36</a>
       
-      <a title="37-Readme-Example-Lambda.html" href="../example-snippets/37-Readme-Example-Lambda.html">37</a>
+      <a title="37-Readme-Example-Arrow-Functions.html" href="../example-snippets/37-Readme-Example-Arrow-Functions.html">37</a>
   
+      <a title="38-Every-Check.html" href="../example-snippets/38-Every-Check.html">38</a>
 
+      <a title="39-Prescribed-Use.html" href="../example-snippets/39-Prescribed-Use.html">39</a>
 
       &nbsp;&nbsp;
   
@@ -214,24 +216,26 @@
 /**/  else
 /**/    type_czech = { link: (nop) => nop, is_active: false }
 /**/  
-/**/  PRE_Person = (typeof PRE_Person === 'undefined') ? undefined : PRE_Person
-/**/  POST_Person = (typeof POST_Person === 'undefined') ? undefined : POST_Person
+/**/  PRE_check_Person = (typeof PRE_check_Person === 'undefined')
+/**/                     ? undefined : PRE_check_Person
+/**/  POST_check_Person = (typeof POST_check_Person === 'undefined')
+/**/                      ? undefined : POST_check_Person
 /**/
-/**/  function PRE_Person(){
-/**/    PRE_Name_only = [ 'EMPTY-ERROR', 'EMPTY-ERROR' ]
-/**/    PRE_Date_Year = [ 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ]
-/**/    pre_person_signatures = [ PRE_Name_only, PRE_Date_Year]
-/**/    return type_czech.check_emptyEither(arguments, pre_person_signatures)
+/**/  function PRE_check_Person(){
+/**/    PRE_check_Name_only = [ 'EMPTY-ERROR', 'EMPTY-ERROR' ]
+/**/    PRE_check_Date_Year = [ 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ]
+/**/    PRE_check_person_signatures = [ PRE_check_Name_only, PRE_check_Date_Year]
+/**/    return type_czech.check_emptyEither(arguments, PRE_check_person_signatures)
 /**/  }
 /**/  
-/**/  function POST_Person(){
-/**/    POST_Name_only = 'EMPTY-ERROR'
-/**/    POST_Date_Year = [ 'EMPTY-ERROR', 'EMPTY-ERROR' ]
-/**/    post_person_signatures = [ POST_Name_only, POST_Date_Year ]
-/**/    return type_czech.check_emptyEither(arguments, post_person_signatures)
+/**/  function POST_check_Person(){
+/**/    POST_check_Name_only = 'EMPTY-ERROR'
+/**/    POST_check_Date_Year = [ 'EMPTY-ERROR', 'EMPTY-ERROR' ]
+/**/    POST_check_person_signatures = [ POST_check_Name_only, POST_check_Date_Year ]
+/**/    return type_czech.check_emptyEither(arguments, POST_check_person_signatures)
 /**/  }
 /**/  
-/**/  Person = type_czech.link(Person, PRE_Person, POST_Person)
+/**/  Person = type_czech.link(Person, PRE_check_Person, POST_check_Person)
 
 function Person(f_name, l_name, b_date){
   result_array = [`${f_name} ${l_name}`]
@@ -267,12 +271,20 @@ log(alan_turing)
 
   jsToDiv('js-code', "check-code");
 
-  fromToBoldText(469, 515, 'code', 1)  //  [ 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ]
-  fromToBoldText(765, 796, 'code', 1)  //  [ 'EMPTY-ERROR', 'EMPTY-ERROR' ]
+  fromToBoldText(489, 520, 'code', 1)  //  [ 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ]
+  fromToBoldText(552, 598, 'code', 1)  //  [ 'EMPTY-ERROR', 'EMPTY-ERROR' ]
 
-  fromToBoldText(1219, 1260, 'code', 1)  // 'Charles', 'Windsor', new Date(1948,11,14)
 
-  fromToBoldText(377, 415, 'log', 1)    //[ "Charles Windsor", "1948-12-14" ]
+  fromToBoldText(335, 363, 'log', 1)    //["EMPTY-ERROR","EMPTY-ERROR"]
+  fromToBoldText(365, 407, 'log', 1)    //["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]
+
+
+
+
+  fromToBoldText(1353, 1357, 'code', 2)  // 'Jim'
+  fromToBoldText(303, 307, 'log', 2)  // '"Jim"
+
+
 
 
 </script>
