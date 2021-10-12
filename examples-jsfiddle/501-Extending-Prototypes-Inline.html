@@ -2,8 +2,6 @@
 <title>501-Inherited-Prototypes-Inline</title>
 
 
-<link rel="stylesheet"
-  href="https://fonts.googleapis.com/css?family=Inconsolata">
   
 <div id='js-div' style="width:59%;" class='code-scroll'>
   <div id='js-code'>the javascript</div>
@@ -133,7 +131,9 @@ Prototypes are used for inheritance:
       
     <a title="38-Every-Check.html" href="https://jsfiddle.net/steen_hansen/1umwvht5/?38-Every-Check" target="_blank">38</a>
     
-    <a title="39-Prescribed-Use.html" href="https://jsfiddle.net/steen_hansen/ta7fdnrw/?39-Prescribed-Use" target="_blank">39</a>
+    <a title="39-Third-Party-Result-Checks.html" href="https://jsfiddle.net/steen_hansen/ta7fdnrw/?39-Third-Party-Result-Checks" target="_blank">39</a>
+    
+    <a title="40-Prescribed-Use.html" href="https://jsfiddle.net/steen_hansen/m1atu7qj/?40-Prescribed-Use">40</a>
 
       &nbsp;&nbsp;
   
@@ -189,13 +189,13 @@ Prototypes are used for inheritance:
 <!--            ---------------TYPE 1---------------------------       -->
 
 
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@415fbd81edb331332a565e3a763a76e8cd61181d/web-resources/consolelog.js">
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@397e4a6514d8ad75729a4876011a2909cb946e46/web-resources/consolelog.js">
 </script>
 
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@415fbd81edb331332a565e3a763a76e8cd61181d/web-resources/TypeCzech.min.js">
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@397e4a6514d8ad75729a4876011a2909cb946e46/web-resources/TypeCzech.min.js">
 </script>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@415fbd81edb331332a565e3a763a76e8cd61181d/web-resources/type-czech.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@397e4a6514d8ad75729a4876011a2909cb946e46/web-resources/type-czech.css">
 <style>
 </style>
 
@@ -367,10 +367,9 @@ mary_shelley.showName()
 jsToDiv('js-code', "check-code");      
 
 
-fromToBoldText(1667, 1682, 'code', 1)  //RUN -firstMethod
-  fromToBoldText(1864, 1878, 'code', 2)  // RUN -lastMethod
-  fromToBoldText(2069, 2083, 'code', 3)  // RUN -fullMethod
-
+fromToBoldText(3088, 3103, 'code', 1)  //RUN -firstMethod
+  fromToBoldText(3303, 3317, 'code', 2)  // RUN -lastMethod
+  fromToBoldText(3524, 3538, 'code', 3)  // RUN -fullMethod
  
 fromToBoldText(327, 342, 'log', 1)    //RUN -firstMethod
 fromToBoldText(409, 423, 'log', 2)    //RUN -lastMethod
@@ -379,3 +378,8 @@ fromToBoldText(516, 530, 'log', 3)    //RUN -fullMethod
 
 
 </script>
+
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Inconsolata">
+
+  

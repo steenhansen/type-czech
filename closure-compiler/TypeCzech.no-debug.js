@@ -132,6 +132,8 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
       const MESS_EMPTY_EXTRAS = `check_emptyExtra(${ARGU_MENTS}, expected_emptys)`;
       const MESS_EMPTY_ONE_OF = `check_emptyEither(${ARGU_MENTS}, expected_emptys)`;
 
+      const MESS_DIRECT_CHECK = 'TypeCzech.directCheck()';
+
       const TRACE_COLORS = 'background: #ee0; color: #00F';
       const ERROR_COLORS = 'background: #ee0; color: #F00';
       const START_COLORS = 'background: #cc0; color: #080';
@@ -722,7 +724,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
       type_czech.typeIsA(null, 'Null');
       //true
 
-      type_czech.typeIsA(undefined, 'Undefined');
+      type_czech.typeIsA(undefined, 'undefined');
       //true
 
       type_czech.typeIsA(12, 'Number');
@@ -1397,6 +1399,15 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
           return 'Stop Type-Czech counting';
         }
 
+
+
+        function directCheck_(any_errors, manual_label, actual_value) {
+          outputCheck(any_errors, manual_label, '', [actual_value], MESS_DIRECT_CHECK);
+        }
+
+
+
+
         function checkFuncAsStr(the_check) {
           
           let check_as_str;
@@ -1663,10 +1674,27 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
           countTally_,
           countEnd_,
           countFails_,
+          directCheck_,
         };
 
         return public_methods;
       } // _ParametersCheck()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       // /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3863,6 +3891,15 @@ this should be an error????
         return t_param_check_func.countFails_();
       }
 
+
+
+  function directCheck(any_errors, manual_label, actual_value) {
+    if (any_errors) {
+      return t_param_check_func.directCheck_(any_errors, manual_label, actual_value);
+    }
+  }
+
+
       /* type_czech = TypeCzech('LOG-ERRORS')
 
       long_str = '1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890'
@@ -4246,6 +4283,9 @@ this should be an error????
         countEnd, //            type_czech.countEnd();
         countFails, //          type_czech.countFails();
         countTally, //          type_czech.countTally();
+
+        directCheck, // any_errors = type_czech.check_typeEither(str_or_num, ['Number', 'String'])
+                     // type_czech.directCheck(any_errors, 'strOrNumAPI', str_or_num)
 
         link, //                yourFunc = type_czech.link(yourFunc, checkingFunc);
         mutateSnapshot, //      type_czech.mutateSnapshot('yourFunc', 'your_array', [1,2,3]);

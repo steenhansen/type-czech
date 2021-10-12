@@ -101,7 +101,7 @@ This example shows:
     >>            CALLING FUNCTION PRE_aLottery(lottery_name, lucky_numbers, draw_date)
     >>::: 1,2,3,4,5,26 :::1999-12-31
 
-
+### [FAQ](/read-mes/faq.md)
 
 ## Examples
 

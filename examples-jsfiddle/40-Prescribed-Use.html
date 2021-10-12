@@ -1,41 +1,69 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>22-Empty-Checks-with-Extra-Optional-Params</title>
-
+<title>40-Prescribed-Use</title>
 
 
   
-<div id='js-div' style="width:54%">
-
+<div id='js-div' style="width:48%;" >
   <div id='js-code'>the javascript</div>
+
+  
 </div>
 
 
-
-<div id="the-explanation" style="width:46%">
-  <div class='an-explantion'>22 &mdash; Empty Checks with Extra Optional Parameters</div>
+<div id="the-explanation" style="width:52%">
+  <div class='an-explantion'>40 &mdash; Prescribed Use</div>
   <div id='explanation-text'>
     <br>
+The intended manner for using Type-Czech is to <span class='red-explanation'>toggle 
+   runtime checking</span> by loading or not loading TypeCzech.js.
+   The below code will render all Type-Czech calls into no-ops when
+   TypeCzech.js is not loaded, virtually no cpu time is lost as 
+   can be seen in /time-trials/time-differences.js.
+<br>
+<br>
+<pre>
+if (typeof TypeCzech === 'function')
+  type_czech = TypeCzech('LOG-ERRORS')
+else
+  type_czech = { link: (nop) => nop, is_active: false }
+</pre>
 
-
-
-
-    Extra optional parameter values are not checked for being empty or check_empty, they are just ignored. 
-    As long as the correct declared shape of empty states is not violated, any additional elective 
-    parameters will be overlooked when using 
-    type_czech.check_emptyExtra(arguments, expected_empty).
-    <br><br>
+Program with Type-Czech testing turned ON.
+<pre>
+&lt;script src="../TypeCzech.js"&gt;
+</pre>
   
-    There is no way of specifying optional keys, and optional array elements.
-    
-    <br><br>
-    Objects specify their mandatory keys and types, whilst arrays just check the
-    begining elements for types, and ignore the rest undescribed elements.
-      
-    <br><br>
+Program with Type-Czech testing turned OFF.
+<pre>
+&lt;!-- &lt;script src="../TypeCzech.js"&gt; --&gt;
+</pre>
 
 
 
 
+
+
+
+By using the below construct, <span class='blue-explanation'>non-existant PRE and POST checking functions 
+will just be ignored</span> by Type-Czech. Useful for not including large blocks of
+testing code to the browser that will be parsed.
+
+<pre>
+PRE_check_aLottery = (typeof PRE_check_aLottery === 'undefined')
+                       ? undefined : PRE_check_aLottery
+
+//  function PRE_check_aLottery (){
+//    LOTTERY_SIGNATURE = ['String', ['Number'], 'Date']
+//    type_issue = type_czech.check_type(arguments, LOTTERY_SIGNATURE)
+//    if (type_issue) return type_issue
+//
+//    empty_err=type_czech.check_variadicEmpty(arguments,['EMPTY-ERROR'])
+//    if (empty_err) return empty_err
+//
+//    return ''
+//  }
+</pre>
+  
 
 
 
@@ -48,8 +76,6 @@
   <br>
 </div>
 
-
-<br><br>
 <div id='js-fiddles'>
   jsFiddles:
   <a title="00-Readme-Example" href="https://jsfiddle.net/steen_hansen/0xtpLwsc/?00-Readme-Example" target="_blank">00</a>
@@ -191,21 +217,12 @@
 
   </div>
 
-
-
 </div>
 
 
 
 
-
-
-
-
-
-
-<!--            ----------------TYPE 1--------------------------       -->
-
+<!--            ------------------TYPE 1------------------------       -->
 
 <script src="../web-resources/consolelog.js">
 </script>
@@ -223,19 +240,7 @@
 
 
 
-
-
-
-<!--            ---------------TYPE 1---------------------------       -->
-
-
-
-
-
-
-
-
-
+<!--            -------------------TYPE 1-----------------------       -->
 
 <script>
   log = captureConsole("log-text");
@@ -245,101 +250,73 @@
 
 
 <script id="check-code">
+function runEnvironment(TypeCzech, pre_check_exists) {
+
 /**/  if (typeof TypeCzech === 'function')
 /**/    type_czech = TypeCzech('LOG-ERRORS')
 /**/  else
 /**/    type_czech = { link: (nop) => nop, is_active: false }
-/**/  
-/**/  PRE_check_Person = (typeof PRE_check_Person === 'undefined')
-/**/                     ? undefined : PRE_check_Person
-/**/  POST_check_Person = (typeof POST_check_Person === 'undefined')
-/**/                      ? undefined : POST_check_Person
-/**/
-/**/  function PRE_check_Person(person_obj){
-/**/    person_signature = {f_name:'EMPTY-OK', l_name:'EMPTY-ERROR'}
-/**/    return type_czech.check_emptyExtra(arguments, person_signature)
-/**/  }
-/**/  
-/**/  function POST_check_Person(object_1){
-/**/    return type_czech.check_emptyExtra(arguments, ['EMPTY-OK', 'EMPTY-ERROR'])
-/**/  }
-/**/  
-/**/  Person = type_czech.link(Person, PRE_check_Person, POST_check_Person)
 
-function Person(person_obj){
-  let {f_name, l_name, extra_1, extra_2, extra_3, extra_4} = person_obj
-  the_person = [f_name, l_name]
-  if (typeof extra_1 !== 'undefined'){
-    the_extras = [extra_1]
-    if (typeof extra_2 !== 'undefined') the_extras.push(extra_2)
-    if (typeof extra_3 !== 'undefined') the_extras.push(extra_3)
-    if (typeof extra_4 !== 'undefined') the_extras.push(extra_4)
-    the_person.push(the_extras)
+/**/  PRE_check_aLottery = (typeof PRE_check_aLottery === 'undefined')
+/**/                       ? undefined : PRE_check_aLottery
+
+  if (pre_check_exists) {
+    function PRE_check_aLottery (){
+      LOTTERY_SIGNATURE = ['String', ['Number'], 'Date']
+      type_issue = type_czech.check_type(arguments, LOTTERY_SIGNATURE)
+      if (type_issue) return type_issue
+  
+      empty_err=type_czech.check_variadicEmpty(arguments,['EMPTY-ERROR'])
+      if (empty_err) return empty_err
+
+      return ''
+    }
   }
-  return the_person
+
+  aLottery = type_czech.link(aLottery, PRE_check_aLottery)
+
+  function aLottery(lottery_name, lucky_numbers, draw_date){
+    the_lottery = `${lottery_name} ::: ${lucky_numbers} :::`
+    console.log(the_lottery, draw_date)
+  }
+
+  return aLottery
 }
 
-guy = Person({f_name:'Guy', l_name:'Lafleur', extra_1:10})
-log(guy)
 
-linesConsole(2)
+// Below are tests to see when TypeCzech check functions are run.
+// Only the first test causes PRE_check_aLottery() to be executed.
+
+aLottery = runEnvironment(TypeCzech, true)
+aLottery('Powerball', [], new Date('jan 1 1111'))
+
+aLottery = runEnvironment(false, true)
+aLottery('Powerball', [], new Date('feb 2 2222'))
+
+aLottery = runEnvironment(TypeCzech, false)
+aLottery('Powerball', [], new Date('mar 3 3333'))
+
+aLottery = runEnvironment(false, false)
+aLottery('Powerball', [], new Date('apr 4 4444'))
 
 
-hakeem = Person({f_name:'Hakeem Olajuwon'})
-log( hakeem)
-
-linesConsole(2)
-
-fouts = Person({f_name:'Dan', l_name:'Fouts', extra_1: 'Air Coryell'})
-log(fouts)
-
-
-linesConsole(2)
-
-mc_enroe = Person({f_name:'John', l_name:'McEnroe',
-                     extra_1: '', extra_2: 1959, extra_3: 'vs. Bjorn Borg'})
-log(mc_enroe)
 </script>
-
-
-
-
-
-
-
-
-
-
-
 
 <script>
-  
+   jsToDiv('js-code', "check-code");
 
-  jsToDiv('js-code', "check-code");
-  
-  fromToBoldText(496, 536, 'code', 1)  //{f_name:'EMPTY-OK', l_name:'EMPTY-ERROR'}
+   fromToBoldText(63, 98, 'code', 1)  //  if (typeof TypeCzech === 'function')
+   fromToBoldText(108, 143, 'code', 1)  //   type_czech = TypeCzech('LOG-ERRORS')
+   fromToBoldText(151, 154, 'code', 1)  //  else
+   fromToBoldText(164, 216, 'code', 1)  //  type_czech = { link: (nop) => nop, is_active: false }
 
-  fromToBoldText(279, 304, 'log', 1)    //  {f_name:"Hakeem Olajuwon"}
-  fromToBoldText(331, 370, 'log', 1)    //  {f_name:"EMPTY-OK",l_name:"EMPTY-ERROR"}
+///////////////////////
 
+fromToBoldText(225, 288, 'code', 2)  //  PRE_check_aLottery = (typeof PRE_check_aLottery === 'undefined')
+fromToBoldText(317, 348, 'code', 2)  //  ? undefined : PRE_check_aLottery
 
-
-
-  fromToBoldText(723, 749, 'code', 2)  //['EMPTY-OK', 'EMPTY-ERROR']
-
-  fromToBoldText(621, 649, 'log', 2)    // ["Hakeem Olajuwon",undefined]
-  fromToBoldText(676, 701, 'log', 2)    // ["EMPTY-OK","EMPTY-ERROR"]
-
-
-
-
-
-  fromToBoldText(1581, 1633, 'code', 3)  //  extra_1: '', extra_2: 1959, extra_3: 'vs. Bjorn Borg'}
-
-  fromToBoldText(878, 921, 'log', 3)    //   [ "", 1959, "vs. Bjorn Borg" ] 
-
-  
 </script>
+
 
 <link rel="stylesheet"
   href="https://fonts.googleapis.com/css?family=Inconsolata">

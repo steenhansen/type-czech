@@ -2,8 +2,7 @@
 <title>403-ClassFree-Constructors-Production</title>
 
 
-<link rel="stylesheet"
-  href="https://fonts.googleapis.com/css?family=Inconsolata">
+
   
 <div id='js-div' style="width:47%; " class='code-scroll'>
   <div id='js-code'>the javascript</div>
@@ -143,8 +142,9 @@
       
     <a title="38-Every-Check.html" href="https://jsfiddle.net/steen_hansen/1umwvht5/?38-Every-Check" target="_blank">38</a>
     
-    <a title="39-Prescribed-Use.html" href="https://jsfiddle.net/steen_hansen/ta7fdnrw/?39-Prescribed-Use" target="_blank">39</a>
-
+    <a title="39-Third-Party-Result-Checks.html" href="https://jsfiddle.net/steen_hansen/ta7fdnrw/?39-Third-Party-Result-Checks" target="_blank">39</a>
+    
+    <a title="40-Prescribed-Use.html" href="https://jsfiddle.net/steen_hansen/m1atu7qj/?40-Prescribed-Use">40</a>
       &nbsp;&nbsp;
   
       <a title="101-Extending-Classes-Inline.html" href="https://jsfiddle.net/steen_hansen/cnLrm6ad/?101-Extending-Classes-Inline" target="_blank">101</a>
@@ -201,13 +201,13 @@
 
 
 
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@415fbd81edb331332a565e3a763a76e8cd61181d/web-resources/consolelog.js">
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@397e4a6514d8ad75729a4876011a2909cb946e46/web-resources/consolelog.js">
 </script>
 
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@415fbd81edb331332a565e3a763a76e8cd61181d/web-resources/ordered-import.js">
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@397e4a6514d8ad75729a4876011a2909cb946e46/web-resources/ordered-import.js">
 </script>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@415fbd81edb331332a565e3a763a76e8cd61181d/web-resources/type-czech.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@397e4a6514d8ad75729a4876011a2909cb946e46/web-resources/type-czech.css">
 <style>
 </style>
 
@@ -224,21 +224,21 @@ function copyAndColor(){
   jsToDiv('js-code', "check-code");      
 
   fromToBoldText(128, 143, 'code', 1)  //firstMethod
-  fromToBoldText(440, 454, 'code', 2)  // lastMethod
-  fromToBoldText(806, 820, 'code', 3)  // fullMethod
+  fromToBoldText(450, 464, 'code', 2)  // lastMethod
+  fromToBoldText(816, 830, 'code', 3)  // fullMethod
   
-  fromToBoldText(222, 237, 'log', 1)    //firstMethod
-  fromToBoldText(304, 318, 'log', 2)    //lastMethod
-  fromToBoldText(411, 425, 'log', 3)    //fullMethod
+  fromToBoldText(224, 239, 'log', 1)    //firstMethod
+  fromToBoldText(307, 321, 'log', 2)    //lastMethod
+  fromToBoldText(415, 429, 'log', 3)    //fullMethod
 }
 
   log = captureConsole("log-text");
 
-  const TYPE_CZECH_JS =  'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@415fbd81edb331332a565e3a763a76e8cd61181d/web-resources/TypeCzech.min.js';
+  const TYPE_CZECH_JS =  'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@397e4a6514d8ad75729a4876011a2909cb946e46/web-resources/TypeCzech.min.js';
 
-const TC_FIRST_JS = 'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@415fbd81edb331332a565e3a763a76e8cd61181d/real-examples/403-Extending-ClassFree-Production/TypeCzech_First.js';
-const TC_LAST_JS = 'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@415fbd81edb331332a565e3a763a76e8cd61181d/real-examples/403-Extending-ClassFree-Production/TypeCzech_Last.js';
-const TC_FULL_JS =   'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@415fbd81edb331332a565e3a763a76e8cd61181d/real-examples/403-Extending-ClassFree-Production/TypeCzech_Full.js';
+const TC_FIRST_JS = 'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@397e4a6514d8ad75729a4876011a2909cb946e46/examples-web/403-Extending-ClassFree-Production/TypeCzech_First.js';
+const TC_LAST_JS = 'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@397e4a6514d8ad75729a4876011a2909cb946e46/examples-web/403-Extending-ClassFree-Production/TypeCzech_Last.js';
+const TC_FULL_JS =   'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@397e4a6514d8ad75729a4876011a2909cb946e46/examples-web/403-Extending-ClassFree-Production/TypeCzech_Full.js';
 
 
 
@@ -323,4 +323,7 @@ onLoaded = ([_loaded_files, _import_errors]) => {
   
 
 
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Inconsolata">
 
+  

@@ -3,12 +3,30 @@
 
 
 
-39
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+json check, just in case
+0.1
+0.
+1.
+0.e1
+0e1
 
 
 
@@ -29,9 +47,5 @@ MIX CYCLE, AND WINDOW, AND STABLE FOR A TEST....
 
 mutation tests now have to use arguments object, cannot just use arrays anymore :-(
 
-
-
-
-501 can do typeProtos !!!!
 
 

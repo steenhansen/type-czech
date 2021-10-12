@@ -1,82 +1,51 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>39-Prescribed-Use</title>
+<title>39-Third-Party-Result-Checks</title>
 
-<link rel="stylesheet"
-  href="https://fonts.googleapis.com/css?family=Inconsolata">
+
   
-<div id='js-div' style="width:48%;" >
+<div id='js-div' style="width:49%;" >
   <div id='js-code'>the javascript</div>
 
-  
+
 </div>
 
 
-<div id="the-explanation" style="width:52%">
-  <div class='an-explantion'>39 &mdash; Prescribed Use</div>
+<div id="the-explanation" style="width:51%">
+  <div class='an-explantion'>39 &mdash; Third Party Result Checks</div>
   <div id='explanation-text'>
     <br>
-The intended manner for using Type-Czech is to <span class='red-explanation'>toggle 
-   runtime checking</span> by loading or not loading TypeCzech.js.
-   The below code will render all Type-Czech calls into no-ops when
-   TypeCzech.js is not loaded, virtually no cpu time is lost as 
-   can be seen in /time-trials/time-differences.js.
-<br>
-<br>
-<pre>
-if (typeof TypeCzech === 'function')
-  type_czech = TypeCzech('LOG-ERRORS')
-else
-  type_czech = { link: (nop) => nop, is_active: false }
-</pre>
 
-Program with Type-Czech testing turned ON.
-<pre>
-&lt;script src="../TypeCzech.js"&gt;
-</pre>
-  
-Program with Type-Czech testing turned OFF.
-<pre>
-&lt;!-- &lt;script src="../TypeCzech.js"&gt; --&gt;
-</pre>
+    When working with libraries we cannot link in functions with TypeCzech.link() to 
+    check function parameters and return results. But, we can still manually check 
+    function results with TypeCzech.directCheck(check_error, func_name, param_value) 
+    as is done to the left. Below are two short examples, one throws an exception.
 
-
-
-
-
-
-
-By using the below construct, <span class='blue-explanation'>non-existant PRE and POST checking functions 
-will just be ignored</span> by Type-Czech. Useful for not including large blocks of
-testing code to the browser that will be parsed.
+    <br><br>
+    
 
 <pre>
-PRE_check_aLottery = (typeof PRE_check_aLottery === 'undefined')
-                       ? undefined : PRE_check_aLottery
-
-//  function PRE_check_aLottery (){
-//    LOTTERY_SIGNATURE = ['String', ['Number'], 'Date']
-//    type_issue = type_czech.check_type(arguments, LOTTERY_SIGNATURE)
-//    if (type_issue) return type_issue
-//
-//    empty_err=type_czech.check_variadicEmpty(arguments,['EMPTY-ERROR'])
-//    if (empty_err) return empty_err
-//
-//    return ''
-//  }
+  type_czech = TypeCzech('THROW-EXCEPTIONS')       // Error, expected Object
+  return_object_value = [1,2,3]
+  type_error = type_czech.check_type(return_object_value, "Object")
+  type_czech.directCheck(type_error, 'ObjectCheck',return_object_value)
 </pre>
-  
+    
 
+<pre>
+type_czech = TypeCzech('NO-CHECKING')           // Error ignored no checking
+return_object_value = [1,2,3]
+type_error = type_czech.check_type(return_object_value, "Object")
+type_czech.directCheck(type_error, 'ObjectCheck',return_object_value)
+</pre>
 
-
+          
 </div>
 
 
 <div id="console-log"  >
   <div class='a-title'>Console Output</div>
   <div id='log-text'></div>
-  <br>
 </div>
-
 <div id='js-fiddles'>
   jsFiddles:
   <a title="00-Readme-Example" href="../example-snippets/00-Readme-Example.html">00</a>
@@ -160,7 +129,10 @@ PRE_check_aLottery = (typeof PRE_check_aLottery === 'undefined')
 
     <a title="38-Every-Check.html" href="../example-snippets/38-Every-Check.html">38</a>
     
-    <a title="39-Prescribed-Use.html" href="../example-snippets/39-Prescribed-Use.html">39</a>
+
+    <a title="39-Third-Party-Result-Checks.html" href="../example-snippets/39-Third-Party-Result-Checks.html">39</a>
+
+    <a title="40-Prescribed-Use.html" href="../example-snippets/40-Prescribed-Use.html">40</a>
 
     &nbsp;&nbsp;
 
@@ -205,6 +177,7 @@ PRE_check_aLottery = (typeof PRE_check_aLottery === 'undefined')
     
     <a title="603-Extending-OLOO-Production.html" href="../examples-web/603-Extending-OLOO-Production/603-Extending-OLOO-Production.html">603</a>
   </div>
+
 </div>
 
 
@@ -232,76 +205,111 @@ PRE_check_aLottery = (typeof PRE_check_aLottery === 'undefined')
 
 <script>
   log = captureConsole("log-text");
-</script>
 
+function thirdPartyResult(a_param){
+  return a_param
+}
 
-
-
-<script id="check-code">
-function runEnvironment(TypeCzech, pre_check_exists) {
-
-/**/  if (typeof TypeCzech === 'function')
-/**/    type_czech = TypeCzech('LOG-ERRORS')
-/**/  else
-/**/    type_czech = { link: (nop) => nop, is_active: false }
-
-/**/  PRE_check_aLottery = (typeof PRE_check_aLottery === 'undefined')
-/**/                       ? undefined : PRE_check_aLottery
-
-  if (pre_check_exists) {
-    function PRE_check_aLottery (){
-      LOTTERY_SIGNATURE = ['String', ['Number'], 'Date']
-      type_issue = type_czech.check_type(arguments, LOTTERY_SIGNATURE)
-      if (type_issue) return type_issue
-  
-      empty_err=type_czech.check_variadicEmpty(arguments,['EMPTY-ERROR'])
-      if (empty_err) return empty_err
-
-      return ''
-    }
-  }
-
-  aLottery = type_czech.link(aLottery, PRE_check_aLottery)
-
-  function aLottery(lottery_name, lucky_numbers, draw_date){
-    the_lottery = `${lottery_name} ::: ${lucky_numbers} :::`
-    console.log(the_lottery, draw_date)
-  }
-
-  return aLottery
+function strOrNumAPI(a_value){
+  return a_value 
 }
 
 
-// Below are tests to see when TypeCzech check functions are run.
-// Only the first test causes PRE_check_aLottery() to be executed.
+</script>
 
-aLottery = runEnvironment(TypeCzech, true)
-aLottery('Powerball', [], new Date('jan 1 1111'))
-
-aLottery = runEnvironment(false, true)
-aLottery('Powerball', [], new Date('feb 2 2222'))
-
-aLottery = runEnvironment(TypeCzech, false)
-aLottery('Powerball', [], new Date('mar 3 3333'))
-
-aLottery = runEnvironment(false, false)
-aLottery('Powerball', [], new Date('apr 4 4444'))
+<script id="check-code">
+if (typeof TypeCzech === 'function')
+  type_czech = TypeCzech('LOG-ERRORS') 
+else
+  type_czech = { link: (nop) => nop, is_active: false }
 
 
+log('Third Party Result : ', a_number = thirdPartyResult(15))
+linesConsole(1)
+if (type_czech.is_active) {
+  check_error = type_czech.check_type(a_number, "Number")
+  type_czech.directCheck(check_error, 'thirdPartyResult', a_number)
+}
+linesConsole(1)
+
+log('Third Party Result : ', shall_be_num= thirdPartyResult('a-string'))
+linesConsole(1)
+if (type_czech.is_active) {
+  check_error = type_czech.check_type(shall_be_num, "Number")
+  type_czech.directCheck(check_error, 'thirdPartyResult', shall_be_num)
+}
+
+
+
+log('An API value : ', str_or_num = strOrNumAPI('a-str'))
+linesConsole(1)
+if (type_czech.is_active) {
+  check_error=type_czech.check_typeEither(str_or_num,['Number','String'])
+  type_czech.directCheck(check_error, 'strOrNumAPI', str_or_num)
+  check_error = type_czech.check_empty(str_or_num, 'EMPTY-ERROR')
+  type_czech.directCheck(check_error, 'strOrNumAPI', str_or_num)
+}
+
+log('An API value : ', str_or_num = strOrNumAPI(12345))
+linesConsole(1)
+if (type_czech.is_active) {
+  check_error=type_czech.check_typeEither(str_or_num,['Number','String'])
+  type_czech.directCheck(check_error, 'strOrNumAPI', str_or_num)
+  check_error = type_czech.check_empty(str_or_num, 'EMPTY-ERROR')
+  type_czech.directCheck(check_error, 'strOrNumAPI', str_or_num)
+}
+
+
+linesConsole(1)
+
+log('An API value : ', str_or_num = strOrNumAPI(false))
+linesConsole(1)
+if (type_czech.is_active) {
+  check_error=type_czech.check_typeEither(str_or_num,['Number','String'])
+  type_czech.directCheck(check_error, 'strOrNumAPI', str_or_num)
+  check_error = type_czech.check_empty(str_or_num, 'EMPTY-ERROR')
+  type_czech.directCheck(check_error, 'strOrNumAPI', str_or_num)
+}
+
+log('An API value : ', str_or_num = strOrNumAPI(''))
+linesConsole(1)
+if (type_czech.is_active) {
+  check_error=type_czech.check_typeEither(str_or_num,['Number','String'])
+  type_czech.directCheck(check_error, 'strOrNumAPI', str_or_num)
+  check_error = type_czech.check_empty(str_or_num, 'EMPTY-ERROR')
+  type_czech.directCheck(check_error, 'strOrNumAPI', str_or_num)
+}
 </script>
 
 <script>
    jsToDiv('js-code', "check-code");
 
-   fromToBoldText(63, 98, 'code', 1)  //  if (typeof TypeCzech === 'function')
-   fromToBoldText(108, 143, 'code', 1)  //   type_czech = TypeCzech('LOG-ERRORS')
-   fromToBoldText(151, 154, 'code', 1)  //  else
-   fromToBoldText(164, 216, 'code', 1)  //  type_czech = { link: (nop) => nop, is_active: false }
+    fromToBoldText(420, 429, 'code', 1)  // 'a-string'
+    fromToBoldText(513, 520, 'code', 1)  //   "Number"
 
-///////////////////////
+   fromToBoldText(245, 254, 'log', 1)  //   "a-string"
+   fromToBoldText(281, 286, 'log', 1)  //   Number
 
-fromToBoldText(225, 288, 'code', 2)  //  PRE_check_aLottery = (typeof PRE_check_aLottery === 'undefined')
-fromToBoldText(317, 348, 'code', 2)  //  ? undefined : PRE_check_aLottery
+// ///////////////////////
+
+   fromToBoldText(1364, 1368, 'code', 2)  // false
+    fromToBoldText(1453, 1471, 'code', 2)  //   ['Number','String']
+
+   fromToBoldText(597, 601, 'log', 2)  //   false
+   fromToBoldText(628, 646, 'log', 2)  //   ['Number','String']
+
+// ///////////////////////
+
+fromToBoldText(1721, 1722, 'code', 3)  // ''
+    fromToBoldText(1944, 1956, 'code', 3)  //   'EMPTY-ERROR'
+
+   fromToBoldText(908, 910, 'log', 3)  //   ""
+   fromToBoldText(936, 946, 'log', 3)  //   'EMPTY-ERROR'
+
+
 
 </script>
+
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Inconsolata">
 

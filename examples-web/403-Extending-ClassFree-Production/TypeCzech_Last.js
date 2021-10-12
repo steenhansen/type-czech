@@ -26,12 +26,7 @@ function TypeCzech_Last() {
     }
     
     
-    
-    
-    // function PRE_check_Last(spec) { log(`${LEVEL_1}PRE-Last`) }
-    // function POST_check_Last(Last) { log(`${LEVEL_1}POST-Last`) }
-    // function PRE_check_lastMethod(a_year) { log(`${LEVEL_1}PRE-lastMethod`) }
-    // function POST_check_lastMethod() { log(`${LEVEL_1}POST-lastMethod`) }
+   
 
     Last_PREs = { Last: PRE_check_Last, lastMethod: PRE_check_lastMethod }
     Last_POSTs = { Last: POST_check_Last, lastMethod: POST_check_lastMethod }

@@ -2,15 +2,13 @@
 <title>601-Created-OLOO-Inline</title>
 
 
-<link rel="stylesheet"
-  href="https://fonts.googleapis.com/css?family=Inconsolata">
   
-<div id='js-div' style="width:51%;" class='code-scroll'>
+<div id='js-div' style="width:60%;" class='code-scroll'>
   <div id='js-code'>the javascript</div>
 </div>
 
 
-<div id="the-explanation" style="width:49%" >
+<div id="the-explanation" style="width:40%" >
   <div class='an-explantion'>601 &mdash; Created OLOO Inline</div>
   <div id='explanation-text'>
 
@@ -29,9 +27,6 @@
           <li>Production class declarations <b>must</b> interleave with TypeCzech calls
               to have the PRE and POST checking functions be correctly linked to before use </li>
           </ul>
-    <br>
-
-
 
    Note this OLOO version kills the instanceof operator, use instanceOf() instead.
 
@@ -46,7 +41,7 @@
     <br>
   </div>
 
-  <br><br>
+  <br>
   <div id='js-fiddles'>
     jsFiddles:
     <a title="00-Readme-Example" href="https://jsfiddle.net/steen_hansen/0xtpLwsc/?00-Readme-Example" target="_blank">00</a>
@@ -139,7 +134,9 @@
       
     <a title="38-Every-Check.html" href="https://jsfiddle.net/steen_hansen/1umwvht5/?38-Every-Check" target="_blank">38</a>
     
-    <a title="39-Prescribed-Use.html" href="https://jsfiddle.net/steen_hansen/ta7fdnrw/?39-Prescribed-Use" target="_blank">39</a>
+    <a title="39-Third-Party-Result-Checks.html" href="https://jsfiddle.net/steen_hansen/ta7fdnrw/?39-Third-Party-Result-Checks" target="_blank">39</a>
+    
+    <a title="40-Prescribed-Use.html" href="https://jsfiddle.net/steen_hansen/m1atu7qj/?40-Prescribed-Use">40</a>
 
       &nbsp;&nbsp;
   
@@ -196,13 +193,13 @@
 
 <!--            -----------------TYPE 1-------------------------       -->
 
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@415fbd81edb331332a565e3a763a76e8cd61181d/web-resources/consolelog.js">
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@397e4a6514d8ad75729a4876011a2909cb946e46/web-resources/consolelog.js">
 </script>
 
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@415fbd81edb331332a565e3a763a76e8cd61181d/web-resources/TypeCzech.min.js">
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@397e4a6514d8ad75729a4876011a2909cb946e46/web-resources/TypeCzech.min.js">
 </script>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@415fbd81edb331332a565e3a763a76e8cd61181d/web-resources/type-czech.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@397e4a6514d8ad75729a4876011a2909cb946e46/web-resources/type-czech.css">
 <style>
 </style>
 
@@ -337,7 +334,8 @@ function Full(salu, f_name, l_name) {
       return a_book
     },
     showName() {
-      const the_name = `${this.salu} ${this.f_name} ${this.l_name} - ${this.oloo_type}`
+      const the_name = `${this.salu} ${this.f_name} ${this.l_name} ` +
+                       `- ${this.oloo_type}`
       console.log('Name: ', the_name)
     },
   }
@@ -379,9 +377,9 @@ margaret_atwood.showName()
 jsToDiv('js-code', "check-code");      
 
 
-fromToBoldText(1646, 1661, 'code', 1)  //RUN -firstMethod
-  fromToBoldText(2009, 2023, 'code', 2)  // RUN -lastMethod
-  fromToBoldText(2441, 2455, 'code', 3)  // RUN -fullMethod
+fromToBoldText(3263, 3278, 'code', 1)  //RUN -firstMethod
+  fromToBoldText(3646, 3660, 'code', 2)  // RUN -lastMethod
+  fromToBoldText(4069, 4083, 'code', 3)  // RUN -fullMethod
 
  
 fromToBoldText(210, 225, 'log', 1)    //RUN -firstMethod
@@ -389,3 +387,10 @@ fromToBoldText(296, 311, 'log', 2)    //RUN -lastMethod
 fromToBoldText(406, 420, 'log', 3)    //RUN -fullMethod
 
 </script>
+
+
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Inconsolata">
+
+
+  

@@ -2,8 +2,7 @@
 <title>202-Chained-Closures-Imported</title>
 
 
-<link rel="stylesheet"
-  href="https://fonts.googleapis.com/css?family=Inconsolata">
+
   
 <div id='js-div' style="width:50%; " >
   <div id='js-code'>the javascript</div>
@@ -150,7 +149,9 @@
       
     <a title="38-Every-Check.html" href="https://jsfiddle.net/steen_hansen/1umwvht5/?38-Every-Check" target="_blank">38</a>
     
-    <a title="39-Prescribed-Use.html" href="https://jsfiddle.net/steen_hansen/ta7fdnrw/?39-Prescribed-Use" target="_blank">39</a>
+    <a title="39-Third-Party-Result-Checks.html" href="https://jsfiddle.net/steen_hansen/ta7fdnrw/?39-Third-Party-Result-Checks" target="_blank">39</a>
+    
+    <a title="40-Prescribed-Use.html" href="https://jsfiddle.net/steen_hansen/m1atu7qj/?40-Prescribed-Use">40</a>
 
       &nbsp;&nbsp;
   
@@ -207,13 +208,13 @@
 
 <!--            ----------------TYPE 2--------------------------       -->
 
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@415fbd81edb331332a565e3a763a76e8cd61181d/web-resources/consolelog.js">
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@397e4a6514d8ad75729a4876011a2909cb946e46/web-resources/consolelog.js">
 </script>
 
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@415fbd81edb331332a565e3a763a76e8cd61181d/web-resources/ordered-import.js">
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@397e4a6514d8ad75729a4876011a2909cb946e46/web-resources/ordered-import.js">
 </script>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@415fbd81edb331332a565e3a763a76e8cd61181d/web-resources/type-czech.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@397e4a6514d8ad75729a4876011a2909cb946e46/web-resources/type-czech.css">
 <style>
 </style>
 
@@ -225,26 +226,26 @@
 function copyAndColor(){
   jsToDiv('js-code', "check-code");      
 
-  fromToBoldText(878, 888, 'code', 1)  //firstMethod
-  fromToBoldText(927, 936, 'code', 2)  // lastMethod
-  fromToBoldText(961, 970, 'code', 3)  // fullMethod
+  fromToBoldText(801, 811, 'code', 1)  //firstMethod
+  fromToBoldText(850, 859, 'code', 2)  // lastMethod
+  fromToBoldText(884, 893, 'code', 3)  // fullMethod
   
-  fromToBoldText(227, 242, 'log', 1)    //firstMethod
-  fromToBoldText(311, 325, 'log', 2)    //lastMethod
-  fromToBoldText(419, 433, 'log', 3)    //fullMethod
+  fromToBoldText(229, 244, 'log', 1)    //firstMethod
+  fromToBoldText(314, 328, 'log', 2)    //lastMethod
+  fromToBoldText(423, 437, 'log', 3)    //fullMethod
 }
 
 
   log = captureConsole("log-text");
 
-  const TYPE_CZECH_JS =  'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@415fbd81edb331332a565e3a763a76e8cd61181d/web-resources/TypeCzech.min.js';
-  const FIRST_JS = 'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@415fbd81edb331332a565e3a763a76e8cd61181d/real-examples/202-Extending-Closures-Imports/First.js';
-  const LAST_JS = 'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@415fbd81edb331332a565e3a763a76e8cd61181d/real-examples/202-Extending-Closures-Imports/Last.js';
-  const FULL_JS =   'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@415fbd81edb331332a565e3a763a76e8cd61181d/real-examples/202-Extending-Closures-Imports/Full.js';
+  const TYPE_CZECH_JS =  'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@397e4a6514d8ad75729a4876011a2909cb946e46/web-resources/TypeCzech.min.js';
+  const FIRST_JS = 'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@397e4a6514d8ad75729a4876011a2909cb946e46/examples-web/202-Extending-Closures-Imports/First.js';
+  const LAST_JS = 'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@397e4a6514d8ad75729a4876011a2909cb946e46/examples-web/202-Extending-Closures-Imports/Last.js';
+  const FULL_JS =   'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@397e4a6514d8ad75729a4876011a2909cb946e46/examples-web/202-Extending-Closures-Imports/Full.js';
 
-  const TC_FIRST_JS = 'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@415fbd81edb331332a565e3a763a76e8cd61181d/real-examples/202-Extending-Closures-Imports/TypeCzech_First.js';
-  const TC_LAST_JS = 'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@415fbd81edb331332a565e3a763a76e8cd61181d/real-examples/202-Extending-Closures-Imports/TypeCzech_Last.js';
-  const TC_FULL_JS =   'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@415fbd81edb331332a565e3a763a76e8cd61181d/real-examples/202-Extending-Closures-Imports/TypeCzech_Full.js';
+  const TC_FIRST_JS = 'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@397e4a6514d8ad75729a4876011a2909cb946e46/examples-web/202-Extending-Closures-Imports/TypeCzech_First.js';
+  const TC_LAST_JS = 'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@397e4a6514d8ad75729a4876011a2909cb946e46/examples-web/202-Extending-Closures-Imports/TypeCzech_Last.js';
+  const TC_FULL_JS =   'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@397e4a6514d8ad75729a4876011a2909cb946e46/examples-web/202-Extending-Closures-Imports/TypeCzech_Full.js';
 
 
 </script>
@@ -290,6 +291,10 @@ orderedImport(class_files, onLoaded)
 
 </script>
   
+  
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Inconsolata">
+
   
 
 

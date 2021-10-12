@@ -1,48 +1,72 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>14-Parameter-and-Results-Multi-Types</title>
+<title>40-Prescribed-Use</title>
 
 
-<div id='js-div' style="width:45%">
+  
+<div id='js-div' style="width:48%;" >
   <div id='js-code'>the javascript</div>
+
+  
 </div>
 
- 
 
-<div id="the-explanation" style="width:55%">
-  <div class='an-explantion'>14 &mdash; Array and Object Types with Parameter and Results</div>
+<div id="the-explanation" style="width:52%">
+  <div class='an-explantion'>40 &mdash; Prescribed Use</div>
   <div id='explanation-text'>
     <br>
+The intended manner for using Type-Czech is to <span class='red-explanation'>toggle 
+   runtime checking</span> by loading or not loading TypeCzech.js.
+   The below code will render all Type-Czech calls into no-ops when
+   TypeCzech.js is not loaded, virtually no cpu time is lost as 
+   can be seen in /time-trials/time-differences.js.
+<br>
+<br>
+<pre>
+if (typeof TypeCzech === 'function')
+  type_czech = TypeCzech('LOG-ERRORS')
+else
+  type_czech = { link: (nop) => nop, is_active: false }
+</pre>
 
-    Typeless arrays can be checked for without giving any dimensionality,
-    if [ ]s are used then an array must define at least one type.
-
-    <ul>
-      <li>Valid Type:  'Array'</li>
-      
-      <li>Not Valid Type : '[ ]'</li>
-      <li>Valid Type : [ 'String' ]</li>
-    </ul>
-
-    And, 'Object' can also be a type without specifying any properties.
-    But if { }s are used then an object must define at least one key and value.
-    
-
-
-<ul>
-  <li>Valid Type : 'Object'</li>
-  <li>Not Valid Type : '{ }'</li>
-  <li>Valid Type : { a_key: 'String' }</li>
-</ul>
-
-
-Alan Turing is used to show the error messages that occur when an object is check_type()ed against the 
-'array' type in the PRE_check_Person() checking function. 
+Program with Type-Czech testing turned ON.
+<pre>
+&lt;script src="../TypeCzech.js"&gt;
+</pre>
+  
+Program with Type-Czech testing turned OFF.
+<pre>
+&lt;!-- &lt;script src="../TypeCzech.js"&gt; --&gt;
+</pre>
 
 
-The reverse, testing an array against the 'object' type gives a lengthy error message from 
-the POST_check_Person() function.
 
-<br><br>
+
+
+
+
+By using the below construct, <span class='blue-explanation'>non-existant PRE and POST checking functions 
+will just be ignored</span> by Type-Czech. Useful for not including large blocks of
+testing code to the browser that will be parsed.
+
+<pre>
+PRE_check_aLottery = (typeof PRE_check_aLottery === 'undefined')
+                       ? undefined : PRE_check_aLottery
+
+//  function PRE_check_aLottery (){
+//    LOTTERY_SIGNATURE = ['String', ['Number'], 'Date']
+//    type_issue = type_czech.check_type(arguments, LOTTERY_SIGNATURE)
+//    if (type_issue) return type_issue
+//
+//    empty_err=type_czech.check_variadicEmpty(arguments,['EMPTY-ERROR'])
+//    if (empty_err) return empty_err
+//
+//    return ''
+//  }
+</pre>
+  
+
+
+
 </div>
 
 
@@ -52,7 +76,6 @@ the POST_check_Person() function.
   <br>
 </div>
 
-<br><br>
 <div id='js-fiddles'>
   jsFiddles:
   <a title="00-Readme-Example" href="../example-snippets/00-Readme-Example.html">00</a>
@@ -72,11 +95,10 @@ the POST_check_Person() function.
     <a title="07-Mutated-Function-Parameters.html" href="../example-snippets/07-Mutated-Function-Parameters.html">07</a>
     
     <a title="08-Mutated-Recursive-Function-Parameters.html" href="../example-snippets/08-Mutated-Recursive-Function-Parameters.html">08</a>
-    
-    
-     
+   
+   
     <a title="09-Closure-Parameters-Results-and-Methods.html" href="../example-snippets/09-Closure-Parameters-Results-and-Methods.html">09</a>
-              
+            
     <a title="10-Class-Parameters-Results-and-Methods.html" href="../example-snippets/10-Class-Parameters-Results-and-Methods.html">10</a>
     
     <a title="11-Object-Properties.html" href="../example-snippets/11-Object-Properties.html">11</a>
@@ -136,13 +158,12 @@ the POST_check_Person() function.
     <a title="37-Readme-Example-Arrow-Functions.html" href="../example-snippets/37-Readme-Example-Arrow-Functions.html">37</a>
 
     <a title="38-Every-Check.html" href="../example-snippets/38-Every-Check.html">38</a>
-
- 
+    
     <a title="39-Third-Party-Result-Checks.html" href="../example-snippets/39-Third-Party-Result-Checks.html">39</a>
 
     <a title="40-Prescribed-Use.html" href="../example-snippets/40-Prescribed-Use.html">40</a>
 
-      &nbsp;&nbsp;
+    &nbsp;&nbsp;
 
     <a title="101-Extending-Classes-Inline.html" href="../examples-web/101-Extending-Classes-Inline.html">101</a>
     
@@ -184,27 +205,13 @@ the POST_check_Person() function.
     <a title="602-Extending-OLOO-Imports.html" href="../examples-web/602-Extending-OLOO-Imports/602-Extending-OLOO-Imports.html">602</a>
     
     <a title="603-Extending-OLOO-Production.html" href="../examples-web/603-Extending-OLOO-Production/603-Extending-OLOO-Production.html">603</a>
-
   </div>
-
-
 </div>
 
 
 
 
-
-
-
-
-
-
-
-
-
-<!--            ----------------TYPE 1--------------------------       -->
-
-
+<!--            ------------------TYPE 1------------------------       -->
 
 <script src="../web-resources/consolelog.js">
 </script>
@@ -222,24 +229,7 @@ the POST_check_Person() function.
 
 
 
-
-
-
-<!--            ----------------TYPE 1--------------------------       -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<!--            -------------------TYPE 1-----------------------       -->
 
 <script>
   log = captureConsole("log-text");
@@ -247,100 +237,75 @@ the POST_check_Person() function.
 
 
 
+
 <script id="check-code">
+function runEnvironment(TypeCzech, pre_check_exists) {
+
 /**/  if (typeof TypeCzech === 'function')
 /**/    type_czech = TypeCzech('LOG-ERRORS')
 /**/  else
 /**/    type_czech = { link: (nop) => nop, is_active: false }
-/**/  
-/**/  PRE_check_Person = (typeof PRE_check_Person === 'undefined')
-/**/               ? undefined : PRE_check_Person
-/**/
-/**/  POST_check_Person = (typeof POST_check_Person === 'undefined')
-/**/                ? undefined : POST_check_Person
-/**/  
-/**/  function PRE_check_Person(an_array){
-/**/    return type_czech.check_type(arguments, 'Array')
-/**/  }
-/**/  
-/**/  function POST_check_Person(an_object){
-/**/    return type_czech.check_type(arguments, 'Object')
-/**/  }
-/**/  
-/**/  Person = type_czech.link(Person, PRE_check_Person,
-/**/                                   POST_check_Person)
 
-function Person(person_array_or_obj){
-  if (Array.isArray(person_array_or_obj)){
-    let person_iterable = [...person_array_or_obj]
-    let result_object = {}
-    person_iterable.forEach( (a_value, the_index) => {
-      property_key = 'prop'+the_index
-      result_object[property_key] = a_value;
-    })
-    return result_object
-  }else {
-    result_array = Object.values(person_array_or_obj)
-    return result_array
+/**/  PRE_check_aLottery = (typeof PRE_check_aLottery === 'undefined')
+/**/                       ? undefined : PRE_check_aLottery
+
+  if (pre_check_exists) {
+    function PRE_check_aLottery (){
+      LOTTERY_SIGNATURE = ['String', ['Number'], 'Date']
+      type_issue = type_czech.check_type(arguments, LOTTERY_SIGNATURE)
+      if (type_issue) return type_issue
+  
+      empty_err=type_czech.check_variadicEmpty(arguments,['EMPTY-ERROR'])
+      if (empty_err) return empty_err
+
+      return ''
+    }
   }
+
+  aLottery = type_czech.link(aLottery, PRE_check_aLottery)
+
+  function aLottery(lottery_name, lucky_numbers, draw_date){
+    the_lottery = `${lottery_name} ::: ${lucky_numbers} :::`
+    console.log(the_lottery, draw_date)
+  }
+
+  return aLottery
 }
 
-chuck_array = ['Charles', new Date(1948,11,14), true, 17]
-chuck_object = Person(chuck_array)
-log(chuck_object)
 
-linesConsole(2)
+// Below are tests to see when TypeCzech check functions are run.
+// Only the first test causes PRE_check_aLottery() to be executed.
 
+aLottery = runEnvironment(TypeCzech, true)
+aLottery('Powerball', [], new Date('jan 1 1111'))
 
+aLottery = runEnvironment(false, true)
+aLottery('Powerball', [], new Date('feb 2 2222'))
 
+aLottery = runEnvironment(TypeCzech, false)
+aLottery('Powerball', [], new Date('mar 3 3333'))
 
-alan_object = {f_name:'Alan', l_name:'Turing'}
-alan_turing = Person(alan_object)
-linesConsole(2)
-log(alan_turing)
-
+aLottery = runEnvironment(false, false)
+aLottery('Powerball', [], new Date('apr 4 4444'))
 
 
 </script>
-
-
-
-
-
-
-
-
-
 
 <script>
+   jsToDiv('js-code', "check-code");
 
-  jsToDiv('js-code', "check-code");
+   fromToBoldText(63, 98, 'code', 1)  //  if (typeof TypeCzech === 'function')
+   fromToBoldText(108, 143, 'code', 1)  //   type_czech = TypeCzech('LOG-ERRORS')
+   fromToBoldText(151, 154, 'code', 1)  //  else
+   fromToBoldText(164, 216, 'code', 1)  //  type_czech = { link: (nop) => nop, is_active: false }
 
- 
+///////////////////////
 
-  fromToBoldText(1083, 1095, 'code', 3)  //  result_object
-  fromToBoldText(1206, 1248, 'code', 3)  //  ['Charles', new Date(1948,11,14), true, 17]
-  fromToBoldText(1, 81, 'log', 3)   // { "prop0": "Charles", "prop1": "1948-12-14", "prop2": true, "prop3": 17 }
-
-
-
-
-  fromToBoldText(1321, 1352, 'code', 1)  //  {f_name:'Alan', l_name:'Turing'}
-
-  fromToBoldText(283, 313, 'log', 1)    //return result_array
-  fromToBoldText(340, 344, 'log', 1)    //Array
-
-
-  fromToBoldText(1172, 1183, 'code', 2)  //  return result_array
-  fromToBoldText(762, 778, 'log', 2)    //["Alan","Turing"]
-
-  fromToBoldText(805, 810, 'log', 2)    //'Object'
+fromToBoldText(225, 288, 'code', 2)  //  PRE_check_aLottery = (typeof PRE_check_aLottery === 'undefined')
+fromToBoldText(317, 348, 'code', 2)  //  ? undefined : PRE_check_aLottery
 
 </script>
 
-
 <link rel="stylesheet"
-  href="https://fonts.googleapis.com/css?family=Inconsolata">
+  href="https://fonts.googleapis.com/css?family=Inconsolata">s
 
-
-  

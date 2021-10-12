@@ -22,10 +22,7 @@ function TypeCzech_First() {
        return type_czech.check_type(arguments, 'Date')
     }
 
-    // function PRE_check_First(f_name) { log(`${NL}PRE-First`) }
-    // function POST_check_First(First) { log(`${NL}POST-First`) }
-    // function PRE_check_firstMethod(a_date) { log(`${NL}PRE-firstMethod`) }
-    // function POST_check_firstMethod() { log(`POST-firstMethod`) }
+
 
     First_PREs = { First: PRE_check_First, firstMethod: PRE_check_firstMethod }
     First_POSTs = { First: POST_check_First, firstMethod: POST_check_firstMethod }

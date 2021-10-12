@@ -2,15 +2,14 @@
 <title>601-Created-OLOO-Inline</title>
 
 
-<link rel="stylesheet"
-  href="https://fonts.googleapis.com/css?family=Inconsolata">
+
   
-<div id='js-div' style="width:51%;" class='code-scroll'>
+<div id='js-div' style="width:60%;" class='code-scroll'>
   <div id='js-code'>the javascript</div>
 </div>
 
 
-<div id="the-explanation" style="width:49%" >
+<div id="the-explanation" style="width:40%" >
   <div class='an-explantion'>601 &mdash; Created OLOO Inline</div>
   <div id='explanation-text'>
 
@@ -29,9 +28,6 @@
           <li>Production class declarations <b>must</b> interleave with TypeCzech calls
               to have the PRE and POST checking functions be correctly linked to before use </li>
           </ul>
-    <br>
-
-
 
    Note this OLOO version kills the instanceof operator, use instanceOf() instead.
 
@@ -46,7 +42,7 @@
     <br>
   </div>
 
-  <br><br>
+  <br>
   <div id='js-fiddles'>
     jsFiddles:
     <a title="00-Readme-Example" href="../example-snippets/00-Readme-Example.html">00</a>
@@ -130,8 +126,11 @@
   
       <a title="38-Every-Check.html" href="../example-snippets/38-Every-Check.html">38</a>
     
-      <a title="39-Prescribed-Use.html" href="../example-snippets/39-Prescribed-Use.html">39</a>
-      
+ 
+      <a title="39-Third-Party-Result-Checks.html" href="../example-snippets/39-Third-Party-Result-Checks.html">39</a>
+
+      <a title="40-Prescribed-Use.html" href="../example-snippets/40-Prescribed-Use.html">40</a>
+       
       &nbsp;&nbsp;
   
       <a title="101-Extending-Classes-Inline.html" href="../examples-web/101-Extending-Classes-Inline.html">101</a>
@@ -330,7 +329,8 @@ function Full(salu, f_name, l_name) {
       return a_book
     },
     showName() {
-      const the_name = `${this.salu} ${this.f_name} ${this.l_name} - ${this.oloo_type}`
+      const the_name = `${this.salu} ${this.f_name} ${this.l_name} ` +
+                       `- ${this.oloo_type}`
       console.log('Name: ', the_name)
     },
   }
@@ -372,9 +372,9 @@ margaret_atwood.showName()
 jsToDiv('js-code', "check-code");      
 
 
-fromToBoldText(1646, 1661, 'code', 1)  //RUN -firstMethod
-  fromToBoldText(2009, 2023, 'code', 2)  // RUN -lastMethod
-  fromToBoldText(2441, 2455, 'code', 3)  // RUN -fullMethod
+fromToBoldText(3263, 3278, 'code', 1)  //RUN -firstMethod
+  fromToBoldText(3646, 3660, 'code', 2)  // RUN -lastMethod
+  fromToBoldText(4069, 4083, 'code', 3)  // RUN -fullMethod
 
  
 fromToBoldText(210, 225, 'log', 1)    //RUN -firstMethod
@@ -382,3 +382,9 @@ fromToBoldText(296, 311, 'log', 2)    //RUN -lastMethod
 fromToBoldText(406, 420, 'log', 3)    //RUN -fullMethod
 
 </script>
+
+
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Inconsolata">
+
+  
