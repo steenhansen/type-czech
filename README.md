@@ -27,7 +27,7 @@ Missing from Type-Czech
 
   -  type_czech.check_type() ensures that the parameters to aLottery() are a string, then an array of numbers, and finally a date
   -  type_czech.check_empty() complains when parameters are found to be empty strings, arrays, or objects
-  -  $>$ $>$ precedes console input and output
+  -  >> precedes console input and output
   -  /**/ highlights added Type-Czech test code that is safely removable or turned off
 
 
