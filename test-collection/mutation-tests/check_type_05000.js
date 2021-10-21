@@ -49,7 +49,7 @@ function check_type_05001(){
   actual_array = type_czech.check_type(check_object, check_type_shape);
   afterCheck(check_object, check_type_shape, before_str, error_id);
   expected_array =[`check_type(arguments, expected_types)`,
-  `TC@39 - Extra key in checked object - (sneak:'extra')`,
+  `TE@209 - Extra key in checked object - (sneak:'extra')`,
   `{cylinders:"Number",fuel:"String"}`];
   actual_str = arrayErrorToString(actual_array);
   expected_str = arrayErrorToString(expected_array);
@@ -184,7 +184,7 @@ function check_type_05005(){
   actual_array = type_czech.check_type(check_object, check_type_shape);
   afterCheck(check_object, check_type_shape, before_str, error_id);
   expected_array =[`check_type(arguments, expected_types)`,
-   `The variable '[]', which is a 'Array', is not a 'Object'`,
+   `TE@225 - The value '[]', which is a 'Array', is not a 'Object'`,
    `Object`];
   actual_str = arrayErrorToString(actual_array);
   expected_str = arrayErrorToString(expected_array);
@@ -288,7 +288,7 @@ function check_type_05008(){
   actual_array = type_czech.check_type(check_object, check_type_shape);
   afterCheck(check_object, check_type_shape, before_str, error_id);
   expected_array =[`check_type(arguments, expected_types)`,
-  `TC@39 - Extra key in checked object - (sneak:'extra')`,
+  `TE@209 - Extra key in checked object - (sneak:'extra')`,
   `{cylinders:"Number",fuel:"String"}`];
   actual_str = arrayErrorToString(actual_array);
   expected_str = arrayErrorToString(expected_array);
@@ -323,7 +323,7 @@ function check_type_05009(){
   actual_array = type_czech.check_type(check_object, check_type_shape);
   afterCheck(check_object, check_type_shape, before_str, error_id);
   expected_array =[`check_type(arguments, expected_types)`,
-  `TC@17 - The type 'null' is not a check_type type`,
+  `TE@203 - The type 'null' is not a valid check_type(), check_typeEither(), or check_typeExtra() second parameter type`,
   `null`];
   actual_str = arrayErrorToString(actual_array);
   expected_str = arrayErrorToString(expected_array);
@@ -358,7 +358,7 @@ function check_type_05010(){
   actual_array = type_czech.check_type(check_object, check_type_shape);
   afterCheck(check_object, check_type_shape, before_str, error_id);
   expected_array =[`check_type(arguments, expected_types)`,
-  `TC@17 - The type 'null' is not a check_type type`,
+  `TE@203 - The type 'null' is not a valid check_type(), check_typeEither(), or check_typeExtra() second parameter type`,
   `null`];
   actual_str = arrayErrorToString(actual_array);
   expected_str = arrayErrorToString(expected_array);
@@ -393,7 +393,7 @@ function check_type_05011(){
   actual_array = type_czech.check_type(check_object, check_type_shape);
   afterCheck(check_object, check_type_shape, before_str, error_id);
   expected_array =[`check_type(arguments, expected_types)`,
-  `TC@40 - The type 'null' is not check_type`,
+  `TE@210 - The type 'null' is not a real type`,
   `{a:[{b:[{c:"String"}]}],z:"null"}`];
   actual_str = arrayErrorToString(actual_array);
   expected_str = arrayErrorToString(expected_array);
@@ -429,7 +429,7 @@ function check_type_05012(){
   actual_array = type_czech.check_type(check_variable, check_type_type);
   afterCheck(check_variable, check_type_type, before_str, error_id);
   expected_array =['check_type(arguments, expected_types)',
-"The variable '[]', which is a 'Array', is not a 'String'",
+"TE@225 - The value '[]', which is a 'Array', is not a 'String'",
 'String']
   actual_str = arrayErrorToString(actual_array);
   expected_str = arrayErrorToString(expected_array);
@@ -463,7 +463,7 @@ function check_type_05013(){
   actual_array = type_czech.check_type(check_variable, check_type_type);
   afterCheck(check_variable, check_type_type, before_str, error_id);
   expected_array =[`check_type(arguments, expected_types)`,
-  `The variable '[]', which is a 'Array', is not a 'String'`,
+  `TE@225 - The value '[]', which is a 'Array', is not a 'String'`,
   `String`];
   actual_str = arrayErrorToString(actual_array);
   expected_str = arrayErrorToString(expected_array);
@@ -498,7 +498,7 @@ function check_type_05014(){
   actual_array = type_czech.check_type(check_variable, check_type_type);
   afterCheck(check_variable, check_type_type, before_str, error_id);
   expected_array =[`check_type(arguments, expected_types)`,
-  `TC@49 - Comparing actual 'String' parameter, with a value of "a-string", in relation to the expected shape of ["String"]. They should be the same type. You cannot compare an array with a non-array; both []s, or both 'String's. Or same object keys.`,
+  `TE@217 - Comparing actual 'String' parameter, with a value of a-string, in relation to the expected shape of ["String"]. They should be the same type. You cannot compare an array with a non-array; both []s, or both 'String's. Or same object keys`,
   `['String']`];
   actual_str = arrayErrorToString(actual_array);
   expected_str = arrayErrorToString(expected_array);
@@ -567,7 +567,7 @@ error_id = errorLabel(TYPE_CZECH_current_test_number);
   afterCheck(check_variable, check_type_type, before_str, error_id);
   expected_array = '';
   // expected_array =[`check_type(arguments, expected_types)`,
-  // `TC@03 - Use check_variadicType([1,2,3], ['Number']) instead of check_type()`,
+  // `VE@603 - Use check_variadicType([1,2,3], ['Number']) instead of check_type()`,
   // `['Number']`];
   actual_str = arrayErrorToString(actual_array);
   expected_str = arrayErrorToString(expected_array);

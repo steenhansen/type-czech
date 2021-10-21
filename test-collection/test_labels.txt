@@ -1,0 +1,101 @@
+
+EXceptions:
+  EX@101 link() 2nd parameter must be function or object
+  EX@102 link() function to be checked is undefined
+  EX@103 link() function to be checked and checking function same
+  EX@104 link() function already proxied
+  EX@105 link() checking function is not a function
+  EX@106 link() not 2 nor 3 parameters
+  EX@107 TypeCzech() unknown option
+  EX@108 mutateSnapshot() needs 3 parameters
+  EX@109 mutateSnapshot()'s 3rd parameter is not an array/object
+  EX@110 mutateSnapshot() first parameter must be an un-empty string
+  EX@111 mutateSnapshot() second parameter must be an un-empty string
+  EX@112 check_mutated() needs 2 parameters
+  EX@113 check_mutated() no record of an entry for wanted 
+  EX@114 check_mutated() has no current matching entry for mutateSnapshot()
+  EX@115 link() 3rd parametermust be function or object
+
+Type Errors:
+  TE@201 a_checking_function() called with '{}' value against '!{}' signature
+  TE@202 incorrect type of scalar or non-existant classname
+  TE@203 null and undefined are not valid types
+  TE@204 null is not a valid type
+  TE@205 All lowercase type name
+  TE@206 Undefined value does not match a type
+  TE@207 Parameter is wrong type
+  TE@208 Type should be Object
+  TE@209 Extra key in object
+  TE@210 Bad type
+  TE@211 Object key undefined
+  TE@212 Object key null
+  TE@213 Object key has wrong type
+  TE@214 Array element has wrong type
+  TE@215 Array of one type has element with wrong type
+  TE@216 Object has missing key
+  TE@217 Array signature versus not array
+  TE@218 undefined type signature
+  TE@219 Array parameters versus non-array signature
+  TE@220 null type signature
+  TE@221 Missing array signature type
+  TE@222 [] is not a type, use Array
+  TE@223 {} is not a type, use Object
+  TE@224 Signature type is not a string
+  TE@225 Type should be Array
+  TE@226 Variable does not match expected type
+  TE@227 TypeCzech.check_typeExtra(collection_a, collection_b) needs two collections to work
+  TE@228 check_typeExtra(array_2_elems_a, array_2_elems_b) needs each array to have at least two types to work
+  TE@229 undefined is not a valid type
+  TE@229 Only a string can be a valid type
+  TE@230 Incorrect type
+  TE@231 TypeCzech.check_emptyExtra(collection_a, collection_b) needs two collections to work
+
+Empty Errors:
+  EE@301 an empty variable that is an error
+  EE@302 an variable that cannot be empty, boolean for instance
+  EE@303 Bad empty must be either 'EMPTY-OK', 'EMPTY-ER', 'EMPTY-IG', 'OK', 'ER', or 'IG'
+  EE@304 Bad empty must be either 'EMPTY-OK', 'EMPTY-ER', 'EMPTY-IG', 'OK', 'ER', or 'IG'
+  EE@305 Completely pointless as checking with ['OK'] or ['EMPTY-OK'] only matches everything
+  EE@306 Element of an array is incorrectly empty
+  EE@307 Empty scalar, like string
+  EE@308 null and undefined cannot be checked for emptiness
+  EE@309 Object key is incorrectly empty
+  EE@310 Internal, Missing empty array elements
+  EE@311 Empty array elements
+  EE@312 Incorrect empty type
+  EE@313 Internal, Empty Array type compared against non-array values
+  EE@314 Internal, Empty Array type has an empty array
+  EE@315 Extra key in checked object
+  EE@316 Empty Array type has an empty array
+
+    EE@317 check_emptyExtra(array_param_a, array_param_a) needs two arrays to work
+    EE@318 check_emptyExtra(array_2_elems_a, array_2_elems_b) needs each array to have at least two types to work
+
+Misc Errors:
+  ME@401 a_checking_function() not called with required 2 parameters
+  ME@402 an_either_checking_function() not called with required array as second choices parameter
+  ME@403 Parameter array is un-expectedly empty
+  ME@404 Parameter length is different from signature length
+  ME@405 Value mutated
+  ME@406 Either needs 2 parameters, values and signature
+  ME@407 Internal, too many parameters
+  ME@408 no parameters
+  ME@409 No parameters
+
+Interface Errors:
+  IE@501 Interface missing key
+  IE@502 Interface key of wrong type
+  IE@503 Interface signature is an empty object
+  IE@504 Interface signature is not an object
+  IE@505 Interface argument is not an object
+
+Variadic Errors:
+  VE@601 Use check_variadicType(num_params, ['Number']) instead of check_variadicType(num_params, 'Number')
+  VE@602 Use check_type() instead of check_variadicType()
+  VE@603 Use check_variadicType() instead of check_type()
+  VE@604 Use check_variadicEmpty() instead of check_empty()
+  VE@605 Use check_variadicEmpty(X,Y) instead of check_variadicEmpty(A,B)
+  VE@606 Use check_empty() instead of check_variadicEmpty()
+
+Union Errors:
+  UE@701 Need at least 2 choices for either type  ****

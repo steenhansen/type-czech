@@ -2,7 +2,10 @@
  
   tests should not except, then we have no idea how many wrongs
  
- 
+   this is no good  OLD
+
+
+
 01000 Check-tests.js                
 02000 HasInterface-tests.js         
 03000 Valueless-tests.js             

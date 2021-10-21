@@ -18,5 +18,5 @@ type_czech._arrayOfOneType([1,2,3], 'Number', 'TYPE-EXTRAS');
 
 
 
-
+&copy; 2021 Steen Hansen
 

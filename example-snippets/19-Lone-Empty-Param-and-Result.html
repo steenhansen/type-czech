@@ -6,11 +6,33 @@
 
 
 <div id='js-div' style="width:32%">
+  <a href='https://github.com/steenhansen/type-czech' class='git-hub'>GitHub Package</a>
+  <br><br>
         <div id='js-code'>the javascript</div>
 
         <br><br>
+
+
+
+
+
+
+<!--            ----------------TYPE 1--------------------------       -->
+
+<script src="../web-resources/consolelog.js"></script>
+<script src="../TypeCzech.js"></script>
+<link rel="stylesheet" href="../web-resources/type-czech.css">
+
+<!--            -------------TYPE 1s-----------------------------       -->
+
+
+
+
+
         <div id='js-fiddles'>
-          jsFiddles:
+
+          <a title="Example-Contents" href="../example-snippets/example-contents.html">Contents</a>
+
           <a title="00-Readme-Example" href="../example-snippets/00-Readme-Example.html">00</a>
         
           <a title="01-PRE-and-POST-Funtions" href="../example-snippets/01-PRE-and-POST-Functions.html">01</a>
@@ -140,9 +162,13 @@
             <a title="602-Extending-OLOO-Imports.html" href="../examples-web/602-Extending-OLOO-Imports/602-Extending-OLOO-Imports.html">602</a>
             
             <a title="603-Extending-OLOO-Production.html" href="../examples-web/603-Extending-OLOO-Production/603-Extending-OLOO-Production.html">603</a>
-        
+            &copy; 2021 Steen Hansen
           </div>
         
+
+<!--            -------------TYPE 1s-----------------------------       -->
+
+
 
           
 </div>
@@ -156,14 +182,14 @@
     Use type_czech.check_empty(arguments, expected_empty) to verify that a lone parameter or return result is not empty or check_empty.
     Good for ensuring that a function's single string, array, and object parameter and or result has a useful value.
 
-    When a parameter corresponds to 'EMPTY-ERROR' and its contents are check_empty then an error occurs.
+    When a parameter corresponds to 'EMPTY-ERROR' and its contents are valueless then an error occurs.
 
     <div>
       <div style="margin-top:10px; float:left; width:17%">
         <b>Empty or <br>Valueless Data</b>
       </div>
 
-      <div style="float:left; width:15%">
+      <div style="float:left; width:13%">
         <ul>
           <li>null</li>
           <li>undefined</li>
@@ -171,7 +197,7 @@
         </ul>
       </div>
     
-      <div style="float:left; width:24%">
+      <div style="float:left; width:22%">
         <ul>
           <li><b>''</b> - empty string</li>
           <li>NaN - not a number</li>
@@ -179,7 +205,7 @@
         </ul>
       </div>
      
-      <div style="float:right; width:26%">
+      <div style="float:right; width:24%">
         <ul>
           <li><b>[ ]</b> - no elements in array</li>
           <li><b>{ }</b> - no members in object</li>
@@ -190,7 +216,7 @@
       <div>
         <ul>
           <li>new Date('')</li>
-          <li>new RegExp('')</li>
+          <li>new RegExp('') <b>or</b> /(?:)/ </li>
         </ul>
       </div>
     
@@ -233,34 +259,6 @@
 
 
 
-
-
-
-
-<!--            ----------------TYPE 1--------------------------       -->
-
-
-
-<script src="../web-resources/consolelog.js">
-</script>
-
-
-<script src="../TypeCzech.js">
-</script>
-
-
-
-<link rel="stylesheet" href="../web-resources/type-czech.css">
-
-
-
-
-
-
-
-
-
-<!--            -------------TYPE 1s-----------------------------       -->
 
 
 

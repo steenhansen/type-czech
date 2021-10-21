@@ -25,3 +25,4 @@ Initialization Options
 
       const type_czech = TypeCzech('NO-CHECKING');
 
+&copy; 2021 Steen Hansen

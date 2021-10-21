@@ -30,7 +30,7 @@ function _missingKey_12001(){
   before_str = beforeCheck(extra_keys, '');
   actual = type_czech._missingKey(extra_keys);
   afterCheck(extra_keys, '', before_str, error_id);
-  expected = `TC@46 -  The key 'g', which has a type of 'my-extra-key', is missing in the checked object`; 
+  expected = `TE@216 -  The key 'g', which has a type of 'my-extra-key', is missing in the checked object`; 
 
 
   if (actual !== expected) {

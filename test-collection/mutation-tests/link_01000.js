@@ -41,7 +41,7 @@ function link_01001(){
     return actual_e;
   }
   actual=get_out_of_scope_err();
-  expected = 'TC@06 - The first parameter to TypeCzech.link(), target_proxy is not a function, but is instead undefined'
+  expected = 'EX@105 - The first parameter to TypeCzech.link(), target_proxy is not a function, but is instead undefined'
   if (actual !== expected) {
     console.log(error_id);
     console.log('  actual=', actual);
@@ -74,7 +74,7 @@ function link_01002(){
   }catch(actual_e){ 
     actual = actual_e
   }
-  expected = 'TC@04 - your_function() is already proxied with your_function'
+  expected = 'EX@104 - your_function() is already proxied with your_function'
   if (actual !== expected) {
     console.log(error_id);
     console.log('  actual=', actual);
@@ -105,7 +105,7 @@ function link_01003(){
   }catch(actual_e){ 
     actual = actual_e
   }
-  expected = 'TC@06 - The first parameter to TypeCzech.link(), target_proxy is not a function, but is instead 17'
+  expected = 'EX@105 - The first parameter to TypeCzech.link(), target_proxy is not a function, but is instead 17'
   if (actual !== expected) {
     console.log(error_id);
     console.log('  actual=', actual);
@@ -136,7 +136,7 @@ function link_01004(){
   }catch(actual_e){ 
     actual = actual_e
   }
-  expected = 'TC@06 - The first parameter to TypeCzech.link(), target_proxy is not a function, but is instead {}'
+  expected = 'EX@105 - The first parameter to TypeCzech.link(), target_proxy is not a function, but is instead {}'
   if (actual !== expected) {
     console.log(error_id);
     console.log('  actual=', actual);

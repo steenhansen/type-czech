@@ -6,10 +6,10 @@
 */
 
     type_czech = TypeCzech('NO-ERROR-MESSAGES')
-    function PRE_yourFunc() {
+    function PRE_check_yourFunc() {
       return type_czech.check_empty(arguments, 'EMPTY-ERROR');
     }
-                yourFunc = type_czech.link(yourFunc, PRE_yourFunc) 
+                yourFunc = type_czech.link(yourFunc, PRE_check_yourFunc) 
                 function yourFunc(){ }
 
     yourFunc([1])                           // pass 1 A array
@@ -64,10 +64,10 @@
 */
 
     type_czech = TypeCzech('NO-ERROR-MESSAGES')
-    function B_PRE_yourFunc() {
+    function B_PRE_check_yourFunc() {
       return type_czech.check_empty(arguments, 'EMPTY-ERROR')
     }
-            B_yourFunc = type_czech.link(B_yourFunc, B_PRE_yourFunc) 
+            B_yourFunc = type_czech.link(B_yourFunc, B_PRE_check_yourFunc) 
             function B_yourFunc(){ }  
     B_yourFunc([1])                    // pass 1 not empty
     B_yourFunc(new Date('1999-01-01')) // pass 2 not empty
@@ -114,10 +114,10 @@
 */
 
     type_czech = TypeCzech('NO-ERROR-MESSAGES')
-    function C_PRE_yourFunc() {
+    function C_PRE_check_yourFunc() {
       return type_czech.check_empty(arguments, ['EMPTY-ERROR'])
     }
-            C_yourFunc = type_czech.link(C_yourFunc, C_PRE_yourFunc) 
+            C_yourFunc = type_czech.link(C_yourFunc, C_PRE_check_yourFunc) 
             function C_yourFunc(){ }
     C_yourFunc([1])              // pass 1
     C_yourFunc(['a-str'])        // pass 2
@@ -174,10 +174,10 @@
 */
 
     type_czech = TypeCzech('NO-ERROR-MESSAGES')
-    function D_PRE_yourFunc() {
+    function D_PRE_check_yourFunc() {
       return type_czech.check_empty(arguments, {a:'EMPTY-ERROR'})
     }
-            D_yourFunc = type_czech.link(D_yourFunc, D_PRE_yourFunc) 
+            D_yourFunc = type_czech.link(D_yourFunc, D_PRE_check_yourFunc) 
             function D_yourFunc(){ }
     D_yourFunc({a:[1]})              // pass 1
     D_yourFunc({a:['a-str']})        // pass 2
@@ -216,10 +216,10 @@
 */
 
     type_czech = TypeCzech('NO-ERROR-MESSAGES')
-    function E_PRE_yourFunc() {
+    function E_PRE_check_yourFunc() {
       return type_czech.check_empty(arguments,  ['EMPTY-OK', 'EMPTY-ERROR'])
     }
-            E_yourFunc = type_czech.link(E_yourFunc, E_PRE_yourFunc) 
+            E_yourFunc = type_czech.link(E_yourFunc, E_PRE_check_yourFunc) 
             function E_yourFunc(){ }
     E_yourFunc(2,3)           // pass 1
     E_yourFunc(2,[{}])        // pass 2
@@ -247,3 +247,5 @@
       console.log('no-issues: pass', expected_tests-expected_fails, ' fail', expected_fails)
     else
       total_checks += expected_tests
+
+&copy; 2021 Steen Hansen      

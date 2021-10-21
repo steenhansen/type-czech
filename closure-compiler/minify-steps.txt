@@ -16,10 +16,13 @@ minify:
 
   3  save as TypeCzech.no-debug.js
 
-  4  npx google-closure-compiler --language_out ECMASCRIPT_2020 --js=TypeCzech.no-debug.js --js_output_file=TypeCzech.min.js
+  4 remove comments         (/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+/)|(//.*)
 
-  5 copy TypeCzech.min.js to /web-resources/
+  5 save as TypeCzech.no-comments.js
 
+  6  npx google-closure-compiler --language_out ECMASCRIPT_2020 --js=TypeCzech.no-debug.js --js_output_file=TypeCzech.min.js
+
+  7 copy TypeCzech.min.js to /web-resources/
 
 
 

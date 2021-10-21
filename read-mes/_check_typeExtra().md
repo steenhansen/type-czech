@@ -5,10 +5,10 @@ A. Test every type.
 */
 
     type_czech = TypeCzech('NO-ERROR-MESSAGES')
-    function A_PRE_yourFunc() {
+    function A_PRE_check_yourFunc() {
       return type_czech.check_typeExtra(arguments, ['Number', 'Number']);
     }
-                    A_yourFunc = type_czech.link(A_yourFunc, A_PRE_yourFunc) 
+                    A_yourFunc = type_czech.link(A_yourFunc, A_PRE_check_yourFunc) 
                     function A_yourFunc(){ }
     A_yourFunc(NaN, NaN)  // pass 3 M empty number
     A_yourFunc(9, 9)      // pass 6 F number
@@ -66,23 +66,22 @@ B. Test single type with extra parameters
 */
 
     type_czech = TypeCzech('NO-ERROR-MESSAGES')
-    function B_PRE_yourFunc() {
+    function B_PRE_check_yourFunc() {
       return type_czech.check_typeExtra(arguments, 'Number');
     }
-                    B_yourFunc = type_czech.link(B_yourFunc, B_PRE_yourFunc) 
+                    B_yourFunc = type_czech.link(B_yourFunc, B_PRE_check_yourFunc) 
                     function B_yourFunc(){ }
     B_yourFunc(17)
     B_yourFunc(17, 'extra')
     B_yourFunc(17, 'extra', false)
-    B_yourFunc('not-num') // fail
-                            expected_tests = 4
-                            expected_fails = 1
+                            expected_tests = 3
+                            expected_fails = 3
     fail_tests = type_czech.countFails()
     total_tests = type_czech.countTally()
     if (expected_tests !== total_tests) 
-        throw `A. _check_typeExtra().md ${expected_tests} expected_tests !== ${total_tests} total_tests`
+        throw `B. _check_typeExtra().md ${expected_tests} expected_tests !== ${total_tests} total_tests`
     else if (expected_fails !== fail_tests) 
-        throw `A. _check_typeExtra().md ${expected_fails} expected_fails !== ${fail_tests} fail_tests`
+        throw `B. _check_typeExtra().md ${expected_fails} expected_fails !== ${fail_tests} fail_tests`
     else if  (typeof total_checks === 'undefined')
       console.log('no-issues: pass', expected_tests-expected_fails, ' fail', expected_fails)
     else
@@ -97,10 +96,10 @@ C. Test single object with extra parameters
 */
 
     type_czech = TypeCzech('NO-ERROR-MESSAGES')
-    function C_PRE_yourFunc() {
+    function C_PRE_check_yourFunc() {
       return type_czech.check_typeExtra(arguments, {a:'Number'});
     }
-                    C_yourFunc = type_czech.link(C_yourFunc, C_PRE_yourFunc) 
+                    C_yourFunc = type_czech.link(C_yourFunc, C_PRE_check_yourFunc) 
                     function C_yourFunc(){ } 
     C_yourFunc({a:17})
     C_yourFunc({a:17, b:13})
@@ -110,9 +109,9 @@ C. Test single object with extra parameters
     fail_tests = type_czech.countFails()
     total_tests = type_czech.countTally()
     if (expected_tests !== total_tests) 
-        throw `A. _check_typeExtra().md ${expected_tests} expected_tests !== ${total_tests} total_tests`
+        throw `C. _check_typeExtra().md ${expected_tests} expected_tests !== ${total_tests} total_tests`
     else if (expected_fails !== fail_tests) 
-        throw `A. _check_typeExtra().md ${expected_fails} expected_fails !== ${fail_tests} fail_tests`
+        throw `C. _check_typeExtra().md ${expected_fails} expected_fails !== ${fail_tests} fail_tests`
     else if  (typeof total_checks === 'undefined')
       console.log('no-issues: pass', expected_tests-expected_fails, ' fail', expected_fails)
     else
@@ -126,10 +125,10 @@ D. Test array with extra parameters
 */
 
     type_czech = TypeCzech('NO-ERROR-MESSAGES')
-    function D_PRE_yourFunc() {
+    function D_PRE_check_yourFunc() {
       return type_czech.check_typeExtra(arguments, ['Number', 'String']);
     }
-                    D_yourFunc = type_czech.link(D_yourFunc, D_PRE_yourFunc) 
+                    D_yourFunc = type_czech.link(D_yourFunc, D_PRE_check_yourFunc) 
                     function D_yourFunc(){ } 
     D_yourFunc(17, 'abc')
     D_yourFunc(17, 'abc', true)
@@ -139,11 +138,12 @@ D. Test array with extra parameters
     fail_tests = type_czech.countFails()
     total_tests = type_czech.countTally()
     if (expected_tests !== total_tests) 
-        throw `A. _check_typeExtra().md ${expected_tests} expected_tests !== ${total_tests} total_tests`
+        throw `D. _check_typeExtra().md ${expected_tests} expected_tests !== ${total_tests} total_tests`
     else if (expected_fails !== fail_tests) 
-        throw `A. _check_typeExtra().md ${expected_fails} expected_fails !== ${fail_tests} fail_tests`
+        throw `D. _check_typeExtra().md ${expected_fails} expected_fails !== ${fail_tests} fail_tests`
     else if  (typeof total_checks === 'undefined')
       console.log('no-issues: pass', expected_tests-expected_fails, ' fail', expected_fails)
     else
       total_checks += expected_tests
 
+&copy; 2021 Steen Hansen

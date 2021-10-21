@@ -14,13 +14,13 @@ To run 'node node-example.js'
     /**/  
     /**/  const LOTTERY_SIGNATURE = ['String', ['Number'], 'Date'];
     /**/  
-    /**/  function PRE_aLottery(lottery_name, lucky_numbers, draw_date) {
+    /**/  function PRE_check_aLottery(lottery_name, lucky_numbers, draw_date) {
     /**/    const type_issue = type_czech.check_type(arguments, LOTTERY_SIGNATURE);
     /**/    if (type_issue) return type_issue;
     /**/    return type_czech.check_empty(arguments, ['EMPTY-ERROR']);
     /**/  }
     /**/  
-    /**/  aLottery = type_czech.link(aLottery, PRE_aLottery);
+    /**/  aLottery = type_czech.link(aLottery, PRE_check_aLottery);
 
     function aLottery(lottery_name, lucky_numbers, draw_date) {
       const the_lottery = `::: ${lottery_name} ::: ${lucky_numbers} :::`;
@@ -38,3 +38,5 @@ To run 'node node-example.js'
     aLottery('Powerball', [], new Date('jun 14 1999'));
 
     aLottery('', [1, 2, 3, 4, 5, 26], new Date('Dec 31 1999'));
+
+&copy; 2021 Steen Hansen    

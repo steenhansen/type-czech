@@ -55,6 +55,6 @@ strong typing at compile time and runtime
 
 
 
-
+&copy; 2021 Steen Hansen
 
 

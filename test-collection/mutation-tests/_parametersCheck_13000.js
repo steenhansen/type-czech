@@ -32,7 +32,7 @@ function _ParametersCheck_13001(){
     }
   }
   actual_exception=get_out_of_scope_err();
-  expected_exception ="TC@06 - The first parameter to TypeCzech.link(), target_proxy is not a function, but is instead undefined";
+  expected_exception ="EX@105 - The first parameter to TypeCzech.link(), target_proxy is not a function, but is instead undefined";
   
   
   if (actual_exception !== expected_exception) {

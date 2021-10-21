@@ -14,12 +14,12 @@
     /**/  else
     /**/    type_czech = { link: (nop) => nop, is_active: false }
     /**/  
-    /**/  function PRE_posNumber(a_number){
+    /**/  function PRE_check_posNumber(a_number){
     /**/    if (a_number<1) return `Error, ${a_number} is not positive`
     /**/      return ''
     /**/  }
     /**/  
-    /**/  posNumber = type_czech.link(posNumber, PRE_posNumber) // does nothing
+    /**/  posNumber = type_czech.link(posNumber, PRE_check_posNumber) // does nothing
 
     function posNumber(a_number){
       console.log('My positive number', a_number)
@@ -38,12 +38,12 @@
     /**/  else
     /**/    type_czech = { link: (nop) => nop, is_active: false }
     /**/  
-    /**/  function PRE_posNumber(a_number){
+    /**/  function PRE_check_posNumber(a_number){
     /**/    if (a_number<1) return `Error, ${a_number} is not positive`
     /**/      return ''
     /**/  }
     /**/  
-    /**/  posNumber = type_czech.link(posNumber, PRE_posNumber) // does nothing
+    /**/  posNumber = type_czech.link(posNumber, PRE_check_posNumber) // does nothing
 
     function posNumber(a_number){
       console.log('My positive number', a_number)
@@ -66,11 +66,11 @@
     /**/    type_czech = { link: (nop) => nop, is_active: false }
     /**/  
     /**/  if (type_czech.is_active) {
-    /**/    function PRE_posNumber(a_number){
+    /**/    function PRE_check_posNumber(a_number){
     /**/      if (a_number<1) return `Error, ${a_number} is not positive`
     /**/        return ''
     /**/    }
-    /**/    posNumber = type_czech.link(posNumber, PRE_posNumber) 
+    /**/    posNumber = type_czech.link(posNumber, PRE_check_posNumber) 
     /**/  }
 
     function posNumber(a_number){
@@ -96,14 +96,14 @@
     /**/  else
     /**/    type_czech = { link: (nop) => nop, is_active: false }
     /**/  
-    /**/  //  function PRE_posNumber(a_number){
+    /**/  //  function PRE_check_posNumber(a_number){
     /**/  //    if (a_number<1) return `Error, ${a_number} is not positive`
     /**/  //      return ''
     /**/  //  }
     /**/  
-    /**/  PRE_posNumber = (typeof PRE_posNumber === 'undefined') ? undefined : PRE_posNumber
+    /**/  PRE_check_posNumber = (typeof PRE_check_posNumber === 'undefined') ? undefined : PRE_check_posNumber
     /**/  
-    /**/  posNumber = type_czech.link(posNumber, PRE_posNumber) // does nothing
+    /**/  posNumber = type_czech.link(posNumber, PRE_check_posNumber) // does nothing
 
     function posNumber(a_number){
       console.log('My positive number', a_number)
@@ -114,3 +114,7 @@
 
     posNumber('not-checked')
     >>My positive number not-checked
+
+
+&copy; 2021 Steen Hansen
+

@@ -31,7 +31,7 @@ function _mutatedVariables_14001(){
   actual = type_czech.check_mutated('_mutatedVariables_14001', 'my_array');
   actual_one_line = oneLineString(actual);
 
-  expected = `check_mutated(arguments, expected_types),TC@48 - The reference variable 'my_array' in function '_mutatedVariables_14001()' changed values from [1,2,3] to [1,2,3,4] START-SAME ~ [1,2,3 PRE-DIFF ~ ] POST-DIFF ~ ,4],''`; 
+  expected = `check_mutated(arguments, expected_types),ME@405 - The reference variable 'my_array' in function '_mutatedVariables_14001()' changed values from [1,2,3] to [1,2,3,4] START-SAME ~ [1,2,3 PRE-DIFF ~ ] POST-DIFF ~ ,4],''`; 
   
 if (actual_one_line !== expected) {
   console.log(error_id);
@@ -75,7 +75,7 @@ function _mutatedVariables_14002(){
     actual_one_line = e;
   }
   my_integer++;
-  expected = `TC@56 - TypeCzech.mutateSnapshot()'s 3rd parameter is not an array/object but instead a 'Number'`; 
+  expected = `EX@109 - TypeCzech.mutateSnapshot()'s 3rd parameter is not an array/object but instead a 'Number'`; 
 
   
   if (actual_one_line !== expected) {
@@ -109,7 +109,7 @@ function _mutatedVariables_14003(){
   my_obj.b="7";
   actual = type_czech.check_mutated('_mutatedVariables_14003', 'my_obj');
   actual_one_line = oneLineString(actual);
-  expected = `check_mutated(arguments, expected_types),TC@48 - The reference variable 'my_obj' in function '_mutatedVariables_14003()' changed values from {"a":1,"b":2,"c":3} to {"a":1,"b":"7","c":3} START-SAME ~ {"a":1,"b": PRE-DIFF ~ 2,"c":3} POST-DIFF ~ "7","c":3},''`; 
+  expected = `check_mutated(arguments, expected_types),ME@405 - The reference variable 'my_obj' in function '_mutatedVariables_14003()' changed values from {"a":1,"b":2,"c":3} to {"a":1,"b":"7","c":3} START-SAME ~ {"a":1,"b": PRE-DIFF ~ 2,"c":3} POST-DIFF ~ "7","c":3},''`; 
   
    
 if (actual_one_line !== expected) {
@@ -177,7 +177,7 @@ function _mutatedVariables_14004(){
 
   actual_one_line = oneLineString(actual);
   //console.log('1799  ;asdfasdfasdf', actual)
-  expected = `Error: POST_recurseArr() recurseArr() POST-FUNC: TC@48 - The reference variable 'growing_array' in function 'recurseArr()' changed values from [1,2,3] to [1,2,"THREE"] START-SAME ~ [1,2, PRE-DIFF ~ 3] POST-DIFF ~ "THREE"] check_mutated(arguments, expected_types) ACTUAL TYPES 'String' ACTUAL VALUE "1,2,THREE,4,5| 1,2,THREE,4| 1,2,THREE" CALLING FUNCTION POST_recurseArr(growing_array)`; 
+  expected = `Error: POST_recurseArr() recurseArr() POST-FUNC: ME@405 - The reference variable 'growing_array' in function 'recurseArr()' changed values from [1,2,3] to [1,2,"THREE"] START-SAME ~ [1,2, PRE-DIFF ~ 3] POST-DIFF ~ "THREE"] check_mutated(arguments, expected_types) ACTUAL TYPES 'String' ACTUAL VALUE "1,2,THREE,4,5| 1,2,THREE,4| 1,2,THREE" CALLING FUNCTION POST_recurseArr(growing_array)`; 
   
   
   if (actual_one_line !== expected) {

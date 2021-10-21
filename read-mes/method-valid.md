@@ -18,13 +18,13 @@ Example of every scalar type being checked in an array:
         /**/  type_czech = TypeCzech('LOG-ERRORS')
         /**/  //type_czech = TypeCzech('NO-CHECKING')
         /**/
-        /**/  function PRE_yourFunc() { 
+        /**/  function PRE_check_yourFunc() { 
         /**/    all_types = [ 'Array', 'BigInt', 'Boolean', 'Date', 'Function', 
         /**/                  'Number', 'Object', 'RegExp', 'String', 'Symbol' ]
         /**/    return type_czech.check_type(arguments, all_types)
         /**/  }
         /**/
-        /**/  yourFunc = type_czech.link(yourFunc, PRE_yourFunc) 
+        /**/  yourFunc = type_czech.link(yourFunc, PRE_check_yourFunc) 
 
         function yourFunc(array_all){ console.log(array_all) }
 
@@ -46,7 +46,7 @@ Example of every scalar type being checked in an object:
         /**/  type_czech = TypeCzech('LOG-ERRORS')
         /**/  //type_czech = TypeCzech('NO-CHECKING')
         /**/
-        /**/  function PRE_yourFunc() { 
+        /**/  function PRE_check_yourFunc() { 
         /**/    all_types = { the_array:'Array', the_bigInt:'BigInt', the_boolean:'Boolean', 
         /**/                  the_date:'Date', the_function:'Function', the_number:'Number',
         /**/                   the_object:'Object', the_regExp:'RegExp', the_string:'String',
@@ -54,7 +54,7 @@ Example of every scalar type being checked in an object:
         /**/    return type_czech.check_type(arguments, all_types)
         /**/  }
         /**/
-        /**/  yourFunc = type_czech.link(yourFunc, PRE_yourFunc) 
+        /**/  yourFunc = type_czech.link(yourFunc, PRE_check_yourFunc) 
 
         function yourFunc(array_all){ console.log(array_all) }
 
@@ -85,13 +85,13 @@ Example of an array parameter that contains numbers:
     /**/  type_czech = TypeCzech('LOG-ERRORS')
     /**/  //type_czech = TypeCzech('NO-CHECKING')
     /**/
-    /**/  function PRE_yourFunc() { 
+    /**/  function PRE_check_yourFunc() { 
     /**/    return type_czech.check_type(arguments, ['Number'])
 
         /**/    return type_czech.check_type(arguments, 'Number')
     /**/  }
     /**/
-    /**/  yourFunc = type_czech.link(yourFunc, PRE_yourFunc) 
+    /**/  yourFunc = type_czech.link(yourFunc, PRE_check_yourFunc) 
 
     function yourFunc(array_all){ console.log(array_all) }
 
@@ -103,11 +103,11 @@ Example of an array parameters that has many different types:
     /**/  type_czech = TypeCzech('LOG-ERRORS')
     /**/  //type_czech = TypeCzech('NO-CHECKING')
     /**/
-    /**/  function PRE_yourFunc() { 
+    /**/  function PRE_check_yourFunc() { 
     /**/    return type_czech.check_type(arguments, ['Number', 'String', 'Boolean', 'Date'])
     /**/  }
     /**/
-    /**/  yourFunc = type_czech.link(yourFunc, PRE_yourFunc) 
+    /**/  yourFunc = type_czech.link(yourFunc, PRE_check_yourFunc) 
 
     function yourFunc(array_all){ console.log(array_all) }
 
@@ -118,11 +118,11 @@ Exactly one number parameter.
     /**/  type_czech = TypeCzech('LOG-ERRORS')
     /**/  //type_czech = TypeCzech('NO-CHECKING')
     /**/
-    /**/  function PRE_yourFunc() { 
+    /**/  function PRE_check_yourFunc() { 
     /**/    return type_czech.check_type(arguments, 'Number')
     /**/  }
     /**/
-    /**/  yourFunc = type_czech.link(yourFunc, PRE_yourFunc) 
+    /**/  yourFunc = type_czech.link(yourFunc, PRE_check_yourFunc) 
 
     function yourFunc(){ console.log(arguments) }
 
@@ -133,11 +133,11 @@ Exactly two number parameters.
     /**/  type_czech = TypeCzech('LOG-ERRORS')
     /**/  //type_czech = TypeCzech('NO-CHECKING')
     /**/
-    /**/  function PRE_yourFunc() { 
+    /**/  function PRE_check_yourFunc() { 
     /**/    return type_czech.check_type(arguments, ['Number', 'Number'])
     /**/  }
     /**/
-    /**/  yourFunc = type_czech.link(yourFunc, PRE_yourFunc) 
+    /**/  yourFunc = type_czech.link(yourFunc, PRE_check_yourFunc) 
 
     function yourFunc(){ console.log(arguments) }
 
@@ -157,14 +157,14 @@ Curly braces must enclose least one JavaScript type
     /**/  type_czech = TypeCzech('LOG-ERRORS')
     /**/  //type_czech = TypeCzech('NO-CHECKING')
     /**/
-    /**/  function PRE_yourFunc() { 
+    /**/  function PRE_check_yourFunc() { 
     /**/    all_types = { the_array:'Array', the_object:'Object', the_bigInt:'BigInt',
     /**/                 the_numb_array: [['Number']], 
     /**/                 the_char_object:{a:'String', b:'String'} }
     /**/    return type_czech.check_type(arguments, all_types)
     /**/  }
     /**/
-    /**/  yourFunc = type_czech.link(yourFunc, PRE_yourFunc) 
+    /**/  yourFunc = type_czech.link(yourFunc, PRE_check_yourFunc) 
 
     function yourFunc(array_all){ console.log(array_all) }
 
@@ -199,11 +199,11 @@ Validate that there is one parameter which is an array.
     /**/  type_czech = TypeCzech('LOG-ERRORS')
     /**/  //type_czech = TypeCzech('NO-CHECKING')
     /**/
-    /**/  function PRE_yourFunc() { 
+    /**/  function PRE_check_yourFunc() { 
     /**/    return type_czech.check_type(arguments, 'Array')
     /**/  }
     /**/
-    /**/  yourFunc = type_czech.link(yourFunc, PRE_yourFunc) 
+    /**/  yourFunc = type_czech.link(yourFunc, PRE_check_yourFunc) 
 
     function yourFunc(an_array){ console.log(an_array) }
     
@@ -215,11 +215,11 @@ Check that there are two parameters, a string, and a number.
     /**/  type_czech = TypeCzech('LOG-ERRORS')
     /**/  //type_czech = TypeCzech('NO-CHECKING')
     /**/
-    /**/  function PRE_yourFunc() { 
+    /**/  function PRE_check_yourFunc() { 
     /**/    return type_czech.check_type(arguments, ['String', 'Number'])
     /**/  }
     /**/
-    /**/  yourFunc = type_czech.link(yourFunc, PRE_yourFunc) 
+    /**/  yourFunc = type_czech.link(yourFunc, PRE_check_yourFunc) 
 
     function yourFunc(an_str, a_num){ console.log(an_str, a_num) }
     
@@ -231,11 +231,11 @@ Verify that there is one parameter which is an array of numbers.
     /**/  type_czech = TypeCzech('LOG-ERRORS')
     /**/  //type_czech = TypeCzech('NO-CHECKING')
     /**/
-    /**/  function PRE_yourFunc() { 
+    /**/  function PRE_check_yourFunc() { 
     /**/    return type_czech.check_type(arguments, ['Number'])
     /**/  }
     /**/
-    /**/  yourFunc = type_czech.link(yourFunc, PRE_yourFunc) 
+    /**/  yourFunc = type_czech.link(yourFunc, PRE_check_yourFunc) 
 
     function yourFunc(an_array){ console.log(an_array) }
     
@@ -247,11 +247,11 @@ Certify that there is one parameter which is an object that contains two objects
     /**/  type_czech = TypeCzech('LOG-ERRORS')
     /**/  //type_czech = TypeCzech('NO-CHECKING')
     /**/
-    /**/  function PRE_yourFunc() { 
+    /**/  function PRE_check_yourFunc() { 
     /**/    return type_czech.check_type(arguments, {obj_1:'Object', obj_2:'Object'})
     /**/  }
     /**/
-    /**/  yourFunc = type_czech.link(yourFunc, PRE_yourFunc) 
+    /**/  yourFunc = type_czech.link(yourFunc, PRE_check_yourFunc) 
 
     function yourFunc(an_object){ console.log(an_object) }
     
@@ -263,10 +263,10 @@ Establish that there is one parameter which has this object structure.
     /**/  type_czech = TypeCzech('LOG-ERRORS')
     /**/  //type_czech = TypeCzech('NO-CHECKING')
     /**/
-    /**/  function PRE_yourFunc() { 
+    /**/  function PRE_check_yourFunc() { 
     /**/    return type_czech.check_type(arguments, {Array_1:['String', 'Number', {oBj_2:[/**/  {C:'Boolean'}]}]})
     /**/  }
-    /**/  yourFunc = type_czech.link(yourFunc, PRE_yourFunc) 
+    /**/  yourFunc = type_czech.link(yourFunc, PRE_check_yourFunc) 
 
     function yourFunc(deep_object){ console.log(deep_object) }
     
@@ -278,11 +278,11 @@ Confirm that there is one parameter which is an array that contains two arrays.
     /**/  type_czech = TypeCzech('LOG-ERRORS')
     /**/  //type_czech = TypeCzech('NO-CHECKING')
     /**/
-    /**/  function PRE_yourFunc() { 
+    /**/  function PRE_check_yourFunc() { 
     /**/    return type_czech.check_type(arguments, ['Array', 'Array'])
     /**/  }
     /**/
-    /**/  yourFunc = type_czech.link(yourFunc, PRE_yourFunc) 
+    /**/  yourFunc = type_czech.link(yourFunc, PRE_check_yourFunc) 
 
     function yourFunc(array_array){ console.log(array_array) }
     
@@ -294,7 +294,7 @@ Affirm that an object can hold plain and typed objects and arrays.
     /**/  type_czech = TypeCzech('LOG-ERRORS')
     /**/  //type_czech = TypeCzech('NO-CHECKING')
     /**/
-    /**/  function PRE_yourFunc() { 
+    /**/  function PRE_check_yourFunc() { 
     /**/    your_signature = {  obj_a: 'Object', 
     /**/                        arr_1: 'Array', 
     /**/                        obj_b: {b:'String'}, 
@@ -302,7 +302,7 @@ Affirm that an object can hold plain and typed objects and arrays.
     /**/    return type_czech.check_type(arguments, your_signature)
     /**/  }
     /**/
-    /**/  yourFunc = type_czech.link(yourFunc, PRE_yourFunc) 
+    /**/  yourFunc = type_czech.link(yourFunc, PRE_check_yourFunc) 
 
     function yourFunc(complicated_obj){ console.log(complicated_obj) }
     
@@ -321,12 +321,12 @@ Affirm that an array can hold plain and typed objects and arrays.
     /**/  type_czech = TypeCzech('LOG-ERRORS')
     /**/  //type_czech = TypeCzech('NO-CHECKING')
     /**/
-    /**/  function PRE_yourFunc() { 
+    /**/  function PRE_check_yourFunc() { 
     /**/    your_signature = [ 'Object', 'Array', {b:'String'}, ['Number'] ]
     /**/    return type_czech.check_type(arguments, your_signature)
     /**/  }
     /**/
-    /**/  yourFunc = type_czech.link(yourFunc, PRE_yourFunc) 
+    /**/  yourFunc = type_czech.link(yourFunc, PRE_check_yourFunc) 
 
     function yourFunc(complicated_obj){ console.log(complicated_obj) }
     
@@ -345,13 +345,13 @@ Demonstrate that a parameter value is in a set of values.
     /**/  type_czech = TypeCzech('LOG-ERRORS')
     /**/  //type_czech = TypeCzech('NO-CHECKING')
     /**/
-    /**/  function PRE_yourFunc(a_color) { 
+    /**/  function PRE_check_yourFunc(a_color) { 
     /**/    allowed_colors = ['red', 'green', 'blue']
     /**/    if (!allowed_colors.includes(a_color))
     /**/      return "PRE: bad color '" + a_color + "' is not in red/green/blue"
     /**/  }
     /**/
-    /**/  yourFunc = type_czech.link(yourFunc, PRE_yourFunc) 
+    /**/  yourFunc = type_czech.link(yourFunc, PRE_check_yourFunc) 
 
     function yourFunc(a_color){ console.log(a_color) }
     
@@ -363,14 +363,14 @@ Make certain that a parameter string value is cased correctly.
     /**/  type_czech = TypeCzech('LOG-ERRORS')
     /**/  //type_czech = TypeCzech('NO-CHECKING')
     /**/
-    /**/  function PRE_yourFunc(a_name) { 
+    /**/  function PRE_check_yourFunc(a_name) { 
     /**/    cased_name = new RegExp(/^[A-Z][a-z]* [A-Z][a-z]*$/)
     /**/    good_name = a_name.match(cased_name)
     /**/    if (!good_name) 
     /**/      return `Error, '${a_name}' is not cased correctly`
     /**/  }
     /**/
-    /**/  yourFunc = type_czech.link(yourFunc, PRE_yourFunc)
+    /**/  yourFunc = type_czech.link(yourFunc, PRE_check_yourFunc)
 
     function yourFunc(a_name){ console.log(a_name) }
     
@@ -383,14 +383,14 @@ Make certain that a parameter string value is cased correctly.
     /**/  type_czech = TypeCzech('LOG-ERRORS')
     /**/  //type_czech = TypeCzech('NO-CHECKING')
     /**/
-    /**/  function POST_yourFunc(num_result) { 
+    /**/  function POST_check_yourFunc(num_result) { 
     /**/    if (num_result<100) 
     /**/      return `Error, '${num_result}' is too small`
     /**/    if (num_result>199)
     /**/      return `Error, '${num_result}' is too Large`
     /**/  }
     /**/
-    /**/  yourFunc = type_czech.link(yourFunc, undefined, POST_yourFunc) 
+    /**/  yourFunc = type_czech.link(yourFunc, undefined, POST_check_yourFunc) 
     
     function yourFunc(a_number){ return a_number + 11 }
 
@@ -399,3 +399,6 @@ Make certain that a parameter string value is cased correctly.
     yourFunc(199) // fail Error, '210' is too large
 
 Note that these above example programs can be run in the console when TypeCzech/web-resources/test-console-repl.html is loaded in a web browser.
+
+
+&copy; 2021 Steen Hansen

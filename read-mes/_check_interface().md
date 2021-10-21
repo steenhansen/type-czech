@@ -6,10 +6,10 @@
 */
 
     type_czech = TypeCzech('NO-ERROR-MESSAGES')
-    function A_PRE_yourFunc() {
+    function A_PRE_check_yourFunc() {
       return type_czech.check_interface(arguments, {show:'Function'})
     }
-                A_yourFunc = type_czech.link(A_yourFunc, A_PRE_yourFunc) 
+                A_yourFunc = type_czech.link(A_yourFunc, A_PRE_check_yourFunc) 
                 function A_yourFunc(){ }
     A_yourFunc([1])                    // fail 1 A array
     A_yourFunc(234n)                   // fail 2 B bigint
@@ -64,10 +64,10 @@
 */
 
     type_czech = TypeCzech('NO-ERROR-MESSAGES')
-    function B_PRE_yourFunc() {
+    function B_PRE_check_yourFunc() {
       return type_czech.check_interface(arguments, {show:'Function'})
     }
-                B_yourFunc = type_czech.link(B_yourFunc, B_PRE_yourFunc) 
+                B_yourFunc = type_czech.link(B_yourFunc, B_PRE_check_yourFunc) 
                 function B_yourFunc(){ }
     B_yourFunc({show: x=>x})                 // pass 1
     B_yourFunc({a_prop:17, show: x=>x})      // pass 2 
@@ -87,4 +87,4 @@
       total_checks += expected_tests
 
 
-
+&copy; 2021 Steen Hansen

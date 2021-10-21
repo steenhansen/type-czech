@@ -66,7 +66,7 @@ function _shapeScalar_21002(){
   before_str = beforeCheck(check_variable, check_type_type);  
   actual = type_czech._shapeScalar(check_variable, check_type_type);
   afterCheck(check_variable, check_type_type, before_str, error_id);
-  expected = `The variable 'my-string', which is a 'String', is not a 'Boolean'`; 
+  expected = `TE@226 - The value 'my-string', which is a 'String', is not a 'Boolean'`; 
   if (actual !== expected) {
     console.log(error_id);
     console.log('  actual=', actual);
@@ -187,7 +187,7 @@ function _shapeScalar_21006(){
   before_str = beforeCheck(check_variable, check_type_type);  
   actual = type_czech._shapeScalar(check_variable, check_type_type);
   afterCheck(check_variable, check_type_type, before_str, error_id);
-  expected = `TC@16 - The type 'does-not_exist' is not the correct class`; 
+  expected = `TE@230 - The type 'does-not_exist' is invalid`; 
   if (actual !== expected) {
     console.log(error_id);
     console.log('  actual=', actual);

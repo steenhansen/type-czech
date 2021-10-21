@@ -5,10 +5,10 @@
 ### A. Check that a single parameter of any type is not empty.
 */
     type_czech = TypeCzech('NO-ERROR-MESSAGES')
-    function A_PRE_yourFunc() {
+    function A_PRE_check_yourFunc() {
       return type_czech.check_typeEither(arguments, [ "String", "Number" ]);
     }
-                    A_yourFunc = type_czech.link(A_yourFunc, A_PRE_yourFunc) 
+                    A_yourFunc = type_czech.link(A_yourFunc, A_PRE_check_yourFunc) 
                     function A_yourFunc(){ }
     A_yourFunc(9)        // pass 1 F number
     A_yourFunc(NaN)      // pass 2 M empty number
@@ -72,3 +72,4 @@
 
 
 
+&copy; 2021 Steen Hansen

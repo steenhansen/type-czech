@@ -67,4 +67,5 @@ is_active
 
 TYPE_CZECH_EVENTS
         
-        
+&copy; 2021 Steen Hansen
+

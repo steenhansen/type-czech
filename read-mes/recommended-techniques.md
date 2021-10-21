@@ -2,16 +2,16 @@
 
 ## Checking Function Names
 It is recommended to prefix checking function names that run before production
-functions with 'PRE_', and prefix 'POST_' to checking routines that execute after
+functions with 'PRE_check_', and prefix 'POST_check_' to checking routines that execute after
 production functions. It is easy to see the relationships this way.
 
     /**/  type_czech = TypeCzech('LOG-ERRORS')
     /**/  //type_czech = TypeCzech('NO-CHECKING')
     /**/
-    /**/  function PRE_yourFunc(){ /* before check */ }
-    /**/  function POST_yourFunc(){ /* after check */ }
+    /**/  function PRE_check_yourFunc(){ /* before check */ }
+    /**/  function POST_check_yourFunc(){ /* after check */ }
     /**/
-    /**/  yourFunc = type_czech.link(yourFunc, PRE_yourFunc, POST_yourFunc)
+    /**/  yourFunc = type_czech.link(yourFunc, PRE_check_yourFunc, POST_check_yourFunc)
 
     function yourFunc(){}
 
@@ -21,15 +21,15 @@ We suggest using the arguments parameter object to check all parameters for type
     /**/  type_czech = TypeCzech('LOG-ERRORS')
     /**/  //type_czech = TypeCzech('NO-CHECKING')
     /**/
-    /**/  function PRE_yourFunc(){
+    /**/  function PRE_check_yourFunc(){
     /**/    return type_czech.check_type(arguments, ['String', 'Number'])
     /**/  }
     /**/
-    /**/  function POST_Person(){
+    /**/  function POST_check_Person(){
     /**/    return type_czech.check_empty(arguments, 'EMPTY-ERROR')
     /**/  }
     /**/
-    /**/  yourFunc = type_czech.link(yourFunc, PRE_yourFunc, POST_yourFunc)
+    /**/  yourFunc = type_czech.link(yourFunc, PRE_check_yourFunc, POST_check_yourFunc)
 
     function yourFunc(){}
 
@@ -40,7 +40,7 @@ parameters only when actually individually testing them as below.
     /**/  type_czech = TypeCzech('LOG-ERRORS')
     /**/  //type_czech = TypeCzech('NO-CHECKING')
     /**/
-    /**/  function PRE_yourFunc(first_name, last_name){
+    /**/  function PRE_check_yourFunc(first_name, last_name){
     /**/    type_issue = type_czech.check_type(arguments, ['String', 'String'])
     /**/    if (type_issue) return type_issue
     /**/    empty_issue = type_czech.check_empty(arguments, 'EMPTY-ERROR')
@@ -48,7 +48,7 @@ parameters only when actually individually testing them as below.
     /**/    if (first_name.length===1) return 'Error, first_name is 1 character'
     /**/  }
     /**/
-    /**/  yourFunc = type_czech.link(yourFunc, PRE_yourFunc)
+    /**/  yourFunc = type_czech.link(yourFunc, PRE_check_yourFunc)
 
     function yourFunc(first_name, last_name){}
 
@@ -91,3 +91,4 @@ are linked together in the correct sequence.
 TypeCzech methods that begin with an underscore, like _aTypeOf() are not to be
 called in production code, they are available for testing and internal use only.
 
+&copy; 2021 Steen Hansen

@@ -6,10 +6,10 @@
 */
 
     type_czech = TypeCzech('NO-ERROR-MESSAGES')
-    function A_PRE_yourFunc() {
+    function A_PRE_check_yourFunc() {
       return type_czech.check_type(arguments, 'Number')
     }
-                A_yourFunc = type_czech.link(A_yourFunc, A_PRE_yourFunc) 
+                A_yourFunc = type_czech.link(A_yourFunc, A_PRE_check_yourFunc) 
                 function A_yourFunc(){ }
     A_yourFunc(9)   // pass 1 F number
     A_yourFunc(NaN) // pass 2 M empty number
@@ -61,10 +61,10 @@
 */
 
     type_czech = TypeCzech('NO-ERROR-MESSAGES')
-    function B_PRE_yourFunc() {
+    function B_PRE_check_yourFunc() {
       return type_czech.check_type(arguments, ['Number', 'Boolean', 'Date'])
     }
-            B_yourFunc = type_czech.link(B_yourFunc, B_PRE_yourFunc) 
+            B_yourFunc = type_czech.link(B_yourFunc, B_PRE_check_yourFunc) 
             function B_yourFunc(){ }
     B_yourFunc(1, false, new Date('1999-12-30') ) // pass 1
     B_yourFunc(1, false, new Date('1999-99-99') ) // pass 2
@@ -90,10 +90,10 @@
 */
 
     type_czech = TypeCzech('NO-ERROR-MESSAGES')
-    function C_PRE_yourFunc() {
+    function C_PRE_check_yourFunc() {
       return type_czech.check_type(arguments, 'Number')
     }
-            C_yourFunc = type_czech.link(C_yourFunc, C_PRE_yourFunc) 
+            C_yourFunc = type_czech.link(C_yourFunc, C_PRE_check_yourFunc) 
             function C_yourFunc(){ }
     C_yourFunc(1)   // pass 1
     C_yourFunc(NaN) // pass 2
@@ -119,10 +119,10 @@
 */
 
     type_czech = TypeCzech('NO-ERROR-MESSAGES')
-    function D_PRE_yourFunc() {
+    function D_PRE_check_yourFunc() {
       return type_czech.check_type(arguments, ['Number', 'Number'])
     }
-              D_yourFunc = type_czech.link(D_yourFunc, D_PRE_yourFunc) 
+              D_yourFunc = type_czech.link(D_yourFunc, D_PRE_check_yourFunc) 
               function D_yourFunc(){ }
     D_yourFunc(1,2)         // pass 1
     D_yourFunc(NaN, NaN)    // pass 2
@@ -149,10 +149,10 @@
 */                                                       
 
     type_czech = TypeCzech('NO-ERROR-MESSAGES')
-    function E_PRE_yourFunc() {
+    function E_PRE_check_yourFunc() {
       return type_czech.check_type(arguments, ['Number'])
     }
-            E_yourFunc = type_czech.link(E_yourFunc, E_PRE_yourFunc) 
+            E_yourFunc = type_czech.link(E_yourFunc, E_PRE_check_yourFunc) 
             function E_yourFunc(){ }
     E_yourFunc([])                  // pass 1
     E_yourFunc([1])                 // pass 2
@@ -183,10 +183,10 @@
 */
 
     type_czech = TypeCzech('NO-ERROR-MESSAGES')
-    function F_PRE_yourFunc() {
+    function F_PRE_check_yourFunc() {
       return type_czech.check_type(arguments, [ ['Number', 'Number'], ['Number', 'Number'] ])
     }
-              F_yourFunc = type_czech.link(F_yourFunc, F_PRE_yourFunc) 
+              F_yourFunc = type_czech.link(F_yourFunc, F_PRE_check_yourFunc) 
               function F_yourFunc(){ }
     F_yourFunc([1,2], [3,4])           // pass 1
     F_yourFunc([NaN,NaN], [NaN,NaN])   // pass 2
@@ -212,10 +212,10 @@ G. One array of arrays of two Numbers.
 */
 
     type_czech = TypeCzech('NO-ERROR-MESSAGES')
-    function G_PRE_yourFunc() {
+    function G_PRE_check_yourFunc() {
       return type_czech.check_type(arguments, [ ['Number', 'Number'] ])
     }
-            G_yourFunc = type_czech.link(G_yourFunc, G_PRE_yourFunc) 
+            G_yourFunc = type_czech.link(G_yourFunc, G_PRE_check_yourFunc) 
             function G_yourFunc(){ }
     G_yourFunc([ [1,2] ])                      // pass 1
     G_yourFunc([ [1,2], [3,4] ])               // pass 2
@@ -242,10 +242,10 @@ G. One array of arrays of two Numbers.
 */
 
     type_czech = TypeCzech('NO-ERROR-MESSAGES')
-    function H_PRE_yourFunc() {
+    function H_PRE_check_yourFunc() {
       return type_czech.check_type(arguments, 'Array')
     }
-                H_yourFunc = type_czech.link(H_yourFunc, H_PRE_yourFunc) 
+                H_yourFunc = type_czech.link(H_yourFunc, H_PRE_check_yourFunc) 
                 function H_yourFunc(){ }
     H_yourFunc([])                          // pass 1
     H_yourFunc([1,2,3])                     // pass 2
@@ -271,10 +271,10 @@ G. One array of arrays of two Numbers.
 */
 
     type_czech = TypeCzech('NO-ERROR-MESSAGES')
-    function I_PRE_yourFunc() {
+    function I_PRE_check_yourFunc() {
       return type_czech.check_type(arguments, 'Object')
     }
-            I_yourFunc = type_czech.link(I_yourFunc, I_PRE_yourFunc) 
+            I_yourFunc = type_czech.link(I_yourFunc, I_PRE_check_yourFunc) 
             function I_yourFunc(){ }
     I_yourFunc({})     // pass 1
     I_yourFunc({a:{}}) // pass 2
@@ -298,10 +298,10 @@ G. One array of arrays of two Numbers.
 ### J. One Objects with x and y keys that are Numbers. 
 */
     type_czech = TypeCzech('NO-ERROR-MESSAGES')
-    function J_PRE_yourFunc() {
+    function J_PRE_check_yourFunc() {
       return type_czech.check_type(arguments, {x:'Number', y:'Number'})
     }
-                    J_yourFunc = type_czech.link(J_yourFunc, J_PRE_yourFunc) 
+                    J_yourFunc = type_czech.link(J_yourFunc, J_PRE_check_yourFunc) 
                     function J_yourFunc(){ }
     J_yourFunc({x:0, y:1})  // pass 1
     J_yourFunc({x:0, y:false})  // fali 1
@@ -327,10 +327,10 @@ G. One array of arrays of two Numbers.
 */
 
     type_czech = TypeCzech('NO-ERROR-MESSAGES')
-    function K_PRE_yourFunc() {
+    function K_PRE_check_yourFunc() {
       return type_czech.check_type(arguments, [{x:'Number', y:'Number'}])
     }
-              K_yourFunc = type_czech.link(K_yourFunc, K_PRE_yourFunc) 
+              K_yourFunc = type_czech.link(K_yourFunc, K_PRE_check_yourFunc) 
               function K_yourFunc(){ }
     K_yourFunc([{x:0, y:1}])                         // pass 1
     K_yourFunc([{x:0, y:1}, {x:0, y:1}, {x:0, y:1}]) // pass 2
@@ -353,10 +353,10 @@ G. One array of arrays of two Numbers.
 */
 
     type_czech = TypeCzech('NO-ERROR-MESSAGES')
-    function L_PRE_yourFunc(param_1, param_2, param_3) {
+    function L_PRE_check_yourFunc(param_1, param_2, param_3) {
       return type_czech.check_type(param_2, 'Number')
     }
-              L_yourFunc = type_czech.link(L_yourFunc, L_PRE_yourFunc) 
+              L_yourFunc = type_czech.link(L_yourFunc, L_PRE_check_yourFunc) 
               function L_yourFunc(){ }
     L_yourFunc(1,2,3)           // pass 1
     L_yourFunc(false, 2, false) // pass 2
@@ -381,10 +381,10 @@ G. One array of arrays of two Numbers.
 */
 
     type_czech = TypeCzech('NO-ERROR-MESSAGES')
-    function M_PRE_yourFunc(param_1, param_2, param_3) {
+    function M_PRE_check_yourFunc(param_1, param_2, param_3) {
       return type_czech.check_type([param_1, param_3], ['Number'])
     }
-            M_yourFunc = type_czech.link(M_yourFunc, M_PRE_yourFunc) 
+            M_yourFunc = type_czech.link(M_yourFunc, M_PRE_check_yourFunc) 
             function M_yourFunc(){ }
     M_yourFunc(1,2,3)                    // pass 1
     M_yourFunc(1, true, 3)               // pass 2
@@ -412,10 +412,10 @@ G. One array of arrays of two Numbers.
 */
 
     type_czech = TypeCzech('NO-ERROR-MESSAGES')
-    function N_PRE_yourFunc(param_1, param_2, param_3) {
+    function N_PRE_check_yourFunc(param_1, param_2, param_3) {
       return type_czech.check_type(arguments, ['Number'])
     }
-            N_yourFunc = type_czech.link(N_yourFunc, N_PRE_yourFunc) 
+            N_yourFunc = type_czech.link(N_yourFunc, N_PRE_check_yourFunc) 
             function N_yourFunc(){ }
     N_yourFunc(1,2,3)                    // fail 1
     N_yourFunc(1, true, 3)               // fail 2
@@ -436,3 +436,4 @@ G. One array of arrays of two Numbers.
       total_checks += expected_tests
 
 
+&copy; 2021 Steen Hansen

@@ -5,6 +5,7 @@
 
 
 <div id='js-div' style="width:55%">
+  <a href='https://github.com/steenhansen/type-czech' class='git-hub'>GitHub Package</a>
   <div id='js-code'>the javascript</div>
 </div>
 
@@ -13,11 +14,30 @@
   <div id='explanation-text'>
     <br>
 
-  If a function can take parameters with different type shapes then check_typeity 
+  If a function can take parameters with different type shapes then conformity 
   can be checked with a type_czech.check_typeEither(arguments, array_of_signatures) call.
 
   <br><br>
+  In the example below, the function objNumArr() is only allowed to receive a 
+  first parameter of an object, number, or an array. Run by pasting into console.
+<pre>
+function PRE_check_obj_num_arr(){
+  allowed_types = ['Object', 'Number', 'Array']
+  return type_czech.check_typeEither(arguments, allowed_types)
+}  
 
+objNumArr = type_czech.link(objNumArr, PRE_check_obj_num_arr)
+
+function objNumArr(obj_num_arr){}
+
+objNumArr({})
+objNumArr({Metric: 'Give Me Sympathy'})
+objNumArr(12)
+objNumArr([])
+objNumArr([1, 2, 3])
+objNumArr(242, 'this is ignored')
+objNumArr('a-string')    // Fails with really long error message
+</pre>
 
   </div>
 
@@ -29,8 +49,27 @@
   </div> 
 
   <br><br>
+
+
+
+
+
+  
+
+<!--            ------------------TYPE 1------------------------       -->
+
+<script src="../web-resources/consolelog.js"></script>
+<script src="../TypeCzech.js"></script>
+<link rel="stylesheet" href="../web-resources/type-czech.css">
+
+<!--            ---------------TYPE 1---------------------------       -->
+
+
+
+
   <div id='js-fiddles'>
-    jsFiddles:
+    <a title="Example-Contents" href="../example-snippets/example-contents.html">Contents</a>
+    
     <a title="00-Readme-Example" href="../example-snippets/00-Readme-Example.html">00</a>
   
     <a title="01-PRE-and-POST-Funtions" href="../example-snippets/01-PRE-and-POST-Functions.html">01</a>
@@ -160,10 +199,13 @@
       <a title="602-Extending-OLOO-Imports.html" href="../examples-web/602-Extending-OLOO-Imports/602-Extending-OLOO-Imports.html">602</a>
       
       <a title="603-Extending-OLOO-Production.html" href="../examples-web/603-Extending-OLOO-Production/603-Extending-OLOO-Production.html">603</a>
-  
+      &copy; 2021 Steen Hansen
     </div>
   
 
+    <!--            ---------------TYPE 1---------------------------       -->
+
+    
 
 
 </div>
@@ -173,28 +215,6 @@
 
 
 
-
-
-<!--            ------------------TYPE 1------------------------       -->
-
-
-<script src="../web-resources/consolelog.js">
-</script>
-
-
-<script src="../TypeCzech.js">
-</script>
-
-
-
-<link rel="stylesheet" href="../web-resources/type-czech.css">
-
-
-
-
-
-
-<!--            ---------------TYPE 1---------------------------       -->
 
 
 
@@ -263,7 +283,7 @@ log(dracula)
 
 
 
-linesConsole(4)
+linesConsole(2)
 
 
 
@@ -272,7 +292,7 @@ log(chuck)
 
 
 
-linesConsole(4)
+linesConsole(2)
 
 
 
@@ -313,6 +333,8 @@ log(alan_turing)
 
 
   fromToBoldText(1529, 1537, 'code', 2)  // 'Dracula'
+
+//  see  file:///C:/Users/16043/Desktop/_js/proxy/old/oct--17/type-czech%20-%20Copy/example-snippets/23-Typed-Union-Checks.html
 
 
   fromToBoldText(195, 202, 'log', 2)    //'String'

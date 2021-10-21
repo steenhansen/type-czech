@@ -52,7 +52,7 @@ function _check_interface_02002() {
     interface_issue = type_czech.check_interface({show: (x) => x}, {noShow:'Function'});           // REAL TEST
   }
   expected_array = ["check_interface(arguments, expected_types)",
-    "TC@31 - Interface missing key 'noShow' in checked object",
+    "IE@501 - Interface missing key 'noShow' in checked object",
     '{noShow:"Function"}'];
 
     actual_str = arrayErrorToString(interface_issue);
@@ -85,7 +85,7 @@ function _check_interface_02003() {
     interface_issue = type_czech.check_interface({show: 17}, {show:'Function'});          // REAL TEST
   }
   expected_array = ["check_interface(arguments, expected_types)",
-    "TC@35 - actual type of 'show' is 'Number', with a value of '17', not the expected 'Function' type",
+    "IE@502 - actual type of 'show' is 'Number', with a value of '17', not the expected 'Function' type",
     '{show:"Function"}'];
     actual_str = arrayErrorToString(interface_issue);
     expected_str = arrayErrorToString(expected_array);

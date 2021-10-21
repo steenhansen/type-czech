@@ -98,7 +98,7 @@ function check_emptyExtra_30003(){
   actual_array = type_czech.check_emptyExtra(check_object, check_type_shape);
   afterCheck(check_object, check_type_shape, before_str, error_id);
   expected_array = ["check_emptyExtra(arguments, expected_emptys)",
-                    "TC@30 - ELEMENT '1' is erroneously empty :",
+                    "EE@311 - ELEMENT '1' is erroneously empty :",
                     [ "EMPTY-ERROR", "EMPTY-ERROR" ]                          ];
   actual_str = arrayErrorToString(actual_array);
   expected_str = arrayErrorToString(expected_array);
@@ -132,7 +132,7 @@ function check_emptyExtra_30004(){
   actual_array = type_czech.check_emptyExtra(check_object, check_type_shape);
   afterCheck(check_object, check_type_shape, before_str, error_id);
   expected_array = ["check_emptyExtra(arguments, expected_emptys)",
-                    "TC@30 - ELEMENT '1' is erroneously empty :",
+                    "EE@311 - ELEMENT '1' is erroneously empty :",
                     ["EMPTY-ERROR", "EMPTY-ERROR"]                       ];
   actual_str = arrayErrorToString(actual_array);
   expected_str = arrayErrorToString(expected_array);

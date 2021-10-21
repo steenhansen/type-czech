@@ -1,0 +1,339 @@
+
+<!DOCTYPE html><meta charset="utf-8" />
+<title>Type-Czech</title>
+
+
+<style>
+div {
+  margin-top:8px;
+}
+
+a {
+
+  margin-left:16px;
+}
+  
+* {
+  font-family: arial;
+}
+
+pre {
+  font-family: 'Inconsolata', monospace;
+  padding-left:60px;
+}
+
+</style>
+
+<h2>Type-Czech</h2>
+
+<p>
+Type-Czech is a runtime type checking JavaScript library that can be programmatically turned on and off. Include one file in your web pages or in your Node.js files to type check function parameters
+and function results. Errors can be set to throw halting exceptions or just output to the Console.
+</p>
+
+<p>
+Enjoy some TypeScript benefits without the drawbacks of
+</p>
+
+<ul>
+  <li>Compilation time</li>
+  <li>New language syntax</li>
+  <li>Compile time only checks</li>
+</ul>
+
+With Type-Czech you can
+<ul>
+  <li>Check function parameter types, including arrays, and extended objects</li>
+  <li>Ensure strings, arrays, and objects are not empty</li>
+  <li>Catch reference mutations in function parameters</li>
+</ul>
+
+Missing from Type-Czech
+<ul>
+  <li>Type inference</li>
+  <li>Checking types of optional function parameters</li>
+  <li>Generics</li>
+</ul>
+
+<h3>A Type-Czech Example</h3>
+
+<ul>
+  <li>type_czech.check_type() ensures that the parameters to aLottery() are a string, then an array of numbers, and finally a date</li>
+  <li>type_czech.check_empty() complains when parameters are found to be empty strings, arrays, or objects</li>
+  <li>&gt;&gt; precedes console input and output
+  <li>/**/ highlights added Type-Czech test code that is safely removable or just turned off</li>
+</ul>
+
+<pre>
+/**/  type_czech = TypeCzech('LOG-ERRORS')
+/**/  //type_czech = TypeCzech('NO-CHECKING')
+/**/
+/**/  LOTTERY_SIGNATURE = ['String', ['Number'], 'Date']
+/**/
+/**/  function PRE_aLottery(lottery_name, lucky_numbers, draw_date){
+/**/    type_issue = type_czech.check_type(arguments, LOTTERY_SIGNATURE)
+/**/    if (type_issue) return type_issue
+/**/    return type_czech.check_empty(arguments, ['EMPTY-ERROR'])
+/**/  }
+/**/
+/**/  aLottery = type_czech.link(aLottery, PRE_aLottery) 
+
+function aLottery(lottery_name, lucky_numbers, draw_date){
+  the_lottery = `${lottery_name} ::: ${lucky_numbers} :::`
+  console.log(the_lottery, draw_date)
+}
+
+>>aLottery('El Gordo', [1,2,3,4,5,0], new Date('jun 14 1999'))
+>>El Gordo ::: 1,2,3,4,5,0 :::1999-06-14
+
+>>aLottery('Lotto 649', [1,2,3,4,5,6])
+>>PRE_aLottery() aLottery() PRE-FUNC: Index '2' is supposed to be a 'Date', but is missing : ['Lotto 649',[1,2,3,4,5,6]]
+>>               check_type(arguments, expected_types)
+>>                ACTUAL TYPES ['String','Array']
+>>                ACTUAL VALUE ['Lotto 649',[1,2,3,4,5,6]]
+>>               EXPECTED TYPE ['String',['Number'],'Date']
+>>            CALLING FUNCTION PRE_aLottery(lottery_name, lucky_numbers, draw_date)
+>>Lotto 649 ::: 1,2,3,4,5,6 :::
+
+>>aLottery('Oz Lotto', ['fourty-two'], new Date('jun 14 1999'))
+>>PRE_aLottery() aLottery() PRE-FUNC:  ELEMENT '0' is assumed to be a 'Number', but is mistakenly a 'String'
+>>               check_type(arguments, expected_types)
+>>                ACTUAL TYPES ['String','Array','Date']
+>>                ACTUAL VALUE ['Oz Lotto',['fourty-two'],'1999-06-14T07:00:00.000Z']
+>>               EXPECTED TYPE ['String',['Number'],'Date']
+>>            CALLING FUNCTION PRE_aLottery(lottery_name, lucky_numbers, draw_date)
+>>Oz Lotto ::: fourty-two :::1999-06-14
+
+>>aLottery('Mega Millions', 17, new Date('jun 14 1999'))
+>>PRE_aLottery() aLottery() PRE-FUNC: Parameter is meant to be 'Array' but is of the wrong type of 'Number':17
+>>               check_type(arguments, expected_types)
+>>                ACTUAL TYPES ['String','Number','Date']
+>>                ACTUAL VALUE ['Mega Millions',17,'1999-06-14T07:00:00.000Z']
+>>               EXPECTED TYPE ['String',['Number'],'Date']
+>>            CALLING FUNCTION PRE_aLottery(lottery_name, lucky_numbers, draw_date)
+>>Mega Millions ::: 17 :::1999-06-14
+
+>>aLottery('Powerball', [], new Date('jun 14 1999'))
+>>PRE_aLottery() aLottery() PRE-FUNC: ELEMENT '1' is erroneously empty :
+>>               check_empty(arguments, expected_emptys)
+>>                  ACTUAL TYPES ['String','Array','Date']
+>>                  ACTUAL VALUE ['Powerball',[],'1999-06-14T07:00:00.000Z']
+>>               EMPTY ASSERTION ['EMPTY-ERROR']
+>>            CALLING FUNCTION PRE_aLottery(lottery_name, lucky_numbers, draw_date)
+>>Powerball ::: :::1999-06-14
+
+>>aLottery('', [1,2,3,4,5,26], new Date('Dec 31 1999'))
+>>PRE_aLottery() aLottery() PRE-FUNC: ELEMENT '0' is erroneously empty :
+>>               check_empty(arguments, expected_emptys)
+>>                  ACTUAL TYPES ['String','Array','Date']
+>>                  ACTUAL VALUE ['',[1,2,3,4,5,26],'1999-12-31T08:00:00.000Z']
+>>               EMPTY ASSERTION ['EMPTY-ERROR']
+>>            CALLING FUNCTION PRE_aLottery(lottery_name, lucky_numbers, draw_date)
+>>::: 1,2,3,4,5,26 :::1999-12-31
+</pre>
+
+<h3>GitHub</h3>
+<a title="Type-Czech" href="https://github.com/steenhansen/type-czech">Type-Czech</a> project with tests
+
+
+<h3>Local Type-Czech Tutorial</h3>
+
+
+<div><a title="00-Readme-Example" href="00-Readme-Example.html">00-Readme-Example</a>
+- Realistic example of verifying types and checking emptiness </div>
+
+<div><a title="01-PRE-and-POST-Funtions" href="01-PRE-and-POST-Functions.html">01-PRE-and-POST-Funtions</a>
+  - Check function parameters before task, and function results after execution</div>
+
+<div><a title="02-Validate-Parameters-by-Value.html" href="02-Validate-Parameters-by-Value.html">02-Validate-Parameters-by-Value</a>
+  - Verify function parameters by checking values with regular expressions, set membership, or array size</div>
+  
+<div><a title="03-Turn-Off-Library-Not-Loaded.html" href="03-Turn-Off-Library-Not-Loaded.html">03-Turn-Off-Library-Not-Loaded</a>
+  - Turn off Type-Czech by not loading TypeCzech.js</div>
+  
+<div><a title="04-Turn-Off-No-Check-Functions.html" href="04-Turn-Off-No-Check-Functions.html">04-Turn-Off-No-Check-Functions</a>
+  - Turn off Type-Czech by not loading checking functions</div>
+  
+<div><a title="05-Verify-Return-Results-by-Value.html" href="05-Verify-Return-Results-by-Value.html">05-Verify-Return-Results-by-Value</a>
+  - Verify function results by checking return value with regular expressions, set membership, or array size</div>
+  
+<div><a title="06-Validate-Parameters-and-Results.html" href="06-Validate-Parameters-and-Results.html">06-Validate-Parameters-and-Results</a>
+  - Example of verifying parameters by set membership, and checking function results via a regular expression</div>
+  
+<div><a title="07-Mutated-Function-Parameters.html" href="07-Mutated-Function-Parameters.html">07-Mutated-Function-Parameters</a>
+  - Ensure function parameters are not accidentally altered in a function call</div>
+  
+<div><a title="08-Mutated-Recursive-Function-Parameters.html" href="08-Mutated-Recursive-Function-Parameters.html">08-Mutated-Recursive-Function-Parameters</a>
+  - Certify function parameters are not unintentionally modified in a stack of recursive function calls</div>
+ 
+ 
+<div><a title="09-Closure-Parameters-Results-and-Methods.html" href="09-Closure-Parameters-Results-and-Methods.html">09-Closure-Parameters-Results-and-Methods</a>
+  - Check parameters and results in closures with numerous functions</div>
+          
+<div><a title="10-Class-Parameters-Results-and-Methods.html" href="10-Class-Parameters-Results-and-Methods.html">10-Class-Parameters-Results-and-Methods</a>
+  - Verify parameters and results in classes with mutliple methods</div>
+  
+<div><a title="11-Object-Properties.html" href="11-Object-Properties.html">11-Object-Properties</a>
+  - Check scalar, array, object parameters and results with check_type(), as well as the creation of Closures and IIFEs</div>
+
+<div><a title="12-Class-Interface.html" href="12-Class-Interface.html">12-Class-Interface</a>
+  - Verify creation of Classes, ClassFrees, Prototypes, and OLOOs via check_interface() </div>
+  
+<div><a title="13-Parameter-and-Results-Multi-Types.html" href="13-Parameter-and-Results-Multi-Types.html">13-Parameter-and-Results-Multi-Types</a>
+  - Checking functions with multiple parameters and returned array results</div>
+  
+<div><a title="14-Array-and-Object-Types.html" href="14-Array-and-Object-Types.html">14-Array-and-Object-Types</a>
+  - Typeless arrays, objects without specified keys, typed arrays, and objects with keys</div>
+
+<div><a title="15-Lone-Single-Type-Parameter-Functions.html" href="15-Lone-Single-Type-Parameter-Functions.html">15-Lone-Single-Type-Parameter-Functions</a>
+  - Single parameters versus multiple parameters</div>
+
+<div><a title="16-Arrays-with-One-Type.html" href="16-Arrays-with-One-Type.html">16-Arrays-with-One-Type</a>
+  - Arrays with one type, but multiple elements</div>
+
+<div><a title="17-Variadic-Functions.html" href="17-Variadic-Functions.html">17-Variadic-Functions</a>
+  - Checking variadic functions with one type of parameter, but multiple parameters</div>
+
+<div><a title="18-Class-Type-Checks.html" href="18-Class-Type-Checks.html">18-Class-Type-Checks</a>
+  - Use both check_interface() and check_type() on classes</div>
+
+<div><a title="19-Lone-Empty-Param-and-Result.html" href="19-Lone-Empty-Param-and-Result.html">19-Lone-Empty-Param-and-Result</a>
+  - Check for single parameters which are empty strings, arrays with no elements, and objects without properties</div>
+
+<div><a title="20-Multiple-Empty-Params-and-Results.html" href="20-Multiple-Empty-Params-and-Results.html">20-Multiple-Empty-Params-and-Results</a>
+  - Check numerous parameters for emptiness which are OK, ignored, or an error</div>
+
+<div><a title="21-Type-Check-with-Extra-Optional-Params.html" href="21-Type-Check-with-Extra-Optional-Params.html">21-Type-Check-with-Extra-Optional-Params</a>
+  - Ignore types of extra array elements and object properties in single parameters and results</div>
+
+<div><a title="22-Empty-Checks-with-Extra-Optional-Params.html" href="22-Empty-Checks-with-Extra-Optional-Params.html">22-Empty-Checks-with-Extra-Optional-Params</a>
+  - Ignore valueless array elements and object properties in single parameters and results</div>
+
+<div><a title="23-Typed-Union-Checks.html" href="23-Typed-Union-Checks.html">23-Typed-Union-Checks</a>
+  - Allow multiple different parameter type signatures and function return signatures</div>
+
+<div><a title="24-Empty-and-Valueless-Union-Checks.html" href="24-Empty-and-Valueless-Union-Checks.html">24-Empty-and-Valueless-Union-Checks</a>
+  - Allow multiple different valueless parameter and return signatures</div>
+
+<div><a title="25-Accessing-PRE-POST-Arguments.html" href="25-Accessing-PRE-POST-Arguments.html">25-Accessing-PRE-POST-Arguments</a>
+  - Parameters, function results, and the arguments object </div>
+
+<div><a title="26-Type-and-Empty-Abbreviations.html" href="26-Type-and-Empty-Abbreviations.html">26-Type-and-Empty-Abbreviations</a>
+  - Emptiness and type abbreviations</div>
+
+<div><a title="27-Type-and-Empty-Object-Extras.html" href="27-Type-and-Empty-Object-Extras.html">27-Type-and-Empty-Object-Extras</a>
+  - Types and emptiness together with extra parameters</div>
+
+<div><a title="28-Accept-Null-and-Undefined-Values.html" href="28-Accept-Null-and-Undefined-Values.html">28-Accept-Null-and-Undefined-Values</a>
+  - Accept nulls and undefineds as valid parameters</div>
+
+<div><a title="29-Class-Object-Type-Checks.html" href="29-Class-Object-Type-Checks.html">29-Class-Object-Type-Checks</a>
+  - Class type checks</div>
+
+<div><a title="30-HTML-Type-Checks.html" href="30-HTML-Type-Checks.html">30-HTML-Type-Checks</a>
+  - HTML type checks</div>
+
+<div><a title="31-Extended-Class-Type-Checks.html" href="31-Extended-Class-Type-Checks.html">31-Extended-Class-Type-Checks</a>
+  - Extended classes with type checks on creation and methods</div>
+
+<div><a title="32-Extended-Closure-Type-Checks-check.html" href="32-Extended-Closure-Type-Checks-check.html">32-Extended-Closure-Type-Checks-check</a>
+  - Extended closures with type checks on creation and functions</div>
+
+<div><a title="33-Count-Checks.html" href="33-Count-Checks.html">33-Count-Checks</a>
+  - Console count of checks</div>
+
+<div><a title="34-Parameter-Check-Events.html" href="34-Parameter-Check-Events.html">34-Parameter-Check-Events</a>
+  - Checking failure events, change tab contents or screen color on test execution</div>
+
+<div><a title="35-Throw-or-Log.html" href="35-Throw-or-Log.html">35-Throw-or-Log</a>
+  - Throw exceptions, console log, or ignore checking errors</div>
+
+<div><a title="36-Start-and-Stop.html" href="36-Start-and-Stop.html">36-Start-and-Stop</a>
+  - Turn checking on and off programmatically</div>
+
+<div><a title="37-Readme-Example-Arrow-Functions.html" href="37-Readme-Example-Arrow-Functions.html">37-Readme-Example-Arrow-Functions</a>
+  - Difference between arrow and ordinary functions</div>
+
+<div><a title="38-Every-Check.html" href="38-Every-Check.html">38-Every-Check</a>
+  - Example of every checking function in TypeCzech</div>
+
+<div><a title="39-Third-Party-Result-Checks.html" href="39-Third-Party-Result-Checks.html">39-Third-Party-Result-Checks</a>
+  - Check return values of functions outside of the program</div>
+
+<div><a title="40-Prescribed-Use.html" href="40-Prescribed-Use.html">40-Prescribed-Use</a>
+  - Best practices</div>
+
+  <br>
+
+<div><a title="101-Extending-Classes-Inline.html" href="../examples-web/101-Extending-Classes-Inline.html">101-Extending-Classes-Inline</a>
+  - Extended classes and checks in one inlined file</div>
+
+<div><a title="102-Extending-Classes-Imports.html" href="../examples-web/102-Extending-Classes-Imports/102-Extending-Classes-Imports.html">102-Extending-Classes-Imports</a>
+  - Extended classes and checks all imported</div>
+
+<div><a title="103-Extending-Classes-Production.html" href="../examples-web/103-Extending-Classes-Production/103-Extending-Classes-Production.html">103-Extending-Classes-Production</a>
+  - Extended classes inlined with imported checks when testing</div>
+
+<br>
+
+<div><a title="201-Extending-Closures-Inline.html" href="../examples-web/201-Extending-Closures-Inline.html">201-Extending-Closures-Inline</a>
+  - Closure modules and checks in one inlined file</div>
+
+<div><a title="202-Extending-Closures-Imports.html" href="../examples-web/202-Extending-Closures-Imports/202-Extending-Closures-Imports.html">202-Extending-Closures-Imports</a>
+  - Closure modules and checks all imported</div>
+
+<div><a title="203-Extending-Closures-Production.html" href="../examples-web/203-Extending-Closures-Production/203-Extending-Closures-Production.html">203-Extending-Closures-Production</a>
+  - Closure modules inlined with imported checks when testing</div>
+
+<br>
+
+<div><a title="301-Extending-IIFEs-Inline.html" href="../examples-web/301-Extending-IIFEs-Inline.html">301-Extending-IIFEs-Inline</a>
+  - IIFE modules and checks in one inlined file</div>
+
+<div><a title="302-Extending-IIFEs-Imports.html" href="../examples-web/302-Extending-IIFEs-Imports/302-Extending-IIFEs-Imports.html">302-Extending-IIFEs-Imports</a>
+  - IIFE modules and checks all imported</div>
+
+<div><a title="303-Extending-IIFEs-Production.html" href="../examples-web/303-Extending-IIFEs-Production/303-Extending-IIFEs-Production.html">303-Extending-IIFEs-Production</a>
+  - IIFE modules inlined with imported checks when testing</div>
+
+<br>
+
+<div><a title="401-Extending-ClassFree-Inline.html" href="../examples-web/401-Extending-ClassFree-Inline.html">401-Extending-ClassFree-Inline</a>
+  - ClassFree constructors and checks in one inlined file</div>
+
+<div><a title="402-Extending-ClassFree-Imports.html" href="../examples-web/402-Extending-ClassFree-Imports/402-Extending-ClassFree-Imports.html">402-Extending-ClassFree-Imports</a>
+  - ClassFree constructors and checks all imported</div>
+
+<div><a title="403-Extending-ClassFree-Production.html" href="../examples-web/403-Extending-ClassFree-Production/403-Extending-ClassFree-Production.html">403-Extending-ClassFree-Production</a>
+  - ClassFree constructors inlined with imported checks when testing</div>
+
+<br>
+
+<div><a title="501-Extending-Prototypes-Inline.html" href="../examples-web/501-Extending-Prototypes-Inline.html">501-Extending-Prototypes-Inline</a>
+  - Inherited prototypes and checks in one inlined file</div>
+
+<div><a title="502-Extending-Prototypes-Imports.html" href="../examples-web/502-Extending-Prototypes-Imports/502-Extending-Prototypes-Imports.html">502-Extending-Prototypes-Imports</a>
+  - Inherited prototypes and checks all imported</div>
+
+<div><a title="503-Extending-Prototypes-Inline.html" href="../examples-web/503-Extending-Prototypes-Production/503-Extending-Prototypes-Production.html">503-Extending-Prototypes-Production</a>
+  - Inherited prototypes inlined with imported checks when testing</div>
+
+<br>
+
+<div><a title="601-Extending-OLOO-Inline.html" href="../examples-web/601-Extending-OLOO-Inline.html">601-Extending-OLOO-Inline</a>
+  - Created OLOO and checks in one inlined file</div>
+
+<div><a title="602-Extending-OLOO-Imports.html" href="../examples-web/602-Extending-OLOO-Imports/602-Extending-OLOO-Imports.html">602-Extending-OLOO-Imports</a>
+  - Created OLOO and checks all imported</div>
+
+<div><a title="603-Extending-OLOO-Production.html" href="../examples-web/603-Extending-OLOO-Production/603-Extending-OLOO-Production.html">603-Extending-OLOO-Production</a>
+  - Created OLOO inlined with imported checks when testing</div>
+
+<br>
+
+&copy; 2021 Steen Hansen
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
+
+  

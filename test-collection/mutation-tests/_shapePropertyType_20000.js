@@ -65,7 +65,7 @@ function _shapePropertyType_20002(){
   before_str = beforeCheck(property_type, property_key);
   actual = type_czech._shapePropertyType(property_type, property_key, check_variable);
   afterCheck(property_type, property_key, before_str, error_id);
-  expected = `TC@41 - Key 'jxy' was given to be a 'Number' but was instead 'undefined'`; 
+  expected = `TE@211 - Key 'jxy' was given to be a 'Number' but was instead 'undefined'`; 
   if (actual !== expected) {
     console.log(error_id);
     console.log('  actual=', actual);
@@ -96,7 +96,7 @@ function _shapePropertyType_20003(){
   before_str = beforeCheck(property_type, property_key);
   actual = type_czech._shapePropertyType(property_type, property_key, check_variable);
   afterCheck(property_type, property_key, before_str, error_id);
-  expected = `TC@42 - Key 'jxy' was determined to be a 'Number' but was instead 'null'`; 
+  expected = `TE@212 - Key 'jxy' was determined to be a 'Number' but was instead 'null'`; 
   if (actual !== expected) {
     console.log(error_id);
     console.log('  actual=', actual);
@@ -126,7 +126,7 @@ function _shapePropertyType_20004(){
   before_str = beforeCheck(property_type, property_key);
   actual = type_czech._shapePropertyType(property_type, property_key, check_variable);
   afterCheck(property_type, property_key, before_str, error_id);
-  expected = `TC@43 - Property 'jxy' is indicated to be a 'String', but is inaccurately a 'Number' : 567`; 
+  expected = `TE@213 - Property 'jxy' is indicated to be a 'String', but is inaccurately a 'Number' : 567`; 
   if (actual !== expected) {
     console.log(error_id);
     console.log('  actual=', actual);

@@ -97,7 +97,7 @@ samples/23-on-off.html
 
 [24-Empty-and-Valueless-Union-Checks.html](
 samples/24-Empty-and-Valueless-Union-Checks.html
-) 24-Emtpy-and-Valueless-Union-Checks
+) 24-Empty-and-Valueless-Union-Checks
 
 [25-Accessing-PRE-POST-Arguments.html](
 samples/25-Accessing-PRE-POST-Arguments.html
@@ -169,7 +169,5 @@ detachable-examples/401-ClassFree-Constructors-Inline.html
 detachable-examples/501-Inherited-Prototypes-Inline.html
 ) 501 - Inherited Prototypes Inline
 
-## Created by
-
-[Steen Hansen](https://github.com/steenhansen)
+&copy; 2021 Steen Hansen
 

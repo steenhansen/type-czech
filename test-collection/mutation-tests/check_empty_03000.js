@@ -120,7 +120,7 @@ function EmptyCheck_03002(){
   actual_array = type_czech.check_empty(check_object, check_type_shape);
   afterCheck(check_object, check_type_shape, before_str, error_id);
   expected_array =[`check_empty(arguments, expected_emptys)`,
-  `TC@24 - EMPTY-ERROR states 'String' must not be empty for the value ''`,
+  `EE@307 - EMPTY-ERROR states 'String' must not be empty for the value ''`,
   `EMPTY-ERROR`];
   actual_str = arrayErrorToString(actual_array);
   expected_str = arrayErrorToString(expected_array);
@@ -190,7 +190,7 @@ function EmptyCheck_03004(){
   actual_array = type_czech.check_empty(check_object, check_type_shape);
   afterCheck(check_object, check_type_shape, before_str, error_id);
   expected_array = [`check_empty(arguments, expected_emptys)`,
-  `TC@24 - EMPTY-ERROR states 'Number' must not be empty for the value 'NaN'`,
+  `EE@307 - EMPTY-ERROR states 'Number' must not be empty for the value 'NaN'`,
   `EMPTY-ERROR`];
   actual_str = arrayErrorToString(actual_array);
   expected_str = arrayErrorToString(expected_array);
@@ -261,7 +261,7 @@ function EmptyCheck_03006(){
   actual_array = type_czech.check_empty(check_object, check_type_shape);
   afterCheck(check_object, check_type_shape, before_str, error_id);
   expected_array = [`check_empty(arguments, expected_emptys)`,
-  `TC@11 - Must 'EMPTY-OK' or 'EMPTY-ERROR' not 'MT-WRONG-b'`,
+  `EE@304 - Must 'EMPTY-OK' or 'EMPTY-ERROR' not 'MT-WRONG-b'`,
   `MT-WRONG-b`];
   actual_str = arrayErrorToString(actual_array);
   expected_str = arrayErrorToString(expected_array);
@@ -365,7 +365,7 @@ function EmptyCheck_03009(){
   actual_array = type_czech.check_empty(check_object, check_type_shape);
   afterCheck(check_object, check_type_shape, before_str, error_id);
   expected_array = [`check_empty(arguments, expected_emptys)`,
-  `TC@24 - EMPTY-ERROR states 'String' must not be empty for the value ''`,
+  `EE@307 - EMPTY-ERROR states 'String' must not be empty for the value ''`,
   `EMPTY-ERROR`];
   actual_str = arrayErrorToString(actual_array);
   expected_str = arrayErrorToString(expected_array);
@@ -468,7 +468,7 @@ function EmptyCheck_03012(){
   actual_array = type_czech.check_empty(check_object, check_type_shape);
   afterCheck(check_object, check_type_shape, before_str, error_id);
   expected_array =[`check_empty(arguments, expected_emptys)`,
-  `TC@49 - Comparing actual 'Number' parameter, with a value of "18", in relation to the expected shape of ["EMPTY-OK"]. They should be the same type. You cannot compare an array with a non-array; both []s, or both 'Number's. Or same object keys.`,
+  `TE@217 - Comparing actual 'Number' parameter, with a value of 18, in relation to the expected shape of ["EMPTY-OK"]. They should be the same type. You cannot compare an array with a non-array; both []s, or both 'Number's. Or same object keys`,
   `['EMPTY-OK']`];
   actual_str = arrayErrorToString(actual_array);
   expected_str = arrayErrorToString(expected_array);
@@ -503,7 +503,7 @@ function EmptyCheck_03013(){
   actual_array = type_czech.check_empty(check_object, check_type_shape);
   afterCheck(check_object, check_type_shape, before_str, error_id);
   expected_array = [`check_empty(arguments, expected_emptys)`,
-  `TC@11 - Must 'EMPTY-OK' or 'EMPTY-ERROR' not 'MT-WRONG-c'`,
+  `EE@304 - Must 'EMPTY-OK' or 'EMPTY-ERROR' not 'MT-WRONG-c'`,
   `MT-WRONG-c`];
   actual_str = arrayErrorToString(actual_array);
   expected_str = arrayErrorToString(expected_array);
@@ -571,7 +571,7 @@ function EmptyCheck_03015(){
   actual_array = type_czech.check_empty(check_object, check_type_shape);
   afterCheck(check_object, check_type_shape, before_str, error_id);
   expected_array = [`check_empty(arguments, expected_emptys)`,
-  `TC@08 - 'str' is a 'String' which is reputed to be 'EMPTY-ERROR' but has a value of ''.`,
+  `EE@301 -  key 'str' is a 'String' which is reputed to be 'EMPTY-ERROR' but has a value of ''`,
   `{str:"EMPTY-ERROR"}`];
   actual_str = arrayErrorToString(actual_array);
   expected_str = arrayErrorToString(expected_array);
@@ -674,7 +674,7 @@ function EmptyCheck_03018(){
   actual_array = type_czech.check_empty(check_object, check_type_shape);
   afterCheck(check_object, check_type_shape, before_str, error_id);
   expected_array = [`check_empty(arguments, expected_emptys)`,
-  `TC@08 - 'numx' is a 'Number' which is reputed to be 'EMPTY-ERROR' but has a value of NaN.`,
+  `EE@301 -  key 'numx' is a 'Number' which is reputed to be 'EMPTY-ERROR' but has a value of NaN`,
   `{numx:"EMPTY-ERROR"}`];
   actual_str = arrayErrorToString(actual_array);
   expected_str = arrayErrorToString(expected_array);
@@ -743,7 +743,7 @@ function EmptyCheck_03020(){
   actual_array = type_czech.check_empty(check_object, check_type_shape);
   afterCheck(check_object, check_type_shape, before_str, error_id);
   expected_array = [`check_empty(arguments, expected_emptys)`,
-  `TC@10 - bad incheck_type key 'MT-WRONG-d', must be either EMPTY-OK -ER -IG`,
+  `EE@303 - Bad empty type key, 'MT-WRONG-d', must be either 'EMPTY-OK', 'EMPTY-ER', 'EMPTY-IG', 'OK', 'ER', or 'IG'`,
   `{num_q:"MT-WRONG-d"}`];
   actual_str = arrayErrorToString(actual_array);
   expected_str = arrayErrorToString(expected_array);
@@ -778,7 +778,7 @@ function EmptyCheck_03021(){
   actual_array = type_czech.check_empty(check_object, check_type_shape);
   afterCheck(check_object, check_type_shape, before_str, error_id);
   expected_array = [`check_empty(arguments, expected_emptys)`,
-  `TC@27 - Extra key in checked object - (num_JJ:'18')TC@46 -  The key 'num_y', which has a type of 'EMPTY-OK', is missing in the checked object`,
+  `EE@315 - Extra key in checked object - (num_JJ:'18')TE@216 -  The key 'num_y', which has a type of 'EMPTY-OK', is missing in the checked object`,
   `{num_y:"EMPTY-OK"}`];
   actual_str = arrayErrorToString(actual_array);
   expected_str = arrayErrorToString(expected_array);
@@ -846,7 +846,7 @@ function EmptyCheck_03023(){
   actual_array = type_czech.check_empty(check_object, check_type_shape);
   afterCheck(check_object, check_type_shape, before_str, error_id);
   expected_array = [`check_empty(arguments, expected_emptys)`,
-  `TC@30 - ELEMENT '0' is erroneously empty :`,
+  `EE@311 - ELEMENT '0' is erroneously empty :`,
   `{str:["EMPTY-ERROR"]}`];
   actual_str = arrayErrorToString(actual_array);
   expected_str = arrayErrorToString(expected_array);
@@ -947,7 +947,7 @@ function EmptyCheck_03026(){
   actual_array = type_czech.check_empty(check_object, check_type_shape);
   afterCheck(check_object, check_type_shape, before_str, error_id);
   expected_array = [`check_empty(arguments, expected_emptys)`,
-  `TC@30 - ELEMENT '0' is erroneously empty :`,
+  `EE@311 - ELEMENT '0' is erroneously empty :`,
   `{str:["EMPTY-ERROR"]}`];
   actual_str = arrayErrorToString(actual_array);
   expected_str = arrayErrorToString(expected_array);
@@ -1016,7 +1016,7 @@ function EmptyCheck_03028(){
   actual_array = type_czech.check_empty(check_object, check_type_shape);
   afterCheck(check_object, check_type_shape, before_str, error_id);
   expected_array = [`check_empty(arguments, expected_emptys)`,
-  `TC@32 - ELEMENT '0' is incorrect  type, 'MT-WRONG-e', only [ER, EMPTY-ERROR, EMPTY-OK, OK, EMPTY-IGNORE, IG] allowed  : [18]`,
+  `EE@312 - ELEMENT '0' is incorrect  type, 'MT-WRONG-e', only [ER, EMPTY-ERROR, EMPTY-OK, OK, EMPTY-IGNORE, IG] allowed  : [18]`,
   `{str:["MT-WRONG-e"]}`];
   actual_str = arrayErrorToString(actual_array);
   expected_str = arrayErrorToString(expected_array);
@@ -1084,7 +1084,7 @@ function EmptyCheck_03030(){
   actual_array = type_czech.check_empty(check_object, check_type_shape);
   afterCheck(check_object, check_type_shape, before_str, error_id);
   expected_array = [`check_empty(arguments, expected_emptys)`,
-  `TC@08 - 'str' is a 'String' which is reputed to be 'EMPTY-ERROR' but has a value of ''.`,
+  `EE@301 -  key 'str' is a 'String' which is reputed to be 'EMPTY-ERROR' but has a value of ''`,
   `{str:"EMPTY-ERROR"}`];
   actual_str = arrayErrorToString(actual_array);
   expected_str = arrayErrorToString(expected_array);
@@ -1218,7 +1218,7 @@ function EmptyCheck_03034(){
   actual_array = type_czech.check_empty(check_object, check_type_shape);
   afterCheck(check_object, check_type_shape, before_str, error_id);
   expected_array = [`check_empty(arguments, expected_emptys)`,
-  `TC@10 - bad incheck_type key 'MT-WRONG-a', must be either EMPTY-OK -ER -IG`,
+  `EE@303 - Bad empty type key, 'MT-WRONG-a', must be either 'EMPTY-OK', 'EMPTY-ER', 'EMPTY-IG', 'OK', 'ER', or 'IG'`,
   `{num_q:"MT-WRONG-a"}`];
   actual_str = arrayErrorToString(actual_array);
   expected_str = arrayErrorToString(expected_array);
@@ -1253,7 +1253,7 @@ function EmptyCheck_03035(){
   actual_array = type_czech.check_empty(check_object, check_type_shape);
   afterCheck(check_object, check_type_shape, before_str, error_id);
   expected_array = [`check_empty(arguments, expected_emptys)`,
-  `TC@27 - Extra key in checked object - (num_JJ:'18')TC@46 -  The key 'num_y', which has a type of 'EMPTY-OK', is missing in the checked object`,
+  `EE@315 - Extra key in checked object - (num_JJ:'18')TE@216 -  The key 'num_y', which has a type of 'EMPTY-OK', is missing in the checked object`,
   `{num_y:"EMPTY-OK"}`];
   actual_str = arrayErrorToString(actual_array);
   expected_str = arrayErrorToString(expected_array);
@@ -1288,7 +1288,7 @@ function EmptyCheck_03036(){
   actual_array = type_czech.check_empty(check_object, check_type_shape);
   afterCheck(check_object, check_type_shape, before_str, error_id);
   expected_array =[`check_empty(arguments, expected_emptys)`,
-  `TC@27 - Extra key in checked object - (num_TTTTTTT:'18')TC@46 -  The key 'num_iiiii', which has a type of 'EMPTY-OK', is missing in the checked object`,
+  `EE@315 - Extra key in checked object - (num_TTTTTTT:'18')TE@216 -  The key 'num_iiiii', which has a type of 'EMPTY-OK', is missing in the checked object`,
   `[{num_iiiii:"EMPTY-OK"}]`];
   actual_str = arrayErrorToString(actual_array);
   expected_str = arrayErrorToString(expected_array);
@@ -1655,7 +1655,7 @@ function EmptyCheck_03047(){
   actual_array = type_czech.check_empty(check_object, check_type_shape);
   afterCheck(check_object, check_type_shape, before_str, error_id);
   expected_array =[`check_empty(arguments, expected_emptys)`,
-  `TC@54 - There are no parameters.`,
+  `ME@408 - There are no parameters.`,
   `EMPTY-ERROR`];
   actual_str = arrayErrorToString(actual_array);
   expected_str = arrayErrorToString(expected_array);
@@ -1690,7 +1690,7 @@ function EmptyCheck_03048(){
   actual_array = type_czech.check_empty(check_object, check_type_shape);
   afterCheck(check_object, check_type_shape, before_str, error_id);
   expected_array = ['check_empty(arguments, expected_emptys)',
-  "TC@24 - EMPTY-ERROR states 'Array' must not be empty for the value ''",
+  "EE@307 - EMPTY-ERROR states 'Array' must not be empty for the value ''",
   'EMPTY-ERROR'];
   
   actual_str = arrayErrorToString(actual_array);

@@ -93,7 +93,7 @@ function _shapeVariable_22002(){
   before_str = beforeCheck(check_object, check_type_shape);
   actual = type_czech._shapeVariable(check_object, check_type_shape, 'TYPE-VERIFY');
   afterCheck(check_object, check_type_shape, before_str, error_id);
-  expected = `The variable '8', which is a 'Number', is not a 'String'`; 
+  expected = `TE@226 - The value '8', which is a 'Number', is not a 'String'`; 
   if (actual !== expected) {
     console.log(error_id);
     console.log('  actual=', actual);
@@ -227,7 +227,7 @@ function _shapeVariable_22005(){
   before_str = beforeCheck(check_object, check_type_shape);
   actual = type_czech._shapeVariable(check_object, check_type_shape, 'TYPE-EXTRAS', type_czech._NOT_VARIAD_ARR_L_179);
   afterCheck(check_object, check_type_shape, before_str, error_id);
-  expected = `TC@45 - ELEMENT '1' is asserted to be a 'Number', but is fallaciously a 'String' : extra`; 
+  expected = `TE@215 - ELEMENT '1' is asserted to be a 'Number', but is fallaciously a 'String' : extra`; 
   if (actual !== expected) {
     console.log(error_id);
     console.log('  actual=', actual);
@@ -273,7 +273,7 @@ function _shapeVariable_22006(){
   before_str = beforeCheck(check_object, check_type_shape);
   actual = type_czech._shapeVariable(check_object, check_type_shape, 'TYPE-VERIFY', type_czech._NOT_VARIAD_ARR_L_179);
   afterCheck(check_object, check_type_shape, before_str, error_id);
-  expected = `TC@45 - ELEMENT '1' is asserted to be a 'Number', but is fallaciously a 'String' : extra`; 
+  expected = `TE@215 - ELEMENT '1' is asserted to be a 'Number', but is fallaciously a 'String' : extra`; 
   if (actual !== expected) {
     console.log(error_id);
     console.log('  actual=', actual);
@@ -353,7 +353,7 @@ function _shapeVariable_22008(){
   before_str = beforeCheck(check_object, check_type_shape);
   actual = type_czech._shapeVariable(check_object, check_type_shape, 'TYPE-VERIFY');
   afterCheck(check_object, check_type_shape, before_str, error_id);
-  expected = `TC@33 - The type 'boolean' is not a check_type type, but it looks just like 'Boolean'TC@39 - Extra key in checked object - (an_extra_key:'superfluous')`; 
+  expected = `TE@205 - The type 'boolean' is not a check_type type, but it looks just like 'Boolean'`; 
   if (actual !== expected) {
     console.log(error_id);
     console.log('  actual=', actual);

@@ -7,12 +7,12 @@
 
     type_czech = TypeCzech('NO-ERROR-MESSAGES')
 
-    function A_PRE_yourFunc() { return 'found-an-error'; }
-    A_yourFunc = type_czech.link(A_yourFunc, A_PRE_yourFunc) 
+    function A_PRE_check_yourFunc() { return 'found-an-error'; }
+    A_yourFunc = type_czech.link(A_yourFunc, A_PRE_check_yourFunc) 
     function A_yourFunc() { }
 
-    function B_PRE_yourFunc() { return ''; }
-    B_yourFunc = type_czech.link(B_yourFunc, B_PRE_yourFunc) 
+    function B_PRE_check_yourFunc() { return ''; }
+    B_yourFunc = type_czech.link(B_yourFunc, B_PRE_check_yourFunc) 
     function B_yourFunc() { }
 
     
@@ -31,3 +31,4 @@
     else
       total_checks += 1;
 
+&copy; 2021 Steen Hansen

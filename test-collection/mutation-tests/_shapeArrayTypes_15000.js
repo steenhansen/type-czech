@@ -63,7 +63,7 @@ function _shapeArrayTypes_15002(){
   before_str = beforeCheck(check_array, object_type);
   actual = type_czech._shapeArrayTypes(check_array, object_type, exact_shape, type_czech._NOT_VARIAD_ARR_L_179);
   afterCheck(check_array, object_type, before_str, error_id);
-  expected = `TC@45 - ELEMENT '0' is asserted to be a 'String', but is fallaciously a 'Number' : 13`; 
+  expected = `TE@215 - ELEMENT '0' is asserted to be a 'String', but is fallaciously a 'Number' : 13`; 
   if (actual !== expected) {
     console.log(error_id);
     console.log('  actual=', actual);

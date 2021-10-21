@@ -6,7 +6,7 @@
 
 
 <div id='js-div' style="width:55%">
- 
+  <a href='https://github.com/steenhansen/type-czech' class='git-hub'>GitHub Package</a>
   <div id='js-code'>the javascript</div>
 </div>
 
@@ -17,8 +17,36 @@
     <br>
      Checking interfaces with inherited classes.
     <br><br>
-    
-  </div>
+
+
+
+    The difference between TypeCzech.check_type() and TypeCzech.check_interface().
+    <br><br>
+
+          <div style='margin-left:24px'>
+                TypeCzech.check_type() works with:
+                <ul>
+                  <li>scalars</li>
+                  <li>arrays</li>
+                  <li>ordinary objects</li>
+                  <li>Closures 201, 202, 203</li>
+                  <li>IIFEs 301, 302, 303</li>
+                </ul>
+
+
+                    TypeCzech.check_interface() checks interlinked objects that are :
+
+                    <ul>
+                      <li>Classes 101, 102, 103</li>
+                      <li>ClassFree 401, 402, 403</li>
+                      <li>Prototypes 501, 502, 503</li>
+                      <li>OLOOs 601, 602, 603</li>
+                    </ul>
+
+        </div>
+
+
+   </div>
 
   <div id="console-log"  >
     <div class='a-title'>Console Output</div>
@@ -26,9 +54,27 @@
     <br>
   </div>
 
+
+
+
+
+  
+<!--            ---------------TYPE 1---------------------------       -->
+
+<script src="../web-resources/consolelog.js"></script>
+<script src="../TypeCzech.js"></script>
+<link rel="stylesheet" href="../web-resources/type-czech.css">
+
+<!--            ---------------TYPE 1---------------------------       -->
+
+
+
+
+
   <br><br>
   <div id='js-fiddles'>
-    jsFiddles:
+    <a title="Example-Contents" href="../example-snippets/example-contents.html">Contents</a>
+    
     <a title="00-Readme-Example" href="../example-snippets/00-Readme-Example.html">00</a>
   
     <a title="01-PRE-and-POST-Funtions" href="../example-snippets/01-PRE-and-POST-Functions.html">01</a>
@@ -158,9 +204,15 @@
       <a title="602-Extending-OLOO-Imports.html" href="../examples-web/602-Extending-OLOO-Imports/602-Extending-OLOO-Imports.html">602</a>
       
       <a title="603-Extending-OLOO-Production.html" href="../examples-web/603-Extending-OLOO-Production/603-Extending-OLOO-Production.html">603</a>
-  
+      &copy; 2021 Steen Hansen
     </div>
   
+
+
+<!--            ---------------TYPE 1---------------------------       -->
+
+
+
 
 </div>
 
@@ -173,26 +225,6 @@
 
 
 
-
-
-
-<!--            ---------------TYPE 1---------------------------       -->
-
-
-<script src="../web-resources/consolelog.js">
-</script>
-
-
-<script src="../TypeCzech.js">
-</script>
-
-
-
-<link rel="stylesheet" href="../web-resources/type-czech.css">
-
-
-
-<!--            ---------------TYPE 1---------------------------       -->
 
 
 

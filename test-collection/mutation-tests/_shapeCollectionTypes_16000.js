@@ -66,7 +66,7 @@ function _shapeCollectionTypes_16002(){
   before_str = beforeCheck(check_object, object_shape);
   actual = type_czech._shapeCollectionTypes(check_object, object_shape, exact_shape);
   afterCheck(check_object, object_shape, before_str, error_id);
-  expected = `TC@39 - Extra key in checked object - (u:'illegal')`; 
+  expected = `TE@209 - Extra key in checked object - (u:'illegal')`; 
   if (actual !== expected) {
     console.log(error_id);
     console.log('  actual=', actual);
@@ -96,7 +96,7 @@ function _shapeCollectionTypes_16003(){
   before_str = beforeCheck(check_object, object_shape);
   actual = type_czech._shapeCollectionTypes(check_object, object_shape, exact_shape);
   afterCheck(check_object, object_shape, before_str, error_id);
-  expected = `TC@42 - Key 'qwe' was determined to be a 'Object' but was instead 'null'`; 
+  expected = `TE@212 - Key 'qwe' was determined to be a 'Object' but was instead 'null'`; 
   if (actual !== expected) {
     console.log(error_id);
     console.log('  actual=', actual);

@@ -64,14 +64,14 @@ A. Check that a single parameter of any type is not empty.
 
     stack_str = ''
     type_czech = TypeCzech('NO-ERROR-MESSAGES')
-    function B_PRE_recurseArr(growing_array){
-      type_czech.mutateSnapshot('B_PRE_recurseArr', 'growing_array', growing_array)
+    function B_PRE_check_recurseArr(growing_array){
+      type_czech.mutateSnapshot('B_PRE_check_recurseArr', 'growing_array', growing_array)
       stack_str = type_czech._mutateStacks()
     }
-    function B_POST_recurseArr(growing_array){
-      return type_czech.check_mutated('B_PRE_recurseArr', 'growing_array')
+    function B_POST_check_recurseArr(growing_array){
+      return type_czech.check_mutated('B_PRE_check_recurseArr', 'growing_array')
     }
-    B_recurseArr = type_czech.link(B_recurseArr, B_PRE_recurseArr, B_POST_recurseArr)
+    B_recurseArr = type_czech.link(B_recurseArr, B_PRE_check_recurseArr, B_POST_check_recurseArr)
     function B_recurseArr(growing_array, stop_recurse){
       next_index = growing_array.length + 1
       if (next_index === stop_recurse){
@@ -85,7 +85,7 @@ A. Check that a single parameter of any type is not empty.
       }
     }
 
-     B_expected_first_stack = `{"B_PRE_recurseArr-growing_array":[{"collection_ref":[1],"func_name":"B_PRE_recurseArr","pre_collect_str":"[1]","var_name":"growing_array"},{"collection_ref":[1,2],"func_name":"B_PRE_recurseArr","pre_collect_str":"[1,2]","var_name":"growing_array"},{"collection_ref":[1,2,3],"func_name":"B_PRE_recurseArr","pre_collect_str":"[1,2,3]","var_name":"growing_array"}]}`
+     B_expected_first_stack = `{"B_PRE_check_recurseArr-growing_array":[{"collection_ref":[1],"func_name":"B_PRE_check_recurseArr","pre_collect_str":"[1]","var_name":"growing_array"},{"collection_ref":[1,2],"func_name":"B_PRE_check_recurseArr","pre_collect_str":"[1,2]","var_name":"growing_array"},{"collection_ref":[1,2,3],"func_name":"B_PRE_check_recurseArr","pre_collect_str":"[1,2,3]","var_name":"growing_array"}]}`
     B_recurseArr([1], 4)
     if (stack_str === B_expected_first_stack){
       if (typeof total_checks === 'undefined')
@@ -98,7 +98,7 @@ A. Check that a single parameter of any type is not empty.
 
 
 
-    B_expected_second_stack = `{"B_PRE_recurseArr-growing_array":[{"collection_ref":[1],"func_name":"B_PRE_recurseArr","pre_collect_str":"[1]","var_name":"growing_array"},{"collection_ref":[1,2],"func_name":"B_PRE_recurseArr","pre_collect_str":"[1,2]","var_name":"growing_array"},{"collection_ref":[1,2,"THREE"],"func_name":"B_PRE_recurseArr","pre_collect_str":"[1,2,3]","var_name":"growing_array"},{"collection_ref":[1,2,"THREE",4],"func_name":"B_PRE_recurseArr","pre_collect_str":"[1,2,\\\"THREE\\\",4]","var_name":"growing_array"},{"collection_ref":[1,2,"THREE",4,5],"func_name":"B_PRE_recurseArr","pre_collect_str":"[1,2,\\\"THREE\\\",4,5]","var_name":"growing_array"}]}`
+    B_expected_second_stack = `{"B_PRE_check_recurseArr-growing_array":[{"collection_ref":[1],"func_name":"B_PRE_check_recurseArr","pre_collect_str":"[1]","var_name":"growing_array"},{"collection_ref":[1,2],"func_name":"B_PRE_check_recurseArr","pre_collect_str":"[1,2]","var_name":"growing_array"},{"collection_ref":[1,2,"THREE"],"func_name":"B_PRE_check_recurseArr","pre_collect_str":"[1,2,3]","var_name":"growing_array"},{"collection_ref":[1,2,"THREE",4],"func_name":"B_PRE_check_recurseArr","pre_collect_str":"[1,2,\\\"THREE\\\",4]","var_name":"growing_array"},{"collection_ref":[1,2,"THREE",4,5],"func_name":"B_PRE_check_recurseArr","pre_collect_str":"[1,2,\\\"THREE\\\",4,5]","var_name":"growing_array"}]}`
     B_recurseArr([1], 6)
     if (B_expected_second_stack === stack_str){
       if (typeof total_checks === 'undefined')
@@ -124,10 +124,10 @@ A. Check that a single parameter of any type is not empty.
 */
 
     type_czech = TypeCzech('NO-ERROR-MESSAGES')
-    function C_PRE_yourFunc(c_collection) {
+    function C_PRE_check_yourFunc(c_collection) {
       type_czech.mutateSnapshot({a:12}, 'var-name', c_collection)
     }
-    C_yourFunc = type_czech.link(C_yourFunc, C_PRE_yourFunc) 
+    C_yourFunc = type_czech.link(C_yourFunc, C_PRE_check_yourFunc) 
     function C_yourFunc(c_collection) { }
     
     try {
@@ -144,7 +144,7 @@ A. Check that a single parameter of any type is not empty.
       else
         total_checks += 1
     } else {
-      throw `C. _mutateSnapshot().md did not fail - TC@01`
+      throw `C. _mutateSnapshot().md did not fail - VE@601`
     }
 
 /*
@@ -152,10 +152,10 @@ A. Check that a single parameter of any type is not empty.
 */
 
     type_czech = TypeCzech('NO-ERROR-MESSAGES')
-    function D_PRE_yourFunc(d_collection) {
+    function D_PRE_check_yourFunc(d_collection) {
       type_czech.mutateSnapshot('func-name', {b:13}, d_collection)
     }
-    D_yourFunc = type_czech.link(D_yourFunc, D_PRE_yourFunc) 
+    D_yourFunc = type_czech.link(D_yourFunc, D_PRE_check_yourFunc) 
     function D_yourFunc(d_collection) { }
     try {
       D_yourFunc([1,2,3])
@@ -169,7 +169,7 @@ A. Check that a single parameter of any type is not empty.
       else
         total_checks += 1
     } else {
-      throw `D. _mutateSnapshot().md did not fail - TC@02`
+      throw `D. _mutateSnapshot().md did not fail - VE@602`
     }
 
 /*
@@ -177,10 +177,10 @@ A. Check that a single parameter of any type is not empty.
 */
 
     type_czech = TypeCzech('NO-ERROR-MESSAGES')
-    function E_PRE_yourFunc(e_scalar) {
+    function E_PRE_check_yourFunc(e_scalar) {
       type_czech.mutateSnapshot('func-name', 'var-name', 'not a collection')
     }
-    E_yourFunc = type_czech.link(E_yourFunc, E_PRE_yourFunc) 
+    E_yourFunc = type_czech.link(E_yourFunc, E_PRE_check_yourFunc) 
     function E_yourFunc(e_scalar) { }
     try {
       E_yourFunc('a-scalar')
@@ -203,10 +203,10 @@ A. Check that a single parameter of any type is not empty.
 */
 
     type_czech = TypeCzech('NO-ERROR-MESSAGES')
-    function F_PRE_yourFunc(f_variable) {
+    function F_PRE_check_yourFunc(f_variable) {
       type_czech.mutateSnapshot('func-name', 'var-name')
     }
-    F_yourFunc = type_czech.link(F_yourFunc, F_PRE_yourFunc) 
+    F_yourFunc = type_czech.link(F_yourFunc, F_PRE_check_yourFunc) 
     function F_yourFunc(f_variable) { }
     try {
       F_yourFunc('a-scalar')
@@ -230,10 +230,10 @@ A. Check that a single parameter of any type is not empty.
 */
 
     type_czech = TypeCzech('NO-ERROR-MESSAGES')
-    function G_PRE_yourFunc(cyclic_array) {
+    function G_PRE_check_yourFunc(cyclic_array) {
       return type_czech.mutateSnapshot('func-name', 'var-name', cyclic_array)
     }
-    G_yourFunc = type_czech.link(G_yourFunc, G_PRE_yourFunc) 
+    G_yourFunc = type_czech.link(G_yourFunc, G_PRE_check_yourFunc) 
     function G_yourFunc(cyclic_array) { }
     try {
       cyclic_array = []
@@ -259,10 +259,10 @@ A. Check that a single parameter of any type is not empty.
 */
 
     type_czech = TypeCzech('NO-ERROR-MESSAGES')
-    function H_PRE_yourFunc(cyclic_object) {
+    function H_PRE_check_yourFunc(cyclic_object) {
       return type_czech.mutateSnapshot('func-name', 'var-name', cyclic_object)
     }
-    H_yourFunc = type_czech.link(H_yourFunc, H_PRE_yourFunc) 
+    H_yourFunc = type_czech.link(H_yourFunc, H_PRE_check_yourFunc) 
     function H_yourFunc(cyclic_array) { }
     try {
       cyclic_object = {}
@@ -284,4 +284,4 @@ A. Check that a single parameter of any type is not empty.
 
 
 
-
+&copy; 2021 Steen Hansen

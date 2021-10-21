@@ -26,7 +26,7 @@ examples-node
 
 
 
-
+&copy; 2021 Steen Hansen
 
 
 

@@ -258,8 +258,5 @@ https://jsfiddle.net/steen_hansen/b2qpL9rt/?602-Extending-OLOO-Imports
 https://jsfiddle.net/steen_hansen/ktezbg7c/?603-Extending-OLOO-Production       
 ) 603 - Created OLOO Production
 
-
-## Created by
-
-[Steen Hansen](https://github.com/steenhansen)
+&copy; 2021 Steen Hansen
 

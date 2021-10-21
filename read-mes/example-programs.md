@@ -58,3 +58,6 @@ detachable-examples/501-Inherited-Prototypes-Inline.html
 
 [Steen Hansen](https://github.com/steenhansen)
 
+
+
+&copy; 2021 Steen Hansen

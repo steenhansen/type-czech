@@ -4,10 +4,10 @@ A. Check variadic with array type - ['Number'].
 */
 
     type_czech = TypeCzech('NO-ERROR-MESSAGES')
-    function A_PRE_yourFunc() {
+    function A_PRE_check_yourFunc() {
        return type_czech.check_variadicType(arguments, ['Number'])
      }
-                    A_yourFunc = type_czech.link(A_yourFunc, A_PRE_yourFunc) 
+                    A_yourFunc = type_czech.link(A_yourFunc, A_PRE_check_yourFunc) 
                     function A_yourFunc(){ }
 
     A_yourFunc(9)        // pass 1 F number
@@ -57,6 +57,6 @@ A. Check variadic with array type - ['Number'].
       total_checks += expected_tests
 
 
-
+&copy; 2021 Steen Hansen
 
 

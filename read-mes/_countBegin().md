@@ -6,8 +6,8 @@
 */
 
     type_czech = TypeCzech('NO-ERROR-MESSAGES')
-    function A_PRE_yourFunc() { }
-    A_yourFunc = type_czech.link(A_yourFunc, A_PRE_yourFunc) 
+    function A_PRE_check_yourFunc() { }
+    A_yourFunc = type_czech.link(A_yourFunc, A_PRE_check_yourFunc) 
     function A_yourFunc() { }
 
     type_czech.countBegin();
@@ -23,3 +23,4 @@
     else
       total_checks += 1
 
+&copy; 2021 Steen Hansen

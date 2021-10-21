@@ -7,8 +7,9 @@
 const { TypeCzech } = require('../TypeCzech.js');
 
 const {
-  errorLabel, beforeCheck, afterCheck, testError,
-  oneLineString, errorMessage, arrayErrorToString,
+  errorLabel, beforeCheck, afterCheck,
+  testError, oneLineString, errorMessage,
+  arrayErrorToString, errorNotMatchException, consoleExpectedActual,
 } = require('./mutation-tests/string-funcs.js');
 
 const { getRandomInt } = require('./dynamic-generative/getRandomInt.js');
@@ -30,17 +31,32 @@ global.oneLineString = oneLineString;
 global.errorMessage = errorMessage;
 global.arrayErrorToString = arrayErrorToString;
 
+global.errorNotMatchException = errorNotMatchException;
+global.consoleExpectedActual = consoleExpectedActual;
+
 global.total_checks = 0;
 global.total_fails = 0;
 global.show_random = false;
 
 require('./mutation-tests/link_01000.js');
-require('./mutation-tests/check_interface_02000.js');
-require('./mutation-tests/check_empty_03000.js');
+              require('./mutation-tests/check_interface_02000.js');
+              require('./mutation-tests/check_interface_02900.js');
+              require('./mutation-tests/check_empty_03000.js');
+              require('./mutation-tests/check_empty_03800.js');
+              require('./mutation-tests/check_empty_03900.js');
+
+
 require('./mutation-tests/check_emptyEither_04000.js');
-require('./mutation-tests/check_type_05000.js');
+              require('./mutation-tests/check_type_05000.js');
+              require('./mutation-tests/check_type_05800.js');
+              require('./mutation-tests/check_type_05900.js');
+
 require('./mutation-tests/check_typeExtra_06000.js');
-require('./mutation-tests/check_typeEither_07000.js');
+
+        require('./mutation-tests/check_typeEither_07000.js');
+        require('./mutation-tests/check_typeEither_07800.js');
+        require('./mutation-tests/check_typeEither_07900.js');
+
 require('./mutation-tests/_cycle_loops_08000.js');
 require('./mutation-tests/_aTypeOf_09000.js');
 
@@ -61,42 +77,35 @@ require('./mutation-tests/_shapeVariable_22000.js');
 require('./mutation-tests/typeIsA_23000.js');
 require('./mutation-tests/typeProtos_24000.js');
 require('./mutation-tests/typeIs_25000.js');
-
 require('./mutation-tests/_fast_json_stable_stringify_26000.js');
 require('./mutation-tests/_jsonStr_27000.js');
-
 require('./mutation-tests/_shrinkDiffs_28000.js');
 require('./mutation-tests/_toStr_29000.js');
 
 require('./mutation-tests/check_emptyExtra_30000.js');
 require('./mutation-tests/_eitherChecks_31000.js');
-
+          require('./library-tests/variadic_32000.js');
+          require('./library-tests/check_variadicEmpty_32800.js');
+          require('./library-tests/check_variadicType_32900.js');
 require('./library-tests/typeCzech_90000.js');
-require('./library-tests/variadic_91000.js');
+
 
 require('../read-mes/_check_empty().md');
 require('../read-mes/_check_emptyEither().md');
 require('../read-mes/_check_emptyExtra().md');
-
 require('../read-mes/_check_interface().md');
-
 require('../read-mes/_check_mutated().md');
-
 require('../read-mes/_check_type().md');
 require('../read-mes/_check_typeEither().md');
 require('../read-mes/_check_typeExtra().md');
-
 require('../read-mes/_check_variadicType().md');
 require('../read-mes/_check_variadicEmpty().md');
-
 require('../read-mes/_countBegin().md');
 require('../read-mes/_countEnd().md');
 require('../read-mes/_countFails().md');
 require('../read-mes/_countTally().md');
-
 require('../read-mes/_link().md');
 require('../read-mes/_mutateSnapshot().md');
-
 require('../read-mes/_typeIsA().md');
 require('../read-mes/_typeFinal().md');
 require('../read-mes/_typeProtos().md');

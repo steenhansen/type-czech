@@ -6,28 +6,28 @@
 tested_variadic_types = 0;
 failed_variadic_types = 0;
 
-variadic_91001();
-variadic_91002();
-variadic_91003();
+variadic_32001();
+variadic_32002();
+variadic_32003();
 
-variadic_91101();
-variadic_91102();
+variadic_32101();
+variadic_32102();
 
-variadic_91201();
-//variadic_91202();
+variadic_32201();
+//variadic_32202();
 
 total_fails += failed_variadic_types;
 total_checks += tested_variadic_types;
 if (show_random) {
-  console.log('variadic failed tests 91000', failed_variadic_types)
-  console.log('variadic passed tests 91000', tested_variadic_types)
+  console.log('variadic failed tests 32000', failed_variadic_types)
+  console.log('variadic passed tests 32000', tested_variadic_types)
 }
 
-function variadic_91001(){
+function variadic_32001(){
   if (typeof fail_all_tests!== 'undefined' && fail_all_tests) {
     failed_variadic_types ++;
   }
-  TYPE_CZECH_current_test_number = '91001';
+  TYPE_CZECH_current_test_number = '32001';
   error_id = errorLabel(TYPE_CZECH_current_test_number);
   type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS'
   //, 'DEBUG-CONSOLE-TRACE'
@@ -60,11 +60,11 @@ function variadic_91001(){
 
 
 
-function variadic_91002(){
+function variadic_32002(){
   if (typeof fail_all_tests!== 'undefined' && fail_all_tests) {
     failed_variadic_types ++;
   }
-  TYPE_CZECH_current_test_number = '91002';
+  TYPE_CZECH_current_test_number = '32002';
   error_id = errorLabel(TYPE_CZECH_current_test_number);
 
   type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS'
@@ -96,11 +96,11 @@ function variadic_91002(){
                                               tested_variadic_types ++;
 }
 
-function variadic_91003(){
+function variadic_32003(){
   if (typeof fail_all_tests!== 'undefined' && fail_all_tests) {
     failed_variadic_types ++;
   }
-  TYPE_CZECH_current_test_number = '91003';
+  TYPE_CZECH_current_test_number = '32003';
   error_id = errorLabel(TYPE_CZECH_current_test_number);
   type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS'
   //, 'DEBUG-CONSOLE-TRACE'
@@ -133,11 +133,11 @@ function variadic_91003(){
 
 
 
-function variadic_91101(){
+function variadic_32101(){
   if (typeof fail_all_tests!== 'undefined' && fail_all_tests) {
     failed_variadic_types ++;
   }
-  TYPE_CZECH_current_test_number = '91101';
+  TYPE_CZECH_current_test_number = '32101';
   error_id = errorLabel(TYPE_CZECH_current_test_number);
 
  // type_czech=TypeCzech('LOG-ERRORS')           /// works correctly
@@ -172,11 +172,11 @@ function variadic_91101(){
                                               tested_variadic_types ++;
 }
 
-function variadic_91102(){
+function variadic_32102(){
   if (typeof fail_all_tests!== 'undefined' && fail_all_tests) {
     failed_variadic_types ++;
   }
-  TYPE_CZECH_current_test_number = '91102';
+  TYPE_CZECH_current_test_number = '32102';
   error_id = errorLabel(TYPE_CZECH_current_test_number);
   type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS'
  // , 'DEBUG-CONSOLE-TRACE'
@@ -207,11 +207,11 @@ function variadic_91102(){
                                               tested_variadic_types ++;
 }
 
-function variadic_91201(){
+function variadic_32201(){
   if (typeof fail_all_tests!== 'undefined' && fail_all_tests) {
     failed_variadic_types ++;
   }
-  TYPE_CZECH_current_test_number = '91201';
+  TYPE_CZECH_current_test_number = '32201';
   error_id = errorLabel(TYPE_CZECH_current_test_number);
 
   type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS'
@@ -244,11 +244,11 @@ function variadic_91201(){
 }
 
 
-// function variadic_91202(){
+// function variadic_32202(){
 //   if (typeof fail_all_tests!== 'undefined' && fail_all_tests) {
 //     failed_variadic_types ++;
 //   }
-//   TYPE_CZECH_current_test_number = '91202';
+//   TYPE_CZECH_current_test_number = '32202';
 //   error_id = errorLabel(TYPE_CZECH_current_test_number);
 
 //   type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS'

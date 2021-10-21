@@ -7,24 +7,25 @@
 
 
 <div id='js-div' style="width:53%">
+  <a href='https://github.com/steenhansen/type-czech' class='git-hub'>GitHub Package</a>
   <div id='js-code'>the javascript</div>
 </div>
 
 <div id="the-explanation" style="width:47%">
-  <div class='an-explantion'>27 &mdash; Type and Emptiness with Extra Parameter Option Objects</div>
+  <div class='an-explantion'>27 &mdash; Type and Emptiness Together with Extra Parameter Option Objects</div>
   <div id='explanation-text'>
     <br>
     Option objects can have extra parameters that are not checked for type nor emptiness.
     Important wanted parameters are still checked, but unlisted arguments are ignored.
 
 <br><br>
-   In the example to the left, by using the check_interfaceExtra()
+   In the example to the left, by using the check_typeExtra()
     function, only the listed parameters of 'salu', 'f_name', and 'l_name' are checked for check_type types.
     <br><br>
 
 
 
-    Only the parameters 'f_name' and 'l_name' are checked for emptiness with the check_objectEmptyExtra() function.
+    Only the parameters 'f_name' and 'l_name' are checked for emptiness with the check_emptyExtra() function.
 
     <br><br>
 
@@ -38,8 +39,27 @@
   </div>
 
   <br>
+
+
+
+
+
+  
+<!--            --------------TYPE 1----------------------------       -->
+
+<script src="../web-resources/consolelog.js"></script>
+<script src="../TypeCzech.js"></script>
+<link rel="stylesheet" href="../web-resources/type-czech.css">
+
+<!--            ---------------TYPE 1s---------------------------       -->
+
+
+
+
+
   <div id='js-fiddles'>
-    jsFiddles:
+    <a title="Example-Contents" href="../example-snippets/example-contents.html">Contents</a>
+    
     <a title="00-Readme-Example" href="../example-snippets/00-Readme-Example.html">00</a>
   
     <a title="01-PRE-and-POST-Funtions" href="../example-snippets/01-PRE-and-POST-Functions.html">01</a>
@@ -169,8 +189,10 @@
       <a title="602-Extending-OLOO-Imports.html" href="../examples-web/602-Extending-OLOO-Imports/602-Extending-OLOO-Imports.html">602</a>
       
       <a title="603-Extending-OLOO-Production.html" href="../examples-web/603-Extending-OLOO-Production/603-Extending-OLOO-Production.html">603</a>
-  
+      &copy; 2021 Steen Hansen
     </div>
+
+<!--            ---------------TYPE 1s---------------------------       -->
 
 
   
@@ -179,28 +201,6 @@
 
 
 
-
-
-<!--            --------------TYPE 1----------------------------       -->
-
-
-<script src="../web-resources/consolelog.js">
-</script>
-
-
-<script src="../TypeCzech.js">
-</script>
-
-
-
-<link rel="stylesheet" href="../web-resources/type-czech.css">
-
-
-
-
-
-
-<!--            ---------------TYPE 1s---------------------------       -->
 
 
 
@@ -229,8 +229,7 @@
 /**/  PERSON_EMPTIES = {f_name:'EMPTY-ERROR', l_name:'EMPTY-ERROR'}
 /**/
 /**/  function PRE_check_personExtra(person_object) {
-/**/    type_error = type_czech.check_typeExtra(person_object,
-/**/                                                      PERSON_TYPE_SIGNATURE)
+/**/    type_error=type_czech.check_typeExtra(person_object,PERSON_TYPE_SIGNATURE)
 /**/    if (type_error) return type_error
 /**/
 /**/    empty_error = type_czech.check_emptyExtra(person_object, PERSON_EMPTIES)

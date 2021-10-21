@@ -26,10 +26,6 @@
   font-family: 'Inconsolata', monospace;  
   background-color: #eeeeee;
 }
-#js-div{
-  float:left;
-  height:98vh;
-}
 #js-fiddles{ 
   float:left;  
   background-color: #dddddd; 
@@ -72,7 +68,7 @@ li{
 .text-1{ color:red; font-weight: bold; }
 .text-2{ color: rgb(0, 0, 255); font-weight: bold; }
 .text-3{ color: rgb(0, 255, 0); font-weight: bold; }
-.text-4{ color: red; font-weight: bolder; }
+.text-4{ color: #800080; font-weight: bold; }
 .text-5{ color: red; font-weight: bolder; }
 .text-6{ color: red; font-weight: bolder; }
 .back-1{ background-color: rgb(255, 230, 230); }
@@ -116,3 +112,14 @@ table, th, td {
   /* overflow: hidden; */
 }
 
+.git-hub{
+  position:absolute;
+  font-family:arial; 
+  right:1%;
+}
+
+#js-div{
+  float:left;
+  height:98vh;
+  position:relative;
+}

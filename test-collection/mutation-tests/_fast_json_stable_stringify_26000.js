@@ -26,6 +26,7 @@ function _fast_json_stable_stringify_26001(){
   function test_fast_json_stable(an_arg, expected_json) {
     actual_json = type_czech._fast_json_stable_stringify(an_arg)
     if (actual_json !== expected_json) {
+      console.log('_fast_json_stable_stringify error : ', an_arg, expected_json)
       failed_fast_json_stable_stringify += 1
     }
     tested_fast_json_stable_stringify += 1
@@ -35,17 +36,17 @@ function _fast_json_stable_stringify_26001(){
     test_fast_json_stable(234n, '"234n"')                                       // pass 2 B bigint
     test_fast_json_stable(false, 'false')                                       // pass 3 C boolean
     test_fast_json_stable(new Date('2005-06-07'), '"2005-06-07T00:00:00.000Z"') // pass 4 D date
-    test_fast_json_stable(a=>a+8, 'a=>a+8 ...')                                 // pass 5 E function
+    test_fast_json_stable(a=>a+8, 'a=>a+8 ***')                                 // pass 5 E function
     test_fast_json_stable(9, '9')                                               // pass 6 F number
     test_fast_json_stable({b:10}, `{"b":10}`)                                   // pass 7 G object
-    test_fast_json_stable(/d/, '/d/ ...')                                       // pass 8 H regex
+    test_fast_json_stable(/d/, '/d/ +++')                                       // pass 8 H regex
     test_fast_json_stable('an-str', '"an-str"')                                 // pass 9 I string
     test_fast_json_stable(Symbol('sym'), `Symbol(sym)`)                         // pass 10 J symbol
     test_fast_json_stable([], '[]')                                           // pass 11 K empty array
     test_fast_json_stable(new Date(''), 'null')                               // pass 12 L empty date
     test_fast_json_stable(NaN, 'NaN')                                         // pass 13 M empty number
     test_fast_json_stable({}, '{}')                                           // pass 14 N empty object
-    test_fast_json_stable(/(?:)/, '/(?:)/ ...')                               // pass 15 O empty regex
+    test_fast_json_stable(/(?:)/, '/(?:)/ +++')                               // pass 15 O empty regex
     test_fast_json_stable('', '""')                                           // pass 16 P empty string
     test_fast_json_stable(null, 'null')                                       // pass 17 Q empty null
     test_fast_json_stable(undefined, 'undefined')                             // pass 18 R empty undefined

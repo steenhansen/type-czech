@@ -16,15 +16,17 @@
     /**/    type_czech = { link: (_) => _, is_active: false }
     /**/  }
 
-    /**/    function PRE_oneNumber() {
+    /**/    function PRE_check_oneNumber() {
     /**/      return type_czech.check_type(arguments, 'Number')
     /**/   }
 
-    /**/  PRE_oneNumber =(typeof PRE_oneNumber==='undefined') ? undefined:PRE_oneNumber
+    /**/  PRE_check_oneNumber =(typeof PRE_check_oneNumber==='undefined') ? undefined:PRE_check_oneNumber
     
-    oneNumber = type_czech.link(oneNumber, PRE_oneNumber)
+    oneNumber = type_czech.link(oneNumber, PRE_check_oneNumber)
 
     function oneNumber(){}
     
     oneNumber(7)
     oneNumber('an-error')
+
+&copy; 2021 Steen Hansen

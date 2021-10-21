@@ -7,16 +7,19 @@
 
     type_czech = TypeCzech('NO-ERROR-MESSAGES')
     fail_count = 0
-    function A_PRE_yourFunc(the_arg) {
+    function A_PRE_check_yourFunc(the_arg) {
       try {
         return type_czech.check_mutated(the_arg, the_arg)
       } catch (e) {
-        expected_start = 'No record of an entry for mutateSnapshot('
-        if (e.startsWith(expected_start))
-          fail_count++ ///console.log('e', e)
+        expected_start = 'No record of an entry for TypeCzech.check_mutated('
+        if (e.startsWith(expected_start)) {
+          fail_count++
+        } else {
+          console.log('e', e)
+        }
       }
     }
-                A_yourFunc = type_czech.link(A_yourFunc, A_PRE_yourFunc) 
+                A_yourFunc = type_czech.link(A_yourFunc, A_PRE_check_yourFunc) 
                 function A_yourFunc(){ }
 
     A_yourFunc([1])                    // fail 1 A array
@@ -71,13 +74,13 @@
 */
 
     type_czech = TypeCzech('NO-ERROR-MESSAGES')
-    function B_PRE_yourFunc(b_collection) {
-      type_czech.mutateSnapshot('B_PRE_yourFunc', 'b_collection', b_collection)
+    function B_PRE_check_yourFunc(b_collection) {
+      type_czech.mutateSnapshot('B_PRE_check_yourFunc', 'b_collection', b_collection)
     }
-    function B_POST_yourFunc() {
-      return type_czech.check_mutated('B_PRE_yourFunc', 'b_collection')
+    function B_POST_check_yourFunc() {
+      return type_czech.check_mutated('B_PRE_check_yourFunc', 'b_collection')
     }
-    B_yourFunc = type_czech.link(B_yourFunc, B_PRE_yourFunc, B_POST_yourFunc) 
+    B_yourFunc = type_czech.link(B_yourFunc, B_PRE_check_yourFunc, B_POST_check_yourFunc) 
 
     function B_yourFunc(b_collection, change_function){
       change_function(b_collection)
@@ -121,15 +124,15 @@
 */
 
     type_czech = TypeCzech('NO-ERROR-MESSAGES')
-    function C_PRE_recurseArr(growing_array){
-      type_czech.mutateSnapshot('C_PRE_recurseArr', 'growing_array', growing_array)
+    function C_PRE_check_recurseArr(growing_array){
+      type_czech.mutateSnapshot('C_PRE_check_recurseArr', 'growing_array', growing_array)
     }
     
-    function C_POST_recurseArr(growing_array){
-      return type_czech.check_mutated('C_PRE_recurseArr', 'growing_array')
+    function C_POST_check_recurseArr(growing_array){
+      return type_czech.check_mutated('C_PRE_check_recurseArr', 'growing_array')
     }
     
-    C_recurseArr = type_czech.link(C_recurseArr, C_PRE_recurseArr, C_POST_recurseArr)
+    C_recurseArr = type_czech.link(C_recurseArr, C_PRE_check_recurseArr, C_POST_check_recurseArr)
 
     function C_recurseArr(growing_array, stop_recurse){
       next_index = growing_array.length + 1
@@ -167,13 +170,13 @@
 */
 
     type_czech = TypeCzech('LOG-ERRORS')
-    function D_PRE_yourFunc(b_collection) {
-      type_czech.mutateSnapshot('D_PRE_yourFunc', 'b_collection', b_collection)
+    function D_PRE_check_yourFunc(b_collection) {
+      type_czech.mutateSnapshot('D_PRE_check_yourFunc', 'b_collection', b_collection)
     }
-    function D_POST_yourFunc() {
-      return type_czech.check_mutated('D_PRE_yourFunc', 'b_collection', 'error-param')
+    function D_POST_check_yourFunc() {
+      return type_czech.check_mutated('D_PRE_check_yourFunc', 'b_collection', 'error-param')
     }
-    D_yourFunc = type_czech.link(D_yourFunc, D_PRE_yourFunc, D_POST_yourFunc) 
+    D_yourFunc = type_czech.link(D_yourFunc, D_PRE_check_yourFunc, D_POST_check_yourFunc) 
 
     function D_yourFunc(b_collection){ }
 
@@ -190,5 +193,7 @@
       else
         total_checks += 1
     } else {
-      throw `D. _mutateSnapshot().md did not fail - TC@18`
+      throw `D. _mutateSnapshot().md did not fail - VE@604`
     }
+
+&copy; 2021 Steen Hansen    

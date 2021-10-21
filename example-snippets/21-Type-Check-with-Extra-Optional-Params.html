@@ -2,39 +2,32 @@
 <title>21-Type-Check-with-Extra-Optional-Params</title>
 
 
-<div id='js-div' style="width:58%">
+<div id='js-div' style="width:52%">
+  <a href='https://github.com/steenhansen/type-czech' class='git-hub'>GitHub Package</a>
   <div id='js-code'>the javascript</div>
-</div>
-
-<div id="the-explanation" style="width:42%">
-  <div class='an-explantion'>21 &mdash; Type Check with Extra Optional Parameters</div>
-  <div id='explanation-text'>
-    <br>
 
 
-  Extra optional parameter values are not checked for correct type, they are just ignored. 
-  As long as the correct declared type shape is not violated, any additional elective 
-  parameters will be overlooked when using 
-  type_czech.check_typeExtra(arguments, expected_types).
-  <br><br>
 
-  There is WRONG no way of specifying optional keys, and optional array elements.
+
+
+
+
   
-  <br><br>
-  Objects specify their mandatory keys and types, whilst arrays just check the
-  begining elements for types, and ignore the rest undescribed elements.
-    
-  <br><br>
-  </div>
-  <div id="console-log"  >
-    <div class='a-title'>Console Output</div>
-    <div id='log-text'></div>
-    <br>
-  </div>
 
-  <br><br>
+
+<!--            -----------------TYPE 1-------------------------       -->
+
+<script src="../web-resources/consolelog.js"></script>
+<script src="../TypeCzech.js"></script>
+<link rel="stylesheet" href="../web-resources/type-czech.css">
+
+<!--            ----------------TYPE 1--------------------------       -->
+
+
+
   <div id='js-fiddles'>
-    jsFiddles:
+    <a title="Example-Contents" href="../example-snippets/example-contents.html">Contents</a>
+    
     <a title="00-Readme-Example" href="../example-snippets/00-Readme-Example.html">00</a>
   
     <a title="01-PRE-and-POST-Funtions" href="../example-snippets/01-PRE-and-POST-Functions.html">01</a>
@@ -164,8 +157,62 @@
       <a title="602-Extending-OLOO-Imports.html" href="../examples-web/602-Extending-OLOO-Imports/602-Extending-OLOO-Imports.html">602</a>
       
       <a title="603-Extending-OLOO-Production.html" href="../examples-web/603-Extending-OLOO-Production/603-Extending-OLOO-Production.html">603</a>
-  
+      &copy; 2021 Steen Hansen
     </div>
+
+
+
+<!--            ----------------TYPE 1--------------------------       -->
+
+
+
+
+
+</div>
+
+<div id="the-explanation" style="width:48%">
+  <div class='an-explantion'>21 &mdash; Type Check with Extra Optional Parameters</div>
+  <div id='explanation-text'>
+    <br>
+    This is only for type checking <b>single</b> objects and <b>single</b> array parameter and result types.
+    Please note that in the example to the left that the lone <span class='purp-similar'>person_obj</span>
+   parameter is referenced, not the <b>arguments</b> object. 
+    
+    <br><br>
+    To also check the string 'IGNORED-STRING' the checking function could be changed to :
+<pre>
+function PRE_check_Person(person_obj, ignored_string){
+  person_signature = {f_name:'String', l_name:'String'}
+  person_issue = type_czech.check_typeExtra(person_obj, person_signature)
+  if (person_issue) return person_issue
+
+  return type_czech.check_type(ignored_string, 'String')
+}
+</pre> 
+
+  Extra optional parameter values are not checked for correct type, they are just ignored. 
+  As long as the correct declared type shape is not violated, any additional elective 
+  parameters will be overlooked when using 
+  type_czech.check_typeExtra(<b>VARIABLE_NAME</b>, expected_types); and not using
+  the arguments object.
+    
+  <br><br>
+  Objects specify their mandatory keys and types, whilst arrays just check the
+  begining elements for types, and ignore the rest undescribed elements.
+    
+  <br>
+
+  </div>
+
+
+  <div id="console-log"  >
+    <div class='a-title'>Console Output</div>
+    <div id='log-text'></div>
+    <br>
+  </div>
+
+  <br><br>
+
   
     
 </div>
@@ -176,30 +223,6 @@
 
 
 
-
-
-
-<!--            -----------------TYPE 1-------------------------       -->
-
-
-
-
-<script src="../web-resources/consolelog.js">
-</script>
-
-
-<script src="../TypeCzech.js">
-</script>
-
-
-
-<link rel="stylesheet" href="../web-resources/type-czech.css">
-
-
-
-
-
-<!--            ----------------TYPE 1--------------------------       -->
 
 
 
@@ -233,7 +256,7 @@
 /**/  
 /**/  function PRE_check_Person(person_obj){
 /**/    person_signature = {f_name:'String', l_name:'String'}
-/**/    return type_czech.check_typeExtra(arguments, person_signature)
+/**/    return type_czech.check_typeExtra(person_obj, person_signature)
 /**/  }
 /**/  
 /**/  function POST_check_Person(person_arr){
@@ -255,28 +278,25 @@ function Person(person_obj){
   return the_person
 }
 
-guy = Person({f_name:'Guy', l_name:'Lafleur', extra_1:10})
+guy = Person({f_name:'Guy', l_name:'Lafleur', extra_1:10}, 'IGNORED-STRING')
 log(guy)
 
-linesConsole(3)
-
+linesConsole(1)
 
 hakeem = Person({f_name:'Hakeem Olajuwon'})
 log(hakeem)
 
-linesConsole(3)
+linesConsole(1)
 
 fouts = Person({f_name:'Dan', l_name:'Fouts', extra_1: 'Air Coryell'})
 log(fouts)
 
 
-linesConsole(3)
+linesConsole(1)
 
 mc_enroe = Person({f_name:'John', l_name:'McEnroe',
-                     extra_1: 'Angry', extra_2: 1959, extra_3: 'vs. Bjorn Borg'})
+                  extra_1: 'Angry', extra_2: 1959, extra_3: 'vs. Bjorn Borg'})
 log(mc_enroe)
-
-
 </script>
 
 
@@ -308,6 +328,18 @@ log(mc_enroe)
   fromToBoldText(1568, 1625, 'code', 3)  // extra_1: 'Angry', extra_2: 1959, extra_3: 'vs. Bjorn Borg'}
 
   fromToBoldText(897, 945, 'log', 3)    //  [ "Angry", 1959, "vs. Bjorn Borg" ]
+
+
+
+
+fromToBoldText(458, 467, 'code', 4)  // person_obj
+fromToBoldText(575, 584, 'code', 4)  // person_obj    purple
+
+
+
+
+
+
 </script>
 
 <link rel="stylesheet"
