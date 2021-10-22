@@ -225,7 +225,7 @@
 /**/  if (typeof TypeCzech === 'function')
 /**/    type_czech = TypeCzech('LOG-ERRORS')   
 /**/  else
-/**/    type_czech = { link: (nop) => nop, is_active: false }
+/**/    type_czech = { link: (nop) => nop, isActive: (x) => false }
 /**/
 /**/  PRE_check_personExtra = (typeof PRE_check_personExtra === 'undefined') 
 /**/                          ? undefined : PRE_check_personExtra
@@ -243,7 +243,7 @@
 /**/    if (empty_error) return empty_error
 /**/  }
 /**/
-/**/  personExtra = type_czech.link(personExtra, PRE_check_personExtra)
+/**/  personExtra = type_czech.linkUp(personExtra, PRE_check_personExtra)
 
 function personExtra(person_object) {
   let {salu, f_name, l_name, extra_1, extra_2, extra_3} = person_object

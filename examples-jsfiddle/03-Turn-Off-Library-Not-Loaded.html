@@ -192,7 +192,7 @@
 if (typeof TypeCzech === 'function')
   type_czech = TypeCzech('LOG-ERRORS')
 else
-  type_czech = { link: (nop) => nop, is_active: false }
+  type_czech = { link: (nop) => nop, isActive: (x) => false }
 </pre>
 
 So if the script loading tag is missing then all Type-Czech calls turn into nops.
@@ -205,15 +205,15 @@ So if the script loading tag is missing then all Type-Czech calls turn into nops
 Note that there is a very small performance penalty for keeping the checking functions "as is", when the 
 TypeCzech library is not present.
 
-All calls to Person below are still intercepted by the stand in type_czech.link() in this example.
+All calls to Person below are still intercepted by the stand in type_czech.linkUp() in this example.
 <pre>
-  type_czech = { link: (nop) => nop, is_active: false }
+  type_czech = { link: (nop) => nop, isActive: (x) => false }
 </pre>
 
 So when there is no Type-Czech library, an extra function call tax is incurred.
 Because the below code 
 <pre>
-  Person = type_czech.link(Person, PRE_check_Person)
+  Person = type_czech.linkUp(Person, PRE_check_Person)
 
   Person(arguments);
 </pre>
@@ -272,7 +272,7 @@ Of course one can always not load any Type-Czech code to production also.
 /**/  if (typeof TypeCzech === 'function')
 /**/    type_czech = TypeCzech('LOG-ERRORS')
 /**/  else
-/**/    type_czech = { link: (nop) => nop, is_active: false }
+/**/    type_czech = { link: (nop) => nop, isActive: (x) => false }
 /**/
 /**/  function PRE_check_Person(f_name, l_name){
 /**/    if (arguments.length !== 2) 
@@ -285,7 +285,7 @@ Of course one can always not load any Type-Czech code to production also.
 /**/    return ''
 /**/  }
 /**/
-/**/  Person = type_czech.link(Person, PRE_check_Person) 
+/**/  Person = type_czech.linkUp(Person, PRE_check_Person) 
 
 function Person(f_name, l_name){
   first_last = f_name + ' ' + l_name

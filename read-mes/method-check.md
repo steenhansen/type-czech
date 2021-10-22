@@ -15,14 +15,14 @@ without worrying about the order of function declarations.
       if (error_issue) return 'Something amiss with yourFunc results'
     }
 
-    yourFunc = type_czech.link(yourFunc, PRE_check_yourFunc, POST_check_yourFunc) 
+    yourFunc = type_czech.linkUp(yourFunc, PRE_check_yourFunc, POST_check_yourFunc) 
 
     function yourFunc(param_1, param_2){
     }
 
 To only check function results, pass 'undefined' in for the before function.
 
-    aFunction = type_czech.link(aFunction, undefined, after_aFunction) 
+    aFunction = type_czech.linkUp(aFunction, undefined, after_aFunction) 
 
 
 &copy; 2021 Steen Hansen

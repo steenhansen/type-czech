@@ -8,7 +8,7 @@ A. Check that a single parameter of any type is not empty.
     function A_PRE_check_yourFunc() {
       return type_czech.check_emptyExtra(arguments, ['EMPTY-ERROR', 'EMPTY-ERROR']);
     }
-                    A_yourFunc = type_czech.link(A_yourFunc, A_PRE_check_yourFunc) 
+                    A_yourFunc = type_czech.linkUp(A_yourFunc, A_PRE_check_yourFunc) 
                     function A_yourFunc(){ }
     A_yourFunc([1], [1])                                       // pass 1 A array
     A_yourFunc(234n,234n)                                      // pass 2 B bigint
@@ -50,10 +50,10 @@ A. Check that a single parameter of any type is not empty.
         throw `A. _check_emptyExtra().md ${expected_tests} expected_tests !== ${total_tests} total_tests`
     else if (expected_fails !== fail_tests) 
         throw `A. _check_emptyExtra().md ${expected_fails} expected_fails !== ${fail_tests} fail_tests`
-    else if  (typeof total_checks === 'undefined')
+    else if  (typeof TEST_total_checks === 'undefined')
       console.log('no-issues: pass', expected_tests-expected_fails, ' fail', expected_fails)
     else
-      total_checks += expected_tests
+      TEST_total_checks += expected_tests
 
 
 
@@ -70,7 +70,7 @@ B. Test single type with extra parameters
     function B_PRE_check_yourFunc() {
       return type_czech.check_emptyExtra(arguments, 'EMPTY-ERROR');
     }
-                    B_yourFunc = type_czech.link(B_yourFunc, B_PRE_check_yourFunc) 
+                    B_yourFunc = type_czech.linkUp(B_yourFunc, B_PRE_check_yourFunc) 
                     function B_yourFunc(){ }
     B_yourFunc(17)
     B_yourFunc(17, 'extra')
@@ -83,10 +83,10 @@ B. Test single type with extra parameters
         throw `B. _check_typeExtra().md ${expected_tests} expected_tests !== ${total_tests} total_tests`
     else if (expected_fails !== fail_tests) 
         throw `B. _check_typeExtra().md ${expected_fails} expected_fails !== ${fail_tests} fail_tests`
-    else if  (typeof total_checks === 'undefined')
+    else if  (typeof TEST_total_checks === 'undefined')
       console.log('no-issues: pass', expected_tests-expected_fails, ' fail', expected_fails)
     else
-      total_checks += expected_tests
+      TEST_total_checks += expected_tests
 
 
 
@@ -101,7 +101,7 @@ C. Test single object with extra parameters
     function C_PRE_check_yourFunc() {
       return type_czech.check_emptyExtra(arguments, {a:'EMPTY-ERROR'});
     }
-                    C_yourFunc = type_czech.link(C_yourFunc, C_PRE_check_yourFunc) 
+                    C_yourFunc = type_czech.linkUp(C_yourFunc, C_PRE_check_yourFunc) 
                     function C_yourFunc(){ } 
     C_yourFunc({a:17})
     C_yourFunc({a:17, b:13})
@@ -116,10 +116,10 @@ C. Test single object with extra parameters
         throw `C. _check_typeExtra().md ${expected_tests} expected_tests !== ${total_tests} total_tests`
     else if (expected_fails !== fail_tests) 
         throw `C. _check_typeExtra().md ${expected_fails} expected_fails !== ${fail_tests} fail_tests`
-    else if  (typeof total_checks === 'undefined')
+    else if  (typeof TEST_total_checks === 'undefined')
       console.log('no-issues: pass', expected_tests-expected_fails, ' fail', expected_fails)
     else
-      total_checks += expected_tests
+      TEST_total_checks += expected_tests
 
 
 /*
@@ -130,7 +130,7 @@ D. Test array with extra parameters
     function D_PRE_check_yourFunc() {
       return type_czech.check_emptyExtra(arguments, ['EMPTY-ERROR', 'EMPTY-ERROR']);
     }
-                    D_yourFunc = type_czech.link(D_yourFunc, D_PRE_check_yourFunc) 
+                    D_yourFunc = type_czech.linkUp(D_yourFunc, D_PRE_check_yourFunc) 
                     function D_yourFunc(){ } 
     D_yourFunc(17, 17)
     D_yourFunc(17, 'abc', true)
@@ -143,9 +143,9 @@ D. Test array with extra parameters
         throw `D. _check_typeExtra().md ${expected_tests} expected_tests !== ${total_tests} total_tests`
     else if (expected_fails !== fail_tests) 
         throw `D. _check_typeExtra().md ${expected_fails} expected_fails !== ${fail_tests} fail_tests`
-    else if  (typeof total_checks === 'undefined')
+    else if  (typeof TEST_total_checks === 'undefined')
       console.log('no-issues: pass', expected_tests-expected_fails, ' fail', expected_fails)
     else
-      total_checks += expected_tests
+      TEST_total_checks += expected_tests
 
-&copy; 2021 Steen Hansen
+/* &copy; 2021 Steen Hansen */

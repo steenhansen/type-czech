@@ -5,24 +5,24 @@ Greenland called, and it doesn't want its ice back.
 
 
 
+  0  npm install -g google-closure-compiler
 
 
 
 
 minify:
-  1  npm install -g google-closure-compiler
 
-  2  remove debugging code                 consolelog[^;]*;
+  1  remove debugging code                 consolelog[^;]*;
 
-  3  save as TypeCzech.no-debug.js
+  2  save as TypeCzech.no-debug.js
 
-  4 remove comments         (/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+/)|(//.*)
+  3 remove comments         (/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+/)|(//.*)
 
-  5 save as TypeCzech.no-comments.js
+  4 save as TypeCzech.no-comments.js
 
-  6  npx google-closure-compiler --language_out ECMASCRIPT_2020 --js=TypeCzech.no-debug.js --js_output_file=TypeCzech.min.js
+  5  npx google-closure-compiler --language_out ECMASCRIPT_2020 --js=TypeCzech.no-debug.js --js_output_file=TypeCzech.min.js
 
-  7 copy TypeCzech.min.js to /web-resources/
+  6 copy TypeCzech.min.js to /web-resources/
 
 
 

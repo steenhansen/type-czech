@@ -1,43 +1,12 @@
- 
-bees knees
-
-function check_typeExtra_06029(){
-
-  TYPE_CZECH_current_test_number = '06029';
-  var type_czech_test=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS'
- // , 'DEBUG-CONSOLE-TRACE'
-  );
-  check_object = new Date('1999-12-12');
-  check_type_shape =  'Date';
-
-  if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_object, check_type_shape);
-  error_or_array = type_czech_test.check_typeExtra(check_object, check_type_shape);
-  if (typeof beforeCheck !== 'undefined') afterCheck(check_object, check_type_shape, before_str, error_id);
-
-  expected_array = [`check_typeExtra(arguments, expected_types)`,
-  `TE@227 - TypeCzech.check_typeExtra(1999-12-12T00:00:00.000Z, Date) needs two collections to work`,
-  `Date`];
-
-  if (Array.isArray(error_or_array)) error_or_array = error_or_array.reduce((accum, curr) => `${accum}\n${curr}`);
-  if (Array.isArray(expected_array)) expected_array = expected_array.reduce((accum, curr) => `${accum}\n${curr}`);
-
-  if (error_or_array !== expected_array) {
-    console.log(TYPE_CZECH_current_test_number);
-    console.log('actual   =', error_or_array);
-    console.log('expected =', expected_array);
-    if (typeof failed_check_typeExtra !=='undefined') failed_check_typeExtra ++;
-  }
-
-  if (typeof tested_check_typeExtra !=='undefined') tested_check_typeExtra ++;
-
-}
 
 
 
 
-////////////////////////////////////////////////
-working on check_typeEither_078000.js
-///////////////////////////////////////
+
+check_typeEither_07800    has a bunch of commented out tests
+
+
+
 
 
 

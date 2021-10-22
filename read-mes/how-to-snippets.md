@@ -9,7 +9,7 @@
     /**/    return type_czech.check_type(arguments, 'String')
     /**/  }
     /**/  
-    /**/  aString = type_czech.link(aString, PRE_check_aString) 
+    /**/  aString = type_czech.linkUp(aString, PRE_check_aString) 
 
     function aString(an_str){
     }
@@ -35,7 +35,7 @@
     /**/    if (a_number<1) return `Error, ${a_number} is not positive`
     /**/  }
     /**/  
-    /**/  expectPosNum = type_czech.link(expectPosNum, PRE_check_expectPosNum) 
+    /**/  expectPosNum = type_czech.linkUp(expectPosNum, PRE_check_expectPosNum) 
 
     function expectPosNum(a_number){
     }
@@ -63,7 +63,7 @@
     /**/      return `Error, '${a_sentence}' is not a sentence`
     /**/  }
     /**/    
-    /**/  expectsSentence = type_czech.link(expectsSentence, PRE_check_expectsSentence)
+    /**/  expectsSentence = type_czech.linkUp(expectsSentence, PRE_check_expectsSentence)
 
     function expectsSentence(a_sentence){
     }
@@ -85,7 +85,7 @@
     /**/      return `Error, '${a_book}' is not a CMYK color`
     /**/  }
     /**/    
-    /**/  expectsCMYK = type_czech.link(expectsCMYK, PRE_check_expectsCMYK)
+    /**/  expectsCMYK = type_czech.linkUp(expectsCMYK, PRE_check_expectsCMYK)
       
     function expectsCMYK(a_book){
     }
@@ -110,7 +110,7 @@
     /**/    }
     /**/  }
     /**/    
-    /**/  expectsAsc = type_czech.link(expectsAsc, PRE_check_expectsAsc)
+    /**/  expectsAsc = type_czech.linkUp(expectsAsc, PRE_check_expectsAsc)
       
     function expectsAsc(){
     }
@@ -131,7 +131,7 @@
     /**/    return type_czech.check_empty(arguments, 'EMPTY-ERROR')
     /**/  }
     /**/  
-    /**/  nonArrHasVal = type_czech.link(nonArrHasVal, PRE_check_nonArrHasVal) 
+    /**/  nonArrHasVal = type_czech.linkUp(nonArrHasVal, PRE_check_nonArrHasVal) 
 
     function nonArrHasVal(a_parameter){
     }
@@ -178,7 +178,7 @@
     /**/    return type_czech.check_type(arguments, [ ['Number'] ] )
     /**/  }
     /**/  
-    /**/  arrOfNumArr = type_czech.link(arrOfNumArr, PRE_check_arrOfNumArr) 
+    /**/  arrOfNumArr = type_czech.linkUp(arrOfNumArr, PRE_check_arrOfNumArr) 
 
     function arrOfNumArr(arr_num_arrs){
     }
@@ -216,7 +216,7 @@
     /**/    return type_czech.check_type(arguments, [['Number']])
     /**/  }
     /**/  
-    /**/  arrArrRes = type_czech.link(arrArrRes, undefined, POST_check_arrArrRes) 
+    /**/  arrArrRes = type_czech.linkUp(arrArrRes, undefined, POST_check_arrArrRes) 
 
     function arrArrRes(an_array){
       return an_array
@@ -244,7 +244,7 @@
     /**/    return type_czech.check_type(arguments, ['Number'])
     /**/  }
     /**/  
-    /**/  arrOf3Nums = type_czech.link(arrOf3Nums, PRE_check_arrOf3Nums) 
+    /**/  arrOf3Nums = type_czech.linkUp(arrOf3Nums, PRE_check_arrOf3Nums) 
 
     function arrOf3Nums(arr_of_3_nums){
     }
@@ -267,7 +267,7 @@
     /**/  if (typeof TypeCzech === 'function') 
     /**/    type_czech = TypeCzech('LOG-ERRORS')
     /**/  else
-    /**/    type_czech = { link: (nop) => nop, is_active: false }
+    /**/    type_czech = { link: (nop) => nop, isActive: (x) => false }
     /**/  
     /**/  function PRE_check_isElvis(name_object){
     /**/    type_czech.mutateSnapshot('isElvis', 'name_object', name_object)
@@ -292,7 +292,7 @@
     /**/  PRE_check_isElvis = (typeof PRE_check_isElvis === 'undefined') ? undefined : PRE_check_isElvis
     /**/  POST_check_isElvis = (typeof POST_check_isElvis === 'undefined') ? undefined : POST_check_isElvis
     /**/  
-    /**/  isElvis = type_czech.link(isElvis, PRE_check_isElvis, POST_check_isElvis) 
+    /**/  isElvis = type_czech.linkUp(isElvis, PRE_check_isElvis, POST_check_isElvis) 
 
     function isElvis(elvis_object){
       if (elvis_object.the_name === 'Presley')
@@ -365,7 +365,7 @@
     /**/    return type_czech.check_type(a_number, 'Number') 
     /**/  }
     /**/
-    /**/  numFunc = type_czech.link(numFunc, PRE_check_numFunc) 
+    /**/  numFunc = type_czech.linkUp(numFunc, PRE_check_numFunc) 
 
     function numFunc(a_number){
       console.log('a-number', a_number)
@@ -392,7 +392,7 @@
     /**/    return type_czech.check_type(an_array, 'Array') 
     /**/  }
     /**/  
-    /**/  arrayFunc = type_czech.link(arrayFunc, PRE_check_arrayFunc) 
+    /**/  arrayFunc = type_czech.linkUp(arrayFunc, PRE_check_arrayFunc) 
     
     function arrayFunc(an_array){
       console.log('an_array', an_array)
@@ -416,7 +416,7 @@
     /**/    return type_czech.check_type(a_num_arr, ['Number']) 
     /**/  }
     /**/  
-    /**/  numArray = type_czech.link(numArray, PRE_check_numArray) 
+    /**/  numArray = type_czech.linkUp(numArray, PRE_check_numArray) 
     
     function numArray(a_num_arr){
       console.log('a_num_arr', a_num_arr)
@@ -440,7 +440,7 @@
     /**/    return type_czech.check_type(arguments, [ ['Number'] ]) 
     /**/  }
     /**/  
-    /**/  numArrArr = type_czech.link(numArrArr, PRE_check_numArrArr) 
+    /**/  numArrArr = type_czech.linkUp(numArrArr, PRE_check_numArrArr) 
 
     function numArrArr(a_num_arr){
       console.log('a_num_arr', a_num_arr)

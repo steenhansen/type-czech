@@ -219,7 +219,7 @@ type_czech.check_type(arguments, [ ['String'] ])
 /**/  if (typeof TypeCzech === 'function')
 /**/    type_czech = TypeCzech('LOG-ERRORS')
 /**/  else
-/**/    type_czech = { link: (nop) => nop, is_active: false }
+/**/    type_czech = { link: (nop) => nop, isActive: (x) => false }
 /**/  
 /**/  PRE_check_arrayOfStrings = (typeof PRE_check_arrayOfStrings === 'undefined')
 /**/                       ? undefined : PRE_check_arrayOfStrings
@@ -235,9 +235,9 @@ type_czech.check_type(arguments, [ ['String'] ])
 /**/    return type_czech.check_type(arguments, [ ['Number'] ])
 /**/  }
 /**/  
-/**/  arrayOfStrings = type_czech.link(arrayOfStrings, PRE_check_arrayOfStrings)
+/**/  arrayOfStrings = type_czech.linkUp(arrayOfStrings, PRE_check_arrayOfStrings)
 /**/  
-/**/  arrOfArrOfNum = type_czech.link(arrOfArrOfNum, PRE_check_arrOfArrOfNum)
+/**/  arrOfArrOfNum = type_czech.linkUp(arrOfArrOfNum, PRE_check_arrOfArrOfNum)
 
 function arrayOfStrings(an_array) { 
   str_array = [...an_array]

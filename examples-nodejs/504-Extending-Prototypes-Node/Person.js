@@ -20,7 +20,7 @@ module.exports = function create_Person(type_czech, First, Last, Full) {
     return person_full;
   }
 
-/**/  if (type_czech.is_active) {
+/**/  if (type_czech.isActive()) {
 /**/    function PRE_Person(salu, f_name, l_name) {
 /**/      return type_czech.check_type(arguments, ['String', 'String', 'String']);
 /**/    }
@@ -29,7 +29,7 @@ module.exports = function create_Person(type_czech, First, Last, Full) {
 /**/      return type_czech.check_interface(Person, { salu: 'String', fullMethod: 'Function' });
 /**/     }
 /**/
-/**/    Person = type_czech.link(Person, PRE_Person, POST_Person);
+/**/    Person = type_czech.linkUp(Person, PRE_Person, POST_Person);
 /**/  }
 
   return Person;

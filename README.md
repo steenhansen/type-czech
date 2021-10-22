@@ -23,11 +23,18 @@ Missing from Type-Czech
   -  Checking types of optional function parameters
   -  Generics
 
+Type-Czech the bad parts
+
+  - Verbosity of adding PRE_checking() and linkUp() functions 
+  - Continuously checking parameter mutations of collections can be slow
+  - Complicated dynamic minimization of unused code during runtime, while checking constructors and methods of extended classes
+
 ## A Type-Czech Example
 
   -  type_czech.check_type() ensures that the parameters to aLottery() are a string, then an array of numbers, and finally a date
   -  type_czech.check_empty() complains when parameters are found to be empty strings, arrays, or objects
-  -  &gt;&gt; precedes console input and output
+  -  PRE_check_aLottery() is executed just before aLottery() runs via type_czech.linkUp() 
+  -  &gt;&gt; precedes error messages in the console
   -  /**/ highlights added Type-Czech test code that is safely removable or turned off
 
 
@@ -36,66 +43,66 @@ Missing from Type-Czech
     /**/
     /**/  LOTTERY_SIGNATURE = ['String', ['Number'], 'Date']
     /**/
-    /**/  function PRE_aLottery(lottery_name, lucky_numbers, draw_date){
+    /**/  function PRE_check_aLottery(lottery_name, lucky_numbers, draw_date){
     /**/    type_issue = type_czech.check_type(arguments, LOTTERY_SIGNATURE)
     /**/    if (type_issue) return type_issue
     /**/    return type_czech.check_empty(arguments, ['EMPTY-ERROR'])
     /**/  }
     /**/
-    /**/  aLottery = type_czech.link(aLottery, PRE_aLottery) 
+    /**/  aLottery = type_czech.linkUp(aLottery, PRE_check_aLottery) 
 
     function aLottery(lottery_name, lucky_numbers, draw_date){
       the_lottery = `${lottery_name} ::: ${lucky_numbers} :::`
       console.log(the_lottery, draw_date)
     }
 
-    >>aLottery('El Gordo', [1,2,3,4,5,0], new Date('jun 14 1999'))
-    >>El Gordo ::: 1,2,3,4,5,0 :::1999-06-14
+    aLottery('El Gordo', [1,2,3,4,5,0], new Date('jun 14 1999'))
+    El Gordo ::: 1,2,3,4,5,0 :::1999-06-14
 
-    >>aLottery('Lotto 649', [1,2,3,4,5,6])
-    >>PRE_aLottery() aLottery() PRE-FUNC: Index '2' is supposed to be a 'Date', but is missing : ['Lotto 649',[1,2,3,4,5,6]]
+    aLottery('Lotto 649', [1,2,3,4,5,6])
+    >>PRE_check_aLottery() aLottery() PRE-FUNC: Index '2' is supposed to be a 'Date', but is missing : ['Lotto 649',[1,2,3,4,5,6]]
     >>               check_type(arguments, expected_types)
     >>                ACTUAL TYPES ['String','Array']
     >>                ACTUAL VALUE ['Lotto 649',[1,2,3,4,5,6]]
     >>               EXPECTED TYPE ['String',['Number'],'Date']
-    >>            CALLING FUNCTION PRE_aLottery(lottery_name, lucky_numbers, draw_date)
-    >>Lotto 649 ::: 1,2,3,4,5,6 :::
+    >>            CALLING FUNCTION PRE_check_aLottery(lottery_name, lucky_numbers, draw_date)
+    Lotto 649 ::: 1,2,3,4,5,6 :::
 
-    >>aLottery('Oz Lotto', ['fourty-two'], new Date('jun 14 1999'))
-    >>PRE_aLottery() aLottery() PRE-FUNC:  ELEMENT '0' is assumed to be a 'Number', but is mistakenly a 'String'
+    aLottery('Oz Lotto', ['fourty-two'], new Date('jun 14 1999'))
+    >>PRE_check_aLottery() aLottery() PRE-FUNC:  ELEMENT '0' is assumed to be a 'Number', but is mistakenly a 'String'
     >>               check_type(arguments, expected_types)
     >>                ACTUAL TYPES ['String','Array','Date']
     >>                ACTUAL VALUE ['Oz Lotto',['fourty-two'],'1999-06-14T07:00:00.000Z']
     >>               EXPECTED TYPE ['String',['Number'],'Date']
-    >>            CALLING FUNCTION PRE_aLottery(lottery_name, lucky_numbers, draw_date)
-    >>Oz Lotto ::: fourty-two :::1999-06-14
+    >>            CALLING FUNCTION PRE_check_aLottery(lottery_name, lucky_numbers, draw_date)
+    Oz Lotto ::: fourty-two :::1999-06-14
 
-    >>aLottery('Mega Millions', 17, new Date('jun 14 1999'))
-    >>PRE_aLottery() aLottery() PRE-FUNC: Parameter is meant to be 'Array' but is of the wrong type of 'Number':17
+    aLottery('Mega Millions', 17, new Date('jun 14 1999'))
+    >>PRE_check_aLottery() aLottery() PRE-FUNC: Parameter is meant to be 'Array' but is of the wrong type of 'Number':17
     >>               check_type(arguments, expected_types)
     >>                ACTUAL TYPES ['String','Number','Date']
     >>                ACTUAL VALUE ['Mega Millions',17,'1999-06-14T07:00:00.000Z']
     >>               EXPECTED TYPE ['String',['Number'],'Date']
-    >>            CALLING FUNCTION PRE_aLottery(lottery_name, lucky_numbers, draw_date)
-    >>Mega Millions ::: 17 :::1999-06-14
+    >>            CALLING FUNCTION PRE_check_aLottery(lottery_name, lucky_numbers, draw_date)
+    Mega Millions ::: 17 :::1999-06-14
 
-    >>aLottery('Powerball', [], new Date('jun 14 1999'))
-    >>PRE_aLottery() aLottery() PRE-FUNC: ELEMENT '1' is erroneously empty :
+    aLottery('Powerball', [], new Date('jun 14 1999'))
+    >>PRE_check_aLottery() aLottery() PRE-FUNC: ELEMENT '1' is erroneously empty :
     >>               check_empty(arguments, expected_emptys)
     >>                  ACTUAL TYPES ['String','Array','Date']
     >>                  ACTUAL VALUE ['Powerball',[],'1999-06-14T07:00:00.000Z']
     >>               EMPTY ASSERTION ['EMPTY-ERROR']
-    >>            CALLING FUNCTION PRE_aLottery(lottery_name, lucky_numbers, draw_date)
-    >>Powerball ::: :::1999-06-14
+    >>            CALLING FUNCTION PRE_check_aLottery(lottery_name, lucky_numbers, draw_date)
+    Powerball ::: :::1999-06-14
 
-    >>aLottery('', [1,2,3,4,5,26], new Date('Dec 31 1999'))
-    >>PRE_aLottery() aLottery() PRE-FUNC: ELEMENT '0' is erroneously empty :
+    aLottery('', [1,2,3,4,5,26], new Date('Dec 31 1999'))
+    >>PRE_check_aLottery() aLottery() PRE-FUNC: ELEMENT '0' is erroneously empty :
     >>               check_empty(arguments, expected_emptys)
     >>                  ACTUAL TYPES ['String','Array','Date']
     >>                  ACTUAL VALUE ['',[1,2,3,4,5,26],'1999-12-31T08:00:00.000Z']
     >>               EMPTY ASSERTION ['EMPTY-ERROR']
-    >>            CALLING FUNCTION PRE_aLottery(lottery_name, lucky_numbers, draw_date)
-    >>::: 1,2,3,4,5,26 :::1999-12-31
+    >>            CALLING FUNCTION PRE_check_aLottery(lottery_name, lucky_numbers, draw_date)
+    ::: 1,2,3,4,5,26 :::1999-12-31
 
 [Below program with LOG-ERRORS on jsFiddle](https://jsfiddle.net/steen_hansen/0xtpLwsc/1/?00-Readme-Example). All type mismatches are printed in the console.
 

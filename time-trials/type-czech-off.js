@@ -28,7 +28,7 @@ if (use_type_czech) {
   const { TypeCzech } = require('../TypeCzech.js');
   type_czech = TypeCzech('LOG-ERRORS');
 } else {
-  type_czech = { link: (_) => _, is_active: false };
+  type_czech = { link: (_) => _, isActive: (x) => false };
 }
 
 const LOTTERY_SIGNATURE = ['String', ['Number'], 'Date'];
@@ -38,7 +38,7 @@ function PRE_aLottery(lottery_name, lucky_numbers, draw_date) {
   return type_czech.check_variadicEmpty(arguments, ['EMPTY-ERROR']);
 }
 
-aLottery = type_czech.link(aLottery, PRE_aLottery);
+aLottery = type_czech.linkUp(aLottery, PRE_aLottery);
 
 ///////////////////////////////////////////////////
 

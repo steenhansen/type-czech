@@ -235,7 +235,7 @@ a non-trivial amount of resources. So <b>never use type_czech.countEnd() in prod
 /**/  if (typeof TypeCzech === 'function')
 /**/    type_czech = TypeCzech('THROW-EXCEPTIONS')
 /**/  else
-/**/    type_czech = { link: (nop) => nop, is_active: false }
+/**/    type_czech = { link: (nop) => nop, isActive: (x) => false }
 /**/  
 /**/  function PRE_check_Person(){
 /**/    return type_czech.check_type(arguments, ['String', 'String'])
@@ -244,7 +244,7 @@ a non-trivial amount of resources. So <b>never use type_czech.countEnd() in prod
 /**/  PRE_check_Person = (typeof PRE_check_Person === 'undefined')
 /**/                     ? undefined : PRE_check_Person
 /**/  
-/**/  Person = type_czech.link(Person, PRE_check_Person)
+/**/  Person = type_czech.linkUp(Person, PRE_check_Person)
 
 function Person(f_name, l_name){
   log('Person: ', `${f_name} ${l_name}`)

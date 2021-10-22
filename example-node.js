@@ -12,7 +12,7 @@
 /**/    return type_czech.check_empty(arguments, ['EMPTY-ERROR']);
 /**/  }
 /**/
-/**/  aLottery = type_czech.link(aLottery, PRE_aLottery);
+/**/  aLottery = type_czech.linkUp(aLottery, PRE_aLottery);
 
 function aLottery(lottery_name, lucky_numbers, draw_date) {
   const the_lottery = `::: ${lottery_name} ::: ${lucky_numbers} :::`;

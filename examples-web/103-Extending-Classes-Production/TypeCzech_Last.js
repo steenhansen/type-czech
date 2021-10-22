@@ -2,7 +2,7 @@
 
 function TypeCzech_Last() {
   Last = init_Last(First) // NB init_Last() must be in global scope
-  if (type_czech.is_active) {
+  if (type_czech.isActive()) {
 
     function PRE_check_Last(f_name, l_name){
       log(LEVEL_1+'PRE-Last') 
@@ -29,6 +29,6 @@ function TypeCzech_Last() {
     Last_PREs = { Last: PRE_check_Last, lastMethod: PRE_check_lastMethod }
     Last_POSTs = { Last: POST_check_Last, lastMethod: POST_check_lastMethod }
 
-    Last = type_czech.link(Last, Last_PREs, Last_POSTs)
+    Last = type_czech.linkUp(Last, Last_PREs, Last_POSTs)
   }
 }

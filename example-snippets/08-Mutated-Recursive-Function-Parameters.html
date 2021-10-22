@@ -216,7 +216,7 @@
 /**/  if (typeof TypeCzech === 'function')
 /**/    type_czech = TypeCzech('LOG-ERRORS')
 /**/  else
-/**/    type_czech = { link: (nop) => nop, is_active: false }
+/**/    type_czech = { link: (nop) => nop, isActive: (x) => false }
 /**/  
 /**/  PRE_check_recurseArr = (typeof PRE_check_recurseArr === 'undefined') 
 /**/                         ? undefined : PRE_check_recurseArr
@@ -233,7 +233,7 @@
 /**/    return poss_mutation_err
 /**/  }
 /**/  
-/**/  recurseArr = type_czech.link(recurseArr, PRE_check_recurseArr, POST_check_recurseArr)
+/**/  recurseArr = type_czech.linkUp(recurseArr, PRE_check_recurseArr, POST_check_recurseArr)
 
 function recurseArr(growing_array, stop_recurse){
   next_index = growing_array.length + 1

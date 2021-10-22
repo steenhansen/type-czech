@@ -178,7 +178,7 @@
   <div id='explanation-text'>
     <br>
 
-    When working with libraries we cannot link into functions with TypeCzech.link() to 
+    When working with libraries we cannot link into functions with TypeCzech.linkUp() to 
     check function parameters and return values. But, we can still manually check 
     function results with TypeCzech.directCheck(check_error, func_name, param_value) 
     as is done to the left. Below are two short examples, one throws an exception.
@@ -238,11 +238,11 @@ function strOrNumAPI(a_value){
 if (typeof TypeCzech === 'function')
   type_czech = TypeCzech('LOG-ERRORS') 
 else
-  type_czech = { link: (nop) => nop, is_active: false }
+  type_czech = { link: (nop) => nop, isActive: (x) => false }
 
 log('Third Party Result : ', a_number = thirdPartyResult(15))
 linesConsole(1)
-if (type_czech.is_active) {
+if (type_czech.isActive()) {
   check_error = type_czech.check_type(a_number, "Number")
   type_czech.directCheck(check_error, 'thirdPartyResult', a_number)
 }
@@ -250,14 +250,14 @@ linesConsole(1)
 
 log('Third Party Result : ', shall_be_num= thirdPartyResult('a-string'))
 linesConsole(1)
-if (type_czech.is_active) {
+if (type_czech.isActive()) {
   check_error = type_czech.check_type(shall_be_num, "Number")
   type_czech.directCheck(check_error, 'thirdPartyResult', shall_be_num)
 }
 
 log('An API value : ', str_or_num = strOrNumAPI('a-str'))
 linesConsole(1)
-if (type_czech.is_active) {
+if (type_czech.isActive()) {
   check_error=type_czech.check_typeEither(str_or_num,['Number','String'])
   type_czech.directCheck(check_error, 'strOrNumAPI', str_or_num)
   check_error = type_czech.check_empty(str_or_num, 'EMPTY-ERROR')
@@ -266,7 +266,7 @@ if (type_czech.is_active) {
 
 log('An API value : ', str_or_num = strOrNumAPI(12345))
 linesConsole(1)
-if (type_czech.is_active) {
+if (type_czech.isActive()) {
   check_error=type_czech.check_typeEither(str_or_num,['Number','String'])
   type_czech.directCheck(check_error, 'strOrNumAPI', str_or_num)
   check_error = type_czech.check_empty(str_or_num, 'EMPTY-ERROR')
@@ -276,7 +276,7 @@ linesConsole(1)
 
 log('An API value : ', str_or_num = strOrNumAPI(false))
 linesConsole(1)
-if (type_czech.is_active) {
+if (type_czech.isActive()) {
   check_error=type_czech.check_typeEither(str_or_num,['Number','String'])
   type_czech.directCheck(check_error, 'strOrNumAPI', str_or_num)
   check_error = type_czech.check_empty(str_or_num, 'EMPTY-ERROR')
@@ -285,7 +285,7 @@ if (type_czech.is_active) {
 
 log('An API value : ', str_or_num = strOrNumAPI(''))
 linesConsole(1)
-if (type_czech.is_active) {
+if (type_czech.isActive()) {
   check_error=type_czech.check_typeEither(str_or_num,['Number','String'])
   type_czech.directCheck(check_error, 'strOrNumAPI', str_or_num)
   check_error = type_czech.check_empty(str_or_num, 'EMPTY-ERROR')

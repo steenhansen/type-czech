@@ -23,20 +23,20 @@ objects that will be extended; both constructor functions and methods.
  being extended.
 
  <br><br>
-As in the example to the left, calls to type_czech.link() must 
+As in the example to the left, calls to type_czech.linkUp() must 
 precede class extensions.
 <pre>
 class First {...}
 
-/**/ First = type_czech.link(First, ...)
+/**/ First = type_czech.linkUp(First, ...)
 
 class Last extends First{  
 
-/**/ Last = type_czech.link(Last, ...)
+/**/ Last = type_czech.linkUp(Last, ...)
 
 class Full extends Last {...}
 
-/**/ Full = type_czech.link(Full...)
+/**/ Full = type_czech.linkUp(Full...)
 </pre>
     The ordering and depth of executions is recorded in the console to 
     highlight the different stages and states.
@@ -260,7 +260,7 @@ class First {
 /**/
 /**/  First_PREs = {First:PRE_check_First, firstMethod:PRE_check_firstMethod}
 /**/  First_POSTs = {First:POST_check_First, firstMethod:POST_check_firstMethod}
-/**/  First = type_czech.link(First, First_PREs, First_POSTs)
+/**/  First = type_czech.linkUp(First, First_PREs, First_POSTs)
 
 class Last extends First{  
   constructor(f_name, l_name) { super(f_name);
@@ -275,7 +275,7 @@ class Last extends First{
 /**/
 /**/  Last_PREs = {Last:PRE_check_Last, lastMethod:PRE_check_lastMethod}
 /**/  Last_POSTs = {Last:POST_check_Last, lastMethod:POST_check_lastMethod}
-/**/  Last = type_czech.link(Last, Last_PREs, Last_POSTs)
+/**/  Last = type_czech.linkUp(Last, Last_PREs, Last_POSTs)
 
 class Full extends Last {
   constructor(salu, f_name, l_name) { super(f_name, l_name);
@@ -290,7 +290,7 @@ class Full extends Last {
 /**/
 /**/  Full_PREs = {Full:PRE_check_Full, fullMethod:PRE_check_fullMethod}
 /**/  Full_POSTs= {Full:POST_check_Full, fullMethod:POST_check_fullMethod}
-/**/  Full = type_czech.link(Full, Full_PREs, Full_POSTs)
+/**/  Full = type_czech.linkUp(Full, Full_PREs, Full_POSTs)
 
 ted_chiang = new Full('Mr', 'Ted', 'Chiang')
 linesConsole(1)

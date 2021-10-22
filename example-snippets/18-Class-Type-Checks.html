@@ -37,7 +37,7 @@ Note that the Person Class must be declared before the below linking code, or
 a reference error is generated stating 
 "can't access lexical declaration 'Person' before initialization"
 <pre>
-/**/  Person=type_czech.link(Person, undefined, POST_check_Person)
+/**/  Person=type_czech.linkUp(Person, undefined, POST_check_Person)
 </pre>
 
 
@@ -239,7 +239,7 @@ a reference error is generated stating
 /**/  if (typeof TypeCzech === 'function')
 /**/    type_czech = TypeCzech('LOG-ERRORS')
 /**/  else
-/**/    type_czech = { link: (nop) => nop, is_active: false }
+/**/    type_czech = { link: (nop) => nop, isActive: (x) => false }
 /**/  
 /**/  MY_INTERFACE = {showPerson: 'Function'}
 /**/
@@ -260,7 +260,7 @@ class Person {
 }
 
 /**/
-/**/  Person=type_czech.link(Person, undefined, POST_check_Person)
+/**/  Person=type_czech.linkUp(Person, undefined, POST_check_Person)
 /**/
 
 a_person = new Person('Bob')

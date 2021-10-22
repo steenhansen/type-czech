@@ -11,7 +11,7 @@ production functions. It is easy to see the relationships this way.
     /**/  function PRE_check_yourFunc(){ /* before check */ }
     /**/  function POST_check_yourFunc(){ /* after check */ }
     /**/
-    /**/  yourFunc = type_czech.link(yourFunc, PRE_check_yourFunc, POST_check_yourFunc)
+    /**/  yourFunc = type_czech.linkUp(yourFunc, PRE_check_yourFunc, POST_check_yourFunc)
 
     function yourFunc(){}
 
@@ -29,7 +29,7 @@ We suggest using the arguments parameter object to check all parameters for type
     /**/    return type_czech.check_empty(arguments, 'EMPTY-ERROR')
     /**/  }
     /**/
-    /**/  yourFunc = type_czech.link(yourFunc, PRE_check_yourFunc, POST_check_yourFunc)
+    /**/  yourFunc = type_czech.linkUp(yourFunc, PRE_check_yourFunc, POST_check_yourFunc)
 
     function yourFunc(){}
 
@@ -48,7 +48,7 @@ parameters only when actually individually testing them as below.
     /**/    if (first_name.length===1) return 'Error, first_name is 1 character'
     /**/  }
     /**/
-    /**/  yourFunc = type_czech.link(yourFunc, PRE_check_yourFunc)
+    /**/  yourFunc = type_czech.linkUp(yourFunc, PRE_check_yourFunc)
 
     function yourFunc(first_name, last_name){}
 

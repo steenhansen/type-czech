@@ -1,11 +1,11 @@
 
 EXceptions:
-  EX@101 link() 2nd parameter must be function or object
-  EX@102 link() function to be checked is undefined
-  EX@103 link() function to be checked and checking function same
-  EX@104 link() function already proxied
-  EX@105 link() checking function is not a function
-  EX@106 link() not 2 nor 3 parameters
+  EX@101 linkUp() 2nd parameter must be function or object
+  EX@102 linkUp() function to be checked is undefined
+  EX@103 linkUp() function to be checked and checking function same
+  EX@104 linkUp() function already proxied
+  EX@105 linkUp() checking function is not a function
+  EX@106 linkUp() not 2 nor 3 parameters
   EX@107 TypeCzech() unknown option
   EX@108 mutateSnapshot() needs 3 parameters
   EX@109 mutateSnapshot()'s 3rd parameter is not an array/object
@@ -14,7 +14,7 @@ EXceptions:
   EX@112 check_mutated() needs 2 parameters
   EX@113 check_mutated() no record of an entry for wanted 
   EX@114 check_mutated() has no current matching entry for mutateSnapshot()
-  EX@115 link() 3rd parametermust be function or object
+  EX@115 linkUp() 3rd parametermust be function or object
 
 Type Errors:
   TE@201 a_checking_function() called with '{}' value against '!{}' signature

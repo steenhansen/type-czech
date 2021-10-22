@@ -7,7 +7,7 @@ A. Check variadic with array type - ['EMPTY-ERROR'].
     function A_PRE_check_yourFunc() {
       return type_czech.check_variadicEmpty(arguments, ['EMPTY-ERROR'])
     }
-                    A_yourFunc = type_czech.link(A_yourFunc, A_PRE_check_yourFunc) 
+                    A_yourFunc = type_czech.linkUp(A_yourFunc, A_PRE_check_yourFunc) 
                     function A_yourFunc(){ }
     A_yourFunc([1])                      // pass 1 A array
     A_yourFunc(234n)                     // pass 2 B bigint
@@ -49,11 +49,11 @@ A. Check variadic with array type - ['EMPTY-ERROR'].
         throw `A. _check_variadicType().md ${expected_tests} expected_tests !== ${total_tests} total_tests`
     else if (expected_fails !== fail_tests) 
         throw `A. _check_variadicType().md ${expected_fails} expected_fails !== ${fail_tests} fail_tests`
-    else if  (typeof total_checks === 'undefined')
+    else if  (typeof TEST_total_checks === 'undefined')
       console.log('no-issues: pass', expected_tests-expected_fails, ' fail', expected_fails)
     else
-      total_checks += expected_tests
+      TEST_total_checks += expected_tests
 
 
-&copy; 2021 Steen Hansen
+/* &copy; 2021 Steen Hansen */
       

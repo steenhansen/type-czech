@@ -248,7 +248,7 @@ check_error = type_czech.check_typeExtra(func_num_func_obj, FUNC_ONE_ONLY_STRUCT
 /**/  if (typeof TypeCzech === 'function')
 /**/    type_czech = TypeCzech('THROW-EXCEPTIONS')
 /**/  else
-/**/    type_czech = { link: (nop) => nop, is_active: false }
+/**/    type_czech = { link: (nop) => nop, isActive: (x) => false }
 /**/
 /**/  PRE_check_callMethod = 
 /**/            (typeof PRE_check_callMethod === 'undefined')
@@ -259,7 +259,7 @@ check_error = type_czech.check_typeExtra(func_num_func_obj, FUNC_ONE_ONLY_STRUCT
 /**/    return type_czech.check_type(an_object, WANTED_PROPS)
 /**/  }
 /**/  
-/**/  callMethod = type_czech.link(callMethod, PRE_check_callMethod)
+/**/  callMethod = type_czech.linkUp(callMethod, PRE_check_callMethod)
 
 function callMethod(an_object){
   an_object.showPerson()

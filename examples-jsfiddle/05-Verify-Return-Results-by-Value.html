@@ -33,7 +33,7 @@
     If only a POST checking function is needed to verify function results, without
     a PRE checking function, then this form must be used.
 <pre>
-Person = type_czech.link(Person, undefined, POST_check_Person) 
+Person = type_czech.linkUp(Person, undefined, POST_check_Person) 
 </pre>
 
 
@@ -241,7 +241,7 @@ Person = type_czech.link(Person, undefined, POST_check_Person)
 /**/  if (typeof TypeCzech === 'function')
 /**/    type_czech = TypeCzech('LOG-ERRORS')
 /**/  else
-/**/    type_czech = { link: (nop) => nop, is_active: false }
+/**/    type_czech = { link: (nop) => nop, isActive: (x) => false }
 /**/
 /**/  POST_check_Person = (typeof POST_check_Person === 'undefined')
 /**/                      ? undefined : POST_check_Person
@@ -254,7 +254,7 @@ Person = type_czech.link(Person, undefined, POST_check_Person)
 /**/    return ''
 /**/  }
 /**/
-/**/  Person = type_czech.link(Person, undefined, POST_check_Person) 
+/**/  Person = type_czech.linkUp(Person, undefined, POST_check_Person) 
 
 function Person(f_name, regnal_number){
   first_last = f_name + ' ' + regnal_number

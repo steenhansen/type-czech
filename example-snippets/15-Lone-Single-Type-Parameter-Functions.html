@@ -217,7 +217,7 @@ type_czech.check_type(arguments, ['Date', 'String'])    // two values
 /**/  if (typeof TypeCzech === 'function')
 /**/    type_czech = TypeCzech('LOG-ERRORS')
 /**/  else
-/**/    type_czech = { link: (nop) => nop, is_active: false }
+/**/    type_czech = { link: (nop) => nop, isActive: (x) => false }
 /**/  PRE_check_exactly1Str = (typeof PRE_check_exactly1Str === 'undefined')
 /**/                    ? undefined : PRE_check_exactly1Str
 /**/  PRE_check_exactly2Strs = (typeof PRE_check_exactly2Strs === 'undefined')
@@ -235,8 +235,8 @@ type_czech.check_type(arguments, ['Date', 'String'])    // two values
 /**/     return type_czech.check_type(arguments, TWO_STRINGS_SPEC)
 /**/  }
 /**/  
-/**/  exactly1Str = type_czech.link(exactly1Str, PRE_check_exactly1Str)
-/**/  exactly2Strs = type_czech.link(exactly2Strs, PRE_check_exactly2Strs)
+/**/  exactly1Str = type_czech.linkUp(exactly1Str, PRE_check_exactly1Str)
+/**/  exactly2Strs = type_czech.linkUp(exactly2Strs, PRE_check_exactly2Strs)
 
 function exactly1Str(one_string) {
   return one_string

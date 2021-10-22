@@ -4,21 +4,21 @@
 
 
 ## API
-### link()
+### linkUp()
   Links your functions, classes, closures, IIFEs and Prototypes to before and after
   checking functions.
 
   A. PRE_check_yourFunc() warns about parameter issues before yourFunc() executes.
 
-      yourFunc = type_czech.link(yourFunc, PRE_check_yourFunc)
+      yourFunc = type_czech.linkUp(yourFunc, PRE_check_yourFunc)
 
   B. PRE_check_yourFunc() warns about parameter issues, while POST_check_yourFunc() informs about result problems after yourFunc() executes.
   
-      yourFunc = type_czech.link(yourFunc, PRE_check_yourFunc, POST_check_yourFunc) 
+      yourFunc = type_czech.linkUp(yourFunc, PRE_check_yourFunc, POST_check_yourFunc) 
     
   C. Parameters are not addressed, only function results.
   
-    yourFunc = type_czech.link(yourFunc, undefined, POST_check_yourFunc) 
+    yourFunc = type_czech.linkUp(yourFunc, undefined, POST_check_yourFunc) 
 
   D. Check that a string parameter matches regular expression.
 
@@ -26,7 +26,7 @@
       if (!a_word.match(/^.*[Yy].*$/))
         return 'ERROR, word has no Y'
     }
-    yourFunc = type_czech.link(yourFunc, PRE_check_yourFunc) 
+    yourFunc = type_czech.linkUp(yourFunc, PRE_check_yourFunc) 
 
   E. Check a parameter belongs to a set.
     
@@ -34,7 +34,7 @@
       if (![2,3,5,7,11,13,17,19,23].includes(a_number)) 
         return `ERROR, '${a_number}' is not a small prime`
     }
-    yourFunc = type_czech.link(yourFunc, PRE_check_yourFunc) 
+    yourFunc = type_czech.linkUp(yourFunc, PRE_check_yourFunc) 
 
   F. Check that date is in the month of February.
 
@@ -45,7 +45,7 @@
       } catch (e) { }
       return `ERROR, '${a_date}' is not in February`
     }
-    yourFunc = type_czech.link(yourFunc, PRE_check_yourFunc) 
+    yourFunc = type_czech.linkUp(yourFunc, PRE_check_yourFunc) 
 
 
 ### check_type()
@@ -148,12 +148,12 @@ f: object: {f_name:'EMPTY-OK', l_name:'EMPTY-ERROR'}
     /**/   return type_czech.check_type(arguments, 'Number')
     /**/ }
     /**/  } else {
-    /**/    type_czech = { link: (nop) => nop, is_active: false }
+    /**/    type_czech = { link: (nop) => nop, isActive: (x) => false }
     /**/  }
 
     /**/  PRE_check_oneNumber =(typeof PRE_check_oneNumber==='undefined') ? undefined:PRE_check_oneNumber
     
-    oneNumber = type_czech.link(oneNumber, PRE_check_oneNumber)
+    oneNumber = type_czech.linkUp(oneNumber, PRE_check_oneNumber)
 
 ### check_type()
 
@@ -163,7 +163,7 @@ f: object: {f_name:'EMPTY-OK', l_name:'EMPTY-ERROR'}
     /**/   return type_czech.check_type(arguments, 'Number')
     /**/ }
     /**/ 
-    /**/ oneNumber = type_czech.link(oneNumber, PRE_check_oneNumber)
+    /**/ oneNumber = type_czech.linkUp(oneNumber, PRE_check_oneNumber)
 
     function oneNumber(){}
 
@@ -177,7 +177,7 @@ Or
       return type_czech.check_type(param_1, 'Number')
     }
 
-    oneNumber = type_czech.link(oneNumber, PRE_check_oneNumber)
+    oneNumber = type_czech.linkUp(oneNumber, PRE_check_oneNumber)
 
     function oneNumber(param_1){}
 
@@ -190,7 +190,7 @@ Or
       return type_czech.check_type(arguments, ['Number', 'String', 'Boolean'])
     }
 
-    numStrBool = type_czech.link(numStrBool, PRE_check_numStrBool)
+    numStrBool = type_czech.linkUp(numStrBool, PRE_check_numStrBool)
 
     function numStrBool(){}
 
@@ -204,7 +204,7 @@ Or
       return type_czech.check_type([a_num, an_str, a_bool], ['Number', 'String', 'Boolean'])
     }
 
-    numStrBool = type_czech.link(numStrBool, PRE_check_numStrBool)
+    numStrBool = type_czech.linkUp(numStrBool, PRE_check_numStrBool)
 
     function numStrBool(a_num, an_str, a_bool){}
 
@@ -219,7 +219,7 @@ Or
       return type_czech.check_type(arguments, ['Number'])
     }
 
-    numArray = type_czech.link(numArray, PRE_check_numArray)
+    numArray = type_czech.linkUp(numArray, PRE_check_numArray)
 
     function numArray(){}
 
@@ -232,7 +232,7 @@ Or
       return type_czech.check_type(num_array, ['Number'])
     }
 
-    numArray = type_czech.link(numArray, PRE_check_numArray)
+    numArray = type_czech.linkUp(numArray, PRE_check_numArray)
 
     function numArray(num_array){}
 
@@ -245,7 +245,7 @@ Or
       return type_czech.check_type(arguments, [ ['Number'], ['String'] ])
     }
 
-    numStrArray = type_czech.link(numStrArray, PRE_check_numStrArray)
+    numStrArray = type_czech.linkUp(numStrArray, PRE_check_numStrArray)
 
     function numStrArray(){}
 
@@ -258,7 +258,7 @@ Or
       return type_czech.check_type([num_array, str_array], [ ['Number'], ['String'] ])
     }
 
-    numStrArray = type_czech.link(numStrArray, PRE_check_numStrArray)
+    numStrArray = type_czech.linkUp(numStrArray, PRE_check_numStrArray)
 
     function numStrArray(num_array, str_array){}
 
@@ -276,7 +276,7 @@ Or
 // OPTIONAL EXTRAS??????????????????????
 //  UNION ???
 
-    variadicNums = type_czech.link(variadicNums, PRE_check_variadicNums)  // BAD
+    variadicNums = type_czech.linkUp(variadicNums, PRE_check_variadicNums)  // BAD
 
     function variadicNums(){}
 
@@ -290,7 +290,7 @@ Or
       return type_czech.check_type([...arguments], ['Number'])
     }
 
-    variadicNums = type_czech.link(variadicNums, PRE_check_variadicNums)  // GOOD
+    variadicNums = type_czech.linkUp(variadicNums, PRE_check_variadicNums)  // GOOD
 
     function variadicNums(){}
 

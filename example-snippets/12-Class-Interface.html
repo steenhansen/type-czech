@@ -272,7 +272,7 @@ class FullName extends LastName {
 /**/  if (typeof TypeCzech === 'function')
 /**/    type_czech = TypeCzech('LOG-ERRORS')
 /**/  else
-/**/    type_czech = { link: (nop) => nop, is_active: false }
+/**/    type_czech = { link: (nop) => nop, isActive: (x) => false }
 /**/
 /**/  LAST_INTERFACE = { firstMethod: 'Function',
 /**/                     lastMethod:'Function'}

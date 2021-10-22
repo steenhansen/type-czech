@@ -25,8 +25,8 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
       // eslint-disable-next-line no-use-before-define, no-param-reassign
       export_tech_czech.type_czech = _TypeCzech(export_tech_czech.TYPE_CZECH_COMMANDS);
     } else {
-      // eslint-disable-next-line no-param-reassign
-      export_tech_czech.type_czech = { link: (nop) => nop, is_active: false };
+      // eslint-disable-next-line no-param-reassign, no-unused-vars
+      export_tech_czech.type_czech = { link: (nop) => nop, isActive: (_) => false };
     }
     return export_tech_czech.type_czech;
 
@@ -69,13 +69,10 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
       const VERS_NUM = 'ver 4.0';
 
       /*
-      is_active is the public version of t_do_param_checking, it and serves as a flag to either
-
         1 - load testing code that calls TypeCzech, transfering more data
       OR
         2 - load no TypeCzech calling code in production, transfering less data
       */
-      let is_active = true; // NB, this is false in the NOP version
 
       let t_param_check_func;
       let t_check_events = false;
@@ -138,7 +135,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
       const ERROR_COLORS = 'background: #ee0; color: #F00';
       const START_COLORS = 'background: #cc0; color: #080';
 
-      const BLANK_REF_DIFF = '``';
+      const BLANK_REF_DIFF = "''";
 
       const CZECH_ERROR_INDENT = '\n\t\t';
 
@@ -256,9 +253,9 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
 
       */
       function _doubleToSingleQuotes(double_quotes) {
-        consolelog('###_doubleToSingleQuotes ENTER', double_quotes, TYPE_CZECH_current_test_number);
+        consolelog('^^^ _doubleToSingleQuotes ENTER', double_quotes, TYPE_CZECH_current_test_number);
         const single_quotes = double_quotes.replace(/"/g, "'");
-        consolelog('###_doubleToSingleQuotes EXIT', single_quotes);
+        consolelog('^^^ _doubleToSingleQuotes EXIT', single_quotes);
         return single_quotes;
       }
 
@@ -275,11 +272,11 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
 
       */
       function _isCollection(a_variable) {
-        consolelog('###_isCollection ENTER', a_variable, TYPE_CZECH_current_test_number);
+        consolelog('^^^ _isCollection ENTER', a_variable, TYPE_CZECH_current_test_number);
         // eslint-disable-next-line no-use-before-define
         const a_type = _aTypeOf(a_variable);
         const a_collection = (a_type === 'Array') ? true : a_type === 'Object';
-        consolelog('###_isCollection EXIT', a_collection);
+        consolelog('^^^ _isCollection EXIT', a_collection);
         return a_collection;
       }
 
@@ -332,7 +329,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
       */
 
       function _toStr(maybe_undef) {
-        consolelog('###_toStr ENTER', maybe_undef, TYPE_CZECH_current_test_number);
+        consolelog('^^^ _toStr ENTER', maybe_undef, TYPE_CZECH_current_test_number);
         let to_str;
         if (_isCollection(maybe_undef)) {
           // eslint-disable-next-line no-use-before-define
@@ -376,7 +373,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
             to_str = double_quotes;
           }
         }
-        consolelog('###_toStr EXIT', to_str);
+        consolelog('^^^ _toStr EXIT', to_str);
         return to_str;
       }
 
@@ -398,7 +395,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         // Symbol("sym")
       */
       function _stringifyReplacer(_key, value) {
-        consolelog('###_stringifyReplacer ENTER', _key, value, TYPE_CZECH_current_test_number);
+        consolelog('^^^ _stringifyReplacer ENTER', _key, value, TYPE_CZECH_current_test_number);
         let replaced_value;
         if (typeof value === 'bigint') {
           replaced_value = `${value}n`;
@@ -410,7 +407,8 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
           replaced_value = PLAIN_NAN_STR_VALUE;
         } else if (typeof value === 'function') {
           const func_text = String(value);
-          const func_start = func_text.substring(0, START_OF_FUNCTION_LEN);
+          const no_new_lines = func_text.replace(/\s+/g, ' ');
+          const func_start = no_new_lines.substring(0, START_OF_FUNCTION_LEN);
           replaced_value = `${func_start} ***`;
         } else if (value && value.constructor === RegExp) {
           const regex_text = String(value);
@@ -423,7 +421,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         } else {
           replaced_value = value;
         }
-        consolelog('###_stringifyReplacer EXIT', replaced_value);
+        consolelog('^^^ _stringifyReplacer EXIT', replaced_value);
         return replaced_value;
       }
 
@@ -447,10 +445,10 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
 
       */
       function _jsonStr(an_object) {
-        consolelog('###_jsonStr ENTER', an_object, TYPE_CZECH_current_test_number);
+        consolelog('^^^ _jsonStr ENTER', an_object, TYPE_CZECH_current_test_number);
         const json_str = JSON.stringify(an_object, _stringifyReplacer);
         const obj_str = _toStr(json_str);
-        consolelog('###_jsonStr EXIT', obj_str);
+        consolelog('^^^ _jsonStr EXIT', obj_str);
         return obj_str;
       }
 
@@ -462,13 +460,13 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
 
       */
       function _className(a_var) {
-        consolelog('###_className ENTER', a_var, TYPE_CZECH_current_test_number);
+        consolelog('^^^ _className ENTER', a_var, TYPE_CZECH_current_test_number);
         let class_name = '';
         const class_string = a_var.toString();
         if (class_string.startsWith('class ') && class_string.includes(' constructor(')) {
           class_name = a_var.name;
         }
-        consolelog('###_className EXIT', class_name);
+        consolelog('^^^ _className EXIT', class_name);
         return class_name;
       }
 
@@ -508,7 +506,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
 
       */
       function _isAClass(a_var) {
-        consolelog('###_isAClass ENTER', a_var, TYPE_CZECH_current_test_number);
+        consolelog('^^^ _isAClass ENTER', a_var, TYPE_CZECH_current_test_number);
         let is_class = false;
         if (a_var !== null && typeof a_var !== 'undefined') {
           const vars_prototype = Object.getPrototypeOf(a_var);
@@ -523,7 +521,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
             }
           }
         }
-        consolelog('###_isAClass EXIT', is_class);
+        consolelog('^^^ _isAClass EXIT', is_class);
         return is_class;
       }
 
@@ -537,13 +535,13 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
 
       */
       function _functionName(a_var) {
-        consolelog('###_functionName ENTER', a_var, TYPE_CZECH_current_test_number);
+        consolelog('^^^ _functionName ENTER', a_var, TYPE_CZECH_current_test_number);
         let function_name = '';
         const function_string = a_var.toString();
         if (function_string.startsWith('function ')) {
           function_name = a_var.name;
         }
-        consolelog('###_functionName EXIT', function_name);
+        consolelog('^^^ _functionName EXIT', function_name);
         return function_name;
       }
 
@@ -578,7 +576,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
 
       */
       function _anObjectsType(a_var) {
-        consolelog('###_anObjectsType ENTER', a_var, TYPE_CZECH_current_test_number);
+        consolelog('^^^ _anObjectsType ENTER', a_var, TYPE_CZECH_current_test_number);
         let is_a_class_type = false;
         if (a_var !== null && typeof a_var !== 'undefined') {
           const vars_prototype = Object.getPrototypeOf(a_var);
@@ -594,7 +592,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
             }
           }
         }
-        consolelog('###_anObjectsType EXIT', is_a_class_type);
+        consolelog('^^^ _anObjectsType EXIT', is_a_class_type);
         return is_a_class_type;
       }
 
@@ -620,14 +618,14 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
 
       */
       function _isBuiltInType(a_type) {
-        consolelog('###_isBuiltInType ENTER', a_type, TYPE_CZECH_current_test_number);
+        consolelog('^^^ _isBuiltInType ENTER', a_type, TYPE_CZECH_current_test_number);
         let is_built_in = false;
         if (typeof a_type === 'string') {
           if (SCALAR_TYPES.includes(a_type)) {
             is_built_in = true;
           }
         }
-        consolelog('###_isBuiltInType EXIT', is_built_in);
+        consolelog('^^^ _isBuiltInType EXIT', is_built_in);
         return is_built_in;
       }
 
@@ -655,7 +653,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
 
       */
       function typeProtos(a_var) {
-        consolelog('###typeProtos ENTER', a_var, TYPE_CZECH_current_test_number);
+        consolelog('^^^ typeProtos ENTER', a_var, TYPE_CZECH_current_test_number);
         let the_prototypes = false;
         if (a_var !== null && typeof a_var !== 'undefined') {
           const proto_sequence = [];
@@ -683,7 +681,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         } else {
           the_prototypes = [UNDEFINED_AS_STR];
         }
-        consolelog('###typeProtos EXIT', the_prototypes);
+        consolelog('^^^ typeProtos EXIT', the_prototypes);
         return the_prototypes;
       }
 
@@ -705,7 +703,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
 
       */
       function typeFinal(a_var) {
-        consolelog('###typeFinal ENTER', a_var, TYPE_CZECH_current_test_number);
+        consolelog('^^^ typeFinal ENTER', a_var, TYPE_CZECH_current_test_number);
         // eslint-disable-next-line no-unused-vars
         const the_prototypes = typeProtos(a_var);
         let child_type = false;
@@ -719,7 +717,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
             child_type = NULL_AS_STR;
           }
         }
-        consolelog('###typeFinal EXIT', child_type);
+        consolelog('^^^ typeFinal EXIT', child_type);
         return child_type;
       }
 
@@ -754,14 +752,14 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
 
       */
       function typeIsA(a_var, object_type) {
-        consolelog('###typeIsA ENTER', a_var, object_type, TYPE_CZECH_current_test_number);
+        consolelog('^^^ typeIsA ENTER', a_var, object_type, TYPE_CZECH_current_test_number);
         // eslint-disable-next-line no-unused-vars
         const the_prototypes = typeProtos(a_var);
         let object_is_a = false;
         if (the_prototypes) {
           object_is_a = the_prototypes.includes(object_type);
         }
-        consolelog('###typeIsA EXIT', object_is_a);
+        consolelog('^^^ typeIsA EXIT', object_is_a);
         return object_is_a;
       }
 
@@ -793,7 +791,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
 
       */
       function _aTypeOf(a_variable) {
-        consolelog('###_aTypeOf ENTER', a_variable, TYPE_CZECH_current_test_number);
+        consolelog('^^^ _aTypeOf ENTER', a_variable, TYPE_CZECH_current_test_number);
         let a_type_of = '';
         const is_html_var = typeFinal(a_variable);
         if (is_html_var) {
@@ -809,7 +807,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         } else {
           a_type_of = typeof a_variable;
         }
-        consolelog('###_aTypeOf EXIT', a_type_of);
+        consolelog('^^^ _aTypeOf EXIT', a_type_of);
         return a_type_of;
       }
 
@@ -841,14 +839,14 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
 
       */
       function _isPlainJsType(a_type) {
-        consolelog('###_isPlainJsType ENTER', a_type, TYPE_CZECH_current_test_number);
+        consolelog('^^^ _isPlainJsType ENTER', a_type, TYPE_CZECH_current_test_number);
         let is_plain_js_type = false;
         if (TYPE_SET_SCALAR.has(a_type)) {
           is_plain_js_type = true; // Date, String..... not null, not undef
         } else if (SHORT_TYPES[a_type]) {
           is_plain_js_type = true; //   D,S,N,B
         }
-        consolelog('###_isPlainJsType EXIT', is_plain_js_type);
+        consolelog('^^^ _isPlainJsType EXIT', is_plain_js_type);
         return is_plain_js_type;
       }
 
@@ -901,7 +899,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
 
       */
       function _collectionToStr(a_collection) {
-        consolelog('###_collectionToStr ENTER', a_collection, TYPE_CZECH_current_test_number);
+        consolelog('^^^ _collectionToStr ENTER', a_collection, TYPE_CZECH_current_test_number);
         let collection_str;
         const collection_elems = [];
         if (Array.isArray(a_collection)) {
@@ -936,7 +934,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
           }
           collection_str = `{${collection_elems.join()}}`;
         }
-        consolelog('###_collectionToStr EXIT', collection_str);
+        consolelog('^^^ _collectionToStr EXIT', collection_str);
         return collection_str;
       }
 
@@ -958,7 +956,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
       }
 
       function looksLikeType(possible_badcase) {
-        consolelog('###looksLikeType ENTER', possible_badcase, TYPE_CZECH_current_test_number);
+        consolelog('^^^ looksLikeType ENTER', possible_badcase, TYPE_CZECH_current_test_number);
         let error_string = '';
         const is_built_in = _isBuiltInType(possible_badcase);
         if (!is_built_in) {
@@ -966,12 +964,12 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
             const pos_lower_type = possible_badcase.toLowerCase();
             if (LOWER_TYPES_TO_CORRECT[pos_lower_type]) {
               const looks_like_type = LOWER_TYPES_TO_CORRECT[pos_lower_type];
-              const error_33 = `The type '${possible_badcase}' is not a check_type type, but it looks just like '${looks_like_type}'`;
-              error_string = _consoleError(error_33, 'TE@205');
+              const error_205 = `The type '${possible_badcase}' is not a check_type type, but it looks just like '${looks_like_type}'`;
+              error_string = _consoleError(error_205, 'TE@205');
             }
           }
         }
-        consolelog('###looksLikeType EXIT', error_string);
+        consolelog('^^^ looksLikeType EXIT', error_string);
         return error_string;
       }
 
@@ -982,20 +980,20 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
 
       */
       function _missingKey(extra_keys) {
-        consolelog('###_missingKey ENTER', extra_keys, TYPE_CZECH_current_test_number);
+        consolelog('^^^ _missingKey ENTER', extra_keys, TYPE_CZECH_current_test_number);
         let missing_key;
         if (Object.keys(extra_keys).length > 0) {
           const [share_key, share_type] = Object.entries(extra_keys)[0];
           missing_key = looksLikeType(share_type);
           if (!missing_key) {
             const share_type_str = _toStr(share_type);
-            const error_46 = ` The key '${share_key}', which has a type of '${share_type_str}', is missing in the checked object`;
-            missing_key = _consoleError(error_46, 'TE@216');
+            const error_216 = ` The key '${share_key}', which has a type of '${share_type_str}', is missing in the checked object`;
+            missing_key = _consoleError(error_216, 'TE@216');
           }
         } else {
           missing_key = '';
         }
-        consolelog('###_missingKey EXIT', missing_key);
+        consolelog('^^^ _missingKey EXIT', missing_key);
         return missing_key;
       }
 
@@ -1030,7 +1028,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
 
       */
       function _isEmpty(a_variable) {
-        consolelog('###_isEmpty ENTER', a_variable, TYPE_CZECH_current_test_number);
+        consolelog('^^^ _isEmpty ENTER', a_variable, TYPE_CZECH_current_test_number);
         let is_empty;
         if (a_variable instanceof Date) {
           // eslint-disable-next-line eqeqeq
@@ -1047,7 +1045,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
           const empty_object = (typeof a_variable === 'object' && Object.keys(a_variable).length === 0);
           is_empty = empty_str_array || empty_object;
         }
-        consolelog('###_isEmpty EXIT', is_empty);
+        consolelog('^^^ _isEmpty EXIT', is_empty);
         return is_empty;
       }
 
@@ -1084,7 +1082,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
 
       */
       function _typeFromArray(shallow_array, element_index) {
-        consolelog('###_typeFromArray ENTER', shallow_array, element_index, TYPE_CZECH_current_test_number);
+        consolelog('^^^ _typeFromArray ENTER', shallow_array, element_index, TYPE_CZECH_current_test_number);
         const shape_length = shallow_array.length;
         let element_type;
         if (shape_length === 1) {
@@ -1092,11 +1090,13 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         } else {
           element_type = shallow_array[element_index];
         }
-        consolelog('###_typeFromArray EXIT', element_type);
+        consolelog('^^^ _typeFromArray EXIT', element_type);
         return element_type;
       }
 
       /* type_czech = TypeCzech('LOG-ERRORS')
+
+      type_czech._getParameters({0:'a', 1:'b', length:2});
 
       type_czech._getParameters([1]);
       //1
@@ -1112,7 +1112,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
 
       */
       function _getParameters(parameters_obj) {
-        consolelog('###_getParameters ENTER', parameters_obj, TYPE_CZECH_current_test_number);
+        consolelog('^^^ _getParameters ENTER', parameters_obj, TYPE_CZECH_current_test_number);
         let the_params;
         const odd_parameters = parameters_obj === null
                             || parameters_obj === undefined
@@ -1133,16 +1133,16 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
           one_param = false;
         }
         const params_flags = [the_params, no_parameters, one_param];
-        consolelog('###_getParameters EXIT', params_flags);
+        consolelog('^^^ _getParameters EXIT', params_flags);
         return params_flags;
       }
 
       // we can see the error arrays get made!!!
       function error3Array(command_type, incheck_type_error, shape_list) {
-        consolelog('###error3Array ENTER', command_type, incheck_type_error, shape_list, TYPE_CZECH_current_test_number);
+        consolelog('^^^ error3Array ENTER', command_type, incheck_type_error, shape_list, TYPE_CZECH_current_test_number);
         const shape_list_str = _toStr(shape_list);
         const error_3_array = [command_type, incheck_type_error, shape_list_str];
-        consolelog('###error3Array EXIT', error_3_array);
+        consolelog('^^^ error3Array EXIT', error_3_array);
         return error_3_array;
       }
 
@@ -1151,14 +1151,17 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
       variable={bob:17, show:_=>_};
       interface={bob:'Number', show:'F'};
       type_czech.check_interface(variable, interface);
-      //"Interface mismatches : check_interface() only allows functions in interfaces, not {bob:'Number'}"
+      //""
 
       variable={bob:['Number'], show:_=>_};
       interface={bob:'Number', show:'F'};
       type_czech.check_interface(variable, interface);
-      //"Interface mismatches : check_interface() only allows functions and objects, not {bob:'Number'}"
+      //"check_interface(arguments, expected_types)"
+      //"actual type of 'bob' is 'Array', with a value of 'Number', not the expected 'Number' type"
+      //"{bob:\"Number\",show:\"F\"}"
 
       // what about making sure all types below are strings so this will be an error --> show:{}  or show:[]
+
       variable={bob:{}, show:_=>_};
       interface={bob:{}, show:'F'};
       type_czech.check_interface(variable, interface);
@@ -1177,29 +1180,43 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
       */
       // eslint-disable-next-line consistent-return
       function check_interface(introspect_object, expected_interface) {
-        if (is_active) {
-          consolelog('###check_interface ENTER', introspect_object, expected_interface, TYPE_CZECH_current_test_number);
+        if (t_param_check_func.p_call_traps) {
+          consolelog('^^^ check_interface ENTER', introspect_object, expected_interface, TYPE_CZECH_current_test_number);
           // eslint-disable-next-line no-unused-vars
-          const [introspect_array, no_parameters, one_param] = _getParameters(introspect_object);
-          consolelog('###_objectEntries introspect_array', introspect_array);
+          const [interface_object, no_parameters, one_param] = _getParameters(introspect_object);
+          consolelog('^^^ _objectEntries interface_object', interface_object);
+          const signature_type = _aTypeOf(expected_interface);
           let error_mess = '';
-          if (!introspect_array) {
-            error_mess = error3Array(MESS_OBJ_INTERFACE, 'Function argument is not an object.', expected_interface);
+          const is_not_object = !typeIsA(interface_object, 'Object');
+          if (is_not_object) {
+            let error_505 = 'Function argument is not an object.';
+            error_505 = _consoleError(error_505, 'IE@505');
+            error_mess = error3Array(MESS_OBJ_INTERFACE, error_505, expected_interface);
+          } else if (signature_type !== 'Object') {
+            let error_504 = 'Signature is not an object.';
+            error_504 = _consoleError(error_504, 'IE@504');
+            error_mess = error3Array(MESS_OBJ_INTERFACE, error_504, expected_interface);
+          } else if (Object.keys(expected_interface).length === 0) {
+            let error_503 = 'Signature is empty object.';
+            error_503 = _consoleError(error_503, 'IE@503');
+            error_mess = error3Array(MESS_OBJ_INTERFACE, error_503, expected_interface);
           } else {
             // eslint-disable-next-line guard-for-in, no-restricted-syntax
             for (const test_key in expected_interface) {
               if (!error_mess) {
                 const expected_short = expected_interface[test_key];
                 const expected_type = _shortToLongType(expected_short);
-                const introspect_value = introspect_array[test_key];
+                const introspect_value = interface_object[test_key];
                 const introspect_type = _aTypeOf(introspect_value);
                 if (typeof introspect_value === 'undefined') {
-                  const error_31 = `Interface missing key '${test_key}' in checked object`;
-                  error_mess = _consoleError(error_31, 'IE@501');
+                  const error_501 = `Interface missing key '${test_key}' in checked object`;
+                  error_mess = _consoleError(error_501, 'IE@501');
                 } else if (expected_type !== introspect_type) {
-                  const error_35 = `actual type of '${test_key}' is '${introspect_type}', with a value `
-                                  + `of '${introspect_value}', not the expected '${expected_type}' type`;
-                  error_mess = _consoleError(error_35, 'IE@502');
+                  const str_intro_value = _toStr(introspect_value);
+                  const str_expt_type = _toStr(expected_type);
+                  const error_502 = `actual type of '${test_key}' is '${introspect_type}', with a value `
+                                  + `of '${str_intro_value}', not the expected '${str_expt_type}' type`;
+                  error_mess = _consoleError(error_502, 'IE@502');
                 }
               }
             }
@@ -1207,7 +1224,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
               error_mess = error3Array(MESS_OBJ_INTERFACE, error_mess, expected_interface);
             }
           }
-          consolelog('###check_interface EXIT', error_mess);
+          consolelog('^^^ check_interface EXIT', error_mess);
           return error_mess;
         }
       }
@@ -1228,12 +1245,12 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
 
       */
       function _ParametersCheck(arg_check_events) {
-        consolelog('###_ParametersCheck ENTER', arg_check_events, TYPE_CZECH_current_test_number);
+        consolelog('^^^ _ParametersCheck ENTER', arg_check_events, TYPE_CZECH_current_test_number);
         const num_parameters = arguments.length;
         if (num_parameters > 1) {
-          const error_53 = `TypeCzech._ParametersCheck() - Internal - needs 0 or 1 parameters, not ${num_parameters}`;
-          const internal_error_53 = _consoleError(error_53, 'ME@407');
-          throw internal_error_53;
+          const error_407 = `TypeCzech._ParametersCheck() - Internal - needs 0 or 1 parameters, not ${num_parameters}`;
+          const internal_error_407 = _consoleError(error_407, 'ME@407');
+          throw internal_error_407;
         }
         let onParamCheck = () => ''; // console.log('default onParamCheck');
         let onParamError = () => ''; // console.log('default onParamError');
@@ -1277,7 +1294,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         }
 
         function getHtmlTypes(list_of_parameters) {
-          consolelog('###getHtmlTypes ENTER', list_of_parameters);
+          consolelog('^^^ getHtmlTypes ENTER', list_of_parameters);
           const real_types = [];
           list_of_parameters.forEach((a_variable) => {
             const is_html_type = typeFinal(a_variable);
@@ -1288,12 +1305,12 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
               real_types.push(json_form);
             }
           });
-          consolelog('###getHtmlTypes EXIT', real_types);
+          consolelog('^^^ getHtmlTypes EXIT', real_types);
           return real_types;
         }
 
         function actualVsExpected(list_of_parameters, exception_str, any_errors, func_name_params) {
-          consolelog('###actualVsExpected ENTER', list_of_parameters, exception_str, any_errors, func_name_params, TYPE_CZECH_current_test_number);
+          consolelog('^^^ actualVsExpected ENTER', list_of_parameters, exception_str, any_errors, func_name_params, TYPE_CZECH_current_test_number);
           const [shape_check, type_of_error, expected_shape] = any_errors;
           let arg_list = getHtmlTypes(list_of_parameters);
           let param_values;
@@ -1325,12 +1342,12 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
           }
           new_exception += `${CZECH_ERROR_INDENT}${called_function} ${func_name_params}`;
           new_exception += CZECH_ERROR_INDENT;
-          consolelog('###actualVsExpected EXIT', new_exception);
+          consolelog('^^^ actualVsExpected EXIT', new_exception);
           return new_exception;
         }
 
         function outputCheck(any_errors, checking_name, target_name, list_of_parameters, func_name_params) {
-          consolelog('###outputCheck ENTER', any_errors, checking_name, target_name, list_of_parameters, func_name_params, TYPE_CZECH_current_test_number);
+          consolelog('^^^ outputCheck ENTER', any_errors, checking_name, target_name, list_of_parameters, func_name_params, TYPE_CZECH_current_test_number);
           p_check_count += 1;
           if (OP_CONSOLE_COUNT) {
             _coloredConsole([p_check_count], TRACE_COLORS);
@@ -1356,7 +1373,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         }
 
         function argumentsParamWarn(check_function) {
-          consolelog('###argumentsParamWarn ENTER', check_function, TYPE_CZECH_current_test_number);
+          consolelog('^^^ argumentsParamWarn ENTER', check_function, TYPE_CZECH_current_test_number);
           const func_str = check_function.toString();
           const func_parts = func_str.match(PARAMS_OF_FUNCTION);
           const func_name_params = `${func_parts[0]})`;
@@ -1367,12 +1384,12 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
             const arguments_error = `Parameter 'arguments' shadows arguments object : ${func_parts[0]})`;
             _coloredConsole(arguments_error, TRACE_COLORS);
           }
-          consolelog('###argumentsParamWarn EXIT', funct_params);
+          consolelog('^^^ argumentsParamWarn EXIT', funct_params);
           return funct_params;
         }
 
         function applyNoThis(target_name, list_of_parameters, the_check) {
-          consolelog('###applyNoThis ENTER', target_name, list_of_parameters, the_check, TYPE_CZECH_current_test_number);
+          consolelog('^^^ applyNoThis ENTER', target_name, list_of_parameters, the_check, TYPE_CZECH_current_test_number);
           const funct_params = argumentsParamWarn(the_check);
           // eslint-disable-next-line prefer-spread
           const the_errors = the_check.apply(null, list_of_parameters);
@@ -1380,7 +1397,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         }
 
         function applyWithThis(target_name, this_arg, list_of_parameters, the_check) {
-          consolelog('###applyWithThis ENTER', target_name, this_arg, list_of_parameters, the_check, TYPE_CZECH_current_test_number);
+          consolelog('^^^ applyWithThis ENTER', target_name, this_arg, list_of_parameters, the_check, TYPE_CZECH_current_test_number);
           const funct_params = argumentsParamWarn(the_check);
           const the_errors = the_check.apply(this_arg, list_of_parameters);
           outputCheck(the_errors, the_check.name, target_name, list_of_parameters, funct_params);
@@ -1411,7 +1428,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         }
 
         function checkFuncAsStr(the_check) {
-          consolelog('###checkFuncAsStr ENTER', the_check, TYPE_CZECH_current_test_number);
+          consolelog('^^^ checkFuncAsStr ENTER', the_check, TYPE_CZECH_current_test_number);
           let check_as_str;
           if (typeof the_check === 'object') {
             const func_name = (x) => `${x}()`;
@@ -1421,55 +1438,55 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
           } else {
             check_as_str = `${the_check.name}()`;
           }
-          consolelog('###checkFuncAsStr EXIT', check_as_str);
+          consolelog('^^^ checkFuncAsStr EXIT', check_as_str);
           return check_as_str;
         }
 
-        function funcObjChecksOnly(the_check, whence_error, error_number) {
+        function funcObjChecksOnly(the_check, whence_error, error_id) {
           if (typeof the_check !== 'function' && typeof the_check !== 'object') {
             const check_str = _toStr(the_check);
-            const error_0 = `${whence_error}, is a not a function nor an object that has a value of '${check_str}'`;
-            const exception_0 = _consoleError(error_0, `TC@${error_number}`);
-            throw exception_0;
+            const error_101_115 = `${whence_error}, is a not a function nor an object that has a value of '${check_str}'`;
+            const exception_101_115 = _consoleError(error_101_115, error_id);
+            throw exception_101_115;
           }
         }
 
         function proxyUsed(target_proxy, the_check) {
-          consolelog('###proxyUsed ENTER', target_proxy, the_check, TYPE_CZECH_current_test_number);
+          consolelog('^^^ proxyUsed ENTER', target_proxy, the_check, TYPE_CZECH_current_test_number);
           const check_as_str = checkFuncAsStr(the_check);
           if (target_proxy === undefined) {
-            const error_5 = `The function to be checked by ${check_as_str} is 'undefined', maybe namespace issue.`;
-            const exception_5 = _consoleError(error_5, 'TC@05');
-            throw exception_5;
+            const error_102 = `The function to be checked by ${check_as_str} is 'undefined', maybe namespace issue`;
+            const exception_102 = _consoleError(error_102, 'EX@102');
+            throw exception_102;
           }
           if (target_proxy === the_check) {
-            const error_28 = `_ParametersCheck you cannot use ${target_proxy.name}() to test`
+            const error_103 = `_ParametersCheck you cannot use ${target_proxy.name}() to test`
                         + `${the_check.name}(), they must be different functions`;
-            const exception_28 = _consoleError(error_28, 'TC@28');
-            throw exception_28;
+            const exception_103 = _consoleError(error_103, 'EX@103');
+            throw exception_103;
           }
-          consolelog('###proxyUsed EXIT');
+          consolelog('^^^ proxyUsed EXIT');
         }
 
         function proxyApprove(target_proxy, pre_check, post_check) {
-          consolelog('###proxyApprove ENTER', target_proxy, pre_check, post_check, TYPE_CZECH_current_test_number);
+          consolelog('^^^ proxyApprove ENTER', target_proxy, pre_check, post_check, TYPE_CZECH_current_test_number);
           if (t_proxy_targets.has(target_proxy)) {
-            const error_4 = `${target_proxy.name}() is already proxied with ${target_proxy.name}`;
-            const exception_4 = _consoleError(error_4, 'TC@04');
-            throw exception_4;
+            const error_104 = `${target_proxy.name}() is already proxied with ${target_proxy.name}`;
+            const exception_104 = _consoleError(error_104, 'EX@104');
+            throw exception_104;
           }
           if (typeof target_proxy !== 'function') {
             const target_str = _toStr(target_proxy);
-            const error_6 = `The first parameter to TypeCzech.link(), target_proxy is not a function, but is instead ${target_str}`;
-            const exception_6 = _consoleError(error_6, 'TC@06');
-            throw exception_6;
+            const error_105 = `The first parameter to TypeCzech.linkUp(), target_proxy is not a function, but is instead ${target_str}`;
+            const exception_105 = _consoleError(error_105, 'EX@105');
+            throw exception_105;
           }
           if (pre_check) {
             // eslint-disable-next-line guard-for-in, no-restricted-syntax
             for (const pre_key in pre_check) {
               const a_pre_check = pre_check[pre_key];
               proxyUsed(target_proxy, a_pre_check);
-              funcObjChecksOnly(a_pre_check, 'TypeCzech.link() 2nd parameter, PRE-CHECK()', 31);
+              funcObjChecksOnly(a_pre_check, 'TypeCzech.linkUp() 2nd parameter, PRE-CHECK()', 'EX@101');
             }
           }
           if (post_check) {
@@ -1477,14 +1494,14 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
             for (const post_key in post_check) {
               const a_post_check = post_check[post_key];
               proxyUsed(target_proxy, a_post_check);
-              funcObjChecksOnly(a_post_check, 'TypeCzech.link() 3rd parameter, POST-CHECK()', 37);
+              funcObjChecksOnly(a_post_check, 'TypeCzech.linkUp() 3rd parameter, POST-CHECK()', 'EX@115');
             }
           }
-          consolelog('###proxyApprove EXIT');
+          consolelog('^^^ proxyApprove EXIT');
         }
 
         function proxyFunction(target_proxy, pre_check, post_check) {
-          consolelog('###proxyFunction ENTER', target_proxy, pre_check, post_check, TYPE_CZECH_current_test_number);
+          consolelog('^^^ proxyFunction ENTER', target_proxy, pre_check, post_check, TYPE_CZECH_current_test_number);
           const function_name = target_proxy.name;
           const proxy_handler = {
             apply(target_function, this_arg, parameter_list) {
@@ -1511,12 +1528,12 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
               return function_result;
             },
           };
-          consolelog('###proxyFunction EXIT', proxy_handler);
+          consolelog('^^^ proxyFunction EXIT', proxy_handler);
           return new Proxy(target_proxy, proxy_handler);
         }
 
         function proxyMethods(class_name, class_object, pre_checks, post_checks) {
-          consolelog('###proxyMethods ENTER', class_name, class_object, pre_checks, post_checks, TYPE_CZECH_current_test_number);
+          consolelog('^^^ proxyMethods ENTER', class_name, class_object, pre_checks, post_checks, TYPE_CZECH_current_test_number);
           const proxied_methods = new Set();
           if (pre_checks) {
             Object.keys(pre_checks).forEach((pre_method) => proxied_methods.add(pre_method));
@@ -1549,12 +1566,12 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
           if (was_frozen) {
             Object.freeze(class_object);
           }
-          consolelog('###proxyMethods EXIT', class_object);
+          consolelog('^^^ proxyMethods EXIT', class_object);
           return class_object;
         }
 
         function getPrePostCheck(pre_post_checks, class_name) {
-          consolelog('###getPrePostCheck ENTER', pre_post_checks, class_name, TYPE_CZECH_current_test_number);
+          consolelog('^^^ getPrePostCheck ENTER', pre_post_checks, class_name, TYPE_CZECH_current_test_number);
           let the_check;
           if (typeof pre_post_checks === 'function') {
             the_check = pre_post_checks;
@@ -1563,12 +1580,12 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
           } else {
             the_check = pre_post_checks[class_name];
           }
-          consolelog('###getPrePostCheck EXIT', the_check);
+          consolelog('^^^ getPrePostCheck EXIT', the_check);
           return the_check;
         }
 
         function proxyClass(class_proxy, pre_checks, post_checks) {
-          consolelog('###proxyClass ENTER', class_proxy, pre_checks, post_checks, TYPE_CZECH_current_test_number);
+          consolelog('^^^ proxyClass ENTER', class_proxy, pre_checks, post_checks, TYPE_CZECH_current_test_number);
           const class_name = class_proxy.name;
           const class_pre = getPrePostCheck(pre_checks, class_name);
           const class_post = getPrePostCheck(post_checks, class_name);
@@ -1591,12 +1608,12 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
             },
           };
           const new_proxy = new Proxy(class_proxy, proxy_handler);
-          consolelog('###proxyClass EXIT', new_proxy);
+          consolelog('^^^ proxyClass EXIT', new_proxy);
           return new_proxy;
         }
 
         function proxyObject(target_proxy, pre_checks, post_checks) {
-          consolelog('###proxyObject ENTER', target_proxy, pre_checks, post_checks, TYPE_CZECH_current_test_number);
+          consolelog('^^^ proxyObject ENTER', target_proxy, pre_checks, post_checks, TYPE_CZECH_current_test_number);
           const object_name = target_proxy.name;
           const object_pre = getPrePostCheck(pre_checks, object_name);
           const object_post = getPrePostCheck(post_checks, object_name);
@@ -1630,19 +1647,19 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
               return class_object;
             },
           };
-          consolelog('###proxyObject proxy_handler', proxy_handler);
+          consolelog('^^^ proxyObject proxy_handler', proxy_handler);
           const new_proxy = new Proxy(target_proxy, proxy_handler);
-          consolelog('###proxyObject EXIT', new_proxy);
+          consolelog('^^^ proxyObject EXIT', new_proxy);
           return new_proxy;
         }
 
         function realConfirmParams(target_proxy, pre_checks, post_checks) {
-          consolelog('###realConfirmParams ENTER', target_proxy, pre_checks, post_checks, TYPE_CZECH_current_test_number);
+          consolelog('^^^ realConfirmParams ENTER', target_proxy, pre_checks, post_checks, TYPE_CZECH_current_test_number);
           const num_params = arguments.length;
           if (num_params !== 2 && num_params !== 3) {
-            const error_52 = `TypeCzech.link() needs 2 or 3 parameters, not ${num_params}`;
-            const exception_52 = _consoleError(error_52, 'TC@52');
-            throw exception_52;
+            const error_106 = `TypeCzech.linkUp() needs 2 or 3 parameters, not ${num_params}`;
+            const exception_106 = _consoleError(error_106, 'EX@106');
+            throw exception_106;
           }
           proxyApprove(target_proxy, pre_checks, post_checks);
           let proxied_thing;
@@ -1659,7 +1676,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
             }
           }
           t_proxy_targets.add(proxied_thing);
-          consolelog('###realConfirmParams EXIT', proxied_thing);
+          consolelog('^^^ realConfirmParams EXIT', proxied_thing);
           return proxied_thing;
         }
 
@@ -1677,6 +1694,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
           countEnd_,
           countFails_,
           directCheck_,
+          p_call_traps,
         };
 
         return public_methods;
@@ -2020,25 +2038,30 @@ if (node && node.constructor === RegExp) {
       // /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+      /*
+          type_czech.check_type(91, 'adfaf');
+
+      */
+
       function _errorClassName(scalar_type) {
-        consolelog('###_errorClassName ENTER', scalar_type, TYPE_CZECH_current_test_number);
+        consolelog('^^^ _errorClassName ENTER', scalar_type, TYPE_CZECH_current_test_number);
         const no_spaces = scalar_type.replace(/\s+/g, '');
         let error_string = looksLikeType(no_spaces);
         if (!error_string) {
           if (no_spaces === '[]') {
-            const error_61 = "The construct '[]' is not a real type, only a container, thus is cannot"
+            const error_222 = "The construct '[]' is not a real type, only a container, thus it cannot"
                             + " serve as a signature for EXPECTED TYPE. Try 'Array' or ['String'].";
-            error_string = _consoleError(error_61, 'TE@222');
+            error_string = _consoleError(error_222, 'TE@222');
           } else if (no_spaces === '{}') {
-            const error_62 = "The construct '{}' is not a real type, only a container, thus is cannot"
+            const error_223 = "The construct '{}' is not a real type, only a container, thus it cannot"
                            + " serve as a signature for EXPECTED TYPE. Try 'Object' or {a:'String'}.";
-            error_string = _consoleError(error_62, 'TE@223');
+            error_string = _consoleError(error_223, 'TE@223');
           } else {
-            const error_16 = `The type '${scalar_type}' is not the correct class`;
-            error_string = _consoleError(error_16, 'TE@202');
+            const error_202 = `The type '${scalar_type}' is not the correct classname or not a scalar type`;
+            error_string = _consoleError(error_202, 'TE@202');
           }
         }
-        consolelog('###_errorClassName EXIT', error_string);
+        consolelog('^^^ _errorClassName EXIT', error_string);
         return error_string;
       }
 
@@ -2049,13 +2072,13 @@ if (node && node.constructor === RegExp) {
 
       */
       function _shapeErrorMess(shallow_array, check_array) {
-        consolelog('###_shapeErrorMess ENTER', shallow_array, check_array, TYPE_CZECH_current_test_number);
+        consolelog('^^^ _shapeErrorMess ENTER', shallow_array, check_array, TYPE_CZECH_current_test_number);
         const extra_shapes = Object.entries(shallow_array);
         const [extra_index, extra_type] = extra_shapes[0];
         const check_arr_str = _toStr(check_array);
-        const error_60 = `Element '${extra_index}' is supposed to be a '${extra_type}', but is missing : ${check_arr_str}`;
-        const error_string = _consoleError(error_60, 'TE@221');
-        consolelog('###_shapeErrorMess EXIT', error_string);
+        const error_221 = `Element '${extra_index}' is supposed to be a '${extra_type}', but is missing : ${check_arr_str}`;
+        const error_string = _consoleError(error_221, 'TE@221');
+        consolelog('^^^ _shapeErrorMess EXIT', error_string);
         return error_string;
       }
 
@@ -2133,7 +2156,7 @@ type_czech._shapeContainer([ 13, 14, 15 ], { r: "Number" }, 'TYPE-EXTRAS', 179);
     */
 
       function _shapeContainer(check_container, container_shape, the_type) {
-        consolelog('###_shapeContainer ENTER', check_container, container_shape, the_type, TYPE_CZECH_current_test_number);
+        consolelog('^^^ _shapeContainer ENTER', check_container, container_shape, the_type, TYPE_CZECH_current_test_number);
         let error_string = '';
         const object_type = _aTypeOf(check_container);
         const shape_type = _aTypeOf(container_shape);
@@ -2142,7 +2165,8 @@ type_czech._shapeContainer([ 13, 14, 15 ], { r: "Number" }, 'TYPE-EXTRAS', 179);
         } else if (object_type !== shape_type) {
           if (object_type === container_shape) {
             // Here is where we run into {} === 'Object'
-          } else {
+          } else if (the_type !== TYPE_EXTRAS || shape_type !== 'Array') {
+            // Above if() is to allow TEST 06027 to pass ==> type_czech.check_typeExtra([{r:11}], [{r:"Number"}]);
             const check_str = _jsonStr(check_container);
             let print_type;
             if (_aTypeOf(container_shape) === 'String') {
@@ -2150,9 +2174,9 @@ type_czech._shapeContainer([ 13, 14, 15 ], { r: "Number" }, 'TYPE-EXTRAS', 179);
             } else {
               print_type = shape_type;
             }
-            const error_36 = `Parameter is meant to be '${print_type}' but is`
+            const error_207 = `Parameter is meant to be '${print_type}' but is`
                         + ` of the wrong type of '${object_type}':${check_str}`;
-            error_string = _consoleError(error_36, 'TE@207');
+            error_string = _consoleError(error_207, 'TE@207');
           }
         } else if (shape_type === 'Array') {
           // eslint-disable-next-line no-use-before-define
@@ -2161,7 +2185,7 @@ type_czech._shapeContainer([ 13, 14, 15 ], { r: "Number" }, 'TYPE-EXTRAS', 179);
           // eslint-disable-next-line no-use-before-define
           error_string = _shapeCollectionTypes(check_container, container_shape, the_type);
         }
-        consolelog('###_shapeContainer EXIT', error_string);
+        consolelog('^^^ _shapeContainer EXIT', error_string);
         return error_string;
       }
 
@@ -2181,7 +2205,7 @@ type_czech._shapeContainer([ 13, 14, 15 ], { r: "Number" }, 'TYPE-EXTRAS', 179);
 
     */
       const _arrayOfOneType = (check_array, array_type, the_type) => {
-        consolelog('###_arrayOfOneType ENTER', check_array, array_type, the_type, TYPE_CZECH_current_test_number);
+        consolelog('^^^ _arrayOfOneType ENTER', check_array, array_type, the_type, TYPE_CZECH_current_test_number);
         let error_string = '';
         const type_of_array = _shortToLongType(array_type);
         if (!Array.isArray(check_array)) {
@@ -2203,16 +2227,16 @@ type_czech._shapeContainer([ 13, 14, 15 ], { r: "Number" }, 'TYPE-EXTRAS', 179);
                 let error_local = looksLikeType(type_of_array);
                 if (!error_local) {
                   const show_element = _toStr(check_element);
-                  const error_45 = `ELEMENT '${element_index}' is asserted to be a '${type_of_array}',`
+                  const error_215 = `ELEMENT '${element_index}' is asserted to be a '${type_of_array}',`
                                 + ` but is fallaciously a '${variable_type}' : ${show_element}`;
-                  error_local = _consoleError(error_45, 'TE@215');
+                  error_local = _consoleError(error_215, 'TE@215');
                 }
                 error_string = error_local;
               }
             }
           }
         });
-        consolelog('###_arrayOfOneType EXIT', error_string);
+        consolelog('^^^ _arrayOfOneType EXIT', error_string);
         return error_string;
       };
 
@@ -2232,23 +2256,28 @@ type_czech._shapeContainer([ 13, 14, 15 ], { r: "Number" }, 'TYPE-EXTRAS', 179);
 
       */
       const _wrongType = (expected_type, element_index, real_type) => {
-        consolelog('###_wrongType ENTER', expected_type, element_index, real_type, TYPE_CZECH_current_test_number);
+        consolelog('^^^ _wrongType ENTER', expected_type, element_index, real_type, TYPE_CZECH_current_test_number);
         let error_string = '';
-        let expected_string = '';
-        if (expected_type === null) {
-          expected_string = 'null';
-        } else if (typeof expected_type === 'undefined') {
-          expected_string = 'undefined';
-        } else {
-          expected_string = expected_type;
+        if (expected_type === 'null') {
+          const error_204 = ` ELEMENT '${element_index}' type is invalid 'null'`;
+          error_string = _consoleError(error_204, 'TE@204');
+        } else if (expected_type === 'undefined') {
+          const error_229 = ` ELEMENT '${element_index}' type is invalid 'undefined'`;
+          error_string = _consoleError(error_229, 'TE@229');
+        } else if (typeof expected_type !== 'string') {
+          const bad_type = _toStr(expected_type);
+          const error_230 = ` ELEMENT '${element_index}' type is invalid as it is not a string but instead ${bad_type}`;
+          error_string = _consoleError(error_230, 'TE@230');
         }
-        error_string = looksLikeType(expected_string);
         if (!error_string) {
-          const error_44 = ` ELEMENT '${element_index}' is assumed to be a '${expected_string}',`
-          + ` but is mistakenly a '${real_type}'.`;
-          error_string = _consoleError(error_44, 'TE@214');
+          error_string = looksLikeType(expected_type);
+          if (!error_string) {
+            const error_214 = ` ELEMENT '${element_index}' is assumed to be a '${expected_type}',`
+            + ` but is mistakenly a '${real_type}'`;
+            error_string = _consoleError(error_214, 'TE@214');
+          }
         }
-        consolelog('###_wrongType EXIT', error_string);
+        consolelog('^^^ _wrongType EXIT', error_string);
         return error_string;
       };
 
@@ -2268,7 +2297,7 @@ type_czech._shapeContainer([ 13, 14, 15 ], { r: "Number" }, 'TYPE-EXTRAS', 179);
 
       */
       function _shapeArrayTypes(check_array, array_shape, the_type) {
-        consolelog('###_shapeArrayTypes ENTER', check_array, array_shape, the_type, TYPE_CZECH_current_test_number);
+        consolelog('^^^ _shapeArrayTypes ENTER', check_array, array_shape, the_type, TYPE_CZECH_current_test_number);
         let error_string = '';
         if (array_shape.length === 1 && check_array.length > 1) {
           const single_type = array_shape[0];
@@ -2305,7 +2334,7 @@ type_czech._shapeContainer([ 13, 14, 15 ], { r: "Number" }, 'TYPE-EXTRAS', 179);
             }
           }
         }
-        consolelog('###_shapeArrayTypes EXIT', error_string);
+        consolelog('^^^ _shapeArrayTypes EXIT', error_string);
         return error_string;
       }
 
@@ -2328,15 +2357,15 @@ type_czech._shapeContainer([ 13, 14, 15 ], { r: "Number" }, 'TYPE-EXTRAS', 179);
 
       */
       const _shapePropertyType = (property_type, property_key, check_variable) => {
-        consolelog('###_shapePropertyType ENTER', property_type, property_key, check_variable, TYPE_CZECH_current_test_number);
+        consolelog('^^^ _shapePropertyType ENTER', property_type, property_key, check_variable, TYPE_CZECH_current_test_number);
         let error_string = '';
         const check_type_type = _shortToLongType(property_type[property_key]);
         if (!_isPlainJsType(check_type_type)) {
           error_string = looksLikeType(check_type_type);
           if (!error_string) {
             const object_str = _jsonStr(check_type_type);
-            const error_40 = `The type '${object_str}' is not check_type`;
-            error_string = _consoleError(error_40, 'TE@210');
+            const error_210 = `The type '${object_str}' is not a real type`;
+            error_string = _consoleError(error_210, 'TE@210');
           }
         } else {
           const variable_type = _aTypeOf(check_variable);
@@ -2346,20 +2375,20 @@ type_czech._shapeContainer([ 13, 14, 15 ], { r: "Number" }, 'TYPE-EXTRAS', 179);
             } else if (OP_UNDEF_OK && variable_type === 'undefined') {
               // ingore undefined if OP_UNDEF_OK
             } else if (typeof check_variable === 'undefined') {
-              const error_41 = `Key '${property_key}' was given to be a '${check_type_type}' but was instead 'undefined'`;
-              error_string = _consoleError(error_41, 'TE@211');
+              const error_211 = `Key '${property_key}' was given to be a '${check_type_type}' but was instead 'undefined'`;
+              error_string = _consoleError(error_211, 'TE@211');
             } else if (variable_type === 'null') {
-              const error_42 = `Key '${property_key}' was determined to be a '${check_type_type}' but was instead 'null'`;
-              error_string = _consoleError(error_42, 'TE@212');
+              const error_212 = `Key '${property_key}' was determined to be a '${check_type_type}' but was instead 'null'`;
+              error_string = _consoleError(error_212, 'TE@212');
             } else {
               const check_str = _toStr(check_variable);
-              const error_43 = `Property '${property_key}' is indicated to be a '${check_type_type}',`
+              const error_213 = `Property '${property_key}' is indicated to be a '${check_type_type}',`
                           + ` but is inaccurately a '${variable_type}' : ${check_str}`;
-              error_string = _consoleError(error_43, 'TE@213');
+              error_string = _consoleError(error_213, 'TE@213');
             }
           }
         }
-        consolelog('###_shapePropertyType EXIT', error_string);
+        consolelog('^^^ _shapePropertyType EXIT', error_string);
         return error_string;
       };
 
@@ -2384,37 +2413,29 @@ type_czech._shapeContainer([ 13, 14, 15 ], { r: "Number" }, 'TYPE-EXTRAS', 179);
 
       */
       function _shapeCollectionTypes(check_object, object_shape, the_type) {
-        consolelog('###_shapeCollectionTypes ENTER', check_object, object_shape, the_type, TYPE_CZECH_current_test_number);
-        const error_strings = [];
+        consolelog('^^^ _shapeCollectionTypes ENTER', check_object, object_shape, the_type, TYPE_CZECH_current_test_number);
+        let error_string = '';
         const check_type_shallow = { ...object_shape };
         const check_entries = Object.entries(check_object);
         check_entries.forEach((shape_entry) => {
-          let error_string = '';
-          const [check_key, check_var_or_obj] = shape_entry;
-          if (_isCollection(check_var_or_obj)) {
-            const correct_shape = object_shape[check_key];
-            error_string += _shapeContainer(check_object[check_key], correct_shape, the_type);
-            delete check_type_shallow[check_key];
-          } else if (Object.prototype.hasOwnProperty.call(check_type_shallow, check_key)) {
-            error_string += _shapePropertyType(check_type_shallow, check_key, check_var_or_obj);
-            delete check_type_shallow[check_key];
-          } else if (the_type === TYPE_VERIFY) {
-            const error_39 = `Extra key in checked object - (${check_key}:'${check_var_or_obj}')`;
-            error_string = _consoleError(error_39, 'TE@209');
-          } else {
-            // console.log('NO ERROR shapesCheck');
-          }
-          if (error_string) {
-            error_strings.push(error_string);
+          if (error_string === '') {
+            const [check_key, check_var_or_obj] = shape_entry;
+            if (_isCollection(check_var_or_obj)) {
+              const correct_shape = object_shape[check_key];
+              error_string = _shapeContainer(check_object[check_key], correct_shape, the_type);
+              delete check_type_shallow[check_key];
+            } else if (Object.prototype.hasOwnProperty.call(check_type_shallow, check_key)) {
+              error_string = _shapePropertyType(check_type_shallow, check_key, check_var_or_obj);
+              delete check_type_shallow[check_key];
+            } else if (the_type === TYPE_VERIFY) {
+              const error_209 = `Extra key in checked object - (${check_key}:'${check_var_or_obj}')`;
+              error_string = _consoleError(error_209, 'TE@209');
+            }
           }
         });
-        let error_99 = '';
-        if (error_strings.length > 0) {
-          error_strings.forEach((empty_error) => { error_99 += empty_error; });
-        }
-        error_99 += _missingKey(check_type_shallow);
-        consolelog('###_shapeCollectionTypes EXIT', error_99);
-        return error_99;
+        error_string += _missingKey(check_type_shallow);
+        consolelog('^^^ _shapeCollectionTypes EXIT', error_string);
+        return error_string;
       }
 
       /* type_czech = TypeCzech('LOG-ERRORS')
@@ -2441,41 +2462,45 @@ type_czech._shapeScalar(4, 'null');
 //The type 'null' is not a check_type type
       */
       function _shapeScalar(actual_value, expected_type) {
-        consolelog('###_shapeScalar ENTER', actual_value, expected_type, TYPE_CZECH_current_test_number);
+        consolelog('^^^ _shapeScalar ENTER', actual_value, expected_type, TYPE_CZECH_current_test_number);
         const expected_long_type = _shortToLongType(expected_type);
-        let variable_str;
         let error_string = '';
         if (expected_long_type === 'null' || expected_long_type === 'undefined') {
-          const error_17 = `The type '${expected_long_type}' is not a check_type type`;
-          error_string = _consoleError(error_17, 'TE@203');
+          const error_203 = `The type '${expected_long_type}' is not a valid check_type(), `
+                          + 'check_typeEither(), or check_typeExtra() second parameter type';
+          error_string = _consoleError(error_203, 'TE@203');
         } else if (!_isPlainJsType(expected_long_type)) {
           const actual_type = _anObjectsType(actual_value);
           if (actual_type !== expected_long_type) {
-            error_string = _errorClassName(expected_long_type);
+            if (_aTypeOf(expected_long_type) === 'string') {
+              error_string = _errorClassName(expected_long_type);
+            } else {
+              const incorrect_type = _toStr(expected_long_type);
+              const error_230 = `The type '${incorrect_type}' is invalid`;
+              error_string = _consoleError(error_230, 'TE@230');
+            }
           }
         } else {
           const variable_type = _aTypeOf(actual_value);
-          consolelog('###_shapeScalar _aTypeOf', variable_type, TYPE_CZECH_current_test_number);
+          consolelog('^^^ _shapeScalar _aTypeOf', variable_type, TYPE_CZECH_current_test_number);
           if (variable_type === expected_long_type) {
             error_string = '';
           } else if (variable_type === 'Array') {
-            variable_str = '[]';
-            const error_64 = `The value '[]', which is a 'Array', is not a '${expected_long_type}'`;
-            error_string = _consoleError(error_64, 'TE@225');
+            const error_225 = `The value '[]', which is a 'Array', is not a '${expected_long_type}'`;
+            error_string = _consoleError(error_225, 'TE@225');
           } else if (variable_type === 'Object') {
-            variable_str = '{}';
-            const error_38 = `The value '{}', which is a 'Object', is not a '${expected_long_type}'`;
-            error_string = _consoleError(error_38, 'TE@208');
+            const error_208 = `The value '{}', which is a 'Object', is not a '${expected_long_type}'`;
+            error_string = _consoleError(error_208, 'TE@208');
           } else if (variable_type === 'undefined') {
-            const error_34 = `The value '${variable_str}', is not a '${expected_long_type}'`;
-            error_string = _consoleError(error_34, 'TE@206');
+            const error_206 = `The value 'undefined', is not a '${expected_long_type}'`;
+            error_string = _consoleError(error_206, 'TE@206');
           } else {
-            variable_str = _toStr(actual_value);
-            const error_65 = `The value '${variable_str}', which is a '${variable_type}', is not a '${expected_long_type}'`;
-            error_string = _consoleError(error_65, 'TE@226');
+            const variable_str = _toStr(actual_value);
+            const error_226 = `The value '${variable_str}', which is a '${variable_type}', is not a '${expected_long_type}'`;
+            error_string = _consoleError(error_226, 'TE@226');
           }
         }
-        consolelog('###_shapeScalar EXIT', error_string);
+        consolelog('^^^ _shapeScalar EXIT', error_string);
         return error_string;
       }
 
@@ -2501,14 +2526,14 @@ type_czech._shapeScalar(4, 'null');
 
       */
       function _shapeVariable(check_variable, variable_type, the_type) {
-        consolelog('###_shapeVariable ENTER', check_variable, variable_type, the_type, TYPE_CZECH_current_test_number);
+        consolelog('^^^ _shapeVariable ENTER', check_variable, variable_type, the_type, TYPE_CZECH_current_test_number);
         let error_string;
         if (_isCollection(variable_type)) {
           error_string = _shapeContainer(check_variable, variable_type, the_type);
         } else {
           error_string = _shapeScalar(check_variable, variable_type);
         }
-        consolelog('###_shapeVariable EXIT', error_string);
+        consolelog('^^^ _shapeVariable EXIT', error_string);
         return error_string;
       }
 
@@ -2519,13 +2544,19 @@ type_czech._shapeScalar(4, 'null');
 
       */
       function _emptyErrorMess(shallow_array, check_array) {
-        consolelog('###_emptyErrorMess ENTER', shallow_array, check_array, TYPE_CZECH_current_test_number);
-        const extra_shapes = Object.entries(shallow_array);
-        const [extra_index, extra_type] = extra_shapes[0];
-        const check_str = _jsonStr(check_array);
-        const error_29 = `ELEMENT '${extra_index}' is promised to be a '${extra_type}', but is missing : ${check_str}`;
-        const error_string = _consoleError(error_29, 'EE@310');
-        consolelog('###_emptyErrorMess EXIT', error_string);
+        consolelog('^^^ _emptyErrorMess ENTER', shallow_array, check_array, TYPE_CZECH_current_test_number);
+        let error_string;
+        if (shallow_array.length === 0) {
+          const error_316 = "Array with with no empty type elements, [], should have at least one empty type element like, ['EMPTY-ERROR']";
+          error_string = _consoleError(error_316, 'EE@316');
+        } else {
+          const extra_shapes = Object.entries(shallow_array);
+          const [extra_index, extra_type] = extra_shapes[0];
+          const check_str = _jsonStr(check_array);
+          const error_310 = `ELEMENT '${extra_index}' is promised to be a '${extra_type}', but is missing : ${check_str}`;
+          error_string = _consoleError(error_310, 'EE@310');
+        }
+        consolelog('^^^ _emptyErrorMess EXIT', error_string);
         return error_string;
       }
 
@@ -2545,14 +2576,14 @@ type_czech._shapeScalar(4, 'null');
 
       */
       function _emptyError(empty_type, check_element, element_index, check_array, variable_type, the_type) {
-        consolelog('###_emptyError PART 1 ENTER', empty_type, check_element, element_index);
-        consolelog('###_emptyError PART 2 ENTER', check_array, variable_type, the_type, TYPE_CZECH_current_test_number);
+        consolelog('^^^ _emptyError PART 1 ENTER', empty_type, check_element, element_index);
+        consolelog('^^^ _emptyError PART 2 ENTER', check_array, variable_type, the_type, TYPE_CZECH_current_test_number);
         let error_string;
         const check_str = _jsonStr(check_array);
         if (empty_type === 'EMPTY-ERROR' || empty_type === 'ER') {
           if (_isEmpty(check_element)) {
-            const error_30 = `ELEMENT '${element_index}' is erroneously empty :`;
-            error_string = _consoleError(error_30, 'EE@311');
+            const error_311 = `ELEMENT '${element_index}' is erroneously empty :`;
+            error_string = _consoleError(error_311, 'EE@311');
           } else {
             error_string = '';
           }
@@ -2561,14 +2592,14 @@ type_czech._shapeScalar(4, 'null');
           // eslint-disable-next-line no-use-before-define
           error_string = _emptyContainer(check_array[element_index], empty_type, the_type);
         } else if (_aTypeOf(empty_type) === 'String') {
-          const error_32 = `ELEMENT '${element_index}' is incorrect  type, '${empty_type}', only`
+          const error_312 = `ELEMENT '${element_index}' is incorrect  type, '${empty_type}', only`
                       + ` [ER, EMPTY-ERROR, EMPTY-OK, OK, EMPTY-IGNORE, IG] allowed  : ${check_str}`;
-          error_string = _consoleError(error_32, 'EE@312');
+          error_string = _consoleError(error_312, 'EE@312');
         } else {
           // eslint-disable-next-line no-use-before-define
           error_string = _emptyContainer(check_array[element_index], empty_type, the_type);
         }
-        consolelog('###_emptyError EXIT', error_string);
+        consolelog('^^^ _emptyError EXIT', error_string);
         return error_string;
       }
 
@@ -2588,31 +2619,27 @@ type_czech._shapeScalar(4, 'null');
 
     */
       const _emptyArrayInArray = (check_array, array_type, the_type) => {
-        consolelog('###_emptyArrayInArray ENTER', check_array, array_type, the_type, TYPE_CZECH_current_test_number);
+        consolelog('^^^ _emptyArrayInArray ENTER', check_array, array_type, the_type, TYPE_CZECH_current_test_number);
         let error_string = '';
         const check_array_type = _aTypeOf(check_array);
         if (check_array_type !== 'Array') {
           const check_str = _toStr(check_array);
-          const error_97 = `Variable '${check_array}' must be an array but is instead a '${check_array_type}', : ${check_str}`;
-          error_string = _consoleError(error_97, 'EE@314');
+          const error_314 = `Variable ${check_str} must be an array but is instead a '${check_array_type}', : ${check_str}`;
+          error_string = _consoleError(error_314, 'EE@314');
         } else {
           check_array.forEach((element, array_index) => {
             if (error_string === '') {
               if (array_type.length === 1) {
                 // eslint-disable-next-line no-use-before-define
-                let error_28 = _emptyContainer(element, array_type, the_type);
-                if (error_28) {
-                  error_28 += ` inside [${array_index}]`;
-                }
-                error_string += error_28;
+                error_string = _emptyContainer(element, array_type, the_type);
               } else {
                 // eslint-disable-next-line no-use-before-define
-                error_string += _emptyContainer(element, array_type[array_index], the_type);
+                error_string = _emptyContainer(element, array_type[array_index], the_type);
               }
             }
           });
         }
-        consolelog('###_emptyArrayInArray EXIT', error_string);
+        consolelog('^^^ _emptyArrayInArray EXIT', error_string);
         return error_string;
       };
 
@@ -2642,22 +2669,22 @@ type_czech._shapeScalar(4, 'null');
       */
 
       function emptyArrayEmptyError(check_str) {
-        const error_19 = `The parameter array ${check_str} is empty.`;
-        const error_string = _consoleError(error_19, 'ME@403');
+        const error_403 = `The parameter array ${check_str} is empty`;
+        const error_string = _consoleError(error_403, 'ME@403');
         return error_string;
       }
 
       function emptyArrayElementsError(check_str, array_shape, check_length, shape_length) {
         const shape_str = _jsonStr(array_shape);
-        const error_20 = `The parameter array ${check_str} does not have the same number of elements as ${shape_str}. `
-                      + ` Lengths are different ${check_length} !== ${shape_length}.`;
-        const error_string = _consoleError(error_20, 'ME@404');
+        const error_404 = `The parameter array ${check_str} does not have the same number of elements as ${shape_str}. `
+                      + ` Lengths are different ${check_length} !== ${shape_length}`;
+        const error_string = _consoleError(error_404, 'ME@404');
         return error_string;
       }
 
       function emptyArrayNotArrayError(check_array, check_array_type, check_str) {
-        const error_96 = `Variable '${check_array}' must be an array but is a '${check_array_type}', : ${check_str}`;
-        const error_string = _consoleError(error_96, 'EE@313');
+        const error_313 = `Variable '${check_array}' must be an array but is a '${check_array_type}', : ${check_str}`;
+        const error_string = _consoleError(error_313, 'EE@313');
         return error_string;
       }
 
@@ -2677,7 +2704,7 @@ type_czech._shapeScalar(4, 'null');
 
       */
       const _arrayOfOneShape = (check_array, array_type, the_type) => {
-        consolelog('###_arrayOfOneShape ENTER', check_array, array_type, the_type, TYPE_CZECH_current_test_number);
+        consolelog('^^^ _arrayOfOneShape ENTER', check_array, array_type, the_type, TYPE_CZECH_current_test_number);
         let error_string = '';
         const empty_of_array = _shortToLongEmpty(array_type);
         if (!Array.isArray(check_array)) {
@@ -2697,14 +2724,14 @@ type_czech._shapeScalar(4, 'null');
                 // ingore undefined if OP_UNDEF_OK
               } else {
                 const show_element = _toStr(check_element);
-                const error_23 = `ELEMENT '${element_index}' is asserted to be a '${empty_of_array}',`
+                const error_306 = `ELEMENT '${element_index}' is asserted to be a '${empty_of_array}',`
                                 + ` but is really 'EMPTY' : ${show_element}`;
-                error_string = _consoleError(error_23, 'EE@306');
+                error_string = _consoleError(error_306, 'EE@306');
               }
             }
           }
         });
-        consolelog('###_arrayOfOneShape EXIT', error_string);
+        consolelog('^^^ _arrayOfOneShape EXIT', error_string);
         return error_string;
       };
 
@@ -2716,7 +2743,7 @@ type_czech._shapeScalar(4, 'null');
 
       */
       const _emptyArrayTypes = (check_array, array_shape, the_type) => {
-        consolelog('###_emptyArrayTypes ENTER', check_array, array_shape, the_type, TYPE_CZECH_current_test_number);
+        consolelog('^^^ _emptyArrayTypes ENTER', check_array, array_shape, the_type, TYPE_CZECH_current_test_number);
         let error_string = '';
         if (!Array.isArray(check_array)) {
           // eslint-disable-next-line no-param-reassign
@@ -2767,7 +2794,7 @@ type_czech._shapeScalar(4, 'null');
             }
           }
         }
-        consolelog('###_emptyArrayTypes EXIT', error_string);
+        consolelog('^^^ _emptyArrayTypes EXIT', error_string);
         return error_string;
       };
 
@@ -2777,10 +2804,10 @@ type_czech._shapeScalar(4, 'null');
       //EE@301 - 'var-or-key-name' is a 'Number' which is supposed to be 'EMPTY-ERROR' but has a value of 0
 
       type_czech._emptyKeysChecked('EMPTY-ERROR', true, 'var-or-key-name');
-      //EE@302 - Cannot be empty 'var-or-key-name' EMPTY-ER' is a true :: boolean
+      //EE@302 - Type cannot be empty 'var-or-key-name' EMPTY-ER' is a true :: boolean
 
       type_czech._emptyKeysChecked('is_-RONG', true, 'var-or-key-name');
-      //EE@303 - bad empty key 'is_-RONG', must be either EMPTY-OK/OK or EMPTY-ER/ER
+      //EE@303 - Bad empty type key, 'is_-RONG', must be either 'EMPTY-OK', 'EMPTY-ER', 'EMPTY-IG', 'OK', 'ER', or 'IG'
 
       type_czech._emptyKeysChecked('EMPTY-ERROR', {}, 'var-or-key-name');
       //EE@301 - 'var-or-key-name' is a 'Object' which is supposed to be 'EMPTY-ERROR' but has a value of {}
@@ -2788,7 +2815,7 @@ type_czech._shapeScalar(4, 'null');
       */
 
       const _emptyKeysChecked = (empty_choice, check_var_or_obj, check_key) => {
-        consolelog('###_emptyKeysChecked ENTER', empty_choice, check_var_or_obj, check_key, TYPE_CZECH_current_test_number);
+        consolelog('^^^ _emptyKeysChecked ENTER', empty_choice, check_var_or_obj, check_key, TYPE_CZECH_current_test_number);
         let error_string = '';
         const long_empty = _shortToLongEmpty(empty_choice);
         if (long_empty === EMPTY_ER) {
@@ -2798,19 +2825,19 @@ type_czech._shapeScalar(4, 'null');
           if (is_empty_able) {
             const is_empty = _isEmpty(check_var_or_obj);
             if (is_empty) {
-              const error_8 = `'${check_key}' is a '${current_type}' which is reputed `
-                          + `to be '${long_empty}' but has a value of ${var_str}.`;
-              error_string = _consoleError(error_8, 'EE@301');
+              const error_301 = ` key '${check_key}' is a '${current_type}' which is reputed `
+                          + `to be '${long_empty}' but has a value of ${var_str}`;
+              error_string = _consoleError(error_301, 'EE@301');
             }
           } else {
-            const error_9 = `Cannot be incheck_type '${check_key}' ${long_empty}' is a ${var_str} :: ${current_type}`;
-            error_string = _consoleError(error_9, 'EE@302');
+            const error_302 = `Type cannot be empty '${check_key}' ${long_empty}' is a ${var_str} :: ${current_type}`;
+            error_string = _consoleError(error_302, 'EE@302');
           }
         } else if (long_empty !== EMPTY_OK && long_empty !== EMPTY_IG) {
-          const error_10 = `bad incheck_type key '${_toStr(long_empty)}', must be either EMPTY-OK -ER -IG`;
-          error_string = _consoleError(error_10, 'EE@303');
+          const error_303 = `Bad empty type key, '${_toStr(long_empty)}', must be either 'EMPTY-OK', 'EMPTY-ER', 'EMPTY-IG', 'OK', 'ER', or 'IG'`;
+          error_string = _consoleError(error_303, 'EE@303');
         }
-        consolelog('###_emptyKeysChecked EXIT', error_string);
+        consolelog('^^^ _emptyKeysChecked EXIT', error_string);
         return error_string;
       };
 
@@ -2836,49 +2863,40 @@ type_czech._shapeScalar(4, 'null');
 
       */
       const _emptyCollectionTypes = (check_object, object_shape, the_type) => {
-        consolelog('###_emptyCollectionTypes ENTER', check_object, object_shape, the_type, TYPE_CZECH_current_test_number);
-        const error_strings = [];
+        consolelog('^^^ _emptyCollectionTypes ENTER', check_object, object_shape, the_type, TYPE_CZECH_current_test_number);
+        let error_string = '';
         const check_type_shallow = { ...object_shape };
-        const check_entries = Object.entries(check_object);
-        check_entries.forEach((empty_entry) => {
-          let error_string = '';
-          const [check_key, check_var_or_obj] = empty_entry;
-          const empty_choice = _shortToLongEmpty(check_type_shallow[check_key]);
-          if (_isCollection(check_var_or_obj)) {
-            const correct_empty = object_shape[check_key];
-            const long_empty = _shortToLongEmpty(correct_empty);
-            if (_isEmpty(check_var_or_obj) && long_empty === 'EMPTY-ERROR') {
-              const show_empty = _jsonStr(check_var_or_obj);
-              const error_26 = `Key '${check_key}' was understood to be '${long_empty}' but was rather '${show_empty}'`;
-              error_string = _consoleError(error_26, 'EE@309');
-            } else {
-              // eslint-disable-next-line no-use-before-define
-              error_string += _emptyContainer(check_object[check_key], long_empty, the_type);
+        if (_isCollection(check_object)) {
+          const check_entries = Object.entries(check_object);
+          check_entries.forEach((empty_entry) => {
+            if (error_string === '') {
+              const [check_key, check_var_or_obj] = empty_entry;
+              const empty_choice = _shortToLongEmpty(check_type_shallow[check_key]);
+              if (_isCollection(check_var_or_obj)) {
+                const correct_empty = object_shape[check_key];
+                const long_empty = _shortToLongEmpty(correct_empty);
+                if (_isEmpty(check_var_or_obj) && long_empty === 'EMPTY-ERROR') {
+                  const show_empty = _jsonStr(check_var_or_obj);
+                  const error_26 = `Key '${check_key}' was understood to be '${long_empty}' but was rather '${show_empty}'`;
+                  error_string = _consoleError(error_26, 'EE@309');
+                } else {
+                  // eslint-disable-next-line no-use-before-define
+                  error_string += _emptyContainer(check_object[check_key], long_empty, the_type);
+                }
+                delete check_type_shallow[check_key];
+              } else if (Object.prototype.hasOwnProperty.call(check_type_shallow, check_key)) {
+                error_string = _emptyKeysChecked(empty_choice, check_var_or_obj, check_key);
+                delete check_type_shallow[check_key];
+              } else if (the_type === EMPTY_VERIFY) {
+                const error_27 = `Extra key in checked object - (${check_key}:'${check_var_or_obj}')`;
+                error_string = _consoleError(error_27, 'EE@315');
+              }
             }
-            delete check_type_shallow[check_key];
-          } else if (Object.prototype.hasOwnProperty.call(check_type_shallow, check_key)) {
-            error_string = _emptyKeysChecked(empty_choice, check_var_or_obj, check_key);
-            delete check_type_shallow[check_key];
-          } else if (the_type === EMPTY_VERIFY) {
-            const error_27 = `Extra key in checked object - (${check_key}:'${check_var_or_obj}')`;
-            error_string = _consoleError(error_27, 'EE@315');
-          } else {
-            // console.log('NO ERROR empty-check');
-          }
-          if (error_string) {
-            error_strings.push(error_string);
-          }
-        });
-        let error_13 = '';
-        if (error_strings.length > 0) {
-          error_strings.forEach((empty_error) => { error_13 += empty_error; });
+          });
         }
-        error_13 += _missingKey(check_type_shallow);
-        // if (error_13) {
-        //   error_13 = _consoleError(error_13, 'TC@13');            // looks like _missingKey() does this
-        // }
-        consolelog('###_emptyCollectionTypes EXIT', error_13);
-        return error_13;
+        error_string += _missingKey(check_type_shallow);
+        consolelog('^^^ _emptyCollectionTypes EXIT', error_string);
+        return error_string;
       };
 
       /* type_czech = TypeCzech('LOG-ERRORS')
@@ -2897,7 +2915,7 @@ type_czech._shapeScalar(4, 'null');
 
       */
       function _emptyContainer(check_container, empty_type, the_type) {
-        consolelog('###_emptyContainer ENTER', check_container, empty_type, the_type, TYPE_CZECH_current_test_number);
+        consolelog('^^^ _emptyContainer ENTER', check_container, empty_type, the_type, TYPE_CZECH_current_test_number);
         let error_string;
         const shape_type = _aTypeOf(empty_type);
         if (empty_type === undefined) {
@@ -2906,17 +2924,24 @@ type_czech._shapeScalar(4, 'null');
           if (_aTypeOf(empty_type[0]) === 'Array') {
             if (empty_type.length === 1) {
               error_string = _emptyArrayInArray(check_container, empty_type[0], the_type);
+            } else {
+              error_string = _emptyArrayInArray(check_container, empty_type, the_type);
             }
-            error_string = _emptyArrayInArray(check_container, empty_type, the_type);
+          } else {
+            const check_type_container = _aTypeOf(check_container);
+            if (check_type_container === 'Array') {
+              error_string = _emptyArrayTypes(check_container, empty_type, the_type);
+            } else {
+              error_string = _emptyArrayInArray(check_container, empty_type, the_type);
+            }
           }
-          error_string = _emptyArrayTypes(check_container, empty_type, the_type);
         } else if (shape_type === 'Object') {
           error_string = _emptyCollectionTypes(check_container, empty_type, the_type);
         } else {
           // eslint-disable-next-line no-use-before-define
           error_string = _emptyScalar(check_container, empty_type);
         }
-        consolelog('###_emptyContainer EXIT', error_string);
+        consolelog('^^^ _emptyContainer EXIT', error_string);
         return error_string;
       }
 
@@ -2933,7 +2958,7 @@ type_czech._shapeScalar(4, 'null');
 
       */
       function _emptyScalar(check_variable, empty_type) {
-        consolelog('###_emptyScalar ENTER', check_variable, empty_type, TYPE_CZECH_current_test_number);
+        consolelog('^^^ _emptyScalar ENTER', check_variable, empty_type, TYPE_CZECH_current_test_number);
         let error_string = '';
         const empty_long = _shortToLongEmpty(empty_type);
         const variable_type = _aTypeOf(check_variable);
@@ -2947,20 +2972,20 @@ type_czech._shapeScalar(4, 'null');
                 // eslint-disable-next-line no-param-reassign
                 check_variable = '{ }';
               }
-              const error_24 = `${empty_long} states '${variable_type}' must not `
+              const error_307 = `${empty_long} states '${variable_type}' must not `
                           + `be empty for the value '${check_variable}'`;
-              error_string = _consoleError(error_24, 'EE@307');
+              error_string = _consoleError(error_307, 'EE@307');
             }
           } else if (variable_type === 'null' || variable_type === 'undefined') {
-            const error_25 = `A '${variable_type}' cannot be empty, so the state`
+            const error_308 = `A '${variable_type}' cannot be empty, so the state`
                       + ` of '${empty_long}' is illegal for the value '${check_variable}'`;
-            error_string = _consoleError(error_25, 'EE@308');
+            error_string = _consoleError(error_308, 'EE@308');
           }
         } else if (empty_long !== EMPTY_OK && empty_long !== EMPTY_IG) {
-          const error_11 = `Must 'EMPTY-OK' or 'EMPTY-ERROR' not '${empty_long}'`;
-          error_string = _consoleError(error_11, 'EE@304');
+          const error_304 = `Must 'EMPTY-OK' or 'EMPTY-ERROR' not '${empty_long}'`;
+          error_string = _consoleError(error_304, 'EE@304');
         }
-        consolelog('###_emptyScalar EXIT', error_string);
+        consolelog('^^^ _emptyScalar EXIT', error_string);
         return error_string;
       }
 
@@ -2983,14 +3008,14 @@ type_czech._shapeScalar(4, 'null');
 
       */
       function _emptyVariable(check_variable, variable_type, the_type) {
-        consolelog('###_emptyVariable ENTER', check_variable, variable_type, the_type, TYPE_CZECH_current_test_number);
+        consolelog('^^^ _emptyVariable ENTER', check_variable, variable_type, the_type, TYPE_CZECH_current_test_number);
         let error_string;
         if (_isCollection(variable_type)) {
           error_string = _emptyContainer(check_variable, variable_type, the_type);
         } else {
           error_string = _emptyScalar(check_variable, variable_type);
         }
-        consolelog('###_emptyVariable EXIT', error_string);
+        consolelog('^^^ _emptyVariable EXIT', error_string);
         return error_string;
       }
 
@@ -3001,15 +3026,15 @@ type_czech._shapeScalar(4, 'null');
 
       */
       function _emptyCheck(check_variable, variable_type, the_type) {
-        consolelog('###_emptyCheck ENTER', check_variable, variable_type, the_type, TYPE_CZECH_current_test_number);
+        consolelog('^^^ _emptyCheck ENTER', check_variable, variable_type, the_type, TYPE_CZECH_current_test_number);
         let error_string;
         if (variable_type.length === 1 && (variable_type[0] === EMPTY_OK || variable_type[0] === 'OK')) {
-          const error_12 = "Completely pointless as checking with ['OK'] or ['EMPTY-OK'] matches everything";
-          error_string = _consoleError(error_12, 'EE@305');
+          const error_305 = "Completely pointless as checking with ['OK'] or ['EMPTY-OK'] matches everything";
+          error_string = _consoleError(error_305, 'EE@305');
         } else {
           error_string = _emptyVariable(check_variable, variable_type, the_type);
         }
-        consolelog('###_emptyCheck EXIT', error_string);
+        consolelog('^^^ _emptyCheck EXIT', error_string);
         return error_string;
       }
 
@@ -3023,7 +3048,7 @@ type_czech._shapeScalar(4, 'null');
 
       */
       function _doEitherEmpty(type_parameters, the_type) {
-        consolelog('###_doEitherEmpty ENTER', type_parameters, the_type, TYPE_CZECH_current_test_number);
+        consolelog('^^^ _doEitherEmpty ENTER', type_parameters, the_type, TYPE_CZECH_current_test_number);
         const [check_variable, empty_types] = type_parameters;
         let error_string = '';
         let empty_error = '';
@@ -3042,8 +3067,8 @@ type_czech._shapeScalar(4, 'null');
           const possible_error = _emptyCheck(check_variable, check_empty_type, the_type);
           if (possible_error === '') {
             found_empty = true;
-            consolelog('###*** MATCH EitherEmpty', check_variable);
-            consolelog('###*** MATCH EitherEmpty', empty_type);
+            consolelog('^^^ MATCH EitherEmpty', check_variable);
+            consolelog('^^^ MATCH EitherEmpty', empty_type);
           } else {
             empty_error = possible_error;
           }
@@ -3051,7 +3076,7 @@ type_czech._shapeScalar(4, 'null');
         if (!found_empty) {
           error_string = empty_error;
         }
-        consolelog('###_doEitherEmpty EXIT', error_string);
+        consolelog('^^^ _doEitherEmpty EXIT', error_string);
         return error_string;
       }
 
@@ -3065,14 +3090,14 @@ type_czech._shapeScalar(4, 'null');
 
     */
       function _doEitherShape(type_parameters, the_type) {
-        consolelog('###_doEitherShape ENTER', type_parameters, the_type, TYPE_CZECH_current_test_number);
+        consolelog('^^^ _doEitherShape ENTER', type_parameters, the_type, TYPE_CZECH_current_test_number);
         const [check_variable, var_types_shapes] = type_parameters;
-        let error_string = '';
-        let shape_error = '';
+        const shape_errors = [];
+        let error_string;
         let found_shape = false;
         var_types_shapes.forEach((var_type) => {
-          consolelog('###*** MATCH check_variable', check_variable);
-          consolelog('###*** MATCH var_type', var_type);
+          consolelog('^^^ *** MATCH check_variable', check_variable);
+          consolelog('^^^ *** MATCH var_type', var_type);
           let variable_type = var_type;
           if (var_type === 'String') {
             // NB This function deals in arrays. So a type of single 'String' must be changed into a ['String'].
@@ -3089,18 +3114,29 @@ type_czech._shapeScalar(4, 'null');
             }
           }
           const possible_error = _shapeVariable(check_variable, variable_type, the_type);
+
           if (possible_error === '') {
             found_shape = true;
-            consolelog('###*** MATCH EitherShape', check_variable);
-            consolelog('###*** MATCH EitherShape', variable_type);
+            consolelog('^^^ *** MATCH EitherShape', check_variable);
+            consolelog('^^^ *** MATCH EitherShape', variable_type);
           } else {
-            shape_error = possible_error;
+            shape_errors.push(possible_error);
           }
         });
-        if (!found_shape) {
-          error_string = shape_error;
+        if (found_shape) {
+          error_string = '';
+        } else {
+          const first_error = shape_errors.shift();
+          const last_error = shape_errors.pop();
+          if (shape_errors.length === 0) {
+            error_string = `${first_error}, ${last_error}`;
+          } else if (shape_errors.length === 1) {
+            error_string = `${first_error}, ${last_error}, plus 1 more Either error`;
+          } else {
+            error_string = `${first_error}, ${last_error}, plus  ${shape_errors.length} more Either errors`;
+          }
         }
-        consolelog('###_doEitherShape EXIT', error_string);
+        consolelog('^^^ _doEitherShape EXIT', error_string);
         return error_string;
       }
 
@@ -3111,7 +3147,7 @@ type_czech._shapeScalar(4, 'null');
 
       */
       function _specParameters(the_commands) {
-        consolelog('###_specParameters ENTER 11', the_commands, TYPE_CZECH_current_test_number);
+        consolelog('^^^ _specParameters ENTER 11', the_commands, TYPE_CZECH_current_test_number);
         let the_options = the_commands;
         const first_param = the_commands[0];
         if (Array.isArray(first_param)) {
@@ -3138,17 +3174,16 @@ type_czech._shapeScalar(4, 'null');
             OP_DEBUG_ERROR_TAGS = 'DEBUG-ERROR-TAGS';
           } else if (a_parameter !== '') {
             const arg_str = _jsonStr(a_parameter);
-            const error_21 = `Not THROW-EXCEPTIONS/LOG-ERRORS/UNDEF-OK/DEBUG-CONSOLE-TRACE/NO-CHECKING, unknown : ${arg_str}`;
-            const exception_21 = _consoleError(error_21, 'TC@21');
-            throw exception_21;
+            const error_107 = `Not THROW-EXCEPTIONS/LOG-ERRORS/UNDEF-OK/DEBUG-CONSOLE-TRACE/NO-CHECKING, unknown : ${arg_str}`;
+            const exception_107 = _consoleError(error_107, 'EX@107');
+            throw exception_107;
           }
         });
         t_do_param_checking = !!(OP_THROW_EXCEPTIONS || OP_LOG_ERRORS || OP_NO_ERROR_MESSAGES);
-        is_active = t_do_param_checking;
         const param_results = [
           OP_THROW_EXCEPTIONS, OP_LOG_ERRORS, OP_NO_ERROR_MESSAGES, OP_UNDEF_OK, OP_DEBUG_CONSOLE_TRACE, OP_CONSOLE_COUNT, OP_DEBUG_ERROR_TAGS,
         ];
-        consolelog('###_specParameters EXIT', param_results);
+        consolelog('^^^ _specParameters EXIT', param_results);
         return param_results;
       }
 
@@ -3170,25 +3205,25 @@ type_czech._shapeScalar(4, 'null');
       */
 
       function notArrayShape(parameters_list, shape_str) {
-        consolelog('###notArrayShape ENTER', parameters_list, shape_str, TYPE_CZECH_current_test_number);
+        consolelog('^^^ notArrayShape ENTER', parameters_list, shape_str, TYPE_CZECH_current_test_number);
         const params_string = _toStr(parameters_list);
         const long_shape = _shortToLongType(shape_str);
-        const error_58 = 'Comparing actual [] parameter, with a'
+        const error_219 = 'Comparing actual [] parameter, with a'
             + ` value of ${params_string}, against the expected shape of ${long_shape}. They should be the same type.`
-            + ` You cannot compare an array with a non-array; both []s, or both ${long_shape}s.`;
-        consolelog('###notArrayShape EXIT', error_58);
-        return error_58;
+            + ` You cannot compare an array with a non-array; both []s, or both ${long_shape}s`;
+        consolelog('^^^ notArrayShape EXIT', error_219);
+        return error_219;
       }
 
       function notArrayType(parameters_list, param_type, shape_str) {
-        consolelog('###notArrayType ENTER', parameters_list, param_type, shape_str, TYPE_CZECH_current_test_number);
+        consolelog('^^^ notArrayType ENTER', parameters_list, param_type, shape_str, TYPE_CZECH_current_test_number);
         const params_string = _toStr(parameters_list);
         const long_shape = _shortToLongType(shape_str);
-        const error_49 = `Comparing actual '${param_type}' parameter,`
+        const error_217 = `Comparing actual '${param_type}' parameter,`
           + ` with a value of ${params_string}, in relation to the expected shape of ${long_shape}. They should be the`
-          + ` same type. You cannot compare an array with a non-array; both []s, or both '${param_type}'s. Or same object keys.`;
-        consolelog('###notArrayType EXIT', error_49);
-        return error_49;
+          + ` same type. You cannot compare an array with a non-array; both []s, or both '${param_type}'s. Or same object keys`;
+        consolelog('^^^ notArrayType EXIT', error_217);
+        return error_217;
       }
 
       function paramError(err_mess, error_label, shape_str, message_type_empty) {
@@ -3199,7 +3234,7 @@ type_czech._shapeScalar(4, 'null');
       }
 
       function undefOrNullShape(parameter_str, shape_list, shape_str, method_name, message_type_empty) {
-        consolelog('###undefOrNullShape ENTER', parameter_str, shape_list, method_name, TYPE_CZECH_current_test_number);
+        consolelog('^^^ undefOrNullShape ENTER', parameter_str, shape_list, method_name, TYPE_CZECH_current_test_number);
         let error_str_3arr = '';
         let err_mess = '';
         let error_label = '';
@@ -3213,16 +3248,16 @@ type_czech._shapeScalar(4, 'null');
         if (err_mess !== '') {
           error_str_3arr = paramError(err_mess, error_label, shape_str, message_type_empty);
         }
-        consolelog('###undefOrNullShape EXIT', error_str_3arr);
+        consolelog('^^^ undefOrNullShape EXIT', error_str_3arr);
         return error_str_3arr;
       }
 
       function _twoArrays(list_of_2, method_name, message_type_empty, no_parameters) {
-        consolelog('###_twoArrays ENTER', list_of_2, method_name, message_type_empty, no_parameters, TYPE_CZECH_current_test_number);
+        consolelog('^^^ _twoArrays ENTER', list_of_2, method_name, message_type_empty, no_parameters, TYPE_CZECH_current_test_number);
         let error_str_3arr = '';
         if (list_of_2.length !== 2) {
-          const error_14 = `TypeCzech.${method_name}() has 2 ${ARGU_MENTS} not ${list_of_2.length}`;
-          error_str_3arr = _consoleError(error_14, 'ME@401');
+          const error_401 = `TypeCzech.${method_name}() has 2 ${ARGU_MENTS} not ${list_of_2.length}`;
+          error_str_3arr = _consoleError(error_401, 'ME@401');
         } else {
           const [parameters_list, shape_list] = list_of_2;
           const parameter_type = _aTypeOf(parameters_list);
@@ -3240,36 +3275,36 @@ type_czech._shapeScalar(4, 'null');
               const not_empty_array = parameters_list.length > 1;
               const not_array_shape = shape_list !== 'Array' && shape_list !== 'A';
               if (not_array_shape && not_empty_array) {
-                const error_58 = notArrayShape(parameters_list, shape_str);
-                error_str_3arr = paramError(error_58, 'TE@219', shape_str, message_type_empty);
+                const error_219 = notArrayShape(parameters_list, shape_str);
+                error_str_3arr = paramError(error_219, 'TE@219', shape_str, message_type_empty);
               } else if (no_parameters) {
-                const error_54 = 'There are no parameters.';
-                error_str_3arr = paramError(error_54, 'ME@408', shape_str, message_type_empty);
+                const error_408 = 'There are no parameters.';
+                error_str_3arr = paramError(error_408, 'ME@408', shape_str, message_type_empty);
               }
             } else if (shape_type === 'Array' && parameter_type !== 'Array') {
-              const error_49 = notArrayType(parameters_list, parameter_type, shape_str);
-              error_str_3arr = paramError(error_49, 'TE@217', shape_str, message_type_empty);
+              const error_217 = notArrayType(parameters_list, parameter_type, shape_str);
+              error_str_3arr = paramError(error_217, 'TE@217', shape_str, message_type_empty);
             } else if (shape_type === 'Array') {
               if (no_parameters) {
-                const error_37 = 'There are no parameters.';
-                error_str_3arr = paramError(error_37, 'ME@409', shape_str, message_type_empty);
+                const error_409 = 'There are no parameters.';
+                error_str_3arr = paramError(error_409, 'ME@409', shape_str, message_type_empty);
               }
               // no errors
             } else if (shape_type === 'Object') {
               if (parameter_type !== 'Object') {
-                const error_7 = `TypeCzech.${method_name}() called with '{}' against '!{}'.`
-                            + ` Contrasting ${parameter_str}, a '${parameter_type}' type, with '${shape_str}' an ${shape_type}.`;
-                error_str_3arr = _consoleError(error_7, 'TE@201');
+                const error_201 = `TypeCzech.${method_name}() called with '{}' against '!{}'.`
+                            + ` Contrasting ${parameter_str}, a '${parameter_type}' type, with '${shape_str}' an ${shape_type}`;
+                error_str_3arr = _consoleError(error_201, 'TE@201');
               }
             } else if (shape_type !== 'String') {
-              const error_63 = `TypeCzech.${method_name}() called with 'a-variable' and 'not-a-variable type'.`
+              const error_224 = `TypeCzech.${method_name}() called with second parameter not a string such as 'Number'.`
                           + ` Matching '${parameter_str}' with '${shape_str}'.`
                           + ` Preferably try TypeCzech.${method_name}(12, 'Number')`;
-              error_str_3arr = _consoleError(error_63, 'TE@224');
+              error_str_3arr = _consoleError(error_224, 'TE@224');
             }
           }
         }
-        consolelog('###_twoArrays EXIT', error_str_3arr);
+        consolelog('^^^ _twoArrays EXIT', error_str_3arr);
         return error_str_3arr;
       }
 
@@ -3301,30 +3336,30 @@ type_czech._shapeScalar(4, 'null');
 
       */
       function _eitherChecks(parameters_shapes, method_name) {
-        consolelog('###_eitherChecks ENTER', parameters_shapes, method_name, TYPE_CZECH_current_test_number);
+        consolelog('^^^ _eitherChecks ENTER', parameters_shapes, method_name, TYPE_CZECH_current_test_number);
         let error_string = '';
         if (parameters_shapes.length !== 2) {
-          const error_51 = `TypeCzech.${method_name}() needs 2 parameters, not ${parameters_shapes.length}`;
-          error_string = _consoleError(error_51, 'ME@406');
+          const error_406 = `TypeCzech.${method_name}() needs 2 parameters, not ${parameters_shapes.length}`;
+          error_string = _consoleError(error_406, 'ME@406');
         } else {
           const shapes_lists = parameters_shapes[1];
           const exact_str = _jsonStr(shapes_lists);
           if (_aTypeOf(shapes_lists) !== 'Array') {
-            const error_15 = `TypeCzech.${method_name}() called with a second parameter`
+            const error_402 = `TypeCzech.${method_name}() called with a second parameter`
                           + ` as a non-array shape of ${exact_str}`;
-            error_string = _consoleError(error_15, 'ME@402');
+            error_string = _consoleError(error_402, 'ME@402');
           } else if (shapes_lists.length < 2) {
             const shapes_lists_str = _toStr(shapes_lists);
-            const error_50 = `TypeCzech.${method_name}()  needs at least 2 choices for a union, not ${shapes_lists.length} of ${shapes_lists_str}`;
-            error_string = _consoleError(error_50, 'UE@701');
+            const error_701 = `TypeCzech.${method_name}()  needs at least 2 choices for a union, not ${shapes_lists.length} of ${shapes_lists_str}`;
+            error_string = _consoleError(error_701, 'UE@701');
           }
         }
-        consolelog('###_eitherChecks EXIT', error_string);
+        consolelog('^^^ _eitherChecks EXIT', error_string);
         return error_string;
       }
 
       function isVariadic(parameters_obj, shape_list, one_param) {
-        consolelog('###isVariadic ENTER', parameters_obj, shape_list, one_param, TYPE_CZECH_current_test_number);
+        consolelog('^^^ isVariadic ENTER', parameters_obj, shape_list, one_param, TYPE_CZECH_current_test_number);
         let is_variadic = false;
         if (!one_param) {
           if (!Array.isArray(parameters_obj)) { // NB not check_type(arguments, ...) but check_type([a,c], ...)
@@ -3335,7 +3370,7 @@ type_czech._shapeScalar(4, 'null');
             }
           }
         }
-        consolelog('###isVariadic EXIT', is_variadic);
+        consolelog('^^^ isVariadic EXIT', is_variadic);
         return is_variadic;
       }
 
@@ -3378,13 +3413,13 @@ this should be an error????
 
       // eslint-disable-next-line consistent-return
       function check_empty(parameters_obj, shape_list) {
-        if (is_active) {
-          consolelog('###check_empty ENTER', parameters_obj, shape_list, TYPE_CZECH_current_test_number);
+        if (t_param_check_func.p_call_traps) {
+          consolelog('^^^ check_empty ENTER', parameters_obj, shape_list, TYPE_CZECH_current_test_number);
           // eslint-disable-next-line no-unused-vars
           const [parameters_array, no_parameters, one_param] = _getParameters(parameters_obj);
           const parameters_str = _toStr(parameters_array);
           const shape_str = _toStr(shape_list);
-          consolelog('###check_empty START', parameters_array, shape_list);
+          consolelog('^^^ check_empty START', parameters_array, shape_list);
           let error_str_3arr = _twoArrays([parameters_array, shape_list], 'check_empty', MESS_EMPTY_VERIFY, no_parameters);
           const is_variadic = isVariadic(parameters_obj, shape_list, one_param);
           if (is_variadic) {
@@ -3400,7 +3435,7 @@ this should be an error????
               error_str_3arr = '';
             }
           }
-          consolelog('###check_empty EXIT', error_str_3arr);
+          consolelog('^^^ check_empty EXIT', error_str_3arr);
           return error_str_3arr;
         }
       }
@@ -3430,8 +3465,8 @@ this should be an error????
       */
       // eslint-disable-next-line consistent-return
       function check_variadicEmpty(parameters_obj, shape_list) {
-        if (is_active) {
-          consolelog('###check_variadicEmpty ENTER', parameters_obj, shape_list, TYPE_CZECH_current_test_number);
+        if (t_param_check_func.p_call_traps) {
+          consolelog('^^^ check_variadicEmpty ENTER', parameters_obj, shape_list, TYPE_CZECH_current_test_number);
           // eslint-disable-next-line no-unused-vars, prefer-const
           let [parameters_array, no_parameters, one_param] = _getParameters(parameters_obj);
           const parameters_str = _toStr(parameters_array);
@@ -3449,7 +3484,7 @@ this should be an error????
             if (one_param) {
               parameters_array = [parameters_array];
             }
-            consolelog('###check_variadicEmpty START', parameters_array, shape_list);
+            consolelog('^^^ check_variadicEmpty START', parameters_array, shape_list);
             error_str_3arr = _twoArrays([parameters_array, shape_list], 'check_empty', MESS_EMPTY_VARIADIC, no_parameters);
             if (error_str_3arr === '') {
               const incheck_type_error = _emptyCheck(parameters_array, shape_list, EMPTY_VERIFY);
@@ -3460,7 +3495,7 @@ this should be an error????
               }
             }
           }
-          consolelog('###check_variadicEmpty EXIT', error_str_3arr);
+          consolelog('^^^ check_variadicEmpty EXIT', error_str_3arr);
           return error_str_3arr;
         }
       }
@@ -3515,15 +3550,24 @@ this should be an error????
 
       type_czech.check_type(['a', 'c'], ['String']);          ===yourFunc('a', 'b', 'c')
 
+type_czech.check_type('a', 'String');  //a
+type_czech.check_type({0:'a', length:1}, 'String');     // a
+
+type_czech.check_type(['a'], ['String']);  //a
+type_czech.check_type({0:['a'], length:1}, ['String']);  // a
+
+type_czech.check_type(['a', 'c'], ['String']);               // ['a', 'b']
+type_czech.check_type({0:['a', 'b'], length:1}, ['String']); // ['a', 'b']
+
       */
       // eslint-disable-next-line consistent-return
       function check_type(parameters_obj, shape_list) {
-        if (is_active) {
-          consolelog('###check_type ENTER', parameters_obj, shape_list, TYPE_CZECH_current_test_number);
+        if (t_param_check_func.p_call_traps) {
+          consolelog('^^^ check_type ENTER', parameters_obj, shape_list, TYPE_CZECH_current_test_number);
           const [parameters_array, no_parameters, one_param] = _getParameters(parameters_obj);
           const parameters_str = _toStr(parameters_array);
           const shape_str = _toStr(shape_list);
-          consolelog('###check_type START', parameters_array, shape_list);
+          consolelog('^^^ check_type START', parameters_array, shape_list);
           let error_str_3arr = _twoArrays([parameters_array, shape_list], 'check_type', MESS_TYPE_VERIFY, no_parameters);
           if (error_str_3arr === '') {
             const is_variadic = isVariadic(parameters_obj, shape_list, one_param);
@@ -3541,7 +3585,7 @@ this should be an error????
               }
             }
           }
-          consolelog('###check_type EXIT', error_str_3arr);
+          consolelog('^^^ check_type EXIT', error_str_3arr);
           return error_str_3arr;
         }
       }
@@ -3575,26 +3619,26 @@ this should be an error????
       */
       // eslint-disable-next-line consistent-return
       function check_variadicType(parameters_obj, shape_list) {
-        if (is_active) {
-          consolelog('###check_variadicType ENTER', parameters_obj, shape_list, TYPE_CZECH_current_test_number);
+        if (t_param_check_func.p_call_traps) {
+          consolelog('^^^ check_variadicType ENTER', parameters_obj, shape_list, TYPE_CZECH_current_test_number);
           // eslint-disable-next-line no-unused-vars, prefer-const
           let [parameters_array, no_parameters, one_param] = _getParameters(parameters_obj);
           const parameters_str = _toStr(parameters_array);
           const shape_str = _toStr(shape_list);
           let error_str_3arr;
           if (!Array.isArray(shape_list)) {
-            error_str_3arr = [MESS_TYPE_VARIADIC,
-              `VE@601 - Use check_variadicType(${parameters_str}, ['${shape_str}']') instead of check_variadicType(${parameters_str}, '${shape_str}')`,
-              shape_list];
+            let error_601 = `Use check_variadicType(${parameters_str}, ['${shape_str}']') instead of check_variadicType(${parameters_str}, '${shape_str}')`;
+            error_601 = _consoleError(error_601, 'VE@601');
+            error_str_3arr = [MESS_TYPE_VARIADIC, error_601, shape_list];
           } else if (shape_list.length !== 1) {
-            error_str_3arr = [MESS_TYPE_VARIADIC,
-              `VE@602 - Use check_type(${parameters_str}, ${shape_str}) instead of check_variadicType()`,
-              shape_list];
+            let error_602 = `Use check_type(${parameters_str}, ${shape_str}) instead of check_variadicType()`;
+            error_602 = _consoleError(error_602, 'VE@602');
+            error_str_3arr = [MESS_TYPE_VARIADIC, error_602, shape_list];
           } else {
             if (one_param) {
               parameters_array = [parameters_array];
             }
-            consolelog('###check_variadicType START', parameters_array, shape_list);
+            consolelog('^^^ check_variadicType START', parameters_array, shape_list);
             error_str_3arr = _twoArrays([parameters_array, shape_list], 'check_type', MESS_TYPE_VARIADIC, no_parameters);
             if (error_str_3arr === '') {
               const type_error = _shapeVariable(parameters_array, shape_list, TYPE_VERIFY);
@@ -3605,24 +3649,24 @@ this should be an error????
               }
             }
           }
-          consolelog('###check_variadicType EXIT', error_str_3arr);
+          consolelog('^^^ check_variadicType EXIT', error_str_3arr);
           return error_str_3arr;
         }
       }
 
       function extraEmptys(parameters_obj, shape_list) {
-        consolelog('###extraEmptys ENTER', parameters_obj, shape_list, TYPE_CZECH_current_test_number);
+        consolelog('^^^ extraEmptys ENTER', parameters_obj, shape_list, TYPE_CZECH_current_test_number);
         // eslint-disable-next-line no-unused-vars
         const [parameters_array, no_parameters, one_param] = _getParameters(parameters_obj);
         let error_str_3arr;
-        consolelog('###extraEmptys START', parameters_array, shape_list);
+        consolelog('^^^ extraEmptys START', parameters_array, shape_list);
         const type_error = _emptyCheck(parameters_array, shape_list, EMPTY_EXTRAS);
         if (type_error) {
           error_str_3arr = error3Array(MESS_EMPTY_EXTRAS, type_error, shape_list);
         } else {
           error_str_3arr = '';
         }
-        consolelog('###extraEmptys EXIT', error_str_3arr);
+        consolelog('^^^ extraEmptys EXIT', error_str_3arr);
         return error_str_3arr;
       }
 
@@ -3655,28 +3699,39 @@ this should be an error????
       */
       // eslint-disable-next-line consistent-return
       function check_emptyExtra(parameters_obj, shape_list) {
-        if (is_active) {
-          consolelog('###check_emptyExtra ENTER', parameters_obj, shape_list, TYPE_CZECH_current_test_number);
-          // eslint-disable-next-line no-unused-vars
-          const [parameters_array, no_parameters, one_param] = _getParameters(parameters_obj);
-          const parameters_str = _toStr(parameters_array);
-          const shape_str = _toStr(shape_list);
-          consolelog('###check_emptyExtra START', parameters_array, parameters_obj.length, shape_list.length);
+        if (t_param_check_func.p_call_traps) {
+          consolelog('^^^ check_emptyExtra ENTER', parameters_obj, shape_list, TYPE_CZECH_current_test_number);
+          const params_collection = _isCollection(parameters_obj);
+          const shape_collection = _isCollection(shape_list);
           let error_str_3arr;
-          if (typeFinal(shape_list) === 'String') {
-            error_str_3arr = extraEmptys(parameters_obj[0], shape_list);
-          } else if (typeFinal(shape_list) === 'Object') {
-            error_str_3arr = extraEmptys(parameters_obj, shape_list);
-          } else if (parameters_array.length < 2 || shape_list.length < 2) {
-            error_str_3arr = error3Array(MESS_EMPTY_EXTRAS,
-              `TypeCzech.check_emptyExtra(${parameters_str}, ${shape_str}) needs each array to have at least two types to work`, shape_list);
-          } else if (_aTypeOf(parameters_array) !== 'Array' || _aTypeOf(shape_list) !== 'Array') {
-            error_str_3arr = error3Array(MESS_EMPTY_EXTRAS,
-              `TypeCzech.check_emptyExtra(${parameters_str}, ${shape_str}) ZZZ needs two arrays to work`, shape_list);
+          const shape_str = _toStr(shape_list);
+          if (params_collection && shape_collection) {
+            // eslint-disable-next-line no-unused-vars
+            const [parameters_array, no_parameters, one_param] = _getParameters(parameters_obj);
+            const parameters_str = _toStr(parameters_array);
+            consolelog('^^^ check_emptyExtra START', parameters_array, parameters_obj.length, shape_list.length);
+            if (typeFinal(shape_list) === 'String') {
+              error_str_3arr = extraEmptys(parameters_obj[0], shape_list);
+            } else if (typeFinal(shape_list) === 'Object') {
+              error_str_3arr = extraEmptys(parameters_obj, shape_list);
+            } else if (_aTypeOf(parameters_array) !== 'Array' || _aTypeOf(shape_list) !== 'Array') {
+              let error_317 = `TypeCzech.check_emptyExtra(${parameters_str}, ${shape_str}) needs two arrays to work`;
+              error_317 = _consoleError(error_317, 'EE@317');
+              error_str_3arr = error3Array(MESS_EMPTY_EXTRAS, error_317, shape_list);
+            } else if (parameters_array.length < 2 || shape_list.length < 2) {
+              let error_318 = `TypeCzech.check_emptyExtra(${parameters_str}, ${shape_str}) needs each array to have at least two types to work`;
+              error_318 = _consoleError(error_318, 'EE@318');
+              error_str_3arr = error3Array(MESS_EMPTY_EXTRAS, error_318, shape_list);
+            } else {
+              error_str_3arr = extraEmptys(parameters_obj, shape_list);
+            }
           } else {
-            error_str_3arr = extraEmptys(parameters_obj, shape_list);
+            const parameters_str = _toStr(parameters_obj);
+            let error_231 = `TypeCzech.check_emptyExtra(${parameters_str}, ${shape_str}) needs two collections to work`;
+            error_231 = _consoleError(error_231, 'TE@31');
+            error_str_3arr = error3Array(MESS_EMPTY_EXTRAS, error_231, shape_list);
           }
-          consolelog('###check_emptyExtra ENTER', error_str_3arr);
+          consolelog('^^^ check_emptyExtra ENTER', error_str_3arr);
           return error_str_3arr;
         }
       }
@@ -3737,18 +3792,18 @@ this should be an error????
 
       */
       function extraTypes(parameters_obj, shape_list) {
-        consolelog('###extraTypes ENTER', parameters_obj, shape_list, TYPE_CZECH_current_test_number);
+        consolelog('^^^ extraTypes ENTER', parameters_obj, shape_list, TYPE_CZECH_current_test_number);
         // eslint-disable-next-line no-unused-vars
         const [parameters_array, no_parameters, one_param] = _getParameters(parameters_obj);
         let error_str_3arr;
-        consolelog('###extraTypes START', parameters_array, shape_list);
         const type_error = _shapeVariable(parameters_array, shape_list, TYPE_EXTRAS);
+        consolelog('^^^ extraTypes START', parameters_array, shape_list, type_error);
         if (type_error) {
           error_str_3arr = error3Array(MESS_TYPE_EXTRAS, type_error, shape_list);
         } else {
           error_str_3arr = '';
         }
-        consolelog('###extraTypes EXIT', error_str_3arr);
+        consolelog('^^^ extraTypes EXIT', error_str_3arr);
         return error_str_3arr;
       }
 
@@ -3781,28 +3836,35 @@ this should be an error????
       */
       // eslint-disable-next-line consistent-return
       function check_typeExtra(parameters_obj, shape_list) {
-        if (is_active) {
-          consolelog('###check_typeExtra ENTER', parameters_obj, shape_list, TYPE_CZECH_current_test_number);
-          // eslint-disable-next-line no-unused-vars
-          const [parameters_array, no_parameters, one_param] = _getParameters(parameters_obj);
-          const parameters_str = _toStr(parameters_array);
-          const shape_str = _toStr(shape_list);
-          consolelog('###check_typeExtra START', parameters_array, parameters_obj.length, shape_list.length);
+        if (t_param_check_func.p_call_traps) {
+          consolelog('^^^ check_typeExtra ENTER', parameters_obj, shape_list, TYPE_CZECH_current_test_number);
+          const params_collection = _isCollection(parameters_obj);
+          const shape_collection = _isCollection(shape_list);
           let error_str_3arr;
-          if (typeFinal(shape_list) === 'String') {
-            error_str_3arr = extraTypes(parameters_obj[0], shape_list);
-          } else if (typeFinal(shape_list) === 'Object') {
-            error_str_3arr = extraTypes(parameters_obj, shape_list);
-          } else if (parameters_array.length < 2 || shape_list.length < 2) {
-            error_str_3arr = error3Array(MESS_TYPE_EXTRAS,
-              `TypeCzech.check_typeExtra(${parameters_str}, ${shape_str}) needs each array to have at least two types to work`, shape_list);
-          } else if (_aTypeOf(parameters_array) !== 'Array' || _aTypeOf(shape_list) !== 'Array') {
-            error_str_3arr = error3Array(MESS_TYPE_EXTRAS,
-              `TypeCzech.check_typeExtra(${parameters_str}, ${shape_str}) ZZZ needs two arrays to work`, shape_list);
+          const shape_str = _toStr(shape_list);
+          if (params_collection && shape_collection) {
+            // eslint-disable-next-line no-unused-vars
+            const [parameters_array, no_parameters, one_param] = _getParameters(parameters_obj);
+            const parameters_str = _toStr(parameters_array);
+            consolelog('^^^ check_typeExtra START', parameters_array, parameters_obj.length, shape_list.length);
+            if (typeFinal(shape_list) === 'String') {
+              error_str_3arr = extraTypes(parameters_obj[0], shape_list);
+            } else if (typeFinal(shape_list) === 'Object') {
+              error_str_3arr = extraTypes(parameters_obj, shape_list);
+            } else if (parameters_array.length < 2) {
+              let error_228 = `TypeCzech.check_typeExtra(${parameters_str}, ${shape_str}) needs each array to have at least two types to work`;
+              error_228 = _consoleError(error_228, 'TE@228');
+              error_str_3arr = error3Array(MESS_TYPE_EXTRAS, error_228, shape_list);
+            } else {
+              error_str_3arr = extraTypes(parameters_obj, shape_list);
+            }
           } else {
-            error_str_3arr = extraTypes(parameters_obj, shape_list);
+            const parameters_str = _toStr(parameters_obj);
+            let error_227 = `TypeCzech.check_typeExtra(${parameters_str}, ${shape_str}) needs two collections to work`;
+            error_227 = _consoleError(error_227, 'TE@227');
+            error_str_3arr = error3Array(MESS_TYPE_EXTRAS, error_227, shape_list);
           }
-          consolelog('###check_typeExtra EXIT', error_str_3arr);
+          consolelog('^^^ check_typeExtra EXIT', error_str_3arr);
           return error_str_3arr;
         }
       }
@@ -3831,11 +3893,11 @@ this should be an error????
       */
       // eslint-disable-next-line consistent-return
       function check_emptyEither(parameters_obj, shapes_lists) {
-        if (is_active) {
-          consolelog('###check_emptyEither ENTER', parameters_obj, shapes_lists, TYPE_CZECH_current_test_number);
+        if (t_param_check_func.p_call_traps) {
+          consolelog('^^^ check_emptyEither ENTER', parameters_obj, shapes_lists, TYPE_CZECH_current_test_number);
           // eslint-disable-next-line no-unused-vars
           const [parameters_array, no_parameters, one_param] = _getParameters(parameters_obj);
-          consolelog('###check_emptyEither START', parameters_array, shapes_lists);
+          consolelog('^^^ check_emptyEither START', parameters_array, shapes_lists);
           let error_str_3arr = _eitherChecks([parameters_array, shapes_lists], 'check_emptyEither');
           if (error_str_3arr === '') {
             const exact_error = _doEitherEmpty([parameters_array, shapes_lists], EMPTY_VERIFY);
@@ -3845,7 +3907,7 @@ this should be an error????
               error_str_3arr = '';
             }
           }
-          consolelog('###check_emptyEither EXIT', error_str_3arr);
+          consolelog('^^^ check_emptyEither EXIT', error_str_3arr);
           return error_str_3arr;
         }
       }
@@ -3864,11 +3926,11 @@ this should be an error????
       */
       // eslint-disable-next-line consistent-return
       function check_typeEither(parameters_obj, possible_shapes) {
-        if (is_active) {
-          consolelog('###check_typeEither ENTER', parameters_obj, possible_shapes, TYPE_CZECH_current_test_number);
+        if (t_param_check_func.p_call_traps) {
+          consolelog('^^^ check_typeEither ENTER', parameters_obj, possible_shapes, TYPE_CZECH_current_test_number);
           // eslint-disable-next-line no-unused-vars
           const [parameters_array, no_parameters, one_param] = _getParameters(parameters_obj);
-          consolelog('###check_typeEither START', parameters_array, possible_shapes);
+          consolelog('^^^ check_typeEither START', parameters_array, possible_shapes);
           let error_str_3arr = _eitherChecks([parameters_array, possible_shapes], 'check_typeEither');
           if (error_str_3arr === '') {
             const exact_error = _doEitherShape([parameters_array, possible_shapes], TYPE_VERIFY);
@@ -3878,7 +3940,7 @@ this should be an error????
               error_str_3arr = '';
             }
           }
-          consolelog('###check_typeEither ENTER', error_str_3arr);
+          consolelog('^^^ check_typeEither ENTER', error_str_3arr);
           return error_str_3arr;
         }
       }
@@ -3887,38 +3949,38 @@ this should be an error????
 
       function check_func(a_num){ if (a_num>0) return 'only neg nums'}
       function your_func(a_num){ console.log('user-func', a_num)}
-      your_func = type_czech.link(your_func, check_func);
+      your_func = type_czech.linkUp(your_func, check_func);
       your_func(54321)
       //only neg nums
 
       function check_func(a_num){return type_czech.check_type(a_num, 'String') }
       function your_func(a_num){ console.log('user-func', a_num)}
-      your_func = type_czech.link(your_func, check_func);
+      your_func = type_czech.linkUp(your_func, check_func);
       your_func(54321)
       //...The variable '54321', which is a 'Number', is not a 'String'...
 
      function check_func(){return type_czech.check_type(arguments, 'String') }
       function your_func(a_num){ console.log('user-func', a_num)}
-      your_func = type_czech.link(your_func, check_func);
+      your_func = type_czech.linkUp(your_func, check_func);
       your_func(12345)
       //...The variable '12345', which is a 'Number', is not a 'String'...
 
      function check_func(){return type_czech.check_type(arguments, ['S', 'S']) }
       function your_func(a_num){ console.log('user-func', a_num)}
-      your_func = type_czech.link(your_func, check_func);
+      your_func = type_czech.linkUp(your_func, check_func);
       your_func('str-1', 'str-2')
       //""
 
       */
-      function link(user_function, pre_check, post_check) {
-        consolelog('###check ENTER', user_function, pre_check, post_check, TYPE_CZECH_current_test_number);
+      function linkUp(user_function, pre_check, post_check) {
+        consolelog('^^^ check ENTER', user_function, pre_check, post_check, TYPE_CZECH_current_test_number);
         let check_result;
         if (typeof post_check === 'undefined') {
           check_result = t_param_check_func.confirmParameters(user_function, pre_check, false);
         } else {
           check_result = t_param_check_func.confirmParameters(user_function, pre_check, post_check);
         }
-        consolelog('###check EXIT', check_result);
+        consolelog('^^^ check EXIT', check_result);
         return check_result;
       }
 
@@ -3936,7 +3998,7 @@ this should be an error????
       }
 
       function directCheck(any_errors, manual_label, actual_value) {
-        if (is_active && any_errors) {
+        if (t_param_check_func.p_call_traps && any_errors) {
           return t_param_check_func.directCheck_(any_errors, manual_label, actual_value);
         }
         return '';
@@ -4043,7 +4105,7 @@ this should be an error????
       }
 
       function _refDiff(pre_str, post_str) {
-        consolelog('###refDiff ENTER', pre_str, post_str, TYPE_CZECH_current_test_number);
+        consolelog('^^^ refDiff ENTER', pre_str, post_str, TYPE_CZECH_current_test_number);
         let first_difference = '';
         if (pre_str !== post_str) {
           const [start_same, hit_end] = firstDiff(pre_str, post_str);
@@ -4069,7 +4131,7 @@ this should be an error????
           }
           first_difference = diffMessage(same_text, pre_diff, post_diff);
         }
-        consolelog('###refDiff EXIT', first_difference);
+        consolelog('^^^ refDiff EXIT', first_difference);
         return first_difference;
       }
 
@@ -4086,26 +4148,26 @@ this should be an error????
       */
       // eslint-disable-next-line consistent-return
       function mutateSnapshot(func_name, var_name, collection_ref) {
-        if (is_active) {
-          consolelog('###mutateSnapshot ENTER', func_name, var_name, collection_ref, TYPE_CZECH_current_test_number);
+        if (t_param_check_func.p_call_traps) {
+          consolelog('^^^ mutateSnapshot ENTER', func_name, var_name, collection_ref, TYPE_CZECH_current_test_number);
           const num_parameters = arguments.length;
           if (num_parameters !== 3) {
-            const error_55 = `TypeCzech.mutateSnapshot() needs 3 parameters, not ${num_parameters}`;
-            const exception_55 = _consoleError(error_55, 'TC@55');
-            throw exception_55;
+            const error_108 = `TypeCzech.mutateSnapshot() needs 3 parameters, not ${num_parameters}`;
+            const exception_108 = _consoleError(error_108, 'EX@108');
+            throw exception_108;
           } else if (!_isCollection(collection_ref)) {
             const collection_type = _aTypeOf(collection_ref);
-            const error_56 = `TypeCzech.mutateSnapshot()'s 3rd parameter is not an array/object but instead a '${collection_type}'`;
-            const exception_56 = _consoleError(error_56, 'TC@56');
-            throw exception_56;
+            const error_109 = `TypeCzech.mutateSnapshot()'s 3rd parameter is not an array/object but instead a '${collection_type}'`;
+            const exception_109 = _consoleError(error_109, 'EX@109');
+            throw exception_109;
           } else if (typeof func_name !== 'string') {
-            const error_01 = `First TypeCzech.mutateSnapshot() parameter must be an un-empty string, not ${_toStr(func_name)}`;
-            const exception_01 = _consoleError(error_01, 'VE@601');
-            throw exception_01;
+            const error_110 = `First TypeCzech.mutateSnapshot() parameter must be an un-empty string, not ${_toStr(func_name)}`;
+            const exception_110 = _consoleError(error_110, 'EX@110');
+            throw exception_110;
           } else if (typeof var_name !== 'string') {
-            const error_02 = `Second TypeCzech.mutateSnapshot() parameter must be an un-empty string, not ${_toStr(var_name)}`;
-            const exception_02 = _consoleError(error_02, 'VE@602');
-            throw exception_02;
+            const error_111 = `Second TypeCzech.mutateSnapshot() parameter must be an un-empty string, not ${_toStr(var_name)}`;
+            const exception_111 = _consoleError(error_111, 'EX@111');
+            throw exception_111;
           }
           const func_varname = `${func_name}-${var_name}`;
           const no_cycles = _cycle_loops.decycle(collection_ref);
@@ -4119,7 +4181,7 @@ this should be an error????
           } else {
             t_reference_stacks[func_varname] = [ref_instance];
           }
-          consolelog('###mutateSnapshot EXIT', ref_instance);
+          consolelog('^^^ mutateSnapshot EXIT', ref_instance);
           return '';
         }
       }
@@ -4180,8 +4242,8 @@ this should be an error????
       */
       // eslint-disable-next-line consistent-return
       function check_mutated(func_name, var_name) {
-        if (is_active) {
-          consolelog('###check_mutated ENTER', func_name, var_name, TYPE_CZECH_current_test_number);
+        if (t_param_check_func.p_call_traps) {
+          consolelog('^^^ check_mutated ENTER', func_name, var_name, TYPE_CZECH_current_test_number);
           const func_str = _toStr(func_name);
           const var_str = _toStr(var_name);
           const func_varname = `${func_str}-${var_str}`;
@@ -4189,26 +4251,26 @@ this should be an error????
           const have_varname = t_reference_stacks[func_varname];
           const num_parameters = arguments.length;
           if (num_parameters !== 2) {
-            const error_18 = `TypeCzech.check_mutated() needs 2 parameters, not ${num_parameters}`;
-            const exception_18 = _consoleError(error_18, 'VE@604');
-            throw exception_18;
+            const error_112 = `TypeCzech.check_mutated() needs 2 parameters, not ${num_parameters}`;
+            const exception_112 = _consoleError(error_112, 'EX@112');
+            throw exception_112;
           } else if (!have_varname) {
-            const error_47 = `No record of an entry for mutateSnapshot('${func_str}', '${var_str}', a_var)`;
-            const exception_47 = _consoleError(error_47, 'TC@47');
-            throw exception_47;
+            const error_113 = `No record of an entry for TypeCzech.check_mutated('${func_str}', '${var_str}', a_var)`;
+            const exception_113 = _consoleError(error_113, 'EX@113');
+            throw exception_113;
           } else {
             const newest_instance = t_reference_stacks[func_varname].pop();
-            consolelog('###check_mutated POP', newest_instance);
+            consolelog('^^^ check_mutated POP', newest_instance);
             if (typeof newest_instance === 'undefined') {
-              const error_22 = `TypeCzech.check_mutated() has no current matching entry for mutateSnapshot('${func_str}', '${var_str}', a_var)`;
-              const exception_22 = _consoleError(error_22, 'TC@22');
-              throw exception_22;
+              const error_114 = `TypeCzech.check_mutated() has no current matching entry for mutateSnapshot('${func_str}', '${var_str}', a_var)`;
+              const exception_114 = _consoleError(error_114, 'EX@114');
+              throw exception_114;
             }
             const { collection_ref, pre_collect_str } = newest_instance;
             const no_cycles = _cycle_loops.decycle(collection_ref);
             const post_collect_str = _fast_json_stable_stringify(no_cycles);
             if (pre_collect_str === post_collect_str) {
-              consolelog('###check_mutated EQUAL', pre_collect_str);
+              consolelog('^^^ check_mutated EQUAL', pre_collect_str);
             } else {
               const pre_str_quotes = _toStr(pre_collect_str);
               const post_str_quotes = _toStr(post_collect_str);
@@ -4220,16 +4282,20 @@ this should be an error????
               const pre_val = `${CZECH_ERROR_INDENT}from ${pre_shrunk}`;
               const post_val = `${CZECH_ERROR_INDENT}  to ${post_shrunk} ${CZECH_ERROR_INDENT}`;
               const the_diffs = _refDiff(pre_collect_str, post_collect_str);
-              const error_48 = `${ref_change}${pre_val}${post_val}${the_diffs}`;
-              const error_string = _consoleError(error_48, 'ME@405');
+              const error_405 = `${ref_change}${pre_val}${post_val}${the_diffs}`;
+              const error_string = _consoleError(error_405, 'ME@405');
               error_mess = error3Array(MESS_MUTATED, error_string, '');
             }
           }
           const no_cycles_stacks = _cycle_loops.decycle(t_reference_stacks);
           const ref_stacks_str = _fast_json_stable_stringify(no_cycles_stacks);
-          consolelog('###check_mutated EXIT', error_mess, ref_stacks_str);
+          consolelog('^^^ check_mutated EXIT', error_mess, ref_stacks_str);
           return error_mess;
         }
+      }
+
+      function isActive() {
+        return t_do_param_checking;
       }
 
       // /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4247,7 +4313,7 @@ this should be an error????
       } else {
         t_param_check_func = _ParametersCheck(false);
       }
-      consolelog('###TypeCzech SETTINGS', parameter_settings);
+      consolelog('^^^ TypeCzech SETTINGS', parameter_settings);
 
       return {
         // underscore prefixed are internal functions
@@ -4304,13 +4370,10 @@ this should be an error????
         _typeFromArray,
         _wrongType,
 
-        //                EXTERNAL LIBRARIES
         _cycle_loops, //                https://github.com/douglascrockford/JSON-js/blob/master/cycle.js
         _fast_json_stable_stringify, // https://github.com/epoberezkin/fast-json-stable-stringify
-
-        //                 PUBLIC RESOURCES
         TYPE_CZECH_EVENTS,
-        is_active,
+
         check_empty, //         check_error = type_czech.check_empty(arguments, ['EMPTY-ERROR', 'EMPTY-OK']);
         check_emptyEither, //   check_error = type_czech.check_typeEither(arguments, [['EMPTY-ERROR'], ['EMPTY-OK']]);
         check_emptyExtra, //    check_error = type_czech.check_emptyExtra(arguments, ['EMPTY-ERROR', 'EMPTY-OK']);
@@ -4326,19 +4389,19 @@ this should be an error????
         check_variadicEmpty, // check_error = type_czech.check_variadicEmpty(arguments, ['EMPTY-ERROR']);
         check_variadicType, //  check_error = type_czech.check_variadicType(arguments, ['String']);
 
-        countBegin, //          type_czech.countBegin();
-        countEnd, //            type_czech.countEnd();
-        countFails, //          type_czech.countFails();
-        countTally, //          type_czech.countTally();
+        countBegin, //     type_czech.countBegin();
+        countEnd, //       type_czech.countEnd();
+        countFails, //     type_czech.countFails();
+        countTally, //     type_czech.countTally();
 
-        directCheck, // type_czech.directCheck(  type_czech.check_typeEither(str_or_num, ['Number', 'String'])  , 'strOrNumAPI', str_or_num)
+        directCheck, //    type_czech.directCheck(  type_czech.check_typeEither(str_or_num, ['Number', 'String'])  , 'strOrNumAPI', str_or_num)
+        isActive, //       if(type_czech.isActive())
+        linkUp, //         yourFunc = type_czech.linkUp(yourFunc, checkingFunc);
+        mutateSnapshot, // type_czech.mutateSnapshot('yourFunc', 'your_array', [1,2,3]);
 
-        link, //                yourFunc = type_czech.link(yourFunc, checkingFunc);
-        mutateSnapshot, //      type_czech.mutateSnapshot('yourFunc', 'your_array', [1,2,3]);
-
-        typeFinal, //           type_final = type_czech.typeFinal(document); // HTMLDocument
-        typeIsA, //             if (type_czech.typeIsA(document, 'Node')) {};
-        typeProtos, //          type_protos = type_czech.typeProtos(window);  // [ "Window", "EventTarget", "EventTarget", "Object" ]
+        typeFinal, //      type_final = type_czech.typeFinal(document); // HTMLDocument
+        typeIsA, //        if (type_czech.typeIsA(document, 'Node')) {};
+        typeProtos, //     type_protos = type_czech.typeProtos(window);  // [ "Window", "EventTarget", "EventTarget", "Object" ]
       };
     } // _TypeCzech()
   };

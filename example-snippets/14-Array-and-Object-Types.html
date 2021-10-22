@@ -252,7 +252,7 @@ the POST_check_Person() function.
 /**/  if (typeof TypeCzech === 'function')
 /**/    type_czech = TypeCzech('LOG-ERRORS')
 /**/  else
-/**/    type_czech = { link: (nop) => nop, is_active: false }
+/**/    type_czech = { link: (nop) => nop, isActive: (x) => false }
 /**/  
 /**/  PRE_check_Person = (typeof PRE_check_Person === 'undefined')
 /**/               ? undefined : PRE_check_Person
@@ -268,7 +268,7 @@ the POST_check_Person() function.
 /**/    return type_czech.check_type(arguments, 'Object')
 /**/  }
 /**/  
-/**/  Person = type_czech.link(Person, PRE_check_Person,
+/**/  Person = type_czech.linkUp(Person, PRE_check_Person,
 /**/                                   POST_check_Person)
 
 function Person(person_array_or_obj){

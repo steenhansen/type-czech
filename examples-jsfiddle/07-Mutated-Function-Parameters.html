@@ -253,7 +253,7 @@
 /**/  if (typeof TypeCzech === 'function')
 /**/    type_czech = TypeCzech('LOG-ERRORS')
 /**/  else
-/**/    type_czech = { link: (nop) => nop, is_active: false }
+/**/    type_czech = { link: (nop) => nop, isActive: (x) => false }
 /**/  
 /**/  PRE_check_Person = (typeof PRE_check_Person === 'undefined')
 /**/                  ? undefined : PRE_check_Person
@@ -270,7 +270,7 @@
 /**/    return poss_mutation_err
 /**/  }
 /**/  
-/**/  PersonArray  = type_czech.link(PersonArray, PRE_check_Person, POST_check_Person) 
+/**/  PersonArray  = type_czech.linkUp(PersonArray, PRE_check_Person, POST_check_Person) 
 
 function PersonArray(name_array){
   let [f_name, l_name] =name_array
@@ -290,7 +290,7 @@ catherine = PersonArray(['Catherine'])
 linesConsole(2)
 
 
-/**/  PersonObject =type_czech.link(PersonObject, PRE_check_Person, POST_check_Person) 
+/**/  PersonObject =type_czech.linkUp(PersonObject, PRE_check_Person, POST_check_Person) 
 
 function PersonObject(name_object){
   let {f_name, l_name} =name_object

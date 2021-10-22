@@ -24,7 +24,7 @@ module.exports = function create_Last(type_czech, First) {
     return Object.freeze(last_object);
   }
 
-/**/  if (type_czech.is_active) {
+/**/  if (type_czech.isActive()) {
 /**/    function PRE_Last(spec) {
 /**/      console.log('PRE -Last');
 /**/      const pre_last_sig = { f_name: 'String', l_name: 'String' };
@@ -51,7 +51,7 @@ module.exports = function create_Last(type_czech, First) {
 /**/
 /**/    const Last_PREs = { Last: PRE_Last, lastMethod: PRE_lastMethod };
 /**/    const Last_POSTs = { Last: POST_Last, lastMethod: POST_lastMethod };
-/**/    Last = type_czech.link(Last, Last_PREs, Last_POSTs);
+/**/    Last = type_czech.linkUp(Last, Last_PREs, Last_POSTs);
 /**/  }
 
   return Last;

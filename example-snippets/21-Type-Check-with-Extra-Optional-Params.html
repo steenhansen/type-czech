@@ -247,7 +247,7 @@ function PRE_check_Person(person_obj, ignored_string){
 /**/  if (typeof TypeCzech === 'function')
 /**/    type_czech = TypeCzech('LOG-ERRORS')
 /**/  else
-/**/    type_czech = { link: (nop) => nop, is_active: false }
+/**/    type_czech = { link: (nop) => nop, isActive: (x) => false }
 /**/  
 /**/  PRE_check_Person = (typeof PRE_check_Person === 'undefined')
 /**/                     ? undefined : PRE_check_Person
@@ -263,7 +263,7 @@ function PRE_check_Person(person_obj, ignored_string){
 /**/    return type_czech.check_typeExtra(arguments, ['String', 'String'])
 /**/  }
 /**/  
-/**/  Person = type_czech.link(Person, PRE_check_Person, POST_check_Person)
+/**/  Person = type_czech.linkUp(Person, PRE_check_Person, POST_check_Person)
 
 function Person(person_obj){
   let {f_name, l_name, extra_1, extra_2, extra_3, extra_4} = person_obj

@@ -2,7 +2,7 @@
 
 function TypeCzech_Full() {
   Full = init_Full(Last) // NB init_Full() must be in global scope
-  if (type_czech.is_active) {
+  if (type_czech.isActive()) {
 
     function PRE_check_Full(salu, f_name, l_name){
       log(LEVEL_2+'PRE-Full') 
@@ -26,6 +26,6 @@ function TypeCzech_Full() {
     Full_PREs = { Full: PRE_check_Full, fullMethod: PRE_check_fullMethod }
     Full_POSTs = { Full: POST_check_Full, fullMethod: POST_check_fullMethod }
 
-    Full = type_czech.link(Full, Full_PREs, Full_POSTs)
+    Full = type_czech.linkUp(Full, Full_PREs, Full_POSTs)
   }
 }

@@ -42,11 +42,11 @@ class yourClass {
   }
 }
 
-yourClass = type_czech.link(yourClass, 
+yourClass = type_czech.linkUp(yourClass, 
                             yourClass_PRE_check_checks,
                             yourClass_POST_check_checks)
 </pre> 
-Note that the type_czech.link() call must come after the class declaration, otherwise
+Note that the type_czech.linkUp() call must come after the class declaration, otherwise
 you get the below ReferenceError.
 <pre>
 can't access lexical declaration 'yourClass' before initialization
@@ -242,7 +242,7 @@ can't access lexical declaration 'yourClass' before initialization
 /**/  if (typeof TypeCzech === 'function')
 /**/    type_czech = TypeCzech('LOG-ERRORS')
 /**/  else
-/**/    type_czech = { link: (nop) => nop, is_active: false }
+/**/    type_czech = { link: (nop) => nop, isActive: (x) => false }
 /**/  
 /**/  PRE_check_Person = (typeof PRE_check_Person==='undefined')
 /**/                     ? undefined : PRE_check_Person
@@ -285,7 +285,7 @@ class Person {
 }
 
 /**/
-/**/  Person = type_czech.link(Person, PRE_check_Person, POST_check_Person)
+/**/  Person = type_czech.linkUp(Person, PRE_check_Person, POST_check_Person)
 /**/
 
 issac_newton = new Person('issac Newton')

@@ -14,13 +14,13 @@ function strOrNumAPI(){
 /**/  if (typeof TypeCzech === 'function')
 /**/    type_czech = TypeCzech('LOG-ERRORS')
 /**/  else
-/**/    type_czech = { link: (nop) => nop, is_active: false }
+/**/    type_czech = { link: (nop) => nop, isActive: (x) => false }
 
       ...
 
 str_or_num = strOrNumAPI()
 
-/**/  if (type_czech.is_active) {
+/**/  if (type_czech.isActive()) {
 /**/    type_issue = type_czech.check_typeEither(str_or_num, ['Number', 'String'])
 /**/    if (type_issue) throw type_issue
 /**/  }

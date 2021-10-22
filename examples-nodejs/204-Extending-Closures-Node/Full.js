@@ -24,7 +24,7 @@ module.exports = function create_Full(type_czech, Last) {
     return { showName, fullMethod, firstMethod: last.firstMethod, lastMethod: last.lastMethod };
   }
 
-/**/  if (type_czech.is_active) {
+/**/  if (type_czech.isActive()) {
 /**/    function PRE_Full(salu, f_name, l_name) {
 /**/      console.log('PRE -Full');
 /**/      const type_issue = type_czech.check_type(arguments, ['String', 'String', 'String']);
@@ -52,7 +52,7 @@ module.exports = function create_Full(type_czech, Last) {
 /**/
 /**/    const Full_PREs = { Full: PRE_Full, fullMethod: PRE_fullMethod };
 /**/    const Full_POSTs = { Full: POST_Full, fullMethod: POST_fullMethod };
-/**/    Full = type_czech.link(Full, Full_PREs, Full_POSTs);
+/**/    Full = type_czech.linkUp(Full, Full_PREs, Full_POSTs);
 /**/    }
 
   return Full;

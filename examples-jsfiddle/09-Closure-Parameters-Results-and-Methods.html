@@ -32,7 +32,7 @@ yourClosure_PRE_check_checks = {yourClosure:PRE_check_yourClosure,
 yourClosure_POST_check_checks = {yourClosure:POST_check_yourClosure,
                                  yourFunction:POST_check_yourFunction}
 
-yourClosure = type_czech.link(yourClosure, 
+yourClosure = type_czech.linkUp(yourClosure, 
                               yourClosure_PRE_check_checks,
                               yourClosure_POST_check_checks)
 
@@ -244,7 +244,7 @@ function yourClosure(init_closure){
 /**/  if (typeof TypeCzech === 'function')
 /**/    type_czech = TypeCzech('LOG-ERRORS')
 /**/  else
-/**/    type_czech = { link: (nop) => nop, is_active: false }
+/**/    type_czech = { link: (nop) => nop, isActive: (x) => false }
 /**/  
 /**/  PRE_check_Person  = (typeof PRE_check_Person === 'undefined')  
 /**/                      ? undefined : PRE_check_Person
@@ -274,7 +274,7 @@ function yourClosure(init_closure){
 /**/  Person_PREs = {Person:PRE_check_Person, show:PRE_check_show}
 /**/  Person_POSTs = {Person:POST_check_Person, show:POST_check_show}
 /**/  
-/**/  Person = type_czech.link(Person, Person_PREs, Person_POSTs)
+/**/  Person = type_czech.linkUp(Person, Person_PREs, Person_POSTs)
 
 function Person(person_name){
   log(NL2+'in Person() :', person_name)

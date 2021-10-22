@@ -19,7 +19,7 @@
         }
       }
     }
-                A_yourFunc = type_czech.link(A_yourFunc, A_PRE_check_yourFunc) 
+                A_yourFunc = type_czech.linkUp(A_yourFunc, A_PRE_check_yourFunc) 
                 function A_yourFunc(){ }
 
     A_yourFunc([1])                    // fail 1 A array
@@ -62,10 +62,10 @@
         throw `A. _check_mutated().md ${expected_tests} expected_tests !== ${total_tests} total_tests`
     else if (expected_fails !== fail_count) 
         throw `A. _check_mutated().md ${expected_fails} expected_fails !== ${fail_count} fail_count`
-    else if (typeof total_checks === 'undefined')
+    else if (typeof TEST_total_checks === 'undefined')
       console.log('no-issues: pass', expected_tests-expected_fails, ' fail', expected_fails)
     else
-      total_checks += expected_tests
+      TEST_total_checks += expected_tests
 
 
 
@@ -80,7 +80,7 @@
     function B_POST_check_yourFunc() {
       return type_czech.check_mutated('B_PRE_check_yourFunc', 'b_collection')
     }
-    B_yourFunc = type_czech.link(B_yourFunc, B_PRE_check_yourFunc, B_POST_check_yourFunc) 
+    B_yourFunc = type_czech.linkUp(B_yourFunc, B_PRE_check_yourFunc, B_POST_check_yourFunc) 
 
     function B_yourFunc(b_collection, change_function){
       change_function(b_collection)
@@ -105,10 +105,10 @@
         throw `B. _check_mutated().md ${expected_tests} expected_tests !== ${total_tests} total_tests`
     else if (expected_fails !== fail_tests) 
         throw `B. _check_mutated().md ${expected_fails} expected_fails !== ${fail_tests} fail_tests`
-    else if (typeof total_checks === 'undefined')
+    else if (typeof TEST_total_checks === 'undefined')
       console.log('no-issues: pass', expected_tests-expected_fails, ' fail', expected_fails)
     else
-      total_checks += expected_tests
+      TEST_total_checks += expected_tests
 
 
 
@@ -132,7 +132,7 @@
       return type_czech.check_mutated('C_PRE_check_recurseArr', 'growing_array')
     }
     
-    C_recurseArr = type_czech.link(C_recurseArr, C_PRE_check_recurseArr, C_POST_check_recurseArr)
+    C_recurseArr = type_czech.linkUp(C_recurseArr, C_PRE_check_recurseArr, C_POST_check_recurseArr)
 
     function C_recurseArr(growing_array, stop_recurse){
       next_index = growing_array.length + 1
@@ -156,10 +156,10 @@
         throw `C. _check_mutated().md ${expected_tests} expected_tests !== ${total_tests} total_tests`
     else if (expected_fails !== fail_tests) 
         throw `C. _check_mutated().md ${expected_fails} expected_fails !== ${fail_tests} fail_tests`
-    else if (typeof total_checks === 'undefined')
+    else if (typeof TEST_total_checks === 'undefined')
       console.log('no-issues: pass', expected_tests-expected_fails, ' fail', expected_fails)
     else
-      total_checks += expected_tests
+      TEST_total_checks += expected_tests
 
 
 
@@ -176,7 +176,7 @@
     function D_POST_check_yourFunc() {
       return type_czech.check_mutated('D_PRE_check_yourFunc', 'b_collection', 'error-param')
     }
-    D_yourFunc = type_czech.link(D_yourFunc, D_PRE_check_yourFunc, D_POST_check_yourFunc) 
+    D_yourFunc = type_czech.linkUp(D_yourFunc, D_PRE_check_yourFunc, D_POST_check_yourFunc) 
 
     function D_yourFunc(b_collection){ }
 
@@ -188,12 +188,12 @@
     }
 
     if (is_correct){
-      if (typeof total_checks === 'undefined')
+      if (typeof TEST_total_checks === 'undefined')
         console.log('no-issues: pass')
       else
-        total_checks += 1
+        TEST_total_checks += 1
     } else {
       throw `D. _mutateSnapshot().md did not fail - VE@604`
     }
 
-&copy; 2021 Steen Hansen    
+/* &copy; 2021 Steen Hansen */  

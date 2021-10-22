@@ -184,7 +184,7 @@
     the checking arrow function of PRE_check_aLottery() must be declared before
     they are linked via
 <pre>
-aLottery = type_czech.link(aLottery, PRE_check_aLottery)
+aLottery = type_czech.linkUp(aLottery, PRE_check_aLottery)
 </pre>
 Otherwise a function not defined error will occur.
     <br><br>
@@ -237,7 +237,7 @@ aLottery = (lottery_name, lucky_numbers, draw_date) => {
 /**/  PRE_check_aLottery = (typeof PRE_check_aLottery === 'undefined')
 /**/                       ? undefined : PRE_check_aLottery
 /**/
-/**/  aLottery = type_czech.link(aLottery, PRE_check_aLottery)
+/**/  aLottery = type_czech.linkUp(aLottery, PRE_check_aLottery)
 
 aLottery('El Gordo', [1,2,3,4,5,0], new Date('jun 14 1999'))
 

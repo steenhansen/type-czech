@@ -13,7 +13,7 @@
     /**/  if (typeof TypeCzech === 'function')
     /**/    const type_czech = TypeCzech('LOG-ERRORS');
     /**/  else
-    /**/    type_czech = { link: (_) => _, is_active: false }
+    /**/    type_czech = { link: (_) => _, isActive: (x) => false }
     /**/  }
 
     /**/    function PRE_check_oneNumber() {
@@ -22,7 +22,7 @@
 
     /**/  PRE_check_oneNumber =(typeof PRE_check_oneNumber==='undefined') ? undefined:PRE_check_oneNumber
     
-    oneNumber = type_czech.link(oneNumber, PRE_check_oneNumber)
+    oneNumber = type_czech.linkUp(oneNumber, PRE_check_oneNumber)
 
     function oneNumber(){}
     

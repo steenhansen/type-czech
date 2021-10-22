@@ -208,7 +208,7 @@ function PRE_check_arrayOfStrings(){
   return type_czech.check_type(arguments, ['String'])
 }
 
-arrayOfStrings = type_czech.link(arrayOfStrings, PRE_check_arrayOfStrings) 
+arrayOfStrings = type_czech.linkUp(arrayOfStrings, PRE_check_arrayOfStrings) 
 
 function arrayOfStrings(){
   console.log('arrayOfStrings()', arguments)
@@ -226,7 +226,7 @@ function PRE_check_variadicStrs(){
   return type_czech.check_variadicType(arguments, ['String'])
 }
   
-variadicStrs = type_czech.link(variadicStrs, PRE_check_variadicStrs) 
+variadicStrs = type_czech.linkUp(variadicStrs, PRE_check_variadicStrs) 
   
 function variadicStrs(){
   console.log('variadicStrs()', arguments)
@@ -295,7 +295,7 @@ variadicStrs( 'cat', 'dog', 'bird' )
 /**/  if (typeof TypeCzech === 'function')
 /**/    type_czech = TypeCzech('LOG-ERRORS')
 /**/  else
-/**/    type_czech = { link: (nop) => nop, is_active: false }
+/**/    type_czech = { link: (nop) => nop, isActive: (x) => false }
 /**/
 /**/  PRE_check_Person = (typeof PRE_check_Person==='undefined') 
 /**/                     ? undefined : PRE_check_Person
@@ -327,7 +327,7 @@ variadicStrs( 'cat', 'dog', 'bird' )
 /**/    return POST_issues_a + POST_issues_b + POST_issues_c
 /**/  }
 /**/  
-/**/  Person=type_czech.link(Person, PRE_check_Person, POST_check_Person)
+/**/  Person=type_czech.linkUp(Person, PRE_check_Person, POST_check_Person)
 
 function Person(f_name, l_name){
   return { f_name, l_name }

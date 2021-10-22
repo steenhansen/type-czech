@@ -9,7 +9,7 @@
     function A_PRE_check_yourFunc() {
       return type_czech.check_interface(arguments, {show:'Function'})
     }
-                A_yourFunc = type_czech.link(A_yourFunc, A_PRE_check_yourFunc) 
+                A_yourFunc = type_czech.linkUp(A_yourFunc, A_PRE_check_yourFunc) 
                 function A_yourFunc(){ }
     A_yourFunc([1])                    // fail 1 A array
     A_yourFunc(234n)                   // fail 2 B bigint
@@ -51,10 +51,10 @@
         throw `A. _check_interface().md ${expected_tests} expected_tests !== ${total_tests} total_tests`
     else if (expected_fails !== fail_tests) 
         throw `A. _check_interface().md ${expected_fails} expected_fails !== ${fail_tests} fail_tests`
-    else if (typeof total_checks === 'undefined')
+    else if (typeof TEST_total_checks === 'undefined')
       console.log('no-issues: pass', expected_tests-expected_fails, ' fail', expected_fails)
     else
-      total_checks += expected_tests
+      TEST_total_checks += expected_tests
 
 
 
@@ -67,7 +67,7 @@
     function B_PRE_check_yourFunc() {
       return type_czech.check_interface(arguments, {show:'Function'})
     }
-                B_yourFunc = type_czech.link(B_yourFunc, B_PRE_check_yourFunc) 
+                B_yourFunc = type_czech.linkUp(B_yourFunc, B_PRE_check_yourFunc) 
                 function B_yourFunc(){ }
     B_yourFunc({show: x=>x})                 // pass 1
     B_yourFunc({a_prop:17, show: x=>x})      // pass 2 
@@ -81,10 +81,10 @@
         throw `B. _check_interface().md ${expected_tests} expected_tests !== ${total_tests} total_tests`
     else if (expected_fails !== fail_tests) 
         throw `B. _check_interface().md ${expected_fails} expected_fails !== ${fail_tests} fail_tests`
-    else if  (typeof total_checks === 'undefined')
+    else if  (typeof TEST_total_checks === 'undefined')
       console.log('no-issues: pass', expected_tests-expected_fails, ' fail', expected_fails)
     else
-      total_checks += expected_tests
+      TEST_total_checks += expected_tests
 
 
-&copy; 2021 Steen Hansen
+/* &copy; 2021 Steen Hansen */

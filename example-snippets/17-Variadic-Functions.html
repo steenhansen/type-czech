@@ -191,7 +191,7 @@ function PRE_check_oneToThreeStrings() {
   if (!type_czech.check_type(arguments, ['String', 'String', 'String'])) return ''
   return 'Error, not ONE to THREE strings but - ' + arguments.length
 }
-oneToThreeStrings = type_czech.link(oneToThreeStrings, PRE_check_oneToThreeStrings)
+oneToThreeStrings = type_czech.linkUp(oneToThreeStrings, PRE_check_oneToThreeStrings)
 function oneToThreeStrings() {}
 
 oneToThreeStrings()
@@ -243,7 +243,7 @@ function variadicFunc () {
 /**/    return type_czech.check_variadicType(arguments, ['Number'])
 /**/  }
 /**/
-/**/  variadicFunc = type_czech.link(variadicFunc, 
+/**/  variadicFunc = type_czech.linkUp(variadicFunc, 
 /**/                                       PRE_check_variadicFunc)
 
 variadicFunc(0,1,2)
@@ -271,7 +271,7 @@ function variadicArrs () {
 /**/    return type_czech.check_variadicType(arguments, [['Number']])
 /**/  }
 /**/
-/**/  variadicArrs = type_czech.link(variadicArrs,
+/**/  variadicArrs = type_czech.linkUp(variadicArrs,
 /**/                                         PRE_check_variadicArrs)
 
 variadicArrs( [1], [1,2], [1,2,3], [1,2,3,4] )

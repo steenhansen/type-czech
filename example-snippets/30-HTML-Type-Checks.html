@@ -332,7 +332,7 @@ in green text.
 /**/  }
 /**/  PRE_check_changeToSubmit = (typeof PRE_check_changeToSubmit==='undefined') 
 /**/                             ? undefined : PRE_check_changeToSubmit
-/**/  changeToSubmit=type_czech.link(changeToSubmit, PRE_check_changeToSubmit)
+/**/  changeToSubmit=type_czech.linkUp(changeToSubmit, PRE_check_changeToSubmit)
 
 function changeToSubmit(html_id){
   html_element = document.getElementById(html_id)
@@ -358,7 +358,7 @@ linesConsole(2)
 /**/  }
 /**/  PRE_check_alterImgHref = (typeof PRE_check_alterImgHref==='undefined')
 /**/                           ? undefined : PRE_check_alterImgHref
-/**/  alterImgHref=type_czech.link(alterImgHref, PRE_check_alterImgHref)
+/**/  alterImgHref=type_czech.linkUp(alterImgHref, PRE_check_alterImgHref)
 
 function alterImgHref(image_href_id, source_addr) {
   html_element = document.getElementById(image_href_id)

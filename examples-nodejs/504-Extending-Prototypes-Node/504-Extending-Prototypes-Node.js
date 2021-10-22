@@ -11,7 +11,7 @@ const use_type_czech = true;
 /**/    const { TypeCzech } = require('../../TypeCzech.js');
 /**/    type_czech = TypeCzech('LOG-ERRORS');
 /**/  } else {
-/**/    type_czech = { link: (_) => _, is_active: false };
+/**/    type_czech = { link: (_) => _, isActive: (x) => false };
 /**/  }
 
 const First = require('./First.js')(type_czech);

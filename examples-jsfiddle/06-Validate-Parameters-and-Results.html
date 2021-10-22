@@ -16,7 +16,7 @@
   <div id='explanation-text'>
     <br>
 
-One use for the type_czech.link(your_function, before_test, after_test) construct is
+One use for the type_czech.linkUp(your_function, before_test, after_test) construct is
 to help with debugging and testing without changing the actual source code. The before and after
 conditions of functions can be viewed without asserts actually littering the functions.
 <br><br>
@@ -30,7 +30,7 @@ function Person(){}
 
 function person_after() {}
 
-Person = type_czech.link(Person, BEFORE_Person, person_after) 
+Person = type_czech.linkUp(Person, BEFORE_Person, person_after) 
 
 </pre>
 
@@ -229,7 +229,7 @@ Person = type_czech.link(Person, BEFORE_Person, person_after)
 /**/  if (typeof TypeCzech === 'function')
 /**/    type_czech = TypeCzech('LOG-ERRORS')
 /**/  else
-/**/    type_czech = { link: (nop) => nop, is_active: false }
+/**/    type_czech = { link: (nop) => nop, isActive: (x) => false }
 /**/
 /**/  PRE_check_Person = (typeof PRE_check_Person === 'undefined')
 /**/                     ? undefined : PRE_check_Person
@@ -255,7 +255,7 @@ Person = type_czech.link(Person, BEFORE_Person, person_after)
 /**/    return ''
 /**/  }
 /**/
-/**/  Person = type_czech.link(Person, PRE_check_Person, POST_check_Person) 
+/**/  Person = type_czech.linkUp(Person, PRE_check_Person, POST_check_Person) 
 
 function Person(f_name, l_name){
   first_last = f_name + ' ' + l_name

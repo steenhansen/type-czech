@@ -34,7 +34,7 @@ $js_only_if_type_check_second = <<<'EOD'
       return '';
     }
 
-    aLottery = type_czech.link(aLottery, PRE_check_aLottery);
+    aLottery = type_czech.linkUp(aLottery, PRE_check_aLottery);
 </script>
 EOD;
 

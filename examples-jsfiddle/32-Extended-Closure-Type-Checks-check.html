@@ -24,14 +24,14 @@
     <br><br>
     But unlike with classes, closure declarations can be in any order with respect
     to Type-Czech because of function hoisting.
-With the example to the left, the functions and the type_czech.link() 
+With the example to the left, the functions and the type_czech.linkUp() 
 calls can be in any order, as below.
 <pre>
-/**/ Full = type_czech.link(Full, ...)
+/**/ Full = type_czech.linkUp(Full, ...)
 function Full {}
 function Last {}
-/**/ Last = type_czech.link(Last, ...)
-/**/ First = type_czech.link(First, ...)
+/**/ Last = type_czech.linkUp(Last, ...)
+/**/ First = type_czech.linkUp(First, ...)
 fuction First{}
 </pre>
         The ordering and depth of executions is recorded in the console to 
@@ -243,7 +243,7 @@ fuction First{}
 /**/
 /**/  First_PREs = {First:PRE_check_First, firstMethod:PRE_check_firstMethod};
 /**/  First_POSTs = {First:POST_check_First, firstMethod:POST_check_firstMethod};
-/**/  First = type_czech.link(First, First_PREs, First_POSTs);
+/**/  First = type_czech.linkUp(First, First_PREs, First_POSTs);
 
 function First(f_name){
   log(NL+`CONS-First :${f_name}`)
@@ -257,7 +257,7 @@ function First(f_name){
 /**/
 /**/  Last_PREs = {Last:PRE_check_Last, lastMethod:PRE_check_lastMethod}
 /**/  Last_POSTs = {Last:POST_check_Last, lastMethod:POST_check_lastMethod}
-/**/  Last = type_czech.link(Last, Last_PREs, Last_POSTs)
+/**/  Last = type_czech.linkUp(Last, Last_PREs, Last_POSTs)
 
 function Last(f_name, l_name){
   first = First(f_name)
@@ -272,7 +272,7 @@ function Last(f_name, l_name){
 /**/
 /**/  Full_PREs = {Full:PRE_check_Full, fullMethod:PRE_check_fullMethod}
 /**/  Full_POSTs= {Full:POST_check_Full, fullMethod:POST_check_fullMethod}
-/**/  Full = type_czech.link(Full, Full_PREs, Full_POSTs)
+/**/  Full = type_czech.linkUp(Full, Full_PREs, Full_POSTs)
 
 function Full(salu, f_name, l_name){
   last = Last(f_name, l_name)

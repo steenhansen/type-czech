@@ -9,7 +9,7 @@
     function A_PRE_check_yourFunc() {
       return type_czech.check_type(arguments, 'Number')
     }
-                A_yourFunc = type_czech.link(A_yourFunc, A_PRE_check_yourFunc) 
+                A_yourFunc = type_czech.linkUp(A_yourFunc, A_PRE_check_yourFunc) 
                 function A_yourFunc(){ }
     A_yourFunc(9)   // pass 1 F number
     A_yourFunc(NaN) // pass 2 M empty number
@@ -51,10 +51,10 @@
         throw `A. _check_type().md ${expected_tests} expected_tests !== ${total_tests} total_tests`
     else if (expected_fails !== fail_tests) 
         throw `A. _check_type().md ${expected_fails} expected_fails !== ${fail_tests} fail_tests`
-    else if (typeof total_checks === 'undefined')
+    else if (typeof TEST_total_checks === 'undefined')
       console.log('no-issues: pass', expected_tests-expected_fails, ' fail', expected_fails)
     else
-      total_checks += expected_tests
+      TEST_total_checks += expected_tests
 
 /*
 ### B. A Number and a Boolean followed by a Date. 
@@ -64,7 +64,7 @@
     function B_PRE_check_yourFunc() {
       return type_czech.check_type(arguments, ['Number', 'Boolean', 'Date'])
     }
-            B_yourFunc = type_czech.link(B_yourFunc, B_PRE_check_yourFunc) 
+            B_yourFunc = type_czech.linkUp(B_yourFunc, B_PRE_check_yourFunc) 
             function B_yourFunc(){ }
     B_yourFunc(1, false, new Date('1999-12-30') ) // pass 1
     B_yourFunc(1, false, new Date('1999-99-99') ) // pass 2
@@ -80,10 +80,10 @@
         throw `B. _check_type().md ${expected_tests} expected_tests !== ${total_tests} total_tests`
     else if (expected_fails !== fail_tests) 
         throw `B. _check_type().md ${expected_fails} expected_fails !== ${fail_tests} fail_tests`
-    else if  (typeof total_checks === 'undefined')
+    else if  (typeof TEST_total_checks === 'undefined')
       console.log('no-issues: pass', expected_tests-expected_fails, ' fail', expected_fails)
     else
-      total_checks += expected_tests
+      TEST_total_checks += expected_tests
 
 /*
 ### C. A single Number. 
@@ -93,7 +93,7 @@
     function C_PRE_check_yourFunc() {
       return type_czech.check_type(arguments, 'Number')
     }
-            C_yourFunc = type_czech.link(C_yourFunc, C_PRE_check_yourFunc) 
+            C_yourFunc = type_czech.linkUp(C_yourFunc, C_PRE_check_yourFunc) 
             function C_yourFunc(){ }
     C_yourFunc(1)   // pass 1
     C_yourFunc(NaN) // pass 2
@@ -109,10 +109,10 @@
         throw `C. _check_type().md ${expected_tests} expected_tests !== ${total_tests} total_tests`
     else if (expected_fails !== fail_tests) 
         throw `C. _check_type().md ${expected_fails} expected_fails !== ${fail_tests} fail_tests`
-    else if  (typeof total_checks === 'undefined')
+    else if  (typeof TEST_total_checks === 'undefined')
       console.log('no-issues: pass', expected_tests-expected_fails, ' fail', expected_fails)
     else
-      total_checks += expected_tests
+      TEST_total_checks += expected_tests
 
 /*
 ### D. Exactly two Numbers as arguments. 
@@ -122,7 +122,7 @@
     function D_PRE_check_yourFunc() {
       return type_czech.check_type(arguments, ['Number', 'Number'])
     }
-              D_yourFunc = type_czech.link(D_yourFunc, D_PRE_check_yourFunc) 
+              D_yourFunc = type_czech.linkUp(D_yourFunc, D_PRE_check_yourFunc) 
               function D_yourFunc(){ }
     D_yourFunc(1,2)         // pass 1
     D_yourFunc(NaN, NaN)    // pass 2
@@ -138,10 +138,10 @@
         throw `D. _check_type().md ${expected_tests} expected_tests !== ${total_tests} total_tests`
     else if (expected_fails !== fail_tests) 
         throw `D. _check_type().md ${expected_fails} expected_fails !== ${fail_tests} fail_tests`
-    else if  (typeof total_checks === 'undefined')
+    else if  (typeof TEST_total_checks === 'undefined')
       console.log('no-issues: pass', expected_tests-expected_fails, ' fail', expected_fails)
     else
-      total_checks += expected_tests
+      TEST_total_checks += expected_tests
 
 
 /*
@@ -152,7 +152,7 @@
     function E_PRE_check_yourFunc() {
       return type_czech.check_type(arguments, ['Number'])
     }
-            E_yourFunc = type_czech.link(E_yourFunc, E_PRE_check_yourFunc) 
+            E_yourFunc = type_czech.linkUp(E_yourFunc, E_PRE_check_yourFunc) 
             function E_yourFunc(){ }
     E_yourFunc([])                  // pass 1
     E_yourFunc([1])                 // pass 2
@@ -173,10 +173,10 @@
         throw `E. _check_type().md ${expected_tests} expected_tests !== ${total_tests} total_tests`
     else if (expected_fails !== fail_tests) 
         throw `E. _check_type().md ${expected_fails} expected_fails !== ${fail_tests} fail_tests`
-    else if  (typeof total_checks === 'undefined')
+    else if  (typeof TEST_total_checks === 'undefined')
       console.log('no-issues: pass', expected_tests-expected_fails, ' fail', expected_fails)
     else
-      total_checks += expected_tests
+      TEST_total_checks += expected_tests
 
 /*
 ###F. Two arrays of Numbers with exactly two elements each. 
@@ -186,7 +186,7 @@
     function F_PRE_check_yourFunc() {
       return type_czech.check_type(arguments, [ ['Number', 'Number'], ['Number', 'Number'] ])
     }
-              F_yourFunc = type_czech.link(F_yourFunc, F_PRE_check_yourFunc) 
+              F_yourFunc = type_czech.linkUp(F_yourFunc, F_PRE_check_yourFunc) 
               function F_yourFunc(){ }
     F_yourFunc([1,2], [3,4])           // pass 1
     F_yourFunc([NaN,NaN], [NaN,NaN])   // pass 2
@@ -201,10 +201,10 @@
         throw `F. _check_type().md ${expected_tests} expected_tests !== ${total_tests} total_tests`
     else if (expected_fails !== fail_tests) 
         throw `F. _check_type().md ${expected_fails} expected_fails !== ${fail_tests} fail_tests`
-    else if  (typeof total_checks === 'undefined')
+    else if  (typeof TEST_total_checks === 'undefined')
       console.log('no-issues: pass', expected_tests-expected_fails, ' fail', expected_fails)
     else
-      total_checks += expected_tests
+      TEST_total_checks += expected_tests
 
 
 /*
@@ -215,7 +215,7 @@ G. One array of arrays of two Numbers.
     function G_PRE_check_yourFunc() {
       return type_czech.check_type(arguments, [ ['Number', 'Number'] ])
     }
-            G_yourFunc = type_czech.link(G_yourFunc, G_PRE_check_yourFunc) 
+            G_yourFunc = type_czech.linkUp(G_yourFunc, G_PRE_check_yourFunc) 
             function G_yourFunc(){ }
     G_yourFunc([ [1,2] ])                      // pass 1
     G_yourFunc([ [1,2], [3,4] ])               // pass 2
@@ -232,10 +232,10 @@ G. One array of arrays of two Numbers.
         throw `G. _check_type().md ${expected_tests} expected_tests !== ${total_tests} total_tests`
     else if (expected_fails !== fail_tests) 
         throw `G. _check_type().md ${expected_fails} expected_fails !== ${fail_tests} fail_tests`
-    else if  (typeof total_checks === 'undefined')
+    else if  (typeof TEST_total_checks === 'undefined')
       console.log('no-issues: pass', expected_tests-expected_fails, ' fail', expected_fails)
     else
-      total_checks += expected_tests
+      TEST_total_checks += expected_tests
 
 /*
 ### H. One Array with any type of contents.
@@ -245,7 +245,7 @@ G. One array of arrays of two Numbers.
     function H_PRE_check_yourFunc() {
       return type_czech.check_type(arguments, 'Array')
     }
-                H_yourFunc = type_czech.link(H_yourFunc, H_PRE_check_yourFunc) 
+                H_yourFunc = type_czech.linkUp(H_yourFunc, H_PRE_check_yourFunc) 
                 function H_yourFunc(){ }
     H_yourFunc([])                          // pass 1
     H_yourFunc([1,2,3])                     // pass 2
@@ -261,10 +261,10 @@ G. One array of arrays of two Numbers.
         throw `H. _check_type().md ${expected_tests} expected_tests !== ${total_tests} total_tests`
     else if (expected_fails !== fail_tests) 
         throw `H. _check_type().md ${expected_fails} expected_fails !== ${fail_tests} fail_tests`
-    else if  (typeof total_checks === 'undefined')
+    else if  (typeof TEST_total_checks === 'undefined')
       console.log('no-issues: pass', expected_tests-expected_fails, ' fail', expected_fails)
     else
-      total_checks += expected_tests
+      TEST_total_checks += expected_tests
 
 /*
 ### I. One Object with any type of contents.
@@ -274,7 +274,7 @@ G. One array of arrays of two Numbers.
     function I_PRE_check_yourFunc() {
       return type_czech.check_type(arguments, 'Object')
     }
-            I_yourFunc = type_czech.link(I_yourFunc, I_PRE_check_yourFunc) 
+            I_yourFunc = type_czech.linkUp(I_yourFunc, I_PRE_check_yourFunc) 
             function I_yourFunc(){ }
     I_yourFunc({})     // pass 1
     I_yourFunc({a:{}}) // pass 2
@@ -288,10 +288,10 @@ G. One array of arrays of two Numbers.
         throw `I. _check_type().md ${expected_tests} expected_tests !== ${total_tests} total_tests`
     else if (expected_fails !== fail_tests) 
         throw `I. _check_type().md ${expected_fails} expected_fails !== ${fail_tests} fail_tests`
-    else if  (typeof total_checks === 'undefined')
+    else if  (typeof TEST_total_checks === 'undefined')
       console.log('no-issues: pass', expected_tests-expected_fails, ' fail', expected_fails)
     else
-      total_checks += expected_tests
+      TEST_total_checks += expected_tests
 
       
 /*
@@ -301,7 +301,7 @@ G. One array of arrays of two Numbers.
     function J_PRE_check_yourFunc() {
       return type_czech.check_type(arguments, {x:'Number', y:'Number'})
     }
-                    J_yourFunc = type_czech.link(J_yourFunc, J_PRE_check_yourFunc) 
+                    J_yourFunc = type_czech.linkUp(J_yourFunc, J_PRE_check_yourFunc) 
                     function J_yourFunc(){ }
     J_yourFunc({x:0, y:1})  // pass 1
     J_yourFunc({x:0, y:false})  // fali 1
@@ -315,10 +315,10 @@ G. One array of arrays of two Numbers.
         throw `J. _check_type().md ${expected_tests} expected_tests !== ${total_tests} total_tests`
     else if (expected_fails !== fail_tests) 
         throw `J. _check_type().md ${expected_fails} expected_fails !== ${fail_tests} fail_tests`
-    else if  (typeof total_checks === 'undefined')
+    else if  (typeof TEST_total_checks === 'undefined')
       console.log('no-issues: pass', expected_tests-expected_fails, ' fail', expected_fails)
     else
-      total_checks += expected_tests
+      TEST_total_checks += expected_tests
 
 
 
@@ -330,7 +330,7 @@ G. One array of arrays of two Numbers.
     function K_PRE_check_yourFunc() {
       return type_czech.check_type(arguments, [{x:'Number', y:'Number'}])
     }
-              K_yourFunc = type_czech.link(K_yourFunc, K_PRE_check_yourFunc) 
+              K_yourFunc = type_czech.linkUp(K_yourFunc, K_PRE_check_yourFunc) 
               function K_yourFunc(){ }
     K_yourFunc([{x:0, y:1}])                         // pass 1
     K_yourFunc([{x:0, y:1}, {x:0, y:1}, {x:0, y:1}]) // pass 2
@@ -343,10 +343,10 @@ G. One array of arrays of two Numbers.
         throw `K. _check_type().md ${expected_tests} expected_tests !== ${total_tests} total_tests`
     else if (expected_fails !== fail_tests) 
         throw `K. _check_type().md ${expected_fails} expected_fails !== ${fail_tests} fail_tests`
-    else if  (typeof total_checks === 'undefined')
+    else if  (typeof TEST_total_checks === 'undefined')
       console.log('no-issues: pass', expected_tests-expected_fails, ' fail', expected_fails)
     else
-      total_checks += expected_tests
+      TEST_total_checks += expected_tests
 
 /*
 ### L. Check only one parameter type of many. 
@@ -356,7 +356,7 @@ G. One array of arrays of two Numbers.
     function L_PRE_check_yourFunc(param_1, param_2, param_3) {
       return type_czech.check_type(param_2, 'Number')
     }
-              L_yourFunc = type_czech.link(L_yourFunc, L_PRE_check_yourFunc) 
+              L_yourFunc = type_czech.linkUp(L_yourFunc, L_PRE_check_yourFunc) 
               function L_yourFunc(){ }
     L_yourFunc(1,2,3)           // pass 1
     L_yourFunc(false, 2, false) // pass 2
@@ -371,10 +371,10 @@ G. One array of arrays of two Numbers.
         throw `L. _check_type().md ${expected_tests} expected_tests !== ${total_tests} total_tests`
     else if (expected_fails !== fail_tests) 
         throw `L. _check_type().md ${expected_fails} expected_fails !== ${fail_tests} fail_tests`
-    else if  (typeof total_checks === 'undefined')
+    else if  (typeof TEST_total_checks === 'undefined')
       console.log('no-issues: pass', expected_tests-expected_fails, ' fail', expected_fails)
     else
-      total_checks += expected_tests
+      TEST_total_checks += expected_tests
 
 /*
 ### M. Check two parameter types of many, not using arguments object. 
@@ -384,7 +384,7 @@ G. One array of arrays of two Numbers.
     function M_PRE_check_yourFunc(param_1, param_2, param_3) {
       return type_czech.check_type([param_1, param_3], ['Number'])
     }
-            M_yourFunc = type_czech.link(M_yourFunc, M_PRE_check_yourFunc) 
+            M_yourFunc = type_czech.linkUp(M_yourFunc, M_PRE_check_yourFunc) 
             function M_yourFunc(){ }
     M_yourFunc(1,2,3)                    // pass 1
     M_yourFunc(1, true, 3)               // pass 2
@@ -399,10 +399,10 @@ G. One array of arrays of two Numbers.
         throw `M. _check_type().md ${expected_tests} expected_tests !== ${total_tests} total_tests`
     else if (expected_fails !== fail_tests) 
         throw `M. _check_type().md ${expected_fails} expected_fails !== ${fail_tests} fail_tests`
-    else if  (typeof total_checks === 'undefined')
+    else if  (typeof TEST_total_checks === 'undefined')
       console.log('no-issues: pass', expected_tests-expected_fails, ' fail', expected_fails)
     else
-      total_checks += expected_tests
+      TEST_total_checks += expected_tests
 
 
 
@@ -415,7 +415,7 @@ G. One array of arrays of two Numbers.
     function N_PRE_check_yourFunc(param_1, param_2, param_3) {
       return type_czech.check_type(arguments, ['Number'])
     }
-            N_yourFunc = type_czech.link(N_yourFunc, N_PRE_check_yourFunc) 
+            N_yourFunc = type_czech.linkUp(N_yourFunc, N_PRE_check_yourFunc) 
             function N_yourFunc(){ }
     N_yourFunc(1,2,3)                    // fail 1
     N_yourFunc(1, true, 3)               // fail 2
@@ -430,10 +430,10 @@ G. One array of arrays of two Numbers.
         throw `M. _check_type().md ${expected_tests} expected_tests !== ${total_tests} total_tests`
     else if (expected_fails !== fail_tests) 
         throw `M. _check_type().md ${expected_fails} expected_fails !== ${fail_tests} fail_tests`
-    else if  (typeof total_checks === 'undefined')
+    else if  (typeof TEST_total_checks === 'undefined')
       console.log('no-issues: pass', expected_tests-expected_fails, ' fail', expected_fails)
     else
-      total_checks += expected_tests
+      TEST_total_checks += expected_tests
 
 
-&copy; 2021 Steen Hansen
+/* &copy; 2021 Steen Hansen */

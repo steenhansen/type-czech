@@ -25,7 +25,7 @@ The intended manner for using Type-Czech is to <span class='red-explanation'>tog
 if (typeof TypeCzech === 'function')
   type_czech = TypeCzech('LOG-ERRORS')
 else
-  type_czech = { link: (nop) => nop, is_active: false }
+  type_czech = { link: (nop) => nop, isActive: (x) => false }
 </pre>
 
 Program with Type-Czech testing turned ON.
@@ -61,7 +61,7 @@ PRE_check_aLottery = (typeof PRE_check_aLottery === 'undefined')
       <div class='red-explanation'>if (typeof TypeCzech === 'function')</div>
       <div  class='red-explanation'>&nbsp;&nbsp;&nbsp;&nbsp;type_czech = TypeCzech('THROW-EXCEPTIONS')</div>
       <div  class='red-explanation'>else</div>
-      <div  class='red-explanation'>&nbsp;&nbsp;&nbsp;&nbsp;type_czech = { link: (nop) => nop, is_active: false }</div>
+      <div  class='red-explanation'>&nbsp;&nbsp;&nbsp;&nbsp;type_czech = { link: (nop) => nop, isActive: (x) => false }</div>
     </li>
     <li>
       <span class='blue-explanation'>PRE_check_func=(typeof PRE_check_func==='undefined') ? undefined : PRE_check_func</span>
@@ -262,7 +262,7 @@ function runEnvironment(TypeCzech, pre_check_exists) {
 /**/  if (typeof TypeCzech === 'function')
 /**/    type_czech = TypeCzech('LOG-ERRORS')
 /**/  else
-/**/    type_czech = { link: (nop) => nop, is_active: false }
+/**/    type_czech = { link: (nop) => nop, isActive: (x) => false }
 
 /**/  PRE_check_aLottery = (typeof PRE_check_aLottery === 'undefined')
 /**/                       ? undefined : PRE_check_aLottery
@@ -280,7 +280,7 @@ function runEnvironment(TypeCzech, pre_check_exists) {
     }
   }
 
-  aLottery = type_czech.link(aLottery, PRE_check_aLottery)
+  aLottery = type_czech.linkUp(aLottery, PRE_check_aLottery)
 
   function aLottery(lottery_name, lucky_numbers, draw_date){
     the_lottery = `${lottery_name} ::: ${lucky_numbers} :::`
@@ -315,7 +315,7 @@ aLottery('Powerball', [], new Date('apr 4 4444'))
    fromToBoldText(63, 98, 'code', 1)  //  if (typeof TypeCzech === 'function')
    fromToBoldText(108, 143, 'code', 1)  //   type_czech = TypeCzech('LOG-ERRORS')
    fromToBoldText(151, 154, 'code', 1)  //  else
-   fromToBoldText(164, 216, 'code', 1)  //  type_czech = { link: (nop) => nop, is_active: false }
+   fromToBoldText(164, 216, 'code', 1)  //  type_czech = { link: (nop) => nop, isActive: (x) => false }
 
 ///////////////////////
 

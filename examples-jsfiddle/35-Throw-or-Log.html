@@ -289,16 +289,16 @@ Thus parameter checking can be easily turned off when changing from development 
 /**/  Person_OFF   = (f_name) => Person(f_name)
 /**/  
 /**/  type_czech_LOG = TypeCzech('LOG-ERRORS')
-/**/  Person_LOG = type_czech_LOG.link(Person_LOG, PRE_check_Person) 
+/**/  Person_LOG = type_czech_LOG.linkUp(Person_LOG, PRE_check_Person) 
 /**/  
 /**/  type_czech_THROW = TypeCzech('THROW-EXCEPTIONS')
-/**/  Person_THROW = type_czech_THROW.link(Person_THROW, PRE_check_Person) 
+/**/  Person_THROW = type_czech_THROW.linkUp(Person_THROW, PRE_check_Person) 
 /**/  
 /**/  type_czech_NONE = TypeCzech('NO-CHECKING')
-/**/  Person_NONE = type_czech_NONE.link(Person_NONE, PRE_check_Person) 
+/**/  Person_NONE = type_czech_NONE.linkUp(Person_NONE, PRE_check_Person) 
 /**/  
 /**/  type_czech_OFF = TypeCzech()
-/**/  Person_OFF = type_czech_OFF.link(Person_OFF, PRE_check_Person) 
+/**/  Person_OFF = type_czech_OFF.linkUp(Person_OFF, PRE_check_Person) 
 
 function Person(f_name){
   log(NL+f_name+' in Person() function')

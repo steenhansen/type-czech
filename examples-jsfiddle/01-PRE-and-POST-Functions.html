@@ -208,7 +208,7 @@ type_czech = TypeCzech()
 The PRE &amp;POST checking functions are linked to the function to be checked via this odd
 looking function call.
 <pre>
-Person = type_czech.link(Person, PRE_check_Person, POST_check_Person)
+Person = type_czech.linkUp(Person, PRE_check_Person, POST_check_Person)
 </pre>
 
 
@@ -262,7 +262,7 @@ the difference between the testing code and normal source code.
 /**/    return POST_ERROR
 /**/  }
 /**/
-/**/  Person = type_czech.link(Person, PRE_check_Person, POST_check_Person)
+/**/  Person = type_czech.linkUp(Person, PRE_check_Person, POST_check_Person)
 
 function Person(f_name) {
   person_result = f_name.toUpperCase()

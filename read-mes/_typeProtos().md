@@ -56,16 +56,16 @@
         throw `A. _typeProtos().md ${expected_tests} expected_tests !== ${total_tests} total_tests`
     else if (expected_fails !== fail_tests) 
         throw `A. _typeProtos().md ${expected_fails} expected_fails !== ${fail_tests} fail_tests`
-    else if (typeof total_checks === 'undefined')
+    else if (typeof TEST_total_checks === 'undefined')
       console.log('no-issues: pass', expected_tests-expected_fails, ' fail', expected_fails)
     else
-      total_checks += expected_tests
+      TEST_total_checks += expected_tests
 
 
 
 
 
-&copy; 2021 Steen Hansen
+/* &copy; 2021 Steen Hansen */
 
 
 

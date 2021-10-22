@@ -22,7 +22,7 @@ module.exports = function create_First(type_czech) {
     }
   }
 
-/**/  if (type_czech.is_active) {
+/**/  if (type_czech.isActive()) {
 /**/    function PRE_First(f_name) {
 /**/      console.log('PRE -First');
 /**/      const type_issue = type_czech.check_type(f_name, 'String');
@@ -49,7 +49,7 @@ module.exports = function create_First(type_czech) {
 /**/
 /**/    const First_PREs = { First: PRE_First, firstMethod: PRE_firstMethod };
 /**/    const First_POSTs = { First: POST_First, firstMethod: POST_firstMethod };
-/**/    First = type_czech.link(First, First_PREs, First_POSTs);
+/**/    First = type_czech.linkUp(First, First_PREs, First_POSTs);
 /**/  }
 
   return First;

@@ -286,7 +286,7 @@ return result to not match the correct signature.
 /**/  if (typeof TypeCzech === 'function')
 /**/    type_czech = TypeCzech('THROW-EXCEPTIONS')
 /**/  else
-/**/    type_czech = { link: (nop) => nop, is_active: false }
+/**/    type_czech = { link: (nop) => nop, isActive: (x) => false }
 /**/  
 /**/  PRE_check_Person = (typeof PRE_check_Person === 'undefined')
 /**/                     ? undefined : PRE_check_Person
@@ -301,7 +301,7 @@ return result to not match the correct signature.
 /**/    return type_czech.check_type(arguments, ['Number', 'String', 'String'])
 /**/  }
 /**/  
-/**/  Person = type_czech.link(Person, PRE_check_Person, POST_check_Person)
+/**/  Person = type_czech.linkUp(Person, PRE_check_Person, POST_check_Person)
 
 function Person(f_name, l_name, b_date){
   birth_year = b_date.getFullYear()

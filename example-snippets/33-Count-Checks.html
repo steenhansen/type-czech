@@ -216,7 +216,7 @@
 /**/  if (typeof TypeCzech === 'function')
 /**/      type_czech = TypeCzech('CONSOLE-COUNT', 'LOG-ERRORS')
 /**/  else
-/**/    type_czech = { link: (nop) => nop, is_active: false }
+/**/    type_czech = { link: (nop) => nop, isActive: (x) => false }
 /**/  
 /**/  PRE_check_Person = (typeof PRE_check_Person === 'undefined')
 /**/                     ? undefined : PRE_check_Person
@@ -226,7 +226,7 @@
 /**/      return "Error, PRE_check_Person, 'The' is an unusual first name"
 /**/  }
 /**/  
-/**/  Person = type_czech.link(Person, PRE_check_Person) 
+/**/  Person = type_czech.linkUp(Person, PRE_check_Person) 
 
 function Person(f_name, l_name){
 }

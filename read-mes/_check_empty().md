@@ -9,7 +9,7 @@
     function PRE_check_yourFunc() {
       return type_czech.check_empty(arguments, 'EMPTY-ERROR');
     }
-                yourFunc = type_czech.link(yourFunc, PRE_check_yourFunc) 
+                yourFunc = type_czech.linkUp(yourFunc, PRE_check_yourFunc) 
                 function yourFunc(){ }
 
     yourFunc([1])                           // pass 1 A array
@@ -52,10 +52,10 @@
         throw `A. _check_empty().md ${expected_tests} expected_tests !== ${total_tests} total_tests`
     else if (expected_fails !== fail_tests) 
         throw `A. _check_empty().md ${expected_fails} expected_fails !== ${fail_tests} fail_tests`
-    else if  (typeof total_checks === 'undefined')
+    else if  (typeof TEST_total_checks === 'undefined')
       console.log('no-issues: pass', expected_tests-expected_fails, ' fail', expected_fails)
     else
-      total_checks += expected_tests
+      TEST_total_checks += expected_tests
 
 
 
@@ -67,7 +67,7 @@
     function B_PRE_check_yourFunc() {
       return type_czech.check_empty(arguments, 'EMPTY-ERROR')
     }
-            B_yourFunc = type_czech.link(B_yourFunc, B_PRE_check_yourFunc) 
+            B_yourFunc = type_czech.linkUp(B_yourFunc, B_PRE_check_yourFunc) 
             function B_yourFunc(){ }  
     B_yourFunc([1])                    // pass 1 not empty
     B_yourFunc(new Date('1999-01-01')) // pass 2 not empty
@@ -102,10 +102,10 @@
         throw `B. _check_empty().md ${expected_tests} expected_tests !== ${total_tests} total_tests`
     else if (expected_fails !== fail_tests) 
         throw `B. _check_empty().md ${expected_fails} expected_fails !== ${fail_tests} fail_tests`
-    else if  (typeof total_checks === 'undefined')
+    else if  (typeof TEST_total_checks === 'undefined')
       console.log('no-issues: pass', expected_tests-expected_fails, ' fail', expected_fails)
     else
-      total_checks += expected_tests
+      TEST_total_checks += expected_tests
 
 
 
@@ -117,7 +117,7 @@
     function C_PRE_check_yourFunc() {
       return type_czech.check_empty(arguments, ['EMPTY-ERROR'])
     }
-            C_yourFunc = type_czech.link(C_yourFunc, C_PRE_check_yourFunc) 
+            C_yourFunc = type_czech.linkUp(C_yourFunc, C_PRE_check_yourFunc) 
             function C_yourFunc(){ }
     C_yourFunc([1])              // pass 1
     C_yourFunc(['a-str'])        // pass 2
@@ -148,10 +148,10 @@
         throw `C. _check_empty().md ${expected_tests} expected_tests !== ${total_tests} total_tests`
     else if (expected_fails !== fail_tests) 
         throw `C. _check_empty().md ${expected_fails} expected_fails !== ${fail_tests} fail_tests`
-    else if  (typeof total_checks === 'undefined')
+    else if  (typeof TEST_total_checks === 'undefined')
       console.log('no-issues: pass', expected_tests-expected_fails, ' fail', expected_fails)
     else
-      total_checks += expected_tests
+      TEST_total_checks += expected_tests
 
 
 
@@ -177,7 +177,7 @@
     function D_PRE_check_yourFunc() {
       return type_czech.check_empty(arguments, {a:'EMPTY-ERROR'})
     }
-            D_yourFunc = type_czech.link(D_yourFunc, D_PRE_check_yourFunc) 
+            D_yourFunc = type_czech.linkUp(D_yourFunc, D_PRE_check_yourFunc) 
             function D_yourFunc(){ }
     D_yourFunc({a:[1]})              // pass 1
     D_yourFunc({a:['a-str']})        // pass 2
@@ -203,10 +203,10 @@
         throw `D. _check_empty().md ${expected_tests} expected_tests !== ${total_tests} total_tests`
     else if (expected_fails !== fail_tests) 
         throw `D. _check_empty().md ${expected_fails} expected_fails !== ${fail_tests} fail_tests`
-    else if  (typeof total_checks === 'undefined')
+    else if  (typeof TEST_total_checks === 'undefined')
       console.log('no-issues: pass', expected_tests-expected_fails, ' fail', expected_fails)
     else
-      total_checks += expected_tests
+      TEST_total_checks += expected_tests
 
 
 
@@ -219,7 +219,7 @@
     function E_PRE_check_yourFunc() {
       return type_czech.check_empty(arguments,  ['EMPTY-OK', 'EMPTY-ERROR'])
     }
-            E_yourFunc = type_czech.link(E_yourFunc, E_PRE_check_yourFunc) 
+            E_yourFunc = type_czech.linkUp(E_yourFunc, E_PRE_check_yourFunc) 
             function E_yourFunc(){ }
     E_yourFunc(2,3)           // pass 1
     E_yourFunc(2,[{}])        // pass 2
@@ -243,9 +243,9 @@
         throw `E. _check_empty().md ${expected_tests} expected_tests !== ${total_tests} total_tests`
     else if (expected_fails !== fail_tests) 
         throw `E. _check_empty().md ${expected_fails} expected_fails !== ${fail_tests} fail_tests`
-    else if  (typeof total_checks === 'undefined')
+    else if  (typeof TEST_total_checks === 'undefined')
       console.log('no-issues: pass', expected_tests-expected_fails, ' fail', expected_fails)
     else
-      total_checks += expected_tests
+      TEST_total_checks += expected_tests
 
-&copy; 2021 Steen Hansen      
+/* &copy; 2021 Steen Hansen */
