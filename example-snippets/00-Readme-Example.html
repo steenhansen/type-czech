@@ -68,9 +68,9 @@
       
       <a title="22-Empty-Checks-with-Extra-Optional-Params.html" href="../example-snippets/22-Empty-Checks-with-Extra-Optional-Params.html">22</a>
       
-      <a title="23-Typed-Union-Checks.html" href="../example-snippets/23-Typed-Union-Checks.html">23</a>
+      <a title="23-Typed-Either-Checks.html" href="../example-snippets/23-Typed-Either-Checks.html">23</a>
       
-      <a title="24-Empty-and-Valueless-Union-Checks.html" href="../example-snippets/24-Empty-and-Valueless-Union-Checks.html">24</a>
+      <a title="24-Empty-Either-Checks.html" href="../example-snippets/24-Empty-Either-Checks.html">24</a>
       
       <a title="25-Accessing-PRE-POST-Arguments.html" href="../example-snippets/25-Accessing-PRE-POST-Arguments.html">25</a>
       
@@ -101,7 +101,7 @@
       <a title="38-Every-Check.html" href="../example-snippets/38-Every-Check.html">38</a>
 
 
-      <a title="39-Third-Party-Result-Checks.html" href="../example-snippets/39-Third-Party-Result-Checks.html">39</a>
+      <a title="39-Assert-Checks.html" href="../example-snippets/39-Assert-Checks.html">39</a>
 
       <a title="40-Prescribed-Use.html" href="../example-snippets/40-Prescribed-Use.html">40</a>
   
@@ -228,12 +228,12 @@ function PRE_check_aLottery(lottery_name, lucky_numbers, draw_date){
 /**/  type_czech = TypeCzech('LOG-ERRORS')
 /**/  //type_czech = TypeCzech('NO-CHECKING')
 /**/
-/**/  LOTTERY_SIGNAT = ['String', ['Number'], 'Date']
+/**/  LOTTERY_SIGNAT = ['string', ['number'], 'date']
 /**/
 /**/  function PRE_check_aLottery(lottery_name, lucky_numbers, draw_date){
 /**/    type_issue = type_czech.check_type(arguments, LOTTERY_SIGNAT)
 /**/    if (type_issue) return type_issue
-/**/    return type_czech.check_variadicEmpty(arguments, ['EMPTY-ERROR'])
+/**/    return type_czech.check_emptyVariadic(arguments, ['EMPTY-ERROR'])
 /**/  }
 /**/
 /**/  aLottery = type_czech.linkUp(aLottery, PRE_check_aLottery) 
@@ -289,14 +289,14 @@ aLottery('Oz Lotto', ['fourty-two'], new Date('jun 14 1999'))
    fromToBoldText(889, 890, 'code', 2)  // 17
 
    fromToBoldText(1175, 1176, 'log', 2)    // 17
-   fromToBoldText(1225, 1234, 'log', 2)    // 'String'
+   fromToBoldText(1225, 1234, 'log', 2)    // 'string'
 
 
 
    fromToBoldText(979, 990, 'code', 3)  // ['fourty-two']
 
    fromToBoldText(2066, 2077, 'log', 3)    //["fourty-two"]
-   fromToBoldText(2128, 2135, 'log', 3)    //  ["Number"]
+   fromToBoldText(2128, 2135, 'log', 3)    //  ["number"]
 
 
 

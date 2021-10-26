@@ -21,7 +21,7 @@ function strOrNumAPI(){
 str_or_num = strOrNumAPI()
 
 /**/  if (type_czech.isActive()) {
-/**/    type_issue = type_czech.check_typeEither(str_or_num, ['Number', 'String'])
+/**/    type_issue = type_czech.check_typeEither(str_or_num, ['number', 'string'])
 /**/    if (type_issue) throw type_issue
 /**/  }
 

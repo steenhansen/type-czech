@@ -31,7 +31,7 @@ module.exports = function create_Last(type_czech, First) {
 /**/  if (type_czech.isActive()) {
 /**/    function PRE_Last(f_name, l_name) {
 /**/      console.log('PRE -Last');
-/**/      const type_issue = type_czech.check_type([f_name, l_name], ['String', 'String']);
+/**/      const type_issue = type_czech.check_type([f_name, l_name], ['string', 'string']);
 /**/      if (type_issue) return type_issue;
 /**/      return type_czech.check_empty(arguments, ['EMPTY-ERROR', 'EMPTY-ERROR']);
 /**/    }
@@ -39,17 +39,17 @@ module.exports = function create_Last(type_czech, First) {
 /**/    // eslint-disable-next-line no-shadow
 /**/    function POST_Last(Last) {
 /**/      console.log('POST-Last');
-/**/      return type_czech.check_interface(Last, { l_name: 'String', lastMethod: 'Function' });
+/**/      return type_czech.check_interface(Last, { l_name: 'string', lastMethod: 'function' });
 /**/    }
 /**/
 /**/    function PRE_lastMethod(a_year) {
 /**/      console.log('PRE -lastMethod');
-/**/      return type_czech.check_type(arguments, 'Number');
+/**/      return type_czech.check_type(arguments, 'number');
 /**/    }
 /**/
 /**/    function POST_lastMethod(a_year) {
 /**/      console.log('POST-lastMethod');
-/**/      return type_czech.check_type(arguments, 'Number');
+/**/      return type_czech.check_type(arguments, 'number');
 /**/    }
 /**/
 /**/    const Last_PREs = { Last: PRE_Last, lastMethod: PRE_lastMethod };

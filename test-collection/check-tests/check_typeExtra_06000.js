@@ -6,7 +6,7 @@ tested_check_typeExtra = 0;
 failed_check_typeExtra = 0;
 
 
-
+check_typeExtra_06000()
 
 check_typeExtra_06001();
 check_typeExtra_06002();
@@ -55,12 +55,147 @@ console.log('check_typeExtra passed tests 06000', tested_check_typeExtra)
 
 
 ///////////////////////////////////////////////////////////
+function check_typeExtra_06000(){
+  type_czech = TypeCzech('NO-ERROR-MESSAGES')
+  function A_PRE_check_yourFunc() {
+    return type_czech.check_typeExtra(arguments, ['number', 'number']);
+  }
+                  A_yourFunc = type_czech.linkUp(A_yourFunc, A_PRE_check_yourFunc) 
+                  function A_yourFunc(){ }
+  A_yourFunc(NaN, NaN)  // pass 3 M empty number
+  A_yourFunc(9, 9)      // pass 6 F number
+  A_yourFunc(14,15,16)  // pass 12 U multi args
+  A_yourFunc([1], [1])                                        // fail 1 A array
+  A_yourFunc(234n,234n)                                       // fail 2 B bigint
+  A_yourFunc(false, false)                                    // fail 3 C boolean
+  A_yourFunc(new Date('2005-06-07'), new Date('2005-06-07'))  // fail 4 D date
+  A_yourFunc(a=>a+8, a=>a+8)                                  // fail 5 E function
+  A_yourFunc({b:10}, {b:10})                                  // fail 6 G object
+  A_yourFunc(/d/, /d/)                                        // fail 7 H regex
+  A_yourFunc('an-str', 'an-str')                              // fail 8 I string
+  A_yourFunc(Symbol('sym'), Symbol('sym'))                    // fail 9 J symbol
+  A_yourFunc([], [])                                          // fail 10 K empty array
+  A_yourFunc(new Date(''), new Date(''))                      // fail 11 L empty date
+  A_yourFunc({}, {})                                          // fail 12 N empty object
+  A_yourFunc(/(?:)/, /(?:)/)                                  // fail 13 O empty regex
+  A_yourFunc('', '')                                          // fail 14 P empty string
+  A_yourFunc(null, null)                                      // fail 15 Q empty null
+  A_yourFunc(undefined, undefined)                            // fail 16 R empty undefined
+  A_yourFunc()                                                // fail 17 S empty nothing
+  A_yourFunc([11,12,13], [11,12,13])                          // fail 18 T multi array
+  A_yourFunc([[17,18,19]], [[17,18,19]])                      // fail 19 V multi in single
+  A_yourFunc([20], [21])                                      // fail 20 W two singles
+  A_yourFunc([22,23,24], [25,26,27])                          // fail 21 X two multis
+  A_yourFunc({d:{}}, {d:{}})                                  // fail 22 Y empty in object
+  A_yourFunc([{e:[28,{f:[29]}]}], [{e:[28,{f:[29]}]}])        // fail 23 Z empty in object
+  A_yourFunc(['',''], ['',''])                                // fail 24 0 empty - [str str]
+  A_yourFunc([[],[]], [[],[]])                                // fail 25 1 empty - [arr arr]
+  A_yourFunc([{},{}], [{},{}])                                // fail 26 2 empty - [obj obj]
+  A_yourFunc({g:[]}, {h:[]})                                  // fail 27 3 empty - {arr arr}
+  A_yourFunc({i:''}, {j:''})                                  // fail 28 4 empty - {str str}
+  A_yourFunc({k:{}}, {l:{}})                                  // fail 29 5 empty - {obj obj}
 
+  expected_tests = 32
+                            expected_fails = 29
+    fail_tests = type_czech.countFails()
+    total_tests = type_czech.countTally()
+    if (expected_tests !== total_tests) 
+        throw `A. _check_typeExtra().md ${expected_tests} expected_tests !== ${total_tests} total_tests`
+    else if (expected_fails !== fail_tests) 
+        throw `A. _check_typeExtra().md ${expected_fails} expected_fails !== ${fail_tests} fail_tests`
+    else if  (typeof TEST_total_checks === 'undefined')
+      console.log('no-issues: pass', expected_tests-expected_fails, ' fail', expected_fails)
+    else
+      TEST_total_checks += expected_tests;
+
+      type_czech = TypeCzech('NO-ERROR-MESSAGES')
+      function B_PRE_check_yourFunc() {
+        return type_czech.check_typeExtra(arguments, 'number');
+      }
+                      B_yourFunc = type_czech.linkUp(B_yourFunc, B_PRE_check_yourFunc) 
+                      function B_yourFunc(){ }
+      B_yourFunc(17)
+      B_yourFunc(17, 'extra')
+      B_yourFunc(17, 'extra', false)
+                              expected_tests = 3
+                              expected_fails = 3
+      fail_tests = type_czech.countFails()
+      total_tests = type_czech.countTally()
+      if (expected_tests !== total_tests) 
+          throw `B. _check_typeExtra().md ${expected_tests} expected_tests !== ${total_tests} total_tests`
+      else if (expected_fails !== fail_tests) 
+          throw `B. _check_typeExtra().md ${expected_fails} expected_fails !== ${fail_tests} fail_tests`
+      else if  (typeof TEST_total_checks === 'undefined')
+        console.log('no-issues: pass', expected_tests-expected_fails, ' fail', expected_fails)
+      else
+        TEST_total_checks += expected_tests
+  
+  
+  
+  
+  
+  /*
+  C. Test single object with extra parameters
+  */
+  
+      type_czech = TypeCzech('NO-ERROR-MESSAGES')
+      function C_PRE_check_yourFunc() {
+        return type_czech.check_typeExtra(arguments, {a:'number'});
+      }
+                      C_yourFunc = type_czech.linkUp(C_yourFunc, C_PRE_check_yourFunc) 
+                      function C_yourFunc(){ } 
+      C_yourFunc({a:17})
+      C_yourFunc({a:17, b:13})
+      C_yourFunc({jj:17, b:13}) //fail
+                              expected_tests = 3
+                              expected_fails = 1
+      fail_tests = type_czech.countFails()
+      total_tests = type_czech.countTally()
+      if (expected_tests !== total_tests) 
+          throw `C. _check_typeExtra().md ${expected_tests} expected_tests !== ${total_tests} total_tests`
+      else if (expected_fails !== fail_tests) 
+          throw `C. _check_typeExtra().md ${expected_fails} expected_fails !== ${fail_tests} fail_tests`
+      else if  (typeof TEST_total_checks === 'undefined')
+        console.log('no-issues: pass', expected_tests-expected_fails, ' fail', expected_fails)
+      else
+        TEST_total_checks += expected_tests
+  
+  
+  
+  
+  /*
+  D. Test array with extra parameters
+  */
+  
+      type_czech = TypeCzech('NO-ERROR-MESSAGES')
+      function D_PRE_check_yourFunc() {
+        return type_czech.check_typeExtra(arguments, ['number', 'string']);
+      }
+                      D_yourFunc = type_czech.linkUp(D_yourFunc, D_PRE_check_yourFunc) 
+                      function D_yourFunc(){ } 
+      D_yourFunc(17, 'abc')
+      D_yourFunc(17, 'abc', true)
+      D_yourFunc('abc', 17) //fail
+                              expected_tests = 3
+                              expected_fails = 1
+      fail_tests = type_czech.countFails()
+      total_tests = type_czech.countTally()
+      if (expected_tests !== total_tests) 
+          throw `D. _check_typeExtra().md ${expected_tests} expected_tests !== ${total_tests} total_tests`
+      else if (expected_fails !== fail_tests) 
+          throw `D. _check_typeExtra().md ${expected_fails} expected_fails !== ${fail_tests} fail_tests`
+      else if  (typeof TEST_total_checks === 'undefined')
+        console.log('no-issues: pass', expected_tests-expected_fails, ' fail', expected_fails)
+      else
+        TEST_total_checks += expected_tests
+  
+
+}
 
 function check_typeExtra_06001(){
   var TYPE_CZECH_current_test_number = '06001';
   var check_param = [123, "abc"];
-  var check_shape = ["Number", "String"]; 
+  var check_shape = ["number", "string"]; 
   var expect_error = '';
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
@@ -81,10 +216,10 @@ function check_typeExtra_06001(){
 function check_typeExtra_06002(){
   var TYPE_CZECH_current_test_number = '06002';
   var check_param = ['abc', 456];
-  var check_shape = ["String", "date"]; 
+  var check_shape = ["string", "date"]; 
   var expect_error = [`check_typeExtra(arguments, expected_types)`,
-  `TE@205 - The type 'date' is not a check_type type, but it looks just like 'Date'`,
-  `["String","date"]`];
+  `TE@214 -  ELEMENT '1' is assumed to be a 'date', but is mistakenly a 'number'`,
+  `["string","date"]`];
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech_test.check_typeExtra(check_param, check_shape);
@@ -105,7 +240,7 @@ function check_typeExtra_06002(){
 function check_typeExtra_06003(){
   var TYPE_CZECH_current_test_number = '06003';
   var check_param = [456, 'a-string'];
-  var check_shape = ["Number", "String"];  
+  var check_shape = ["number", "string"];  
   var expect_error = '';
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
@@ -126,7 +261,7 @@ function check_typeExtra_06003(){
 function check_typeExtra_06004(){
   var TYPE_CZECH_current_test_number = '06004';
   var check_param = [456, false, 'extra-string'];
-  var check_shape = ["Number", "Boolean"];  
+  var check_shape = ["number", "boolean"];  
   var expect_error = '';
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
@@ -149,7 +284,7 @@ function check_typeExtra_06004(){
 function check_typeExtra_06005(){
   var TYPE_CZECH_current_test_number = '06005';
   var check_param = ['abc', [456, 789]];
-  var check_shape = ["String", ["Number"]]; 
+  var check_shape = ["string", ["number"]]; 
   var expect_error = '';
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
@@ -171,7 +306,7 @@ function check_typeExtra_06005(){
 function check_typeExtra_06006(){
   var TYPE_CZECH_current_test_number = '06006';
   var check_param = [123, 'abc', [456, 789]];
-  var check_shape = ["Number", "String", ["Number"]];
+  var check_shape = ["number", "string", ["number"]];
   var expect_error = '';
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
@@ -193,10 +328,10 @@ function check_typeExtra_06006(){
 function check_typeExtra_06007(){
   var TYPE_CZECH_current_test_number = '06007';
   var check_param =[123, 'abc', [456, "def"]];
-  var check_shape = ["Number", "String", ["Number"]];
+  var check_shape = ["number", "string", ["number"]];
   var expect_error = [`check_typeExtra(arguments, expected_types)`,
-  `TE@215 - ELEMENT '1' is asserted to be a 'Number', but is fallaciously a 'String' : def`,
-  `["Number","String",["Number"]]`];
+  `TE@215 - ELEMENT '1' is asserted to be a 'number', but is fallaciously a 'string' : def`,
+  `["number","string",["number"]]`];
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech_test.check_typeExtra(check_param, check_shape);
@@ -216,7 +351,7 @@ function check_typeExtra_06007(){
 function check_typeExtra_06008(){
   var TYPE_CZECH_current_test_number = '06008';
   var check_param = [123, 'abc', {a:456, b:789}];
-  var check_shape = ["Number", "String", {a:"Number", b:"Number"}];
+  var check_shape = ["number", "string", {a:"number", b:"number"}];
   var expect_error = '';
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
@@ -238,10 +373,10 @@ function check_typeExtra_06008(){
 function check_typeExtra_06009(){
   var TYPE_CZECH_current_test_number = '06009';
   var check_param = [123, 'abc', {a:456, b:'def'}];
-  var check_shape = ["Number", "String", {a:"Number", b:"Number"}];
+  var check_shape = ["number", "string", {a:"number", b:"number"}];
   var expect_error = [`check_typeExtra(arguments, expected_types)`,
-  `TE@213 - Property 'b' is indicated to be a 'Number', but is inaccurately a 'String' : def`,
-  `["Number","String",{a:"Number",b:"Number"}]`];
+  `TE@213 - Property 'b' is indicated to be a 'number', but is inaccurately a 'string' : def`,
+  `["number","string",{a:"number",b:"number"}]`];
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech_test.check_typeExtra(check_param, check_shape);
@@ -263,10 +398,10 @@ function check_typeExtra_06009(){
 function check_typeExtra_06010(){
   var TYPE_CZECH_current_test_number = '06010';
   var check_param = [ "super", "man" ];
-  var check_shape = [ "String", "String", "date" ] ;
+  var check_shape = [ "string", "string", "date" ] ;
   var expect_error = [`check_typeExtra(arguments, expected_types)`,
   `TE@221 - Element '2' is supposed to be a 'date', but is missing : ["super","man"]`,
-  `["String","String","date"]`];
+  `["string","string","date"]`];
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech_test.check_typeExtra(check_param, check_shape);
@@ -288,7 +423,7 @@ function check_typeExtra_06010(){
 function check_typeExtra_06011(){
   var TYPE_CZECH_current_test_number = '06011';
   var check_param = [{r:11}];
-  var check_shape = [{r:"Number"}]; 
+  var check_shape = [{r:"number"}]; 
   var expect_error = '';
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
@@ -310,7 +445,7 @@ function check_typeExtra_06011(){
 function check_typeExtra_06012(){
   var TYPE_CZECH_current_test_number = '06012';
   var check_param = [[11, 13, 17, 19], "abc", 'extra-string'];
-  var check_shape = [["Number"], "String"]  ;
+  var check_shape = [["number"], "string"]  ;
   var expect_error = '';
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
@@ -334,10 +469,10 @@ function check_typeExtra_06012(){
 function check_typeExtra_06013(){
   var TYPE_CZECH_current_test_number = '06013';
   var check_param = new Date('1999-12-12');
-  var check_shape = 'Date';
+  var check_shape = 'date';
   var expect_error = [`check_typeExtra(arguments, expected_types)`,
-  `TE@227 - TypeCzech.check_typeExtra(1999-12-12T00:00:00.000Z, Date) needs two collections to work`,
-  `Date`];
+  `TE@227 - TypeCzech.check_typeExtra(1999-12-12T00:00:00.000Z, date) needs two collections to work`,
+  `date`];
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech_test.check_typeExtra(check_param, check_shape);
@@ -376,10 +511,10 @@ function check_typeExtra_06013(){
 function check_typeExtra_06014(){
   var TYPE_CZECH_current_test_number = '06014';
   var check_param = 'a-number';
-  var check_shape = 'Number';
+  var check_shape = 'number';
   var expect_error = [`check_typeExtra(arguments, expected_types)`,
-  `TE@227 - TypeCzech.check_typeExtra(a-number, Number) needs two collections to work`,
-  `Number`];
+  `TE@227 - TypeCzech.check_typeExtra(a-number, number) needs two collections to work`,
+  `number`];
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech_test.check_typeExtra(check_param, check_shape);
@@ -443,7 +578,7 @@ function check_typeExtra_06016(){
 function check_typeExtra_06017(){
   var TYPE_CZECH_current_test_number = '06017';
   var check_param = [[2], [3]];
-  var check_shape = ['Array']; 
+  var check_shape = ['array']; 
   var expect_error = '';
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
@@ -463,7 +598,7 @@ function check_typeExtra_06017(){
 function check_typeExtra_06018(){
   var TYPE_CZECH_current_test_number = '06018';
   var check_param = [[1,2], [3,4]];
-  var check_shape = ['Array']; 
+  var check_shape = ['array']; 
   var expect_error = '';
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
@@ -505,10 +640,10 @@ function check_typeExtra_06019(){
 function check_typeExtra_06020(){
   var TYPE_CZECH_current_test_number = '06020';
   var check_param = [];
-  var check_shape = 'Object'; 
+  var check_shape = 'object'; 
   var expect_error = [`check_typeExtra(arguments, expected_types)`,
-  `TE@227 - TypeCzech.check_typeExtra([], Object) needs two collections to work`,
-  `Object`];
+  `TE@227 - TypeCzech.check_typeExtra([], object) needs two collections to work`,
+  `object`];
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech_test.check_typeExtra(check_param, check_shape);
@@ -527,10 +662,10 @@ function check_typeExtra_06020(){
 function check_typeExtra_06021(){
   var TYPE_CZECH_current_test_number = '06021';
   var check_param =123;
-  var check_shape = 'Number'; 
+  var check_shape = 'number'; 
   var expect_error = [`check_typeExtra(arguments, expected_types)`,
-  `TE@227 - TypeCzech.check_typeExtra(123, Number) needs two collections to work`,
-  `Number`];
+  `TE@227 - TypeCzech.check_typeExtra(123, number) needs two collections to work`,
+  `number`];
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech_test.check_typeExtra(check_param, check_shape);
@@ -553,10 +688,10 @@ function check_typeExtra_06021(){
 function check_typeExtra_06022(){
   var TYPE_CZECH_current_test_number = '06022';
   var check_param =456;
-  var check_shape = 'String'; 
+  var check_shape = 'string'; 
   var expect_error = [`check_typeExtra(arguments, expected_types)`,
-  `TE@227 - TypeCzech.check_typeExtra(456, String) needs two collections to work`,
-  `String`];
+  `TE@227 - TypeCzech.check_typeExtra(456, string) needs two collections to work`,
+  `string`];
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech_test.check_typeExtra(check_param, check_shape);
@@ -634,7 +769,7 @@ function check_typeExtra_06025(){
   {"cyl":2,"stroke":4}, 
    [2000, "red"],
   {"percent":75,"max":500} ];
-  var check_shape = [  ["S"],  {cyl:"N", stroke:"N"},  ["N", "S"],  {percent:"N", max:"N"} ]; 
+  var check_shape = [  ["s"],  {cyl:"n", stroke:"n"},  ["n", "s"],  {percent:"n", max:"n"} ]; 
   var expect_error = '';
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
@@ -664,7 +799,7 @@ function check_typeExtra_06026(){
   {"cyl":2,"stroke":4}, 
     [2000, "red"],
    {"percent":75,"max":500}, 'bike'];
-  var check_shape = [  ["S"],  {cyl:"N", stroke:"N"},  ["N", "S"],  {percent:"N", max:"N"}, "S" ];
+  var check_shape = [  ["s"],  {cyl:"n", stroke:"n"},  ["n", "s"],  {percent:"n", max:"n"}, "s" ];
   var expect_error = '';
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
@@ -703,7 +838,7 @@ function check_typeExtra_06026(){
 function check_typeExtra_06027(){
   var TYPE_CZECH_current_test_number = '06027';
   var check_param = [ {x: 5},  {y: 1} ];
-  var check_shape = [ {x:"N"}, {y:"N"} ];
+  var check_shape = [ {x:"n"}, {y:"n"} ];
   var expect_error = '';
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
@@ -728,7 +863,7 @@ function check_typeExtra_06027(){
 function check_typeExtra_06028(){
   var TYPE_CZECH_current_test_number = '06028';
   var check_param = [{"manu":"Harley-Davidson","model":"Electra-Glide"},{"cyl":2,"stroke":4},{"year":2000,"color":"red"},{"percent":75,"max":500},"bike"];
-  var check_shape = [  {manu:"S", model:"S"},  {cyl:"N", stroke:"N"},  {year:"N", color:"S"},  {percent:"N", max:"N"}, "S"];
+  var check_shape = [  {manu:"s", model:"s"},  {cyl:"n", stroke:"n"},  {year:"n", color:"s"},  {percent:"n", max:"n"}, "s"];
   var expect_error = '';
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
@@ -761,10 +896,10 @@ function check_typeExtra_06028(){
 function check_typeExtra_06029(){
   var TYPE_CZECH_current_test_number = '06029';
   var check_param = ['abc', 456];
-  var check_shape = ["String", "Date"];
+  var check_shape = ["string", "date"];
   var expect_error =  [`check_typeExtra(arguments, expected_types)`,
-  `TE@214 -  ELEMENT '1' is assumed to be a 'Date', but is mistakenly a 'Number'`,
-  `["String","Date"]`];
+  `TE@214 -  ELEMENT '1' is assumed to be a 'date', but is mistakenly a 'number'`,
+  `["string","date"]`];
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech_test.check_typeExtra(check_param, check_shape);
@@ -795,10 +930,10 @@ function check_typeExtra_06029(){
 function check_typeExtra_06030_undef_ok(){
   var TYPE_CZECH_current_test_number = '06030';
   var check_param = null;
-  var check_shape = 'String';
+  var check_shape = 'string';
   var expect_error =  [`check_typeExtra(arguments, expected_types)`,
-  `TE@227 - TypeCzech.check_typeExtra(null, String) needs two collections to work`,
-  `String`];
+  `TE@227 - TypeCzech.check_typeExtra(null, string) needs two collections to work`,
+  `string`];
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech_test.check_typeExtra(check_param, check_shape);
@@ -844,7 +979,7 @@ function check_typeExtra_06031_undef_ok(){
 function check_typeExtra_06032(){
   var TYPE_CZECH_current_test_number = '06032';
   var check_param = [{r:11}];
-  var check_shape = [{r:"Number"}];
+  var check_shape = [{r:"number"}];
   var expect_error = '';
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
@@ -865,7 +1000,7 @@ function check_typeExtra_06032(){
 function check_typeExtra_06033(){
   var TYPE_CZECH_current_test_number = '06033';
   var check_param = [{r: 11, e:'for extra'}];
-  var check_shape = [{r:"Number"}];
+  var check_shape = [{r:"number"}];
   var expect_error = '';
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);

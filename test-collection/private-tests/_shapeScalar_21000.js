@@ -31,7 +31,7 @@ if (TEST_show_random) {
 function _shapeScalar_21001(){
   var TYPE_CZECH_current_test_number = '21001';       
   var check_param =   true;    
-  var check_shape = "Boolean" ;      
+  var check_shape = "boolean" ;      
   var expect_error = '';
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
@@ -53,8 +53,8 @@ function _shapeScalar_21001(){
 function _shapeScalar_21002(){
   var TYPE_CZECH_current_test_number = '21002';       
   var check_param =    "my-string";    
-  var check_shape = "Boolean" ;      
-  var expect_error = `TE@226 - The value 'my-string', which is a 'String', is not a 'Boolean'`; 
+  var check_shape = "boolean" ;      
+  var expect_error = `TE@226 - The value 'my-string', which is a 'string', is not a 'boolean'`; 
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech_test._shapeScalar(check_param, check_shape);
@@ -75,7 +75,7 @@ function _shapeScalar_21002(){
 function _shapeScalar_21003(){
   var TYPE_CZECH_current_test_number = '21003';       
   var check_param =   123;    
-  var check_shape = "Number" ;      
+  var check_shape = "number" ;      
   var expect_error = ''; 
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
@@ -95,7 +95,7 @@ function _shapeScalar_21003(){
 function _shapeScalar_21004(){
   var TYPE_CZECH_current_test_number = '21004';       
   var check_param = new Date;    
-  var check_shape = "Date" ;      
+  var check_shape = "date" ;      
   var expect_error = ''; 
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
@@ -115,7 +115,7 @@ function _shapeScalar_21004(){
 function _shapeScalar_21005(){
   var TYPE_CZECH_current_test_number = '21005';       
   var check_param =   "a-string";  
-  var check_shape = "String" ;      
+  var check_shape = "string" ;      
   var expect_error = ''; 
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
@@ -138,7 +138,7 @@ function _shapeScalar_21006(){
   var TYPE_CZECH_current_test_number = '21006';       
   var check_param =   "a-string";  
   var check_shape = "does-not_exist" ;      
-  var expect_error =  `TE@230 - The type 'does-not_exist' is invalid`; 
+  var expect_error =  `TE@202 - The type 'does-not_exist' is not the correct classname or not a scalar type`; 
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech_test._shapeScalar(check_param, check_shape);
@@ -159,7 +159,7 @@ function _shapeScalar_21006(){
 function _shapeScalar_21007(){
   var TYPE_CZECH_current_test_number = '21007';       
   var check_param =   []; 
-  var check_shape =   "Array" ;            
+  var check_shape =   "array" ;            
   var expect_error =  '';
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
@@ -181,7 +181,7 @@ function _shapeScalar_21007(){
 function _shapeScalar_21008(){
   var TYPE_CZECH_current_test_number = '21008';       
   var check_param =  {};
-  var check_shape =   "Object" ;            
+  var check_shape =   "object" ;            
   var expect_error =  '';
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);

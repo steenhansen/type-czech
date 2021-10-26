@@ -93,11 +93,11 @@ samples/22-has-interface.html
 
 [23-on-off.html](
 samples/23-on-off.html
-) 23 - Typed Union Checks
+) 23 - Typed-Either-Checks
 
-[24-Empty-and-Valueless-Union-Checks.html](
-samples/24-Empty-and-Valueless-Union-Checks.html
-) 24-Empty-and-Valueless-Union-Checks
+[24-Empty-Either-Checks.html](
+samples/24-Empty-Either-Checks.html
+) 24-Empty-Either-Checks
 
 [25-Accessing-PRE-POST-Arguments.html](
 samples/25-Accessing-PRE-POST-Arguments.html
@@ -107,9 +107,9 @@ samples/25-Accessing-PRE-POST-Arguments.html
 samples/26-Type-and-Empty-Abbreviations.html
 ) 26 - Type and Empty Abbreviations
 
-[27-Typed-and-Empty-Union-Checks-with-Optionals.html](
-samples/27-Typed-and-Empty-Union-Checks-with-Optionals.html
-) 27 - Typed and Empty Union Checks with Optionals
+[27-Typed-and-Empty-Either-Checks-with-Optionals.html](
+samples/27-Typed-and-Empty-Either-Checks-with-Optionals.html
+) 27 - Typed and Empty Either Checks with Optionals
 
 [28-Accept-Null-and-Undefined-Values.html](
 samples/28-Accept-Null-and-Undefined-Values.html

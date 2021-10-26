@@ -22,7 +22,7 @@ We suggest using the arguments parameter object to check all parameters for type
     /**/  //type_czech = TypeCzech('NO-CHECKING')
     /**/
     /**/  function PRE_check_yourFunc(){
-    /**/    return type_czech.check_type(arguments, ['String', 'Number'])
+    /**/    return type_czech.check_type(arguments, ['string', 'number'])
     /**/  }
     /**/
     /**/  function POST_check_Person(){
@@ -41,7 +41,7 @@ parameters only when actually individually testing them as below.
     /**/  //type_czech = TypeCzech('NO-CHECKING')
     /**/
     /**/  function PRE_check_yourFunc(first_name, last_name){
-    /**/    type_issue = type_czech.check_type(arguments, ['String', 'String'])
+    /**/    type_issue = type_czech.check_type(arguments, ['string', 'string'])
     /**/    if (type_issue) return type_issue
     /**/    empty_issue = type_czech.check_empty(arguments, 'EMPTY-ERROR')
     /**/    if (empty_issue) return empty_issue

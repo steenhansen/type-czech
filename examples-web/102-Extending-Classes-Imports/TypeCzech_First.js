@@ -3,22 +3,22 @@ function TypeCzech_First() {
   if (type_czech.isActive()) {
     function PRE_check_First(f_name){
       log(NL+'PRE -First') 
-      type_issue = type_czech.check_type(f_name, 'String')
+      type_issue = type_czech.check_type(f_name, 'string')
       if (type_issue) return type_issue;
       return type_czech.check_empty(arguments, 'EMPTY-ERROR');      
     }
     function POST_check_First(First){
       log(NL+'POST-First')
-      const first_return_signature = {f_name:'String', firstMethod:'Function'}
+      const first_return_signature = {f_name:'string', firstMethod:'function'}
       return type_czech.check_interface(First, first_return_signature)
     }
     function PRE_check_firstMethod(a_date){
       log('PRE -firstMethod') 
-      return type_czech.check_type(arguments, 'Date')
+      return type_czech.check_type(arguments, 'date')
     }
     function POST_check_firstMethod(a_date){
       log('POST-firstMethod') 
-      return type_czech.check_type(arguments, 'Date')
+      return type_czech.check_type(arguments, 'date')
     }
 
 

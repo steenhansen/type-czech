@@ -6,23 +6,23 @@ function TypeCzech_Last() {
 
     function PRE_check_Last(f_name, l_name){
       log(LEVEL_1+'PRE-Last') 
-      type_issue = type_czech.check_type([f_name, l_name], ['String', 'String'])
+      type_issue = type_czech.check_type([f_name, l_name], ['string', 'string'])
       if (type_issue) return type_issue;
       return type_czech.check_empty(arguments, ['EMPTY-ERROR', 'EMPTY-ERROR']);
     }
     function POST_check_Last(Last){
       log(LEVEL_1+"POST-Last") 
-      last_return_signature = { f_name: 'String', l_name: 'String', 
-                 firstMethod: 'Function', lastMethod: 'Function' }
+      last_return_signature = { f_name: 'string', l_name: 'string', 
+                 firstMethod: 'function', lastMethod: 'function' }
       return type_czech.check_interface(Last, last_return_signature)
     }
     function PRE_check_lastMethod(a_year){
       log(LEVEL_1+"PRE -lastMethod") 
-      return type_czech.check_type(arguments, 'Number')
+      return type_czech.check_type(arguments, 'number')
     }
     function POST_check_lastMethod(a_year){
       log(LEVEL_1+"POST-lastMethod") 
-      return type_czech.check_type(arguments, 'Number')
+      return type_czech.check_type(arguments, 'number')
     }
 
 

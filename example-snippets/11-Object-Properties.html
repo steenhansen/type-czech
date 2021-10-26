@@ -88,9 +88,9 @@
       
       <a title="22-Empty-Checks-with-Extra-Optional-Params.html" href="../example-snippets/22-Empty-Checks-with-Extra-Optional-Params.html">22</a>
       
-      <a title="23-Typed-Union-Checks.html" href="../example-snippets/23-Typed-Union-Checks.html">23</a>
+      <a title="23-Typed-Either-Checks.html" href="../example-snippets/23-Typed-Either-Checks.html">23</a>
       
-      <a title="24-Empty-and-Valueless-Union-Checks.html" href="../example-snippets/24-Empty-and-Valueless-Union-Checks.html">24</a>
+      <a title="24-Empty-Either-Checks.html" href="../example-snippets/24-Empty-Either-Checks.html">24</a>
       
       <a title="25-Accessing-PRE-POST-Arguments.html" href="../example-snippets/25-Accessing-PRE-POST-Arguments.html">25</a>
       
@@ -121,7 +121,7 @@
       <a title="38-Every-Check.html" href="../example-snippets/38-Every-Check.html">38</a>
 
  
-      <a title="39-Third-Party-Result-Checks.html" href="../example-snippets/39-Third-Party-Result-Checks.html">39</a>
+      <a title="39-Assert-Checks.html" href="../example-snippets/39-Assert-Checks.html">39</a>
 
       <a title="40-Prescribed-Use.html" href="../example-snippets/40-Prescribed-Use.html">40</a>
   
@@ -189,9 +189,9 @@
     functions. And the property a_number must be a Number type. Missing or 
     extra properties will cause errors.
 <pre>
-FUNC_NUM_FUNC_STRUCTURE = { funcOne: 'Function', 
-                            a_number: 'Number',
-                            funcTwo: 'Function' }
+FUNC_NUM_FUNC_STRUCTURE = { funcOne: 'function', 
+                            a_number: 'number',
+                            funcTwo: 'function' }
 func_num_func_obj = {funcOne: x=>x, a_number:12, funcTwo: y=>y}
 check_error = type_czech.check_type(func_num_func_obj, FUNC_NUM_FUNC_STRUCTURE)
 </pre>
@@ -200,7 +200,7 @@ The below example shows how to ignore some properties, while still type checking
 at least one property. Here we only ensure that the property funcOne is a 
 Function, the extra property my_string is ignored.
 <pre>
-FUNC_ONE_ONLY_STRUCT = { funcOne: 'Function'}
+FUNC_ONE_ONLY_STRUCT = { funcOne: 'function'}
 func_num_func_obj = {funcOne: x=>x, my_string:'some-string'}
 check_error = type_czech.check_typeExtra(func_num_func_obj, FUNC_ONE_ONLY_STRUCT)
 </pre>
@@ -259,7 +259,7 @@ check_error = type_czech.check_typeExtra(func_num_func_obj, FUNC_ONE_ONLY_STRUCT
 /**/            ? undefined : PRE_check_callMethod
 /**/
 /**/  function PRE_check_callMethod(an_object){
-/**/    WANTED_PROPS = {showPerson: 'Function'}
+/**/    WANTED_PROPS = {showPerson: 'function'}
 /**/    return type_czech.check_type(an_object, WANTED_PROPS)
 /**/  }
 /**/  

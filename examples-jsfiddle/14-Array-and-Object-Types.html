@@ -20,21 +20,21 @@
     if [ ]s are used then an array must define at least one type.
 
     <ul>
-      <li>Valid Type:  'Array'</li>
+      <li>Valid Type:  'array'</li>
       
       <li>Not Valid Type : '[ ]'</li>
-      <li>Valid Type : [ 'String' ]</li>
+      <li>Valid Type : [ 'string' ]</li>
     </ul>
 
-    And, 'Object' can also be a type without specifying any properties.
+    And, 'object' can also be a type without specifying any properties.
     But if { }s are used then an object must define at least one key and value.
     
 
 
 <ul>
-  <li>Valid Type : 'Object'</li>
+  <li>Valid Type : 'object'</li>
   <li>Not Valid Type : '{ }'</li>
-  <li>Valid Type : { a_key: 'String' }</li>
+  <li>Valid Type : { a_key: 'string' }</li>
 </ul>
 
 
@@ -131,15 +131,15 @@ the POST_check_Person() function.
     
     <a title="22-Empty-Checks-with-Extra-Optional-Params.html" href="https://jsfiddle.net/steen_hansen/hjxekf63/?22-Empty-Checks-with-Extra-Optional-Params" target="_blank">22</a>
     
-    <a title="23-Typed-Union-Checks.html" href="https://jsfiddle.net/steen_hansen/ntrsobk3/?23-Typed-Union-Checks" target="_blank">23</a>
+    <a title="23-Typed-Either-Checks.html" href="https://jsfiddle.net/steen_hansen/ntrsobk3/?23-Typed-Either-Checks" target="_blank">23</a>
     
-    <a title="24-Empty-and-Valueless-Union-Checks.html" href="https://jsfiddle.net/steen_hansen/1dL76zws/?24-Empty-and-Valueless-Union-Checks" target="_blank">24</a>
+    <a title="24-Empty-Either-Checks.html" href="https://jsfiddle.net/steen_hansen/1dL76zws/?24-Empty-Either-Checks" target="_blank">24</a>
     
     <a title="25-Accessing-PRE-POST-Arguments.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Accessing-PRE-POST-Arguments" target="_blank">25</a>
     
     <a title="26-Type-and-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hanse/4a1r03he/?26-Type-and-Empty-Abbreviations" target="_blank">26</a>
     
-    <a title="27-Type-and-Empty-Object-Extras.html" href="https://jsfiddle.net/steen_hansen/tdL7hwgc/?27-Typed-and-Empty-Union-Checks-with-Optionals" target="_blank">27</a>
+    <a title="27-Type-and-Empty-Object-Extras.html" href="https://jsfiddle.net/steen_hansen/tdL7hwgc/?27-Typed-and-Empty-Either-Checks-with-Optionals" target="_blank">27</a>
     
     <a title="28-Accept-Null-and-Undefined-Values.html" href="https://jsfiddle.net/steen_hansen/zdk1wjgn/?28-Accept-Null-and-Undefined-Values" target="_blank">28</a>
     
@@ -164,7 +164,7 @@ the POST_check_Person() function.
     
   <a title="38-Every-Check.html" href="https://jsfiddle.net/steen_hansen/1umwvht5/?38-Every-Check" target="_blank">38</a>
   
-  <a title="39-Third-Party-Result-Checks.html" href="https://jsfiddle.net/steen_hansen/ta7fdnrw/?39-Third-Party-Result-Checks" target="_blank">39</a>
+  <a title="39-Assert-Checks.html" href="https://jsfiddle.net/steen_hansen/ta7fdnrw/?39-Assert-Checks" target="_blank">39</a>
     
   <a title="40-Prescribed-Use.html" href="https://jsfiddle.net/steen_hansen/m1atu7qj/?40-Prescribed-Use">40</a>
 
@@ -263,11 +263,11 @@ the POST_check_Person() function.
 /**/                ? undefined : POST_check_Person
 /**/  
 /**/  function PRE_check_Person(an_array){
-/**/    return type_czech.check_type(arguments, 'Array')
+/**/    return type_czech.check_type(arguments, 'array')
 /**/  }
 /**/  
 /**/  function POST_check_Person(an_object){
-/**/    return type_czech.check_type(arguments, 'Object')
+/**/    return type_czech.check_type(arguments, 'object')
 /**/  }
 /**/  
 /**/  Person = type_czech.linkUp(Person, PRE_check_Person,
@@ -337,7 +337,7 @@ log(alan_turing)
   fromToBoldText(1172, 1183, 'code', 2)  //  return result_array
   fromToBoldText(762, 778, 'log', 2)    //["Alan","Turing"]
 
-  fromToBoldText(805, 810, 'log', 2)    //'Object'
+  fromToBoldText(805, 810, 'log', 2)    //'object'
 
 </script>
 

@@ -1,3 +1,20 @@
+7 26 39 
+
+
+
+
+
+need 
+  public-tests
+
+      assert_check()  !!!!!
+
+
+      counts .... ()s
+
+      isActive()
+      check_buildSnapshot()
+
 
 
 
@@ -16,7 +33,7 @@ multi_signature = ['EMPTY-ERROR', 'EMPTY-OK'];
 
 
 
-//  see  file:///C:/Users/16043/Desktop/_js/proxy/old/oct--17/type-czech%20-%20Copy/example-snippets/23-Typed-Union-Checks.html
+//  see  file:///C:/Users/16043/Desktop/_js/proxy/old/oct--17/type-czech%20-%20Copy/example-snippets/23-Typed-Either-Checks.html
 
 for correct wordage and colors
 

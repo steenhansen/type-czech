@@ -2,7 +2,7 @@
 # Type-Czech
 
 Type-Czech is a runtime type checking JavaScript library that can be programmatically turned on and off.
-Include one file in your web pages or in your Node.js files to type check function parameters
+Include one file in your web page or in your Node.js file to allow you to type check function parameters
 and function results. Errors can be set to throw halting exceptions or just output to the Console.
 
 Enjoy some TypeScript benefits without the drawbacks of
@@ -15,7 +15,7 @@ With Type-Czech you can
 
   -  Check function parameter types, including arrays, and extended objects
   -  Ensure strings, arrays, and objects are not empty
-  -  Catch reference mutations in function parameters
+  -  Catch mutations in function parameter that are collections
 
 Missing from Type-Czech
 
@@ -25,13 +25,13 @@ Missing from Type-Czech
 
 Type-Czech the bad parts
 
-  - Verbosity of adding PRE_checking() and linkUp() functions 
+  - Verbosity of adding PRE_checking(), POST_checking(), and linkUp() functions 
   - Continuously checking parameter mutations of collections can be slow
   - Complicated dynamic minimization of unused code during runtime, while checking constructors and methods of extended classes
 
 ## A Type-Czech Example
 
-  -  type_czech.check_type() ensures that the parameters to aLottery() are a string, then an array of numbers, and finally a date
+  -  type_czech.check_type() ensures that the parameters to aLottery() are first a string, then an array of numbers, and finally a date
   -  type_czech.check_empty() complains when parameters are found to be empty strings, arrays, or objects
   -  PRE_check_aLottery() is executed just before aLottery() runs via type_czech.linkUp() 
   -  &gt;&gt; precedes error messages in the console
@@ -41,7 +41,7 @@ Type-Czech the bad parts
     /**/  type_czech = TypeCzech('LOG-ERRORS')
     /**/  //type_czech = TypeCzech('NO-CHECKING')
     /**/
-    /**/  LOTTERY_SIGNATURE = ['String', ['Number'], 'Date']
+    /**/  LOTTERY_SIGNATURE = ['string', ['number'], 'date']
     /**/
     /**/  function PRE_check_aLottery(lottery_name, lucky_numbers, draw_date){
     /**/    type_issue = type_czech.check_type(arguments, LOTTERY_SIGNATURE)
@@ -60,36 +60,36 @@ Type-Czech the bad parts
     El Gordo ::: 1,2,3,4,5,0 :::1999-06-14
 
     aLottery('Lotto 649', [1,2,3,4,5,6])
-    >>PRE_check_aLottery() aLottery() PRE-FUNC: Index '2' is supposed to be a 'Date', but is missing : ['Lotto 649',[1,2,3,4,5,6]]
+    >>PRE_check_aLottery() aLottery() PRE-FUNC: Index '2' is supposed to be a 'date', but is missing : ['Lotto 649',[1,2,3,4,5,6]]
     >>               check_type(arguments, expected_types)
-    >>                ACTUAL TYPES ['String','Array']
+    >>                ACTUAL TYPES ['string','array']
     >>                ACTUAL VALUE ['Lotto 649',[1,2,3,4,5,6]]
-    >>               EXPECTED TYPE ['String',['Number'],'Date']
+    >>               EXPECTED TYPE ['string',['number'],'date']
     >>            CALLING FUNCTION PRE_check_aLottery(lottery_name, lucky_numbers, draw_date)
     Lotto 649 ::: 1,2,3,4,5,6 :::
 
     aLottery('Oz Lotto', ['fourty-two'], new Date('jun 14 1999'))
-    >>PRE_check_aLottery() aLottery() PRE-FUNC:  ELEMENT '0' is assumed to be a 'Number', but is mistakenly a 'String'
+    >>PRE_check_aLottery() aLottery() PRE-FUNC:  ELEMENT '0' is assumed to be a 'number', but is mistakenly a 'string'
     >>               check_type(arguments, expected_types)
-    >>                ACTUAL TYPES ['String','Array','Date']
+    >>                ACTUAL TYPES ['string','array','date']
     >>                ACTUAL VALUE ['Oz Lotto',['fourty-two'],'1999-06-14T07:00:00.000Z']
-    >>               EXPECTED TYPE ['String',['Number'],'Date']
+    >>               EXPECTED TYPE ['string',['number'],'date']
     >>            CALLING FUNCTION PRE_check_aLottery(lottery_name, lucky_numbers, draw_date)
     Oz Lotto ::: fourty-two :::1999-06-14
 
     aLottery('Mega Millions', 17, new Date('jun 14 1999'))
-    >>PRE_check_aLottery() aLottery() PRE-FUNC: Parameter is meant to be 'Array' but is of the wrong type of 'Number':17
+    >>PRE_check_aLottery() aLottery() PRE-FUNC: Parameter is meant to be 'array' but is of the wrong type of 'number':17
     >>               check_type(arguments, expected_types)
-    >>                ACTUAL TYPES ['String','Number','Date']
+    >>                ACTUAL TYPES ['string','number','date']
     >>                ACTUAL VALUE ['Mega Millions',17,'1999-06-14T07:00:00.000Z']
-    >>               EXPECTED TYPE ['String',['Number'],'Date']
+    >>               EXPECTED TYPE ['string',['number'],'date']
     >>            CALLING FUNCTION PRE_check_aLottery(lottery_name, lucky_numbers, draw_date)
     Mega Millions ::: 17 :::1999-06-14
 
     aLottery('Powerball', [], new Date('jun 14 1999'))
     >>PRE_check_aLottery() aLottery() PRE-FUNC: ELEMENT '1' is erroneously empty :
     >>               check_empty(arguments, expected_emptys)
-    >>                  ACTUAL TYPES ['String','Array','Date']
+    >>                  ACTUAL TYPES ['string','array','date']
     >>                  ACTUAL VALUE ['Powerball',[],'1999-06-14T07:00:00.000Z']
     >>               EMPTY ASSERTION ['EMPTY-ERROR']
     >>            CALLING FUNCTION PRE_check_aLottery(lottery_name, lucky_numbers, draw_date)
@@ -98,65 +98,55 @@ Type-Czech the bad parts
     aLottery('', [1,2,3,4,5,26], new Date('Dec 31 1999'))
     >>PRE_check_aLottery() aLottery() PRE-FUNC: ELEMENT '0' is erroneously empty :
     >>               check_empty(arguments, expected_emptys)
-    >>                  ACTUAL TYPES ['String','Array','Date']
+    >>                  ACTUAL TYPES ['string','array','date']
     >>                  ACTUAL VALUE ['',[1,2,3,4,5,26],'1999-12-31T08:00:00.000Z']
     >>               EMPTY ASSERTION ['EMPTY-ERROR']
     >>            CALLING FUNCTION PRE_check_aLottery(lottery_name, lucky_numbers, draw_date)
     ::: 1,2,3,4,5,26 :::1999-12-31
 
-[Below program with LOG-ERRORS on jsFiddle](https://jsfiddle.net/steen_hansen/0xtpLwsc/1/?00-Readme-Example). All type mismatches are printed in the console.
+[Above editable program on JSFiddle](https://jsfiddle.net/steen_hansen/0xtpLwsc/?00-Readme-Example)
+
+### [59 Page Editable Tutorial on JSFiddle](https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Contents)
 
 
-### [FAQ](/read-mes/faq.md)
-
-## Examples
+### [How To Snippets](./read-mes/how-to-snippets.md)
 
 
-### [How To Snippets](/read-mes/how-to-snippets.md)
+### [Self-Contained Live TypeCzech Fiddles](./read-mes/live-fiddle-samples.md)
+
+### [Self-Contained Browsable Examples](./read-mes/web-browserable-examples.md)
 
 
+### [TypeCzech Methods](./read-mes/methods.md)
 
 
-
-### [Self-Contained Live TypeCzech Fiddles](/read-mes/live-fiddle-samples.md)
-
-### [Self-Contained Browsable Examples](/read-mes/web-browserable-examples.md)
-
-
-
-
-## [TypeCzech Methods](/read-mes/methods.md)
+### [Node.js](./read-mes/node-js.md)
 
 
 
 
 
 
-## [Node.js](/read-mes/node-js.md)
+### [Tests](./read-mes/node-and-web-tests.md)
 
 
 
 
-
-
-## [Tests](/read-mes/node-and-web-tests.md)
-
+### [Example Style](./read-mes/example-style.md)
 
 
 
-## [Example Style](/read-mes/example-style.md)
+### [Detaching TypeCzech for Production](./read-mes/detaching-checking-code.md)
 
 
 
-## [Detaching TypeCzech for Production](/read-mes/detaching-checking-code.md)
+### [_Dependencies](./read-mes/Dependencies.md)
 
+### [FAQ](./read-mes/faq.md)
 
+### [Site Map](./read-mes/site-map.md)
 
-## [_Dependencies](/read-mes/Dependencies.md)
-
-
-## Created by
-
+### Created by
 [Steen Hansen](https://github.com/steenhansen)
 
 

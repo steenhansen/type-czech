@@ -16,12 +16,12 @@
 
 <pre>
 type_czech.typeProtos(window)
-// Array(4) [ "Window", "EventTarget", "EventTarget", "Object" ]
+// Array(4) [ "Window", "EventTarget", "EventTarget", "object" ]
 </pre>
 
 <pre>
 type_czech.typeProtos(document)
-// Array(5) [ "HTMLDocument", "Document", "Node", "EventTarget", "Object" ]
+// Array(5) [ "HTMLDocument", "Document", "Node", "EventTarget", "object" ]
 </pre>
 
 
@@ -43,7 +43,7 @@ Finally, you can interogate an object to see if it is an instance of a class.
 type_czech.typeIsA(document, 'Node')
 // true
 
-type_czech.typeIsA(document, 'Object')
+type_czech.typeIsA(document, 'object')
 // true
 </pre>
 
@@ -137,9 +137,9 @@ type_czech.typeIsA(document, 'Object')
       
       <a title="22-Empty-Checks-with-Extra-Optional-Params.html" href="../example-snippets/22-Empty-Checks-with-Extra-Optional-Params.html">22</a>
       
-      <a title="23-Typed-Union-Checks.html" href="../example-snippets/23-Typed-Union-Checks.html">23</a>
+      <a title="23-Typed-Either-Checks.html" href="../example-snippets/23-Typed-Either-Checks.html">23</a>
       
-      <a title="24-Empty-and-Valueless-Union-Checks.html" href="../example-snippets/24-Empty-and-Valueless-Union-Checks.html">24</a>
+      <a title="24-Empty-Either-Checks.html" href="../example-snippets/24-Empty-Either-Checks.html">24</a>
       
       <a title="25-Accessing-PRE-POST-Arguments.html" href="../example-snippets/25-Accessing-PRE-POST-Arguments.html">25</a>
       
@@ -170,7 +170,7 @@ type_czech.typeIsA(document, 'Object')
       <a title="38-Every-Check.html" href="../example-snippets/38-Every-Check.html">38</a>
 
  
-      <a title="39-Third-Party-Result-Checks.html" href="../example-snippets/39-Third-Party-Result-Checks.html">39</a>
+      <a title="39-Assert-Checks.html" href="../example-snippets/39-Assert-Checks.html">39</a>
 
       <a title="40-Prescribed-Use.html" href="../example-snippets/40-Prescribed-Use.html">40</a>
   
@@ -310,12 +310,12 @@ log('Is a First : ', isa_First)
 
 linesConsole(2)
 
-isa_Object = type_czech.typeIsA(ted_chiang, 'Object')
+isa_Object = type_czech.typeIsA(ted_chiang, 'object')
 log('Is an Object : ', isa_Object)
 
 linesConsole(2)
 
-isa_Array = type_czech.typeIsA(ted_chiang, 'Array')
+isa_Array = type_czech.typeIsA(ted_chiang, 'array')
 log('Is an Array : ', isa_Array)
 
 linesConsole(2)

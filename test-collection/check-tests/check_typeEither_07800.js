@@ -55,107 +55,107 @@ failed_check_typeEither_07800 = 0;
 // /////////////////////////////////////////////////////////////////////////////////////////////
 
 multi_variable  = [ 12, 'zxc'];
-multi_signature = [ [ 'Number', 'Boolean'], [ 'Number', 'String'] ];
+multi_signature = [ [ 'number', 'boolean'], [ 'number', 'string'] ];
 error_mess = '';
 test_pre_check_typeEither_multi(multi_variable, multi_signature, 7801, error_mess);
 
 multi_variable  = [ 12, [] ];
-multi_signature = [ [ 'Number', 'Boolean'], [ 'Symbol', 'String'] ];
-error_mess = `PRE_test_07800() pre_check_typeEither_07800() PRE-FUNC: TE@214 -  ELEMENT '1' is assumed to be a 'Boolean', but is mistakenly a 'Array', TE@214 -  ELEMENT '0' is assumed to be a 'Symbol', but is mistakenly a 'Number'
+multi_signature = [ [ 'number', 'boolean'], [ 'symbol', 'string'] ];
+error_mess = `PRE_test_07800() pre_check_typeEither_07800() PRE-FUNC: TE@214 -  ELEMENT '1' is assumed to be a 'boolean', but is mistakenly a 'array', TE@214 -  ELEMENT '0' is assumed to be a 'symbol', but is mistakenly a 'number'
 check_typeEither(arguments, expected_types)
-    ACTUAL TYPES 'Array'
+    ACTUAL TYPES 'array'
     ACTUAL VALUE [12,[]]
-   EXPECTED TYPE [["Number","Boolean"],["Symbol","String"]]
+   EXPECTED TYPE [["number","boolean"],["symbol","string"]]
 CALLING FUNCTION PRE_test_07800()`;
 test_pre_check_typeEither_multi(multi_variable, multi_signature, 7802, error_mess);
 
 multi_variable  = { n: 12, b: false };
-multi_signature = [ { n: 'Number', b: 'Boolean' }, { r: 'RegExp', s: 'String' } ];
+multi_signature = [ { n: 'number', b: 'boolean' }, { r: 'regexp', s: 'string' } ];
 error_mess = '';
 test_pre_check_typeEither_multi(multi_variable, multi_signature, 7803, error_mess);
 
 multi_variable  = { r: /d/, s: 'Holiday Road' };
-multi_signature = [ { n: 'Number', b: 'Boolean' }, { r: 'RegExp', s: 'String' } ];
+multi_signature = [ { n: 'number', b: 'boolean' }, { r: 'regexp', s: 'string' } ];
 error_mess = '';
 test_pre_check_typeEither_multi(multi_variable, multi_signature, 7804, error_mess);
 
 multi_variable  = { n: 12, s: 'Holiday Road' };
-multi_signature = [ { n: 'Number', b: 'Boolean' }, { r: 'RegExp', s: 'String' } ];
-error_mess = `PRE_test_07800() pre_check_typeEither_07800() PRE-FUNC: TE@209 - Extra key in checked object - (s:'Holiday Road')TE@216 -  The key 'b', which has a type of 'Boolean', is missing in the checked object, TE@209 - Extra key in checked object - (n:'12')TE@216 -  The key 'r', which has a type of 'RegExp', is missing in the checked object
+multi_signature = [ { n: 'number', b: 'boolean' }, { r: 'regexp', s: 'string' } ];
+error_mess = `PRE_test_07800() pre_check_typeEither_07800() PRE-FUNC: TE@209 - Extra key in checked object - (s:'Holiday Road')TE@216 -  The key 'b', which has a type of 'boolean', is missing in the checked object, TE@209 - Extra key in checked object - (n:'12')TE@216 -  The key 'r', which has a type of 'regexp', is missing in the checked object
 check_typeEither(arguments, expected_types)
-    ACTUAL TYPES 'Object'
+    ACTUAL TYPES 'object'
     ACTUAL VALUE {n:12,s:"Holiday Road"}
-   EXPECTED TYPE [{n:"Number",b:"Boolean"},{r:"RegExp",s:"String"}]
+   EXPECTED TYPE [{n:"number",b:"boolean"},{r:"regexp",s:"string"}]
 CALLING FUNCTION PRE_test_07800()`;
 test_pre_check_typeEither_multi(multi_variable, multi_signature, 7804, error_mess);
 
 multi_variable  = ['a-string', 123];
-multi_signature = [ [ 'Number', 'String'], [ 'String', 'Number'] ];
+multi_signature = [ [ 'number', 'string'], [ 'string', 'number'] ];
 error_mess = '';
 test_pre_check_typeEither_multi(multi_variable, multi_signature, 7802, error_mess);
 
 multi_variable  = ['a-string', 123];
-multi_signature = ['String'];
-error_mess = 'UE@701 - TypeCzech.check_typeEither()  needs at least 2 choices for a union, not 1 of ["String"]';
+multi_signature = ['string'];
+error_mess = 'UE@701 - TypeCzech.check_typeEither()  needs at least 2 choices for an Either, not 1 of ["string"]';
 test_pre_check_typeEither_multi(multi_variable, multi_signature, 7803, error_mess);
 
 multi_variable  = [false, false];
-multi_signature = [ [ 'Number', 'String'], [ 'String', 'Number'] ];
-error_mess = `PRE_test_07800() pre_check_typeEither_07800() PRE-FUNC: TE@214 -  ELEMENT '0' is assumed to be a 'Number', but is mistakenly a 'Boolean', TE@214 -  ELEMENT '0' is assumed to be a 'String', but is mistakenly a 'Boolean'
+multi_signature = [ [ 'number', 'string'], [ 'string', 'number'] ];
+error_mess = `PRE_test_07800() pre_check_typeEither_07800() PRE-FUNC: TE@214 -  ELEMENT '0' is assumed to be a 'number', but is mistakenly a 'boolean', TE@214 -  ELEMENT '0' is assumed to be a 'string', but is mistakenly a 'boolean'
 check_typeEither(arguments, expected_types)
-    ACTUAL TYPES 'Array'
+    ACTUAL TYPES 'array'
     ACTUAL VALUE [false,false]
-   EXPECTED TYPE [["Number","String"],["String","Number"]]
+   EXPECTED TYPE [["number","string"],["string","number"]]
 CALLING FUNCTION PRE_test_07800()`;
 test_pre_check_typeEither_multi(multi_variable, multi_signature, 7804, error_mess);
 
 multi_variable  = ['a-string', null];
-multi_signature = [ ['String', 'String'], ['Number', 'Number'] ];
-error_mess = `PRE_test_07800() pre_check_typeEither_07800() PRE-FUNC: TE@214 -  ELEMENT '1' is assumed to be a 'String', but is mistakenly a 'null', TE@214 -  ELEMENT '0' is assumed to be a 'Number', but is mistakenly a 'String'
+multi_signature = [ ['string', 'string'], ['number', 'number'] ];
+error_mess = `PRE_test_07800() pre_check_typeEither_07800() PRE-FUNC: TE@214 -  ELEMENT '1' is assumed to be a 'string', but is mistakenly a 'null', TE@214 -  ELEMENT '0' is assumed to be a 'number', but is mistakenly a 'string'
 check_typeEither(arguments, expected_types)
-    ACTUAL TYPES 'Array'
+    ACTUAL TYPES 'array'
     ACTUAL VALUE ["a-string",null]
-   EXPECTED TYPE [["String","String"],["Number","Number"]]
+   EXPECTED TYPE [["string","string"],["number","number"]]
 CALLING FUNCTION PRE_test_07800()`;
 test_pre_check_typeEither_multi(multi_variable, multi_signature, 7805, error_mess);
 
 // multi_variable  = 'asd';
-// multi_signature = [ 'HTMLDivElement', 'String'];
+// multi_signature = [ 'HTMLDivElement', 'string'];
 // error_mess = '';
 // test_pre_check_typeEither_multi(multi_variable, multi_signature, 7806, error_mess);
 
 // multi_variable  = Symbol('sym');
-// multi_signature = [ 'Array', ['Number'], 'BigInt', 'Boolean', 'Date', 'Function', 'Number', 'Object', { b: 'Number' }, 'RegExp', 'String', 'Symbol' ];
+// multi_signature = [ 'array', ['number'], 'bigint', 'boolean', 'date', 'function', 'number', 'object', { b: 'number' }, 'regexp', 'string', 'symbol' ];
 // error_mess = '';
 // test_pre_check_typeEither_multi(multi_variable, multi_signature, 7807, error_mess);
 
 // multi_variable  = Symbol('sym');
-// multi_signature = [ 'Array', ['Number'], 'BigInt', 'Boolean', 'Date', 'Function', 'Number', 'Object', { b: 'Number' }, 'RegExp', 'String'];
-// error_mess = `PRE_test_07800() pre_check_typeEither_07800() PRE-FUNC: TE@226 - The value 'Symbol('sym')', which is a 'Symbol', is not a 'Array' AND TE@207 - Parameter is meant to be 'Array' but is of the wrong type of 'Symbol':Symbol('sym') AND TE@226 - The value 'Symbol('sym')', which is a 'Symbol', is not a 'BigInt' AND TE@226 - The value 'Symbol('sym')', which is a 'Symbol', is not a 'Boolean' AND TE@226 - The value 'Symbol('sym')', which is a 'Symbol', is not a 'Date' AND TE@226 - The value 'Symbol('sym')', which is a 'Symbol', is not a 'Function' AND TE@226 - The value 'Symbol('sym')', which is a 'Symbol', is not a 'Number' AND TE@226 - The value 'Symbol('sym')', which is a 'Symbol', is not a 'Object' AND TE@207 - Parameter is meant to be 'Object' but is of the wrong type of 'Symbol':Symbol('sym') AND TE@226 - The value 'Symbol('sym')', which is a 'Symbol', is not a 'RegExp' AND TE@226 - The value 'Symbol('sym')', which is a 'Symbol', is not a 'String'
+// multi_signature = [ 'array', ['number'], 'bigint', 'boolean', 'date', 'function', 'number', 'object', { b: 'number' }, 'regexp', 'string'];
+// error_mess = `PRE_test_07800() pre_check_typeEither_07800() PRE-FUNC: TE@226 - The value 'Symbol('sym')', which is a 'symbol', is not a 'array' AND TE@207 - Parameter is meant to be 'array' but is of the wrong type of 'symbol':Symbol('sym') AND TE@226 - The value 'Symbol('sym')', which is a 'symbol', is not a 'bigint' AND TE@226 - The value 'Symbol('sym')', which is a 'symbol', is not a 'boolean' AND TE@226 - The value 'Symbol('sym')', which is a 'symbol', is not a 'date' AND TE@226 - The value 'Symbol('sym')', which is a 'symbol', is not a 'function' AND TE@226 - The value 'Symbol('sym')', which is a 'symbol', is not a 'number' AND TE@226 - The value 'Symbol('sym')', which is a 'symbol', is not a 'object' AND TE@207 - Parameter is meant to be 'object' but is of the wrong type of 'symbol':Symbol('sym') AND TE@226 - The value 'Symbol('sym')', which is a 'symbol', is not a 'regexp' AND TE@226 - The value 'Symbol('sym')', which is a 'symbol', is not a 'string'
 // check_typeEither(arguments, expected_types)
-//     ACTUAL TYPES 'Symbol'
+//     ACTUAL TYPES 'symbol'
 //     ACTUAL VALUE Symbol('sym')
-//    EXPECTED TYPE ["Array",["Number"],"BigInt","Boolean","Date","Function","Number","Object",{b:"Number"},"RegExp","String"]
+//    EXPECTED TYPE ["array",["number"],"bigint","boolean","date","function","number","object",{b:"number"},"regexp","string"]
 // CALLING FUNCTION PRE_test_07800()`;
 // test_pre_check_typeEither_multi(multi_variable, multi_signature, 7808, error_mess);
 
 // multi_variable  = { a: 3 };
-// multi_signature = [ { a: 'Number' }, { b: 'String' } ];
+// multi_signature = [ { a: 'number' }, { b: 'string' } ];
 // error_mess = '';
 // test_pre_check_typeEither_multi(multi_variable, multi_signature, 7809, error_mess);
 
 // multi_variable  = { b: 'Cheap Trick' };
-// multi_signature = [ { a: 'Number' }, { b: 'String' } ];
+// multi_signature = [ { a: 'number' }, { b: 'string' } ];
 // error_mess = '';
 // test_pre_check_typeEither_multi(multi_variable, multi_signature, 7810, error_mess);
 
 // multi_variable  = [1, 2, 3, 4];
-// multi_signature = [ ['Number'], ['String'] ];
+// multi_signature = [ ['number'], ['string'] ];
 // error_mess = '';
 // test_pre_check_typeEither_multi(multi_variable, multi_signature, 7811, error_mess);
 
 // multi_variable  = ['a', 'b', 'c'];
-// multi_signature = [ ['Number'], ['String'] ];
+// multi_signature = [ ['number'], ['string'] ];
 // error_mess = '';
 // test_pre_check_typeEither_multi(multi_variable, multi_signature, 7812, error_mess);
 
@@ -163,7 +163,7 @@ test_pre_check_typeEither_multi(multi_variable, multi_signature, 7805, error_mes
 // multi_signature = [ 12, false];
 // error_mess = `PRE_test_07800() pre_check_typeEither_07800() PRE-FUNC: TE@230 - The type '12' is invalid AND TE@230 - The type 'false' is invalid
 // check_typeEither(arguments, expected_types)
-//     ACTUAL TYPES 'String'
+//     ACTUAL TYPES 'string'
 //     ACTUAL VALUE "asd"
 //    EXPECTED TYPE [12,false]
 // CALLING FUNCTION PRE_test_07800()`;

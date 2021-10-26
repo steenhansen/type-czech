@@ -15,6 +15,33 @@
 
 
 
+</div>
+
+
+<div id="the-explanation" style="width:51%" class='code-scroll'>
+  <div class='an-explantion'>37 &mdash; Readme Example Arrow Functions</div>
+  <div id='explanation-text'>
+    <br>
+    When using arrow functions with TypeCzech, the ordering of function
+    declarations must be done with care as function hoisting does not occur.
+
+    <br><br>
+    Here both the actual production arrow function of aLottery(), and
+    the checking arrow function of PRE_check_aLottery() must be declared before
+    they are linked via
+<pre>
+aLottery = type_czech.linkUp(aLottery, PRE_check_aLottery)
+</pre>
+Otherwise a function not defined error will occur.
+    <br><br>
+Note that check_emptyVariadic() and check_typeVariadic cannot be used with arrow
+functions as there is no arguments object.
+
+<br><br>
+
+
+
+
 <!--            ------------------TYPE 1------------------------       -->
 
 <script src="../web-resources/consolelog.js"></script>
@@ -78,9 +105,9 @@
       
       <a title="22-Empty-Checks-with-Extra-Optional-Params.html" href="../example-snippets/22-Empty-Checks-with-Extra-Optional-Params.html">22</a>
       
-      <a title="23-Typed-Union-Checks.html" href="../example-snippets/23-Typed-Union-Checks.html">23</a>
+      <a title="23-Typed-Either-Checks.html" href="../example-snippets/23-Typed-Either-Checks.html">23</a>
       
-      <a title="24-Empty-and-Valueless-Union-Checks.html" href="../example-snippets/24-Empty-and-Valueless-Union-Checks.html">24</a>
+      <a title="24-Empty-Either-Checks.html" href="../example-snippets/24-Empty-Either-Checks.html">24</a>
       
       <a title="25-Accessing-PRE-POST-Arguments.html" href="../example-snippets/25-Accessing-PRE-POST-Arguments.html">25</a>
       
@@ -111,7 +138,7 @@
       <a title="38-Every-Check.html" href="../example-snippets/38-Every-Check.html">38</a>
 
 
-      <a title="39-Third-Party-Result-Checks.html" href="../example-snippets/39-Third-Party-Result-Checks.html">39</a>
+      <a title="39-Assert-Checks.html" href="../example-snippets/39-Assert-Checks.html">39</a>
 
       <a title="40-Prescribed-Use.html" href="../example-snippets/40-Prescribed-Use.html">40</a>
         
@@ -165,28 +192,6 @@
 
 
 
-
-</div>
-
-
-<div id="the-explanation" style="width:51%" class='code-scroll'>
-  <div class='an-explantion'>37 &mdash; Readme Example Arrow Functions</div>
-  <div id='explanation-text'>
-    <br>
-    When using arrow functions with TypeCzech, the ordering of function
-    declarations must be done with care as function hoisting does not occur.
-
-    <br><br>
-    Here both the actual production arrow function of aLottery(), and
-    the checking arrow function of PRE_check_aLottery() must be declared before
-    they are linked via
-<pre>
-aLottery = type_czech.linkUp(aLottery, PRE_check_aLottery)
-</pre>
-Otherwise a function not defined error will occur.
-    <br><br>
-Note that check_variadicEmpty() and check_variadicType cannot be used with arrow
-functions as there is no arguments object.
   </div>
 
 
@@ -221,7 +226,7 @@ aLottery = (lottery_name, lucky_numbers, draw_date) => {
 /**/  type_czech = TypeCzech('LOG-ERRORS')
 /**/  //type_czech = TypeCzech('NO-CHECKING')
 /**/
-/**/  LOTTERY_SIGNATURE = ['String', ['Number'], 'Date']
+/**/  LOTTERY_SIGNATURE = ['string', ['number'], 'date']
 /**/
 /**/  PRE_check_aLottery = (lottery_name, lucky_numbers, draw_date) =>{
 /**/    the_arguments = [lottery_name, lucky_numbers, draw_date]
@@ -282,19 +287,19 @@ aLottery('Oz Lotto', ['fourty-two'], new Date('jun 14 1999'))
 
 ///////////////////////
 
-fromToBoldText(321, 328, 'code', 3)  // ['String',
+fromToBoldText(321, 328, 'code', 3)  // ['string',
   fromToBoldText(1048, 1049, 'code', 3)  // '', [1,2
 
   fromToBoldText(693, 694, 'log', 3)    //""
   fromToBoldText(748, 762, 'log', 3)    //['EMPTY-ERROR']
 ////////////
 
-  fromToBoldText(331, 340, 'code', 2)  // ['Number'],
+  fromToBoldText(331, 340, 'code', 2)  // ['number'],
   fromToBoldText(1120, 1121, 'code', 2)  // 17
 
-  fromToBoldText(1066, 1073, 'log', 2)    // ,'Number',
+  fromToBoldText(1066, 1073, 'log', 2)    // ,'number',
   fromToBoldText(1125, 1126, 'log', 2)    //17
-  fromToBoldText(1175, 1184, 'log', 2)    //["Number"]
+  fromToBoldText(1175, 1184, 'log', 2)    //["number"]
 
 
 </script>

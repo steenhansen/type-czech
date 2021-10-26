@@ -25,9 +25,9 @@
     that there is only one number being passed into the function.
 
 <pre>
-type_czech.check_type(arguments, 'Number')              // one number
-type_czech.check_type(arguments, ['Number', 'Number'])  // two numbers
-type_czech.check_type(arguments, ['Date', 'String'])    // two values
+type_czech.check_type(arguments, 'number')              // one number
+type_czech.check_type(arguments, ['number', 'number'])  // two numbers
+type_czech.check_type(arguments, ['date', 'string'])    // two values
 </pre>
 
 
@@ -108,9 +108,9 @@ type_czech.check_type(arguments, ['Date', 'String'])    // two values
       
       <a title="22-Empty-Checks-with-Extra-Optional-Params.html" href="../example-snippets/22-Empty-Checks-with-Extra-Optional-Params.html">22</a>
       
-      <a title="23-Typed-Union-Checks.html" href="../example-snippets/23-Typed-Union-Checks.html">23</a>
+      <a title="23-Typed-Either-Checks.html" href="../example-snippets/23-Typed-Either-Checks.html">23</a>
       
-      <a title="24-Empty-and-Valueless-Union-Checks.html" href="../example-snippets/24-Empty-and-Valueless-Union-Checks.html">24</a>
+      <a title="24-Empty-Either-Checks.html" href="../example-snippets/24-Empty-Either-Checks.html">24</a>
       
       <a title="25-Accessing-PRE-POST-Arguments.html" href="../example-snippets/25-Accessing-PRE-POST-Arguments.html">25</a>
       
@@ -141,7 +141,7 @@ type_czech.check_type(arguments, ['Date', 'String'])    // two values
       <a title="38-Every-Check.html" href="../example-snippets/38-Every-Check.html">38</a>
 
   
-      <a title="39-Third-Party-Result-Checks.html" href="../example-snippets/39-Third-Party-Result-Checks.html">39</a>
+      <a title="39-Assert-Checks.html" href="../example-snippets/39-Assert-Checks.html">39</a>
 
       <a title="40-Prescribed-Use.html" href="../example-snippets/40-Prescribed-Use.html">40</a>
   
@@ -226,12 +226,12 @@ type_czech.check_type(arguments, ['Date', 'String'])    // two values
 /**/  function PRE_check_exactly1Str(string_1){
 /**/    num_args = arguments.length
 /**/    if (num_args !== 1) return `PRE, not 1 but ${num_args} params`
-/**/    ONE_STRING_SPEC = 'String'
+/**/    ONE_STRING_SPEC = 'string'
 /**/    return type_czech.check_type(arguments, ONE_STRING_SPEC)
 /**/  }
 /**/  
 /**/  function PRE_check_exactly2Strs(string_1, string_2){
-/**/     TWO_STRINGS_SPEC = ['String', 'String']
+/**/     TWO_STRINGS_SPEC = ['string', 'string']
 /**/     return type_czech.check_type(arguments, TWO_STRINGS_SPEC)
 /**/  }
 /**/  
@@ -301,7 +301,7 @@ log('EXPECT_2_GOT_3 : ', expect_2_got_3)
   fromToBoldText(1363, 1369, 'code', 1)  //exactly2Strs('one-1') 
 
   fromToBoldText(470, 476, 'log', 1) //"one-1"
-  fromToBoldText(503, 521, 'log', 1) //   EXPECTED TYPE ['String','String'] 
+  fromToBoldText(503, 521, 'log', 1) //   EXPECTED TYPE ['string','string'] 
   fromToBoldText(616, 643, 'log', 1) // [ "one-1", "undefined" ]
 
 
@@ -309,7 +309,7 @@ log('EXPECT_2_GOT_3 : ', expect_2_got_3)
   fromToBoldText(1540, 1560, 'code', 2)  //  exactly2Strs('one', 'two', 'three')       
 
   fromToBoldText(932, 952, 'log', 2)    ///["one","two","three"]
-  fromToBoldText(979, 997, 'log', 2)     ///["String","String"]
+  fromToBoldText(979, 997, 'log', 2)     ///["string","string"]
 
   fromToBoldText(1092, 1111, 'log', 2)     ///[ "one", "two" ]
 

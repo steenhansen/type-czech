@@ -93,13 +93,13 @@ https://jsfiddle.net/steen_hansen/Lwn504es/?21-Type-Check-with-Extra-Optional-Pa
 https://jsfiddle.net/steen_hansen/hjxekf63/?22-Empty-Checks-with-Extra-Optional-Params    
 ) 22 - Empty Checks with Extra Optional Parameters
 
-[23-Typed-Union-Checks.html](
-https://jsfiddle.net/steen_hansen/ntrsobk3/?23-Typed-Union-Checks          
-) 23 - Typed Union Checks
+[23-Typed-Either-Checks.html](
+https://jsfiddle.net/steen_hansen/ntrsobk3/?23-Typed-Either-Checks          
+) 23 - Typed-Either-Checks
 
-[24-Empty-and-Valueless-Union-Checks.html](
-https://jsfiddle.net/steen_hansen/1dL76zws/?24-Empty-and-Valueless-Union-Checks      
-) 24 - Empty and Valueless Union Checks
+[24-Empty-Either-Checks.html](
+https://jsfiddle.net/steen_hansen/1dL76zws/?24-Empty-Either-Checks      
+) 24 - Empty Either Checks
 
 [25-Accessing-PRE-POST-Arguments.html](
 https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Accessing-PRE-POST-Arguments          
@@ -109,9 +109,9 @@ https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Accessing-PRE-POST-Arguments
 https://jsfiddle.net/steen_hanse/4a1r03he/?26-Type-and-Empty-Abbreviations           
 ) 26 - Type and Empty Abbreviations
 
-[27-Typed-and-Empty-Union-Checks-with-Optionals.html](
-https://jsfiddle.net/steen_hansen/tdL7hwgc/?27-Typed-and-Empty-Union-Checks-with-Optionals      
-) 27 - Typed and Empty Union Checks with Optionals
+[27-Typed-and-Empty-Either-Checks-with-Optionals.html](
+https://jsfiddle.net/steen_hansen/tdL7hwgc/?27-Typed-and-Empty-Either-Checks-with-Optionals      
+) 27 - Typed and Empty Either Checks with Optionals
 
 [28-Accept-Null-and-Undefined-Values.html](
 https://jsfiddle.net/steen_hansen/zdk1wjgn/?28-Accept-Null-and-Undefined-Values   

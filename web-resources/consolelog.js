@@ -71,9 +71,9 @@ function startCurlyDates(log_text) {
 
   const curly_new_lines = `${curly_start_nl}${CONSOLE_LOG_NEWLINE}${curly_end_nl}`;
 
-   if (curly_new_linesOLD!==curly_new_lines){
-        console.log('1111111111111111111111111111111111111111111')
-   }
+  //  if (curly_new_linesOLD!==curly_new_lines){
+  //       console.log('1111111111111111111111111111111111111111111')
+  //  }
 
   const p4 = p3.join(curly_new_linesOLD);
   const long_js_date = /(\d\d\d\d-\d\d-\d\d)\w\d\d:\d\d:\d\d.\d\d\d\w/gi;
@@ -268,11 +268,19 @@ function captureConsole(div_id) {
       json_str = json_quotes;
     }
 
-    const json_str22 = json_str.replace(/\\"/g, '"');
+
+
+    const json_str11 = json_str.replace(/\\n /g, '| ');
+//console.old('herere', json_str11)
+    const json_str22 = json_str11.replace(/\\"/g, '"');
     const new_line_with_spaces = CONSOLE_LOG_NEWLINE + '~~~~~~~~';
     const div_text2 = json_str22.replace(REPLACE_NL_TAB_TAB, new_line_with_spaces);
     const long_js_date = /(\d\d\d\d-\d\d-\d\d)\w\d\d:\d\d:\d\d.\d\d\d\w/gi;
     const obj_lines = div_text2.replace(long_js_date, '$1');
+
+//console.old('herere', obj_lines)
+
+
 
     const single_chars = obj_lines.split('');
     let accum_span = '';
@@ -326,6 +334,7 @@ function captureConsole(div_id) {
     } else {
       console_type = 'default-log';
     }
+    // console.old('type ==', console_type, args[0])
     if (console_type === 'a-function') {
       const a_function = args[0];
       func_str = a_function.toString();

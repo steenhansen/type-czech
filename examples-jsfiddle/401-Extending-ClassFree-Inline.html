@@ -126,15 +126,15 @@
       
       <a title="22-Empty-Checks-with-Extra-Optional-Params.html" href="https://jsfiddle.net/steen_hansen/hjxekf63/?22-Empty-Checks-with-Extra-Optional-Params" target="_blank">22</a>
       
-      <a title="23-Typed-Union-Checks.html" href="https://jsfiddle.net/steen_hansen/ntrsobk3/?23-Typed-Union-Checks" target="_blank">23</a>
+      <a title="23-Typed-Either-Checks.html" href="https://jsfiddle.net/steen_hansen/ntrsobk3/?23-Typed-Either-Checks" target="_blank">23</a>
       
-      <a title="24-Empty-and-Valueless-Union-Checks.html" href="https://jsfiddle.net/steen_hansen/1dL76zws/?24-Empty-and-Valueless-Union-Checks" target="_blank">24</a>
+      <a title="24-Empty-Either-Checks.html" href="https://jsfiddle.net/steen_hansen/1dL76zws/?24-Empty-Either-Checks" target="_blank">24</a>
       
       <a title="25-Accessing-PRE-POST-Arguments.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Accessing-PRE-POST-Arguments" target="_blank">25</a>
       
       <a title="26-Type-and-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hanse/4a1r03he/?26-Type-and-Empty-Abbreviations" target="_blank">26</a>
       
-      <a title="27-Type-and-Empty-Object-Extras.html" href="https://jsfiddle.net/steen_hansen/tdL7hwgc/?27-Typed-and-Empty-Union-Checks-with-Optionals" target="_blank">27</a>
+      <a title="27-Type-and-Empty-Object-Extras.html" href="https://jsfiddle.net/steen_hansen/tdL7hwgc/?27-Typed-and-Empty-Either-Checks-with-Optionals" target="_blank">27</a>
       
       <a title="28-Accept-Null-and-Undefined-Values.html" href="https://jsfiddle.net/steen_hansen/zdk1wjgn/?28-Accept-Null-and-Undefined-Values" target="_blank">28</a>
       
@@ -159,7 +159,7 @@
       
     <a title="38-Every-Check.html" href="https://jsfiddle.net/steen_hansen/1umwvht5/?38-Every-Check" target="_blank">38</a>
     
-    <a title="39-Third-Party-Result-Checks.html" href="https://jsfiddle.net/steen_hansen/ta7fdnrw/?39-Third-Party-Result-Checks" target="_blank">39</a>
+    <a title="39-Assert-Checks.html" href="https://jsfiddle.net/steen_hansen/ta7fdnrw/?39-Assert-Checks" target="_blank">39</a>
     
     <a title="40-Prescribed-Use.html" href="https://jsfiddle.net/steen_hansen/m1atu7qj/?40-Prescribed-Use">40</a>
 
@@ -242,22 +242,22 @@
 /**/function First_check(First){
 /**/  function PRE_check_First(spec){
 /**/    log(NL2+'PRE -First') 
-/**/    pre_first_sig = { f_name: 'String' }
+/**/    pre_first_sig = { f_name: 'string' }
 /**/    type_issue = type_czech.check_typeExtra(arguments, pre_first_sig)
 /**/    if (type_issue) return type_issue;
 /**/    return type_czech.check_emptyExtra(arguments, {f_name: 'EMPTY-ERROR' });
 /**/  }
 /**/  function POST_check_First(First){
 /**/    log(NL1+'POST-First') 
-/**/    return type_czech.check_interface(First, { firstMethod: 'Function' })
+/**/    return type_czech.check_interface(First, { firstMethod: 'function' })
 /**/  }
 /**/  function PRE_check_firstMethod(a_date){
 /**/    log('PRE -firstMethod') 
-/**/    return type_czech.check_type(arguments, 'Date')
+/**/    return type_czech.check_type(arguments, 'date')
 /**/  }
 /**/  function POST_check_firstMethod(a_date){
 /**/    log('POST-firstMethod') 
-/**/    return type_czech.check_type(arguments, 'Date')
+/**/    return type_czech.check_type(arguments, 'date')
 /**/  }
 /**/
 /**/  First_PREs = {First:PRE_check_First, firstMethod:PRE_check_firstMethod}
@@ -269,23 +269,23 @@
 /**/function Last_check(Last){
 /**/  function PRE_check_Last(spec){
 /**/    log(LEVEL_1+'PRE-Last') 
-/**/    pre_last_sig = { f_name: 'String', l_name: 'String' }
+/**/    pre_last_sig = { f_name: 'string', l_name: 'string' }
 /**/    type_issue = type_czech.check_typeExtra(arguments, pre_last_sig)
 /**/    if (type_issue) return type_issue;
 /**/    return type_czech.check_emptyExtra(arguments, {l_name: 'EMPTY-ERROR' });
 /**/  }
 /**/  function POST_check_Last(Last){
 /**/    log(LEVEL_1+"POST-Last") 
-/**/    post_last_sig = {firstMethod:'Function', lastMethod:'Function'}
+/**/    post_last_sig = {firstMethod:'function', lastMethod:'function'}
 /**/    return type_czech.check_interface(Last, post_last_sig)
 /**/  }
 /**/  function PRE_check_lastMethod(a_year){
 /**/    log(LEVEL_1+"PRE -lastMethod")
-/**/    return type_czech.check_type(arguments, 'Number')
+/**/    return type_czech.check_type(arguments, 'number')
 /**/  }
 /**/  function POST_check_lastMethod(a_year){
 /**/    log(LEVEL_1+"POST-lastMethod") 
-/**/    return type_czech.check_type(arguments, 'Number')
+/**/    return type_czech.check_type(arguments, 'number')
 /**/  }
 /**/
 /**/  Last_PREs = {Last:PRE_check_Last, lastMethod:PRE_check_lastMethod}
@@ -297,22 +297,22 @@
 /**/function Full_check(Full){
 /**/  function PRE_check_Full(spec){  
 /**/    log(LEVEL_2+'PRE-Full') 
-/**/    pre_full_sig = {salu:'String', f_name:'String', l_name:'String'}
+/**/    pre_full_sig = {salu:'string', f_name:'string', l_name:'string'}
 /**/    return type_czech.check_typeExtra(arguments, pre_full_sig)
 /**/}
 /**/  function POST_check_Full(Full){
 /**/    log(LEVEL_2+"POST-Full") 
-/**/    return type_czech.check_interface(Full, {firstMethod:'Function',
-/**/              lastMethod:'Function', fullMethod: 'Function', 
-/**/              showName: 'Function' })
+/**/    return type_czech.check_interface(Full, {firstMethod:'function',
+/**/              lastMethod:'function', fullMethod: 'function', 
+/**/              showName: 'function' })
 /**/   }
 /**/  function PRE_check_fullMethod(a_book){
 /**/    log(LEVEL_2+"PRE -fullMethod") 
-/**/    return type_czech.check_type(arguments, 'String')
+/**/    return type_czech.check_type(arguments, 'string')
 /**/  }
 /**/  function POST_check_fullMethod(a_book){
 /**/    log(LEVEL_2+"POST-fullMethod") 
-/**/    return type_czech.check_type(arguments, 'String')
+/**/    return type_czech.check_type(arguments, 'string')
 /**/  }
 /**/
 /**/  Full_PREs = {Full:PRE_check_Full, fullMethod:PRE_check_fullMethod}

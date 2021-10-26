@@ -80,15 +80,15 @@
       
       <a title="22-Empty-Checks-with-Extra-Optional-Params.html" href="https://jsfiddle.net/steen_hansen/hjxekf63/?22-Empty-Checks-with-Extra-Optional-Params" target="_blank">22</a>
       
-      <a title="23-Typed-Union-Checks.html" href="https://jsfiddle.net/steen_hansen/ntrsobk3/?23-Typed-Union-Checks" target="_blank">23</a>
+      <a title="23-Typed-Either-Checks.html" href="https://jsfiddle.net/steen_hansen/ntrsobk3/?23-Typed-Either-Checks" target="_blank">23</a>
       
-      <a title="24-Empty-and-Valueless-Union-Checks.html" href="https://jsfiddle.net/steen_hansen/1dL76zws/?24-Empty-and-Valueless-Union-Checks" target="_blank">24</a>
+      <a title="24-Empty-Either-Checks.html" href="https://jsfiddle.net/steen_hansen/1dL76zws/?24-Empty-Either-Checks" target="_blank">24</a>
       
       <a title="25-Accessing-PRE-POST-Arguments.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Accessing-PRE-POST-Arguments" target="_blank">25</a>
       
       <a title="26-Type-and-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hanse/4a1r03he/?26-Type-and-Empty-Abbreviations" target="_blank">26</a>
       
-      <a title="27-Type-and-Empty-Object-Extras.html" href="https://jsfiddle.net/steen_hansen/tdL7hwgc/?27-Typed-and-Empty-Union-Checks-with-Optionals" target="_blank">27</a>
+      <a title="27-Type-and-Empty-Object-Extras.html" href="https://jsfiddle.net/steen_hansen/tdL7hwgc/?27-Typed-and-Empty-Either-Checks-with-Optionals" target="_blank">27</a>
       
       <a title="28-Accept-Null-and-Undefined-Values.html" href="https://jsfiddle.net/steen_hansen/zdk1wjgn/?28-Accept-Null-and-Undefined-Values" target="_blank">28</a>
       
@@ -113,7 +113,7 @@
       
     <a title="38-Every-Check.html" href="https://jsfiddle.net/steen_hansen/1umwvht5/?38-Every-Check" target="_blank">38</a>
     
-    <a title="39-Third-Party-Result-Checks.html" href="https://jsfiddle.net/steen_hansen/ta7fdnrw/?39-Third-Party-Result-Checks" target="_blank">39</a>
+    <a title="39-Assert-Checks.html" href="https://jsfiddle.net/steen_hansen/ta7fdnrw/?39-Assert-Checks" target="_blank">39</a>
     
     <a title="40-Prescribed-Use.html" href="https://jsfiddle.net/steen_hansen/m1atu7qj/?40-Prescribed-Use">40</a>
 
@@ -257,13 +257,13 @@ The 'UNDEF-OK' option is only useful with type shapes, and thus these functions:
 /**/  
 /**/  function PRE_check_Person(person_obj){
 /**/    let {f_name, l_name} = person_obj
-/**/    person_type = {f_name:'String', l_name:'String'}
+/**/    person_type = {f_name:'string', l_name:'string'}
 /**/    return type_czech.check_type(arguments, person_type)
 /**/  }
 /**/  
 /**/  function POST_check_Person(person_array){
 /**/    let [f_name, l_name] = person_array
-/**/    person_type = ['String', 'String']
+/**/    person_type = ['string', 'string']
 /**/    return type_czech.check_type(arguments, person_type)
 /**/  }
 /**/  
@@ -312,14 +312,14 @@ log(marvin)
    fromToBoldText(1151, 1159, 'code', 1)  //l_name:12
 
   fromToBoldText(322, 330, 'log', 1)  //  l_name:12
-  fromToBoldText(375, 389, 'log', 1)   // l_name:"String"
+  fromToBoldText(375, 389, 'log', 1)   // l_name:"string"
 
 
 
-  fromToBoldText(661, 680, 'code', 2)  //['String', 'String']
+  fromToBoldText(661, 680, 'code', 2)  //['string', 'string']
 
 fromToBoldText(681, 682, 'log', 2)  //  12
-fromToBoldText(720, 727, 'log', 2)   // ,"String"
+fromToBoldText(720, 727, 'log', 2)   // ,"string"
 
 
 

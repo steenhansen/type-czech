@@ -79,15 +79,15 @@
       
       <a title="22-Empty-Checks-with-Extra-Optional-Params.html" href="https://jsfiddle.net/steen_hansen/hjxekf63/?22-Empty-Checks-with-Extra-Optional-Params" target="_blank">22</a>
       
-      <a title="23-Typed-Union-Checks.html" href="https://jsfiddle.net/steen_hansen/ntrsobk3/?23-Typed-Union-Checks" target="_blank">23</a>
+      <a title="23-Typed-Either-Checks.html" href="https://jsfiddle.net/steen_hansen/ntrsobk3/?23-Typed-Either-Checks" target="_blank">23</a>
       
-      <a title="24-Empty-and-Valueless-Union-Checks.html" href="https://jsfiddle.net/steen_hansen/1dL76zws/?24-Empty-and-Valueless-Union-Checks" target="_blank">24</a>
+      <a title="24-Empty-Either-Checks.html" href="https://jsfiddle.net/steen_hansen/1dL76zws/?24-Empty-Either-Checks" target="_blank">24</a>
       
       <a title="25-Accessing-PRE-POST-Arguments.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Accessing-PRE-POST-Arguments" target="_blank">25</a>
       
       <a title="26-Type-and-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hanse/4a1r03he/?26-Type-and-Empty-Abbreviations" target="_blank">26</a>
       
-      <a title="27-Type-and-Empty-Object-Extras.html" href="https://jsfiddle.net/steen_hansen/tdL7hwgc/?27-Typed-and-Empty-Union-Checks-with-Optionals" target="_blank">27</a>
+      <a title="27-Type-and-Empty-Object-Extras.html" href="https://jsfiddle.net/steen_hansen/tdL7hwgc/?27-Typed-and-Empty-Either-Checks-with-Optionals" target="_blank">27</a>
       
       <a title="28-Accept-Null-and-Undefined-Values.html" href="https://jsfiddle.net/steen_hansen/zdk1wjgn/?28-Accept-Null-and-Undefined-Values" target="_blank">28</a>
       
@@ -112,7 +112,7 @@
       
     <a title="38-Every-Check.html" href="https://jsfiddle.net/steen_hansen/1umwvht5/?38-Every-Check" target="_blank">38</a>
     
-    <a title="39-Third-Party-Result-Checks.html" href="https://jsfiddle.net/steen_hansen/ta7fdnrw/?39-Third-Party-Result-Checks" target="_blank">39</a>
+    <a title="39-Assert-Checks.html" href="https://jsfiddle.net/steen_hansen/ta7fdnrw/?39-Assert-Checks" target="_blank">39</a>
     
     <a title="40-Prescribed-Use.html" href="https://jsfiddle.net/steen_hansen/m1atu7qj/?40-Prescribed-Use">40</a>
 
@@ -181,9 +181,9 @@
     <br>
 <pre>
 function PRE_check_oneToThreeStrings() {
-  if (!type_czech.check_type(arguments, 'String')) return ''
-  if (!type_czech.check_type(arguments, ['String', 'String'])) return ''
-  if (!type_czech.check_type(arguments, ['String', 'String', 'String'])) return ''
+  if (!type_czech.check_type(arguments, 'string')) return ''
+  if (!type_czech.check_type(arguments, ['string', 'string'])) return ''
+  if (!type_czech.check_type(arguments, ['string', 'string', 'string'])) return ''
   return 'Error, not ONE to THREE strings but - ' + arguments.length
 }
 oneToThreeStrings = type_czech.linkUp(oneToThreeStrings, PRE_check_oneToThreeStrings)
@@ -193,12 +193,12 @@ oneToThreeStrings()
 oneToThreeStrings('s-1', 's-2')
 oneToThreeStrings('s-1', 's-2', 's-3', 's-4')
 </pre>
-Here check_variadicType() accomplishes the same task as above.
+Here check_typeVariadic() accomplishes the same task as above.
 <pre>
 function PRE_check_oneToThreeStrings() {
   if (arguments.length > 3) 
     return 'Error, not ONE to THREE strings but - ' + arguments.length
-  return type_czech.check_variadicType(arguments, ['String'])
+  return type_czech.check_typeVariadic(arguments, ['string'])
 }
 </pre>
   </div>
@@ -235,7 +235,7 @@ function variadicFunc () {
 /**/  //type_czech = TypeCzech('NO-CHECKING')
 /**/
 /**/  function PRE_check_variadicFunc() {
-/**/    return type_czech.check_variadicType(arguments, ['Number'])
+/**/    return type_czech.check_typeVariadic(arguments, ['number'])
 /**/  }
 /**/
 /**/  variadicFunc = type_czech.linkUp(variadicFunc, 
@@ -263,7 +263,7 @@ function variadicArrs () {
 
 /**/
 /**/  function PRE_check_variadicArrs() {
-/**/    return type_czech.check_variadicType(arguments, [['Number']])
+/**/    return type_czech.check_typeVariadic(arguments, [['number']])
 /**/  }
 /**/
 /**/  variadicArrs = type_czech.linkUp(variadicArrs,
@@ -295,7 +295,7 @@ jsToDiv('js-code', "check-code");
 fromToBoldText(491, 497, 'code', 1)  //  variadicFunc(0,1,2,'Three',4,5,6)o
 
 fromToBoldText(314, 320, 'log', 1)    // [0,1,2,"Three",4,5,6]
-fromToBoldText(355, 362, 'log', 1)    //["Number"]
+fromToBoldText(355, 362, 'log', 1)    //["number"]
 
 fromToBoldText(429, 433, 'log', 1)    // 0,1,2,Three,4,5,6
 
@@ -311,7 +311,7 @@ fromToBoldText(440, 469, 'log', 3)    // [1] [1,2] [1,2,3] [1,2,3,4]
 fromToBoldText(926, 930, 'code', 2)  // [1,'two',3]
 
 fromToBoldText(752, 756, 'log', 2)    // [1,"two",3] 
-fromToBoldText(799, 806, 'log', 2)    // [["Number"]]
+fromToBoldText(799, 806, 'log', 2)    // [["number"]]
  
 fromToBoldText(883, 885, 'log', 2)    // [1] [1,2] [1,two,3] [1,2,3,4]
 

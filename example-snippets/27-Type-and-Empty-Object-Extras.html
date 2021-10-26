@@ -15,7 +15,7 @@
   <div class='an-explantion'>27 &mdash; Type and Emptiness Together with Extra Parameter Option Objects</div>
   <div id='explanation-text'>
     <br>
-    Option objects can have extra parameters that are not checked for type nor emptiness.
+    Option objects can have extra parameters that are not checked for type or emptiness.
     Important wanted parameters are still checked, but unlisted arguments are ignored.
 
 <br><br>
@@ -110,9 +110,9 @@
       
       <a title="22-Empty-Checks-with-Extra-Optional-Params.html" href="../example-snippets/22-Empty-Checks-with-Extra-Optional-Params.html">22</a>
       
-      <a title="23-Typed-Union-Checks.html" href="../example-snippets/23-Typed-Union-Checks.html">23</a>
+      <a title="23-Typed-Either-Checks.html" href="../example-snippets/23-Typed-Either-Checks.html">23</a>
       
-      <a title="24-Empty-and-Valueless-Union-Checks.html" href="../example-snippets/24-Empty-and-Valueless-Union-Checks.html">24</a>
+      <a title="24-Empty-Either-Checks.html" href="../example-snippets/24-Empty-Either-Checks.html">24</a>
       
       <a title="25-Accessing-PRE-POST-Arguments.html" href="../example-snippets/25-Accessing-PRE-POST-Arguments.html">25</a>
       
@@ -143,7 +143,7 @@
       <a title="38-Every-Check.html" href="../example-snippets/38-Every-Check.html">38</a>
 
   
-      <a title="39-Third-Party-Result-Checks.html" href="../example-snippets/39-Third-Party-Result-Checks.html">39</a>
+      <a title="39-Assert-Checks.html" href="../example-snippets/39-Assert-Checks.html">39</a>
 
       <a title="40-Prescribed-Use.html" href="../example-snippets/40-Prescribed-Use.html">40</a>
       
@@ -224,7 +224,7 @@
 /**/  PRE_check_personExtra = (typeof PRE_check_personExtra === 'undefined') 
 /**/                          ? undefined : PRE_check_personExtra
 /**/
-/**/  PERSON_TYPE_SIGNATURE = {salu:'String', f_name:'String', l_name:'String'}
+/**/  PERSON_TYPE_SIGNATURE = {salu:'string', f_name:'string', l_name:'string'}
 /**/
 /**/  PERSON_EMPTIES = {f_name:'EMPTY-ERROR', l_name:'EMPTY-ERROR'}
 /**/

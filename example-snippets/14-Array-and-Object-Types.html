@@ -18,21 +18,21 @@
     if [ ]s are used then an array must define at least one type.
 
     <ul>
-      <li>Valid Type:  'Array'</li>
+      <li>Valid Type:  'array'</li>
       
       <li>Not Valid Type : '[ ]'</li>
-      <li>Valid Type : [ 'String' ]</li>
+      <li>Valid Type : [ 'string' ]</li>
     </ul>
 
-    And, 'Object' can also be a type without specifying any properties.
+    And, 'object' can also be a type without specifying any properties.
     But if { }s are used then an object must define at least one key and value.
     
 
 
 <ul>
-  <li>Valid Type : 'Object'</li>
+  <li>Valid Type : 'object'</li>
   <li>Not Valid Type : '{ }'</li>
-  <li>Valid Type : { a_key: 'String' }</li>
+  <li>Valid Type : { a_key: 'string' }</li>
 </ul>
 
 
@@ -136,9 +136,9 @@ the POST_check_Person() function.
     
     <a title="22-Empty-Checks-with-Extra-Optional-Params.html" href="../example-snippets/22-Empty-Checks-with-Extra-Optional-Params.html">22</a>
     
-    <a title="23-Typed-Union-Checks.html" href="../example-snippets/23-Typed-Union-Checks.html">23</a>
+    <a title="23-Typed-Either-Checks.html" href="../example-snippets/23-Typed-Either-Checks.html">23</a>
     
-    <a title="24-Empty-and-Valueless-Union-Checks.html" href="../example-snippets/24-Empty-and-Valueless-Union-Checks.html">24</a>
+    <a title="24-Empty-Either-Checks.html" href="../example-snippets/24-Empty-Either-Checks.html">24</a>
     
     <a title="25-Accessing-PRE-POST-Arguments.html" href="../example-snippets/25-Accessing-PRE-POST-Arguments.html">25</a>
     
@@ -169,7 +169,7 @@ the POST_check_Person() function.
     <a title="38-Every-Check.html" href="../example-snippets/38-Every-Check.html">38</a>
 
  
-    <a title="39-Third-Party-Result-Checks.html" href="../example-snippets/39-Third-Party-Result-Checks.html">39</a>
+    <a title="39-Assert-Checks.html" href="../example-snippets/39-Assert-Checks.html">39</a>
 
     <a title="40-Prescribed-Use.html" href="../example-snippets/40-Prescribed-Use.html">40</a>
 
@@ -261,11 +261,11 @@ the POST_check_Person() function.
 /**/                ? undefined : POST_check_Person
 /**/  
 /**/  function PRE_check_Person(an_array){
-/**/    return type_czech.check_type(arguments, 'Array')
+/**/    return type_czech.check_type(arguments, 'array')
 /**/  }
 /**/  
 /**/  function POST_check_Person(an_object){
-/**/    return type_czech.check_type(arguments, 'Object')
+/**/    return type_czech.check_type(arguments, 'object')
 /**/  }
 /**/  
 /**/  Person = type_czech.linkUp(Person, PRE_check_Person,
@@ -335,7 +335,7 @@ log(alan_turing)
   fromToBoldText(1172, 1183, 'code', 2)  //  return result_array
   fromToBoldText(762, 778, 'log', 2)    //["Alan","Turing"]
 
-  fromToBoldText(805, 810, 'log', 2)    //'Object'
+  fromToBoldText(805, 810, 'log', 2)    //'object'
 
 </script>
 

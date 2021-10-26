@@ -26,9 +26,9 @@ function _isEmpty_10000(){
     actual_isEmpty = type_czech_test._isEmpty(an_arg);
     if (actual_isEmpty !== expected_isEmpty) {
       console.log('_isEmpty error : ', TYPE_CZECH_current_test_number, actual_isEmpty, an_arg, expected_isEmpty);
-      failed_a_type_of += 1;
+      failed_isEmpty += 1;
     }
-    tested_a_type_of += 1;
+    tested_isEmpty += 1;
   }
     
   test_isEmpty([1], false)                    // pass 1 A array

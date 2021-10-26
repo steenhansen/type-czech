@@ -81,15 +81,15 @@
       
       <a title="22-Empty-Checks-with-Extra-Optional-Params.html" href="https://jsfiddle.net/steen_hansen/hjxekf63/?22-Empty-Checks-with-Extra-Optional-Params" target="_blank">22</a>
       
-      <a title="23-Typed-Union-Checks.html" href="https://jsfiddle.net/steen_hansen/ntrsobk3/?23-Typed-Union-Checks" target="_blank">23</a>
+      <a title="23-Typed-Either-Checks.html" href="https://jsfiddle.net/steen_hansen/ntrsobk3/?23-Typed-Either-Checks" target="_blank">23</a>
       
-      <a title="24-Empty-and-Valueless-Union-Checks.html" href="https://jsfiddle.net/steen_hansen/1dL76zws/?24-Empty-and-Valueless-Union-Checks" target="_blank">24</a>
+      <a title="24-Empty-Either-Checks.html" href="https://jsfiddle.net/steen_hansen/1dL76zws/?24-Empty-Either-Checks" target="_blank">24</a>
       
       <a title="25-Accessing-PRE-POST-Arguments.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Accessing-PRE-POST-Arguments" target="_blank">25</a>
       
       <a title="26-Type-and-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hanse/4a1r03he/?26-Type-and-Empty-Abbreviations" target="_blank">26</a>
       
-      <a title="27-Type-and-Empty-Object-Extras.html" href="https://jsfiddle.net/steen_hansen/tdL7hwgc/?27-Typed-and-Empty-Union-Checks-with-Optionals" target="_blank">27</a>
+      <a title="27-Type-and-Empty-Object-Extras.html" href="https://jsfiddle.net/steen_hansen/tdL7hwgc/?27-Typed-and-Empty-Either-Checks-with-Optionals" target="_blank">27</a>
       
       <a title="28-Accept-Null-and-Undefined-Values.html" href="https://jsfiddle.net/steen_hansen/zdk1wjgn/?28-Accept-Null-and-Undefined-Values" target="_blank">28</a>
       
@@ -114,7 +114,7 @@
       
     <a title="38-Every-Check.html" href="https://jsfiddle.net/steen_hansen/1umwvht5/?38-Every-Check" target="_blank">38</a>
     
-    <a title="39-Third-Party-Result-Checks.html" href="https://jsfiddle.net/steen_hansen/ta7fdnrw/?39-Third-Party-Result-Checks" target="_blank">39</a>
+    <a title="39-Assert-Checks.html" href="https://jsfiddle.net/steen_hansen/ta7fdnrw/?39-Assert-Checks" target="_blank">39</a>
     
     <a title="40-Prescribed-Use.html" href="https://jsfiddle.net/steen_hansen/m1atu7qj/?40-Prescribed-Use">40</a>
 
@@ -183,9 +183,9 @@
     functions. And the property a_number must be a Number type. Missing or 
     extra properties will cause errors.
 <pre>
-FUNC_NUM_FUNC_STRUCTURE = { funcOne: 'Function', 
-                            a_number: 'Number',
-                            funcTwo: 'Function' }
+FUNC_NUM_FUNC_STRUCTURE = { funcOne: 'function', 
+                            a_number: 'number',
+                            funcTwo: 'function' }
 func_num_func_obj = {funcOne: x=>x, a_number:12, funcTwo: y=>y}
 check_error = type_czech.check_type(func_num_func_obj, FUNC_NUM_FUNC_STRUCTURE)
 </pre>
@@ -194,7 +194,7 @@ The below example shows how to ignore some properties, while still type checking
 at least one property. Here we only ensure that the property funcOne is a 
 Function, the extra property my_string is ignored.
 <pre>
-FUNC_ONE_ONLY_STRUCT = { funcOne: 'Function'}
+FUNC_ONE_ONLY_STRUCT = { funcOne: 'function'}
 func_num_func_obj = {funcOne: x=>x, my_string:'some-string'}
 check_error = type_czech.check_typeExtra(func_num_func_obj, FUNC_ONE_ONLY_STRUCT)
 </pre>
@@ -255,7 +255,7 @@ check_error = type_czech.check_typeExtra(func_num_func_obj, FUNC_ONE_ONLY_STRUCT
 /**/            ? undefined : PRE_check_callMethod
 /**/
 /**/  function PRE_check_callMethod(an_object){
-/**/    WANTED_PROPS = {showPerson: 'Function'}
+/**/    WANTED_PROPS = {showPerson: 'function'}
 /**/    return type_czech.check_type(an_object, WANTED_PROPS)
 /**/  }
 /**/  

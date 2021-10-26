@@ -20,7 +20,7 @@ _shapeContainer_17009();
 
 _shapeContainer_17101();
 _shapeContainer_17102();
-_shapeContainer_17103();
+ _shapeContainer_17103();
 
 TEST_total_fails += failed_shapeContainer;
 TEST_total_checks += tested_shapeContainer;
@@ -36,7 +36,7 @@ if (TEST_show_random) {
 function _shapeContainer_17001(){
   var TYPE_CZECH_current_test_number = '17001';       
   var check_container ={ r: 11 };                                                           
-  var container_shape = { r: "Number" };  
+  var container_shape = { r: "number" };  
   var exact_shape = 'TYPE-EXTRAS';     
   var expect_error =  '';
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
@@ -59,7 +59,7 @@ function _shapeContainer_17001(){
 function _shapeContainer_17002(){
   var TYPE_CZECH_current_test_number = '17002';       
   var check_container =[ 13, 14, 15 ];                                                            
-  var container_shape =[ "Number" ]; 
+  var container_shape =[ "number" ]; 
   var exact_shape = 'TYPE-EXTRAS';     
   var expect_error =  '';
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
@@ -82,9 +82,9 @@ function _shapeContainer_17002(){
 function _shapeContainer_17003(){
   var TYPE_CZECH_current_test_number = '17003';       
   var check_container =[ 13, 14, 15 ];                                                            
-  var container_shape ={ r: "Number" };  
+  var container_shape ={ r: "number" };  
   var exact_shape = 'TYPE-EXTRAS';     
-  var expect_error =  `TE@207 - Parameter is meant to be 'Object' but is of the wrong type of 'Array':[13,14,15]`; 
+  var expect_error =  `TE@207 - Parameter is meant to be 'object' but is of the wrong type of 'array':[13,14,15]`; 
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_container, container_shape);
         var actual_error = type_czech_test._shapeContainer(check_container, container_shape, exact_shape, type_czech._NOT_VARIAD_ARR_L_179);
@@ -103,7 +103,7 @@ function _shapeContainer_17003(){
 function _shapeContainer_17004(){
   var TYPE_CZECH_current_test_number = '17004';       
   var check_container = [  [[1, 2], [3, 4]], [[5, false], [7, false]] ];                                                             
-  var container_shape =[  [["N", "N"]],     [['N', "B"]] ];  
+  var container_shape =[  [["n", "n"]],     [['n', "b"]] ];  
   var exact_shape = 'TYPE-EXTRAS';     
   var expect_error =   ""; 
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
@@ -126,9 +126,9 @@ function _shapeContainer_17004(){
 function _shapeContainer_17005(){
   var TYPE_CZECH_current_test_number = '17005';       
   var check_container = [  [[1, 2], [3, 4]], [[5, false], ['a', false]] ];                                                                
-  var container_shape = [  [["N", "N"]],     [['N', "B"]] ];   
+  var container_shape = [  [["n", "n"]],     [['n', "b"]] ];   
   var exact_shape = 'TYPE-EXTRAS';     
-  var expect_error =   "TE@214 -  ELEMENT '0' is assumed to be a 'Number', but is mistakenly a 'String'"; 
+  var expect_error =   "TE@214 -  ELEMENT '0' is assumed to be a 'number', but is mistakenly a 'string'"; 
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_container, container_shape);
         var actual_error = type_czech_test._shapeContainer(check_container, container_shape, exact_shape, type_czech._NOT_VARIAD_ARR_L_179);
@@ -152,7 +152,7 @@ function _shapeContainer_17005(){
 function _shapeContainer_17006(){
   var TYPE_CZECH_current_test_number = '17006';       
   var check_container = [  {a:[[1, 2], [3, 4]]}, {b:[[5, false], [7, false]]} ];                                                                
-  var container_shape = [  {a:[["N", "N"]]},     {b:[['N', "B"]]} ];      
+  var container_shape = [  {a:[["n", "n"]]},     {b:[['n', "b"]]} ];      
   var exact_shape = 'TYPE-EXTRAS';     
   var expect_error =   "";
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
@@ -177,7 +177,7 @@ function _shapeContainer_17006(){
 function _shapeContainer_17007(){
   var TYPE_CZECH_current_test_number = '17007';       
   var check_container = [  {a:[[1, 2],     [3, 4]]},         {b:[[5, false], [7, false]]} ];                                                                  
-  var container_shape =   [  {a:[["N", "N"], ["N", "N"]]},     {b:[['N', "B"], ['N', "B"]]} ];       
+  var container_shape =   [  {a:[["n", "n"], ["n", "n"]]},     {b:[['n', "b"], ['n', "b"]]} ];       
   var exact_shape = 'TYPE-EXTRAS';     
   var expect_error =   "";
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
@@ -200,9 +200,9 @@ function _shapeContainer_17007(){
 function _shapeContainer_17008(){
   var TYPE_CZECH_current_test_number = '17008';       
   var check_container = [  {a:[[1, 2],     [3, 4]]},         {b:[[5, 1], [7, false]]} ];                                                      
-  var container_shape =   [  {a:[["N", "N"], ["N", "N"]]},     {b:[['N', "B"], ['N', "B"]]} ];      
+  var container_shape =   [  {a:[["n", "n"], ["n", "n"]]},     {b:[['n', "b"], ['n', "b"]]} ];      
   var exact_shape = 'TYPE-EXTRAS';     
-  var expect_error =   "TE@214 -  ELEMENT '1' is assumed to be a 'Boolean', but is mistakenly a 'Number'";
+  var expect_error =   "TE@214 -  ELEMENT '1' is assumed to be a 'boolean', but is mistakenly a 'number'";
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_container, container_shape);
         var actual_error = type_czech_test._shapeContainer(check_container, container_shape, exact_shape, type_czech._NOT_VARIAD_ARR_L_179);
@@ -225,9 +225,9 @@ function _shapeContainer_17008(){
 function _shapeContainer_17009(){
   var TYPE_CZECH_current_test_number = '17009';       
   var check_container = [  {a:[[1, 2],     [3, 4]]},         {b:[['a', false], [7, false]]} ];                                              
-  var container_shape =   [  {a:[["N", "N"], ["N", "N"]]},     {b:[['N', "B"], ['N', "B"]]} ];     
+  var container_shape =   [  {a:[["n", "n"], ["n", "n"]]},     {b:[['n', "b"], ['n', "b"]]} ];     
   var exact_shape = 'TYPE-EXTRAS';     
-  var expect_error =   "TE@214 -  ELEMENT '0' is assumed to be a 'Number', but is mistakenly a 'String'"; 
+  var expect_error =   "TE@214 -  ELEMENT '0' is assumed to be a 'number', but is mistakenly a 'string'"; 
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_container, container_shape);
         var actual_error = type_czech_test._shapeContainer(check_container, container_shape, exact_shape, type_czech._NOT_VARIAD_ARR_L_179);
@@ -253,7 +253,7 @@ function _shapeContainer_17009(){
 function _shapeContainer_17101(){
   var TYPE_CZECH_current_test_number = '17101';       
   var check_container =[  {A:{B:[[1, 2],     [3, 4]]}},         {C:{D:[[8, false], [7, false]]}} ];                                
-  var container_shape =   [  {A:{B:[["N", "N"], ["N", "N"]]}},     {C:{D:[['N', "B"], ['N', "B"]]}} ];     
+  var container_shape =   [  {A:{B:[["n", "n"], ["n", "n"]]}},     {C:{D:[['n', "b"], ['n', "b"]]}} ];     
   var exact_shape = 'TYPE-EXTRAS';     
   var expect_error =  ''; 
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
@@ -280,10 +280,10 @@ function _shapeContainer_17101(){
 function _shapeContainer_17102(){
   var TYPE_CZECH_current_test_number = '17102';       
   var check_container =[  {E:{B:[[1, 2],     [3, 4]]}},         {C:{D:[[8, false], [7, false]]}} ];                  
-  var container_shape =  [  {A:{B:[["N", "N"], ["N", "N"]]}},     {C:{D:[['N', "B"], ['N', "B"]]}} ];       
+  var container_shape =  [  {A:{B:[["n", "n"], ["n", "n"]]}},     {C:{D:[['n', "b"], ['n', "b"]]}} ];       
   var exact_shape = 'TYPE-EXTRAS';     
-  var expect_error =   `TE@216 -  The key 'A', which has a type of '{B:[["N","N"],["N","N"]]}', is missing in the checked object`; 
-        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  var expect_error =   `TE@216 -  The key 'A', which has a type of '{B:[["n","n"],["n","n"]]}', is missing in the checked object`; 
+        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS' ); //           ,  'DEBUG-CONSOLE-TRACE'              );
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_container, container_shape);
         var actual_error = type_czech_test._shapeContainer(check_container, container_shape, exact_shape, type_czech._NOT_VARIAD_ARR_L_179);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_container, container_shape, before_str, TYPE_CZECH_current_test_number);
@@ -305,9 +305,9 @@ function _shapeContainer_17102(){
 function _shapeContainer_17103(){
   var TYPE_CZECH_current_test_number = '17103';       
   var check_container = [  {A:{E:[[1, 2],     [3, 4]]}},         {C:{D:[[8, false], [7, false]]}} ];     
-  var container_shape = [  {A:{B:[["N", "N"], ["N", "N"]]}},     {C:{D:[['N', "B"], ['N', "B"]]}} ];     
+  var container_shape = [  {A:{B:[["n", "n"], ["n", "n"]]}},     {C:{D:[['n', "b"], ['n', "b"]]}} ];     
   var exact_shape = 'TYPE-EXTRAS';     
-  var expect_error =   `TE@216 -  The key 'B', which has a type of '[["N","N"],["N","N"]]', is missing in the checked object`; 
+  var expect_error =   `TE@216 -  The key 'B', which has a type of '[["n","n"],["n","n"]]', is missing in the checked object`; 
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_container, container_shape);
         var actual_error = type_czech_test._shapeContainer(check_container, container_shape, exact_shape, type_czech._NOT_VARIAD_ARR_L_179);

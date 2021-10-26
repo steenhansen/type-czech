@@ -31,7 +31,7 @@ module.exports = function create_Full(type_czech, Last) {
 /**/  if (type_czech.isActive()) {
 /**/    function PRE_Full(salu, f_name, l_name) {
 /**/      console.log('PRE -Full');
-/**/      const type_issue = type_czech.check_type(arguments, ['String', 'String', 'String']);
+/**/      const type_issue = type_czech.check_type(arguments, ['string', 'string', 'string']);
 /**/      if (type_issue) return type_issue;
 /**/      const valid_salu = ['Ms', 'Mx', 'Mr'].includes(salu);
 /**/      if (!valid_salu) return 'Error, not one of Ms/Mx/Mr';
@@ -40,19 +40,19 @@ module.exports = function create_Full(type_czech, Last) {
 /**/    // eslint-disable-next-line no-shadow
 /**/    function POST_Full(Full) {
 /**/      console.log('POST-Full');
-/**/      const full_return_signature = { salu: 'String', f_name: 'String', l_name: 'String',
-/**/                                firstMethod: 'Function', lastMethod: 'Function', fullMethod: 'Function' };
+/**/      const full_return_signature = { salu: 'string', f_name: 'string', l_name: 'string',
+/**/                                firstMethod: 'function', lastMethod: 'function', fullMethod: 'function' };
 /**/      return type_czech.check_interface(Full, full_return_signature);
 /**/     }
 /**/
 /**/    function PRE_fullMethod(a_book) {
 /**/      console.log('PRE -fullMethod');
-/**/      return type_czech.check_type(arguments, 'String');
+/**/      return type_czech.check_type(arguments, 'string');
 /**/      }
 /**/
 /**/    function POST_fullMethod(a_book) {
 /**/      console.log('POST-fullMethod');
-/**/      return type_czech.check_type(arguments, 'String');
+/**/      return type_czech.check_type(arguments, 'string');
 /**/    }
 /**/
 /**/    const Full_PREs = { Full: PRE_Full, fullMethod: PRE_fullMethod };

@@ -9,14 +9,14 @@
 </div>
 
 <div id="the-explanation" style="width:45%">
-  <div class='an-explantion'>36 &mdash; Turn-On, Turn-Off, and Show TypeCzech Counting</div>
+  <div class='an-explantion'>36 &mdash; Turn-On, Turn-Off, and Show TypeCzech Counts</div>
   <div id='explanation-text'>
     <br>
 
     TypeCzech can stop and start checking parameters with:
     <ul>
-      <li><b>type_czech.countBegin()</b></li>
-      <li><b>type_czech.countEnd()</b></li>
+      <li><b>type_czech.enableChecks()</b></li>
+      <li><b>type_czech.disableChecks()</b></li>
     </ul>
     TypeCzech defaults to checking parameters when initilized.
     
@@ -29,12 +29,14 @@
 
 <br>
  Once TypeCzech is logging or throwing errors from checking functions, then the only
-way to stop the test exceptions or console logging is to is use the type_czech.countEnd()
+way to stop the test exceptions or console logging is to is use the type_czech.disableChecks()
 function. From then on all PRE and POST checking functions will not report errors, but will
 still consume
-a non-trivial amount of resources. So <b>never use type_czech.countEnd() in production</b>.
+a non-trivial amount of resources. So <b>never use type_czech.disableChecks() in production</b>.
 <br><br>
 
+Note that enableChecks() cannot start TypeCzech function checking from a non-active TypeCzech instance.
+<br><br>
   </div>
 
 
@@ -118,9 +120,9 @@ a non-trivial amount of resources. So <b>never use type_czech.countEnd() in prod
       
       <a title="22-Empty-Checks-with-Extra-Optional-Params.html" href="../example-snippets/22-Empty-Checks-with-Extra-Optional-Params.html">22</a>
       
-      <a title="23-Typed-Union-Checks.html" href="../example-snippets/23-Typed-Union-Checks.html">23</a>
+      <a title="23-Typed-Either-Checks.html" href="../example-snippets/23-Typed-Either-Checks.html">23</a>
       
-      <a title="24-Empty-and-Valueless-Union-Checks.html" href="../example-snippets/24-Empty-and-Valueless-Union-Checks.html">24</a>
+      <a title="24-Empty-Either-Checks.html" href="../example-snippets/24-Empty-Either-Checks.html">24</a>
       
       <a title="25-Accessing-PRE-POST-Arguments.html" href="../example-snippets/25-Accessing-PRE-POST-Arguments.html">25</a>
       
@@ -151,7 +153,7 @@ a non-trivial amount of resources. So <b>never use type_czech.countEnd() in prod
       <a title="38-Every-Check.html" href="../example-snippets/38-Every-Check.html">38</a>
 
  
-      <a title="39-Third-Party-Result-Checks.html" href="../example-snippets/39-Third-Party-Result-Checks.html">39</a>
+      <a title="39-Assert-Checks.html" href="../example-snippets/39-Assert-Checks.html">39</a>
 
       <a title="40-Prescribed-Use.html" href="../example-snippets/40-Prescribed-Use.html">40</a>
   
@@ -238,7 +240,7 @@ a non-trivial amount of resources. So <b>never use type_czech.countEnd() in prod
 /**/    type_czech = { link: (nop) => nop, isActive: (x) => false }
 /**/  
 /**/  function PRE_check_Person(){
-/**/    return type_czech.check_type(arguments, ['String', 'String'])
+/**/    return type_czech.check_type(arguments, ['string', 'string'])
 /**/  }
 /**/  
 /**/  PRE_check_Person = (typeof PRE_check_Person === 'undefined')
@@ -259,7 +261,7 @@ try {
 
 linesConsole(2)
 
-/**/  type_czech.countBegin()
+/**/  type_czech.enableChecks()
 
 Person('Prince', 'Charles')
 
@@ -273,7 +275,7 @@ Person('Elizabeth', 2)
 
 linesConsole(4)
 
-/**/  type_czech.countEnd()
+/**/  type_czech.disableChecks()
 /**/  failure_total = type_czech.countFails()
 /**/  check_total = type_czech.countTally()
 

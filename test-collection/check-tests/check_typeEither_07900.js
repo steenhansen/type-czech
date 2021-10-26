@@ -56,72 +56,72 @@ failed_check_typeEither_07900 = 0;
 // /////////////////////////////////////////////////////////////////////////////////////////////
 
 single_variable  = 12;
-single_signature = [ 'Number', 'String'];
+single_signature = [ 'number', 'string'];
 error_mess = '';
 test_pre_check_typeEither_single(single_variable, single_signature, 7901, error_mess);
 
 single_variable  = 'a-string';
-single_signature = [ 'Number', 'String'];
+single_signature = [ 'number', 'string'];
 error_mess = '';
 test_pre_check_typeEither_single(single_variable, single_signature, 7902, error_mess);
 
 single_variable  = 'a-string';
-single_signature = [ 'String'];
-error_mess = 'UE@701 - TypeCzech.check_typeEither()  needs at least 2 choices for a union, not 1 of ["String"]';
+single_signature = [ 'string'];
+error_mess = 'UE@701 - TypeCzech.check_typeEither()  needs at least 2 choices for an Either, not 1 of ["string"]';
 test_pre_check_typeEither_single(single_variable, single_signature, 7903, error_mess);
 
 single_variable  = false;
-single_signature = [ 'Number', 'String'];
-error_mess = `PRE_test_07900() pre_check_typeEither_07900() PRE-FUNC: TE@226 - The value 'false', which is a 'Boolean', is not a 'Number', TE@226 - The value 'false', which is a 'Boolean', is not a 'String'
+single_signature = [ 'number', 'string'];
+error_mess = `PRE_test_07900() pre_check_typeEither_07900() PRE-FUNC: TE@226 - The value 'false', which is a 'boolean', is not a 'number', TE@226 - The value 'false', which is a 'boolean', is not a 'string'
 check_typeEither(arguments, expected_types)
-    ACTUAL TYPES 'Boolean'
+    ACTUAL TYPES 'boolean'
     ACTUAL VALUE false
-   EXPECTED TYPE ["Number","String"]
+   EXPECTED TYPE ["number","string"]
 CALLING FUNCTION PRE_test_07900()`;
 test_pre_check_typeEither_single(single_variable, single_signature, 7904, error_mess);
 
 single_variable  = 'a-string';
-single_signature = 'String';
-error_mess = 'ME@402 - TypeCzech.check_typeEither() called with a second parameter as a non-array shape of String';
+single_signature = 'string';
+error_mess = 'ME@402 - TypeCzech.check_typeEither() called with a second parameter as a non-array shape of string';
 test_pre_check_typeEither_single(single_variable, single_signature, 7905, error_mess);
 
 single_variable  = 'asd';
-single_signature = [ 'HTMLDivElement', 'String'];
+single_signature = [ 'HTMLDivElement', 'string'];
 error_mess = '';
 test_pre_check_typeEither_single(single_variable, single_signature, 7906, error_mess);
 
 single_variable  = Symbol('sym');
-single_signature = [ 'Array', ['Number'], 'BigInt', 'Boolean', 'Date', 'Function', 'Number', 'Object', { b: 'Number' }, 'RegExp', 'String', 'Symbol' ];
+single_signature = [ 'array', ['number'], 'bigint', 'boolean', 'date', 'function', 'number', 'object', { b: 'number' }, 'regexp', 'string', 'symbol' ];
 error_mess = '';
 test_pre_check_typeEither_single(single_variable, single_signature, 7907, error_mess);
 
 single_variable  = Symbol('sym');
-single_signature = [ 'Array', ['Number'], 'BigInt', 'Boolean', 'Date', 'Function', 'Number', 'Object', { b: 'Number' }, 'RegExp', 'String'];
-error_mess = `PRE_test_07900() pre_check_typeEither_07900() PRE-FUNC: TE@226 - The value 'Symbol('sym')', which is a 'Symbol', is not a 'Array', TE@226 - The value 'Symbol('sym')', which is a 'Symbol', is not a 'String', plus  9 more Either errors
+single_signature = [ 'array', ['number'], 'bigint', 'boolean', 'date', 'function', 'number', 'object', { b: 'number' }, 'regexp', 'string'];
+error_mess = `PRE_test_07900() pre_check_typeEither_07900() PRE-FUNC: TE@226 - The value 'Symbol('sym')', which is a 'symbol', is not a 'array', TE@226 - The value 'Symbol('sym')', which is a 'symbol', is not a 'string', plus  9 more Either errors
 check_typeEither(arguments, expected_types)
-    ACTUAL TYPES 'Symbol'
+    ACTUAL TYPES 'symbol'
     ACTUAL VALUE Symbol('sym')
-   EXPECTED TYPE ["Array",["Number"],"BigInt","Boolean","Date","Function","Number","Object",{b:"Number"},"RegExp","String"]
+   EXPECTED TYPE ["array",["number"],"bigint","boolean","date","function","number","object",{b:"number"},"regexp","string"]
 CALLING FUNCTION PRE_test_07900()`;
 test_pre_check_typeEither_single(single_variable, single_signature, 7908, error_mess);
 
 single_variable  = { a: 3 };
-single_signature = [ { a: 'Number' }, { b: 'String' } ];
+single_signature = [ { a: 'number' }, { b: 'string' } ];
 error_mess = '';
 test_pre_check_typeEither_single(single_variable, single_signature, 7909, error_mess);
 
 single_variable  = { b: 'Cheap Trick' };
-single_signature = [ { a: 'Number' }, { b: 'String' } ];
+single_signature = [ { a: 'number' }, { b: 'string' } ];
 error_mess = '';
 test_pre_check_typeEither_single(single_variable, single_signature, 7910, error_mess);
 
 single_variable  = [1, 2, 3, 4];
-single_signature = [ ['Number'], ['String'] ];
+single_signature = [ ['number'], ['string'] ];
 error_mess = '';
 test_pre_check_typeEither_single(single_variable, single_signature, 7911, error_mess);
 
 single_variable  = ['a', 'b', 'c'];
-single_signature = [ ['Number'], ['String'] ];
+single_signature = [ ['number'], ['string'] ];
 error_mess = '';
 test_pre_check_typeEither_single(single_variable, single_signature, 7912, error_mess);
 
@@ -129,7 +129,7 @@ single_variable  = 'asd';
 single_signature = [ 12, false];
 error_mess = `PRE_test_07900() pre_check_typeEither_07900() PRE-FUNC: TE@230 - The type '12' is invalid, TE@230 - The type 'false' is invalid
 check_typeEither(arguments, expected_types)
-    ACTUAL TYPES 'String'
+    ACTUAL TYPES 'string'
     ACTUAL VALUE "asd"
    EXPECTED TYPE [12,false]
 CALLING FUNCTION PRE_test_07900()`;

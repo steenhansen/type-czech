@@ -23,7 +23,7 @@ if (TEST_show_random) {
 
 function _shapePropertyType_20001(){
   var TYPE_CZECH_current_test_number = '20001';       
-  var property_type = { jxy:"Number"};   
+  var property_type = { jxy:"number"};   
   var property_key ="jxy";   
   var check_variable = 987;        
   var expect_error =  ''; 
@@ -46,10 +46,10 @@ function _shapePropertyType_20001(){
 
 function _shapePropertyType_20002(){
   var TYPE_CZECH_current_test_number = '20002';       
-  var property_type = { jxy:"Number"};   
+  var property_type = { jxy:"number"};   
   var property_key ="jxy";   
   var check_variable = undefined;        
-  var expect_error =   `TE@211 - Key 'jxy' was given to be a 'Number' but was instead 'undefined'`; 
+  var expect_error =   `TE@211 - Key 'jxy' was given to be a 'number' but was instead 'undefined'`; 
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(property_type, property_key);
         var actual_error = type_czech_test._shapePropertyType(property_type, property_key, check_variable);
@@ -70,10 +70,10 @@ function _shapePropertyType_20002(){
 
 function _shapePropertyType_20003(){
   var TYPE_CZECH_current_test_number = '20003';       
-  var property_type = { jxy:"Number"};   
+  var property_type = { jxy:"number"};   
   var property_key ="jxy";   
   var check_variable = null;        
-  var expect_error =   `TE@212 - Key 'jxy' was determined to be a 'Number' but was instead 'null'`; 
+  var expect_error =   `TE@212 - Key 'jxy' was determined to be a 'number' but was instead 'null'`; 
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(property_type, property_key);
         var actual_error = type_czech_test._shapePropertyType(property_type, property_key, check_variable);
@@ -93,10 +93,10 @@ function _shapePropertyType_20003(){
 
 function _shapePropertyType_20004(){
   var TYPE_CZECH_current_test_number = '20004';       
-  var property_type = { jxy:"String"};   
+  var property_type = { jxy:"string"};   
   var property_key ="jxy";   
   var check_variable = 567;        
-  var expect_error =   `TE@213 - Property 'jxy' is indicated to be a 'String', but is inaccurately a 'Number' : 567`; 
+  var expect_error =   `TE@213 - Property 'jxy' is indicated to be a 'string', but is inaccurately a 'number' : 567`; 
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(property_type, property_key);
         var actual_error = type_czech_test._shapePropertyType(property_type, property_key, check_variable);

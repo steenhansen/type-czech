@@ -4,7 +4,7 @@
 /**/
 /**/  const type_czech = TypeCzech('LOG-ERRORS');
 /**/
-/**/  const LOTTERY_SIGNATURE = ['String', ['Number'], 'Date'];
+/**/  const LOTTERY_SIGNATURE = ['string', ['number'], 'date'];
 /**/
 /**/  function PRE_aLottery(lottery_name, lucky_numbers, draw_date) {
 /**/    const type_issue = type_czech.check_type(arguments, LOTTERY_SIGNATURE);

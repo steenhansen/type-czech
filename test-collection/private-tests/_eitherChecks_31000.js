@@ -21,7 +21,7 @@ function _eitherChecks_31001(){
   check_object =  [1, [2]];  
   TYPE_CZECH_current_test_number = '31001';
   actual_array = type_czech._eitherChecks(check_object, 'fail-97');
-  expected_array ='UE@701 - TypeCzech.fail-97()  needs at least 2 choices for a union, not 1 of [2]';
+  expected_array ='UE@701 - TypeCzech.fail-97()  needs at least 2 choices for an Either, not 1 of [2]';
   actual_str = arrayErrorToString(actual_array);
   expected_str = arrayErrorToString(expected_array);
   if (actual_str !== expected_str) {

@@ -78,9 +78,9 @@
       
       <a title="22-Empty-Checks-with-Extra-Optional-Params.html" href="../example-snippets/22-Empty-Checks-with-Extra-Optional-Params.html">22</a>
       
-      <a title="23-Typed-Union-Checks.html" href="../example-snippets/23-Typed-Union-Checks.html">23</a>
+      <a title="23-Typed-Either-Checks.html" href="../example-snippets/23-Typed-Either-Checks.html">23</a>
       
-      <a title="24-Empty-and-Valueless-Union-Checks.html" href="../example-snippets/24-Empty-and-Valueless-Union-Checks.html">24</a>
+      <a title="24-Empty-Either-Checks.html" href="../example-snippets/24-Empty-Either-Checks.html">24</a>
       
       <a title="25-Accessing-PRE-POST-Arguments.html" href="../example-snippets/25-Accessing-PRE-POST-Arguments.html">25</a>
       
@@ -111,7 +111,7 @@
       <a title="38-Every-Check.html" href="../example-snippets/38-Every-Check.html">38</a>
 
  
-      <a title="39-Third-Party-Result-Checks.html" href="../example-snippets/39-Third-Party-Result-Checks.html">39</a>
+      <a title="39-Assert-Checks.html" href="../example-snippets/39-Assert-Checks.html">39</a>
 
       <a title="40-Prescribed-Use.html" href="../example-snippets/40-Prescribed-Use.html">40</a>
   
@@ -182,11 +182,11 @@
     To also check the string 'IGNORED-STRING' the checking function could be changed to :
 <pre>
 function PRE_check_Person(person_obj, ignored_string){
-  person_signature = {f_name:'String', l_name:'String'}
+  person_signature = {f_name:'string', l_name:'string'}
   person_issue = type_czech.check_typeExtra(person_obj, person_signature)
   if (person_issue) return person_issue
 
-  return type_czech.check_type(ignored_string, 'String')
+  return type_czech.check_type(ignored_string, 'string')
 }
 </pre> 
 
@@ -255,12 +255,12 @@ function PRE_check_Person(person_obj, ignored_string){
 /**/                      ? undefined : POST_check_Person
 /**/  
 /**/  function PRE_check_Person(person_obj){
-/**/    person_signature = {f_name:'String', l_name:'String'}
+/**/    person_signature = {f_name:'string', l_name:'string'}
 /**/    return type_czech.check_typeExtra(person_obj, person_signature)
 /**/  }
 /**/  
 /**/  function POST_check_Person(person_arr){
-/**/    return type_czech.check_typeExtra(arguments, ['String', 'String'])
+/**/    return type_czech.check_typeExtra(arguments, ['string', 'string'])
 /**/  }
 /**/  
 /**/  Person = type_czech.linkUp(Person, PRE_check_Person, POST_check_Person)
@@ -310,17 +310,17 @@ log(mc_enroe)
   jsToDiv('js-code', "check-code");
 
   
-  fromToBoldText(498, 531, 'code', 1)  //{f_name:'String', l_name:'String'}
+  fromToBoldText(498, 531, 'code', 1)  //{f_name:'string', l_name:'string'}
 
   fromToBoldText(272, 297, 'log', 1)    //  {f_name:"Hakeem Olajuwon"}
-  fromToBoldText(324, 356, 'log', 1)    //  {f_name:"String",l_name:"String"}
+  fromToBoldText(324, 356, 'log', 1)    //  {f_name:"string",l_name:"string"}
 
 
 
-  fromToBoldText(718, 737, 'code', 2)  // ['String', 'String']
+  fromToBoldText(718, 737, 'code', 2)  // ['string', 'string']
 
   fromToBoldText(645, 673, 'log', 2)    // ["Hakeem Olajuwon",undefined]
-  fromToBoldText(700, 718, 'log', 2)    // ["String","String"]
+  fromToBoldText(700, 718, 'log', 2)    // ["string","string"]
 
 
 

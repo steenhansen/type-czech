@@ -18,12 +18,12 @@ $js_always_second = <<<'EOD'
       type_czech = { link: (nop) => nop, isActive: (x) => false };
     
     function PRE_check_aLottery (){
-      LOTTERY_SIGNATURE = ['String', ['Number'], 'Date'];
+      LOTTERY_SIGNATURE = ['string', ['number'], 'date'];
       type_issue = type_czech.check_type(arguments, LOTTERY_SIGNATURE);
       if (type_issue)
         return type_issue;
     
-      empty_err=type_czech.check_variadicEmpty(arguments,['EMPTY-ERROR']);
+      empty_err=type_czech.check_emptyVariadic(arguments,['EMPTY-ERROR']);
       if (empty_err)
         return empty_err;
   

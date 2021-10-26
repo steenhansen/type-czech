@@ -145,9 +145,9 @@ PRE_check_aLottery = (typeof PRE_check_aLottery === 'undefined')
     
     <a title="22-Empty-Checks-with-Extra-Optional-Params.html" href="../example-snippets/22-Empty-Checks-with-Extra-Optional-Params.html">22</a>
     
-    <a title="23-Typed-Union-Checks.html" href="../example-snippets/23-Typed-Union-Checks.html">23</a>
+    <a title="23-Typed-Either-Checks.html" href="../example-snippets/23-Typed-Either-Checks.html">23</a>
     
-    <a title="24-Empty-and-Valueless-Union-Checks.html" href="../example-snippets/24-Empty-and-Valueless-Union-Checks.html">24</a>
+    <a title="24-Empty-Either-Checks.html" href="../example-snippets/24-Empty-Either-Checks.html">24</a>
     
     <a title="25-Accessing-PRE-POST-Arguments.html" href="../example-snippets/25-Accessing-PRE-POST-Arguments.html">25</a>
     
@@ -177,7 +177,7 @@ PRE_check_aLottery = (typeof PRE_check_aLottery === 'undefined')
 
     <a title="38-Every-Check.html" href="../example-snippets/38-Every-Check.html">38</a>
     
-    <a title="39-Third-Party-Result-Checks.html" href="../example-snippets/39-Third-Party-Result-Checks.html">39</a>
+    <a title="39-Assert-Checks.html" href="../example-snippets/39-Assert-Checks.html">39</a>
 
     <a title="40-Prescribed-Use.html" href="../example-snippets/40-Prescribed-Use.html">40</a>
 
@@ -257,11 +257,11 @@ function runEnvironment(TypeCzech, pre_check_exists) {
 
   if (pre_check_exists) {
     function PRE_check_aLottery (){
-      LOTTERY_SIGNATURE = ['String', ['Number'], 'Date']
+      LOTTERY_SIGNATURE = ['string', ['number'], 'date']
       type_issue = type_czech.check_type(arguments, LOTTERY_SIGNATURE)
       if (type_issue) return type_issue
   
-      empty_err=type_czech.check_variadicEmpty(arguments,['EMPTY-ERROR'])
+      empty_err=type_czech.check_emptyVariadic(arguments,['EMPTY-ERROR'])
       if (empty_err) return empty_err
 
       return ''

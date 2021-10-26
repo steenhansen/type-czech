@@ -28,7 +28,9 @@
 }
 #js-fiddles{ 
   float:left;  
-  background-color: #dddddd; 
+  font-size:14px;
+  background-color: #cccccc; 
+  font-family: 'Inconsolata', monospace;  
 }
 #js-code{
   white-space: pre; 

@@ -45,7 +45,7 @@ require('./private-tests/_shapeScalar_21000.js');
 require('./private-tests/_shapeVariable_22000.js');
 require('./public-tests/typeIsA_23000.js');
 require('./public-tests/typeProtos_24000.js');
-require('./public-tests/typeIs_25000.js');
+require('./public-tests/typeFinal_25000.js');
 require('./private-tests/_fast_json_stable_stringify_26000.js');
 require('./private-tests/_jsonStr_27000.js');
 require('./private-tests/_shrinkDiffs_28000.js');
@@ -55,31 +55,41 @@ require('./check-tests/check_emptyExtra_30000.js');
 require('./private-tests/_eitherChecks_31000.js');
 
           require('./check-tests/variadic_checks_32000.js');
-          require('./check-tests/check_variadicEmpty_32800.js');
-          require('./check-tests/check_variadicType_32900.js');
+          require('./check-tests/check_emptyVariadic_32800.js');
+          require('./check-tests/check_typeVariadic_32900.js');
+
+          require('./check-tests/check_buildSnapshot_40000.js');
+          require('./check-tests/check_mutateSnapshot_41000.js');
+
 
 require('./public-tests/typeCzech_90000.js');
 
 
-require('../read-mes/_check_empty().md');
-require('../read-mes/_check_emptyEither().md');
-require('../read-mes/_check_emptyExtra().md');
-require('../read-mes/_check_interface().md');
-require('../read-mes/_check_mutated().md');
-require('../read-mes/_check_type().md');
-require('../read-mes/_check_typeEither().md');
-require('../read-mes/_check_typeExtra().md');
-require('../read-mes/_check_variadicType().md');
-require('../read-mes/_check_variadicEmpty().md');
-require('../read-mes/_countBegin().md');
-require('../read-mes/_countEnd().md');
-require('../read-mes/_countFails().md');
-require('../read-mes/_countTally().md');
-require('../read-mes/_linkUp().md');
-require('../read-mes/_mutateSnapshot().md');
-require('../read-mes/_typeIsA().md');
-require('../read-mes/_typeFinal().md');
-require('../read-mes/_typeProtos().md');
+
+require('./public-tests/enableChecks_42000.js');
+require('./public-tests/disableChecks_43000.js');
+require('./public-tests/countFails_44000.js');
+require('./public-tests/countTally_45000.js');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 require('./dynamic-generative/random-signatures.js');
 

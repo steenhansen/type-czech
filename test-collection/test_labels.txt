@@ -5,15 +5,15 @@ EXceptions:
   EX@103 linkUp() function to be checked and checking function same
   EX@104 linkUp() function already proxied
   EX@105 linkUp() checking function is not a function
-  EX@106 linkUp() not 2 nor 3 parameters
+  EX@106 linkUp() not 2 or 3 parameters
   EX@107 TypeCzech() unknown option
-  EX@108 mutateSnapshot() needs 3 parameters
-  EX@109 mutateSnapshot()'s 3rd parameter is not an array/object
-  EX@110 mutateSnapshot() first parameter must be an un-empty string
-  EX@111 mutateSnapshot() second parameter must be an un-empty string
-  EX@112 check_mutated() needs 2 parameters
-  EX@113 check_mutated() no record of an entry for wanted 
-  EX@114 check_mutated() has no current matching entry for mutateSnapshot()
+  EX@108 check_buildSnapshot() needs 3 parameters
+  EX@109 check_buildSnapshot()'s 3rd parameter is not an array/object
+  EX@110 check_buildSnapshot() first parameter must be an un-empty string
+  EX@111 check_buildSnapshot() second parameter must be an un-empty string
+  EX@112 check_mutatedSnapshot() needs 2 parameters
+  EX@113 check_mutatedSnapshot() no record of an entry for wanted 
+  EX@114 check_mutatedSnapshot() has no current matching entry for check_buildSnapshot()
   EX@115 linkUp() 3rd parametermust be function or object
 
 Type Errors:
@@ -49,6 +49,7 @@ Type Errors:
   TE@229 Only a string can be a valid type
   TE@230 Incorrect type
   TE@231 TypeCzech.check_emptyExtra(collection_a, collection_b) needs two collections to work
+  TE@232 Element type invalid
 
 Empty Errors:
   EE@301 an empty variable that is an error
@@ -90,12 +91,12 @@ Interface Errors:
   IE@505 Interface argument is not an object
 
 Variadic Errors:
-  VE@601 Use check_variadicType(num_params, ['Number']) instead of check_variadicType(num_params, 'Number')
-  VE@602 Use check_type() instead of check_variadicType()
-  VE@603 Use check_variadicType() instead of check_type()
-  VE@604 Use check_variadicEmpty() instead of check_empty()
-  VE@605 Use check_variadicEmpty(X,Y) instead of check_variadicEmpty(A,B)
-  VE@606 Use check_empty() instead of check_variadicEmpty()
+  VE@601 Use check_typeVariadic(num_params, ['number']) instead of check_typeVariadic(num_params, 'number')
+  VE@602 Use check_type() instead of check_typeVariadic()
+  VE@603 Use check_typeVariadic() instead of check_type()
+  VE@604 Use check_emptyVariadic() instead of check_empty()
+  VE@605 Use check_emptyVariadic(X,Y) instead of check_emptyVariadic(A,B)
+  VE@606 Use check_empty() instead of check_emptyVariadic()
 
-Union Errors:
+Either Errors:
   UE@701 Need at least 2 choices for either type  ****

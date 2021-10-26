@@ -67,9 +67,9 @@
     <br><br>  <br><br>
     The Person() function's signatures.
     <ul>
-      <li>Input : [ 'String', 'String', 'Date' ]</li>
+      <li>Input : [ 'string', 'string', 'date' ]</li>
       
-      <li>Output : [ 'Number', 'String', 'String' ]</li>
+      <li>Output : [ 'number', 'string', 'string' ]</li>
       </ul>
       
 
@@ -167,15 +167,15 @@ return result to not match the correct signature.
     
     <a title="22-Empty-Checks-with-Extra-Optional-Params.html" href="https://jsfiddle.net/steen_hansen/hjxekf63/?22-Empty-Checks-with-Extra-Optional-Params" target="_blank">22</a>
     
-    <a title="23-Typed-Union-Checks.html" href="https://jsfiddle.net/steen_hansen/ntrsobk3/?23-Typed-Union-Checks" target="_blank">23</a>
+    <a title="23-Typed-Either-Checks.html" href="https://jsfiddle.net/steen_hansen/ntrsobk3/?23-Typed-Either-Checks" target="_blank">23</a>
     
-    <a title="24-Empty-and-Valueless-Union-Checks.html" href="https://jsfiddle.net/steen_hansen/1dL76zws/?24-Empty-and-Valueless-Union-Checks" target="_blank">24</a>
+    <a title="24-Empty-Either-Checks.html" href="https://jsfiddle.net/steen_hansen/1dL76zws/?24-Empty-Either-Checks" target="_blank">24</a>
     
     <a title="25-Accessing-PRE-POST-Arguments.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Accessing-PRE-POST-Arguments" target="_blank">25</a>
     
     <a title="26-Type-and-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hanse/4a1r03he/?26-Type-and-Empty-Abbreviations" target="_blank">26</a>
     
-    <a title="27-Type-and-Empty-Object-Extras.html" href="https://jsfiddle.net/steen_hansen/tdL7hwgc/?27-Typed-and-Empty-Union-Checks-with-Optionals" target="_blank">27</a>
+    <a title="27-Type-and-Empty-Object-Extras.html" href="https://jsfiddle.net/steen_hansen/tdL7hwgc/?27-Typed-and-Empty-Either-Checks-with-Optionals" target="_blank">27</a>
     
     <a title="28-Accept-Null-and-Undefined-Values.html" href="https://jsfiddle.net/steen_hansen/zdk1wjgn/?28-Accept-Null-and-Undefined-Values" target="_blank">28</a>
     
@@ -200,7 +200,7 @@ return result to not match the correct signature.
     
   <a title="38-Every-Check.html" href="https://jsfiddle.net/steen_hansen/1umwvht5/?38-Every-Check" target="_blank">38</a>
   
-  <a title="39-Third-Party-Result-Checks.html" href="https://jsfiddle.net/steen_hansen/ta7fdnrw/?39-Third-Party-Result-Checks" target="_blank">39</a>
+  <a title="39-Assert-Checks.html" href="https://jsfiddle.net/steen_hansen/ta7fdnrw/?39-Assert-Checks" target="_blank">39</a>
     
   <a title="40-Prescribed-Use.html" href="https://jsfiddle.net/steen_hansen/m1atu7qj/?40-Prescribed-Use">40</a>
 
@@ -302,11 +302,11 @@ return result to not match the correct signature.
 /**/                      ? undefined : POST_check_Person
 /**/  
 /**/  function PRE_check_Person(f_name, l_name, b_date){
-/**/    return type_czech.check_type(arguments, ['String', 'String', 'Date'])
+/**/    return type_czech.check_type(arguments, ['string', 'string', 'date'])
 /**/  }
 /**/  
 /**/  function POST_check_Person(an_array){
-/**/    return type_czech.check_type(arguments, ['Number', 'String', 'String'])
+/**/    return type_czech.check_type(arguments, ['number', 'string', 'string'])
 /**/  }
 /**/  
 /**/  Person = type_czech.linkUp(Person, PRE_check_Person, POST_check_Person)
@@ -358,14 +358,14 @@ try {
   
   fromToBoldText(1122, 1125, 'code', 1)  // 1912
   fromToBoldText(270, 273, 'log', 1)    //1912
-  fromToBoldText(314, 319, 'log', 1)    //"Date"]
+  fromToBoldText(314, 319, 'log', 1)    //"date"]
 
 
 
 
   fromToBoldText(1210, 1211, 'code', 2)  // ''
   fromToBoldText(601, 609, 'log', 2)    //undefined
-  fromToBoldText(650, 657, 'log', 2)    //"String"]
+  fromToBoldText(650, 657, 'log', 2)    //"string"]
 
 
 

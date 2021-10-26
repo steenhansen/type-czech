@@ -22,11 +22,11 @@ module.exports = function create_Person(type_czech, First, Last, Full) {
 
 /**/  if (type_czech.isActive()) {
 /**/    function PRE_Person(salu, f_name, l_name) {
-/**/      return type_czech.check_type(arguments, ['String', 'String', 'String']);
+/**/      return type_czech.check_type(arguments, ['string', 'string', 'string']);
 /**/    }
 /**/    // eslint-disable-next-line no-shadow
 /**/    function POST_Person(Person) {
-/**/      return type_czech.check_interface(Person, { salu: 'String', fullMethod: 'Function' });
+/**/      return type_czech.check_interface(Person, { salu: 'string', fullMethod: 'function' });
 /**/     }
 /**/
 /**/    Person = type_czech.linkUp(Person, PRE_Person, POST_Person);

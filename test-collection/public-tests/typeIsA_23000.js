@@ -11,7 +11,6 @@ _typeIsA_23000();
 
 _typeIsA_23202();
 _typeIsA_23303();
-_typeIsA_23404()
 
 TEST_total_fails += failed_typeIsA;
 TEST_total_checks += tested_typeIsA;
@@ -29,12 +28,12 @@ if (TEST_show_random) {
 
 
 function _typeIsA_23000(){
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  type_czech_test=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
   TYPE_CZECH_current_test_number = 23000;
 
   function test_typeIsA(an_arg, expected_typeIsA) {
     TYPE_CZECH_current_test_number += 1;
-    actual_typeIsA = type_czech.typeIsA(an_arg, expected_typeIsA)
+    actual_typeIsA = type_czech_test.typeIsA(an_arg, expected_typeIsA)
     if (!actual_typeIsA) {
       console.log('typeIsA error : ', TYPE_CZECH_current_test_number, actual_typeIsA, an_arg, expected_typeIsA);
       failed_typeIsA += 1
@@ -42,37 +41,37 @@ function _typeIsA_23000(){
     tested_typeIsA += 1
   }
     
-  test_typeIsA([1], 'Array')                   // pass 1 A array
-  test_typeIsA(234n, 'BigInt')                 // pass 2 B bigint
-  test_typeIsA(false, 'Boolean')               // pass 3 C boolean
-  test_typeIsA(new Date('2005-06-07'), 'Date') // pass 4 D date
-  test_typeIsA(a=>a+8, 'Function')             // pass 5 E function
-  test_typeIsA(9, 'Number')                    // pass 6 F number
-  test_typeIsA({b:10}, `Object`)               // pass 7 G object
-  test_typeIsA(/d/, 'RegExp')                  // pass 8 H regex
-  test_typeIsA('an-str', 'String')             // pass 9 I string
-  test_typeIsA(Symbol('sym'), `Symbol`)        // pass 10 J symbol
-  test_typeIsA([], 'Array')                     // pass 11 K empty array
-  test_typeIsA(new Date(''), 'Date')            // pass 12 L empty date
-  test_typeIsA(NaN, 'Number')                   // pass 13 M empty number
-  test_typeIsA({}, 'Object')                    // pass 14 N empty object
-  test_typeIsA(/(?:)/, 'RegExp')                // pass 15 O empty regex
-  test_typeIsA('', "String")                    // pass 16 P empty string
+  test_typeIsA([1], 'array')                   // pass 1 A array
+  test_typeIsA(234n, 'bigint')                 // pass 2 B bigint
+  test_typeIsA(false, 'boolean')               // pass 3 C boolean
+  test_typeIsA(new Date('2005-06-07'), 'date') // pass 4 D date
+  test_typeIsA(a=>a+8, 'function')             // pass 5 E function
+  test_typeIsA(9, 'number')                    // pass 6 F number
+  test_typeIsA({b:10}, `object`)               // pass 7 G object
+  test_typeIsA(/d/, 'regexp')                  // pass 8 H regex
+  test_typeIsA('an-str', 'string')             // pass 9 I string
+  test_typeIsA(Symbol('sym'), `symbol`)        // pass 10 J symbol
+  test_typeIsA([], 'array')                     // pass 11 K empty array
+  test_typeIsA(new Date(''), 'date')            // pass 12 L empty date
+  test_typeIsA(NaN, 'number')                   // pass 13 M empty number
+  test_typeIsA({}, 'object')                    // pass 14 N empty object
+  test_typeIsA(/(?:)/, 'regexp')                // pass 15 O empty regex
+  test_typeIsA('', "string")                    // pass 16 P empty string
   test_typeIsA(null, 'null')                    // pass 17 Q empty null
   test_typeIsA(undefined, 'undefined')          // pass 18 R empty undefined
-  test_typeIsA([11,'12',13], 'Array')           // pass 19 T multi array
-  test_typeIsA(14,'Number')                     // pass 20 U multi args
-  test_typeIsA([[17,"18",19]], 'Array')         // pass 21 V multi in single
-  test_typeIsA([20], 'Array')                   // pass 22 W two singles
-  test_typeIsA([22,23,24], 'Array')             // pass 23 X two multis
-  test_typeIsA({d:{}}, 'Object')                // pass 24 Y empty in object
-  test_typeIsA([{e:[28,{f:[29]}]}], 'Array')    // pass 25 Z empty in object
-  test_typeIsA(['',''], 'Array')                // pass 26 0 empty - [str str]
-  test_typeIsA([[],[]], 'Array')                // pass 27 1 empty - [arr arr]
-  test_typeIsA([{},{}], 'Array')                // pass 28 2 empty - [obj obj]
-  test_typeIsA({g:[]}, 'Object')                // pass 29 3 empty - {arr arr}
-  test_typeIsA({i:''}, 'Object')                // pass 30 4 empty - {str str}
-  test_typeIsA({k:{}}, 'Object')                // pass 31 5 empty - {obj obj}
+  test_typeIsA([11,'12',13], 'array')           // pass 19 T multi array
+  test_typeIsA(14,'number')                     // pass 20 U multi args
+  test_typeIsA([[17,"18",19]], 'array')         // pass 21 V multi in single
+  test_typeIsA([20], 'array')                   // pass 22 W two singles
+  test_typeIsA([22,23,24], 'array')             // pass 23 X two multis
+  test_typeIsA({d:{}}, 'object')                // pass 24 Y empty in object
+  test_typeIsA([{e:[28,{f:[29]}]}], 'array')    // pass 25 Z empty in object
+  test_typeIsA(['',''], 'array')                // pass 26 0 empty - [str str]
+  test_typeIsA([[],[]], 'array')                // pass 27 1 empty - [arr arr]
+  test_typeIsA([{},{}], 'array')                // pass 28 2 empty - [obj obj]
+  test_typeIsA({g:[]}, 'object')                // pass 29 3 empty - {arr arr}
+  test_typeIsA({i:''}, 'object')                // pass 30 4 empty - {str str}
+  test_typeIsA({k:{}}, 'object')                // pass 31 5 empty - {obj obj}
 }
 
 
@@ -159,50 +158,4 @@ function _typeIsA_23303() {
 
 
 
-function _typeIsA_23404(){
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
-  TYPE_CZECH_current_test_number = 23000;
-
-  function test_typeIsA(an_arg, expected_typeIsA) {
-    TYPE_CZECH_current_test_number += 1;
-    actual_typeIsA = type_czech.typeIsA(an_arg, expected_typeIsA)
-    if (actual_typeIsA) {
-      console.log('typeIsA error : ', TYPE_CZECH_current_test_number, actual_typeIsA, an_arg, expected_typeIsA);
-      failed_typeIsA += 1
-    }
-    tested_typeIsA += 1
-  }
-    
-  test_typeIsA([1], 'array')                   // pass 1 A array
-  test_typeIsA(234n, 'bigint')                 // pass 2 B bigint
-  test_typeIsA(false, 'boolean')               // pass 3 C boolean
-  test_typeIsA(new Date('2005-06-07'), 'date') // pass 4 D date
-  test_typeIsA(a=>a+8, 'function')             // pass 5 E function
-  test_typeIsA(9, 'number')                    // pass 6 F number
-  test_typeIsA({b:10}, `object`)               // pass 7 G object
-  test_typeIsA(/d/, 'regexp')                  // pass 8 H regex
-  test_typeIsA('an-str', 'string')             // pass 9 I string
-  test_typeIsA(Symbol('sym'), `symbol`)        // pass 10 J symbol
-  test_typeIsA([], 'array')                     // pass 11 K empty array
-  test_typeIsA(new Date(''), 'date')            // pass 12 L empty date
-  test_typeIsA(NaN, 'number')                   // pass 13 M empty number
-  test_typeIsA({}, 'object')                    // pass 14 N empty object
-  test_typeIsA(/(?:)/, 'regexp')                // pass 15 O empty regex
-  test_typeIsA('', "string")                    // pass 16 P empty string
-  test_typeIsA(null, 'Null')                    // pass 17 Q empty null
-  test_typeIsA(undefined, 'Undefined')          // pass 18 R empty undefined
-  test_typeIsA([11,'12',13], 'array')           // pass 19 T multi array
-  test_typeIsA(14,'number')                     // pass 20 U multi args
-  test_typeIsA([[17,"18",19]], 'array')         // pass 21 V multi in single
-  test_typeIsA([20], 'array')                   // pass 22 W two singles
-  test_typeIsA([22,23,24], 'array')             // pass 23 X two multis
-  test_typeIsA({d:{}}, 'object')                // pass 24 Y empty in object
-  test_typeIsA([{e:[28,{f:[29]}]}], 'array')    // pass 25 Z empty in object
-  test_typeIsA(['',''], 'array')                // pass 26 0 empty - [str str]
-  test_typeIsA([[],[]], 'array')                // pass 27 1 empty - [arr arr]
-  test_typeIsA([{},{}], 'array')                // pass 28 2 empty - [obj obj]
-  test_typeIsA({g:[]}, 'object')                // pass 29 3 empty - {arr arr}
-  test_typeIsA({i:''}, 'object')                // pass 30 4 empty - {str str}
-  test_typeIsA({k:{}}, 'object')                // pass 31 5 empty - {obj obj}
-}
 

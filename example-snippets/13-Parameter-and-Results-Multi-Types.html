@@ -27,38 +27,38 @@
     
       <div style="float:left; width:16%">
         <ul>
-          <li>Boolean</li>
-          <li>RegExp</li>
+          <li>boolean</li>
+          <li>regexp</li>
     
         </ul>
       </div>
      
       <div style="float:left; width:13%">
         <ul>
-          <li>Date</li>
-          <li>String</li>
+          <li>date</li>
+          <li>string</li>
         </ul>
       </div>
      
       <div style="float:left; width:16%">
         <ul>
-          <li>Function</li>
-          <li>Symbol</li>
+          <li>function</li>
+          <li>symbol</li>
         </ul>
       </div>
 
       <div style="float:left; width:16%">
         <ul>
-          <li>Number</li>
-          <li>BigInt</li>
+          <li>number</li>
+          <li>bigint</li>
         </ul>
       </div>
 
       
       <div style="float:left; width:1%">
         <ul>
-          <li>Array</li>
-          <li>Object</li>
+          <li>array</li>
+          <li>object</li>
         </ul>
       </div>
     
@@ -66,9 +66,9 @@
     <br><br>  <br><br>
     The Person() function's signatures.
     <ul>
-      <li>Input : [ 'String', 'String', 'Date' ]</li>
+      <li>Input : [ 'string', 'string', 'date' ]</li>
       
-      <li>Output : [ 'Number', 'String', 'String' ]</li>
+      <li>Output : [ 'number', 'string', 'string' ]</li>
       </ul>
       
 
@@ -163,9 +163,9 @@ return result to not match the correct signature.
     
     <a title="22-Empty-Checks-with-Extra-Optional-Params.html" href="../example-snippets/22-Empty-Checks-with-Extra-Optional-Params.html">22</a>
     
-    <a title="23-Typed-Union-Checks.html" href="../example-snippets/23-Typed-Union-Checks.html">23</a>
+    <a title="23-Typed-Either-Checks.html" href="../example-snippets/23-Typed-Either-Checks.html">23</a>
     
-    <a title="24-Empty-and-Valueless-Union-Checks.html" href="../example-snippets/24-Empty-and-Valueless-Union-Checks.html">24</a>
+    <a title="24-Empty-Either-Checks.html" href="../example-snippets/24-Empty-Either-Checks.html">24</a>
     
     <a title="25-Accessing-PRE-POST-Arguments.html" href="../example-snippets/25-Accessing-PRE-POST-Arguments.html">25</a>
     
@@ -196,7 +196,7 @@ return result to not match the correct signature.
     <a title="38-Every-Check.html" href="../example-snippets/38-Every-Check.html">38</a>
 
  
-    <a title="39-Third-Party-Result-Checks.html" href="../example-snippets/39-Third-Party-Result-Checks.html">39</a>
+    <a title="39-Assert-Checks.html" href="../example-snippets/39-Assert-Checks.html">39</a>
 
     <a title="40-Prescribed-Use.html" href="../example-snippets/40-Prescribed-Use.html">40</a>
 
@@ -294,11 +294,11 @@ return result to not match the correct signature.
 /**/                      ? undefined : POST_check_Person
 /**/  
 /**/  function PRE_check_Person(f_name, l_name, b_date){
-/**/    return type_czech.check_type(arguments, ['String', 'String', 'Date'])
+/**/    return type_czech.check_type(arguments, ['string', 'string', 'date'])
 /**/  }
 /**/  
 /**/  function POST_check_Person(an_array){
-/**/    return type_czech.check_type(arguments, ['Number', 'String', 'String'])
+/**/    return type_czech.check_type(arguments, ['number', 'string', 'string'])
 /**/  }
 /**/  
 /**/  Person = type_czech.linkUp(Person, PRE_check_Person, POST_check_Person)
@@ -350,14 +350,14 @@ try {
   
   fromToBoldText(1122, 1125, 'code', 1)  // 1912
   fromToBoldText(270, 273, 'log', 1)    //1912
-  fromToBoldText(314, 319, 'log', 1)    //"Date"]
+  fromToBoldText(314, 319, 'log', 1)    //"date"]
 
 
 
 
   fromToBoldText(1210, 1211, 'code', 2)  // ''
   fromToBoldText(601, 609, 'log', 2)    //undefined
-  fromToBoldText(650, 657, 'log', 2)    //"String"]
+  fromToBoldText(650, 657, 'log', 2)    //"string"]
 
 
 

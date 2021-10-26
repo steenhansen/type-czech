@@ -85,15 +85,15 @@
       
       <a title="22-Empty-Checks-with-Extra-Optional-Params.html" href="https://jsfiddle.net/steen_hansen/hjxekf63/?22-Empty-Checks-with-Extra-Optional-Params" target="_blank">22</a>
       
-      <a title="23-Typed-Union-Checks.html" href="https://jsfiddle.net/steen_hansen/ntrsobk3/?23-Typed-Union-Checks" target="_blank">23</a>
+      <a title="23-Typed-Either-Checks.html" href="https://jsfiddle.net/steen_hansen/ntrsobk3/?23-Typed-Either-Checks" target="_blank">23</a>
       
-      <a title="24-Empty-and-Valueless-Union-Checks.html" href="https://jsfiddle.net/steen_hansen/1dL76zws/?24-Empty-and-Valueless-Union-Checks" target="_blank">24</a>
+      <a title="24-Empty-Either-Checks.html" href="https://jsfiddle.net/steen_hansen/1dL76zws/?24-Empty-Either-Checks" target="_blank">24</a>
       
       <a title="25-Accessing-PRE-POST-Arguments.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Accessing-PRE-POST-Arguments" target="_blank">25</a>
       
       <a title="26-Type-and-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hanse/4a1r03he/?26-Type-and-Empty-Abbreviations" target="_blank">26</a>
       
-      <a title="27-Type-and-Empty-Object-Extras.html" href="https://jsfiddle.net/steen_hansen/tdL7hwgc/?27-Typed-and-Empty-Union-Checks-with-Optionals" target="_blank">27</a>
+      <a title="27-Type-and-Empty-Object-Extras.html" href="https://jsfiddle.net/steen_hansen/tdL7hwgc/?27-Typed-and-Empty-Either-Checks-with-Optionals" target="_blank">27</a>
       
       <a title="28-Accept-Null-and-Undefined-Values.html" href="https://jsfiddle.net/steen_hansen/zdk1wjgn/?28-Accept-Null-and-Undefined-Values" target="_blank">28</a>
       
@@ -118,7 +118,7 @@
       
     <a title="38-Every-Check.html" href="https://jsfiddle.net/steen_hansen/1umwvht5/?38-Every-Check" target="_blank">38</a>
     
-    <a title="39-Third-Party-Result-Checks.html" href="https://jsfiddle.net/steen_hansen/ta7fdnrw/?39-Third-Party-Result-Checks" target="_blank">39</a>
+    <a title="39-Assert-Checks.html" href="https://jsfiddle.net/steen_hansen/ta7fdnrw/?39-Assert-Checks" target="_blank">39</a>
     
     <a title="40-Prescribed-Use.html" href="https://jsfiddle.net/steen_hansen/m1atu7qj/?40-Prescribed-Use">40</a>
 
@@ -184,19 +184,19 @@
   <div id='explanation-text'>
     <br>
     Objects and Arrays can be guarded from mutations in function calls with
-    mutateSnapshot() recording the entry value, and check_mutated() giving errors
+    check_buildSnapshot() recording the entry value, and check_mutatedSnapshot() giving errors
     when referential variables get unwanted changes.
 
     <br><br>
     Checking for variable mutation is accomplished by first creating a 
     snapshot copy of the object or array in the PRE checking function with
-    TypeCzech.mutateSnapshot(). In the example to the left, the function name 
+    TypeCzech.check_buildSnapshot(). In the example to the left, the function name 
     of 'PRE_check_Person' is recorded, along with the variable name of 'a_person',
     followed finally with the variable itself.
     
     <br><br>
     The POST checking function then verifies that no changes have occured 
-    in the varaible via TypeCzech.check_mutated(). The orginating function and 
+    in the varaible via TypeCzech.check_mutatedSnapshot(). The orginating function and 
     variable name are needed to locate the specific object or array that is being
     checked.
 
@@ -262,11 +262,11 @@
 /**/                   ? undefined:POST_check_Person
 /**/  
 /**/  function PRE_check_Person(a_person){
-/**/    type_czech.mutateSnapshot('PRE_check_Person', 'a_person', a_person)
+/**/    type_czech.check_buildSnapshot('PRE_check_Person', 'a_person', a_person)
 /**/  }
 /**/  
 /**/  function POST_check_Person(){
-/**/    poss_mutation_err = type_czech.check_mutated('PRE_check_Person', 'a_person')
+/**/    poss_mutation_err = type_czech.check_mutatedSnapshot('PRE_check_Person', 'a_person')
 /**/    return poss_mutation_err
 /**/  }
 /**/  

@@ -17,7 +17,7 @@
     /**/  }
 
     /**/    function PRE_check_oneNumber() {
-    /**/      return type_czech.check_type(arguments, 'Number')
+    /**/      return type_czech.check_type(arguments, 'number')
     /**/   }
 
     /**/  PRE_check_oneNumber =(typeof PRE_check_oneNumber==='undefined') ? undefined:PRE_check_oneNumber

@@ -18,7 +18,7 @@
     
 This page exists to highlight each possible checking function that executes within a PRE or POST test routine.
 Each of the allTypes() checking function calls, from A to J, can be executed in the console causing at least one error.
-Short cuts as, 'S' for 'String', and 'ER' for 'EMPTY-ERROR', save space.
+Short cuts as, 'S' for 'string', and 'ER' for 'EMPTY-ERROR', save space.
 <br><br>
 No error for the below function call when tested in the current page's console.
 <pre>
@@ -43,7 +43,7 @@ allTypes('Ringo', '', '')  // matched neither empty
 
 <span class='red-explanation'>D</span>. <span class='blue-explanation'>check_typeEither</span>(arguments, expected_types)
 <pre>
-allTypes('Lennon', '', 17) // param_3 not str nor obj
+allTypes('Lennon', '', 17) // param_3 not str or obj
 </pre>
 
 <span class='red-explanation'>E</span>. <span class='blue-explanation'>check_empty</span>(arguments, expected_emptys)
@@ -56,12 +56,12 @@ allTypes('Pete', 'Best', {}) // param_3 is empty {}
 allTypes('Stuart', 'Sutcliffe', {city:5})//city num
 </pre>
 
-<span class='red-explanation'>G</span>. <span class='blue-explanation'>check_variadicEmpty</span>(arguments, expected_types)
+<span class='red-explanation'>G</span>. <span class='blue-explanation'>check_emptyVariadic</span>(arguments, expected_types)
 <pre>
 allTypes('Billy', 'Preston', '') // param_3 is empty
 </pre>
 
-<span class='red-explanation'>H</span>. <span class='blue-explanation'>check_mutated</span>(func_name, var_name)
+<span class='red-explanation'>H</span>. <span class='blue-explanation'>check_mutatedSnapshot</span>(func_name, var_name)
 <pre>
 allTypes('George', 'Harrison', {city:'Bath'})//change
 </pre>
@@ -79,7 +79,7 @@ allTypes('James', 'Paul', 'McCartney') // 17 not a str
 
 
 
-<span class='red-explanation'>J</span>. <span class='blue-explanation'>check_variadicType</span>(arguments, expected_types)
+<span class='red-explanation'>J</span>. <span class='blue-explanation'>check_typeVariadic</span>(arguments, expected_types)
 <pre>
 allTypes('Brian', 'Epstein', {city:'Liverpool'})
                     // return results not all Strings
@@ -171,15 +171,15 @@ allTypes('Brian', 'Epstein', {city:'Liverpool'})
     
     <a title="22-Empty-Checks-with-Extra-Optional-Params.html" href="https://jsfiddle.net/steen_hansen/hjxekf63/?22-Empty-Checks-with-Extra-Optional-Params" target="_blank">22</a>
     
-    <a title="23-Typed-Union-Checks.html" href="https://jsfiddle.net/steen_hansen/ntrsobk3/?23-Typed-Union-Checks" target="_blank">23</a>
+    <a title="23-Typed-Either-Checks.html" href="https://jsfiddle.net/steen_hansen/ntrsobk3/?23-Typed-Either-Checks" target="_blank">23</a>
     
-    <a title="24-Empty-and-Valueless-Union-Checks.html" href="https://jsfiddle.net/steen_hansen/1dL76zws/?24-Empty-and-Valueless-Union-Checks" target="_blank">24</a>
+    <a title="24-Empty-Either-Checks.html" href="https://jsfiddle.net/steen_hansen/1dL76zws/?24-Empty-Either-Checks" target="_blank">24</a>
     
     <a title="25-Accessing-PRE-POST-Arguments.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Accessing-PRE-POST-Arguments" target="_blank">25</a>
     
     <a title="26-Type-and-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hanse/4a1r03he/?26-Type-and-Empty-Abbreviations" target="_blank">26</a>
     
-    <a title="27-Type-and-Empty-Object-Extras.html" href="https://jsfiddle.net/steen_hansen/tdL7hwgc/?27-Typed-and-Empty-Union-Checks-with-Optionals" target="_blank">27</a>
+    <a title="27-Type-and-Empty-Object-Extras.html" href="https://jsfiddle.net/steen_hansen/tdL7hwgc/?27-Typed-and-Empty-Either-Checks-with-Optionals" target="_blank">27</a>
     
     <a title="28-Accept-Null-and-Undefined-Values.html" href="https://jsfiddle.net/steen_hansen/zdk1wjgn/?28-Accept-Null-and-Undefined-Values" target="_blank">28</a>
     
@@ -204,7 +204,7 @@ allTypes('Brian', 'Epstein', {city:'Liverpool'})
     
   <a title="38-Every-Check.html" href="https://jsfiddle.net/steen_hansen/1umwvht5/?38-Every-Check" target="_blank">38</a>
   
-  <a title="39-Third-Party-Result-Checks.html" href="https://jsfiddle.net/steen_hansen/ta7fdnrw/?39-Third-Party-Result-Checks" target="_blank">39</a>
+  <a title="39-Assert-Checks.html" href="https://jsfiddle.net/steen_hansen/ta7fdnrw/?39-Assert-Checks" target="_blank">39</a>
     
   <a title="40-Prescribed-Use.html" href="https://jsfiddle.net/steen_hansen/m1atu7qj/?40-Prescribed-Use">40</a>
 
@@ -282,7 +282,7 @@ allTypes('Brian', 'Epstein', {city:'Liverpool'})
 /**/  type_czech = TypeCzech('LOG-ERRORS')
 /**/  
 /**/  function PRE_check_allTypes(param_1, param_2, param_3){
-/**/    type_czech.mutateSnapshot('PRE_check_allTypes', 'param_3', [param_3])
+/**/    type_czech.check_buildSnapshot('PRE_check_allTypes', 'param_3', [param_3])
 /**/
 /**/    A_emptyExtra = type_czech.check_emptyExtra(arguments,  ['ER', 'OK'])
 /**/    if (A_emptyExtra) return whichError('A. ', A_emptyExtra)
@@ -296,7 +296,7 @@ allTypes('Brian', 'Epstein', {city:'Liverpool'})
 /**/    D_typeEither = type_czech.check_typeEither(arguments, [ ['S','S','S'], ['S','S','O'] ])
 /**/    if (D_typeEither) return whichError('D. ', D_typeEither)
 /**/
-/**/    if (type_czech.typeIsA(param_3, 'Object')) {
+/**/    if (type_czech.typeIsA(param_3, 'object')) {
 /**/      E_empty = type_czech.check_empty(arguments, ['ER', 'ER', 'ER'])
 /**/      if (E_empty) return whichError('E. ', E_empty)
 /**/
@@ -304,18 +304,18 @@ allTypes('Brian', 'Epstein', {city:'Liverpool'})
 /**/      if (F_interface) return whichError('F. ', F_interface)
 /**/
 /**/    } else {
-/**/      G_variadicEmpty = type_czech.check_variadicEmpty(arguments, ['ER'])
+/**/      G_variadicEmpty = type_czech.check_emptyVariadic(arguments, ['ER'])
 /**/      if (G_variadicEmpty) return whichError('G. ', G_variadicEmpty)
 /**/    }
 /**/  }
 /**/  function POST_check_allTypes(return_value){
-/**/    H_mutated = type_czech.check_mutated('PRE_check_allTypes', 'param_3')
+/**/    H_mutated = type_czech.check_mutatedSnapshot('PRE_check_allTypes', 'param_3')
 /**/    if (H_mutated) return whichError('H. ', H_mutated)
 /**/
 /**/    I_type = type_czech.check_type(return_value[0], 'S')
 /**/    if (I_type) return whichError('I. ', I_type)
 /**/
-/**/    J_variadicType = type_czech.check_variadicType(return_value, ['S'])
+/**/    J_variadicType = type_czech.check_typeVariadic(return_value, ['S'])
 /**/    if (J_variadicType) return whichError('J. ', J_variadicType)
 /**/  }
 /**/  
@@ -323,7 +323,7 @@ allTypes('Brian', 'Epstein', {city:'Liverpool'})
 
 function allTypes(param_1, param_2, param_3){
   third_type = type_czech.typeFinal(param_3); 
-  if (third_type === 'Object') {
+  if (third_type === 'object') {
     if (param_3.city !== 'Liverpool')  param_3.city = 'Liverpool'
     return [param_1, param_2, param_3] 
   }
@@ -375,14 +375,14 @@ fromToBoldText(903, 913, 'code', 2)  // E  check_empty
 
 fromToBoldText(1043, 1057, 'code', 2)  // F  check_interface
 
-fromToBoldText(1206, 1224, 'code', 2)  // G  check_variadicEmpty
+fromToBoldText(1206, 1224, 'code', 2)  // G  check_emptyVariadic
 
 
-fromToBoldText(1417, 1429, 'code', 2)  // H  check_mutated
+fromToBoldText(1417, 1429, 'code', 2)  // H  check_mutatedSnapshot
 
 fromToBoldText(1563, 1572, 'code', 2)  // I  check_type
 
-fromToBoldText(1690, 1707, 'code', 2)  // J  check_variadicType
+fromToBoldText(1690, 1707, 'code', 2)  // J  check_typeVariadic
 
 
 </script>

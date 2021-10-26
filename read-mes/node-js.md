@@ -12,7 +12,7 @@ To run 'node node-example.js'
     /**/  const type_czech = TypeCzech('LOG-ERRORS');
     /**/  // const type_czech = TypeCzech('NO-CHECKING');
     /**/  
-    /**/  const LOTTERY_SIGNATURE = ['String', ['Number'], 'Date'];
+    /**/  const LOTTERY_SIGNATURE = ['string', ['number'], 'date'];
     /**/  
     /**/  function PRE_check_aLottery(lottery_name, lucky_numbers, draw_date) {
     /**/    const type_issue = type_czech.check_type(arguments, LOTTERY_SIGNATURE);

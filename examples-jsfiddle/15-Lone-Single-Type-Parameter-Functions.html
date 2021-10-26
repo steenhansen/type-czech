@@ -25,9 +25,9 @@
     that there is only one number being passed into the function.
 
 <pre>
-type_czech.check_type(arguments, 'Number')              // one number
-type_czech.check_type(arguments, ['Number', 'Number'])  // two numbers
-type_czech.check_type(arguments, ['Date', 'String'])    // two values
+type_czech.check_type(arguments, 'number')              // one number
+type_czech.check_type(arguments, ['number', 'number'])  // two numbers
+type_czech.check_type(arguments, ['date', 'string'])    // two values
 </pre>
 
 
@@ -112,15 +112,15 @@ type_czech.check_type(arguments, ['Date', 'String'])    // two values
       
       <a title="22-Empty-Checks-with-Extra-Optional-Params.html" href="https://jsfiddle.net/steen_hansen/hjxekf63/?22-Empty-Checks-with-Extra-Optional-Params" target="_blank">22</a>
       
-      <a title="23-Typed-Union-Checks.html" href="https://jsfiddle.net/steen_hansen/ntrsobk3/?23-Typed-Union-Checks" target="_blank">23</a>
+      <a title="23-Typed-Either-Checks.html" href="https://jsfiddle.net/steen_hansen/ntrsobk3/?23-Typed-Either-Checks" target="_blank">23</a>
       
-      <a title="24-Empty-and-Valueless-Union-Checks.html" href="https://jsfiddle.net/steen_hansen/1dL76zws/?24-Empty-and-Valueless-Union-Checks" target="_blank">24</a>
+      <a title="24-Empty-Either-Checks.html" href="https://jsfiddle.net/steen_hansen/1dL76zws/?24-Empty-Either-Checks" target="_blank">24</a>
       
       <a title="25-Accessing-PRE-POST-Arguments.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Accessing-PRE-POST-Arguments" target="_blank">25</a>
       
       <a title="26-Type-and-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hanse/4a1r03he/?26-Type-and-Empty-Abbreviations" target="_blank">26</a>
       
-      <a title="27-Type-and-Empty-Object-Extras.html" href="https://jsfiddle.net/steen_hansen/tdL7hwgc/?27-Typed-and-Empty-Union-Checks-with-Optionals" target="_blank">27</a>
+      <a title="27-Type-and-Empty-Object-Extras.html" href="https://jsfiddle.net/steen_hansen/tdL7hwgc/?27-Typed-and-Empty-Either-Checks-with-Optionals" target="_blank">27</a>
       
       <a title="28-Accept-Null-and-Undefined-Values.html" href="https://jsfiddle.net/steen_hansen/zdk1wjgn/?28-Accept-Null-and-Undefined-Values" target="_blank">28</a>
       
@@ -145,7 +145,7 @@ type_czech.check_type(arguments, ['Date', 'String'])    // two values
       
     <a title="38-Every-Check.html" href="https://jsfiddle.net/steen_hansen/1umwvht5/?38-Every-Check" target="_blank">38</a>
     
-    <a title="39-Third-Party-Result-Checks.html" href="https://jsfiddle.net/steen_hansen/ta7fdnrw/?39-Third-Party-Result-Checks" target="_blank">39</a>
+    <a title="39-Assert-Checks.html" href="https://jsfiddle.net/steen_hansen/ta7fdnrw/?39-Assert-Checks" target="_blank">39</a>
     
     <a title="40-Prescribed-Use.html" href="https://jsfiddle.net/steen_hansen/m1atu7qj/?40-Prescribed-Use">40</a>
 
@@ -229,12 +229,12 @@ type_czech.check_type(arguments, ['Date', 'String'])    // two values
 /**/  function PRE_check_exactly1Str(string_1){
 /**/    num_args = arguments.length
 /**/    if (num_args !== 1) return `PRE, not 1 but ${num_args} params`
-/**/    ONE_STRING_SPEC = 'String'
+/**/    ONE_STRING_SPEC = 'string'
 /**/    return type_czech.check_type(arguments, ONE_STRING_SPEC)
 /**/  }
 /**/  
 /**/  function PRE_check_exactly2Strs(string_1, string_2){
-/**/     TWO_STRINGS_SPEC = ['String', 'String']
+/**/     TWO_STRINGS_SPEC = ['string', 'string']
 /**/     return type_czech.check_type(arguments, TWO_STRINGS_SPEC)
 /**/  }
 /**/  
@@ -304,7 +304,7 @@ log('EXPECT_2_GOT_3 : ', expect_2_got_3)
   fromToBoldText(1363, 1369, 'code', 1)  //exactly2Strs('one-1') 
 
   fromToBoldText(470, 476, 'log', 1) //"one-1"
-  fromToBoldText(503, 521, 'log', 1) //   EXPECTED TYPE ['String','String'] 
+  fromToBoldText(503, 521, 'log', 1) //   EXPECTED TYPE ['string','string'] 
   fromToBoldText(616, 643, 'log', 1) // [ "one-1", "undefined" ]
 
 
@@ -312,7 +312,7 @@ log('EXPECT_2_GOT_3 : ', expect_2_got_3)
   fromToBoldText(1540, 1560, 'code', 2)  //  exactly2Strs('one', 'two', 'three')       
 
   fromToBoldText(932, 952, 'log', 2)    ///["one","two","three"]
-  fromToBoldText(979, 997, 'log', 2)     ///["String","String"]
+  fromToBoldText(979, 997, 'log', 2)     ///["string","string"]
 
   fromToBoldText(1092, 1111, 'log', 2)     ///[ "one", "two" ]
 

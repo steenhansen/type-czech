@@ -5,22 +5,22 @@ function TypeCzech_First() {
 
     function PRE_check_First(spec){
       log(NL2+'PRE -First') 
-      pre_first_sig = { f_name: 'String' }
+      pre_first_sig = { f_name: 'string' }
       type_issue = type_czech.check_typeExtra(arguments, pre_first_sig)
       if (type_issue) return type_issue;
       return type_czech.check_emptyExtra(arguments, {f_name: 'EMPTY-ERROR' });      
     }
     function POST_check_First(First){
       log(NL1+'POST-First') 
-      return type_czech.check_interface(First, { firstMethod: 'Function' })
+      return type_czech.check_interface(First, { firstMethod: 'function' })
     }
     function PRE_check_firstMethod(a_date){
       log('PRE -firstMethod') 
-      return type_czech.check_type(arguments, 'Date')
+      return type_czech.check_type(arguments, 'date')
     }
     function POST_check_firstMethod(a_date){
       log('POST-firstMethod') 
-      return type_czech.check_type(arguments, 'Date')
+      return type_czech.check_type(arguments, 'date')
     }
 
 

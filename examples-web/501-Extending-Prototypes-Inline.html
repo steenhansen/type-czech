@@ -108,9 +108,9 @@ Prototypes are used for inheritance:
       
       <a title="22-Empty-Checks-with-Extra-Optional-Params.html" href="../example-snippets/22-Empty-Checks-with-Extra-Optional-Params.html">22</a>
       
-      <a title="23-Typed-Union-Checks.html" href="../example-snippets/23-Typed-Union-Checks.html">23</a>
+      <a title="23-Typed-Either-Checks.html" href="../example-snippets/23-Typed-Either-Checks.html">23</a>
       
-      <a title="24-Empty-and-Valueless-Union-Checks.html" href="../example-snippets/24-Empty-and-Valueless-Union-Checks.html">24</a>
+      <a title="24-Empty-Either-Checks.html" href="../example-snippets/24-Empty-Either-Checks.html">24</a>
       
       <a title="25-Accessing-PRE-POST-Arguments.html" href="../example-snippets/25-Accessing-PRE-POST-Arguments.html">25</a>
       
@@ -141,7 +141,7 @@ Prototypes are used for inheritance:
       <a title="38-Every-Check.html" href="../example-snippets/38-Every-Check.html">38</a>
     
  
-      <a title="39-Third-Party-Result-Checks.html" href="../example-snippets/39-Third-Party-Result-Checks.html">39</a>
+      <a title="39-Assert-Checks.html" href="../example-snippets/39-Assert-Checks.html">39</a>
 
       <a title="40-Prescribed-Use.html" href="../example-snippets/40-Prescribed-Use.html">40</a>
         
@@ -215,21 +215,21 @@ Prototypes are used for inheritance:
 /**/function First_check(First){
 /**/  function PRE_check_First(f_name){ 
 /**/    log(NL2+'PRE -First') 
-/**/    type_issue = type_czech.check_type(f_name, 'String')
+/**/    type_issue = type_czech.check_type(f_name, 'string')
 /**/    if (type_issue) return type_issue;
 /**/    return type_czech.check_empty(arguments, 'EMPTY-ERROR');
 /**/  }
 /**/  function POST_check_First(First){ 
 /**/    log(NL1+'POST-First') 
-/**/    return type_czech.check_interface(First, { firstMethod: 'Function' })
+/**/    return type_czech.check_interface(First, { firstMethod: 'function' })
 /**/  }
 /**/  function PRE_check_firstMethod(a_date){
 /**/    log('PRE -firstMethod') 
-/**/    return type_czech.check_type(arguments, 'Date')
+/**/    return type_czech.check_type(arguments, 'date')
 /**/  }
 /**/  function POST_check_firstMethod(a_date){
 /**/    log('POST-firstMethod') 
-/**/     return type_czech.check_type(arguments, 'Date')
+/**/     return type_czech.check_type(arguments, 'date')
 /**/  }
 /**/
 /**/  First_PREs = {First:PRE_check_First, firstMethod:PRE_check_firstMethod}
@@ -241,22 +241,22 @@ Prototypes are used for inheritance:
 /**/function Last_check(Last){
 /**/  function PRE_check_Last(l_name){ 
 /**/    log(LEVEL_1+'PRE-Last')
-/**/    type_issue = type_czech.check_type(l_name, 'String')
+/**/    type_issue = type_czech.check_type(l_name, 'string')
 /**/    if (type_issue) return type_issue;
 /**/    return type_czech.check_empty(arguments, 'EMPTY-ERROR');
 /**/  }
 /**/  function POST_check_Last(Last){
 /**/    log(LEVEL_1+"POST-Last")
-/**/    post_last_signature = { l_name: 'String', lastMethod: 'Function' }
+/**/    post_last_signature = { l_name: 'string', lastMethod: 'function' }
 /**/    return type_czech.check_interface(Last, post_last_signature)
 /**/  }
 /**/  function PRE_check_lastMethod(a_year){ 
 /**/    log(LEVEL_1+"PRE -lastMethod")
-/**/    return type_czech.check_type(arguments, 'Number')
+/**/    return type_czech.check_type(arguments, 'number')
 /**/  }
 /**/  function POST_check_lastMethod(a_year){ 
 /**/    log(LEVEL_1+"POST-lastMethod")
-/**/    return type_czech.check_type(arguments, 'Number')
+/**/    return type_czech.check_type(arguments, 'number')
 /**/  }
 /**/
 /**/  Last_PREs = {Last:PRE_check_Last, lastMethod:PRE_check_lastMethod}
@@ -268,20 +268,20 @@ Prototypes are used for inheritance:
 /**/function Full_check(Full){
 /**/  function PRE_check_Full(salu){
 /**/    log(LEVEL_2+'PRE-Full') 
-/**/    return type_czech.check_type(arguments, 'String')
+/**/    return type_czech.check_type(arguments, 'string')
 /**/  }
 /**/  function POST_check_Full(Full){
 /**/    log(LEVEL_2+"POST-Full") 
-/**/    post_full_signature = { salu: 'String', fullMethod: 'Function' }
+/**/    post_full_signature = { salu: 'string', fullMethod: 'function' }
 /**/    return type_czech.check_interface(Full, post_full_signature)
 /**/  }
 /**/  function PRE_check_fullMethod(a_book){ 
 /**/    log(LEVEL_2+"PRE -fullMethod") 
-/**/    return type_czech.check_type(arguments, 'String')
+/**/    return type_czech.check_type(arguments, 'string')
 /**/  }
 /**/  function POST_check_fullMethod(a_book){
 /**/    log(LEVEL_2+"POST-fullMethod") 
-/**/    return type_czech.check_type(arguments, 'String')
+/**/    return type_czech.check_type(arguments, 'string')
 /**/  }
 /**/
 /**/  Full_PREs = {Full:PRE_check_Full, fullMethod:PRE_check_fullMethod}

@@ -92,9 +92,9 @@
       
       <a title="22-Empty-Checks-with-Extra-Optional-Params.html" href="../example-snippets/22-Empty-Checks-with-Extra-Optional-Params.html">22</a>
       
-      <a title="23-Typed-Union-Checks.html" href="../example-snippets/23-Typed-Union-Checks.html">23</a>
+      <a title="23-Typed-Either-Checks.html" href="../example-snippets/23-Typed-Either-Checks.html">23</a>
       
-      <a title="24-Empty-and-Valueless-Union-Checks.html" href="../example-snippets/24-Empty-and-Valueless-Union-Checks.html">24</a>
+      <a title="24-Empty-Either-Checks.html" href="../example-snippets/24-Empty-Either-Checks.html">24</a>
       
       <a title="25-Accessing-PRE-POST-Arguments.html" href="../example-snippets/25-Accessing-PRE-POST-Arguments.html">25</a>
       
@@ -125,7 +125,7 @@
       <a title="38-Every-Check.html" href="../example-snippets/38-Every-Check.html">38</a>
   
 
-      <a title="39-Third-Party-Result-Checks.html" href="../example-snippets/39-Third-Party-Result-Checks.html">39</a>
+      <a title="39-Assert-Checks.html" href="../example-snippets/39-Assert-Checks.html">39</a>
 
       <a title="40-Prescribed-Use.html" href="../example-snippets/40-Prescribed-Use.html">40</a>
         
@@ -193,27 +193,27 @@
      <br><br>
 
       Checking for exactly one string parameter only via parameter name.
-      <pre>type_czech.check_type(single_parameter, 'String')</pre>
+      <pre>type_czech.check_type(single_parameter, 'string')</pre>
 
       Seeking exactly one string parameter only via arguments object.
-      <pre>type_czech.check_type(arguments, 'String')</pre>
+      <pre>type_czech.check_type(arguments, 'string')</pre>
 
       Validating an array of strings via parameter names with a length of exactly 3.
-      <pre>type_czech.check_type([first_str, second_str, third_str], ['String'])</pre>
+      <pre>type_czech.check_type([first_str, second_str, third_str], ['string'])</pre>
       
       Looking for an array of strings with any number of element via arguments object.
-      <pre>type_czech.check_variadicType(arguments, ['String'])</pre>
+      <pre>type_czech.check_typeVariadic(arguments, ['string'])</pre>
 
       
 
       
 <div style="font-weight: bold; text-align: center;">Two Similar Checks</div>
-Here <span class="purp-similar">check_type(arguments, ['String'])</span> verifies that
+Here <span class="purp-similar">check_type(arguments, ['string'])</span> verifies that
 <span class="purp-similar">one array of strings is the sole parameter</span> with
  a parameter of <span class="purp-similar">( ['cat', 'dog', 'bird'] )</span>.
 <pre>
 function PRE_check_arrayOfStrings(){
-  return type_czech.check_type(arguments, ['String'])
+  return type_czech.check_type(arguments, ['string'])
 }
 
 arrayOfStrings = type_czech.linkUp(arrayOfStrings, PRE_check_arrayOfStrings) 
@@ -225,13 +225,13 @@ arrayOfStrings( ['cat', 'dog', 'bird'] )
 </pre>
 
 
-Below shows <span class="purp-similar">check_variadicType(arguments, ['String'])</span> 
+Below shows <span class="purp-similar">check_typeVariadic(arguments, ['string'])</span> 
 testing that one or more strings are separately passed as 
 <span class="purp-similar">one or more variadic parameters</span> with 
 parameters of <span class="purp-similar">( 'cat', 'dog', 'bird' )</span>.
 <pre>
 function PRE_check_variadicStrs(){
-  return type_czech.check_variadicType(arguments, ['String'])
+  return type_czech.check_typeVariadic(arguments, ['string'])
 }
   
 variadicStrs = type_czech.linkUp(variadicStrs, PRE_check_variadicStrs) 
@@ -311,10 +311,10 @@ variadicStrs( 'cat', 'dog', 'bird' )
 /**/    preP(`    [arguments]={0:"Alan",1:"Turing"}=`,arguments)
 /**/    preP(`   arguments[0]=Alan                 =`,arguments[0])
 /**/    preP(`   arguments[1]=Turing               =`,arguments[1]+NL2)
-/**/    PRE_issues_a=type_czech.check_type(arguments,['String','String'])
-/**/    PRE_issues_b=type_czech.check_variadicType(arguments, ['String'])
-/**/    PRE_issues_c=type_czech.check_type([f_name,l_name],['String'])
-/**/    PRE_issues_d=type_czech.check_type(f_name,          'String')
+/**/    PRE_issues_a=type_czech.check_type(arguments,['string','string'])
+/**/    PRE_issues_b=type_czech.check_typeVariadic(arguments, ['string'])
+/**/    PRE_issues_c=type_czech.check_type([f_name,l_name],['string'])
+/**/    PRE_issues_d=type_czech.check_type(f_name,          'string')
 /**/    return PRE_issues_a + PRE_issues_b + PRE_issues_c + PRE_issues_d
 /**/  }
 /**/  
@@ -324,9 +324,9 @@ variadicStrs( 'cat', 'dog', 'bird' )
 /**/    postP(`arguments={0:{f_name:"Alan",l_name:"Turing"}}  =`,arguments)
 /**/    postP(`   f_name=Alan                                 =`,f_name)
 /**/    postP(`   l_name=Turing                               =`,l_name)
-/**/    POST_issues_a = type_czech.check_type(arguments, 'Object')
-/**/    POST_issues_b = type_czech.check_type(person_o, 'Object')
-/**/    POST_signature = {f_name:'String', l_name:'String'}
+/**/    POST_issues_a = type_czech.check_type(arguments, 'object')
+/**/    POST_issues_b = type_czech.check_type(person_o, 'object')
+/**/    POST_signature = {f_name:'string', l_name:'string'}
 /**/    POST_issues_c = type_czech.check_type(person_o, POST_signature)
 /**/    return POST_issues_a + POST_issues_b + POST_issues_c
 /**/  }

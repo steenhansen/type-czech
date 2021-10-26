@@ -1,5 +1,5 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>23-Typed-Union-Checks</title>
+<title>23-Typed-Either-Checks</title>
 
 
 
@@ -10,7 +10,7 @@
 </div>
 
 <div id="the-explanation" style="width:45%">
-  <div class='an-explantion'>23 &mdash; Typed Union Checks</div>
+  <div class='an-explantion'>23 &mdash; Typed-Either-Checks</div>
   <div id='explanation-text'>
     <br>
 
@@ -106,15 +106,15 @@
       
       <a title="22-Empty-Checks-with-Extra-Optional-Params.html" href="https://jsfiddle.net/steen_hansen/hjxekf63/?22-Empty-Checks-with-Extra-Optional-Params" target="_blank">22</a>
       
-      <a title="23-Typed-Union-Checks.html" href="https://jsfiddle.net/steen_hansen/ntrsobk3/?23-Typed-Union-Checks" target="_blank">23</a>
+      <a title="23-Typed-Either-Checks.html" href="https://jsfiddle.net/steen_hansen/ntrsobk3/?23-Typed-Either-Checks" target="_blank">23</a>
       
-      <a title="24-Empty-and-Valueless-Union-Checks.html" href="https://jsfiddle.net/steen_hansen/1dL76zws/?24-Empty-and-Valueless-Union-Checks" target="_blank">24</a>
+      <a title="24-Empty-Either-Checks.html" href="https://jsfiddle.net/steen_hansen/1dL76zws/?24-Empty-Either-Checks" target="_blank">24</a>
       
       <a title="25-Accessing-PRE-POST-Arguments.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Accessing-PRE-POST-Arguments" target="_blank">25</a>
       
       <a title="26-Type-and-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hanse/4a1r03he/?26-Type-and-Empty-Abbreviations" target="_blank">26</a>
       
-      <a title="27-Type-and-Empty-Object-Extras.html" href="https://jsfiddle.net/steen_hansen/tdL7hwgc/?27-Typed-and-Empty-Union-Checks-with-Optionals" target="_blank">27</a>
+      <a title="27-Type-and-Empty-Object-Extras.html" href="https://jsfiddle.net/steen_hansen/tdL7hwgc/?27-Typed-and-Empty-Either-Checks-with-Optionals" target="_blank">27</a>
       
       <a title="28-Accept-Null-and-Undefined-Values.html" href="https://jsfiddle.net/steen_hansen/zdk1wjgn/?28-Accept-Null-and-Undefined-Values" target="_blank">28</a>
       
@@ -139,7 +139,7 @@
       
     <a title="38-Every-Check.html" href="https://jsfiddle.net/steen_hansen/1umwvht5/?38-Every-Check" target="_blank">38</a>
     
-    <a title="39-Third-Party-Result-Checks.html" href="https://jsfiddle.net/steen_hansen/ta7fdnrw/?39-Third-Party-Result-Checks" target="_blank">39</a>
+    <a title="39-Assert-Checks.html" href="https://jsfiddle.net/steen_hansen/ta7fdnrw/?39-Assert-Checks" target="_blank">39</a>
     
     <a title="40-Prescribed-Use.html" href="https://jsfiddle.net/steen_hansen/m1atu7qj/?40-Prescribed-Use">40</a>
 
@@ -236,18 +236,18 @@
 /**/                      ? undefined : POST_check_Person
 /**/
 /**/  function PRE_check_Person(){
-/**/    PRE_check_Name = [ 'String', 'String' ]
-/**/    PRE_check_Date = [ 'String', 'String', 'Date' ]
-/**/    PRE_check_Year = [ 'String', 'String', 'Number' ]
+/**/    PRE_check_Name = [ 'string', 'string' ]
+/**/    PRE_check_Date = [ 'string', 'string', 'date' ]
+/**/    PRE_check_Year = [ 'string', 'string', 'number' ]
 /**/    PRE_check_person_signatures = [ PRE_check_Name, PRE_check_Date, 
 /**/                                                    PRE_check_Year ]
 /**/    return type_czech.check_typeEither(arguments, PRE_check_person_signatures)
 /**/  }
 /**/  
 /**/  function POST_check_Person(){
-/**/    POST_check_Name = 'String'
-/**/    POST_check_Date = [ 'String', 'Date' ]
-/**/    POST_check_Year = [ 'String', 'Number' ]
+/**/    POST_check_Name = 'string'
+/**/    POST_check_Date = [ 'string', 'date' ]
+/**/    POST_check_Year = [ 'string', 'number' ]
 /**/    POST_check_person_signatures = [ POST_check_Name, POST_check_Date, 
 /**/                                                      POST_check_Year ]
 /**/    return type_czech.check_typeEither(arguments, POST_check_person_signatures)
@@ -307,20 +307,20 @@ log(alan_turing)
   
   jsToDiv('js-code', "check-code");
 
-  fromToBoldText(484, 505, 'code', 1)  //   [ 'String', 'String' ]
-  fromToBoldText(532, 561, 'code', 1)  //  [ 'String', 'String', 'Date' ]
-  fromToBoldText(588, 619, 'code', 1)  //  [ 'String', 'String', 'Number' ]
+  fromToBoldText(484, 505, 'code', 1)  //   [ 'string', 'string' ]
+  fromToBoldText(532, 561, 'code', 1)  //  [ 'string', 'string', 'date' ]
+  fromToBoldText(588, 619, 'code', 1)  //  [ 'string', 'string', 'number' ]
 
 
-  fromToBoldText(265, 283, 'log', 1)    //["String","String"]
-  fromToBoldText(285, 310, 'log', 1)    //["String","String","Date"]
-  fromToBoldText(312, 339, 'log', 1)    //["String","String","Number"]
+  fromToBoldText(265, 283, 'log', 1)    //["string","string"]
+  fromToBoldText(285, 310, 'log', 1)    //["string","string","date"]
+  fromToBoldText(312, 339, 'log', 1)    //["string","string","number"]
 
 
   fromToBoldText(1529, 1537, 'code', 2)  // 'Dracula'
 
 
-  fromToBoldText(195, 202, 'log', 2)    //'String'
+  fromToBoldText(195, 202, 'log', 2)    //'string'
   fromToBoldText(229, 237, 'log', 2)    //'Dracula'
 
 </script>

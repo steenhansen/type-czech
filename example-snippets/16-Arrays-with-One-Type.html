@@ -19,16 +19,16 @@
 <br>
 <pre>
 // one string
-type_czech.check_type(arguments, 'String')
+type_czech.check_type(arguments, 'string')
 
 // array of any number of strings 1 ... X
-type_czech.check_type(arguments, ['String'])
+type_czech.check_type(arguments, ['string'])
 
 // array of exactly 2 strings
-type_czech.check_type(arguments, ['String', 'String'])
+type_czech.check_type(arguments, ['string', 'string'])
 
 // arrays of string arrays
-type_czech.check_type(arguments, [ ['String'] ])
+type_czech.check_type(arguments, [ ['string'] ])
 
 </pre>
 
@@ -109,9 +109,9 @@ type_czech.check_type(arguments, [ ['String'] ])
       
       <a title="22-Empty-Checks-with-Extra-Optional-Params.html" href="../example-snippets/22-Empty-Checks-with-Extra-Optional-Params.html">22</a>
       
-      <a title="23-Typed-Union-Checks.html" href="../example-snippets/23-Typed-Union-Checks.html">23</a>
+      <a title="23-Typed-Either-Checks.html" href="../example-snippets/23-Typed-Either-Checks.html">23</a>
       
-      <a title="24-Empty-and-Valueless-Union-Checks.html" href="../example-snippets/24-Empty-and-Valueless-Union-Checks.html">24</a>
+      <a title="24-Empty-Either-Checks.html" href="../example-snippets/24-Empty-Either-Checks.html">24</a>
       
       <a title="25-Accessing-PRE-POST-Arguments.html" href="../example-snippets/25-Accessing-PRE-POST-Arguments.html">25</a>
       
@@ -142,7 +142,7 @@ type_czech.check_type(arguments, [ ['String'] ])
       <a title="38-Every-Check.html" href="../example-snippets/38-Every-Check.html">38</a>
 
 
-      <a title="39-Third-Party-Result-Checks.html" href="../example-snippets/39-Third-Party-Result-Checks.html">39</a>
+      <a title="39-Assert-Checks.html" href="../example-snippets/39-Assert-Checks.html">39</a>
 
       <a title="40-Prescribed-Use.html" href="../example-snippets/40-Prescribed-Use.html">40</a>
   
@@ -228,11 +228,11 @@ type_czech.check_type(arguments, [ ['String'] ])
 /**/                       ? undefined : PRE_check_arrOfArrOfNum
 /**/
 /**/  function PRE_check_arrayOfStrings(an_array){
-/**/    return type_czech.check_type(arguments, ['String'])
+/**/    return type_czech.check_type(arguments, ['string'])
 /**/  }
 /**/ 
 /**/  function PRE_check_arrOfArrOfNum(an_array_of_array){
-/**/    return type_czech.check_type(arguments, [ ['Number'] ])
+/**/    return type_czech.check_type(arguments, [ ['number'] ])
 /**/  }
 /**/  
 /**/  arrayOfStrings = type_czech.linkUp(arrayOfStrings, PRE_check_arrayOfStrings)
@@ -293,7 +293,7 @@ log('9 nums_3x3 Error : ', array_err_9)
 
 
   fromToBoldText(442, 447, 'log', 1)    //"Five"
-  fromToBoldText(488, 495, 'log', 1)    //""Number""
+  fromToBoldText(488, 495, 'log', 1)    //""number""
   fromToBoldText(640, 645, 'log', 1)    //"Five"
 
 

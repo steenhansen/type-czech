@@ -5,22 +5,22 @@ function TypeCzech_Full() {
 
     function PRE_check_Full(spec){  
       log(LEVEL_2+'PRE-Full') 
-      pre_full_sig = {salu:'String', f_name:'String', l_name:'String'}
+      pre_full_sig = {salu:'string', f_name:'string', l_name:'string'}
       return type_czech.check_typeExtra(arguments, pre_full_sig)
     }
     function POST_check_Full(Full){
       log(LEVEL_2+"POST-Full") 
-      return type_czech.check_interface(Full, {firstMethod:'Function',
-                lastMethod:'Function', fullMethod: 'Function', 
-                showName: 'Function' })
+      return type_czech.check_interface(Full, {firstMethod:'function',
+                lastMethod:'function', fullMethod: 'function', 
+                showName: 'function' })
      }
     function PRE_check_fullMethod(a_book){
       log(LEVEL_2+"PRE -fullMethod") 
-      return type_czech.check_type(arguments, 'String')
+      return type_czech.check_type(arguments, 'string')
     }
     function POST_check_fullMethod(a_book){
       log(LEVEL_2+"POST-fullMethod") 
-      return type_czech.check_type(arguments, 'String')
+      return type_czech.check_type(arguments, 'string')
     }
 
 

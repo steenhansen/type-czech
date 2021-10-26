@@ -16,6 +16,108 @@
 
   
 
+
+
+
+
+    
+
+  <div class='an-explantion'>26 &mdash; Type and Empty Abbreviations</div>
+  <div id='explanation-text'>
+    <br>
+
+     Abbreviations can be used to make type and empty assertions shorter.
+
+    <div>
+      <div style="float:left; width:20%; margin-left:10px">
+        <li style="list-style: none;"><b>Type Shortcuts</b></li>
+          </div>
+    
+      <div style="float:left; width:16%">
+        <ul>
+          <li><b>b</b> - Boolean</li>
+          <li><b>r</b> - RegExp</li>
+    
+        </ul>
+      </div>
+     
+      <div style="float:left; width:13%">
+        <ul>
+          <li><b>d</b> - Date</li>
+          <li><b>s</b> - String</li>
+        </ul>
+      </div>
+     
+      <div style="float:left; width:16%">
+        <ul>
+          <li><b>f</b> - Function</li>
+          <li><b>y</b> - sYmbol</li>
+        </ul>
+      </div>
+
+      <div style="float:left; width:16%">
+        <ul>
+          <li><b>n</b> - Number</li>
+          <li><b>i</b> - BigInt</li>
+        </ul>
+      </div>
+
+      <div style="float:left; width:16%">
+        <ul>
+          <li><b>a</b> - Array</li>
+          <li><b>o</b> - Object</li>
+        </ul>
+      </div>
+    
+    </div>
+
+    <div>
+      <div style="float:left; width:25%">
+        <li style="list-style: none;"><b>Empty Shortcuts</b></li>
+      </div>
+    
+      <div style="float:left; width:25%">
+        <ul>
+          <li>'<b>OK</b>' <br> 'EMPTY-OK'</li>
+        </ul>
+      </div>
+     
+      <div style="float:left; width:25%">
+        <ul>
+          <li>'<b>ER</b>' <br> 'EMPTY-ERROR'</li>
+        </ul>
+      </div>
+
+      <div style="float:left; width:25%">
+        <ul>
+          <li>'<b>IG</b>' <br> 'EMPTY-IGNORE'</li>
+        </ul>
+      </div>
+    
+    </div>
+
+<br>
+    The PRE_check_Person() function first verifies that an object is the construction parameter,
+    then that object is tested for the correct keys and types, finally
+    all keys are checked for being check_empty.
+    
+    <br><br>
+    After which the POST_check_Person() function first certifies that the constructor
+    returns an array result, then the two elements are established to be the 
+    correctly ordered types, lastly the last name is checked for not being empty.
+    A valueless birth date returned is allowed.
+    <br><br>
+    The errors:
+     <ul>
+      <li>Queen Boudica does not have a check_type birth date for PRE check, but this is OK on POST check</li>
+      <li>Madonna has no last name which causes two error messages in both PRE and POST</li>
+    </ul>
+
+
+
+
+
+
 <!--            ------------TYPE 1------------------------------       -->
 
 <script src="../web-resources/consolelog.js"></script>
@@ -23,10 +125,6 @@
 <link rel="stylesheet" href="../web-resources/type-czech.css">
 
 <!--            --------------TYPE 1----------------------------       -->
-
-
-
-
 
   <div id='js-fiddles'>
     <a title="Example-Contents" href="../example-snippets/example-contents.html">Contents</a>
@@ -80,9 +178,9 @@
       
       <a title="22-Empty-Checks-with-Extra-Optional-Params.html" href="../example-snippets/22-Empty-Checks-with-Extra-Optional-Params.html">22</a>
       
-      <a title="23-Typed-Union-Checks.html" href="../example-snippets/23-Typed-Union-Checks.html">23</a>
+      <a title="23-Typed-Either-Checks.html" href="../example-snippets/23-Typed-Either-Checks.html">23</a>
       
-      <a title="24-Empty-and-Valueless-Union-Checks.html" href="../example-snippets/24-Empty-and-Valueless-Union-Checks.html">24</a>
+      <a title="24-Empty-Either-Checks.html" href="../example-snippets/24-Empty-Either-Checks.html">24</a>
       
       <a title="25-Accessing-PRE-POST-Arguments.html" href="../example-snippets/25-Accessing-PRE-POST-Arguments.html">25</a>
       
@@ -113,7 +211,7 @@
       <a title="38-Every-Check.html" href="../example-snippets/38-Every-Check.html">38</a>
   
     
-      <a title="39-Third-Party-Result-Checks.html" href="../example-snippets/39-Third-Party-Result-Checks.html">39</a>
+      <a title="39-Assert-Checks.html" href="../example-snippets/39-Assert-Checks.html">39</a>
   
       <a title="40-Prescribed-Use.html" href="../example-snippets/40-Prescribed-Use.html">40</a>
   
@@ -169,102 +267,6 @@
 
 
 
-
-    <br><br><br>
-    
-
-  <div class='an-explantion'>26 &mdash; Type and Empty Abbreviations</div>
-  <div id='explanation-text'>
-    <br>
-
-     Abbreviations can be used to make type and empty assertions shorter.
-
-    <div>
-      <div style="float:left; width:20%; margin-left:10px">
-        <li style="list-style: none;"><b>Type Shortcuts</b></li>
-          </div>
-    
-      <div style="float:left; width:16%">
-        <ul>
-          <li><b>B</b> - Boolean</li>
-          <li><b>R</b> - RegExp</li>
-    
-        </ul>
-      </div>
-     
-      <div style="float:left; width:13%">
-        <ul>
-          <li><b>D</b> - Date</li>
-          <li><b>S</b> - String</li>
-        </ul>
-      </div>
-     
-      <div style="float:left; width:16%">
-        <ul>
-          <li><b>F</b> - Function</li>
-          <li><b>Y</b> - sYmbol</li>
-        </ul>
-      </div>
-
-      <div style="float:left; width:16%">
-        <ul>
-          <li><b>N</b> - Number</li>
-          <li><b>I</b> - BigInt</li>
-        </ul>
-      </div>
-
-      <div style="float:left; width:16%">
-        <ul>
-          <li><b>A</b> - Array</li>
-          <li><b>O</b> - Object</li>
-        </ul>
-      </div>
-    
-    </div>
-
-    <div>
-      <div style="float:left; width:25%">
-        <li style="list-style: none;"><b>Empty Shortcuts</b></li>
-      </div>
-    
-      <div style="float:left; width:25%">
-        <ul>
-          <li>'<b>OK</b>' <br> 'EMPTY-OK'</li>
-        </ul>
-      </div>
-     
-      <div style="float:left; width:25%">
-        <ul>
-          <li>'<b>ER</b>' <br> 'EMPTY-ERROR'</li>
-        </ul>
-      </div>
-
-      <div style="float:left; width:25%">
-        <ul>
-          <li>'<b>IG</b>' <br> 'EMPTY-IGNORE'</li>
-        </ul>
-      </div>
-    
-    </div>
-
-<br>
-    The PRE_check_Person() function first verifies that an object is the construction parameter,
-    then that object is tested for the correct keys and types, finally
-    all keys are checked for being check_empty.
-    
-    <br><br>
-    After which the POST_check_Person() function first certifies that the constructor
-    returns an array result, then the two elements are established to be the 
-    correctly ordered types, lastly the last name is checked for not being empty.
-    A valueless birth date returned is allowed.
-    <br><br>
-    The errors:
-     <ul>
-      <li>Queen Boudica does not have a check_type birth date for PRE check, but this is OK on POST check</li>
-      <li>Madonna has no last name which causes two error messages in both PRE and POST</li>
-    </ul>
-
-    <br>
  </div>
 
 
@@ -320,10 +322,10 @@
 /**/                      ? undefined : POST_check_Person
 /**/
 /**/  function PRE_check_Person(){
-/**/    redundant_object_test =  type_czech.check_type(arguments, 'O')
+/**/    redundant_object_test =  type_czech.check_type(arguments, 'o')
 /**/    if (redundant_object_test) return redundant_object_test
 /**/
-/**/    person_types = {f_name:'S', l_name:'S', b_date:'D'}
+/**/    person_types = {f_name:'s', l_name:'s', b_date:'d'}
 /**/    type_issue = type_czech.check_type(arguments, person_types)
 /**/    if (type_issue) return type_issue
 /**/
@@ -332,10 +334,10 @@
 /**/  }
 /**/
 /**/  function POST_check_Person(){
-/**/    array_issue = type_czech.check_type(arguments, 'A')
+/**/    array_issue = type_czech.check_type(arguments, 'a')
 /**/    if (array_issue) return array_issue
 /**/
-/**/    type_issue = type_czech.check_type(arguments, ['S', 'D'])
+/**/    type_issue = type_czech.check_type(arguments, ['s', 'd'])
 /**/    if (type_issue) return type_issue
 /**/
 /**/    return type_czech.check_empty(arguments, ['ER', 'OK'])

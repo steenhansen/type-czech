@@ -22,7 +22,7 @@ if (TEST_show_random) {
 function _shapeCollectionTypes_16001(){
   var TYPE_CZECH_current_test_number = '16001';       
   var check_object = { r: 11 };  
-  var  object_shape =  { r: "Number" }  
+  var  object_shape =  { r: "number" }  
   var exact_shape = 'TYPE-EXTRAS';     
   var expect_error = '';  
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
@@ -43,7 +43,7 @@ function _shapeCollectionTypes_16001(){
 function _shapeCollectionTypes_16002(){
   var TYPE_CZECH_current_test_number = '16002';       
   var check_object = { r: 11, u:"illegal" }; 
-  var  object_shape =  { r: "Number" }  
+  var  object_shape =  { r: "number" }  
   var exact_shape = 'TYPE-VERIFY';     
   var expect_error = `TE@209 - Extra key in checked object - (u:'illegal')`;  
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
@@ -65,9 +65,9 @@ function _shapeCollectionTypes_16002(){
 function _shapeCollectionTypes_16003(){
   var TYPE_CZECH_current_test_number = '16003';       
   var check_object = { r: 11, qwe:null};  
-  var  object_shape =  { r: "Number", qwe:"Object" } 
+  var  object_shape =  { r: "number", qwe:"object" } 
   var exact_shape = 'TYPE-VERIFY';     
-  var expect_error =  `TE@212 - Key 'qwe' was determined to be a 'Object' but was instead 'null'`; 
+  var expect_error =  `TE@212 - Key 'qwe' was determined to be a 'object' but was instead 'null'`; 
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_object, object_shape);
         var actual_error = type_czech_test._shapeContainer(check_object, object_shape, exact_shape);
