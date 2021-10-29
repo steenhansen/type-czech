@@ -388,7 +388,7 @@ function check_empty_03004(){
   var check_param =   NaN;
   var check_shape= "EMPTY-ERROR"; 
   var expect_error =  [`check_empty(arguments, expected_emptys)`,
-  `EE@307 - EMPTY-ERROR states 'number' must not be empty for the value 'NaN'`,
+  `EE@307 - EMPTY-ERROR states 'number' must not be empty for the value NaN`,
   `EMPTY-ERROR`];
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
@@ -1328,7 +1328,7 @@ function check_empty_03047(){
   var check_param =  [];
   var check_shape = "EMPTY-ERROR";       
   var expect_error = [`check_empty(arguments, expected_emptys)`,
-  `ME@408 - There are no parameters.`,
+  `EE@307 - EMPTY-ERROR states 'array' must not be empty for the value []`,
   `EMPTY-ERROR`];
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
@@ -1349,9 +1349,7 @@ function check_empty_03048(){
   var TYPE_CZECH_current_test_number = '03048';       
   var check_param = [[]];
   var check_shape = "EMPTY-ERROR";       
-  var expect_error =  ['check_empty(arguments, expected_emptys)',
-  "EE@307 - EMPTY-ERROR states 'array' must not be empty for the value ''",
-  'EMPTY-ERROR'];
+  var expect_error = '';
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech_test.check_empty(check_param, check_shape);

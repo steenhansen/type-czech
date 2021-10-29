@@ -691,12 +691,23 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         let one_param = true;
         if (odd_parameters) {
           the_params = parameters_obj;
-        } else if (parameters_obj.length === 0) { 
-          no_parameters = true;
+        } else if (parameters_obj.length === 0) {
+          if (!Array.isArray(parameters_obj)) {
+            no_parameters = true;
+            
+          } else {
+            
+          }
           the_params = [];
         } else if (parameters_obj.length === 1) {
-          
-          the_params = parameters_obj[0];
+          if (!Array.isArray(parameters_obj)) {
+            
+            the_params = parameters_obj[0];
+            
+          } else {
+            the_params = parameters_obj;
+            
+          }
         } else {
           the_params = Array.from(parameters_obj); 
           one_param = false;
@@ -2136,8 +2147,9 @@ if (node && node.constructor === RegExp) {
                 
                 check_variable = '{ }';
               }
+              const variable_str = _toStr(check_variable);
               const error_307 = `${empty_long} states '${variable_type}' must not `
-                          + `be empty for the value '${check_variable}'`;
+                          + `be empty for the value ${variable_str}`;
               error_string = _consoleError(error_307, 'EE@307');
             }
           } else if (variable_type === 'null' || variable_type === 'undefined') {
@@ -2393,14 +2405,15 @@ if (node && node.constructor === RegExp) {
               error_str_3arr = paramError(error_217, 'TE@217', shape_str, message_type_empty);
             } else if (shape_type === 'array') {
               if (no_parameters) {
-                const error_409 = 'There are no parameters.';
+                const error_409 = 'There are no parameters to match array signature.';
                 error_str_3arr = paramError(error_409, 'ME@409', shape_str, message_type_empty);
               }
               
             } else if (shape_type === 'object') {
               if (parameter_type !== 'object') {
                 const error_201 = `TypeCzech.${method_name}() called with '{}' against '!{}'.`
-                + ` Contrasting a ${parameter_type} type of value ${param_value}, with '${shape_str}' an ${shape_type}`;
+                + ` Contrasting a ${parameter_type} type of value ${param_value}, with '${shape_str}' an ${shape_type}`
+                + ` !!! ${parameter_type} <> ${shape_type}`;
                 error_str_3arr = _consoleError(error_201, 'TE@201');
               }
             } else if (shape_type !== 'string') {
@@ -2465,6 +2478,8 @@ if (node && node.constructor === RegExp) {
           const [parameters_array, no_parameters, one_param] = _getParameters(parameters_obj);
           const parameters_str = _toStr(parameters_array);
           const shape_str = _toStr(shape_list);
+
+          
           
           let error_str_3arr = _twoArrays([parameters_array, shape_list], 'check_empty', MESS_EMPTY_VERIFY, no_parameters);
           const is_variadic = isVariadic(parameters_obj, shape_list, one_param);
@@ -2618,10 +2633,16 @@ if (node && node.constructor === RegExp) {
           const shape_collection = _isCollection(shape_list);
           let error_str_3arr;
           const shape_str = _toStr(shape_list);
-          if (params_collection && shape_collection) {
-            
-            const [parameters_array, no_parameters, one_param] = _getParameters(parameters_obj);
-            const parameters_str = _toStr(parameters_array);
+          
+          const [parameters_array, no_parameters, one_param] = _getParameters(parameters_obj);
+          const parameters_str = _toStr(parameters_array);
+          if (Array.isArray(shape_list) && shape_list.length === 1) {
+            const single_shape = _toStr(shape_list[0]);
+            const try_instead = `try [${single_shape}, ${single_shape}]`;
+            let error_235 = `TypeCzech.check_emptyExtra(${parameters_str}, ${shape_str}) ${try_instead} as ${shape_str} is prohibited.`;
+            error_235 = _consoleError(error_235, 'TE@235');
+            error_str_3arr = error3Array(MESS_TYPE_EXTRAS, error_235, shape_list);
+          } else if (params_collection && shape_collection) {
             
             if (typeFinal(shape_list) === 'string') {
               error_str_3arr = extraEmptys(parameters_obj[0], shape_list);
@@ -2639,8 +2660,8 @@ if (node && node.constructor === RegExp) {
               error_str_3arr = extraEmptys(parameters_obj, shape_list);
             }
           } else {
-            const parameters_str = _toStr(parameters_obj);
-            let error_231 = `TypeCzech.check_emptyExtra(${parameters_str}, ${shape_str}) needs two collections to work`;
+            const para_obj_str = _toStr(parameters_obj);
+            let error_231 = `TypeCzech.check_emptyExtra(${para_obj_str}, ${shape_str}) needs two collections to work`;
             error_231 = _consoleError(error_231, 'TE@31');
             error_str_3arr = error3Array(MESS_EMPTY_EXTRAS, error_231, shape_list);
           }
@@ -2675,10 +2696,16 @@ if (node && node.constructor === RegExp) {
           const shape_collection = _isCollection(shape_list);
           let error_str_3arr;
           const shape_str = _toStr(shape_list);
-          if (params_collection && shape_collection) {
-            
-            const [parameters_array, no_parameters, one_param] = _getParameters(parameters_obj);
-            const parameters_str = _toStr(parameters_array);
+          
+          const [parameters_array, no_parameters, one_param] = _getParameters(parameters_obj);
+          const parameters_str = _toStr(parameters_array);
+          if (Array.isArray(shape_list) && shape_list.length === 1) {
+            const single_shape = _toStr(shape_list[0]);
+            const try_instead = `try [${single_shape}, ${single_shape}]`;
+            let error_234 = `TypeCzech.check_typeExtra(${parameters_str}, ${shape_str}) ${try_instead} as ${shape_str} is illegal.`;
+            error_234 = _consoleError(error_234, 'TE@234');
+            error_str_3arr = error3Array(MESS_TYPE_EXTRAS, error_234, shape_list);
+          } else if (params_collection && shape_collection) {
             
             if (typeFinal(shape_list) === 'string') {
               error_str_3arr = extraTypes(parameters_obj[0], shape_list);
@@ -2692,8 +2719,8 @@ if (node && node.constructor === RegExp) {
               error_str_3arr = extraTypes(parameters_obj, shape_list);
             }
           } else {
-            const parameters_str = _toStr(parameters_obj);
-            let error_227 = `TypeCzech.check_typeExtra(${parameters_str}, ${shape_str}) needs two collections to work`;
+            const para_obj_str = _toStr(parameters_obj);
+            let error_227 = `TypeCzech.check_typeExtra(${para_obj_str}, ${shape_str}) needs two collections to work`;
             error_227 = _consoleError(error_227, 'TE@227');
             error_str_3arr = error3Array(MESS_TYPE_EXTRAS, error_227, shape_list);
           }

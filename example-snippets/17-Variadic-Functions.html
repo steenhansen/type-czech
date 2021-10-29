@@ -3,7 +3,7 @@
 
 
   
-<div id='js-div' style="width:45%;">
+<div id='js-div' style="width:48%;">
   <a href='https://github.com/steenhansen/type-czech' class='git-hub'>GitHub Package</a>
   <div id='js-code'>the javascript</div>
 
@@ -174,7 +174,7 @@
 </div>
 
 
-<div id="the-explanation" style="width:55%">
+<div id="the-explanation" style="width:52%">
   <div class='an-explantion'>17 &mdash; Variadic Functions</div>
   <div id='explanation-text'>
     <br>
@@ -185,22 +185,22 @@
 
     <br>
 <pre>
-function PRE_check_oneToThreeStrings() {
-  if (!type_czech.check_type(arguments, 'string')) return ''
-  if (!type_czech.check_type(arguments, ['string', 'string'])) return ''
-  if (!type_czech.check_type(arguments, ['string', 'string', 'string'])) return ''
-  return 'Error, not ONE to THREE strings but - ' + arguments.length
+function PRE_check_oneTo3strings() {
+ if (!type_czech.check_type(arguments, 'string')) return ''
+ if (!type_czech.check_type(arguments, ['string', 'string'])) return ''
+ if (!type_czech.check_type(arguments,['string','string','string'])) return ''
+ return 'Error, not ONE to THREE strings but - ' + arguments.length
 }
-oneToThreeStrings = type_czech.linkUp(oneToThreeStrings, PRE_check_oneToThreeStrings)
-function oneToThreeStrings() {}
+oneTo3strings = type_czech.linkUp(oneTo3strings, PRE_check_oneTo3strings)
+function oneTo3strings() {}
 
-oneToThreeStrings()
-oneToThreeStrings('s-1', 's-2')
-oneToThreeStrings('s-1', 's-2', 's-3', 's-4')
+oneTo3strings()
+oneTo3strings('s-1', 's-2')
+oneTo3strings('s-1', 's-2', 's-3', 's-4')
 </pre>
 Here check_typeVariadic() accomplishes the same task as above.
 <pre>
-function PRE_check_oneToThreeStrings() {
+function PRE_check_oneTo3strings() {
   if (arguments.length > 3) 
     return 'Error, not ONE to THREE strings but - ' + arguments.length
   return type_czech.check_typeVariadic(arguments, ['string'])
@@ -243,8 +243,7 @@ function variadicFunc () {
 /**/    return type_czech.check_typeVariadic(arguments, ['number'])
 /**/  }
 /**/
-/**/  variadicFunc = type_czech.linkUp(variadicFunc, 
-/**/                                       PRE_check_variadicFunc)
+/**/  variadicFunc=type_czech.linkUp(variadicFunc,PRE_check_variadicFunc)
 
 variadicFunc(0,1,2)
 
@@ -271,8 +270,7 @@ function variadicArrs () {
 /**/    return type_czech.check_typeVariadic(arguments, [['number']])
 /**/  }
 /**/
-/**/  variadicArrs = type_czech.linkUp(variadicArrs,
-/**/                                         PRE_check_variadicArrs)
+/**/  variadicArrs=type_czech.linkUp(variadicArrs,PRE_check_variadicArrs)
 
 variadicArrs( [1], [1,2], [1,2,3], [1,2,3,4] )
 

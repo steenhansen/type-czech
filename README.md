@@ -104,41 +104,29 @@ Type-Czech the bad parts
     >>            CALLING FUNCTION PRE_check_aLottery(lottery_name, lucky_numbers, draw_date)
     ::: 1,2,3,4,5,26 :::1999-12-31
 
+
+### [TypeCzech API](./read-mes/api-list.md)
+
+
+///////////////////////////////
+
 [Above editable program on JSFiddle](https://jsfiddle.net/steen_hansen/0xtpLwsc/?00-Readme-Example)
 
 ### [59 Page Editable Tutorial on JSFiddle](https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Contents)
 
-
 ### [How To Snippets](./read-mes/how-to-snippets.md)
-
 
 ### [Self-Contained Live TypeCzech Fiddles](./read-mes/live-fiddle-samples.md)
 
 ### [Self-Contained Browsable Examples](./read-mes/web-browserable-examples.md)
 
-
-### [TypeCzech Methods](./read-mes/methods.md)
-
-
 ### [Node.js](./read-mes/node-js.md)
-
-
-
-
-
 
 ### [Tests](./read-mes/node-and-web-tests.md)
 
-
-
-
 ### [Example Style](./read-mes/example-style.md)
 
-
-
 ### [Detaching TypeCzech for Production](./read-mes/detaching-checking-code.md)
-
-
 
 ### [_Dependencies](./read-mes/Dependencies.md)
 

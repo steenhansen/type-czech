@@ -269,8 +269,8 @@ can't access lexical declaration 'yourClass' before initialization
 /**/    log(NL2+'POST_check_show :', name_year)
 /**/  }
 /**/  
-/**/  PRE_check_Person = {Person:PRE_check_Person, show:PRE_check_show}
-/**/  POST_check_Person = {Person:POST_check_Person, show:POST_check_show}
+/**/  PRE_CLASS_Person = {Person:PRE_check_Person, show:PRE_check_show}
+/**/  POST_CLASS_Person = {Person:POST_check_Person, show:POST_check_show}
 
 class Person {
   constructor(person_name) {
@@ -285,7 +285,7 @@ class Person {
 }
 
 /**/
-/**/  Person = type_czech.linkUp(Person, PRE_check_Person, POST_check_Person)
+/**/  Person = type_czech.linkUp(Person, PRE_CLASS_Person, POST_CLASS_Person)
 /**/
 
 issac_newton = new Person('issac Newton')

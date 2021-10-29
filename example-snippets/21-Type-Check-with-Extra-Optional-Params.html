@@ -170,20 +170,21 @@
 
 </div>
 
-<div id="the-explanation" style="width:48%">
+<div id="the-explanation" style="width:48%" class='code-scroll'>
   <div class='an-explantion'>21 &mdash; Type Check with Extra Optional Parameters</div>
   <div id='explanation-text'>
     <br>
     This is only for type checking <b>single</b> objects and <b>single</b> array parameter and result types.
     Please note that in the example to the left that the lone <span class='purp-similar'>person_obj</span>
-   parameter is referenced, not the <b>arguments</b> object. 
+    and  <span class='purp-similar'>person_array</span>
+   parameters are referenced, not the <b>arguments</b> object. The idea is that extra 
+   values, to be ignored, are inside the checked variable.
     
     <br><br>
-    To also check the string 'IGNORED-STRING' the checking function could be changed to :
+    To also check the string 'IGNORED-STRING' the checking function can be changed to :
 <pre>
 function PRE_check_Person(person_obj, ignored_string){
-  person_signature = {f_name:'string', l_name:'string'}
-  person_issue = type_czech.check_typeExtra(person_obj, person_signature)
+  person_issue=type_czech.check_typeExtra(person_obj,{f_name:'string'})
   if (person_issue) return person_issue
 
   return type_czech.check_type(ignored_string, 'string')
@@ -193,14 +194,34 @@ function PRE_check_Person(person_obj, ignored_string){
   Extra optional parameter values are not checked for correct type, they are just ignored. 
   As long as the correct declared type shape is not violated, any additional elective 
   parameters will be overlooked when using 
-  type_czech.check_typeExtra(<b>VARIABLE_NAME</b>, expected_types); and not using
+  check_typeExtra(<b>VARIABLE_NAME</b>, expected_types); and not using
   the arguments object.
     
   <br><br>
   Objects specify their mandatory keys and types, whilst arrays just check the
   begining elements for types, and ignore the rest undescribed elements.
-    
-  <br>
+    <hr>
+The checking construct style <b>check_typeExtra(arguments, ['number'])</b> gives an error
+as it is not clear where the extra parameter arguments would go, in the array, or after the array.
+
+<br><br>
+Because <b>check_typeExtra(arguments, {a:'number'})</b> means extra properties inside an object are allowed,
+like {a:'number'} or {a:'number', b:'string', c:'boolean'}.
+<br><br>
+
+But <b>check_type(arguments, ['number'])</b> indicates any sized array of numbers, like
+[1] or [1,2,3].
+<br><br>
+
+Then check_typeExtra(arguments, ['number'])</b> as above, could refer to either
+<ul>
+  <li>aFunctionCall([1, 'extra-a', 'extra-b', 'extra-c'])</li>
+  <li>aFunctionCall([1,2,3], 'extra-a')</li>
+</ul>
+
+Therefore, like the example to the left, there must an array with at least two types for it
+to be legal, like <b>check_typeExtra(arguments, ['number', 'number'])</b> with no ambiguity.
+<br><br>
 
   </div>
 
@@ -255,12 +276,11 @@ function PRE_check_Person(person_obj, ignored_string){
 /**/                      ? undefined : POST_check_Person
 /**/  
 /**/  function PRE_check_Person(person_obj){
-/**/    person_signature = {f_name:'string', l_name:'string'}
-/**/    return type_czech.check_typeExtra(person_obj, person_signature)
+/**/    return type_czech.check_typeExtra(person_obj, {f_name:'string'})
 /**/  }
 /**/  
 /**/  function POST_check_Person(person_arr){
-/**/    return type_czech.check_typeExtra(arguments, ['string', 'string'])
+/**/    return type_czech.check_typeExtra(person_arr, ['string', 'string'])
 /**/  }
 /**/  
 /**/  Person = type_czech.linkUp(Person, PRE_check_Person, POST_check_Person)
@@ -281,18 +301,23 @@ function Person(person_obj){
 guy = Person({f_name:'Guy', l_name:'Lafleur', extra_1:10}, 'IGNORED-STRING')
 log(guy)
 
-linesConsole(1)
-
-hakeem = Person({f_name:'Hakeem Olajuwon'})
-log(hakeem)
 
 linesConsole(1)
 
-fouts = Person({f_name:'Dan', l_name:'Fouts', extra_1: 'Air Coryell'})
+
+fouts = Person({l_name:'Dan Fouts', extra_1: 'Air Coryell'})
 log(fouts)
 
 
 linesConsole(1)
+
+
+hakeem = Person({f_name:'Hakeem', l_name:'Olajuwon'})
+log(hakeem)
+
+
+linesConsole(1)
+
 
 mc_enroe = Person({f_name:'John', l_name:'McEnroe',
                   extra_1: 'Angry', extra_2: 1959, extra_3: 'vs. Bjorn Borg'})
@@ -335,6 +360,8 @@ log(mc_enroe)
 fromToBoldText(458, 467, 'code', 4)  // person_obj
 fromToBoldText(575, 584, 'code', 4)  // person_obj    purple
 
+fromToBoldText(458, 467, 'code', 4)  // person_arr
+fromToBoldText(575, 584, 'code', 4)  // person_arr    purple
 
 
 

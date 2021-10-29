@@ -50,6 +50,8 @@ Type Errors:
   TE@230 Incorrect type
   TE@231 TypeCzech.check_emptyExtra(collection_a, collection_b) needs two collections to work
   TE@232 Element type invalid
+  TE@234 check_typeExtra(params, ['number']) is illegal
+  TE@234 check_emptyExtra(params, ['EMPTY-ERROR']) is prohibited
 
 Empty Errors:
   EE@301 an empty variable that is an error

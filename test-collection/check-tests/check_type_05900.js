@@ -753,7 +753,7 @@ test_pre_check_type_single(single_variable, single_signature, 5974, error_mess);
 
 single_variable  = 'not-object';
 single_signature = { an_object: 'Boaty-McBoatFace' };
-error_mess = `TE@201 - TypeCzech.check_type() called with '{}' against '!{}'. Contrasting a string type of value not-object, with '{"an_object":"Boaty-McBoatFace"}' an object`;
+error_mess = `TE@201 - TypeCzech.check_type() called with '{}' against '!{}'. Contrasting a string type of value not-object, with '{"an_object":"Boaty-McBoatFace"}' an object !!! string <> object`;
 test_pre_check_type_single(single_variable, single_signature, 5975, error_mess);
 
 single_variable  = 'a-string';

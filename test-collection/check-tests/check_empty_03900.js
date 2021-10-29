@@ -191,7 +191,7 @@ test_pre_check_empty_single(single_variable, single_signature, 3917, error_mess)
 
 single_variable  = [];
 single_signature = 'EMPTY-ERROR';
-error_mess = `PRE_test_3900() pre_check_empty_3900() PRE-FUNC: EE@307 - EMPTY-ERROR states 'array' must not be empty for the value ''
+error_mess = `PRE_test_3900() pre_check_empty_3900() PRE-FUNC: EE@307 - EMPTY-ERROR states 'array' must not be empty for the value []
 check_empty(arguments, expected_emptys)
     ACTUAL TYPES 'array'
     ACTUAL VALUE []
@@ -221,7 +221,7 @@ test_pre_check_empty_single(single_variable, single_signature, 3921, error_mess)
 
 single_variable  = new Date('');
 single_signature = 'EMPTY-ERROR';
-error_mess = `PRE_test_3900() pre_check_empty_3900() PRE-FUNC: EE@307 - EMPTY-ERROR states 'date' must not be empty for the value 'Invalid Date'
+error_mess = `PRE_test_3900() pre_check_empty_3900() PRE-FUNC: EE@307 - EMPTY-ERROR states 'date' must not be empty for the value null
 check_empty(arguments, expected_emptys)
     ACTUAL TYPES 'date'
     ACTUAL VALUE null
@@ -236,7 +236,7 @@ test_pre_check_empty_single(single_variable, single_signature, 3923, error_mess)
 
 single_variable  = NaN;
 single_signature = 'EMPTY-ERROR';
-error_mess = `PRE_test_3900() pre_check_empty_3900() PRE-FUNC: EE@307 - EMPTY-ERROR states 'number' must not be empty for the value 'NaN'
+error_mess = `PRE_test_3900() pre_check_empty_3900() PRE-FUNC: EE@307 - EMPTY-ERROR states 'number' must not be empty for the value NaN
 check_empty(arguments, expected_emptys)
     ACTUAL TYPES 'number'
     ACTUAL VALUE NaN
@@ -251,7 +251,7 @@ test_pre_check_empty_single(single_variable, single_signature, 3925, error_mess)
 
 single_variable  = /(?:)/;
 single_signature = 'EMPTY-ERROR';
-error_mess = `PRE_test_3900() pre_check_empty_3900() PRE-FUNC: EE@307 - EMPTY-ERROR states 'regexp' must not be empty for the value '/(?:)/'
+error_mess = `PRE_test_3900() pre_check_empty_3900() PRE-FUNC: EE@307 - EMPTY-ERROR states 'regexp' must not be empty for the value /(?:)/ +++
 check_empty(arguments, expected_emptys)
     ACTUAL TYPES 'regexp'
     ACTUAL VALUE /(?:)/ +++
@@ -501,7 +501,7 @@ test_pre_check_empty_single(single_variable, single_signature, 3954, error_mess)
 
 single_variable  = [];
 single_signature = 'EMPTY-ERROR';
-error_mess = `PRE_test_3900() pre_check_empty_3900() PRE-FUNC: EE@307 - EMPTY-ERROR states 'array' must not be empty for the value ''
+error_mess = `PRE_test_3900() pre_check_empty_3900() PRE-FUNC: EE@307 - EMPTY-ERROR states 'array' must not be empty for the value []
 check_empty(arguments, expected_emptys)
     ACTUAL TYPES 'array'
     ACTUAL VALUE []
@@ -511,7 +511,7 @@ test_pre_check_empty_single(single_variable, single_signature, 3955, error_mess)
 
 single_variable  = {};
 single_signature = 'EMPTY-ERROR';
-error_mess = `PRE_test_3900() pre_check_empty_3900() PRE-FUNC: EE@307 - EMPTY-ERROR states 'object' must not be empty for the value '{ }'
+error_mess = `PRE_test_3900() pre_check_empty_3900() PRE-FUNC: EE@307 - EMPTY-ERROR states 'object' must not be empty for the value { }
 check_empty(arguments, expected_emptys)
     ACTUAL TYPES 'object'
     ACTUAL VALUE {}
@@ -636,7 +636,7 @@ test_pre_check_empty_single(single_variable, single_signature, 3974, error_mess)
 
 single_variable  = 'not-object';
 single_signature = { an_object: 'EMPTY-ERROR' };
-error_mess = `TE@201 - TypeCzech.check_empty() called with '{}' against '!{}'. Contrasting a string type of value not-object, with '{"an_object":"EMPTY-ERROR"}' an object`;
+error_mess = `TE@201 - TypeCzech.check_empty() called with '{}' against '!{}'. Contrasting a string type of value not-object, with '{"an_object":"EMPTY-ERROR"}' an object !!! string <> object`;
 test_pre_check_empty_single(single_variable, single_signature, 3975, error_mess);
 
 single_variable  = '';
@@ -651,7 +651,7 @@ test_pre_check_empty_single(single_variable, single_signature, 3976, error_mess)
 
 single_variable  = {};
 single_signature = 'EMPTY-ERROR';
-error_mess = `PRE_test_3900() pre_check_empty_3900() PRE-FUNC: EE@307 - EMPTY-ERROR states 'object' must not be empty for the value '{ }'
+error_mess = `PRE_test_3900() pre_check_empty_3900() PRE-FUNC: EE@307 - EMPTY-ERROR states 'object' must not be empty for the value { }
 check_empty(arguments, expected_emptys)
     ACTUAL TYPES 'object'
     ACTUAL VALUE {}
@@ -661,7 +661,7 @@ test_pre_check_empty_single(single_variable, single_signature, 3977, error_mess)
 
 single_variable  = [];
 single_signature = 'EMPTY-ERROR';
-error_mess = `PRE_test_3900() pre_check_empty_3900() PRE-FUNC: EE@307 - EMPTY-ERROR states 'array' must not be empty for the value ''
+error_mess = `PRE_test_3900() pre_check_empty_3900() PRE-FUNC: EE@307 - EMPTY-ERROR states 'array' must not be empty for the value []
 check_empty(arguments, expected_emptys)
     ACTUAL TYPES 'array'
     ACTUAL VALUE []

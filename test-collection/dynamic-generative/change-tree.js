@@ -78,7 +78,8 @@ if (typeof exports === 'undefined') {
     const prop_nums_start = tree_str.replace(START_ELEMENT, '');
     const prop_nums_end = prop_nums_start.replace(END_ELEMENT, '');
     const the_arguments = JSON.parse(prop_nums_end);
-    const correct_args = [the_arguments];
+//    const correct_args = [the_arguments];
+    const correct_args = the_arguments;
     return correct_args;
   }
 

@@ -4,12 +4,12 @@
 
 
 
-<div id='js-div' style="width:55%">
+<div id='js-div' style="width:56%">
   <a href='https://github.com/steenhansen/type-czech' class='git-hub'>GitHub Package</a>
   <div id='js-code'>the javascript</div>
 </div>
 
-<div id="the-explanation" style="width:45%">
+<div id="the-explanation" style="width:44%">
   <div class='an-explantion'>23 &mdash; Typed Either Checks</div>
   <div id='explanation-text'>
     <br>
@@ -254,8 +254,7 @@ objNumArr('a-string')    // Fails with really long error message
 /**/    PRE_check_Name = [ 'string', 'string' ]
 /**/    PRE_check_Date = [ 'string', 'string', 'date' ]
 /**/    PRE_check_Year = [ 'string', 'string', 'number' ]
-/**/    PRE_check_person_signatures = [ PRE_check_Name, PRE_check_Date, 
-/**/                                                    PRE_check_Year ]
+/**/    PRE_check_person_signatures=[PRE_check_Name,PRE_check_Date,PRE_check_Year]
 /**/    return type_czech.check_typeEither(arguments, PRE_check_person_signatures)
 /**/  }
 /**/  
@@ -263,8 +262,7 @@ objNumArr('a-string')    // Fails with really long error message
 /**/    POST_check_Name = 'string'
 /**/    POST_check_Date = [ 'string', 'date' ]
 /**/    POST_check_Year = [ 'string', 'number' ]
-/**/    POST_check_person_signatures = [ POST_check_Name, POST_check_Date, 
-/**/                                                      POST_check_Year ]
+/**/    POST_check_person_signatures=[POST_check_Name,POST_check_Date,POST_check_Year]
 /**/    return type_czech.check_typeEither(arguments, POST_check_person_signatures)
 /**/  }
 /**/  
