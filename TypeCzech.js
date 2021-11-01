@@ -1,4 +1,6 @@
 /* eslint-disable block-scoped-var */
+const VERS_NUM = 'ver 1.0.0 nov-01-2021';
+
 let the_exports;
 if (typeof exports === 'undefined') {
   the_exports = window;
@@ -66,8 +68,6 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
     */
 
     function _TypeCzech(...the_parameters) {
-      const VERS_NUM = 'ver 4.0';
-
       /*
         1 - load testing code that calls TypeCzech, transfering more data
       OR

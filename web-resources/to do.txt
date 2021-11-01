@@ -1,3 +1,71 @@
+
+
+
+
+what about this idea
+
+
+
+myFunction(arguments){
+
+}
+
+
+
+check_type(arguments, myFuction)       /// where arguments ==> myFunction()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+need to re-upload all jsfiddles, as contents link didn't have a target=blank on it
+
+
+first line of minimized should now have v and date
+
+
+
+file:///C:/Users/16043/Desktop/_js/proxy/type-czech/examples-jsfiddle/26-Type-and-Empty-Abbreviations.html
+
+does not run correctly???
+
+
+
+the minimized copy is the wrong one with infinite bug !!!!!!!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 7 39 
 
 TypeCzech requires ECMAScript 2015 (ES6).

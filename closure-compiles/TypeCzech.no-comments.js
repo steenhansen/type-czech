@@ -1,4 +1,6 @@
 
+const VERS_NUM = 'ver 1.0.0 nov-01-2021';
+
 let the_exports;
 if (typeof exports === 'undefined') {
   the_exports = window;
@@ -35,8 +37,6 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
     
 
     function _TypeCzech(...the_parameters) {
-      const VERS_NUM = 'ver 4.0';
-
       
 
       let t_param_check_func;
@@ -645,7 +645,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         } else if (a_variable instanceof RegExp) {
           const regExp_str = a_variable.toString();
           is_empty = (regExp_str === EMPTY_REGEXP);
-        } else if (!Number.isFinite(a_variable)) {
+        } else if (typeof a_variable === 'number' && !Number.isFinite(a_variable)) {
           is_empty = true; 
         } else if (Number.isNaN(a_variable)) {
           is_empty = true; 
