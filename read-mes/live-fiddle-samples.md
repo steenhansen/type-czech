@@ -7,7 +7,7 @@ https://jsfiddle.net/steen_hansen/0xtpLwsc/?00-Readme-Example
 
 [01-PRE-and-POST-Functions.html](
 https://jsfiddle.net/steen_hansen/9u54vsd2/?01-PRE-and-POST-Functions    
-) 01 - What is Type-Czech?
+) 01 - What is TypeCzech?
 
 [02-Validate-Parameters-by-Value.html](
 https://jsfiddle.net/steen_hansen/6zy89om1/?02-Validate-Parameters-by-Value         
@@ -15,11 +15,11 @@ https://jsfiddle.net/steen_hansen/6zy89om1/?02-Validate-Parameters-by-Value
 
 [03-Turn-Off-Library-Not-Loaded.html](
 https://jsfiddle.net/steen_hansen/m1tce27f/?03-Turn-Off-Library-Not-Loaded       
-) 03 - Turn Off Type-Czech by Not Loading Library
+) 03 - Turn Off TypeCzech by Not Loading Library
 
 [04-Turn-Off-No-Check-Functions.html](
 https://jsfiddle.net/steen_hansen/nve4d3ah/?04-Turn-Off-No-Check-Functions       
-) 04 - Turn off Type-Czech by Not Loading Checking Functions
+) 04 - Turn off TypeCzech by Not Loading Checking Functions
 
 [05-Verify-Return-Results-by-Value.html](
 https://jsfiddle.net/steen_hansen/wrkvscqg/?05-Verify-Return-Results-by-Value       
@@ -37,41 +37,41 @@ https://jsfiddle.net/steen_hansen/abh0jkL1/?07-Mutated-Function-Parameters
 https://jsfiddle.net/steen_hansen/3pv5qwx8/?08-Mutated-Recursive-Function-Parameters       
 ) 08 - Mutated Recursive Function Parameters
 
-[09-Mutated-Window-Parameters.html](
-https://jsfiddle.net/steen_hansen/hrvucjzm/?09-Mutated-Window-Parameters       
-) 09 - Mutated Window Parameter
+[09-Closure-Parameters-Results-and-Methods.html](
+https://jsfiddle.net/steen_hansen/r8L3mp40/?09-Closure-Parameters-Results-and-Methods     
+) 09 - Closure Parameters Results and Methods
 
-[10-Closure-Parameters-Results-and-Methods.html](
-https://jsfiddle.net/steen_hansen/r8L3mp40/?10-Closure-Parameters-Results-and-Methods       
-) 10 - Closure Parameters, Results, and Methods
+[10-Class-Parameters-Results-and-Methods.html](
+https://jsfiddle.net/steen_hansen/Lhwov8y9/?10-Class-Parameters-Results-and-Methods     
+) 10 - Class Parameters Results and Methods.html
 
-[11-Class-Parameters-Results-and-Methods.html](
-https://jsfiddle.net/steen_hansen/Lhwov8y9/?11-Class-Parameters-Results-and-Methods       
-) 11 - Class Parameters, Results, and Methods
+[11-Object-Properties.html](
+https://jsfiddle.net/steen_hansen/qp29Ljd1/?11-Object-Properties      
+) 11 - Object Properties
 
-[12-Object-Object-Properties.html](
-https://jsfiddle.net/steen_hansen/qp29Ljd1/?12-Object-Object-Properties       
-) 12 - Object Object-Properties
+[12-Class-Interface.html](
+https://jsfiddle.net/steen_hansen/og2sk4b9/?12-Class-Interface      
+) 12 - Class Interface
 
-[13-Class-Interface.html](
-https://jsfiddle.net/steen_hansen/og2sk4b9/?13-Class-Interface       
-) 13 - Class Interface
+[13-Parameter-and-Results-Multi-Scalar-Types.html](
+https://jsfiddle.net/steen_hansen/rh79bLwa/?13-Parameter-and-Results-Multi-Scalar-Types     
+) 13 - Parameter and Results Multi Scalar Types
 
-[14-Parameter-and-Results-Multi-Scalar-Types.html](
-https://jsfiddle.net/steen_hansen/rh79bLwa/?14-Parameter-and-Results-Multi-Scalar-Types       
-) 14 - Parameter and Result Multi Scalar Types
+[14-Parameter-and-Results-Multi-Types.html](
+https://jsfiddle.net/steen_hansen/1ref2ot7/?14-Parameter-and-Results-Multi-Types   
+) 14 - Parameter and Results Multi Types
 
-[15-Parameter-and-Results-Multi-Types.html](
-https://jsfiddle.net/steen_hansen/1ref2ot7/?15-Parameter-and-Results-Multi-Types         
-) 15 - Array and Object Types with Parameter and Results
+[15-Lone-Single-Type-Parameter-Functions.html](
+https://jsfiddle.net/steen_hansen/zkhfLw0u/?15-Lone-Single-Type-Parameter-Functions        
+) 15 - Lone Single Type Parameter Functions
 
-[16-Lone-Single-Type-Parameter-Functions.html](
-https://jsfiddle.net/steen_hansen/zkhfLw0u/?16-Lone-Single-Type-Parameter-Functions       
-) 16 - Lone Single Type Parameter Functions
+[16-Arrays-with-One-Type.html](
+https://jsfiddle.net/steen_hansen/bsw3yp5c/?16-Arrays-with-One-Type     
+) 16 - Arrays with One Type
 
-[17-Arrays-with-One-Type.html](
-https://jsfiddle.net/steen_hansen/bsw3yp5c/?17-Arrays-with-One-Type       
-) 17 - Arrays with One Type
+[17-Variadic-Functions.html](
+https://jsfiddle.net/steen_hansen/hrvucjzm/?17-Variadic-Functions.html     
+) 17 - VariadicFunctions
 
 [18-Class-Type-Checks.html](
 https://jsfiddle.net/steen_hansen/063wLqfs/?18-Class-Type-Checks       
@@ -155,8 +155,19 @@ https://jsfiddle.net/steen_hansen/cwfsubtv/?37-Readme-Example-Arrow-Functions
 ) 37 - Readme Example Lambda
 
 
+[38-Every-Check.html](
+https://jsfiddle.net/steen_hansen/1umwvht5/?38-Every-Check        
+) 38 - Every Check
+
+[39-Assert-Checks.html](
+https://jsfiddle.net/steen_hansen/ta7fdnrw/?39-Assert-Checks       
+) 39 - Assert Checks
 
 
+
+[40-Prescribed-Use.html](
+https://jsfiddle.net/steen_hansen/m1atu7qj/?40-Prescribed-Use       
+) 40 - Prescribed Use
 
 
 

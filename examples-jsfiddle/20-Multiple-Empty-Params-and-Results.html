@@ -4,6 +4,7 @@
 
 
 
+
 <div id='js-div' style="width:50%">
   <a href='https://github.com/steenhansen/type-czech' class='git-hub'>GitHub Package</a>
         <div id='js-code'>the javascript</div>
@@ -18,7 +19,7 @@
     <br>
 
 To see if a function has multiple parameters or return results that lack content, such as empty strings, arrays with 
-no elements, or an objects with no properties use type_czech.check_empty().
+no elements, or an objects with no properties use check_empty().
 
 <br><br>
 Null and undefined values are also considered to be empty with no value.
@@ -38,19 +39,22 @@ Null and undefined values are also considered to be empty with no value.
 
 
 
+
+
+
 <!--            -----------------TYPE 1-------------------------       -->
 
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@3a77ff8b17f2a022a9ab1f0a41866d9d46173b30/web-resources/consolelog.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@3a77ff8b17f2a022a9ab1f0a41866d9d46173b30/web-resources/TypeCzech.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@3a77ff8b17f2a022a9ab1f0a41866d9d46173b30/web-resources/type-czech.css">
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech/web-resources/consolelog.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech/web-resources/TypeCzech.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech/web-resources/type-czech.css">
 
 <!--            ---------------TYPE 1---------------------------       -->
 
 
-
-
-
 <div id='js-fiddles'>
+  <a title="Example-Contents" href="https://jsfiddle.net/steen_hansen/0xtpLwsc/?Example-Contents">Contents</a>
+
+
   <a title="00-Readme-Example" href="https://jsfiddle.net/steen_hansen/0xtpLwsc/?00-Readme-Example" target="_blank">00</a>
 
   <a title="01-PRE-and-POST-Funtions" href="https://jsfiddle.net/steen_hansen/9u54vsd2/?01-PRE-and-POST-Functions" target="_blank">01</a>
@@ -78,7 +82,7 @@ Null and undefined values are also considered to be empty with no value.
     
     <a title="10-Class-Parameters-Results-and-Methods.html" href="https://jsfiddle.net/steen_hansen/Lhwov8y9/?10-Class-Parameters-Results-and-Methods" target="_blank">10</a>
     
-    <a title="11-Object-Object-Properties.html" href="https://jsfiddle.net/steen_hansen/qp29Ljd1/?11-Object-Object-Properties" target="_blank">11</a>
+    <a title="11-Object-Properties.html" href="https://jsfiddle.net/steen_hansen/qp29Ljd1/?11-Object-Properties" target="_blank">11</a>
     
     <a title="12-Class-Interface.html" href="https://jsfiddle.net/steen_hansen/og2sk4b9/?12-Class-Interface" target="_blank">12</a>
     
@@ -91,7 +95,7 @@ Null and undefined values are also considered to be empty with no value.
     <a title="16-Arrays-with-One-Type.html" href="https://jsfiddle.net/steen_hansen/bsw3yp5c/?16-Arrays-with-One-Type" target="_blank">16</a>
     
 
-    <a title="17-Variadic-Functions.html.html" href="https://jsfiddle.net/steen_hansen/hrvucjzm/?17-Variadic-Functions.html" target="_blank">17</a>
+    <a title="17-Variadic-Functions.html" href="https://jsfiddle.net/steen_hansen/hrvucjzm/?17-Variadic-Functions.html" target="_blank">17</a>
 
 
 
@@ -142,8 +146,11 @@ Null and undefined values are also considered to be empty with no value.
   <a title="38-Every-Check.html" href="https://jsfiddle.net/steen_hansen/1umwvht5/?38-Every-Check" target="_blank">38</a>
   
   <a title="39-Assert-Checks.html" href="https://jsfiddle.net/steen_hansen/ta7fdnrw/?39-Assert-Checks" target="_blank">39</a>
-    
+  
   <a title="40-Prescribed-Use.html" href="https://jsfiddle.net/steen_hansen/m1atu7qj/?40-Prescribed-Use">40</a>
+
+  <a title="41-Lens-Example.html" href="https://jsfiddle.net/steen_hansen/fxt8ag56/?41-Lens-Example">40</a>
+
 
     &nbsp;&nbsp;
 
@@ -191,15 +198,18 @@ Null and undefined values are also considered to be empty with no value.
 
   </div>
 
-
-
-  
 <!--            ---------------TYPE 1---------------------------       -->
 
 
 
-</div>
 
+
+
+
+
+
+
+</div>
 
 
 
@@ -223,19 +233,22 @@ Null and undefined values are also considered to be empty with no value.
 /**/  if (typeof TypeCzech === 'function')
 /**/    type_czech = TypeCzech('LOG-ERRORS')
 /**/  else
-/**/    type_czech = { link: (nop) => nop, isActive: (x) => false }
+/**/    type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
 /**/
 /**/  PRE_check_Person = (typeof PRE_check_Person === 'undefined') 
 /**/                     ? undefined : PRE_check_Person
+/**/
 /**/  POST_check_Person = (typeof POST_check_Person === 'undefined')
 /**/                      ? undefined : POST_check_Person
 /**/
 /**/  PRE_check_Person_EMPTYS = ['EMPTY-ERROR', 'EMPTY-OK', 'EMPTY-ERROR']
+/**/
 /**/  POST_check_Person_EMPTYS = {l_name:'EMPTY-ERROR', b_date:'EMPTY-OK'}
 /**/
 /**/  function PRE_check_Person(f_name, l_name, b_date){
 /**/    return type_czech.check_empty(arguments, PRE_check_Person_EMPTYS)
 /**/  }
+/**/
 /**/  function POST_check_Person(person_obj){
 /**/    return type_czech.check_empty(arguments, POST_check_Person_EMPTYS)
 /**/  }
@@ -273,20 +286,20 @@ log(sting)
   
   jsToDiv('js-code', "check-code");
 
-  fromToBoldText(1039, 1079, 'code', 3)  // 'Charles', 'Windsor', new Date(1948,0,14)
+  fromToBoldText(1064, 1104, 'code', 3)  // 'Charles', 'Windsor', new Date(1948,0,14)
   fromToBoldText(1, 51, 'log', 3)   // { "l_name": "Windsor", "b_date": "1948-01-14" }
 
   
 
-  fromToBoldText(1131, 1142, 'code', 1)  // new Date('')
+  fromToBoldText(1156, 1167, 'code', 1)  // new Date('')
   fromToBoldText(218, 223, 'log', 1)   // 'date'
   fromToBoldText(270, 273, 'log', 1)   // null
   fromToBoldText(327, 339, 'log', 1)   //,"EMPTY-ERROR"]
 
 
-  fromToBoldText(1183, 1184, 'code', 2)  // new Date('')
-  fromToBoldText(691, 699, 'log', 2)   // {l_name:""
-  fromToBoldText(746, 765, 'log', 2)   // {l_name:"EMPTY-ERROR",
+  fromToBoldText(1208, 1209, 'code', 2)  // , '', 
+  fromToBoldText(778, 786, 'log', 2)   // {l_name:""
+  fromToBoldText(833, 852, 'log', 2)   // {l_name:"EMPTY-ERROR",
 
 
 
@@ -294,5 +307,4 @@ log(sting)
 
 <link rel="stylesheet"
   href="https://fonts.googleapis.com/css?family=Inconsolata">
-
   

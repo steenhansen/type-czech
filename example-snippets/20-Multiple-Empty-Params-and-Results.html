@@ -19,7 +19,7 @@
     <br>
 
 To see if a function has multiple parameters or return results that lack content, such as empty strings, arrays with 
-no elements, or an objects with no properties use type_czech.check_empty().
+no elements, or an objects with no properties use check_empty().
 
 <br><br>
 Null and undefined values are also considered to be empty with no value.
@@ -52,11 +52,6 @@ Null and undefined values are also considered to be empty with no value.
 <!--            ---------------TYPE 1---------------------------       -->
 
 
-
-
-
-
-
 <div id='js-fiddles'>
   <a title="Example-Contents" href="../example-snippets/example-contents.html">Contents</a>
   
@@ -78,10 +73,10 @@ Null and undefined values are also considered to be empty with no value.
     
     <a title="08-Mutated-Recursive-Function-Parameters.html" href="../example-snippets/08-Mutated-Recursive-Function-Parameters.html">08</a>
     
-   
      
+   
     <a title="09-Closure-Parameters-Results-and-Methods.html" href="../example-snippets/09-Closure-Parameters-Results-and-Methods.html">09</a>
-              
+            
     <a title="10-Class-Parameters-Results-and-Methods.html" href="../example-snippets/10-Class-Parameters-Results-and-Methods.html">10</a>
     
     <a title="11-Object-Properties.html" href="../example-snippets/11-Object-Properties.html">11</a>
@@ -142,12 +137,14 @@ Null and undefined values are also considered to be empty with no value.
 
     <a title="38-Every-Check.html" href="../example-snippets/38-Every-Check.html">38</a>
 
-  
+
     <a title="39-Assert-Checks.html" href="../example-snippets/39-Assert-Checks.html">39</a>
 
     <a title="40-Prescribed-Use.html" href="../example-snippets/40-Prescribed-Use.html">40</a>
 
-      &nbsp;&nbsp;
+    <a title="41-Lens-Example.html" href="../example-snippets/41-Lens-Example.html">41</a>
+
+    &nbsp;&nbsp;
 
     <a title="101-Extending-Classes-Inline.html" href="../examples-web/101-Extending-Classes-Inline.html">101</a>
     
@@ -192,10 +189,14 @@ Null and undefined values are also considered to be empty with no value.
     &copy; 2021 Steen Hansen
   </div>
 
-
-
-
 <!--            ---------------TYPE 1---------------------------       -->
+
+
+
+
+
+
+
 
 
 
@@ -224,19 +225,22 @@ Null and undefined values are also considered to be empty with no value.
 /**/  if (typeof TypeCzech === 'function')
 /**/    type_czech = TypeCzech('LOG-ERRORS')
 /**/  else
-/**/    type_czech = { link: (nop) => nop, isActive: (x) => false }
+/**/    type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
 /**/
 /**/  PRE_check_Person = (typeof PRE_check_Person === 'undefined') 
 /**/                     ? undefined : PRE_check_Person
+/**/
 /**/  POST_check_Person = (typeof POST_check_Person === 'undefined')
 /**/                      ? undefined : POST_check_Person
 /**/
 /**/  PRE_check_Person_EMPTYS = ['EMPTY-ERROR', 'EMPTY-OK', 'EMPTY-ERROR']
+/**/
 /**/  POST_check_Person_EMPTYS = {l_name:'EMPTY-ERROR', b_date:'EMPTY-OK'}
 /**/
 /**/  function PRE_check_Person(f_name, l_name, b_date){
 /**/    return type_czech.check_empty(arguments, PRE_check_Person_EMPTYS)
 /**/  }
+/**/
 /**/  function POST_check_Person(person_obj){
 /**/    return type_czech.check_empty(arguments, POST_check_Person_EMPTYS)
 /**/  }
@@ -274,20 +278,20 @@ log(sting)
   
   jsToDiv('js-code', "check-code");
 
-  fromToBoldText(1039, 1079, 'code', 3)  // 'Charles', 'Windsor', new Date(1948,0,14)
+  fromToBoldText(1064, 1104, 'code', 3)  // 'Charles', 'Windsor', new Date(1948,0,14)
   fromToBoldText(1, 51, 'log', 3)   // { "l_name": "Windsor", "b_date": "1948-01-14" }
 
   
 
-  fromToBoldText(1131, 1142, 'code', 1)  // new Date('')
+  fromToBoldText(1156, 1167, 'code', 1)  // new Date('')
   fromToBoldText(218, 223, 'log', 1)   // 'date'
   fromToBoldText(270, 273, 'log', 1)   // null
   fromToBoldText(327, 339, 'log', 1)   //,"EMPTY-ERROR"]
 
 
-  fromToBoldText(1183, 1184, 'code', 2)  // new Date('')
-  fromToBoldText(691, 699, 'log', 2)   // {l_name:""
-  fromToBoldText(746, 765, 'log', 2)   // {l_name:"EMPTY-ERROR",
+  fromToBoldText(1208, 1209, 'code', 2)  // , '', 
+  fromToBoldText(778, 786, 'log', 2)   // {l_name:""
+  fromToBoldText(833, 852, 'log', 2)   // {l_name:"EMPTY-ERROR",
 
 
 
@@ -295,3 +299,6 @@ log(sting)
 
 <link rel="stylesheet"
   href="https://fonts.googleapis.com/css?family=Inconsolata">
+
+
+  

@@ -6,8 +6,8 @@
 
 // 100,000 loops
 // check all calls == 4351ms
-// turn off Type-Czech == 49ms
-// remove Type-Czech == 50ms
+// turn off TypeCzech == 49ms
+// remove TypeCzech == 50ms
 
 // 1,000,000 loops
 // check all == 42848ms
@@ -28,7 +28,7 @@ if (use_type_czech) {
   const { TypeCzech } = require('../TypeCzech.js');
   type_czech = TypeCzech('LOG-ERRORS');
 } else {
-  type_czech = { link: (_) => _, isActive: (x) => false };
+  type_czech = { linkUp: (_) => _, isActive: (x) => false };
 }
 
 const LOTTERY_SIGNATURE = ['string', ['number'], 'date'];

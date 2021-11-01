@@ -1,7 +1,7 @@
 
-# Type-Czech
+# TypeCzech
 
-Type-Czech is a runtime type checking JavaScript library that can be programmatically turned on and off.
+TypeCzech is a runtime type checking JavaScript library that can be programmatically turned on and off.
 Include one file in your web page or in your Node.js file to allow you to type check function parameters
 and function results. Errors can be set to throw halting exceptions or just output to the Console.
 
@@ -11,40 +11,37 @@ Enjoy some TypeScript benefits without the drawbacks of
   -  New language syntax
   -  Compile time only checks
 
-With Type-Czech you can
+With TypeCzech you can
 
   -  Check function parameter types, including arrays, and extended objects
   -  Ensure strings, arrays, and objects are not empty
-  -  Catch mutations in function parameter that are collections
+  -  Catch mutations in function parameters that are collections
 
-Missing from Type-Czech
+Missing from TypeCzech
 
   -  Type inference
   -  Checking types of optional function parameters
   -  Generics
 
-Type-Czech the bad parts
+TypeCzech the bad parts
 
   - Verbosity of adding PRE_checking(), POST_checking(), and linkUp() functions 
   - Continuously checking parameter mutations of collections can be slow
   - Complicated dynamic minimization of unused code during runtime, while checking constructors and methods of extended classes
 
-## A Type-Czech Example
+## A TypeCzech Example
 
   -  type_czech.check_type() ensures that the parameters to aLottery() are first a string, then an array of numbers, and finally a date
   -  type_czech.check_empty() complains when parameters are found to be empty strings, arrays, or objects
   -  PRE_check_aLottery() is executed just before aLottery() runs via type_czech.linkUp() 
   -  &gt;&gt; precedes error messages in the console
-  -  /**/ highlights added Type-Czech test code that is safely removable or turned off
+  -  /**/ highlights added TypeCzech test code that is safely removable or turned off
 
 
     /**/  type_czech = TypeCzech('LOG-ERRORS')
-    /**/  //type_czech = TypeCzech('NO-CHECKING')
     /**/
-    /**/  LOTTERY_SIGNATURE = ['string', ['number'], 'date']
-    /**/
-    /**/  function PRE_check_aLottery(lottery_name, lucky_numbers, draw_date){
-    /**/    type_issue = type_czech.check_type(arguments, LOTTERY_SIGNATURE)
+    /**/  function PRE_check_aLottery(){
+    /**/    type_issue=type_czech.check_type(arguments,['string',['number'],'date'])
     /**/    if (type_issue) return type_issue
     /**/    return type_czech.check_empty(arguments, ['EMPTY-ERROR'])
     /**/  }

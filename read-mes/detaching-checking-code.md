@@ -12,7 +12,7 @@
     /**/  if (typeof TypeCzech === 'function')
     /**/    type_czech = TypeCzech('LOG-ERRORS')
     /**/  else
-    /**/    type_czech = { link: (nop) => nop, isActive: (x) => false }
+    /**/    type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
     /**/  
     /**/  function PRE_check_posNumber(a_number){
     /**/    if (a_number<1) return `Error, ${a_number} is not positive`
@@ -36,7 +36,7 @@
     /**/  if (typeof TypeCzech === 'function') 
     /**/    type_czech = TypeCzech()
     /**/  else
-    /**/    type_czech = { link: (nop) => nop, isActive: (x) => false }
+    /**/    type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
     /**/  
     /**/  function PRE_check_posNumber(a_number){
     /**/    if (a_number<1) return `Error, ${a_number} is not positive`
@@ -63,7 +63,7 @@
     /**/  if (typeof TypeCzech === 'function') 
     /**/    type_czech = TypeCzech()
     /**/  else
-    /**/    type_czech = { link: (nop) => nop, isActive: (x) => false }
+    /**/    type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
     /**/  
     /**/  if (type_czech.isActive()) {
     /**/    function PRE_check_posNumber(a_number){
@@ -94,7 +94,7 @@
     /**/  if (typeof TypeCzech === 'function') 
     /**/    type_czech = TypeCzech('LOG-ERRORS')
     /**/  else
-    /**/    type_czech = { link: (nop) => nop, isActive: (x) => false }
+    /**/    type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
     /**/  
     /**/  //  function PRE_check_posNumber(a_number){
     /**/  //    if (a_number<1) return `Error, ${a_number} is not positive`

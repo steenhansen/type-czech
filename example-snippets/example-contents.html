@@ -1,6 +1,6 @@
 
 <!DOCTYPE html><meta charset="utf-8" />
-<title>Type-Czech</title>
+<title>TypeCzech</title>
 
 
 <style>
@@ -28,10 +28,10 @@ pre {
 
 </style>
 
-<h2>Type-Czech</h2>
+<h2>TypeCzech</h2>
 
 <p>
-Type-Czech is a runtime type checking JavaScript library that can be programmatically turned on and off. Include one file in your web pages or in your Node.js files to type check function parameters
+TypeCzech is a runtime type checking JavaScript library that can be programmatically turned on and off. Include one file in your web pages or in your Node.js files to type check function parameters
 and function results. Errors can be set to throw halting exceptions or just output to the Console.
 </p>
 
@@ -45,14 +45,14 @@ Enjoy some TypeScript benefits without the drawbacks of
   <li>Compile time only checks</li>
 </ul>
 
-With Type-Czech you can
+With TypeCzech you can
 <ul>
   <li>Check function parameter types, including arrays, and extended objects</li>
   <li>Ensure strings, arrays, and objects are not empty</li>
   <li>Catch reference mutations in function parameters</li>
 </ul>
 
-Missing from Type-Czech
+Missing from TypeCzech
 <ul>
   <li>Type inference</li>
   <li>Checking types of optional function parameters</li>
@@ -60,21 +60,21 @@ Missing from Type-Czech
 </ul>
 
 
-Type-Czech the bad parts
+TypeCzech the bad parts
 <ul>
   <li>Verbosity of adding PRE_checking() and linkUp() functions</li>
   <li>Continuously checking parameter mutations of collections can be slow</li>
   <li>Complicated dynamic minimization of unused tests during runtime, while checking constructors and methods of extended classes</li>
 </ul>
 
-<h3>A Type-Czech Example</h3>
+<h3>A TypeCzech Example</h3>
 
 <ul>
   <li>type_czech.check_type() ensures that the parameters to aLottery() are a string, then an array of numbers, and finally a date</li>
   <li>type_czech.check_empty() complains when parameters are found to be empty strings, arrays, or objects</li>
   <li>PRE_check_aLottery() is executed just before aLottery() runs via type_czech.linkUp()</li>
   <li>&gt;&gt; precedes error messages in the console
-  <li>/**/ highlights added Type-Czech test code that is safely removable or just turned off</li>
+  <li>/**/ highlights added TypeCzech test code that is safely removable or just turned off</li>
 </ul>
 
 <pre>
@@ -146,10 +146,10 @@ aLottery('', [1,2,3,4,5,26], new Date('Dec 31 1999'))
 </pre>
 
 <h3>GitHub</h3>
-<a title="Type-Czech" href="https://github.com/steenhansen/type-czech">Type-Czech</a> project with tests
+<a title="TypeCzech" href="https://github.com/steenhansen/type-czech">TypeCzech</a> project with tests
 
 
-<h3>Local Type-Czech Tutorial</h3>
+<h3>Local TypeCzech Tutorial</h3>
 
 
 <div><a title="00-Readme-Example" href="00-Readme-Example.html">00-Readme-Example</a>
@@ -168,12 +168,12 @@ aLottery('', [1,2,3,4,5,26], new Date('Dec 31 1999'))
 </div>
   
 <div><a title="03-Turn-Off-Library-Not-Loaded.html" href="03-Turn-Off-Library-Not-Loaded.html">03-Turn-Off-Library-Not-Loaded</a>
-  - Turn off Type-Czech by not loading TypeCzech.js
+  - Turn off TypeCzech by not loading TypeCzech.js
   <div class="functions">TypeCzech()</div>
 </div>
   
 <div><a title="04-Turn-Off-No-Check-Functions.html" href="04-Turn-Off-No-Check-Functions.html">04-Turn-Off-No-Check-Functions</a>
-  - Turn off Type-Czech by not loading checking functions
+  - Turn off TypeCzech by not loading checking functions
   <div class="functions">TypeCzech()</div>
 </div>
   
@@ -361,6 +361,10 @@ aLottery('', [1,2,3,4,5,26], new Date('Dec 31 1999'))
   <div class="functions">TypeCzech() linkUp()</div>
 </div>
 
+<div><a title="41-Lens-Example.html" href="41-Lens-Example.html">41-Lens-Example</a>
+  - Lens Example
+  <div class="functions">check_type() assert_check()</div>
+</div>
   <br>
 
 <div><a title="101-Extending-Classes-Inline.html" href="../examples-web/101-Extending-Classes-Inline.html">101-Extending-Classes-Inline</a>

@@ -5,7 +5,7 @@ These files need to be downloaded and then opened with a browser to do anything.
 
 [01-PRE-and-POST-Functions.html](
 samples/01-PRE-and-POST-Functions.html
-) 01 - What is Type-Czech?
+) 01 - What is TypeCzech?
 
 [02-funcs-off.html](
 samples/02-funcs-off.html
@@ -13,11 +13,11 @@ samples/02-funcs-off.html
 
 [03-return-check.html](
 samples/03-return-check.html
-) 03 - Turn Off Type-Czech by Not Loading Library
+) 03 - Turn Off TypeCzech by Not Loading Library
 
 [04-closure-check.html](
 samples/04-closure-check.html
-) 04 - Turn off Type-Czech by Not Loading Checking Functions
+) 04 - Turn off TypeCzech by Not Loading Checking Functions
 
 [05-closure-off.html](
 samples/05-closure-off.html

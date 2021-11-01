@@ -15,9 +15,9 @@
   <div class='an-explantion'>40 &mdash; Prescribed Use</div>
   <div id='explanation-text'>
     <br>
-The intended manner for using Type-Czech is to <span class='red-explanation'>toggle 
+The intended manner for using TypeCzech is to <span class='red-explanation'>toggle 
    runtime checking</span> by loading or not loading TypeCzech.js.
-   The below code will render all Type-Czech calls into no-ops when
+   The below code will render all TypeCzech calls into no-ops when
    TypeCzech.js is not loaded, virtually no cpu time is lost as 
    can be seen in /time-trials/time-differences.js.
 <br>
@@ -25,15 +25,15 @@ The intended manner for using Type-Czech is to <span class='red-explanation'>tog
 if (typeof TypeCzech === 'function')
   type_czech = TypeCzech('LOG-ERRORS')
 else
-  type_czech = { link: (nop) => nop, isActive: (x) => false }
+  type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
 </pre>
 
-Program with Type-Czech testing turned ON.
+Program with TypeCzech testing turned ON.
 <pre>
 &lt;script src="../TypeCzech.js"&gt;
 </pre>
   
-Program with Type-Czech testing turned OFF.
+Program with TypeCzech testing turned OFF.
 <pre>
 &lt;!-- &lt;script src="../TypeCzech.js"&gt; --&gt;
 </pre>
@@ -45,8 +45,8 @@ Program with Type-Czech testing turned OFF.
 
 
 By using the below construct, <span class='blue-explanation'>non-existant PRE and POST checking functions 
-will just be ignored</span> by Type-Czech. Useful for not including large blocks of
-testing code to the browser that will be parsed. This construct stops exceptions when non-existant checking functions are referenced.
+will just be ignored</span> by TypeCzech. Useful for not including large blocks of
+testing code to the browser that will be parsed. This style stops exceptions when non-existant checking functions are referenced.
 
 <pre>
 PRE_check_aLottery = (typeof PRE_check_aLottery === 'undefined')
@@ -63,7 +63,7 @@ PRE_check_aLottery = (typeof PRE_check_aLottery === 'undefined')
     <div class='red-explanation'>if (typeof TypeCzech === 'function')</div>
     <div  class='red-explanation'>&nbsp;&nbsp;&nbsp;&nbsp;type_czech = TypeCzech('THROW-EXCEPTIONS')</div>
     <div  class='red-explanation'>else</div>
-    <div  class='red-explanation'>&nbsp;&nbsp;&nbsp;&nbsp;type_czech = { link: (nop) => nop, isActive: (x) => false }</div>
+    <div  class='red-explanation'>&nbsp;&nbsp;&nbsp;&nbsp;type_czech = { linkUp: (nop) => nop, isActive: (x) => false }</div>
   </li>
   <li>
     <span class='blue-explanation'>PRE_check_func=(typeof PRE_check_func==='undefined') ? undefined : PRE_check_func</span>
@@ -93,6 +93,7 @@ PRE_check_aLottery = (typeof PRE_check_aLottery === 'undefined')
 <!--            -------------------TYPE 1-----------------------       -->
 
 
+
 <div id='js-fiddles'>
   <a title="Example-Contents" href="../example-snippets/example-contents.html">Contents</a>
   
@@ -113,7 +114,8 @@ PRE_check_aLottery = (typeof PRE_check_aLottery === 'undefined')
     <a title="07-Mutated-Function-Parameters.html" href="../example-snippets/07-Mutated-Function-Parameters.html">07</a>
     
     <a title="08-Mutated-Recursive-Function-Parameters.html" href="../example-snippets/08-Mutated-Recursive-Function-Parameters.html">08</a>
-   
+    
+     
    
     <a title="09-Closure-Parameters-Results-and-Methods.html" href="../example-snippets/09-Closure-Parameters-Results-and-Methods.html">09</a>
             
@@ -176,10 +178,13 @@ PRE_check_aLottery = (typeof PRE_check_aLottery === 'undefined')
     <a title="37-Readme-Example-Arrow-Functions.html" href="../example-snippets/37-Readme-Example-Arrow-Functions.html">37</a>
 
     <a title="38-Every-Check.html" href="../example-snippets/38-Every-Check.html">38</a>
-    
+
+
     <a title="39-Assert-Checks.html" href="../example-snippets/39-Assert-Checks.html">39</a>
 
     <a title="40-Prescribed-Use.html" href="../example-snippets/40-Prescribed-Use.html">40</a>
+
+    <a title="41-Lens-Example.html" href="../example-snippets/41-Lens-Example.html">41</a>
 
     &nbsp;&nbsp;
 
@@ -226,8 +231,7 @@ PRE_check_aLottery = (typeof PRE_check_aLottery === 'undefined')
     &copy; 2021 Steen Hansen
   </div>
 
-
-  <!--            -------------------TYPE 1-----------------------       -->
+<!--            -------------------TYPE 1-----------------------       -->
 
 
   
@@ -250,7 +254,7 @@ function runEnvironment(TypeCzech, pre_check_exists) {
 /**/  if (typeof TypeCzech === 'function')
 /**/    type_czech = TypeCzech('LOG-ERRORS')
 /**/  else
-/**/    type_czech = { link: (nop) => nop, isActive: (x) => false }
+/**/    type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
 
 /**/  PRE_check_aLottery = (typeof PRE_check_aLottery === 'undefined')
 /**/                       ? undefined : PRE_check_aLottery
@@ -303,12 +307,20 @@ aLottery('Powerball', [], new Date('apr 4 4444'))
    fromToBoldText(63, 98, 'code', 1)  //  if (typeof TypeCzech === 'function')
    fromToBoldText(108, 143, 'code', 1)  //   type_czech = TypeCzech('LOG-ERRORS')
    fromToBoldText(151, 154, 'code', 1)  //  else
-   fromToBoldText(164, 216, 'code', 1)  //  type_czech = { link: (nop) => nop, isActive: (x) => false }
+   fromToBoldText(164, 224, 'code', 1)  //  type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
 
 ///////////////////////
 
-fromToBoldText(225, 288, 'code', 2)  //  PRE_check_aLottery = (typeof PRE_check_aLottery === 'undefined')
-fromToBoldText(317, 348, 'code', 2)  //  ? undefined : PRE_check_aLottery
+fromToBoldText(233, 296, 'code', 2)  //  PRE_check_aLottery = (typeof PRE_check_aLottery === 'undefined')
+fromToBoldText(325, 356, 'code', 2)  //  ? undefined : PRE_check_aLottery
+
+
+fromToBoldText(1143, 1157, 'code', 3)  //  TypeCzech, true
+
+fromToBoldText(1182, 1183, 'code', 4)  //  []
+fromToBoldText(262, 263, 'log', 4)  //  []
+fromToBoldText(302, 316, 'log', 4)  // ["EMPTY-ERROR"]
+
 
 </script>
 

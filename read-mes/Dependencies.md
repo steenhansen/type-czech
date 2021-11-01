@@ -1,7 +1,7 @@
 
 # Dependencies
 
-These two packages make mutation checking possible, and are included directly in Type-Czech for ease of use.
+These two packages make mutation checking possible, and are included directly in TypeCzech for ease of use.
 
 ## Cycle.js
 Douglas Crockford's Cycle.js for working with cyclic variables, newer with WeakMap,

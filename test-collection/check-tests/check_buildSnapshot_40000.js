@@ -128,7 +128,7 @@ else
 // }
 
 /*
-### B. check_buildSnapshot() check internal Type-Czech stack structure 
+### B. check_buildSnapshot() check internal TypeCzech stack structure 
 */
 
 stack_str = ''

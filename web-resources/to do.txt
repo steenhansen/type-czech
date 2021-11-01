@@ -1,13 +1,46 @@
-7 26 39 
+7 39 
+
+
+
+
+
+
+what is needed es6
+can I use
+
+node.js
+
+
 
 ////////////////////////////
+fix fiddles
+00-41  local to jsFiddle copied over !!!
+
+
+101    on
+
+
+
+do we test the null hypothesis?
+
+
+
+
+type_czech.linkUp()   ===>>   linkUp()
+
+
+all ready for jsFiddle,
+but forget the 'A', 'a' bug
+it has not been fixed on gitHub
+
+
+;;;;;;;;; ; ; ; ; 
 
 
 //////////////////////////////////////////////
 
 
-
-
+ 
 
 need 
   public-tests

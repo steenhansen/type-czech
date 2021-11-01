@@ -1,111 +1,96 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>38-Every-Check</title>
+<title>41-Lens-Example</title>
 
 
-<div id='js-div' style="width:64%;" >
+
+
+
+<div id='js-div' style="width:56%">
   <a href='https://github.com/steenhansen/type-czech' class='git-hub'>GitHub Package</a>
   <div id='js-code'>the javascript</div>
+  <br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+<div id="the-explanation" style="width:44%">
+  <div class='an-explantion'>41 &mdash; Lens Example</div>
+  <div id='explanation-text'> 
+    <br>
+    A contrived lens example using Ramda. The lenses have to be injected into the 
+    functions to highlight their use. In a real program the lenses would be constants,
+    not parameters, and be used like below.
+<pre>
+function PRE_check_getAddress(an_address){ 
+  the_first = R.view(SUB_LENSES.first_lens, an_address)
+  the_last  = R.view(SUB_LENSES.last_lens, an_address)
+  the_state = R.view(SUB_LENSES.state_lens, an_address)
+  the_city  = R.view(SUB_LENSES.city_lens, an_address)
+  the_zip   = R.view(SUB_LENSES.zip_lens, an_address)
+  the_addr = {the_first, the_last, the_state, the_city, the_zip}
+  type_err = type_czech.check_type(the_addr, ADDR_SHAPE)
+  type_czech.assert_check(type_err, 'ERROR - Lenses', the_addr)
+}
+
+function getAddress(an_address){
+  the_first = R.view(SUB_LENSES.first_lens, an_address)
+  the_last  = R.view(SUB_LENSES.last_lens, an_address)
+  the_state = R.view(SUB_LENSES.state_lens, an_address)
+  the_city  = R.view(SUB_LENSES.city_lens, an_address)
+  the_zip   = R.view(SUB_LENSES.zip_lens, an_address)
+  return ${the_first} ${the_last}, ${the_city}, ${the_state} ...`
+}
+</pre>
+
+
+
+  </div>
+
+  <div id="console-log"  >
+    <div class='a-title'>Console Output</div>
+    <div id='log-text'></div>
+    <br>
+  </div>
+
+
+
 
   
-</div>
-
-
-<div id="the-explanation" style="width:36%">
-  <div class='an-explantion'>38 &mdash; Every Check</div>
-  <div id='explanation-text'>
-    <br>
-    
-This page exists to highlight each possible checking function that executes within a PRE or POST test routine.
-Each of the allTypes() checking function calls, from A to J, can be executed in the console causing at least one error.
-Short cuts as, 's' for 'string', and 'ER' for 'EMPTY-ERROR', save space.
-<br><br>
-No error for the below function call when tested in the current page's console.
-<pre>
-allTypes('John', 'Winston', 'Lennon')
-</pre>
-
-
-<span class='red-explanation'>A</span>. <span class='blue-explanation'>check_emptyExtra</span>(arguments, expected_emptys)
-<pre>
-allTypes('', '', '')  // param_1 is empty
-</pre>
-
-<span class='red-explanation'>B</span>. <span class='blue-explanation'>check_typeExtra</span>(arguments, expected_types)
-<pre>
-allTypes(7,11)  // not strings but numbers
-</pre>
-
-<span class='red-explanation'>C</span>. <span class='blue-explanation'>check_emptyEither</span>(arguments, expected_emptys)
-<pre>
-allTypes('Ringo', '', '')  // matched neither empty
-</pre>
-
-<span class='red-explanation'>D</span>. <span class='blue-explanation'>check_typeEither</span>(arguments, expected_types)
-<pre>
-allTypes('Lennon', '', 17) // param_3 not str or obj
-</pre>
-
-<span class='red-explanation'>E</span>. <span class='blue-explanation'>check_empty</span>(arguments, expected_emptys)
-<pre>
-allTypes('Pete', 'Best', {}) // param_3 is empty {}
-</pre>
-
-<span class='red-explanation'>F</span>. <span class='blue-explanation'>check_interface</span>(arguments, expected_types)
-<pre>
-allTypes('Stuart', 'Sutcliffe', {city:5})//city num
-</pre>
-
-<span class='red-explanation'>G</span>. <span class='blue-explanation'>check_emptyVariadic</span>(arguments, expected_types)
-<pre>
-allTypes('Billy', 'Preston', '') // param_3 is empty
-</pre>
-
-<span class='red-explanation'>H</span>. <span class='blue-explanation'>check_mutatedSnapshot</span>(func_name, var_name)
-<pre>
-allTypes('George', 'Harrison', {city:'Bath'})//change
-</pre>
-
-
-
-
-<span class='red-explanation'>I</span>. <span class='blue-explanation'>check_type</span>(arguments, expected_types)
-<pre>
-allTypes('James', 'Paul', 'McCartney') // 17 not a str
-</pre>
-
-
-
-
-
-
-<span class='red-explanation'>J</span>. <span class='blue-explanation'>check_typeVariadic</span>(arguments, expected_types)
-<pre>
-allTypes('Brian', 'Epstein', {city:'Liverpool'})
-                    // return results not all Strings
-</pre>
-
-
-
-</div>
-
-
-<div id="console-log"  >
-  <div class='a-title'>Console Output</div>
-  <div id='log-text'></div>
-  <br>
-</div>
-
-
-
-
-
-<!--            ------------------TYPE 1------------------------       -->
+<!--            -----------------TYPE 1------------------------       -->
 
 <script src="../web-resources/consolelog.js"></script>
 <script src="../TypeCzech.js"></script>
 <link rel="stylesheet" href="../web-resources/type-czech.css">
 
-<!--            -------------------TYPE 1-----------------------       -->
+<script src="https://cdn.jsdelivr.net/npm/ramda@0.25/dist/ramda.min.js"></script>
+
+<!--            ------------------TYPE 1------------------------       -->
+
 
 <div id='js-fiddles'>
   <a title="Example-Contents" href="../example-snippets/example-contents.html">Contents</a>
@@ -244,7 +229,8 @@ allTypes('Brian', 'Epstein', {city:'Liverpool'})
     &copy; 2021 Steen Hansen
   </div>
 
-<!--            -------------------TYPE 1-----------------------       -->
+<!--            ------------------TYPE 1------------------------       -->
+
 
 
 
@@ -256,131 +242,102 @@ allTypes('Brian', 'Epstein', {city:'Liverpool'})
 
 
 
+
+
+
+
+
+
+
+
+
+
 <script>
   log = captureConsole("log-text")
-  function whichError(index_num, error_3_array) {
-    log(index_num)
-    return error_3_array
-  }
 </script>
+
 
 
 <script id="check-code">
 /**/  type_czech = TypeCzech('LOG-ERRORS')
 /**/  
-/**/  function PRE_check_allTypes(param_1, param_2, param_3){
-/**/    type_czech.check_buildSnapshot('PRE_check_allTypes', 'param_3', [param_3])
-/**/
-/**/    A_emptyExtra = type_czech.check_emptyExtra(arguments,  ['ER', 'OK'])
-/**/    if (A_emptyExtra) return whichError('A. ', A_emptyExtra)
-/**/
-/**/    B_typeExtra = type_czech.check_typeExtra(arguments, ['s', 's'])
-/**/    if (B_typeExtra) return whichError('B. ', B_typeExtra)
-/**/
-/**/    C_emptyEither=type_czech.check_emptyEither(arguments,[['ER','OK','ER'],['ER','ER','OK']])
-/**/    if (C_emptyEither) return whichError('C. ', C_emptyEither)
-/**/
-/**/    D_typeEither = type_czech.check_typeEither(arguments, [ ['s','s','s'], ['s','s','o'] ])
-/**/    if (D_typeEither) return whichError('D. ', D_typeEither)
-/**/
-/**/    if (type_czech.typeIsA(param_3, 'object')) {
-/**/      E_empty = type_czech.check_empty(arguments, ['ER', 'ER', 'ER'])
-/**/      if (E_empty) return whichError('E. ', E_empty)
-/**/
-/**/      F_interface = type_czech.check_interface(param_3, {city:'s'})
-/**/      if (F_interface) return whichError('F. ', F_interface)
-/**/
-/**/    } else {
-/**/      G_variadicEmpty = type_czech.check_emptyVariadic(arguments, ['ER'])
-/**/      if (G_variadicEmpty) return whichError('G. ', G_variadicEmpty)
-/**/    }
-/**/  }
-/**/  function POST_check_allTypes(return_value){
-/**/    H_mutated = type_czech.check_mutatedSnapshot('PRE_check_allTypes', 'param_3')
-/**/    if (H_mutated) return whichError('H. ', H_mutated)
-/**/
-/**/    I_type = type_czech.check_type(return_value[0], 's')
-/**/    if (I_type) return whichError('I. ', I_type)
-/**/
-/**/    J_variadicType = type_czech.check_typeVariadic(return_value, ['s'])
-/**/    if (J_variadicType) return whichError('J. ', J_variadicType)
+/**/  UNDERSCORE_LENSES = { first_lens: R.lensProp('first_name'), 
+/**/                         last_lens: R.lensProp('last_name'),
+/**/                         city_lens: R.lensProp('city_addr'),
+/**/                        state_lens: R.lensProp('state_addr'),
+/**/                          zip_lens: R.lensProp('zip_code') }
+/**/  SUB_LENSES = { first_lens:R.lensPath(['name',     'first']), 
+/**/                  last_lens:R.lensPath(['name',     'last']), 
+/**/                 city_lens: R.lensPath(['location', 'city']),
+/**/                state_lens: R.lensPath(['location', 'state']),
+/**/                  zip_lens: R.lensPath(['location', 'zip']) }
+/**/  ADDR_SHAPE={the_first:'s',the_last:'s',the_state:'s',the_city:'s',the_zip:'n'}
+/**/  
+/**/  function PRE_check_getAddress(an_address, the_lenses){ 
+/**/    the_first = R.view(the_lenses.first_lens, an_address)
+/**/    the_last  = R.view(the_lenses.last_lens, an_address)
+/**/    the_state = R.view(the_lenses.state_lens, an_address)
+/**/    the_city  = R.view(the_lenses.city_lens, an_address)
+/**/    the_zip   = R.view(the_lenses.zip_lens, an_address)
+/**/    the_addr = {the_first, the_last, the_state, the_city, the_zip}
+/**/    type_err = type_czech.check_type(the_addr, ADDR_SHAPE)
+/**/    type_czech.assert_check(type_err, 'ERROR - Lenses', the_addr)
 /**/  }
 /**/  
-/**/  allTypes = type_czech.linkUp(allTypes, PRE_check_allTypes, POST_check_allTypes) 
+/**/  getAddress = type_czech.linkUp(getAddress, PRE_check_getAddress)
 
-function allTypes(param_1, param_2, param_3){
-  third_type = type_czech.typeFinal(param_3)
-  if (third_type === 'object') {
-    if (param_3.city !== 'Liverpool')  param_3.city = 'Liverpool'
-    return [param_1, param_2, param_3] 
-  }
-  if (param_1 === 'James') return [17, param_2, param_3]
-  else return [param_1, param_2, param_3]
+function getAddress(an_address, the_lenses){
+  the_first = R.view(the_lenses.first_lens, an_address)
+  the_last = R.view(the_lenses.last_lens, an_address)
+  the_state = R.view(the_lenses.state_lens, an_address)
+  the_city = R.view(the_lenses.city_lens, an_address)
+  the_zip = R.view(the_lenses.zip_lens, an_address)
+  return `${the_first} ${the_last}, ${the_city}, ${the_state} ${the_zip}`
 }
+
+bushnell = {first_name: 'Nolan', last_name:'Bushnell', 
+            city_addr:'Moab', state_addr:'UT', zip_code:12345}
+
+estes = {name:{first: 'Joel', last:'Estes'}, 
+         location:{ city:'Loveland', state:'CO', zip:90210} }
+
+duran_duran = {name:{first: 'Duran', last:'Duran'}, 
+              location:{ city:'Birmingham', state:'West Midlands', zip: 'B73 5BL'} }
+
+log('Bushnell : ', getAddress(bushnell, UNDERSCORE_LENSES) )
+
+linesConsole(4)
+
+log('Estes : ', getAddress(estes, SUB_LENSES) )
+
+linesConsole(4)
+
+log('Duran Duran : ', getAddress(duran_duran, SUB_LENSES) )
 </script>
 
+
+
+
+
+
+
+
+
+
+
 <script>
-   jsToDiv('js-code', "check-code")
+
+  jsToDiv('js-code', "check-code")
 
 
-
-///////////////////////
-
-
-fromToBoldText(209, 209, 'code', 1)    // A_emptyExtra 
-
-fromToBoldText(356, 356, 'code', 1)    // B_emptyExtra 
-
-fromToBoldText(496, 496, 'code', 1)    // C_emptyExtra 
-
-fromToBoldText(666, 666, 'code', 1)    // D_emptyExtra 
-
-fromToBoldText(887, 887, 'code', 1)    // E_emptyExtra 
-
-fromToBoldText(1023, 1023, 'code', 1)  // F_emptyExtra 
-
-fromToBoldText(1182, 1182, 'code', 1)  // G_emptyExtra 
-
-fromToBoldText(1399, 1399, 'code', 1)  // H_emptyExtra 
-
-fromToBoldText(1549, 1549, 'code', 1)  // I_emptyExtra 
-
-fromToBoldText(1668, 1668, 'code', 1)  // J_emptyExtra 
+  fromToBoldText(785, 795, 'code', 1)  //  the_zip:'n'
 
 
+   fromToBoldText(2207, 2220, 'code', 1)  //  zip: 'B73 5BL'
 
+   fromToBoldText(399, 415, 'log', 1)    //the_zip:"B73 5BL"
 
-
-fromToBoldText(132, 150, 'code', 4)  // A check_buildSnapshot
-
-
-
-
-fromToBoldText(235, 250, 'code', 2)  // A check_emptyExtra
-
-fromToBoldText(381, 395, 'code', 2)  // B check_typeExtra
-
-
-fromToBoldText(521, 537, 'code', 2)  // C  check_emptyEither
-
-fromToBoldText(692, 707, 'code', 2)  // D  check_typeEither
-
-fromToBoldText(908, 918, 'code', 2)  // E  check_empty
-
-fromToBoldText(1048, 1062, 'code', 2)  // F  check_interface
-
-fromToBoldText(1211, 1229, 'code', 2)  // G  check_emptyVariadic
-
-
-fromToBoldText(1422, 1442, 'code', 2)  // H  check_mutatedSnapshot
-
-
-
-
-
-fromToBoldText(1569, 1578, 'code', 2)  // I  check_type
-
-fromToBoldText(1696, 1713, 'code', 2)  // J  check_typeVariadic
+   fromToBoldText(498, 508, 'log', 1)    //the_zip:"n"
 
 
 </script>
@@ -388,5 +345,5 @@ fromToBoldText(1696, 1713, 'code', 2)  // J  check_typeVariadic
 
 <link rel="stylesheet"
   href="https://fonts.googleapis.com/css?family=Inconsolata">
-  
+
   

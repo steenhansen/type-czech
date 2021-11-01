@@ -15,7 +15,7 @@
     /**/   return type_czech.check_type(arguments, 'number')
     /**/ }
     /**/  } else {
-    /**/    type_czech = { link: (nop) => nop, isActive: (x) => false }
+    /**/    type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
     /**/  }
 
     /**/  PRE_check_oneNumber =(typeof PRE_check_oneNumber==='undefined') ? undefined:PRE_check_oneNumber

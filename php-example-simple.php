@@ -15,7 +15,7 @@ $js_always_second = <<<'EOD'
     if (typeof TypeCzech === 'function')
       type_czech = TypeCzech('LOG-ERRORS');
     else
-      type_czech = { link: (nop) => nop, isActive: (x) => false };
+      type_czech = { linkUp: (nop) => nop, isActive: (x) => false };
     
     function PRE_check_aLottery (){
       LOTTERY_SIGNATURE = ['string', ['number'], 'date'];

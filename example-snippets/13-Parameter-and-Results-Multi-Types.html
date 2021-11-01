@@ -107,9 +107,6 @@ return result to not match the correct signature.
 <!--            ----------------TYPE 1s--------------------------       -->
 
 
-
-
-
 <div id='js-fiddles'>
   <a title="Example-Contents" href="../example-snippets/example-contents.html">Contents</a>
   
@@ -132,9 +129,9 @@ return result to not match the correct signature.
     <a title="08-Mutated-Recursive-Function-Parameters.html" href="../example-snippets/08-Mutated-Recursive-Function-Parameters.html">08</a>
     
      
-     
+   
     <a title="09-Closure-Parameters-Results-and-Methods.html" href="../example-snippets/09-Closure-Parameters-Results-and-Methods.html">09</a>
-              
+            
     <a title="10-Class-Parameters-Results-and-Methods.html" href="../example-snippets/10-Class-Parameters-Results-and-Methods.html">10</a>
     
     <a title="11-Object-Properties.html" href="../example-snippets/11-Object-Properties.html">11</a>
@@ -195,12 +192,14 @@ return result to not match the correct signature.
 
     <a title="38-Every-Check.html" href="../example-snippets/38-Every-Check.html">38</a>
 
- 
+
     <a title="39-Assert-Checks.html" href="../example-snippets/39-Assert-Checks.html">39</a>
 
     <a title="40-Prescribed-Use.html" href="../example-snippets/40-Prescribed-Use.html">40</a>
 
-      &nbsp;&nbsp;
+    <a title="41-Lens-Example.html" href="../example-snippets/41-Lens-Example.html">41</a>
+
+    &nbsp;&nbsp;
 
     <a title="101-Extending-Classes-Inline.html" href="../examples-web/101-Extending-Classes-Inline.html">101</a>
     
@@ -245,8 +244,23 @@ return result to not match the correct signature.
     &copy; 2021 Steen Hansen
   </div>
 
-
 <!--            ----------------TYPE 1s--------------------------       -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -276,7 +290,7 @@ return result to not match the correct signature.
 
 
 <script>
-  log = captureConsole("log-text");
+  log = captureConsole("log-text")
 </script>
 
 
@@ -286,7 +300,7 @@ return result to not match the correct signature.
 /**/  if (typeof TypeCzech === 'function')
 /**/    type_czech = TypeCzech('THROW-EXCEPTIONS')
 /**/  else
-/**/    type_czech = { link: (nop) => nop, isActive: (x) => false }
+/**/    type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
 /**/  
 /**/  PRE_check_Person = (typeof PRE_check_Person === 'undefined')
 /**/                     ? undefined : PRE_check_Person
@@ -307,7 +321,7 @@ function Person(f_name, l_name, b_date){
   birth_year = b_date.getFullYear()
   if (l_name === '')
     l_name = undefined                   // deliberate POST error
-  return [birth_year, f_name, l_name];
+  return [birth_year, f_name, l_name]
 }
 
 chuck = Person('Charles', 'Windsor', new Date(1948,11,14))
@@ -340,24 +354,24 @@ try {
 
 <script>
 
-  jsToDiv('js-code', "check-code");
+  jsToDiv('js-code', "check-code")
 
-  fromToBoldText(1019, 1060, 'code', 3)  // 'Charles', 'Windsor', new Date(1948,11,14)
+  fromToBoldText(1028, 1069, 'code', 3)  // 'Charles', 'Windsor', new Date(1948,11,14)
   fromToBoldText(1, 36, 'log', 3)    //[ 1948, "Charles", "Windsor" ]
 
 
 
   
-  fromToBoldText(1122, 1125, 'code', 1)  // 1912
-  fromToBoldText(270, 273, 'log', 1)    //1912
-  fromToBoldText(314, 319, 'log', 1)    //"date"]
+  fromToBoldText(1131, 1134, 'code', 1)  // 1912
+  fromToBoldText(269, 272, 'log', 1)    //1912
+  fromToBoldText(313, 318, 'log', 1)    //"date"]
 
 
 
 
-  fromToBoldText(1210, 1211, 'code', 2)  // ''
-  fromToBoldText(601, 609, 'log', 2)    //undefined
-  fromToBoldText(650, 657, 'log', 2)    //"string"]
+  fromToBoldText(1219, 1220, 'code', 2)  // ''
+  fromToBoldText(599, 607, 'log', 2)    //undefined
+  fromToBoldText(648, 655, 'log', 2)    //"string"]
 
 
 

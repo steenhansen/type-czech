@@ -31,7 +31,7 @@
   If check_error is an empty string then nothing happens. Otherwise the error 
   is funneled through TypeCzech so as to use halting exceptions or informing console.logs for
   error delivery. Basically an 'assert', but it must be guarded with isActive() for production
-  when Type-Czech is not loaded. 
+  when TypeCzech is not loaded. 
 ```
 type_czech = TypeCzech('THROW-EXCEPTIONS')
 if (type_czech.isActive()) {
@@ -459,7 +459,7 @@ isRoman('1177 BC') // not checked
 
 ### 17 isActive()<a name="is-active"></a>
 
-  Returns true if Type-Czech is checking errors. This returns false if Type-Czech was not loaded in Node.js or the browser. Can turn off with disableChecks().
+  Returns true if TypeCzech is checking errors. This returns false if TypeCzech was not loaded in Node.js or the browser. Can turn off with disableChecks().
 
 ```
 type_czech = TypeCzech('THROW-EXCEPTIONS')

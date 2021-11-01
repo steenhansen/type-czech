@@ -7,21 +7,22 @@
   <div id='js-code'>the javascript</div>
   <br><br>
 
-
+  
 
   
 
+
+
+
 <!--            ------------------TYPE 1------------------------       -->
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@3a77ff8b17f2a022a9ab1f0a41866d9d46173b30/web-resources/consolelog.js">
-</script>
 
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@3a77ff8b17f2a022a9ab1f0a41866d9d46173b30/web-resources/TypeCzech.min.js">
-</script>
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech/web-resources/consolelog.js"></script>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@3a77ff8b17f2a022a9ab1f0a41866d9d46173b30/web-resources/type-czech.css">
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech/web-resources/TypeCzech.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech/web-resources/type-czech.css">
+
 <!--            -------------------TYPE 1-----------------------       -->
-
-
 
   <div id='js-fiddles'>
     <a title="Example-Contents" href="https://jsfiddle.net/steen_hansen/0xtpLwsc/?Example-Contents">Contents</a>
@@ -54,7 +55,7 @@
       
       <a title="10-Class-Parameters-Results-and-Methods.html" href="https://jsfiddle.net/steen_hansen/Lhwov8y9/?10-Class-Parameters-Results-and-Methods" target="_blank">10</a>
       
-      <a title="11-Object-Object-Properties.html" href="https://jsfiddle.net/steen_hansen/qp29Ljd1/?11-Object-Object-Properties" target="_blank">11</a>
+      <a title="11-Object-Properties.html" href="https://jsfiddle.net/steen_hansen/qp29Ljd1/?11-Object-Properties" target="_blank">11</a>
       
       <a title="12-Class-Interface.html" href="https://jsfiddle.net/steen_hansen/og2sk4b9/?12-Class-Interface" target="_blank">12</a>
       
@@ -67,7 +68,7 @@
       <a title="16-Arrays-with-One-Type.html" href="https://jsfiddle.net/steen_hansen/bsw3yp5c/?16-Arrays-with-One-Type" target="_blank">16</a>
       
 
-      <a title="17-Variadic-Functions.html.html" href="https://jsfiddle.net/steen_hansen/hrvucjzm/?17-Variadic-Functions.html" target="_blank">17</a>
+      <a title="17-Variadic-Functions.html" href="https://jsfiddle.net/steen_hansen/hrvucjzm/?17-Variadic-Functions.html" target="_blank">17</a>
   
 
 
@@ -121,6 +122,8 @@
     
     <a title="40-Prescribed-Use.html" href="https://jsfiddle.net/steen_hansen/m1atu7qj/?40-Prescribed-Use">40</a>
 
+    <a title="41-Lens-Example.html" href="https://jsfiddle.net/steen_hansen/fxt8ag56/?41-Lens-Example">40</a>
+
 
       &nbsp;&nbsp;
   
@@ -168,8 +171,12 @@
   
     </div>
   
-  
 <!--            -------------------TYPE 1-----------------------       -->
+
+
+
+
+
 
 
 
@@ -182,7 +189,7 @@
   <div id='explanation-text'>
     <br>
  In this example, the checking function PRE_check_aLottery(), which is executed before
- the production function aLottery() is turned on via
+ the production function aLottery() is activated via
 <pre>
 type_czech = TypeCzech('LOG-ERRORS')
   - OR -
@@ -197,19 +204,25 @@ type_czech = TypeCzech()
 </pre>
  
  When TypeCzech is turned on, PRE_check_aLottery() ensures that aLottery()'s parameters
-  are a String, an Array 
- of Numbers, and a Date with the type_czech.check_type() call.
+  are a string, an array 
+ of numbers, and a date with the check_type() call.
 <br><br>
- PRE_check_aLottery() also gives warning when parameters are empty with the type_czech.check_empty() call. This means that an error
+ PRE_check_aLottery() also gives warning when parameters are empty with the check_empty() call. This means that an error
  occurs when the lottery_name is an empty string, and/or if there are no numbers in the lucky_numbers array. 
  <br><br>
-TypeCzech functions are best used with the arguments object, the below is check_type also.
+TypeCzech functions are best used with the arguments object, the below verbose function works just as well.
 <pre>
 function PRE_check_aLottery(lottery_name, lucky_numbers, draw_date){
   the_parameters = [lottery_name, lucky_numbers, draw_date]
-  type_issue = type_czech.check_type(the_parameters, LOTTERY_SIGNAT)
-  if (type_issue) return type_issue
-  return type_czech.check_empty(the_parameters, ['EMPTY-ERROR'])
+  type_issue = type_czech.check_type(the_parameters, LOTTERY_SIGNATURE)
+  if (type_issue) 
+    return type_issue
+
+  empty_issue = type_czech.check_empty(the_parameters, ['EMPTY-ERROR'])
+  if (empty_issue)
+    return empty_issue
+  
+  return ''
 }
 </pre>
 
@@ -229,22 +242,31 @@ function PRE_check_aLottery(lottery_name, lucky_numbers, draw_date){
 
 
 <script>
-  log = captureConsole("log-text");
+  log = captureConsole("log-text")
 </script>
 
 
 <script id="check-code">
 /**/  //  <script src="../TypeCzech.js">
+/**/
+/**/  //  type_czech = TypeCzech('NO-CHECKING')
+/**/
+/**/  //  type_czech = TypeCzech('THROW-EXCEPTIONS')
 
 /**/  type_czech = TypeCzech('LOG-ERRORS')
-/**/  //type_czech = TypeCzech('NO-CHECKING')
 /**/
-/**/  LOTTERY_SIGNAT = ['string', ['number'], 'date']
+/**/  LOTTERY_SIGNATURE = ['string', ['number'], 'date']
 /**/
-/**/  function PRE_check_aLottery(lottery_name, lucky_numbers, draw_date){
-/**/    type_issue = type_czech.check_type(arguments, LOTTERY_SIGNAT)
-/**/    if (type_issue) return type_issue
-/**/    return type_czech.check_emptyVariadic(arguments, ['EMPTY-ERROR'])
+/**/  function PRE_check_aLottery(){
+/**/    type_issue = type_czech.check_type(arguments, LOTTERY_SIGNATURE)
+/**/    if (type_issue) 
+/**/      return type_issue
+/**/
+/**/    empty_issue=type_czech.check_emptyVariadic(arguments,['EMPTY-ERROR'])
+/**/    if (empty_issue) 
+/**/      return empty_issue
+/**/
+/**/    return ''
 /**/  }
 /**/
 /**/  aLottery = type_czech.linkUp(aLottery, PRE_check_aLottery) 
@@ -275,7 +297,6 @@ aLottery('Lotto 649', [1,2,3,4,5,6])
 linesConsole(2)
 
 aLottery('Oz Lotto', ['fourty-two'], new Date('jun 14 1999'))
-
 </script>
 
 
@@ -289,25 +310,25 @@ aLottery('Oz Lotto', ['fourty-two'], new Date('jun 14 1999'))
 
 <script>
 
-   jsToDiv('js-code', "check-code");
+   jsToDiv('js-code', "check-code")
 
-   fromToBoldText(778, 779, 'code', 1)  // []
+   fromToBoldText(911, 912, 'code', 1)  // []
 
    fromToBoldText(300, 301, 'log', 1)    // []
    fromToBoldText(340, 354, 'log', 1)    // ["EMPTY-ERROR"]
 
 
-   fromToBoldText(889, 890, 'code', 2)  // 17
+   fromToBoldText(1022, 1023, 'code', 2)  // 17
 
-   fromToBoldText(1175, 1176, 'log', 2)    // 17
-   fromToBoldText(1225, 1234, 'log', 2)    // 'string'
+   fromToBoldText(1099, 1100, 'log', 2)    // 17
+   fromToBoldText(1149, 1158, 'log', 2)    // 'number'
 
 
 
-   fromToBoldText(979, 990, 'code', 3)  // ['fourty-two']
+   fromToBoldText(1111, 1124, 'code', 3)  // ['fourty-two']
 
-   fromToBoldText(2066, 2077, 'log', 3)    //["fourty-two"]
-   fromToBoldText(2128, 2135, 'log', 3)    //  ["number"]
+   fromToBoldText(1912, 1925, 'log', 3)    //["fourty-two"]
+   fromToBoldText(1974, 1983, 'log', 3)    //  ["number"]
 
 
 
@@ -316,3 +337,5 @@ aLottery('Oz Lotto', ['fourty-two'], new Date('jun 14 1999'))
 
 <link rel="stylesheet"
   href="https://fonts.googleapis.com/css?family=Inconsolata">
+
+  

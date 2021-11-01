@@ -14,7 +14,7 @@ function strOrNumAPI(){
 /**/  if (typeof TypeCzech === 'function')
 /**/    type_czech = TypeCzech('LOG-ERRORS')
 /**/  else
-/**/    type_czech = { link: (nop) => nop, isActive: (x) => false }
+/**/    type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
 
       ...
 
@@ -42,14 +42,14 @@ https://everyday.codes/javascript/7-really-good-reasons-not-to-use-typescript/
 https://www.typescriptlang.org/
 # FAQ
 
-### What is the point of Type-Czech?
+### What is the point of TypeCzech?
 
 strong typing at compile time and runtime
 
-### Is Type-Czech slow?
+### Is TypeCzech slow?
 
 
-### Will Type-Czech change the value of variables?
+### Will TypeCzech change the value of variables?
 
 
 

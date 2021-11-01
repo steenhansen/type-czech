@@ -1,77 +1,13 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>35-Throw-or-Log</title>
+<title>41-Lens-Example</title>
 
 
-  
-<div id='js-div' style="width:58%">
+
+
+
+<div id='js-div' style="width:56%">
   <a href='https://github.com/steenhansen/type-czech' class='git-hub'>GitHub Package</a>
   <div id='js-code'>the javascript</div>
-</div>
-
-
-<div id="the-explanation" style="width:42%">
-  <div class='an-explantion'>35 &mdash; Throw, Log, or Ignore TypeCzech Parameter Checks</div>
-  <div id='explanation-text'>
-    <br>
-    The TypeCzech library will only check parameters when either 'THROW-EXCEPTIONS'
-     or 'LOG-ERRORS' is the command on initialization. 
-
-    <ul>
-      <li>
-        <b>THROW-EXCEPTIONS</b> causes errors to throw an exception and possibly halt
-      </li>
-      <li>
-        <b>LOG-ERRORS</b> causes parameter errors to be logged in the console
-        </li>
-    </ul>
-<pre>
-type_czech = TypeCzech('LOG-ERRORS')
-
-type_czech = TypeCzech('THROW-EXCEPTIONS')
-</pre>
-    Two additional possible options are 'UNDEF-OK' and 'CONSOLE-COUNT'
-
-    <ul>
-      <li>
-        <b>UNDEF-OK</b> accepts typeless null and undefined values when checking parameter type shapes
-        without any type errors. In other words null and undefined are like wild cards.
-      </li>
-      <li>
-        <b>CONSOLE-COUNT</b> will output a run count of parameter checking functions in Console so when 
-          testing, can view if parameter tests are actually executing
-        </li>
-    </ul>
-
-Option order is un-important, the below two examples produces the same output
-<pre>
-type_czech=TypeCzech('LOG-ERRORS','UNDEF-OK','CONSOLE-COUNT')
-</pre>
-
-<pre>
-type_czech=TypeCzech('UNDEF-OK','CONSOLE-COUNT','LOG-ERRORS')
-</pre>
-
-
-Note that no parameter checking occurs with 
-<pre>
-type_czech = TypeCzech()
-</pre>
-or with
-<pre>
-type_czech = TypeCzech('NO-CHECKING')
-</pre>
-Thus parameter checking can be easily turned off when changing from development to production code.
-
-<br>
-
-  </div>
-
-
-  <div id="console-log" >
-    <div class='a-title'>Console Output</div>
-    <div id='log-text'></div>
-    <br>
-  </div>
   <br>
 
 
@@ -80,16 +16,85 @@ Thus parameter checking can be easily turned off when changing from development 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+<div id="the-explanation" style="width:44%">
+  <div class='an-explantion'>41 &mdash; Lens Example</div>
+  <div id='explanation-text'> 
+    <br>
+    A contrived lens example using Ramda. The lenses have to be injected into the 
+    functions to highlight their use. In a real program the lenses would be constants,
+    not parameters, and be used like below.
+<pre>
+function PRE_check_getAddress(an_address){ 
+  the_first = R.view(SUB_LENSES.first_lens, an_address)
+  the_last  = R.view(SUB_LENSES.last_lens, an_address)
+  the_state = R.view(SUB_LENSES.state_lens, an_address)
+  the_city  = R.view(SUB_LENSES.city_lens, an_address)
+  the_zip   = R.view(SUB_LENSES.zip_lens, an_address)
+  the_addr = {the_first, the_last, the_state, the_city, the_zip}
+  type_err = type_czech.check_type(the_addr, ADDR_SHAPE)
+  type_czech.assert_check(type_err, 'ERROR - Lenses', the_addr)
+}
+
+function getAddress(an_address){
+  the_first = R.view(SUB_LENSES.first_lens, an_address)
+  the_last  = R.view(SUB_LENSES.last_lens, an_address)
+  the_state = R.view(SUB_LENSES.state_lens, an_address)
+  the_city  = R.view(SUB_LENSES.city_lens, an_address)
+  the_zip   = R.view(SUB_LENSES.zip_lens, an_address)
+  return ${the_first} ${the_last}, ${the_city}, ${the_state} ...`
+}
+</pre>
+
+
+
+  </div>
+
+  <div id="console-log"  >
+    <div class='a-title'>Console Output</div>
+    <div id='log-text'></div>
+    <br>
+  </div>
+
+
+
+
+
+
   
-
-
-<!--            ----------------TYPE 1--------------------------       -->
+<!--            -----------------TYPE 1------------------------       -->
 
 <script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech/web-resources/consolelog.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech/web-resources/TypeCzech.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech/web-resources/type-czech.css">
 
-<!--            ------------TYPE 1------------------------------       -->
+
+<script src="https://cdn.jsdelivr.net/npm/ramda@0.25/dist/ramda.min.js"></script>
+
+<!--            ------------------TYPE 1------------------------       -->
+
+
 
 <div id='js-fiddles'>
   <a title="Example-Contents" href="https://jsfiddle.net/steen_hansen/0xtpLwsc/?Example-Contents">Contents</a>
@@ -238,32 +243,13 @@ Thus parameter checking can be easily turned off when changing from development 
 
   </div>
 
-<!--            ------------TYPE 1------------------------------       -->
-
-
-
+<!--            ------------------TYPE 1------------------------       -->
 
 
 
 
 
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -288,67 +274,61 @@ Thus parameter checking can be easily turned off when changing from development 
 
 
 <script id="check-code">
-/**/  function PRE_check_Person(f_name){
-/**/    if (f_name.length > 9) 
-/**/      return `PRE: f_name '${f_name}' too long error`
+/**/  type_czech = TypeCzech('LOG-ERRORS')
+/**/  
+/**/  UNDERSCORE_LENSES = { first_lens: R.lensProp('first_name'), 
+/**/                         last_lens: R.lensProp('last_name'),
+/**/                         city_lens: R.lensProp('city_addr'),
+/**/                        state_lens: R.lensProp('state_addr'),
+/**/                          zip_lens: R.lensProp('zip_code') }
+/**/  SUB_LENSES = { first_lens:R.lensPath(['name',     'first']), 
+/**/                  last_lens:R.lensPath(['name',     'last']), 
+/**/                 city_lens: R.lensPath(['location', 'city']),
+/**/                state_lens: R.lensPath(['location', 'state']),
+/**/                  zip_lens: R.lensPath(['location', 'zip']) }
+/**/  ADDR_SHAPE={the_first:'s',the_last:'s',the_state:'s',the_city:'s',the_zip:'n'}
+/**/  
+/**/  function PRE_check_getAddress(an_address, the_lenses){ 
+/**/    the_first = R.view(the_lenses.first_lens, an_address)
+/**/    the_last  = R.view(the_lenses.last_lens, an_address)
+/**/    the_state = R.view(the_lenses.state_lens, an_address)
+/**/    the_city  = R.view(the_lenses.city_lens, an_address)
+/**/    the_zip   = R.view(the_lenses.zip_lens, an_address)
+/**/    the_addr = {the_first, the_last, the_state, the_city, the_zip}
+/**/    type_err = type_czech.check_type(the_addr, ADDR_SHAPE)
+/**/    type_czech.assert_check(type_err, 'ERROR - Lenses', the_addr)
 /**/  }
 /**/  
-/**/  Person_LOG_ERRORS   = (f_name) => Person(f_name)
-/**/
-/**/  Person_THROW_EXCEPTIONS = (f_name) => Person(f_name)
-/**/  
-/**/  Person_NO_CHECKING  = (f_name) => Person(f_name)
-/**/
-/**/  Person_OFF   = (f_name) => Person(f_name)
-/**/  
-/**/  type_czech_LOG = TypeCzech('LOG-ERRORS')
-/**/  Person_LOG_ERRORS = type_czech_LOG.linkUp(Person_LOG_ERRORS, PRE_check_Person) 
-/**/  
-/**/  type_czech_THROW = TypeCzech('THROW-EXCEPTIONS')
-/**/  Person_THROW_EXCEPTIONS =
-/**/             type_czech_THROW.linkUp(Person_THROW_EXCEPTIONS, PRE_check_Person) 
-/**/  
-/**/  type_czech_NONE = TypeCzech('NO-CHECKING')
-/**/  Person_NO_CHECKING = type_czech_NONE.linkUp(Person_NO_CHECKING, PRE_check_Person) 
-/**/  
-/**/  type_czech_OFF = TypeCzech()
-/**/  Person_OFF = type_czech_OFF.linkUp(Person_OFF, PRE_check_Person) 
+/**/  getAddress = type_czech.linkUp(getAddress, PRE_check_getAddress)
 
-function Person(f_name){
-  log(NL+f_name+' in Person() function')
+function getAddress(an_address, the_lenses){
+  the_first = R.view(the_lenses.first_lens, an_address)
+  the_last = R.view(the_lenses.last_lens, an_address)
+  the_state = R.view(the_lenses.state_lens, an_address)
+  the_city = R.view(the_lenses.city_lens, an_address)
+  the_zip = R.view(the_lenses.zip_lens, an_address)
+  return `${the_first} ${the_last}, ${the_city}, ${the_state} ${the_zip}`
 }
 
+bushnell = {first_name: 'Nolan', last_name:'Bushnell', 
+            city_addr:'Moab', state_addr:'UT', zip_code:12345}
 
+estes = {name:{first: 'Joel', last:'Estes'}, 
+         location:{ city:'Loveland', state:'CO', zip:90210} }
 
-Person_LOG_ERRORS('Evangeline')
+duran_duran = {name:{first: 'Duran', last:'Duran'}, 
+              location:{ city:'Birmingham', state:'West Midlands', zip: 'B73 5BL'} }
 
+log('Bushnell : ', getAddress(bushnell, UNDERSCORE_LENSES) )
 
-linesConsole(2)
+linesConsole(4)
 
+log('Estes : ', getAddress(estes, SUB_LENSES) )
 
-try {
-  Person_THROW_EXCEPTIONS('Persephone')
-} catch (e) {
-  log('Exception - ' + e)
-}
+linesConsole(4)
 
-
-
-
-
-linesConsole(3)
-
-
-Person_NO_CHECKING('Evangeline')
-
-
-linesConsole(1)
-
-
-Person_OFF('Persephone')
+log('Duran Duran : ', getAddress(duran_duran, SUB_LENSES) )
 </script>
-
-
 
 
 
@@ -364,25 +344,18 @@ Person_OFF('Persephone')
 
   jsToDiv('js-code', "check-code")
 
-  fromToBoldText(422, 431, 'code', 1)  // TypeCzech('LOG-ERRORS')
-  fromToBoldText(1038, 1061, 'code', 1)  // Person_LOG_ERRORS('Evangeline')
 
-  fromToBoldText(14, 23, 'log', 1)    //PRE: f_name 'Evangeline' too long
+  fromToBoldText(785, 795, 'code', 1)  //  the_zip:'n'
 
 
+   fromToBoldText(2207, 2220, 'code', 1)  //  zip: 'B73 5BL'
 
-      fromToBoldText(564, 579, 'code', 2)  // TypeCzech('THROW-EXCEPTIONS')
-      fromToBoldText(1080, 1109, 'code', 2)  // Person_THROW_EXCEPTIONS('Persephone')
+   fromToBoldText(399, 415, 'log', 1)    //the_zip:"B73 5BL"
 
-    
-      fromToBoldText(72, 80, 'log', 2)    //Exception - Error:
-      fromToBoldText(104, 113, 'log', 2)    // f_name 'Persephone' too long"
-
-
+   fromToBoldText(498, 508, 'log', 1)    //the_zip:"n"
 
 
 </script>
-
 
 
 <link rel="stylesheet"

@@ -13,7 +13,7 @@
     /**/  if (typeof TypeCzech === 'function')
     /**/    const type_czech = TypeCzech('LOG-ERRORS');
     /**/  else
-    /**/    type_czech = { link: (_) => _, isActive: (x) => false }
+    /**/    type_czech = { linkUp: (_) => _, isActive: (x) => false }
     /**/  }
 
     /**/    function PRE_check_oneNumber() {

@@ -79,10 +79,6 @@ the POST_check_Person() function.
 <!--            ----------------TYPE 1--------------------------       -->
 
 
-
-
-
-
 <div id='js-fiddles'>
   <a title="Example-Contents" href="../example-snippets/example-contents.html">Contents</a>
   
@@ -104,10 +100,10 @@ the POST_check_Person() function.
     
     <a title="08-Mutated-Recursive-Function-Parameters.html" href="../example-snippets/08-Mutated-Recursive-Function-Parameters.html">08</a>
     
-    
      
+   
     <a title="09-Closure-Parameters-Results-and-Methods.html" href="../example-snippets/09-Closure-Parameters-Results-and-Methods.html">09</a>
-              
+            
     <a title="10-Class-Parameters-Results-and-Methods.html" href="../example-snippets/10-Class-Parameters-Results-and-Methods.html">10</a>
     
     <a title="11-Object-Properties.html" href="../example-snippets/11-Object-Properties.html">11</a>
@@ -168,12 +164,14 @@ the POST_check_Person() function.
 
     <a title="38-Every-Check.html" href="../example-snippets/38-Every-Check.html">38</a>
 
- 
+
     <a title="39-Assert-Checks.html" href="../example-snippets/39-Assert-Checks.html">39</a>
 
     <a title="40-Prescribed-Use.html" href="../example-snippets/40-Prescribed-Use.html">40</a>
 
-      &nbsp;&nbsp;
+    <a title="41-Lens-Example.html" href="../example-snippets/41-Lens-Example.html">41</a>
+
+    &nbsp;&nbsp;
 
     <a title="101-Extending-Classes-Inline.html" href="../examples-web/101-Extending-Classes-Inline.html">101</a>
     
@@ -218,9 +216,14 @@ the POST_check_Person() function.
     &copy; 2021 Steen Hansen
   </div>
 
-  <!--            ----------------TYPE 1--------------------------       -->
+<!--            ----------------TYPE 1--------------------------       -->
 
-  
+
+
+
+
+
+
 
 
 </div>
@@ -243,7 +246,7 @@ the POST_check_Person() function.
 
 
 <script>
-  log = captureConsole("log-text");
+  log = captureConsole("log-text")
 </script>
 
 
@@ -252,7 +255,7 @@ the POST_check_Person() function.
 /**/  if (typeof TypeCzech === 'function')
 /**/    type_czech = TypeCzech('LOG-ERRORS')
 /**/  else
-/**/    type_czech = { link: (nop) => nop, isActive: (x) => false }
+/**/    type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
 /**/  
 /**/  PRE_check_Person = (typeof PRE_check_Person === 'undefined')
 /**/               ? undefined : PRE_check_Person
@@ -277,7 +280,7 @@ function Person(person_array_or_obj){
     let result_object = {}
     person_iterable.forEach( (a_value, the_index) => {
       property_key = 'prop'+the_index
-      result_object[property_key] = a_value;
+      result_object[property_key] = a_value
     })
     return result_object
   }else {
@@ -315,27 +318,27 @@ log(alan_turing)
 
 <script>
 
-  jsToDiv('js-code', "check-code");
+  jsToDiv('js-code', "check-code")
 
  
 
-  fromToBoldText(1083, 1095, 'code', 3)  //  result_object
-  fromToBoldText(1206, 1248, 'code', 3)  //  ['Charles', new Date(1948,11,14), true, 17]
+  fromToBoldText(1092, 1105, 'code', 3)  //  result_object
+  fromToBoldText(1215, 1257, 'code', 3)  //  ['Charles', new Date(1948,11,14), true, 17]
   fromToBoldText(1, 81, 'log', 3)   // { "prop0": "Charles", "prop1": "1948-12-14", "prop2": true, "prop3": 17 }
 
 
 
 
-  fromToBoldText(1321, 1352, 'code', 1)  //  {f_name:'Alan', l_name:'Turing'}
+  fromToBoldText(1330, 1361, 'code', 1)  //  {f_name:'Alan', l_name:'Turing'}
 
-  fromToBoldText(283, 313, 'log', 1)    //return result_array
-  fromToBoldText(340, 344, 'log', 1)    //Array
+  fromToBoldText(280, 310, 'log', 1)    //{f_name:'Alan', l_name:'Turing'}
+  fromToBoldText(337, 341, 'log', 1)    //Array
 
 
-  fromToBoldText(1172, 1183, 'code', 2)  //  return result_array
-  fromToBoldText(762, 778, 'log', 2)    //["Alan","Turing"]
+  fromToBoldText(1181, 1192, 'code', 2)  //  return result_array
+  fromToBoldText(754, 770, 'log', 2)    //["Alan","Turing"]
 
-  fromToBoldText(805, 810, 'log', 2)    //'object'
+  fromToBoldText(797, 802, 'log', 2)    //'object'
 
 </script>
 

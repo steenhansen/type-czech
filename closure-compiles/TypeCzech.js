@@ -26,7 +26,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
       export_tech_czech.type_czech = _TypeCzech(export_tech_czech.TYPE_CZECH_COMMANDS);
     } else {
       // eslint-disable-next-line no-param-reassign, no-unused-vars
-      export_tech_czech.type_czech = { link: (nop) => nop, isActive: (_) => false };
+      export_tech_czech.type_czech = { linkUp: (nop) => nop, isActive: (_) => false };
     }
     return export_tech_czech.type_czech;
 
@@ -103,6 +103,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
 
       // 'UNDEF-OK' only affects check_type(), check_typeExtra(), check_typeEither(), and check_TypeExtra()
       let OP_UNDEF_OK = false; //            'UNDEF-OK'
+
       let OP_CONSOLE_COUNT = false; //       'CONSOLE-COUNT'
       let OP_DEBUG_ERROR_TAGS = false;//     'DEBUG-ERROR-TAGS' show "TC@22" (for) fast finding
       let OP_DEBUG_CONSOLE_TRACE = false; // 'DEBUG-CONSOLE-TRACE'
@@ -193,15 +194,15 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
       const NULL_AS_STR = 'null';
       const NAN_AS_STR = 'NaN';
 
-      const UNDEFINED_STR_VALUE = 'Type-Czech-undefined-Stringify-Value';
+      const UNDEFINED_STR_VALUE = 'TypeCzech-undefined-Stringify-Value';
       const PLAIN_UNDEFINED_STR_VALUE = `${UNDEFINED_STR_VALUE}undefined`;
       const QUOTED_UNDEFINED_STR_VALUE = `"${PLAIN_UNDEFINED_STR_VALUE}"`;
 
-      const NULL_STR_VALUE = 'Type-Czech-null-Stringify-Value';
+      const NULL_STR_VALUE = 'TypeCzech-null-Stringify-Value';
       const PLAIN_NULL_STR_VALUE = `${NULL_STR_VALUE}null`;
       const QUOTED_NULL_STR_VALUE = `"${PLAIN_NULL_STR_VALUE}"`;
 
-      const NAN_STR_VALUE = 'Type-Czech-NaN-Stringify-Value';
+      const NAN_STR_VALUE = 'TypeCzech-NaN-Stringify-Value';
       const PLAIN_NAN_STR_VALUE = `${NAN_STR_VALUE}NaN`;
       const QUOTED_NAN_STR_VALUE = `"${PLAIN_NAN_STR_VALUE}"`;
 
@@ -216,7 +217,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         type_czech.confirmParameters(program_function, checking_function);
       */
       const TYPE_CZECH_EVENTS = {
-        backBlink: (back_color) => {
+        backBlinkUp: (back_color) => {
           document.body.style.background = back_color;
           setTimeout(() => { document.body.style.background = 'white'; }, 100);
         },
@@ -1064,6 +1065,8 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
       type_czech._isEmpty(85n);
       //false
 
+       type_czech._isEmpty(Infinity);
+      //false
       */
       function _isEmpty(a_variable) {
         consolelog('^^^ _isEmpty ENTER', a_variable, TYPE_CZECH_current_test_number);
@@ -1074,6 +1077,8 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         } else if (a_variable instanceof RegExp) {
           const regExp_str = a_variable.toString();
           is_empty = (regExp_str === EMPTY_REGEXP);
+        } else if (!Number.isFinite(a_variable)) {
+          is_empty = true; // Infinity is empty
         } else if (Number.isNaN(a_variable)) {
           is_empty = true; // NaN is an empty number, 0 is NOT-EMPTY!
         } else if (a_variable == null) {
@@ -3418,7 +3423,7 @@ type_czech._shapeScalar(4, 'null');
             const param_value = _toStr(parameters_list);
             if (parameter_type === 'array' && shape_type !== 'array') {
               const not_empty_array = parameters_list.length > 1;
-              const not_array_shape = shape_list !== 'array' && shape_list !== 'A';
+              const not_array_shape = shape_list !== 'array' && shape_list !== 'a';
               if (not_array_shape && not_empty_array) {
                 const error_219 = notArrayShape(parameters_list, shape_str);
                 error_str_3arr = paramError(error_219, 'TE@219', shape_str, message_type_empty);

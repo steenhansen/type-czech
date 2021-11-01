@@ -3,23 +3,23 @@
 //  node type-czech-off.js
 
 // 100,000 loops
-//   Type-Czech all calls == 4351ms
-//   Turn off Type-Czech == 49ms
-//     Remove Type-Czech == 50ms
+//   TypeCzech all calls == 4351ms
+//   Turn off TypeCzech == 49ms
+//     Remove TypeCzech == 50ms
 
 // 1,000,000 loops
-//   Type-Czech all calls == 42848ms
-//   Turn off Type-Czech == 447ms
-//     Remove Type-Czech == 447ms
+//   TypeCzech all calls == 42848ms
+//   Turn off TypeCzech == 447ms
+//     Remove TypeCzech == 447ms
 
 // 10,000,000 loops
-//   Type-Czech all calls == 424s
-//   Turn off Type-Czech == 4432ms
-//     Remove Type-Czech == 4427ms
+//   TypeCzech all calls == 424s
+//   Turn off TypeCzech == 4432ms
+//     Remove TypeCzech == 4427ms
 
 // 100,000,000 loops
-//   Turn off Type-Czech == 44717ms
-//     Remove Type-Czech == 44422ms
+//   Turn off TypeCzech == 44717ms
+//     Remove TypeCzech == 44422ms
 
 const use_type_czech = false;
 
@@ -28,7 +28,7 @@ if (use_type_czech) {
   const { TypeCzech } = require('../TypeCzech.js');
   type_czech = TypeCzech('LOG-ERRORS');
 } else {
-  type_czech = { link: (_) => _, isActive: (x) => false };
+  type_czech = { linkUp: (_) => _, isActive: (x) => false };
 }
 
 const LOTTERY_SIGNATURE = ['string', ['number'], 'date'];
