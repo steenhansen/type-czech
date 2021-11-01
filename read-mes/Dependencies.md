@@ -12,3 +12,8 @@ Evgeny Poberezkin's fast-json-stable-stringify for a deterministic JSON.stringif
 https://github.com/epoberezkin/fast-json-stable-stringify
 
 &copy; 2021 Steen Hansen
+
+
+https://caniuse.com/proxy
+
+TypeCzech requires ECMAScript 2015 (ES6).

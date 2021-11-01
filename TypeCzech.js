@@ -1066,7 +1066,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
       //false
 
        type_czech._isEmpty(Infinity);
-      //false
+      //true
       */
       function _isEmpty(a_variable) {
         consolelog('^^^ _isEmpty ENTER', a_variable, TYPE_CZECH_current_test_number);
@@ -1077,7 +1077,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         } else if (a_variable instanceof RegExp) {
           const regExp_str = a_variable.toString();
           is_empty = (regExp_str === EMPTY_REGEXP);
-        } else if (!Number.isFinite(a_variable)) {
+        } else if (typeof a_variable === 'number' && !Number.isFinite(a_variable)) {
           is_empty = true; // Infinity is empty
         } else if (Number.isNaN(a_variable)) {
           is_empty = true; // NaN is an empty number, 0 is NOT-EMPTY!

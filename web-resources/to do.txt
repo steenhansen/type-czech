@@ -1,6 +1,9 @@
 7 39 
 
+TypeCzech requires ECMAScript 2015 (ES6).
 
+Infinity ====> EMPTY !!!! bitch
+-0
 
 
 
