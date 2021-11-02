@@ -10,15 +10,15 @@
 /* eslint-disable max-len */
 
 function test_pre_check_typeVariadic(parameters_array, signature_of_parameters, error_id, expected_error) {
-  const type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  const type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
   tested_check_typeVariadic_32900 += 1;
 
   function PRE_test_32900() {
-    return type_czech_test.check_typeVariadic(arguments, signature_of_parameters);
+    return type_czech.check_typeVariadic(arguments, signature_of_parameters);
   }
 
   function pre_check_typeVariadic_32900() {}
-  pre_check_typeVariadic_32900 = type_czech_test.linkUp(pre_check_typeVariadic_32900, PRE_test_32900);
+  pre_check_typeVariadic_32900 = type_czech.linkUp(pre_check_typeVariadic_32900, PRE_test_32900);
 
   const before_var_value = beforeCheck(parameters_array, signature_of_parameters);
   if (expected_error === '') {
@@ -54,12 +54,12 @@ tested_check_typeVariadic_32900 = 0;
 failed_check_typeVariadic_32900 = 0;
 
 //////////////////////////////////////////
-type_czech_test = TypeCzech('NO-ERROR-MESSAGES');
+type_czech = TypeCzech('NO-ERROR-MESSAGES');
 function A_PRE_check_yourFunc() {
-   return type_czech_test.check_typeVariadic(arguments, ['number']);
+   return type_czech.check_typeVariadic(arguments, ['number']);
 }
 
-A_yourFunc = type_czech_test.linkUp(A_yourFunc, A_PRE_check_yourFunc);
+A_yourFunc = type_czech.linkUp(A_yourFunc, A_PRE_check_yourFunc);
 function A_yourFunc(){ }
 
 A_yourFunc(9)        // pass 1 F number
@@ -98,8 +98,8 @@ A_yourFunc({k:{}},{l:{}})            // fail 29 5 empty - {obj obj}
 
 expected_tests = 32;
 expected_fails = 29;
-fail_tests = type_czech_test.countFails();
-total_tests = type_czech_test.countTally();
+fail_tests = type_czech.countFails();
+total_tests = type_czech.countTally();
 if (expected_tests !== total_tests) 
   throw `A. _check_typeVariadic().md ${expected_tests} expected_tests !== ${total_tests} total_tests`
 else if (expected_fails !== fail_tests) 

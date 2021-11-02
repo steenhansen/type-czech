@@ -1,12 +1,11 @@
 # Recommended Techniques
 
-## Checking Function Names
-It is recommended to prefix checking function names that run before production
+## Use PRE_check and POST_check prefixed checking Function Names
+Prefix checking function names that run before tested
 functions with 'PRE_check_', and prefix 'POST_check_' to checking routines that execute after
-production functions. It is easy to see the relationships this way.
+tested functions. It is easy to see the relationships this way.
 
     /**/  type_czech = TypeCzech('LOG-ERRORS')
-    /**/  //type_czech = TypeCzech('NO-CHECKING')
     /**/
     /**/  function PRE_check_yourFunc(){ /* before check */ }
     /**/  function POST_check_yourFunc(){ /* after check */ }
@@ -15,44 +14,68 @@ production functions. It is easy to see the relationships this way.
 
     function yourFunc(){}
 
-## Arguements Object
-We suggest using the arguments parameter object to check all parameters for type with type_czech.check_type(), and emptiness with type_czech.check_empty().
+## Use arguements Object for before PRE_check 
+Use the arguments parameter object to check all parameters.
 
     /**/  type_czech = TypeCzech('LOG-ERRORS')
-    /**/  //type_czech = TypeCzech('NO-CHECKING')
     /**/
     /**/  function PRE_check_yourFunc(){
     /**/    return type_czech.check_type(arguments, ['string', 'number'])
     /**/  }
     /**/
-    /**/  function POST_check_Person(){
-    /**/    return type_czech.check_empty(arguments, 'EMPTY-ERROR')
-    /**/  }
-    /**/
-    /**/  yourFunc = type_czech.linkUp(yourFunc, PRE_check_yourFunc, POST_check_yourFunc)
+    /**/  yourFunc = type_czech.linkUp(yourFunc, PRE_check_yourFunc)
 
     function yourFunc(){}
 
+
+
+## Use result_value for after POST_check 
+Use a result_value parameter to check returned results.
+
+    /**/  type_czech = TypeCzech('LOG-ERRORS')
+    /**/
+    /**/  function POST_check_Person(result_value){
+    /**/    return type_czech.check_empty(result_value, 'EMPTY-ERROR')
+    /**/  }
+    /**/
+    /**/  yourFunc = type_czech.linkUp(yourFunc, undefined, POST_check_yourFunc)
+
+    function yourFunc(){
+      return result_value
+    }
+
+
+
+includ actual only when 
+
+
 ## Multiple Checked Issues
-Have the happy path lead to no return in checking functions, and include actual
+Return nothing if no error, and include actual
 parameters only when actually individually testing them as below.
 
     /**/  type_czech = TypeCzech('LOG-ERRORS')
-    /**/  //type_czech = TypeCzech('NO-CHECKING')
     /**/
     /**/  function PRE_check_yourFunc(first_name, last_name){
     /**/    type_issue = type_czech.check_type(arguments, ['string', 'string'])
     /**/    if (type_issue) return type_issue
-    /**/    empty_issue = type_czech.check_empty(arguments, 'EMPTY-ERROR')
+    /**/
+    /**/    empty_issue = type_czech.check_empty(arguments, ['EMPTY-ERROR', 'EMPTY-ERROR'])
     /**/    if (empty_issue) return empty_issue
+    /**/
     /**/    if (first_name.length===1) return 'Error, first_name is 1 character'
     /**/  }
     /**/
     /**/  yourFunc = type_czech.linkUp(yourFunc, PRE_check_yourFunc)
 
     function yourFunc(first_name, last_name){}
+    
+    yourFunc('Mr', 'Early')
 
+    yourFunc('Mr', 99)  // error
 
+    yourFunc('Mr', '')  // error
+    
+    yourFunc('A', 'Short')  // error
 
 ## Loading TypeCzech
 Turn on or off the loading of TypeCzech code by including, or not including, an import

@@ -36,11 +36,13 @@ console.log('check_type passed tests 05000', tested_check_type);
 //////////////////////////////////////////////////////////
 
 function check_type_05000(){
-  type_czech_test = TypeCzech('NO-ERROR-MESSAGES')
+  type_czech = TypeCzech('NO-ERROR-MESSAGES')
   function A_PRE_check_yourFunc() {
-    return type_czech_test.check_type(arguments, 'number')
+    type_issue = type_czech.check_type(arguments, 'number')
+   // console.log('type_issue', type_issue)
+    return type_issue
   }
-              A_yourFunc = type_czech_test.linkUp(A_yourFunc, A_PRE_check_yourFunc) 
+              A_yourFunc = type_czech.linkUp(A_yourFunc, A_PRE_check_yourFunc) 
               function A_yourFunc(){ }
   A_yourFunc(9)   // pass 1 F number
   A_yourFunc(NaN) // pass 2 M empty number
@@ -78,6 +80,7 @@ function check_type_05000(){
               expected_fails = 30
   fail_tests = type_czech.countFails()
   total_tests = type_czech.countTally()
+
   if (expected_tests !== total_tests) 
       throw `A. _check_type().md ${expected_tests} expected_tests !== ${total_tests} total_tests`
   else if (expected_fails !== fail_tests) 
@@ -489,9 +492,9 @@ function check_type_05001(){
   var expect_error = [`check_type(arguments, expected_types)`,
   `TE@209 - Extra key in checked object - (sneak:'extra')`,
   `{cylinders:"number",fuel:"string"}`];
-        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
-        var actual_error = type_czech_test.check_type(check_param, check_shape);
+        var actual_error = type_czech.check_type(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
         if (Array.isArray(actual_error)) actual_error = actual_error.reduce((accum, curr) => `${accum}\n${curr}`);
         if (Array.isArray(expect_error)) expect_error = expect_error.reduce((accum, curr) => `${accum}\n${curr}`);
@@ -509,9 +512,9 @@ function check_type_05002(){
   var check_param =  {};
   var check_shape = 'object';          
   var expect_error = '';
-        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
-        var actual_error = type_czech_test.check_type(check_param, check_shape);
+        var actual_error = type_czech.check_type(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
         if (Array.isArray(actual_error)) actual_error = actual_error.reduce((accum, curr) => `${accum}\n${curr}`);
         if (Array.isArray(expect_error)) expect_error = expect_error.reduce((accum, curr) => `${accum}\n${curr}`);
@@ -530,9 +533,9 @@ function check_type_05003(){
   var check_param = [[]];
   var check_shape = 'array';          
   var expect_error = '';
-        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
-        var actual_error = type_czech_test.check_type(check_param, check_shape);
+        var actual_error = type_czech.check_type(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
         if (Array.isArray(actual_error)) actual_error = actual_error.reduce((accum, curr) => `${accum}\n${curr}`);
         if (Array.isArray(expect_error)) expect_error = expect_error.reduce((accum, curr) => `${accum}\n${curr}`);
@@ -552,9 +555,9 @@ function check_type_05004(){
   var check_param = {0:[{}], length:1};
   var check_shape = 'array';          
   var expect_error = '';
-        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
-        var actual_error = type_czech_test.check_type(check_param, check_shape);
+        var actual_error = type_czech.check_type(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
         if (Array.isArray(actual_error)) actual_error = actual_error.reduce((accum, curr) => `${accum}\n${curr}`);
         if (Array.isArray(expect_error)) expect_error = expect_error.reduce((accum, curr) => `${accum}\n${curr}`);
@@ -575,9 +578,9 @@ function check_type_05005(){
   var expect_error = [`check_type(arguments, expected_types)`,
   `TE@225 - The value '[]', which is a 'array', is not a 'object'`,
   `object`];
-        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
-        var actual_error = type_czech_test.check_type(check_param, check_shape);
+        var actual_error = type_czech.check_type(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
         if (Array.isArray(actual_error)) actual_error = actual_error.reduce((accum, curr) => `${accum}\n${curr}`);
         if (Array.isArray(expect_error)) expect_error = expect_error.reduce((accum, curr) => `${accum}\n${curr}`);
@@ -597,9 +600,9 @@ function check_type_05006(){
   var check_param = {x:[{y:'z'}]};
   var check_shape = {x:[{y:'string'}]};           //   SAME AS TEST 5007 wat?
   var expect_error = '';
-        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
-        var actual_error = type_czech_test.check_type(check_param, check_shape);
+        var actual_error = type_czech.check_type(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
         if (Array.isArray(actual_error)) actual_error = actual_error.reduce((accum, curr) => `${accum}\n${curr}`);
         if (Array.isArray(expect_error)) expect_error = expect_error.reduce((accum, curr) => `${accum}\n${curr}`);
@@ -619,9 +622,9 @@ function check_type_05007(){
   var check_param = {x:[{y:'z'}]};
   var check_shape = {x:[{y:'string'}]}; 
   var expect_error = '';
-        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
-        var actual_error = type_czech_test.check_type(check_param, check_shape);
+        var actual_error = type_czech.check_type(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
         if (Array.isArray(actual_error)) actual_error = actual_error.reduce((accum, curr) => `${accum}\n${curr}`);
         if (Array.isArray(expect_error)) expect_error = expect_error.reduce((accum, curr) => `${accum}\n${curr}`);
@@ -644,9 +647,9 @@ function check_type_05008(){
   var expect_error = [`check_type(arguments, expected_types)`,
   `TE@209 - Extra key in checked object - (sneak:'extra')`,
   `{cylinders:"number",fuel:"string"}`];
-        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
-        var actual_error = type_czech_test.check_type(check_param, check_shape);
+        var actual_error = type_czech.check_type(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
         if (Array.isArray(actual_error)) actual_error = actual_error.reduce((accum, curr) => `${accum}\n${curr}`);
         if (Array.isArray(expect_error)) expect_error = expect_error.reduce((accum, curr) => `${accum}\n${curr}`);
@@ -669,9 +672,9 @@ function check_type_05009(){
   var expect_error = [`check_type(arguments, expected_types)`,
   `TE@203 - The type 'null' is not a valid check_type(), check_typeEither(), or check_typeExtra() second parameter type`,
   `null`];
-        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
-        var actual_error = type_czech_test.check_type(check_param, check_shape);
+        var actual_error = type_czech.check_type(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
         if (Array.isArray(actual_error)) actual_error = actual_error.reduce((accum, curr) => `${accum}\n${curr}`);
         if (Array.isArray(expect_error)) expect_error = expect_error.reduce((accum, curr) => `${accum}\n${curr}`);
@@ -692,9 +695,9 @@ function check_type_05010(){
   var expect_error = [`check_type(arguments, expected_types)`,
   `TE@203 - The type 'null' is not a valid check_type(), check_typeEither(), or check_typeExtra() second parameter type`,
   `null`];
-        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
-        var actual_error = type_czech_test.check_type(check_param, check_shape);
+        var actual_error = type_czech.check_type(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
         if (Array.isArray(actual_error)) actual_error = actual_error.reduce((accum, curr) => `${accum}\n${curr}`);
         if (Array.isArray(expect_error)) expect_error = expect_error.reduce((accum, curr) => `${accum}\n${curr}`);
@@ -714,9 +717,9 @@ function check_type_05011(){
   var expect_error = [`check_type(arguments, expected_types)`,
   `TE@210 - The type 'null' is not a real type`,
   `{a:[{b:[{c:"string"}]}],z:"null"}`];
-        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
-        var actual_error = type_czech_test.check_type(check_param, check_shape);
+        var actual_error = type_czech.check_type(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
         if (Array.isArray(actual_error)) actual_error = actual_error.reduce((accum, curr) => `${accum}\n${curr}`);
         if (Array.isArray(expect_error)) expect_error = expect_error.reduce((accum, curr) => `${accum}\n${curr}`);
@@ -736,9 +739,9 @@ function check_type_05012(){
   var expect_error = ['check_type(arguments, expected_types)',
   "TE@225 - The value '[]', which is a 'array', is not a 'string'",
   'string'];
-        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
-        var actual_error = type_czech_test.check_type(check_param, check_shape);
+        var actual_error = type_czech.check_type(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
         if (Array.isArray(actual_error)) actual_error = actual_error.reduce((accum, curr) => `${accum}\n${curr}`);
         if (Array.isArray(expect_error)) expect_error = expect_error.reduce((accum, curr) => `${accum}\n${curr}`);
@@ -760,9 +763,9 @@ function check_type_05013(){
   var expect_error = [`check_type(arguments, expected_types)`,
   `TE@225 - The value '[]', which is a 'array', is not a 'string'`,
   `string`];
-        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
-        var actual_error = type_czech_test.check_type(check_param, check_shape);
+        var actual_error = type_czech.check_type(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
         if (Array.isArray(actual_error)) actual_error = actual_error.reduce((accum, curr) => `${accum}\n${curr}`);
         if (Array.isArray(expect_error)) expect_error = expect_error.reduce((accum, curr) => `${accum}\n${curr}`);
@@ -784,9 +787,9 @@ function check_type_05014(){
   var expect_error = [`check_type(arguments, expected_types)`,
   `TE@217 - Comparing actual 'string' parameter, with a value of a-string, in relation to the expected shape of ["string"]. They should be the same type. You cannot compare an array with a non-array; both []s, or both 'string's. Or same object keys`,
   `['string']`];
-        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
-        var actual_error = type_czech_test.check_type(check_param, check_shape);
+        var actual_error = type_czech.check_type(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
         if (Array.isArray(actual_error)) actual_error = actual_error.reduce((accum, curr) => `${accum}\n${curr}`);
         if (Array.isArray(expect_error)) expect_error = expect_error.reduce((accum, curr) => `${accum}\n${curr}`);
@@ -806,9 +809,9 @@ function check_type_05015(){
   var check_param = 'a-string';
   var check_shape = 'string';  
   var expect_error =  ''; 
-        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
-        var actual_error = type_czech_test.check_type(check_param, check_shape);
+        var actual_error = type_czech.check_type(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
         if (Array.isArray(actual_error)) actual_error = actual_error.reduce((accum, curr) => `${accum}\n${curr}`);
         if (Array.isArray(expect_error)) expect_error = expect_error.reduce((accum, curr) => `${accum}\n${curr}`);
@@ -827,9 +830,9 @@ function check_type_05016(){
   var check_param = [1,2,3]; 
   var check_shape = ['number'];  
   var expect_error = '';
-        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
-        var actual_error = type_czech_test.check_type(check_param, check_shape);
+        var actual_error = type_czech.check_type(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
         if (Array.isArray(actual_error)) actual_error = actual_error.reduce((accum, curr) => `${accum}\n${curr}`);
         if (Array.isArray(expect_error)) expect_error = expect_error.reduce((accum, curr) => `${accum}\n${curr}`);
@@ -850,9 +853,9 @@ function check_type_05017(){
   var check_param = ['a', 1]; 
   var check_shape = ['string', 'number'];
   var expect_error = '';
-        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
-        var actual_error = type_czech_test.check_type(check_param, check_shape);
+        var actual_error = type_czech.check_type(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
         if (Array.isArray(actual_error)) actual_error = actual_error.reduce((accum, curr) => `${accum}\n${curr}`);
         if (Array.isArray(expect_error)) expect_error = expect_error.reduce((accum, curr) => `${accum}\n${curr}`);
@@ -872,9 +875,9 @@ function check_type_05018(){
   var check_param = [[1,2,3,4], ['a', 'b', 'c', 'd']];
   var check_shape = [ ['number'], ['string'] ]; 
   var expect_error = '';
-        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
-        var actual_error = type_czech_test.check_type(check_param, check_shape);
+        var actual_error = type_czech.check_type(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
         if (Array.isArray(actual_error)) actual_error = actual_error.reduce((accum, curr) => `${accum}\n${curr}`);
         if (Array.isArray(expect_error)) expect_error = expect_error.reduce((accum, curr) => `${accum}\n${curr}`);

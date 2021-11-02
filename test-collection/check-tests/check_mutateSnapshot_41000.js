@@ -10,15 +10,15 @@
 /* eslint-disable max-len */
 
 function test_pre_check_mutateSnapshot(parameters_array, signature_of_parameters, error_id, expected_error) {
-  const type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  const type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
   tested_check_typeVariadic_41000 += 1;
 
   function PRE_test_41000() {
-    return type_czech_test.check_mutateSnapshot(arguments, signature_of_parameters);
+    return type_czech.check_mutateSnapshot(arguments, signature_of_parameters);
   }
 
   function pre_check_mutateSnapshot_41000() {}
-  pre_check_mutateSnapshot_41000 = type_czech_test.linkUp(pre_check_mutateSnapshot_41000, PRE_test_41000);
+  pre_check_mutateSnapshot_41000 = type_czech.linkUp(pre_check_mutateSnapshot_41000, PRE_test_41000);
 
   const before_var_value = beforeCheck(parameters_array, signature_of_parameters);
   if (expected_error === '') {

@@ -9,7 +9,7 @@
 /* eslint-disable max-len */
 
 function test_pre_check_typeEither_multi(parameters_array, signature_of_parameters, error_id, expected_error) {
-  const type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  const type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
   tested_check_typeEither_07800 += 1;
 
   function PRE_test_07800() {
@@ -17,7 +17,7 @@ function test_pre_check_typeEither_multi(parameters_array, signature_of_paramete
   }
 
   function pre_check_typeEither_07800() {}
-  pre_check_typeEither_07800 = type_czech_test.linkUp(pre_check_typeEither_07800, PRE_test_07800);
+  pre_check_typeEither_07800 = type_czech.linkUp(pre_check_typeEither_07800, PRE_test_07800);
 
   const before_var_value = beforeCheck(parameters_array, signature_of_parameters);
   if (expected_error === '') {

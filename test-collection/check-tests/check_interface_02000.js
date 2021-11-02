@@ -107,9 +107,9 @@ function check_interface_02001(){
   var check_param = {show: (x) => x};
   var check_shape =   {show:'function'};          
   var expect_error =  '';
-        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
-        var actual_error = type_czech_test.check_interface(check_param, check_shape);
+        var actual_error = type_czech.check_interface(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
         if (Array.isArray(actual_error)) actual_error = actual_error.reduce((accum, curr) => `${accum}\n${curr}`);
         if (Array.isArray(expect_error)) expect_error = expect_error.reduce((accum, curr) => `${accum}\n${curr}`);
@@ -131,9 +131,9 @@ function check_interface_02002(){
   var expect_error =  ["check_interface(arguments, expected_types)",
   "IE@501 - Interface missing key 'noShow' in checked object",
   '{noShow:"function"}'];
-        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
-        var actual_error = type_czech_test.check_interface(check_param, check_shape);
+        var actual_error = type_czech.check_interface(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
         if (Array.isArray(actual_error)) actual_error = actual_error.reduce((accum, curr) => `${accum}\n${curr}`);
         if (Array.isArray(expect_error)) expect_error = expect_error.reduce((accum, curr) => `${accum}\n${curr}`);
@@ -154,9 +154,9 @@ function check_interface_02003(){
   var expect_error =  ["check_interface(arguments, expected_types)",
   "IE@502 - actual type of 'show' is 'number', with a value of '17', not the expected 'function' type",
   '{show:"function"}'];
-        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
-        var actual_error = type_czech_test.check_interface(check_param, check_shape);
+        var actual_error = type_czech.check_interface(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
         if (Array.isArray(actual_error)) actual_error = actual_error.reduce((accum, curr) => `${accum}\n${curr}`);
         if (Array.isArray(expect_error)) expect_error = expect_error.reduce((accum, curr) => `${accum}\n${curr}`);

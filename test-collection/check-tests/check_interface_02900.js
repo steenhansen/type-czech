@@ -9,15 +9,15 @@
 /* eslint-disable max-len */
 
 function test_pre_check_interface(actual_variable, variable_signature, error_id, expected_error) {
-  const type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  const type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
   tested_check_interface_02900 += 1;
 
   function PRE_test_02900() {
-    return type_czech_test.check_interface(arguments, variable_signature);
+    return type_czech.check_interface(arguments, variable_signature);
   }
 
   function pre_check_interface_02900() {}
-  pre_check_interface_02900 = type_czech_test.linkUp(pre_check_interface_02900, PRE_test_02900);
+  pre_check_interface_02900 = type_czech.linkUp(pre_check_interface_02900, PRE_test_02900);
 
   const before_var_value = beforeCheck(actual_variable, variable_signature);
   if (expected_error === '') {

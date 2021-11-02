@@ -142,6 +142,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         'number', 'object', 'regexp', 'string', 'symbol'];
 
       const TYPE_SET_SCALAR = new Set(SCALAR_TYPE_OFS);
+
       const SHORT_TO_TYPE_OF = {
         a: 'array',
         i: 'bigint',
@@ -158,18 +159,23 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
       const UNDEFINED_AS_STR = 'undefined';
       const NULL_AS_STR = 'null';
       const NAN_AS_STR = 'NaN';
+      const INFINITY_AS_STR = 'Infinity';
 
       const UNDEFINED_STR_VALUE = 'TypeCzech-undefined-Stringify-Value';
-      const PLAIN_UNDEFINED_STR_VALUE = `${UNDEFINED_STR_VALUE}undefined`;
+      const PLAIN_UNDEFINED_STR_VALUE = `${UNDEFINED_STR_VALUE}:undefined`;
       const QUOTED_UNDEFINED_STR_VALUE = `"${PLAIN_UNDEFINED_STR_VALUE}"`;
 
       const NULL_STR_VALUE = 'TypeCzech-null-Stringify-Value';
-      const PLAIN_NULL_STR_VALUE = `${NULL_STR_VALUE}null`;
+      const PLAIN_NULL_STR_VALUE = `${NULL_STR_VALUE}:null`;
       const QUOTED_NULL_STR_VALUE = `"${PLAIN_NULL_STR_VALUE}"`;
 
       const NAN_STR_VALUE = 'TypeCzech-NaN-Stringify-Value';
-      const PLAIN_NAN_STR_VALUE = `${NAN_STR_VALUE}NaN`;
+      const PLAIN_NAN_STR_VALUE = `${NAN_STR_VALUE}:NaN`;
       const QUOTED_NAN_STR_VALUE = `"${PLAIN_NAN_STR_VALUE}"`;
+
+      const INFINITY_STR_VALUE = 'TypeCzech-Infinity-Stringify-Value';
+      const PLAIN_INFINITY_STR_VALUE = `${INFINITY_STR_VALUE}:Infinity`;
+      const QUOTED_INFINITY_STR_VALUE = `"${PLAIN_INFINITY_STR_VALUE}"`;
 
       const START_CHECK_COLOR = 'green';
       const DO_CHECK_COLOR = 'blue';
@@ -245,6 +251,8 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
             to_str = UNDEFINED_AS_STR;
           } else if (maybe_undef === QUOTED_NAN_STR_VALUE) {
             to_str = NAN_AS_STR;
+          } else if (maybe_undef === QUOTED_INFINITY_STR_VALUE) {
+            to_str = INFINITY_AS_STR;
           } else {
             let no_string_postfix = maybe_undef.replace(/"/g, '"');
             if (no_string_postfix.startsWith('"{') && no_string_postfix.endsWith('}"')) {
@@ -289,6 +297,8 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
           replaced_value = PLAIN_UNDEFINED_STR_VALUE;
         } else if (Number.isNaN(value)) {
           replaced_value = PLAIN_NAN_STR_VALUE;
+        } else if (typeof value === 'number' && !Number.isFinite(value)) {
+          replaced_value = PLAIN_INFINITY_STR_VALUE;
         } else if (typeof value === 'function') {
           const func_text = String(value);
           const no_new_lines = func_text.replace(/\s+/g, ' ');
@@ -645,9 +655,9 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         } else if (a_variable instanceof RegExp) {
           const regExp_str = a_variable.toString();
           is_empty = (regExp_str === EMPTY_REGEXP);
-        } else if (typeof a_variable === 'number' && !Number.isFinite(a_variable)) {
-          is_empty = true; 
         } else if (Number.isNaN(a_variable)) {
+          is_empty = true; 
+        } else if (typeof a_variable === 'number' && !Number.isFinite(a_variable)) {
           is_empty = true; 
         } else if (a_variable == null) {
           is_empty = true;
@@ -1488,6 +1498,7 @@ const _cycle_loops = {};
 
 
 if (Number.isNaN(node)) return 'NaN';
+if (typeof node === 'number' && !Number.isFinite(node)) return 'Infinity';
 if (node === undefined) return 'undefined';
 if (typeof node === 'bigint') return JSON.stringify(node + 'n');
 if (typeof node === 'symbol') return node.toString();
@@ -2395,7 +2406,7 @@ if (node && node.constructor === RegExp) {
             const param_value = _toStr(parameters_list);
             if (parameter_type === 'array' && shape_type !== 'array') {
               const not_empty_array = parameters_list.length > 1;
-              const not_array_shape = shape_list !== 'array' && shape_list !== 'a';
+              const not_array_shape = (shape_list !== 'array') && (shape_list !== 'a');
               if (not_array_shape && not_empty_array) {
                 const error_219 = notArrayShape(parameters_list, shape_str);
                 error_str_3arr = paramError(error_219, 'TE@219', shape_str, message_type_empty);

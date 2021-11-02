@@ -80,9 +80,9 @@ function check_emptyEither_04001(){
   var type_b = {x:"EMPTY-OK", y:{z:"EMPTY-ERROR"}};
   var check_shape =  [type_a, type_b];         
   var expect_error =  '';
-        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
-        var actual_error = type_czech_test.check_emptyEither(check_param, check_shape);
+        var actual_error = type_czech.check_emptyEither(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
         if (Array.isArray(actual_error)) actual_error = actual_error.reduce((accum, curr) => `${accum}\n${curr}`);
         if (Array.isArray(expect_error)) expect_error = expect_error.reduce((accum, curr) => `${accum}\n${curr}`);

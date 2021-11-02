@@ -9,15 +9,15 @@
 /* eslint-disable max-len */
 
 function test_pre_check_type_multi(parameters_array, signature_of_parameters, error_id, expected_error) {
-  const type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  const type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
   tested_check_type_05800 += 1;
 
   function PRE_test_05800() {
-    return type_czech_test.check_type(arguments, signature_of_parameters);
+    return type_czech.check_type(arguments, signature_of_parameters);
   }
 
   function pre_check_type_05800() {}
-  pre_check_type_05800 = type_czech_test.linkUp(pre_check_type_05800, PRE_test_05800);
+  pre_check_type_05800 = type_czech.linkUp(pre_check_type_05800, PRE_test_05800);
 
   const before_var_value = beforeCheck(parameters_array, signature_of_parameters);
   if (expected_error === '') {

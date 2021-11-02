@@ -58,8 +58,10 @@
 <!--            ---------------TYPE 2---------------------------       -->
 
 <script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech/web-resources/consolelog.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech/web-resources/TypeCzech.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech/web-resources/type-czech.css">
+
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech/web-resources/ordered-import.js"></script>
 
 <!--            -------------TYPE 2-----------------------------       -->
 
@@ -240,6 +242,15 @@ function copyAndColor(){
 }
 
   log = captureConsole("log-text");
+
+const TYPE_CZECH_JS =  'https://cdn.jsdelivr.net/gh/steenhansen/type-czech/web-resources/TypeCzech.min.js';
+
+const TC_FIRST_JS = 'https://cdn.jsdelivr.net/gh/steenhansen/type-czech/examples-web/503-Extending-Prototypes-Production/TypeCzech_First.js';
+const TC_LAST_JS = 'https://cdn.jsdelivr.net/gh/steenhansen/type-czech/examples-web/503-Extending-Prototypes-Production/TypeCzech_Last.js';
+const TC_FULL_JS =   'https://cdn.jsdelivr.net/gh/steenhansen/type-czech/examples-web/503-Extending-Prototypes-Production/TypeCzech_Full.js';
+const TC_PERSON_JS =   'https://cdn.jsdelivr.net/gh/steenhansen/type-czech/examples-web/503-Extending-Prototypes-Production/TypeCzech_Person.js';
+
+
 </script>
 
 
@@ -310,11 +321,12 @@ onLoaded = ([_loaded_files, _import_errors]) => {
 /**/
 /**/  if (typeof orderedImport === 'function' && TYPE_CZECH_START) {
 /**/    TYPE_CZECH_COMMANDS = ['LOG-ERRORS']
-/**/    const CHECKING_CLASS_FILES = ['../../TypeCzech.js',
-/**/                                  './TypeCzech_First.js',
-/**/                                  './TypeCzech_Last.js',
-/**/                                  './TypeCzech_Full.js', 
-/**/                                  './TypeCzech_Person.js' ]
+/**/    const CHECKING_CLASS_FILES = [
+/**/          TYPE_CZECH_JS,
+/**/          TC_FIRST_JS,
+/**/          TC_LAST_JS,
+/**/          TC_FULL_JS,
+/**/          TC_PERSON_JS  ]
 /**/    orderedImport(CHECKING_CLASS_FILES, onLoaded)
 /**/  } else {
   onLoaded([], [])

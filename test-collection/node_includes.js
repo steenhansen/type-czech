@@ -1,5 +1,7 @@
 const { TypeCzech } = require('../TypeCzech.js');
 
+global.TypeCzech = TypeCzech;
+
 const {
   errorLabel, beforeCheck, afterCheck,
   testError, oneLineString, errorMessage,
@@ -16,7 +18,7 @@ global.getRandomInt = getRandomInt;
 global.makeTree = makeTree;
 global.changeTree = changeTree;
 
-global.TypeCzech = TypeCzech;
+
 global.errorLabel = errorLabel;
 global.beforeCheck = beforeCheck;
 global.afterCheck = afterCheck;

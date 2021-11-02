@@ -217,12 +217,12 @@ function variadic_32201(){
   var expect_error = `check_mutatedSnapshot(arguments, expected_types),ME@405 - The reference variable 'mutate_14001' in ` + 
                      `function '_mutatedVariables_14001()' changed values from [1,2,3] to [1,2,3,4] ` + 
                      `START-SAME ~ [1,2,3 PRE-DIFF ~ ] POST-DIFF ~ ,4],''`;
-        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         var actual_error;
         try {
-          type_czech_test.check_buildSnapshot('_mutatedVariables_14001', 'mutate_14001', mutate_14001);
+          type_czech.check_buildSnapshot('_mutatedVariables_14001', 'mutate_14001', mutate_14001);
           mutate_14001.push(4);
-          actual_error = type_czech_test.check_mutatedSnapshot('_mutatedVariables_14001', 'mutate_14001');
+          actual_error = type_czech.check_mutatedSnapshot('_mutatedVariables_14001', 'mutate_14001');
         } catch (e) { }
         actual_error = ((actual_error.join()).replace(/\s+/g, ' ')).trim(); 
         if (actual_error !== expect_error) {

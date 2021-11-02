@@ -19,8 +19,11 @@
 <!--            -----------------TYPE 2-------------------------       -->
 
 <script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech/web-resources/consolelog.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech/web-resources/ordered-import.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech/web-resources/type-czech.css">
+
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech/web-resources/ordered-import.js"></script>
+
 
 <!--            ------------------TYPE 2------------------------       -->
 
@@ -249,16 +252,28 @@
   function copyAndColor(){
     jsToDiv('js-code', "check-code");      
   
-    fromToBoldText(898, 908, 'code', 1)  //firstMethod
-    fromToBoldText(949, 958, 'code', 2)  // lastMethod
-    fromToBoldText(984, 993, 'code', 3)  // fullMethod
+    fromToBoldText(864, 874, 'code', 1)  //firstMethod
+    fromToBoldText(917, 926, 'code', 2)  // lastMethod
+    fromToBoldText(954, 963, 'code', 3)  // fullMethod
     
     fromToBoldText(210, 225, 'log', 1)    //firstMethod
     fromToBoldText(296, 310, 'log', 2)    //lastMethod
     fromToBoldText(406, 420, 'log', 3)    //fullMethod
   }
   
-    log = captureConsole("log-text");
+  log = captureConsole("log-text");
+
+  const TYPE_CZECH_JS =  'https://cdn.jsdelivr.net/gh/steenhansen/type-czech/web-resources/TypeCzech.min.js';
+  const FIRST_JS = 'https://cdn.jsdelivr.net/gh/steenhansen/type-czech/examples-web/602-Extending-OLOO-Imports/First.js';
+  const LAST_JS = 'https://cdn.jsdelivr.net/gh/steenhansen/type-czech/examples-web/602-Extending-OLOO-Imports/Last.js';
+  const FULL_JS =   'https://cdn.jsdelivr.net/gh/steenhansen/type-czech/examples-web/602-Extending-OLOO-Imports/Full.js';
+
+  const TC_FIRST_JS = 'https://cdn.jsdelivr.net/gh/steenhansen/type-czech/examples-web/602-Extending-OLOO-Imports/TypeCzech_First.js';
+  const TC_LAST_JS = 'https://cdn.jsdelivr.net/gh/steenhansen/type-czech/examples-web/602-Extending-OLOO-Imports/TypeCzech_Last.js';
+  const TC_FULL_JS =   'https://cdn.jsdelivr.net/gh/steenhansen/type-czech/examples-web/602-Extending-OLOO-Imports/TypeCzech_Full.js';
+
+
+
   </script>
   
   
@@ -266,20 +281,12 @@
   
   <script  id="check-code">
   /**/  const CHECKING_CLASS_FILES = [
-  /**/    './First.js',
-  /**/    './Last.js',
-  /**/    './Full.js',
-  /**/      '../../TypeCzech.js',
-  /**/      './TypeCzech_First.js',
-  /**/      './TypeCzech_Last.js',
-  /**/      './TypeCzech_Full.js',
-  /**/  ]
+  /**/    TYPE_CZECH_JS, FIRST_JS, TC_FIRST_JS,
+  /**/                   LAST_JS, TC_LAST_JS,
+  /**/                   FULL_JS, TC_FULL_JS ]
   
   const NOT_CHECKING_CLASS_FILES = [
-    './First.js',
-    './Last.js',
-    './Full.js' 
-  ]
+    FIRST_JS, LAST_JS, FULL_JS ]
   
   /**/      TYPE_CZECH_START = true
   /**/    //TYPE_CZECH_START = false

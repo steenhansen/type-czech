@@ -2,54 +2,26 @@
 
 
 
-what about this idea
+
+
+17-9
+16-17
+15-16
+14-15
+13-14
+12-13
+11-12
+10-11
+9-10
+
+https://jsfiddle.net/steen_hansen/Lwn504es/?21-Type-Check-with-Extra-Optional-Params       double wonky
+
+
+https://jsfiddle.net/steen_hansen/f19s52xr/?36-Start-and-Stop         double wonky
 
 
 
-myFunction(arguments){
-
-}
-
-
-
-check_type(arguments, myFuction)       /// where arguments ==> myFunction()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-need to re-upload all jsfiddles, as contents link didn't have a target=blank on it
-
-
-first line of minimized should now have v and date
-
-
-
-file:///C:/Users/16043/Desktop/_js/proxy/type-czech/examples-jsfiddle/26-Type-and-Empty-Abbreviations.html
-
-does not run correctly???
-
-
-
-the minimized copy is the wrong one with infinite bug !!!!!!!
-
-
-
-
-
+https://jsfiddle.net/steen_hansen/ep3snb8z/?35-Throw-or-Log  single wonky
 
 
 

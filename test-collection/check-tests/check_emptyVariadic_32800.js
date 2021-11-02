@@ -9,15 +9,15 @@
 /* eslint-disable max-len */
 
 function test_pre_check_emptyVariadic(actual_variable, variable_signature, error_id, expected_error) {
-  const type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  const type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
   tested_check_emptyVariadic_32800 += 1;
 
   function PRE_test_32800() {
-    return type_czech_test.check_emptyVariadic(arguments, variable_signature);
+    return type_czech.check_emptyVariadic(arguments, variable_signature);
   }
 
   function pre_check_emptyVariadic_32800() {}
-  pre_check_emptyVariadic_32800 = type_czech_test.linkUp(pre_check_emptyVariadic_32800, PRE_test_32800);
+  pre_check_emptyVariadic_32800 = type_czech.linkUp(pre_check_emptyVariadic_32800, PRE_test_32800);
 
   const before_var_value = beforeCheck(actual_variable, variable_signature);
   if (expected_error === '') {
@@ -54,12 +54,12 @@ failed_check_emptyVariadic_32800 = 0;
 
 // /////////////////////////////////////////////////////////////////////////////////////////////
 
-type_czech_test = TypeCzech('NO-ERROR-MESSAGES')
+type_czech = TypeCzech('NO-ERROR-MESSAGES')
 function A_PRE_check_yourFunc() {
-  return type_czech_test.check_emptyVariadic(arguments, ['EMPTY-ERROR'])
+  return type_czech.check_emptyVariadic(arguments, ['EMPTY-ERROR'])
 }
 
-A_yourFunc = type_czech_test.linkUp(A_yourFunc, A_PRE_check_yourFunc) 
+A_yourFunc = type_czech.linkUp(A_yourFunc, A_PRE_check_yourFunc) 
 function A_yourFunc(){ }
 
 A_yourFunc([1])                      // pass 1 A array

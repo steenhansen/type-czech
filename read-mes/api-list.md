@@ -26,6 +26,8 @@
   -  [20 typeIsA()](#type-is-a) 
   -  [21 typeProtos()](#type-protos)
 
+Note that functions with \_check_ in their names are usually placed within PRE and POST checking functions as their error messages are logged in the console or throw exceptions.
+
 ### 1 assert_check(the_error, err_location, err_variable, err_explanation)<a name="assert-check"></a>
 
   If check_error is an empty string then nothing happens. Otherwise the error 

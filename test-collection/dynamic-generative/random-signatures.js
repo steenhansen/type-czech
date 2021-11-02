@@ -5,10 +5,8 @@
 const type_czech_test = TypeCzech('THROW-EXCEPTIONS');
 const change_tree = changeTree();
 
-let  { treeAsArguments, noMergetreeType, mergeTreeType, testNumToStr, kKeyToXArgs, badTreeType, kKeyToXTypes } =change_tree;
-//  }
-
-
+let  { treeAsArguments, noMergetreeType, mergeTreeType, 
+  testNumToStr, kKeyToXArgs, badTreeType, kKeyToXTypes } =change_tree;
 
 function reflectTree(tree_str, show_data) {
   const the_arguments = treeAsArguments(tree_str);

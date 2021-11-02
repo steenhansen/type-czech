@@ -1,3 +1,5 @@
+/* node example-node.js */
+
 /* eslint-disable */
 
 /**/  const { TypeCzech } = require('./TypeCzech.js');

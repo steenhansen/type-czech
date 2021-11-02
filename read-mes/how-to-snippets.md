@@ -1,7 +1,15 @@
 
 ## How To:
 
-### Check a String parameter type:
+
+  -  [1 Check for a String Parameter](#check-for-a-string)
+  -  [2 Check for a Positive Number Parameter](#check-for-a-positive-number)
+
+
+
+
+
+### 1 Check for a String Parameter<a name="check-for-a-string"></a>
 
     /**/  type_czech = TypeCzech('THROW-EXCEPTIONS')
     /**/  
@@ -25,7 +33,7 @@
     >>                EXPECTED TYPE 'string'
     >>        CALLING FUNCTION PRE_check_aString(a_string)
 
-### Check for a positive parameter number:
+### 2 Check for a Positive Number Parameter<a name="check-for-a-positive-number"></a>
 
     /**/  type_czech = TypeCzech('LOG-ERRORS')
     /**/  

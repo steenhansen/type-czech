@@ -3,20 +3,24 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-console */
 
+
+type_czech_helper = TypeCzech('NO-ERROR-MESSAGES');
+
+
 function testError(test_exception) {
   console.log(test_exception);
 }
 
 function beforeCheck(prog_data, shape_data) {
-  const prog_str = type_czech._jsonStr(prog_data);
-  const shape_str = type_czech._jsonStr(shape_data);
+  const prog_str = type_czech_helper._jsonStr(prog_data);
+  const shape_str = type_czech_helper._jsonStr(shape_data);
   const before_str = prog_str + shape_str;
   return before_str;
 }
 
 function afterCheck(prog_data, shape_data, before_str, location_str) {
-  const prog_str = type_czech._jsonStr(prog_data);
-  const shape_str = type_czech._jsonStr(shape_data);
+  const prog_str = type_czech_helper._jsonStr(prog_data);
+  const shape_str = type_czech_helper._jsonStr(shape_data);
   const after_str = prog_str + shape_str;
   if (after_str !== before_str) {
     testError(`_ParametersCheck Value Change ! ${location_str} \n ${before_str} \n ${after_str}`);
@@ -50,7 +54,7 @@ function arrayErrorToString(array_or_str_error) {
     return array_or_str_error;
   }
   // eslint-disable-next-line no-undef
-  const reducer = (accum, curr) => `${accum}###${type_czech._toStr(curr)}`;
+  const reducer = (accum, curr) => `${accum}###${type_czech_helper._toStr(curr)}`;
   const error_str = array_or_str_error.reduce(reducer);
   return error_str;
 }

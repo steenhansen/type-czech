@@ -174,9 +174,9 @@ function check_emptyExtra_30001(){
   var check_param = [12, 'a-string', false]; 
   var check_shape =   ['EMPTY-ERROR', 'EMPTY-ERROR'];          
   var expect_error = '';
-        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
-        var actual_error = type_czech_test.check_emptyExtra(check_param, check_shape);
+        var actual_error = type_czech.check_emptyExtra(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
         if (Array.isArray(actual_error)) actual_error = actual_error.reduce((accum, curr) => `${accum}\n${curr}`);
         if (Array.isArray(expect_error)) expect_error = expect_error.reduce((accum, curr) => `${accum}\n${curr}`);
@@ -194,9 +194,9 @@ function check_emptyExtra_30002(){
   var check_param =  [  1234, 'not-empty', ['not-empty'], {a:''}  ]; 
   var check_shape =   ['EMPTY-ERROR', 'EMPTY-ERROR'];          
   var expect_error = '';
-        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
-        var actual_error = type_czech_test.check_emptyExtra(check_param, check_shape);
+        var actual_error = type_czech.check_emptyExtra(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
         if (Array.isArray(actual_error)) actual_error = actual_error.reduce((accum, curr) => `${accum}\n${curr}`);
         if (Array.isArray(expect_error)) expect_error = expect_error.reduce((accum, curr) => `${accum}\n${curr}`);
@@ -217,9 +217,9 @@ function check_emptyExtra_30003(){
   var expect_error = ["check_emptyExtra(arguments, expected_emptys)",
   "EE@311 - ELEMENT '1' is erroneously empty :",
   '["EMPTY-ERROR","EMPTY-ERROR"]'                          ];
-        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
-        var actual_error = type_czech_test.check_emptyExtra(check_param, check_shape);
+        var actual_error = type_czech.check_emptyExtra(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
         if (Array.isArray(actual_error)) actual_error = actual_error.reduce((accum, curr) => `${accum}\n${curr}`);
         if (Array.isArray(expect_error)) expect_error = expect_error.reduce((accum, curr) => `${accum}\n${curr}`);
@@ -241,9 +241,9 @@ function check_emptyExtra_30004(){
   var expect_error = ["check_emptyExtra(arguments, expected_emptys)",
   "EE@311 - ELEMENT '1' is erroneously empty :",
   '["EMPTY-ERROR","EMPTY-ERROR"]'                       ];
-        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
-        var actual_error = type_czech_test.check_emptyExtra(check_param, check_shape);
+        var actual_error = type_czech.check_emptyExtra(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
         if (Array.isArray(actual_error)) actual_error = actual_error.reduce((accum, curr) => `${accum}\n${curr}`);
         if (Array.isArray(expect_error)) expect_error = expect_error.reduce((accum, curr) => `${accum}\n${curr}`);
