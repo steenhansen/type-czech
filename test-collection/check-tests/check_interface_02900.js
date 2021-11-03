@@ -62,7 +62,7 @@ test_pre_check_interface(variable, signature, 2901, error_mess);
 variable  = { show: (x) => x };
 signature = { no_match: 'function' };
 error_mess = `PRE_test_02900() pre_check_interface_02900() PRE-FUNC: IE@501 - Interface missing key 'no_match' in checked object
-check_interface(arguments, expected_types)
+check_interface()
     ACTUAL TYPES 'object'
     ACTUAL VALUE {show:(x) => x ***}
  EMPTY ASSERTION {no_match:"function"}
@@ -72,7 +72,7 @@ test_pre_check_interface(variable, signature, 2902, error_mess);
 variable  = { show: (x) => x };
 signature = { show: 'number' };
 error_mess = `PRE_test_02900() pre_check_interface_02900() PRE-FUNC: IE@502 - actual type of 'show' is 'function', with a value of '(x) => x ***', not the expected 'number' type
-check_interface(arguments, expected_types)
+check_interface()
     ACTUAL TYPES 'object'
     ACTUAL VALUE {show:(x) => x ***}
  EMPTY ASSERTION {show:"number"}
@@ -82,7 +82,7 @@ test_pre_check_interface(variable, signature, 2903, error_mess);
 variable  = { show: 12 };
 signature = { show: 'function' };
 error_mess = `PRE_test_02900() pre_check_interface_02900() PRE-FUNC: IE@502 - actual type of 'show' is 'number', with a value of '12', not the expected 'function' type
-check_interface(arguments, expected_types)
+check_interface()
     ACTUAL TYPES 'object'
     ACTUAL VALUE {show:12}
  EMPTY ASSERTION {show:"function"}
@@ -102,7 +102,7 @@ test_pre_check_interface(variable, signature, 2906, error_mess);
 variable  = [98];
 signature = { show: 'number' };
 error_mess = `PRE_test_02900() pre_check_interface_02900() PRE-FUNC: IE@505 - Function argument is not an object.
-check_interface(arguments, expected_types)
+check_interface()
     ACTUAL TYPES 'array'
     ACTUAL VALUE [98]
  EMPTY ASSERTION {show:"number"}
@@ -112,7 +112,7 @@ test_pre_check_interface(variable, signature, 2907, error_mess);
 variable  =  { show: 95 };
 signature = [45];
 error_mess = `PRE_test_02900() pre_check_interface_02900() PRE-FUNC: IE@504 - Signature is not an object.
-check_interface(arguments, expected_types)
+check_interface()
     ACTUAL TYPES 'object'
     ACTUAL VALUE {show:95}
  EMPTY ASSERTION [45]
@@ -122,7 +122,7 @@ test_pre_check_interface(variable, signature, 2908, error_mess);
 variable  = { show: (x) => x };
 signature = { };
 error_mess = `PRE_test_02900() pre_check_interface_02900() PRE-FUNC: IE@503 - Signature is empty object.
-check_interface(arguments, expected_types)
+check_interface()
     ACTUAL TYPES 'object'
     ACTUAL VALUE {show:(x) => x ***}
  EMPTY ASSERTION {}

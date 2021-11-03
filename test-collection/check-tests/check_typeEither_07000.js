@@ -184,7 +184,7 @@ function check_typeEither_07005(){
   var type_a       = {a:"number",  b:{c:"number"}};
   var type_b       = {a:"number",  b:{c:"string"}};
   var check_shape = [type_a, type_b];            
-  var expect_error =  [`check_typeEither(arguments, expected_types)`,
+  var expect_error =  [`check_typeEither()`,
   `TE@213 - Property 'c' is indicated to be a 'number', but is inaccurately a 'boolean' : false, TE@213 - Property 'c' is indicated to be a 'string', but is inaccurately a 'boolean' : false`,
   `[{a:"number",b:{c:"number"}},{a:"number",b:{c:"string"}}]`];
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
@@ -208,7 +208,7 @@ function check_typeEither_07006(){
   var type_a       = {v_1:"string",  v_2:"boolean"};
   var type_b       = {v_1:"string",  v_2:"number"};
   var check_shape = [type_a, type_b];            
-  var expect_error =  [`check_typeEither(arguments, expected_types)`,
+  var expect_error =  [`check_typeEither()`,
   `TE@209 - Extra key in checked object - (v_extra:'more than this'), TE@213 - Property 'v_2' is indicated to be a 'number', but is inaccurately a 'boolean' : false`,
   `[{v_1:"string",v_2:"boolean"},{v_1:"string",v_2:"number"}]`];
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');

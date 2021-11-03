@@ -73,7 +73,7 @@ test_pre_check_typeEither_single(single_variable, single_signature, 7903, error_
 single_variable  = false;
 single_signature = [ 'number', 'string'];
 error_mess = `PRE_test_07900() pre_check_typeEither_07900() PRE-FUNC: TE@226 - The value 'false', which is a 'boolean', is not a 'number', TE@226 - The value 'false', which is a 'boolean', is not a 'string'
-check_typeEither(arguments, expected_types)
+check_typeEither()
     ACTUAL TYPES 'boolean'
     ACTUAL VALUE false
    EXPECTED TYPE ["number","string"]
@@ -98,7 +98,7 @@ test_pre_check_typeEither_single(single_variable, single_signature, 7907, error_
 single_variable  = Symbol('sym');
 single_signature = [ 'array', ['number'], 'bigint', 'boolean', 'date', 'function', 'number', 'object', { b: 'number' }, 'regexp', 'string'];
 error_mess = `PRE_test_07900() pre_check_typeEither_07900() PRE-FUNC: TE@226 - The value 'Symbol('sym')', which is a 'symbol', is not a 'array', TE@226 - The value 'Symbol('sym')', which is a 'symbol', is not a 'string', plus  9 more Either errors
-check_typeEither(arguments, expected_types)
+check_typeEither()
     ACTUAL TYPES 'symbol'
     ACTUAL VALUE Symbol('sym')
    EXPECTED TYPE ["array",["number"],"bigint","boolean","date","function","number","object",{b:"number"},"regexp","string"]
@@ -128,7 +128,7 @@ test_pre_check_typeEither_single(single_variable, single_signature, 7912, error_
 single_variable  = 'asd';
 single_signature = [ 12, false];
 error_mess = `PRE_test_07900() pre_check_typeEither_07900() PRE-FUNC: TE@230 - The type '12' is invalid, TE@230 - The type 'false' is invalid
-check_typeEither(arguments, expected_types)
+check_typeEither()
     ACTUAL TYPES 'string'
     ACTUAL VALUE "asd"
    EXPECTED TYPE [12,false]

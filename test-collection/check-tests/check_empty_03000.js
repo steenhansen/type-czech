@@ -343,7 +343,7 @@ function check_empty_03002(){
   var TYPE_CZECH_current_test_number = '03002';       
   var check_param =   '';
   var check_shape= "EMPTY-ERROR"; 
-  var expect_error = [`check_empty(arguments, expected_emptys)`,
+  var expect_error = [`check_empty()`,
   `EE@307 - EMPTY-ERROR states 'string' must not be empty for the value ''`,
   `EMPTY-ERROR`];
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
@@ -387,7 +387,7 @@ function check_empty_03004(){
   var TYPE_CZECH_current_test_number = '03004';       
   var check_param =   NaN;
   var check_shape= "EMPTY-ERROR"; 
-  var expect_error =  [`check_empty(arguments, expected_emptys)`,
+  var expect_error =  [`check_empty()`,
   `EE@307 - EMPTY-ERROR states 'number' must not be empty for the value NaN`,
   `EMPTY-ERROR`];
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
@@ -429,7 +429,7 @@ function check_empty_03006(){
   var TYPE_CZECH_current_test_number = '03006';       
   var check_param =   18;
   var check_shape= "MT-WRONG-b"; 
-  var expect_error =  [`check_empty(arguments, expected_emptys)`,
+  var expect_error =  [`check_empty()`,
   `EE@304 - Must 'EMPTY-OK' or 'EMPTY-ERROR' not 'MT-WRONG-b'`,
   `MT-WRONG-b`];
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
@@ -495,7 +495,7 @@ function check_empty_03009(){
   var TYPE_CZECH_current_test_number = '03009';       
   var check_param =   "";
   var check_shape= "EMPTY-ERROR"; 
-  var expect_error = [`check_empty(arguments, expected_emptys)`,
+  var expect_error = [`check_empty()`,
   `EE@307 - EMPTY-ERROR states 'string' must not be empty for the value ''`,
   `EMPTY-ERROR`];  
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
@@ -560,7 +560,7 @@ function check_empty_03012(){
   var TYPE_CZECH_current_test_number = '03012';       
   var check_param = 18;
   var check_shape= ["EMPTY-OK"];   
-  var expect_error =[`check_empty(arguments, expected_emptys)`,
+  var expect_error =[`check_empty()`,
   `TE@217 - Comparing actual 'number' parameter, with a value of 18, in relation to the expected shape of ["EMPTY-OK"]. They should be the same type. You cannot compare an array with a non-array; both []s, or both 'number's. Or same object keys`,
   `['EMPTY-OK']`];
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
@@ -586,7 +586,7 @@ function check_empty_03013(){
   var TYPE_CZECH_current_test_number = '03013';       
   var check_param = 18;
   var check_shape =  "MT-WRONG-c";     
-  var expect_error = [`check_empty(arguments, expected_emptys)`,
+  var expect_error = [`check_empty()`,
   `EE@304 - Must 'EMPTY-OK' or 'EMPTY-ERROR' not 'MT-WRONG-c'`,
   `MT-WRONG-c`];
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
@@ -630,7 +630,7 @@ function check_empty_03015(){
   var TYPE_CZECH_current_test_number = '03015';       
   var check_param = {str:""};
   var check_shape = {str:"EMPTY-ERROR"};     
-  var expect_error =   [`check_empty(arguments, expected_emptys)`,
+  var expect_error =   [`check_empty()`,
   `EE@301 -  key 'str' is a 'string' which is reputed to be 'EMPTY-ERROR' but has a value of ''`,
   `{str:"EMPTY-ERROR"}`];
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
@@ -698,7 +698,7 @@ function check_empty_03018(){
   var TYPE_CZECH_current_test_number = '03018';       
   var check_param = {numx:NaN};
   var check_shape =  {numx:"EMPTY-ERROR"}; 
-  var expect_error =  [`check_empty(arguments, expected_emptys)`,
+  var expect_error =  [`check_empty()`,
   `EE@301 -  key 'numx' is a 'number' which is reputed to be 'EMPTY-ERROR' but has a value of NaN`,
   `{numx:"EMPTY-ERROR"}`];
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
@@ -742,7 +742,7 @@ function check_empty_03020(){
   var TYPE_CZECH_current_test_number = '03020';       
   var check_param ={num_q: 18};
   var check_shape =     {num_q:"MT-WRONG-d"};
-  var expect_error =   [`check_empty(arguments, expected_emptys)`,
+  var expect_error =   [`check_empty()`,
   `EE@303 - Bad empty type key, 'MT-WRONG-d', must be either 'EMPTY-OK', 'EMPTY-ER', 'EMPTY-IG', 'OK', 'ER', or 'IG'`,
   `{num_q:"MT-WRONG-d"}`];
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
@@ -765,7 +765,7 @@ function check_empty_03021(){
   var TYPE_CZECH_current_test_number = '03021';       
   var check_param = {num_JJ:18};
   var check_shape =    {num_y:"EMPTY-OK"};  
-  var expect_error =   [`check_empty(arguments, expected_emptys)`,
+  var expect_error =   [`check_empty()`,
   `EE@315 - Extra key in checked object - (num_JJ:'18')TE@216 -  The key 'num_y', which has a type of 'EMPTY-OK', is missing in the checked object`,
   `{num_y:"EMPTY-OK"}`];
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
@@ -811,7 +811,7 @@ function check_empty_03023(){
   var TYPE_CZECH_current_test_number = '03023';       
   var check_param =  {str:[""]};
   var check_shape =  {str:["EMPTY-ERROR"]};    
-  var expect_error =  [`check_empty(arguments, expected_emptys)`,
+  var expect_error =  [`check_empty()`,
   `EE@311 - ELEMENT '0' is erroneously empty :`,
   `{str:["EMPTY-ERROR"]}`];
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
@@ -875,7 +875,7 @@ function check_empty_03026(){
   var TYPE_CZECH_current_test_number = '03026';       
   var check_param = {str:[NaN]};
   var check_shape =  {str:["EMPTY-ERROR"]};    
-  var expect_error =   [`check_empty(arguments, expected_emptys)`,
+  var expect_error =   [`check_empty()`,
   `EE@311 - ELEMENT '0' is erroneously empty :`,
   `{str:["EMPTY-ERROR"]}`];
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
@@ -921,7 +921,7 @@ function check_empty_03028(){
   var TYPE_CZECH_current_test_number = '03028';       
   var check_param =  {str:[18]};
   var check_shape =  {str:["MT-WRONG-e"]};   
-  var expect_error =  [`check_empty(arguments, expected_emptys)`,
+  var expect_error =  [`check_empty()`,
   `EE@312 - ELEMENT '0' is incorrect  type, 'MT-WRONG-e', only [ER, EMPTY-ERROR, EMPTY-OK, OK, EMPTY-IGNORE, IG] allowed  : [18]`,
   `{str:["MT-WRONG-e"]}`];
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
@@ -965,7 +965,7 @@ function check_empty_03030(){
   var TYPE_CZECH_current_test_number = '03030';       
   var check_param =   {str:""};
   var check_shape =  {str:"EMPTY-ERROR"};  
-  var expect_error = [`check_empty(arguments, expected_emptys)`,
+  var expect_error = [`check_empty()`,
   `EE@301 -  key 'str' is a 'string' which is reputed to be 'EMPTY-ERROR' but has a value of ''`,
   `{str:"EMPTY-ERROR"}`];
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
@@ -1049,7 +1049,7 @@ function check_empty_03034(){
   var TYPE_CZECH_current_test_number = '03034';       
   var check_param =   {num_q: 18};
   var check_shape =   {num_q:"MT-WRONG-a"};  
-  var expect_error =  [`check_empty(arguments, expected_emptys)`,
+  var expect_error =  [`check_empty()`,
   `EE@303 - Bad empty type key, 'MT-WRONG-a', must be either 'EMPTY-OK', 'EMPTY-ER', 'EMPTY-IG', 'OK', 'ER', or 'IG'`,
   `{num_q:"MT-WRONG-a"}`];
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
@@ -1072,7 +1072,7 @@ function check_empty_03035(){
   var TYPE_CZECH_current_test_number = '03035';       
   var check_param = {num_JJ:18};
   var check_shape =  {num_y:"EMPTY-OK"};
-  var expect_error =  [`check_empty(arguments, expected_emptys)`,
+  var expect_error =  [`check_empty()`,
   `EE@315 - Extra key in checked object - (num_JJ:'18')TE@216 -  The key 'num_y', which has a type of 'EMPTY-OK', is missing in the checked object`,
   `{num_y:"EMPTY-OK"}`];
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
@@ -1097,7 +1097,7 @@ function check_empty_03036(){
   var TYPE_CZECH_current_test_number = '03036';       
   var check_param = {0: [{num_TTTTTTT:18}], length:1};
   var check_shape =  [{num_iiiii:"EMPTY-OK"}];
-  var expect_error = [`check_empty(arguments, expected_emptys)`,
+  var expect_error = [`check_empty()`,
   `EE@315 - Extra key in checked object - (num_TTTTTTT:'18')TE@216 -  The key 'num_iiiii', which has a type of 'EMPTY-OK', is missing in the checked object`,
   `[{num_iiiii:"EMPTY-OK"}]`];
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
@@ -1327,7 +1327,7 @@ function check_empty_03047(){
   var TYPE_CZECH_current_test_number = '03047';       
   var check_param =  [];
   var check_shape = "EMPTY-ERROR";       
-  var expect_error = [`check_empty(arguments, expected_emptys)`,
+  var expect_error = [`check_empty()`,
   `EE@307 - EMPTY-ERROR states 'array' must not be empty for the value []`,
   `EMPTY-ERROR`];
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');

@@ -1,5 +1,5 @@
 /* eslint-disable block-scoped-var */
-const VERS_NUM = 'ver 1.0.0 nov-01-2021';
+const VERS_NUM = 'v1.0 21-11-01';
 
 let the_exports;
 if (typeof exports === 'undefined') {
@@ -113,24 +113,21 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
       const DIFF_BREAK_MIN = DIFF_BEGIN_LEN + DIFF_END_LEN + 10;
       const DIFF_SEPARATOR = '<<<<<<~~~>>>>>>';
 
-      // eslint-disable-next-line no-useless-concat
-      const ARGU_MENTS = 'argu' + 'ments';
+      const MESS_TYPE_VARIADIC = 'check_typeVariadic()';
+      const MESS_EMPTY_VARIADIC = 'check_emptyVariadic()';
 
-      const MESS_TYPE_VARIADIC = `check_typeVariadic(${ARGU_MENTS}, expected_types)`;
-      const MESS_EMPTY_VARIADIC = `check_emptyVariadic(${ARGU_MENTS}, expected_types)`;
+      const MESS_OBJ_INTERFACE = 'check_interface()';
+      const MESS_MUTATED = 'check_mutatedSnapshot()';
 
-      const MESS_OBJ_INTERFACE = `check_interface(${ARGU_MENTS}, expected_types)`;
-      const MESS_MUTATED = `check_mutatedSnapshot(${ARGU_MENTS}, expected_types)`;
+      const MESS_TYPE_VERIFY = 'check_type()';
+      const MESS_TYPE_EXTRAS = 'check_typeExtra()';
+      const MESS_TYPE_ONE_OF = 'check_typeEither()';
 
-      const MESS_TYPE_VERIFY = `check_type(${ARGU_MENTS}, expected_types)`;
-      const MESS_TYPE_EXTRAS = `check_typeExtra(${ARGU_MENTS}, expected_types)`;
-      const MESS_TYPE_ONE_OF = `check_typeEither(${ARGU_MENTS}, expected_types)`;
+      const MESS_EMPTY_VERIFY = 'check_empty()';
+      const MESS_EMPTY_EXTRAS = 'check_emptyExtra()';
+      const MESS_EMPTY_ONE_OF = 'check_emptyEither()';
 
-      const MESS_EMPTY_VERIFY = `check_empty(${ARGU_MENTS}, expected_emptys)`;
-      const MESS_EMPTY_EXTRAS = `check_emptyExtra(${ARGU_MENTS}, expected_emptys)`;
-      const MESS_EMPTY_ONE_OF = `check_emptyEither(${ARGU_MENTS}, expected_emptys)`;
-
-      const MESS_ASSERT_CHECK = 'TypeCzech.assert_check()';
+      const MESS_ASSERT_CHECK = 'assert_check()';
 
       const TRACE_COLORS = 'background: #ee0; color: #00F';
       const ERROR_COLORS = 'background: #ee0; color: #F00';
@@ -196,20 +193,16 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
       const NAN_AS_STR = 'NaN';
       const INFINITY_AS_STR = 'Infinity';
 
-      const UNDEFINED_STR_VALUE = 'TypeCzech-undefined-Stringify-Value';
-      const PLAIN_UNDEFINED_STR_VALUE = `${UNDEFINED_STR_VALUE}:undefined`;
+      const PLAIN_UNDEFINED_STR_VALUE = 'Str_ify:und';
       const QUOTED_UNDEFINED_STR_VALUE = `"${PLAIN_UNDEFINED_STR_VALUE}"`;
 
-      const NULL_STR_VALUE = 'TypeCzech-null-Stringify-Value';
-      const PLAIN_NULL_STR_VALUE = `${NULL_STR_VALUE}:null`;
+      const PLAIN_NULL_STR_VALUE = 'Str_ify:null';
       const QUOTED_NULL_STR_VALUE = `"${PLAIN_NULL_STR_VALUE}"`;
 
-      const NAN_STR_VALUE = 'TypeCzech-NaN-Stringify-Value';
-      const PLAIN_NAN_STR_VALUE = `${NAN_STR_VALUE}:NaN`;
+      const PLAIN_NAN_STR_VALUE = 'Str_ify:NaN';
       const QUOTED_NAN_STR_VALUE = `"${PLAIN_NAN_STR_VALUE}"`;
 
-      const INFINITY_STR_VALUE = 'TypeCzech-Infinity-Stringify-Value';
-      const PLAIN_INFINITY_STR_VALUE = `${INFINITY_STR_VALUE}:Infinity`;
+      const PLAIN_INFINITY_STR_VALUE = 'Str_ify:Inf';
       const QUOTED_INFINITY_STR_VALUE = `"${PLAIN_INFINITY_STR_VALUE}"`;
 
       const START_CHECK_COLOR = 'green';
@@ -223,21 +216,16 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         type_czech.confirmParameters(program_function, checking_function);
       */
       const TYPE_CZECH_EVENTS = {
-        backBlinkUp: (back_color) => {
+        bBlink: (back_color) => {
           document.body.style.background = back_color;
           setTimeout(() => { document.body.style.background = 'white'; }, 100);
         },
-        onStart: () => TYPE_CZECH_EVENTS.backBlink(START_CHECK_COLOR),
-        onCheck: () => TYPE_CZECH_EVENTS.backBlink(DO_CHECK_COLOR),
-        onError: () => TYPE_CZECH_EVENTS.backBlink(FAIL_CHECK_COLOR),
+        onStart: () => TYPE_CZECH_EVENTS.bBlink(START_CHECK_COLOR),
+        onCheck: () => TYPE_CZECH_EVENTS.bBlink(DO_CHECK_COLOR),
+        onError: () => TYPE_CZECH_EVENTS.bBlink(FAIL_CHECK_COLOR),
       };
 
-      function consolelog(...args) {
-        if (OP_DEBUG_CONSOLE_TRACE) {
-          // eslint-disable-next-line no-console
-          console.log(args);
-        }
-      }
+
 
       /* type_czech = TypeCzech('LOG-ERRORS')
 
@@ -3431,7 +3419,7 @@ type_czech._shapeScalar(4, 'null');
         
         let error_str_3arr = '';
         if (list_of_2.length !== 2) {
-          const error_401 = `TypeCzech.${method_name}() has 2 ${ARGU_MENTS} not ${list_of_2.length}`;
+          const error_401 = `TypeCzech.${method_name}() has 2 argu-ments not ${list_of_2.length}`;
           error_str_3arr = _consoleError(error_401, 'ME@401');
         } else {
           const [parameters_list, shape_list] = list_of_2;
@@ -4507,63 +4495,9 @@ type_czech.check_type({0:['a', 'b'], length:1}, ['string']); // ['a', 'b']
       
 
       return {
-        // underscore prefixed are internal functions
-        _ParametersCheck,
-        _anObjectsType,
-        _arrayOfOneShape,
-        _arrayOfOneType,
-        _aTypeOf,
-        _canBeEmpty,
-        _className,
-        _collectionToStr,
-        _coloredConsole,
-        _consoleError,
-        _doEitherEmpty,
-        _doEitherShape,
-        _doubleToSingleQuotes,
-        _eitherChecks,
-        _emptyArrayInArray,
-        _emptyArrayTypes,
-        _emptyCheck,
-        _emptyCollectionTypes,
-        _emptyContainer,
-        _emptyError,
-        _emptyErrorMess,
-        _emptyKeysChecked,
-        _emptyScalar,
-        _emptyVariable,
-        _functionName,
-        _getParameters,
-        _isAClass,
-        _isBuiltInClass,
-        _isCollection,
-        _isEmpty,
-        _isScalar,
-        _isaTypeOf,
-        _isPlainJsType,
-        _jsonStr,
-        _missingKey,
-        _mutateStacks,
-        _refDiff,
-        _shapeArrayTypes,
-        _shapeCollectionTypes,
-        _shapeContainer,
-        _shapeErrorMess,
-        _shapePropertyType,
-        _shapeScalar,
-        _shapeVariable,
-        _shortToLongEmpty,
-        _shortToLongType,
-        _shrinkDiffs,
-        _specParameters,
-        _stringifyReplacer,
-        _toStr,
-        _twoArrays,
-        _typeFromArray,
-        _wrongType,
 
-        _cycle_loops, //                https://github.com/douglascrockford/JSON-js/blob/master/cycle.js
-        _fast_json_stable_stringify, // https://github.com/epoberezkin/fast-json-stable-stringify
+   
+
         TYPE_CZECH_EVENTS,
 
         assert_check, // type_czech.assert_check(  type_czech.check_typeEither(str_or_num, ['number', 'string'])  , 'strOrNumAPI', str_or_num)

@@ -324,7 +324,7 @@ fetch('https://api.github.com/users/steenhansen')
         type_czech.assert_check(type_err, 'FETCH ERROR', github_data)
       }
     })
-})
+})              // The GitHub API is rate limited so it may stop working
 </script>
 
 
@@ -335,8 +335,8 @@ fetch('https://api.github.com/users/steenhansen')
     fromToBoldText(205, 208, 'code', 1)  // 2000
     fromToBoldText(319, 322, 'code', 1)  //   1999
 
-   fromToBoldText(209, 212, 'log', 1)  //  2000
-   fromToBoldText(255, 258, 'log', 1)  // 1999
+   fromToBoldText(199, 202, 'log', 1)  //  2000
+   fromToBoldText(245, 248, 'log', 1)  // 1999
 
 
 // ///////////////////////
@@ -344,14 +344,15 @@ fetch('https://api.github.com/users/steenhansen')
    fromToBoldText(693, 701, 'code', 2)  // Not https
 
 
-   fromToBoldText(318, 326, 'log', 2)  //   Not https
+   fromToBoldText(298, 306, 'log', 2)  //   Not https
 
 
 // ///////////////////////
 
-fromToBoldText(1344, 1349, 'code', 4)  // array
+fromToBoldText(1344, 1349, 'code', 4)  // object
+fromToBoldText(1563, 1615, 'code', 3)  // // The GitHub API is rate limited so it may stop working
 
-  fromToBoldText(586, 591, 'log', 4)  //   object
+
 
 
 

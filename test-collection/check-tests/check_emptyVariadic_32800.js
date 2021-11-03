@@ -125,7 +125,7 @@ test_pre_check_emptyVariadic(parameters, signature, 32802, error_mess);
 parameters  = ['a', 'b', 'c'];
 signature = 'EMPTY-ERROR';
 error_mess = `PRE_test_32800() pre_check_emptyVariadic_32800() PRE-FUNC: VE@605 - Use check_emptyVariadic(["a","b","c"], ['EMPTY-ERROR']') instead of check_emptyVariadic(["a","b","c"], 'EMPTY-ERROR')
-check_emptyVariadic(arguments, expected_types)
+check_emptyVariadic()
     ACTUAL TYPES 'array'
     ACTUAL VALUE ["a","b","c"]
  EMPTY ASSERTION EMPTY-ERROR
@@ -140,7 +140,7 @@ test_pre_check_emptyVariadic(parameters, signature, 32804, error_mess);
 parameters  = [];
 signature = ['EMPTY-ERROR'];
 error_mess = `PRE_test_32800() pre_check_emptyVariadic_32800() PRE-FUNC: EE@311 - ELEMENT '0' is erroneously empty :
-check_emptyVariadic(arguments, expected_types)
+check_emptyVariadic()
     ACTUAL TYPES 'array'
     ACTUAL VALUE []
  EMPTY ASSERTION ["EMPTY-ERROR"]

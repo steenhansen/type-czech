@@ -118,7 +118,7 @@ test_pre_check_typeVariadic(parameters, signature, 32901, error_mess);
 parameters  = ['a', 2, 'c'];
 signature = ['string'];
 error_mess = `PRE_test_32900() pre_check_typeVariadic_32900() PRE-FUNC: TE@215 - ELEMENT '1' is asserted to be a 'string', but is fallaciously a 'number' : 2
-check_typeVariadic(arguments, expected_types)
+check_typeVariadic()
     ACTUAL TYPES ['string','number','string']
     ACTUAL VALUE ["a",2,"c"]
    EXPECTED TYPE ["string"]
@@ -128,7 +128,7 @@ test_pre_check_typeVariadic(parameters, signature, 32902, error_mess);
 parameters  = ['a', 'b', 'c'];
 signature = 'string';
 error_mess = `PRE_test_32900() pre_check_typeVariadic_32900() PRE-FUNC: VE@601 - Use check_typeVariadic(["a","b","c"], ['string']') instead of check_typeVariadic(["a","b","c"], 'string')
-check_typeVariadic(arguments, expected_types)
+check_typeVariadic()
     ACTUAL TYPES ['string','string','string']
     ACTUAL VALUE ["a","b","c"]
    EXPECTED TYPE string
@@ -143,7 +143,7 @@ test_pre_check_typeVariadic(parameters, signature, 32904, error_mess);
 parameters  = [];
 signature = ['number'];
 error_mess = `PRE_test_32900() pre_check_typeVariadic_32900() PRE-FUNC: ME@409 - There are no parameters to match array signature.
-check_typeVariadic(arguments, expected_types)
+check_typeVariadic()
     ACTUAL TYPES 
     ACTUAL VALUE 
    EXPECTED TYPE ['number']

@@ -128,7 +128,7 @@ function check_interface_02002(){
   var TYPE_CZECH_current_test_number = '02002';       
   var check_param = {show: (x) => x};
   var check_shape =   {noShow:'function'};          
-  var expect_error =  ["check_interface(arguments, expected_types)",
+  var expect_error =  ["check_interface()",
   "IE@501 - Interface missing key 'noShow' in checked object",
   '{noShow:"function"}'];
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
@@ -151,7 +151,7 @@ function check_interface_02003(){
   var TYPE_CZECH_current_test_number = '02003';       
   var check_param =  {show: 17};
   var check_shape =   {show:'function'};           
-  var expect_error =  ["check_interface(arguments, expected_types)",
+  var expect_error =  ["check_interface()",
   "IE@502 - actual type of 'show' is 'number', with a value of '17', not the expected 'function' type",
   '{show:"function"}'];
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');

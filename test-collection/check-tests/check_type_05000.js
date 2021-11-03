@@ -489,7 +489,7 @@ function check_type_05001(){
   var TYPE_CZECH_current_test_number = '05001';       
   var check_param =  {cylinders:4, fuel:"gasoline", sneak:"extra"} ;
   var check_shape = {cylinders:"number", fuel:"string"};           
-  var expect_error = [`check_type(arguments, expected_types)`,
+  var expect_error = [`check_type()`,
   `TE@209 - Extra key in checked object - (sneak:'extra')`,
   `{cylinders:"number",fuel:"string"}`];
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
@@ -575,7 +575,7 @@ function check_type_05005(){
   var TYPE_CZECH_current_test_number = '05005';       
   var check_param = {0:[{}], length:1};
   var check_shape = 'object';          
-  var expect_error = [`check_type(arguments, expected_types)`,
+  var expect_error = [`check_type()`,
   `TE@225 - The value '[]', which is a 'array', is not a 'object'`,
   `object`];
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
@@ -644,7 +644,7 @@ function check_type_05008(){
   var TYPE_CZECH_current_test_number = '05008';       
   var check_param = {cylinders:4, fuel:"gasoline", sneak:"extra"};
   var check_shape = {cylinders:"number", fuel:"string"};
-  var expect_error = [`check_type(arguments, expected_types)`,
+  var expect_error = [`check_type()`,
   `TE@209 - Extra key in checked object - (sneak:'extra')`,
   `{cylinders:"number",fuel:"string"}`];
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
@@ -669,7 +669,7 @@ function check_type_05009(){
   var TYPE_CZECH_current_test_number = '05009';          // SAME AS 5010 ??? TEST
   var check_param = null;
   var check_shape = 'null'; 
-  var expect_error = [`check_type(arguments, expected_types)`,
+  var expect_error = [`check_type()`,
   `TE@203 - The type 'null' is not a valid check_type(), check_typeEither(), or check_typeExtra() second parameter type`,
   `null`];
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
@@ -692,7 +692,7 @@ function check_type_05010(){
   var TYPE_CZECH_current_test_number = '05010';
   var check_param = null;
   var check_shape = 'null'; 
-  var expect_error = [`check_type(arguments, expected_types)`,
+  var expect_error = [`check_type()`,
   `TE@203 - The type 'null' is not a valid check_type(), check_typeEither(), or check_typeExtra() second parameter type`,
   `null`];
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
@@ -714,7 +714,7 @@ function check_type_05011(){
   var TYPE_CZECH_current_test_number = '05011';
   var check_param = { a: [ { b:[ {c:'abcdef'} ] } ],  z:null};
   var check_shape = { a: [ { b:[ {c:'string'} ] } ], z: 'null'};   
-  var expect_error = [`check_type(arguments, expected_types)`,
+  var expect_error = [`check_type()`,
   `TE@210 - The type 'null' is not a real type`,
   `{a:[{b:[{c:"string"}]}],z:"null"}`];
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
@@ -736,7 +736,7 @@ function check_type_05012(){
   var TYPE_CZECH_current_test_number = '05012';
   var check_param = {0:['a-string'], length:1};
   var check_shape = 'string';  
-  var expect_error = ['check_type(arguments, expected_types)',
+  var expect_error = ['check_type()',
   "TE@225 - The value '[]', which is a 'array', is not a 'string'",
   'string'];
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
@@ -760,7 +760,7 @@ function check_type_05013(){
   var TYPE_CZECH_current_test_number = '05013';
   var check_param = [['a-string']];
   var check_shape = 'string';  
-  var expect_error = [`check_type(arguments, expected_types)`,
+  var expect_error = [`check_type()`,
   `TE@225 - The value '[]', which is a 'array', is not a 'string'`,
   `string`];
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
@@ -784,7 +784,7 @@ function check_type_05014(){
   var TYPE_CZECH_current_test_number = '05014';
   var check_param = 'a-string';
   var check_shape = ['string'];  
-  var expect_error = [`check_type(arguments, expected_types)`,
+  var expect_error = [`check_type()`,
   `TE@217 - Comparing actual 'string' parameter, with a value of a-string, in relation to the expected shape of ["string"]. They should be the same type. You cannot compare an array with a non-array; both []s, or both 'string's. Or same object keys`,
   `['string']`];
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');

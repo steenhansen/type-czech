@@ -62,7 +62,7 @@ test_pre_check_typeEither_multi(multi_variable, multi_signature, 7801, error_mes
 multi_variable  = [ 12, [] ];
 multi_signature = [ [ 'number', 'boolean'], [ 'symbol', 'string'] ];
 error_mess = `PRE_test_07800() pre_check_typeEither_07800() PRE-FUNC: TE@214 -  ELEMENT '1' is assumed to be a 'boolean', but is mistakenly a 'array', TE@214 -  ELEMENT '0' is assumed to be a 'symbol', but is mistakenly a 'number'
-check_typeEither(arguments, expected_types)
+check_typeEither()
     ACTUAL TYPES 'array'
     ACTUAL VALUE [12,[]]
    EXPECTED TYPE [["number","boolean"],["symbol","string"]]
@@ -82,7 +82,7 @@ test_pre_check_typeEither_multi(multi_variable, multi_signature, 7804, error_mes
 multi_variable  = { n: 12, s: 'Holiday Road' };
 multi_signature = [ { n: 'number', b: 'boolean' }, { r: 'regexp', s: 'string' } ];
 error_mess = `PRE_test_07800() pre_check_typeEither_07800() PRE-FUNC: TE@209 - Extra key in checked object - (s:'Holiday Road')TE@216 -  The key 'b', which has a type of 'boolean', is missing in the checked object, TE@209 - Extra key in checked object - (n:'12')TE@216 -  The key 'r', which has a type of 'regexp', is missing in the checked object
-check_typeEither(arguments, expected_types)
+check_typeEither()
     ACTUAL TYPES 'object'
     ACTUAL VALUE {n:12,s:"Holiday Road"}
    EXPECTED TYPE [{n:"number",b:"boolean"},{r:"regexp",s:"string"}]
@@ -102,7 +102,7 @@ test_pre_check_typeEither_multi(multi_variable, multi_signature, 7803, error_mes
 multi_variable  = [false, false];
 multi_signature = [ [ 'number', 'string'], [ 'string', 'number'] ];
 error_mess = `PRE_test_07800() pre_check_typeEither_07800() PRE-FUNC: TE@214 -  ELEMENT '0' is assumed to be a 'number', but is mistakenly a 'boolean', TE@214 -  ELEMENT '0' is assumed to be a 'string', but is mistakenly a 'boolean'
-check_typeEither(arguments, expected_types)
+check_typeEither()
     ACTUAL TYPES 'array'
     ACTUAL VALUE [false,false]
    EXPECTED TYPE [["number","string"],["string","number"]]
@@ -112,7 +112,7 @@ test_pre_check_typeEither_multi(multi_variable, multi_signature, 7804, error_mes
 multi_variable  = ['a-string', null];
 multi_signature = [ ['string', 'string'], ['number', 'number'] ];
 error_mess = `PRE_test_07800() pre_check_typeEither_07800() PRE-FUNC: TE@214 -  ELEMENT '1' is assumed to be a 'string', but is mistakenly a 'null', TE@214 -  ELEMENT '0' is assumed to be a 'number', but is mistakenly a 'string'
-check_typeEither(arguments, expected_types)
+check_typeEither()
     ACTUAL TYPES 'array'
     ACTUAL VALUE ["a-string",null]
    EXPECTED TYPE [["string","string"],["number","number"]]
@@ -132,7 +132,7 @@ test_pre_check_typeEither_multi(multi_variable, multi_signature, 7805, error_mes
 // multi_variable  = Symbol('sym');
 // multi_signature = [ 'array', ['number'], 'bigint', 'boolean', 'date', 'function', 'number', 'object', { b: 'number' }, 'regexp', 'string'];
 // error_mess = `PRE_test_07800() pre_check_typeEither_07800() PRE-FUNC: TE@226 - The value 'Symbol('sym')', which is a 'symbol', is not a 'array' AND TE@207 - Parameter is meant to be 'array' but is of the wrong type of 'symbol':Symbol('sym') AND TE@226 - The value 'Symbol('sym')', which is a 'symbol', is not a 'bigint' AND TE@226 - The value 'Symbol('sym')', which is a 'symbol', is not a 'boolean' AND TE@226 - The value 'Symbol('sym')', which is a 'symbol', is not a 'date' AND TE@226 - The value 'Symbol('sym')', which is a 'symbol', is not a 'function' AND TE@226 - The value 'Symbol('sym')', which is a 'symbol', is not a 'number' AND TE@226 - The value 'Symbol('sym')', which is a 'symbol', is not a 'object' AND TE@207 - Parameter is meant to be 'object' but is of the wrong type of 'symbol':Symbol('sym') AND TE@226 - The value 'Symbol('sym')', which is a 'symbol', is not a 'regexp' AND TE@226 - The value 'Symbol('sym')', which is a 'symbol', is not a 'string'
-// check_typeEither(arguments, expected_types)
+// check_typeEither()
 //     ACTUAL TYPES 'symbol'
 //     ACTUAL VALUE Symbol('sym')
 //    EXPECTED TYPE ["array",["number"],"bigint","boolean","date","function","number","object",{b:"number"},"regexp","string"]
@@ -162,7 +162,7 @@ test_pre_check_typeEither_multi(multi_variable, multi_signature, 7805, error_mes
 // multi_variable  = 'asd';
 // multi_signature = [ 12, false];
 // error_mess = `PRE_test_07800() pre_check_typeEither_07800() PRE-FUNC: TE@230 - The type '12' is invalid AND TE@230 - The type 'false' is invalid
-// check_typeEither(arguments, expected_types)
+// check_typeEither()
 //     ACTUAL TYPES 'string'
 //     ACTUAL VALUE "asd"
 //    EXPECTED TYPE [12,false]
