@@ -14,7 +14,7 @@ minify:
 
   1  remove debugging code                 consolelog[^;]*;   ==> ''
 
-  2  remove debugging function on line 228
+  2  remove debugging function on line 228 which is now never used
   
         function consolelog(...args) {
         if (OP_DEBUG_CONSOLE_TRACE) {

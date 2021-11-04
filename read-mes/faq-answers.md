@@ -1,56 +1,65 @@
 
 
-
-
-
-function strOrNumAPI(){
-  zero_or_one = Math.floor(Math.random() *2)
-  if (zero_or_one)
-    return 'a-string'
-  else
-    return 1234
-}
-
-/**/  if (typeof TypeCzech === 'function')
-/**/    type_czech = TypeCzech('LOG-ERRORS')
-/**/  else
-/**/    type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
-
-      ...
-
-str_or_num = strOrNumAPI()
-
-/**/  if (type_czech.isActive()) {
-/**/    type_issue = type_czech.check_typeEither(str_or_num, ['number', 'string'])
-/**/    if (type_issue) throw type_issue
-/**/  }
-
-
-
-
-
-
-seatbelt analogy
-
-what about checking a type on the return from an api???
-
-
-
-
-https://everyday.codes/javascript/7-really-good-reasons-not-to-use-typescript/
-
-https://www.typescriptlang.org/
 # FAQ
 
 ### What is the point of TypeCzech?
 
-strong typing at compile time and runtime
+Having easily controllable type checking at runtime in both the browser and Node.js without resorting to compiling another language.
 
 ### Is TypeCzech slow?
+  
+  It can be, but TypeCzech can be turned on and off at will.
+  In /time-trials/ there are some tests that use the 
+  introductory lottery example to check for length of run time with TypeCzech being active.
 
+  There is virtually no difference between Type-Czech being
+  turned off and not existing in the source code of the program.
+
+  However, with a loop of 100,000 lottery checks there is a 
+  visible slowdown of 4.4 seconds with Type-Czech actively
+  checking parameters versus 0.4 seconds with Type-Czech
+  turned off or not existing at all.
 
 ### Will TypeCzech change the value of variables?
 
+  No. Approximently 500 of the unit tests specifically verify that there are no mutations with parameter and result checks.
+
+### Be Careful With
+  -  Checking for mutations with the global window variable can blow up if a lot 
+  of memory is used.
+  -  The jsDelivr TypeCzech.js version from GitHub, use a local version.
+
+  - Only  linkUp() and isActive() are always safe call. All other TypeCzech function calls 
+   should be placed inside PRE_check() and POST_check() functions that are hooked up with linkUp().
+  
+
+        if (typeof TypeCzech === 'function')
+          type_czech = TypeCzech('THROW-EXCEPTIONS')
+        else
+          type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
+
+        function PRE_check_yourFunction(param_1, param_2){ 
+          /* TypeCzech functions always appear here */
+          return type_check.check_type(arguments, ['string', 'string'])
+        }
+
+        function POST_check_yourFunction(results){ 
+          /* and TypeCzech functions sometimes appear here */
+          type_check.check_empty(results, 'EMPTY-ERROR')
+        }
+        
+        yourFunction = type_czech.linkUp(yourFunction, PRE_check_yourFunction, POST_check_yourFunction)
+
+        function yourFunction(param_1, param_2){
+          return results
+        }
+
+        fetch(some_url)
+        .then(response => {
+          if (type_czech.isActive()) {
+            /* and TypeCzech functions infrequently show up here */
+          }
+        })
 
 
 

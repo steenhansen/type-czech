@@ -26,10 +26,11 @@ Missing from TypeCzech
 TypeCzech the bad parts
 
   - Verbosity of adding PRE_checking(), POST_checking(), and linkUp() functions 
-  - Continuously checking parameter mutations of collections can be slow
-  - Complicated dynamic minimization of unused code during runtime, while checking constructors and methods of extended classes
+  - Continuously checking parameter mutations of large collections can be slow
+  - When checking constructors and methods of extended classes, production code
+  can get complicated if all TypeCzech testing code is to be removed.
 
-## A TypeCzech Example
+## The Example
 
   -  <b>type_czech = TypeCzech('LOG-ERRORS')</b> logs errors to the console instead of throwing exceptions
   -  <b>type_czech.check_type()</b> checks that the parameter types to aLottery() are first a string, then an array of numbers, and finally a date
@@ -110,12 +111,84 @@ Below is console.log input and output preceded with >>.
     ::: 1,2,3,4,5,26 ::: 1999-12-31
 
 
-method-examples fold into simple how to 
+### The Idea
+Is to 'LOG-ERRORS' or 'THROW-EXCEPTIONS' when errors are found and returned from PRE_check() and POST_check() functions that are linked into yourFunction() during testing and development with linkUp().
+
+In the below example, PRE_check_yourFunction() and POST_check_yourFunction() are only executed, via linkUp(), because TypeCzech.js is loaded. The two commented out lines have no effect when <b>TypeCzech.js is loaded</b>.
+
+    <script src="TypeCzech.js"></script>
+
+    if (typeof TypeCzech === 'function')
+      type_czech = TypeCzech('THROW-EXCEPTIONS')  // TypeCzech.js is active
+    //else
+    //  type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
+
+    function PRE_check_yourFunction(param_1, param_2){ /* check parameters before execution */ }
+    function POST_check_yourFunction(results){ /*         check results after execution */ }
+    
+    yourFunction = type_czech.linkUp(yourFunction, PRE_check_yourFunction, POST_check_yourFunction)
+
+    function yourFunction(param_1, param_2){
+      return results
+    }
 
 
-### [Simple How To Snippets](./read-mes/how-to-snippets.md)
+When <b>TypeCzech.js is not loaded</b> only yourFunction() has any effect, as below. Note the linkUp() function is a no-operation.
 
-### [Simple Beginner Node.js, PHP, and Web Browser Examples](./read-mes/run-examples.md)
+    //if (typeof TypeCzech === 'function')
+    //  type_czech = TypeCzech('THROW-EXCEPTIONS')
+    //else
+      type_czech = { linkUp: (nop) => nop, isActive: (x) => false }  // TypeCzech.js was not loaded
+
+    //function PRE_check_yourFunction(param_1, param_2){ }
+    //function POST_check_yourFunction(results){ }
+    
+    //yourFunction = type_czech.linkUp(yourFunction, PRE_check_yourFunction, POST_check_yourFunction)
+
+    function yourFunction(param_1, param_2){
+      return results
+    }
+
+<b>So basically linkUp() and isActive() are the only two TypeCzech functions that are always safe to call.</b>
+As long as the below construct is used, regardless of whether or not TypeCzech.js has been loaded. Thus enveloping all TypeCzech calls with linkUp() and isActive() will ensure no reference errors are caused when TypeCzech is turned off by not loading the TypeCzech.js file.
+
+    if (typeof TypeCzech === 'function')
+      type_czech = TypeCzech('THROW-EXCEPTIONS')
+    else
+      type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
+
+    type_czech.linkUp()
+    type_czech.isActive()
+
+### The Recipe
+  TypeCzech function calls should only appear in three places, they should be encased by either 
+
+  - 1 a linked up PRE_check() function
+  - 2 a linked up POST_check() function
+  - 3 or inside an isActive() if then statement inside a promise
+
+        function PRE_check_yourFunction(){ 
+          /* 1 TypeCzech functions should mostly appear here */
+        }
+
+        function POST_check_yourFunction(){ 
+          /* 2 TypeCzech functions sometimes occur here too */
+        }
+
+        yourFunction = type_czech.linkUp(yourFunction, PRE_check_yourFunction, POST_check_yourFunction)
+
+        fetch(some_url)
+        .then(response => {
+          if (type_czech.isActive()) {
+            /* 3 TypeCzech functions rarely show up here */
+          }
+        })
+
+  This is enables <b>type_czech = { linkUp: (nop) => nop, isActive: (x) => false }</b> to handle TypeCzech.js not being loaded, safely.
+
+
+### [Simple How To Snippets](./read-mes/simple-howto.md)
+
 
 ### [61 Page Editable Tutorial on JSFiddle](https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Contents)
 
@@ -123,27 +196,22 @@ method-examples fold into simple how to
 
 ### [TypeCzech API](./read-mes/api-list.md)
 
-### [Complex Node.js Examples](./read-mes/node-js.md)
-
-### [Tests](./read-mes/test-suites.md)
-
-### [Dependencies](./read-mes/needed-dependencies.md)
-
-///////////////////////////////
-recommended-techniques  make another page
+### [Node.js and PHP Examples](./read-mes/run-examples.md)
 
 
+### [Browser and Node.js Tests](./read-mes/test-suites.md)
 
-### [Detaching TypeCzech for Production](./read-mes/detaching-checks.md)
+
+### [Recommended Techniques](./read-mes/recommended-techniques.md)
+
+### [Production TypeCzech](./read-mes/production-type-czech.md)
 
 ### [FAQ](./read-mes/faq-answers.md)
 
+### [Dependencies](./read-mes/needed-dependencies.md)
 
 ### Created by
 [Steen Hansen](https://github.com/steenhansen)
-
-
-Note that these above example programs can be run in the console when TypeCzech/web-resources/repl.html is loaded in a web browser.
 
 
 &copy; 2021 Steen Hansen

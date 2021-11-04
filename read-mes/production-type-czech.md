@@ -2,7 +2,14 @@
 
 
 
-## Detaching TypeCzech for Production
+## Production TypeCzech
+
+### Use the Minified File
+
+The TypeCzech.js file is 195KB, while the minified file on jsDelivr is only 29KB. The jsDelivr CDN serves files from GitHub.    
+
+    <script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech/web-resources/TypeCzech.min.js"></script>
+
 
 
 ### Not Loading Library

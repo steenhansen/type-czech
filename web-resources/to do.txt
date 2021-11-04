@@ -1,42 +1,45 @@
 
 
 
-ONLY the coloring part
-
-00, 07, 11,  13-17    19-24
-26-28  30  37  39-41 
-
-NO CHANGE: 1,2,3,4,5,6 , 8,9,10,   
-           12  18 25 29  31 32 33
-   34 35 36 38
-
-
-////////////////////////////
-fix fiddles
-00-41  local to jsFiddle copied over !!!
-
-
-101    on
-
-
-
-do we test the null hypothesis?
+### The Main Idea
 
 
 
 
-type_czech.linkUp()   ===>>   linkUp()
 
 
-all ready for jsFiddle,
-but forget the 'A', 'a' bug
-it has not been fixed on gitHub
 
 
-;;;;;;;;; ; ; ; ; 
+faq-answers    
+   TypeCzech function calls outside of PRE_check() and POST_check()
+
+we also need to say about the above in other place 
 
 
-//////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+do we test the null hypothesis? infiity
+
+
+////////////////////////////////////////////
 
 
  
@@ -53,15 +56,7 @@ need
       check_buildSnapshot()
 
 
-
-
-
-
 check_typeEither_07800    has a bunch of commented out tests
-
-
-
-
 
 
 we need a bunch of tests like this ???
@@ -69,19 +64,9 @@ multi_variable  =  [ 12, 'twelve' ];
 multi_signature = ['EMPTY-ERROR', 'EMPTY-OK']; 
 
 
-
-//  see  file:///C:/Users/16043/Desktop/_js/proxy/old/oct--17/type-czech%20-%20Copy/example-snippets/23-Typed-Either-Checks.html
-
-for correct wordage and colors
-
-POST CHECKS????
-
-
-
 test with null and undef ok??
 
 
-WHY best practice .... examples?????
 
 
 ////////////////////////////////////////////

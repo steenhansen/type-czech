@@ -45,10 +45,6 @@ Use a result_value parameter to check returned results.
     }
 
 
-
-includ actual only when 
-
-
 ## Multiple Checked Issues
 Return nothing if no error, and include actual
 parameters only when actually individually testing them as below.
@@ -77,10 +73,16 @@ parameters only when actually individually testing them as below.
     
     yourFunc('A', 'Short')  // error
 
-## Loading TypeCzech
+## Loading TypeCzech with Extended Objects
 Turn on or off the loading of TypeCzech code by including, or not including, an import
 script. This way production code is the same as development except for 
-disabling one script tag. This is how examples 103, 203, 303, 403, 503, and 603
+disabling one script tag. This is how examples
+[103](../examples-web/103-Extending-Classes-Production/103-Extending-Classes-Production.html),
+[203](../examples-web/203-Extending-Closures-Production/203-Extending-Closures-Production.html),
+[303](../examples-web/303-Extending-IIFEs-Production/303-Extending-IIFEs-Production.html),
+[403](../examples-web/403-Extending-ClassFree-Production/403-Extending-ClassFree-Production.html),
+[503](../examples-web/503-Extending-Prototypes-Production/503-Extending-Prototypes-Production.html), and
+[603](../examples-web/603-Extending-OLOO-Production/603-Extending-OLOO-Production.html)
 work. The TypeCzech files are loaded in order ensuring the classes/methods/functions/objects
 are linked together in the correct sequence.
 
@@ -110,8 +112,5 @@ are linked together in the correct sequence.
     /**/  } else {
             onLoaded([], [])
     /**/  }
-
-TypeCzech methods that begin with an underscore, like _aTypeOf() are not to be
-called in production code, they are available for testing and internal use only.
 
 &copy; 2021 Steen Hansen

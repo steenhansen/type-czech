@@ -1,20 +1,23 @@
 
 
-# Run Examples Locally
+# Node.js and PHP Examples
 
-### [example-node.js](../example-node.js)
-  - node example-node.js
 
-### [php-example-fast.php](../php-example-fast.php)
-  - http://localhost/php-example-fast.php
+### Node.js Examples
+  -  [example-node.js](../examples-nodejs/example-node.js)
+  -  [104-Extending-Classes-Node.js](../examples-nodejs/104-Extending-Classes-Node/104-Extending-Classes-Node.js)
+  -  [204-Extending-Closures-Node.js](../examples-nodejs/204-Extending-Closures-Node/204-Extending-Closures-Node.js)
+  -  [304-Extending-IIFEs-Node.js](../examples-nodejs/304-Extending-IIFEs-Node/304-Extending-IIFEs-Node.js)
+  -  [404-Extending-ClassFree-Node.js](../examples-nodejs/404-Extending-ClassFree-Node/404-Extending-ClassFree-Node.js)
+  -  [504-Extending-Prototypes-Node.js](../examples-nodejs/504-Extending-Prototypes-Node/504-Extending-Prototypes-Node.js)
+  -  [604-Extending-OLOO-Node.js](../examples-nodejs/604-Extending-OLOO-Node/604-Extending-OLOO-Node.js)
 
-### [php-example-safe.php](../php-example-safe.php)
-  -  http://localhost/php-example-slow.php
+### PHP Examples
 
-### [php-example-simple.php](../php-example-simple.php)
-  -  http://localhost/php-example-simple.php
+  -  [php-example-fast.php](../examples-php/php-example-fast.php)
+  -  [php-example-safe.php](../examples-php/php-example-safe.php)
+  -  [php-example-simple.php](../examples-php/php-example-simple.php)
 
-### [example-node.js](../example-web.html)
-  - example-web.html
 
-&copy; 2021 Steen Hansen    
+
+&copy; 2021 Steen Hansen   
