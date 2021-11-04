@@ -1,7 +1,7 @@
 
 # TypeCzech
 
-TypeCzech is a runtime type checking JavaScript library that can be programmatically turned on and off.
+TypeCzech is a run-time type checking JavaScript library that can be programmatically turned on and off.
 Include one file in your web page or in your Node.js file to allow you to type check function parameters
 and function results. Errors can be set to throw halting exceptions or just output to the Console.
 
@@ -28,20 +28,20 @@ TypeCzech the bad parts
   - Verbosity of adding PRE_checking(), POST_checking(), and linkUp() functions 
   - Continuously checking parameter mutations of large collections can be slow
   - When checking constructors and methods of extended classes, production code
-  can get complicated if all TypeCzech testing code is to be removed.
+  can get complicated if all TypeCzech testing code is to be completely removed.
 
 ## The Example
 
-  -  <b>type_czech = TypeCzech('LOG-ERRORS')</b> logs errors to the console instead of throwing exceptions
-  -  <b>type_czech.check_type()</b> checks that the parameter types to aLottery() are first a string, then an array of numbers, and finally a date
-  -  <b>type_czech.check_empty()</b> complains when parameters are found to be empty strings, arrays, or objects
-  -  <b>PRE_check_aLottery()</b> is executed just before aLottery() runs via <b>type_czech.linkUp()</b> 
+  -  type_czech = <b>TypeCzech('LOG-ERRORS')</b> logs errors to the console instead of throwing exceptions
+  -  type_czech.<b>check_type()</b> checks that the parameter types to aLottery() are first a string, then an array of numbers, and finally a date
+  -  type_czech.<b>check_empty()</b> complains when parameters are found to be empty strings, arrays, or objects
+  -  <b>PRE_check_aLottery()</b> is executed just before aLottery() and runs via type_czech.<b>linkUp()</b> 
   -  /**/ highlights added TypeCzech test code that is safely removable or programmatically turned off
 
 
     /**/  type_czech = TypeCzech('LOG-ERRORS')
     /**/
-    /**/  function PRE_check_aLottery(){
+    /**/  function PRE_check_aLottery(lottery_name, lucky_numbers, draw_date){
     /**/    A_LOTTERY_SIGNATURE = ['string', ['number'], 'date']
     /**/    type_issue = type_czech.check_type(arguments, A_LOTTERY_SIGNATURE)
     /**/    if (type_issue) return type_issue
@@ -133,7 +133,7 @@ In the below example, PRE_check_yourFunction() and POST_check_yourFunction() are
     }
 
 
-When <b>TypeCzech.js is not loaded</b> only yourFunction() has any effect, as below. Note the linkUp() function is a no-operation.
+When <b>TypeCzech.js is not loaded</b> only yourFunction() has any effect, as below. Note the linkUp() function is a no-operation when TypeCzech.js is not loaded.
 
     //if (typeof TypeCzech === 'function')
     //  type_czech = TypeCzech('THROW-EXCEPTIONS')
@@ -143,14 +143,14 @@ When <b>TypeCzech.js is not loaded</b> only yourFunction() has any effect, as be
     //function PRE_check_yourFunction(param_1, param_2){ }
     //function POST_check_yourFunction(results){ }
     
-    //yourFunction = type_czech.linkUp(yourFunction, PRE_check_yourFunction, POST_check_yourFunction)
+    //yourFunction=type_czech.linkUp(yourFunction, PRE_check_yourFunction, POST_check_yourFunction)
 
     function yourFunction(param_1, param_2){
       return results
     }
 
 <b>So basically linkUp() and isActive() are the only two TypeCzech functions that are always safe to call.</b>
-As long as the below construct is used, regardless of whether or not TypeCzech.js has been loaded. Thus enveloping all TypeCzech calls with linkUp() and isActive() will ensure no reference errors are caused when TypeCzech is turned off by not loading the TypeCzech.js file.
+As long as the below construct is used, regardless of whether or not TypeCzech.js has been loaded. Thus enveloping all TypeCzech calls with linkUp() and isActive() will ensure no reference errors are caused when TypeCzech is turned on or off by not loading the TypeCzech.js file.
 
     if (typeof TypeCzech === 'function')
       type_czech = TypeCzech('THROW-EXCEPTIONS')
@@ -161,21 +161,23 @@ As long as the below construct is used, regardless of whether or not TypeCzech.j
     type_czech.isActive()
 
 ### The Recipe
-  TypeCzech function calls should only appear in three places, they should be encased by either 
+  TypeCzech function calls should only appear in these three places, encased by either 
 
   - 1 a linked up PRE_check() function
   - 2 a linked up POST_check() function
   - 3 or inside an isActive() if then statement inside a promise
 
-        function PRE_check_yourFunction(){ 
+        function PRE_check_yourFunc(){ 
           /* 1 TypeCzech functions should mostly appear here */
         }
 
-        function POST_check_yourFunction(){ 
+        function POST_check_yourFunc(){ 
           /* 2 TypeCzech functions sometimes occur here too */
         }
 
-        yourFunction = type_czech.linkUp(yourFunction, PRE_check_yourFunction, POST_check_yourFunction)
+        yourFunc = type_czech.linkUp(yourFunc, PRE_check_yourFunc, POST_check_yourFunc)
+        
+        function yourFunc(){ }
 
         fetch(some_url)
         .then(response => {
