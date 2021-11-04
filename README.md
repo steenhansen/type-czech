@@ -1,7 +1,7 @@
 
 # TypeCzech
 
-TypeCzech is a runtime type checking JavaScript library that can be programmatically turned on and off.
+TypeCzech is a run-time type checking JavaScript library that can be programmatically turned on and off.
 Include one file in your web page or in your Node.js file to allow you to type check function parameters
 and function results. Errors can be set to throw halting exceptions or just output to the Console.
 
