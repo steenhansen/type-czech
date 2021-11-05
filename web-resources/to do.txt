@@ -1,23 +1,13 @@
 
 
 
-### The Main Idea
+
+fix up the repl test inside file, and add infinity tests
 
 
 
-
-
-
-
-
-faq-answers    
-   TypeCzech function calls outside of PRE_check() and POST_check()
-
-we also need to say about the above in other place 
-
-
-
-
+1260
+_ParametersCheck
 
 
 

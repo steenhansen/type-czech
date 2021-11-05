@@ -3,16 +3,16 @@ const VERS_NUM = 'v1.0 21-11-01';
 
 let the_exports;
 if (typeof exports === 'undefined') {
-  the_exports = window;
+  the_exports = window; // for browser
 } else {
-  the_exports = exports;
+  the_exports = exports; // for Node.js
 }
 
 // TYPE_CZECH_current_test_number is set by every test, so can find out which test is crashing in a certain function
 // eslint-disable-next-line block-scoped-var, no-use-before-define
 if (typeof TYPE_CZECH_current_test_number === 'undefined') {
   // eslint-disable-next-line no-var, vars-on-top
-  var TYPE_CZECH_current_test_number = 'no test number assigned yet';
+  var TYPE_CZECH_current_test_number = 'not-in-test-yet'; // assigned in the test
 }
 
 // eslint-disable-next-line func-names
@@ -68,19 +68,13 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
     */
 
     function _TypeCzech(...the_parameters) {
-      /*
-        1 - load testing code that calls TypeCzech, transfering more data
-      OR
-        2 - load no TypeCzech calling code in production, transfering less data
-      */
-
-      let t_param_check_func;
-      let t_check_events = false;
-      let t_do_param_checking = false;
-      const t_reference_stacks = {};
-      const t_proxy_targets = new WeakSet();
-
-      // end variables - start constants
+      // start TypeCzech variables
+      let t_param_check_func; // reference to _ParametersCheck()
+      let t_check_events = false; // sometimes set to TYPE_CZECH_EVENTS
+      let t_do_param_checking = false; // look for errors?
+      const t_reference_stacks = {}; // JSON copies of possible mutations
+      const t_proxy_targets = new WeakSet(); // list of proxied things
+      // end TypeCzech variables
 
       const PRE_FUNCTION_NO_THIS = 'PRE-FUNC:'; //         'PRE-FUNC-NO-THIS :: ';  information about this type was too much
       const PRE_FUNCTION_WITH_THIS = 'PRE-FUNC:'; //       'PRE-FUNC-THIS :: ';     but kept here in case
@@ -211,10 +205,6 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
 
       const IS_INIT_CONSOLE = 'TypeCzech-init';
 
-      /* How to flash background green/blue/red easily
-        var type_czech = type_czech._ParametersCheck(type_czech.TYPE_CZECH_EVENTS);
-        type_czech.confirmParameters(program_function, checking_function);
-      */
       const TYPE_CZECH_EVENTS = {
         bBlink: (back_color) => {
           document.body.style.background = back_color;
@@ -232,12 +222,10 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         }
       }
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
-
-      type_czech._coloredConsole("colored text", 'background: #684; color: #f26');
-      //colored text
-
-      */
+      /*
+type_czech._coloredConsole("_my colored text+", 'background: #000; color: #fff');
+//my colored text
+*/
       function _coloredConsole(the_args, the_css) {
         // eslint-disable-next-line no-use-before-define
         const args_str = _jsonStr(the_args);
@@ -246,15 +234,10 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         console.log(`%c ${the_text}`, the_css);
       }
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
-
-      type_czech._doubleToSingleQuotes(`["number","string",{"a":"number","B":"number"}]`);
-      //"['number','string',{'a':'number','B':'number'}]"
-
-      type_czech._doubleToSingleQuotes(` ['number','string",{'a':'number','B':"number"}]`);
-      //" ['number','string',{'a':'number','B':'number'}]"
-
-      */
+      /*
+type_czech._doubleToSingleQuotes(` ['number','string",{"a":'number','B':"number"}]`);
+//['number','string',{'a':'number','B':'number'}]
+*/
       function _doubleToSingleQuotes(double_quotes) {
         consolelog('^^^ _doubleToSingleQuotes ENTER', double_quotes, TYPE_CZECH_current_test_number);
         const single_quotes = double_quotes.replace(/"/g, "'");
@@ -262,18 +245,14 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         return single_quotes;
       }
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
-
-      type_czech._isCollection([]);
-      //true
-
-      type_czech._isCollection({});
-      //true
-
-      type_czech._isCollection(12);
-      //false
-
-      */
+      /*
+type_czech._isCollection([]);
+//true
+type_czech._isCollection({});
+//true
+type_czech._isCollection(12);
+//false
+*/
       function _isCollection(a_variable) {
         consolelog('^^^ _isCollection ENTER', a_variable, TYPE_CZECH_current_test_number);
         // eslint-disable-next-line no-use-before-define
@@ -283,58 +262,50 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         return a_collection;
       }
 
+      /*
+type_czech._isScalar([]);
+//false
+type_czech._isScalar(12);
+//true
+*/
       function _isScalar(a_variable) {
         return !_isCollection(a_variable);
       }
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
-
-      type_czech._toStr(234n);
-      //"234n"
-
-      type_czech._toStr(undefined);
-      //"-un-defined-"
-
-      type_czech._toStr(' my "double" quotes');
-      //" my 'double' quotes"
-
-      type_czech._toStr({a:` ' " `});
-      //"{'a':\" ' \\\" \"}"
-
-      type_czech._toStr({a:''});
-      //"{'a':''}"
-
-      type_czech._toStr([ "super", "man" ]);
-      //['super','man']
-
-        type_czech._toStr(185n);
-      //185n
-
-      type_czech._toStr([186n]);
-      //"['186n']"
-
-      type_czech._toStr({big_int:187n});
-      //"{'big_int':187n}"
-
-      type_czech._toStr([[[[[188n]]]]]);
-      //"[[[[['188n']]]]]"
-
-      type_czech._toStr({big_int:{big_int:{big_int:{big_int:{big_int:{big_int:{big_int:189n}}}}}}});
-      //"{'big_int':{'big_int':{'big_int':{'big_int':{'big_int':{'big_int':{'big_int':189n}}}}}}}"
-
-      type_czech._toStr(Symbol('sym'))
-      // "Symbol(sym)"
-
-      type_czech._toStr({a:1, b:22, c:33});
-      //{'a':1,'B':22,'c':33}
-
-      type_czech._toStr(Infinity)
-      //"Infinity"
-
-      type_czech._toStr("")
-
-      */
-
+      /*
+type_czech._toStr(Infinity);
+//Infinity
+type_czech._toStr(NaN);
+//NaN
+type_czech._toStr(234n);
+//234n
+type_czech._toStr(undefined);
+//undefined
+type_czech._toStr(' my "double" quotes');
+//my \"double\" quotes
+type_czech._toStr({a:` ' " `});
+//{a:\" ' \" \"}
+type_czech._toStr({B:''});
+//{B:\"\"}
+type_czech._toStr([ "super", 'man' ]);
+//[\"super\",\"man\"]
+type_czech._toStr([186n]);
+//[186n]
+type_czech._toStr({big_int:187n});
+//{big_int:187n}
+type_czech._toStr([[[[[188n]]]]]);
+//[[[[[188n]]]]]
+type_czech._toStr({big_int:{big_int:{big_int:{big_int:{big_int:{big_int:{big_int:189n}}}}}}});
+//{big_int:{big_int:{big_int:{big_int:{big_int:{big_int:{big_int:189n}}}}}}}
+type_czech._toStr(Symbol('sym'))
+//Symbol('sym')
+type_czech._toStr({a:1, "b b":22, c:33});
+//{a:1,\"b b\":22,c:33}
+type_czech._toStr(Infinity)
+//"Infinity"
+type_czech._toStr("")
+//''
+*/
       function _toStr(maybe_undef) {
         consolelog('^^^ _toStr ENTER', maybe_undef, TYPE_CZECH_current_test_number);
         let to_str;
@@ -386,26 +357,20 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         return to_str;
       }
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
-
-      type_czech._stringifyReplacer('not-used', 12n);
-      //"12n"
-
-      type_czech._stringifyReplacer('not-used', undefined);
-      //"TypeCzech-undefined-Stringify-Value:undefined"
-
-      type_czech._stringifyReplacer('not-used', NaN);
-      //"TypeCzech-NaN-Stringify-Value:NaN"
-
-      type_czech._stringifyReplacer('not-used', Infinity);
-      //"TypeCzech-Infinity-Stringify-Value:Infinity"
-
-      type_czech._stringifyReplacer('not-used', function(x,y,z){console.log(x,y,z)});
-      //"function(x,y,z){console.log(x, ..."
-
-        type_czech._stringifyReplacer('not-used', Symbol("sym"));
-        // Symbol("sym")
-      */
+      /*
+type_czech._stringifyReplacer('not-used', Infinity);
+//Str_ify:Inf
+type_czech._stringifyReplacer('not-used', 12n);
+//12n
+type_czech._stringifyReplacer('not-used', undefined);
+//Str_ify:und
+type_czech._stringifyReplacer('not-used', NaN);
+//Str_ify:NaN
+type_czech._stringifyReplacer('not-used', function(x,y,z){console.log(x,y,z)});
+//function(x,y,z){console.log(x, ***
+type_czech._stringifyReplacer('not-used', Symbol("sym"));
+//Symbol('sym')
+*/
       function _stringifyReplacer(_key, value) {
         consolelog('^^^ _stringifyReplacer ENTER', _key, value, TYPE_CZECH_current_test_number);
         let replaced_value;
@@ -439,30 +404,26 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         return replaced_value;
       }
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
-
-      type_czech._jsonStr(234n);
-      //'-un-defined-'
-
-      type_czech._jsonStr(undefined);
-      //'-un-defined-'
-
-      type_czech._jsonStr({a:1, b:22n, c:undefined, d:{e:'f', g:'h'}});
-      //"{'a':1,'b':'22n','c':'-un-defined-','d':{'e':'f','g':'h'}}"
-
-      type_czech._jsonStr([1n,[2n,[3n,[4n]]]]);
-      //"['1n',['2n',['3n',['4n']]]]"
-
-      type_czech._jsonStr(Symbol("sym"))
-
-      type_czech._jsonStr("")
-
-      type_czech._jsonStr({Infinity:Infinity, NaN: NaN, null:null, undefined:undefined})
-      //"{\"Infinity\":\"TypeCzech-Infinity-Stringify-Value:Infinity\",\"NaN\":\"TypeCzech-NaN-Stringify-Value:NaN\",\"null\":\"TypeCzech-null-Stringify-Value:null\",\"undefined\":\"TypeCzech-undefined-Stringify-Value:undefined\"}"
-
-      type_czech._jsonStr([Infinity, NaN, null, undefined])
-      // "[\"TypeCzech-Infinity-Stringify-Value:Infinity\",\"TypeCzech-NaN-Stringify-Value:NaN\",\"TypeCzech-null-Stringify-Value:null\",\"TypeCzech-undefined-Stringify-Value:undefined\"]"
-      */
+      /*
+type_czech._jsonStr(234n);
+//234n
+type_czech._jsonStr(Infinity);
+//Infinity
+type_czech._jsonStr(undefined);
+//undefined
+type_czech._jsonStr({a:1, b:22n, c:undefined, d:{e:'f', g:'h'}});
+//{\"a\":1,\"b\":\"22n\",\"c\":\"Str_ify:und\",\"d\":{\"e\":\"f\",\"g\":\"h\"}}
+type_czech._jsonStr([1n,[2n,[3n,[4n]]]]);
+//[\"1n\",[\"2n\",[\"3n\",[\"4n\"]]]]
+type_czech._jsonStr(Symbol("sym"))
+//Symbol('sym')
+type_czech._jsonStr("")
+//''
+type_czech._jsonStr({Infinity:Infinity, NaN: NaN, null:null, undefined:undefined})
+//{\"Infinity\":\"Str_ify:Inf\",\"NaN\":\"Str_ify:NaN\",\"null\":\"Str_ify:null\",\"undefined\":\"Str_ify:und\"}
+type_czech._jsonStr([Infinity, NaN, null, undefined])
+//[\"Str_ify:Inf\",\"Str_ify:NaN\",\"Str_ify:null\",\"Str_ify:und\"]
+*/
       function _jsonStr(an_object) {
         consolelog('^^^ _jsonStr ENTER', an_object, TYPE_CZECH_current_test_number);
         const json_str = JSON.stringify(an_object, _stringifyReplacer);
@@ -471,13 +432,17 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         return obj_str;
       }
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
-
-      class Person {  constructor(){}  };
-      type_czech._className(Person);
-      //Person
-
-      */
+      /*
+class Person {  constructor(){}  };
+type_czech._className(Person);
+//Person
+class Car {  constructor(){}  };
+a_car = Car;
+type_czech._className(a_car);
+//Car
+type_czech._className(Object);
+//''
+*/
       function _className(a_var) {
         consolelog('^^^ _className ENTER', a_var, TYPE_CZECH_current_test_number);
         let class_name = '';
@@ -489,41 +454,31 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         return class_name;
       }
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
-
-      function is_not_class(){};
-      type_czech._isAClass(is_not_class);
-      //false
-
-      is_class_func= (x) => x;
-      type_czech._isAClass(is_class_func);
-      //false
-
-      class SomeKlass{ constructor() {} }
-      type_czech._isAClass(SomeKlass);
-      //true
-
-      class First{ constructor() {} }
-      class Second extends First{ constructor() { super(...args) } }
-      type_czech._isAClass(Second);
-      //true
-
-      type_czech._isAClass([]);
-      //false
-
-      type_czech._isAClass({});
-      //false
-
-      type_czech._isAClass('a-string');
-      //false
-
-      type_czech._isAClass(77);
-      //false
-
-      type_czech._isAClass(123n);
-      //false
-
-      */
+      /*
+function is_not_class(){};
+type_czech._isAClass(is_not_class);
+//false
+is_class_func= (x) => x;
+type_czech._isAClass(is_class_func);
+//false
+class SomeKlass{ constructor() {} }
+type_czech._isAClass(SomeKlass);
+//true
+class First{ constructor() {} }
+class Second extends First{ constructor() { super(...args) } }
+type_czech._isAClass(Second);
+//true
+type_czech._isAClass([]);
+//false
+type_czech._isAClass({});
+//false
+type_czech._isAClass('a-string');
+//false
+type_czech._isAClass(77);
+//false
+type_czech._isAClass(123n);
+//false
+*/
       function _isAClass(a_var) {
         consolelog('^^^ _isAClass ENTER', a_var, TYPE_CZECH_current_test_number);
         let is_class = false;
@@ -544,15 +499,12 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         return is_class;
       }
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
-
-      type_czech._functionName(x=>x);
-      //""
-
-      type_czech._functionName(function aFunction(){});
-      //aFunction
-
-      */
+      /*
+type_czech._functionName(x=>x);
+//""
+type_czech._functionName(function aFunction(){});
+//aFunction
+*/
       function _functionName(a_var) {
         consolelog('^^^ _functionName ENTER', a_var, TYPE_CZECH_current_test_number);
         let function_name = '';
@@ -564,30 +516,22 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         return function_name;
       }
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
-
-      type_czech._isBuiltInClass(85n);
-      //false
-
-      type_czech._isBuiltInClass('bigint');
-      //true
-
-      type_czech._isBuiltInClass('object');
-      //true
-
-      type_czech._isBuiltInClass('array');
-      //true
-
-      type_czech._isBuiltInClass('YoJimbo');
-      //false
-
-      type_czech._isBuiltInClass([]);
-      //false
-
-      */
-
-      //  _isObjectOf
-      // _isBuiltInClass     like 'Object' or 'Number'   NOT lowercase 'number'
+      /*
+type_czech._isBuiltInClass(85n);
+//false
+type_czech._isBuiltInClass('BigInt');
+//true
+type_czech._isBuiltInClass('bigint');
+//false
+type_czech._isBuiltInClass('Object');
+//true
+type_czech._isBuiltInClass('Array');
+//true
+type_czech._isBuiltInClass('Yojimbo');
+//false
+type_czech._isBuiltInClass([]);
+//false
+*/
       function _isBuiltInClass(a_type) {
         consolelog('^^^ _isBuiltInClass ENTER', a_type, TYPE_CZECH_current_test_number);
         let is_built_in = false;
@@ -600,36 +544,28 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         return is_built_in;
       }
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
-
-      type_czech._anObjectsType('a-string');
-      //String
-
-      type_czech._anObjectsType(x=>x);
-      //false
-
-      type_czech._anObjectsType({});
-      //Object
-
-      type_czech._anObjectsType(function aFunction(){});
-      //false
-
-      class First{ constructor() {} }
-      type_czech._anObjectsType(First);
-      //false
-
-      class First{ constructor() {} }
-      var a_first = new First()
-      type_czech._anObjectsType(a_first);
-      //First
-
-      class TheFirst{ constructor() {} }
-      class TheSecond extends TheFirst{ constructor() { super() } }
-      var a_second = new TheSecond()
-      type_czech._anObjectsType(a_second);
-      //TheSecond
-
-      */
+      /*
+type_czech._anObjectsType('a-string');
+//String
+type_czech._anObjectsType(x=>x);
+//false
+type_czech._anObjectsType({});
+//object
+type_czech._anObjectsType(function aFunction(){});
+//false
+class First{ constructor() {} }
+type_czech._anObjectsType(First);
+//false
+class First{ constructor() {} }
+var a_first = new First()
+type_czech._anObjectsType(a_first);
+//First
+class TheFirst{ constructor() {} }
+class TheSecond extends TheFirst{ constructor() { super() } }
+var a_second = new TheSecond()
+type_czech._anObjectsType(a_second);
+//TheSecond
+*/
       function _anObjectsType(a_var) {
         consolelog('^^^ _anObjectsType ENTER', a_var, TYPE_CZECH_current_test_number);
         let is_a_class_type = false;
@@ -655,13 +591,13 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
       }
 
       /*
-      type_czech._isaTypeOf('Number');
-      //false
-
-      type_czech._isaTypeOf('number');
-      //true
-      */
-
+type_czech._isaTypeOf('Number');
+//false
+type_czech._isaTypeOf('number');
+//true
+type_czech._isaTypeOf('object');
+//true
+*/
       function _isaTypeOf(lower_case_type_of) {
         consolelog('^^^ _isaTypeOf ENTER', lower_case_type_of, TYPE_CZECH_current_test_number);
         let is_type_of = false;
@@ -674,29 +610,22 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         return is_type_of;
       }
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
-
-      type_czech.typeProtos(null);
-      //["Null"]
-
-      type_czech.typeProtos(123);
-      //["date"]
-
-      type_czech.typeProtos(new Date('1999-12-31'));
-      //["date"]
-
-      type_czech.typeProtos(document.createElement('div'));
-      //Array(6) [ "HTMLDivElement", "HTMLElement", "Element", "Node", "EventTarget", "object" ]
-
-      type_czech.typeProtos(new Object());
-      // Array [ "object" ]
-
-      { class First { constructor() { } }
-        class Last extends First { constructor() { super() } }
-        type_czech.typeProtos(new Last()); }
-      //Array(3) [ "Last", "First", "object" ]
-
-      */
+      /*
+type_czech.typeProtos(null);
+//["null"]
+type_czech.typeProtos(123);
+//["Number"]
+type_czech.typeProtos(new Date('1999-12-31'));
+//["Date"]
+type_czech.typeProtos(document.createElement('div'));
+//[ "HTMLDivElement", "HTMLElement", "Element", "Node", "EventTarget", "object" ]
+type_czech.typeProtos(new Object());
+//[ "Object" ]
+{ class First { constructor() { } }
+  class Last extends First { constructor() { super() } }
+  type_czech.typeProtos(new Last()); }
+//[ "Last", "First", "object" ]
+*/
       function typeProtos(a_var) {
         consolelog('^^^ typeProtos ENTER', a_var, TYPE_CZECH_current_test_number);
         let the_prototypes = false;
@@ -730,23 +659,18 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         return the_prototypes;
       }
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
-
-      type_czech.typeFinal(1999);
-      //'number'
-
-      type_czech.typeFinal(new Date('1999-12-31'));
-      //Date
-=
-      type_czech.typeFinal(document.createElement('div'));
-      //"HTMLDivElement"
-
-      { class First { constructor() { } }
-        class Last extends First { constructor() { super() } }
-        type_czech.typeFinal(new Last()); }
-      //Last
-
-      */
+      /*
+type_czech.typeFinal(1999);
+//number
+type_czech.typeFinal(new Date('1999-12-31'));
+//date
+type_czech.typeFinal(document.createElement('div'));
+//HTMLDivElement
+{ class First { constructor() { } }
+  class Last extends First { constructor() { super() } }
+  type_czech.typeFinal(new Last()); }
+//Last
+*/
       function typeFinal(a_var) {
         consolelog('^^^ typeFinal ENTER', a_var, TYPE_CZECH_current_test_number);
         // eslint-disable-next-line no-unused-vars
@@ -769,36 +693,40 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         return child_type;
       }
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
-
-      type_czech.typeIsA(null, 'null');
-      //true
-
-      type_czech.typeIsA(undefined, 'undefined');
-      //true
-
-      type_czech.typeIsA(12, 'number');
-      //true
-
-      type_czech.typeIsA(11, 'number');
-      //false
-
-      type_czech.typeIsA([], 'array');
-      //true
-
-      type_czech.typeIsA({}, 'object');
-      //true
-
-      type_czech.typeIsA(null, 'object');
-      //false
-
-      type_czech.typeIsA(document.createElement('div'), "HTMLDivElement");
-      //true
-
-      type_czech.typeIsA(document.createElement('div'), "EventTarget");
-      //true
-
-      */
+      /*
+type_czech.typeIsA(null, 'null');
+//true
+type_czech.typeIsA(undefined, 'undefined');
+//true
+type_czech.typeIsA(Infinity, 'number');
+//true
+type_czech.typeIsA(NaN, 'number');
+//true
+type_czech.typeIsA(12, 'number');
+//true
+type_czech.typeIsA(11, 'Number');
+//true
+type_czech.typeIsA(11, 'NUMBER');
+//false
+type_czech.typeIsA([], 'array');
+//true
+type_czech.typeIsA([], 'Array');
+//true
+type_czech.typeIsA([], 'ARRAY');
+//false
+type_czech.typeIsA({}, 'object');
+//true
+type_czech.typeIsA({}, 'Object');
+//true
+type_czech.typeIsA(null, 'object');
+//false
+type_czech.typeIsA(null, 'Object');
+//false
+type_czech.typeIsA(document.createElement('div'), "HTMLDivElement");
+//true
+type_czech.typeIsA(document.createElement('div'), "EventTarget");
+//true
+*/
       function typeIsA(a_var, object_type) {
         consolelog('^^^ typeIsA ENTER', a_var, object_type, TYPE_CZECH_current_test_number);
         // eslint-disable-next-line no-unused-vars
@@ -815,33 +743,28 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         return object_is_a;
       }
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
-
-      type_czech._aTypeOf(new Date('1999-12-31'));
-      //Date
-
-      type_czech._aTypeOf(x=>x);
-      //Function
-
-      type_czech._aTypeOf([]);
-      //Array
-
-      type_czech._aTypeOf({});
-      //Object
-
-      type_czech._aTypeOf(59n);
-      //BigInt
-
-      type_czech._aTypeOf(/d/);
-      //RegExp
-
-      type_czech._aTypeOf(null);
-      //null
-
-      type_czech._aTypeOf(document.createElement('div'));
-      //"HTMLDivElement"
-
-      */
+      /*
+type_czech._aTypeOf(new Date('1999-12-31'));
+//date
+type_czech._aTypeOf(x=>x);
+//function
+type_czech._aTypeOf([]);
+//array
+type_czech._aTypeOf({});
+//object
+type_czech._aTypeOf(59n);
+//bigint
+type_czech._aTypeOf(NaN);
+//number
+type_czech._aTypeOf(Infinity);
+//number
+type_czech._aTypeOf(/d/);
+//regexp
+type_czech._aTypeOf(null);
+//null
+type_czech._aTypeOf(document.createElement('div'));
+//"HTMLDivElement"
+*/
       function _aTypeOf(a_variable) {
         consolelog('^^^ _aTypeOf ENTER', a_variable, TYPE_CZECH_current_test_number);
         let a_type_of = '';
@@ -863,33 +786,28 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         return a_type_of;
       }
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
-
-      type_czech._isPlainJsType("boolean");
-      //true
-
-      type_czech._isPlainJsType("Snuffleupagus");
-      //false
-
-      type_czech._isPlainJsType('bigint');
-      //true
-
-      type_czech._isPlainJsType('array');
-      //true
-
-      type_czech._isPlainJsType('object');
-      //true
-
-      type_czech._isPlainJsType([]);
-      //false
-
-      type_czech._isPlainJsType({});
-      //false
-
-      type_czech._isPlainJsType(document.createElement('div'));
-      //false
-
-      */
+      /*
+type_czech._isPlainJsType("boolean");
+//true
+type_czech._isPlainJsType("Boolean");
+//false
+type_czech._isPlainJsType("Snuffleupagus");
+//false
+type_czech._isPlainJsType('bigint');
+//true
+type_czech._isPlainJsType('BigInt');
+//false
+type_czech._isPlainJsType('array');
+//true
+type_czech._isPlainJsType('object');
+//true
+type_czech._isPlainJsType([]);
+//false
+type_czech._isPlainJsType({});
+//false
+type_czech._isPlainJsType(document.createElement('div'));
+//false
+*/
       function _isPlainJsType(a_type) {
         consolelog('^^^ _isPlainJsType ENTER', a_type, TYPE_CZECH_current_test_number);
         let is_plain_js_type = false;
@@ -902,12 +820,16 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         return is_plain_js_type;
       }
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
-
-      type_czech._shortToLongType("Y");
-      //symbol
-
-      */
+      /*
+type_czech._shortToLongType("y");
+//symbol
+type_czech._shortToLongType("Y");
+//Y
+type_czech._shortToLongType("n");
+//number
+type_czech._shortToLongType("N");
+//N
+*/
       function _shortToLongType(a_type) {
         consolelog('^^^ _shortToLongType ENTER', a_type, TYPE_CZECH_current_test_number);
         if (SHORT_TO_TYPE_OF[a_type]) {
@@ -918,15 +840,14 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         return a_type;
       }
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
-
-      type_czech._shortToLongEmpty("OK");
-      //EMPTY-OK
-
-      type_czech._shortToLongEmpty("EMPTY-ER");
-      //EMPTY-ER
-
-      */
+      /*
+type_czech._shortToLongEmpty("OK");
+//EMPTY-OK
+type_czech._shortToLongEmpty("EMPTY-ER");
+//EMPTY-ER
+type_czech._shortToLongEmpty("x-ray-delta");
+//x-ray-delta
+*/
       function _shortToLongEmpty(an_empty) {
         if (SHORT_EMPTIES[an_empty]) {
           return SHORT_EMPTIES[an_empty];
@@ -934,25 +855,29 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         return an_empty;
       }
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
-
-      type_czech._collectionToStr({a_key: 'a-string'});
-      //"{'a_key':a-string}"
-
-      type_czech._collectionToStr([199n]);
-      //"['199n']"
-
-      its_complicated = [ {arr_1:[      {k_2:[3n,   {k_4:['number']}   ] }
-                                      , {k_5:[6n,   {k_7:['number']}  ] }] },
-                          [ ['string', 'array'], { k_8: 9n, k_10 :{k_11:2n, K_12:'object'}}]
-                        ]
-      type_czech._collectionToStr(its_complicated);
-      //"[{'arr_1':[{'k_2':['3n',{'k_4':['number']}]},{'k_5':['6n',{'k_7':['number']}]}]},[['string','array'],{'k_8':9n,'k_10':{'k_11':2n,'K_12':Object}}]]"
-
-      type_czech._collectionToStr([1,2,3]);
-      //"['1','2','3']"
-
-      */
+      /*
+type_czech._collectionToStr({a_key: 'a-string'});
+//{a_key:\"a-string\"}
+type_czech._collectionToStr([199n]);
+//[199n]
+its_complicated = [ {arr_1:[      {k_2:[3n,   {k_4:['number']}   ] }
+                                , {k_5:[6n,   {k_7:['number']}  ] }] },
+                    [ ['string', 'array'], { k_8: 9n, k_10 :{k_11:2n, K_12:'object'}}]    ]
+type_czech._collectionToStr(its_complicated);
+//[{arr_1:[{k_2:[3n,{k_4:[\"number\"]}]},{k_5:[6n,{k_7:[\"number\"]}]}]},[[\"string\",\"array\"],{k_8:9n,k_10:{k_11:2n,K_12:\"object\"}}]]
+type_czech._collectionToStr([1,2,3]);
+//[1,2,3]
+type_czech._collectionToStr({ 'a"a': 1});
+//{'a\"a':1}
+type_czech._collectionToStr({ "b b": 2});
+//{\"b b\":1}
+type_czech._collectionToStr({ "3c": 3});
+//{\"3c\":3}
+type_czech._collectionToStr({ 4: 4});
+//{4:4}
+type_czech._collectionToStr({ e: 5});
+//{e:5}
+*/
       function _collectionToStr(a_collection) {
         consolelog('^^^ _collectionToStr ENTER', a_collection, TYPE_CZECH_current_test_number);
         let collection_str;
@@ -974,16 +899,28 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         } else {
           // eslint-disable-next-line no-restricted-syntax
           for (const [key, value] of Object.entries(a_collection)) {
+            let out_key;
+            if (key.match(/[^a-z\d_]/gi)) { // has annoying chars
+              if (key.match(/"/g)) {
+                out_key = `'${key}'`; // has double quote
+              } else {
+                out_key = `"${key}"`; // no double quote
+              }
+            } else if (key.match(/^\d+[a-z_]/i)) {
+              out_key = `"${key}"`; // starts with a digit - https://mothereff.in/js-properties
+            } else {
+              out_key = key;
+            }
             const value_json = _toStr(value);
             let object_as_str;
             if (_aTypeOf(value) === 'string') {
               if (value_json === "''") {
-                object_as_str = `${key}:""`;
+                object_as_str = `${out_key}:""`;
               } else {
-                object_as_str = `${key}:"${value_json}"`;
+                object_as_str = `${out_key}:"${value_json}"`;
               }
             } else {
-              object_as_str = `${key}:${value_json}`;
+              object_as_str = `${out_key}:${value_json}`;
             }
             collection_elems.push(object_as_str);
           }
@@ -993,12 +930,10 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         return collection_str;
       }
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
-
-      type_czech._consoleError("errorText", 'TheTAG');
-      //errorText
-
-      */
+      /*
+type_czech._consoleError("errorText", 'TheTAG');
+//TheTAG - errorText
+*/
       function _consoleError(error_text, error_tag) {
         if (OP_DEBUG_ERROR_TAGS && error_tag) {
           const debug_error = `${error_tag} - ${error_text}`;
@@ -1010,8 +945,16 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         return error_text;
       }
 
-      function looksLikeType(possible_badcase) {
-        consolelog('^^^ looksLikeType ENTER', possible_badcase, TYPE_CZECH_current_test_number);
+      /*
+type_czech._looksLikeType("ARRAY");
+//TE@205 - The type 'ARRAY' is not a typeof() type, but it looks just like 'array'
+type_czech._looksLikeType("Object");
+//TE@205 - The type 'Object' is not a typeof() type, but it looks just like 'object'
+type_czech._looksLikeType("date");
+//''
+*/
+      function _looksLikeType(possible_badcase) {
+        consolelog('^^^ _looksLikeType ENTER', possible_badcase, TYPE_CZECH_current_test_number);
         let error_string = '';
         const is_type_of = _isaTypeOf(possible_badcase);
         if (!is_type_of) {
@@ -1023,22 +966,20 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
             }
           }
         }
-        consolelog('^^^ looksLikeType EXIT', error_string);
+        consolelog('^^^ _looksLikeType EXIT', error_string);
         return error_string;
       }
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
-
-      type_czech._missingKey({z:"symbol"});
-      //TE@216 - The key 'z', which has a type of 'symbol', is missing in the checked object
-
-      */
+      /*
+type_czech._missingKey({z:"symbol"});
+//TE@216 - The key 'z', which has a type of 'symbol', is missing in the checked object
+*/
       function _missingKey(extra_keys) {
         consolelog('^^^ _missingKey ENTER', extra_keys, TYPE_CZECH_current_test_number);
         let missing_key;
         if (Object.keys(extra_keys).length > 0) {
           const [share_key, share_type] = Object.entries(extra_keys)[0];
-          missing_key = looksLikeType(share_type);
+          missing_key = _looksLikeType(share_type);
           if (!missing_key) {
             const share_type_str = _toStr(share_type);
             const error_216 = ` The key '${share_key}', which has a type of '${share_type_str}', is missing in the checked object`;
@@ -1051,38 +992,34 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         return missing_key;
       }
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
-
-      type_czech._isEmpty(new Date(''));
-      //true
-
-      type_czech._isEmpty('');
-      //true
-
-      type_czech._isEmpty(0);
-      //false
-
-      type_czech._isEmpty(NaN);
-      //true
-
-      type_czech._isEmpty(null);
-      //true
-
-      type_czech._isEmpty(undefined);
-      //true
-
-      type_czech._isEmpty([]);
-      //true
-
-      type_czech._isEmpty({});
-      //true
-
-      type_czech._isEmpty(85n);
-      //false
-
-       type_czech._isEmpty(Infinity);
-      //true
-      */
+      /*
+type_czech._isEmpty(new Date(''));
+//true
+type_czech._isEmpty('');
+//true
+type_czech._isEmpty(' ');
+//true
+type_czech._isEmpty(0);
+//false
+type_czech._isEmpty(NaN);
+//true
+type_czech._isEmpty(Infinity);
+//true
+type_czech._isEmpty(null);
+//true
+type_czech._isEmpty(undefined);
+//true
+type_czech._isEmpty([]);
+//true
+type_czech._isEmpty([7]);
+//false
+type_czech._isEmpty({});
+//true
+type_czech._isEmpty({seven:11});
+//false
+type_czech._isEmpty(85n);
+//false
+*/
       function _isEmpty(a_variable) {
         consolelog('^^^ _isEmpty ENTER', a_variable, TYPE_CZECH_current_test_number);
         let is_empty;
@@ -1107,38 +1044,35 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         return is_empty;
       }
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
-
-      //Boolean, Symbol, Function cannot be empty
-      type_czech._canBeEmpty('array')
-      //true
-
-      type_czech._canBeEmpty(/ab+c/i)
-      //false
-
-      type_czech._canBeEmpty(85n)
-      //false
-
-    */
+      /*
+type_czech._canBeEmpty('array')
+//true
+type_czech._canBeEmpty('object')
+//true
+type_czech._canBeEmpty('string')
+//true
+type_czech._canBeEmpty(/ab+c/i)
+//false
+type_czech._canBeEmpty(85n)
+//false
+type_czech._canBeEmpty('boolean')
+//false
+*/
       const _canBeEmpty = (variable_type) => (variable_type === 'array' ? true // []
         : variable_type === 'object' ? true // {}
           : variable_type === 'string' ? true // ''
             : variable_type === 'regexp' ? true // new RegExp()
-              : variable_type === 'date' ? true // new Date("incheck_type")     isNaN(new Date("incheck_type"))
-                : variable_type === 'number');
+              : variable_type === 'date' ? true // new Date("")
+                : variable_type === 'number'); // NaN or Infinity
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
-
-      type_czech._typeFromArray(['jj'], 99);
-      //jj
-
-      type_czech._typeFromArray([1,'uu'], 1);
-      //uu
-
-      type_czech._typeFromArray([0, 0, 2222], 2);
-      //2222
-
-      */
+      /*
+type_czech._typeFromArray(['jj'], 99);
+//jj
+type_czech._typeFromArray([1,'uu'], 1);
+//uu
+type_czech._typeFromArray([0, 0, 2222], 2);
+//2222
+*/
       function _typeFromArray(shallow_array, element_index) {
         consolelog('^^^ _typeFromArray ENTER', shallow_array, element_index, TYPE_CZECH_current_test_number);
         const shape_length = shallow_array.length;
@@ -1152,23 +1086,24 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         return element_type;
       }
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
-
-      type_czech._getParameters({0:'a', 1:'b', length:2});
-
-      type_czech._getParameters([1]);
-      //1
-
-      type_czech._getParameters([1,2,3,4]);
-      //[ 1, 2, 3, 4 ]
-
-      type_czech._getParameters(null);
-      //null
-
-      type_czech._getParameters('a-string');
-      //"a-string"
-
-      */
+      /*
+type_czech._getParameters({0:'a', 1:'b', length:2});
+//[ ["a","b"], false, false]
+type_czech._getParameters([1]);
+//[ 1, false, true]
+type_czech._getParameters([1,2,3,4]);
+//[ [1,2,3,4], false, false]
+type_czech._getParameters(null);
+//[null, false, true]
+type_czech._getParameters('a-string');
+//["a-string", false, true]
+type_czech._getParameters();
+//[undefined, false, true]
+type_czech._getParameters({0:'zero', length:1});
+//["zero", false, true]
+type_czech._getParameters({length:0});
+//[ [], true, true]
+*/
       function _getParameters(parameters_obj) {
         consolelog('^^^ _getParameters ENTER', parameters_obj, TYPE_CZECH_current_test_number);
         let the_params;
@@ -1206,7 +1141,6 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         return params_flags;
       }
 
-      // we can see the error arrays get made!!!
       function error3Array(command_type, incheck_type_error, shape_list) {
         consolelog('^^^ error3Array ENTER', command_type, incheck_type_error, shape_list, TYPE_CZECH_current_test_number);
         const shape_list_str = _toStr(shape_list);
@@ -1215,38 +1149,48 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         return error_3_array;
       }
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
+      /*
+variable={bob:17, show:_=>_};
+interface={bob:'number', show:'f'};
+type_czech.check_interface(variable, interface);
+//''
 
-      variable={bob:17, show:_=>_};
-      interface={bob:'number', show:'F'};
-      type_czech.check_interface(variable, interface);
-      //""
+variable={bob:['number'], show:_=>_};
+interface={bob:'number', show:'f'};
+type_czech.check_interface(variable, interface);
+//check_interface()
+//IE@502 - actual type of 'bob' is 'array', with a value of '[\"number\"]', not the expected 'number' type
+//{bob:\"number\",show:\"f\"}
 
-      variable={bob:['number'], show:_=>_};
-      interface={bob:'number', show:'F'};
-      type_czech.check_interface(variable, interface);
-      //"check_interface(arguments, expected_types)"
-      //"actual type of 'bob' is 'array', with a value of 'number', not the expected 'number' type"
-      //"{bob:\"number\",show:\"F\"}"
+variable={bob:{}, show:_=>_};
+interface={bob:'object', show:'f'};
+type_czech.check_interface(variable, interface);
+//''
 
-      // what about making sure all types below are strings so this will be an error --> show:{}  or show:[]
+variable={bob:{}, show:_=>_};
+interface={bob:{}, show:'f'};
+type_czech.check_interface(variable, interface);
+//check_interface()
+//IE@502 - actual type of 'bob' is 'object', with a value of '{}', not the expected '{}' type
+//{bob:{},show:\"f\"}
 
-      variable={bob:{}, show:_=>_};
-      interface={bob:{}, show:'F'};
-      type_czech.check_interface(variable, interface);
-      //"Interface mismatches : check_interface() {bob:'[xxxoxbxjxect xOxbxject]'} has a bad type - not string"
+variable={bob:[], show:_=>_};
+interface={bob:'array', show:'f'};
+type_czech.check_interface(variable, interface);
+//''
 
-      variable={bob:[], show:_=>_};
-      interface={bob:'array', show:'F'};
-      type_czech.check_interface(variable, interface);
-      //"Interface mismatches : check_interface() only allows functions in interfaces, not {bob:'array'}"
+variable={bob:[], show:_=>_};
+interface={bob:[], show:'f'};
+type_czech.check_interface(variable, interface);
+//check_interface()
+//IE@502 - actual type of 'bob' is 'array', with a value of '[]', not the expected '[]' type
+//{bob:[],show:\"f\"}
 
-      variable={bob:{a:12}, show:_=>_};
-      interface={bob:'object', show:'F'};
-      type_czech.check_interface(variable, interface);
-      //"" ERROR also
-
-      */
+variable={bob:{a:12}, show:_=>_};
+interface={bob:'object', show:'f'};
+type_czech.check_interface(variable, interface);
+//''
+*/
       // eslint-disable-next-line consistent-return
       function check_interface(introspect_object, expected_interface) {
         if (t_param_check_func.p_call_traps) {
@@ -1303,7 +1247,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
       // /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
+      /*
 
       type_czech._ParametersCheck(false);
       //Object { confirmParameters:
@@ -1324,9 +1268,11 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         let onParamCheck = () => ''; // console.log('default onParamCheck');
         let onParamError = () => ''; // console.log('default onParamError');
 
-        let p_check_count = 0; //     count number of parameter checks to check_typeate test count
+        // start _ParametersCheck variables
+        let p_check_count = 0; //     count number of parameter checks
         let p_failure_count = 0; //   count errors so far
         let p_call_traps = false; //  turn parameter checking on/off
+        // end _ParametersCheck variables
 
         function init_ParametersCheck() {
           if (t_do_param_checking) {
@@ -1870,7 +1816,7 @@ type_czech.assert_check(check_error, error_location, actual_value, expected_outc
 
       /* eslint-disable */
 
-    /* type_czech = TypeCzech('LOG-ERRORS')
+    /*
 
     var a = [];
     a[0] = a;
@@ -2213,7 +2159,7 @@ if (node && node.constructor === RegExp) {
       function _errorClassName(scalar_type) {
         consolelog('^^^ _errorClassName ENTER', scalar_type, TYPE_CZECH_current_test_number);
         const no_spaces = scalar_type.replace(/\s+/g, '');
-        let error_string = looksLikeType(no_spaces);
+        let error_string = _looksLikeType(no_spaces);
         if (!error_string) {
           if (no_spaces === '[]') {
             const error_222 = "The construct '[]' is not a real type, only a container, thus it cannot"
@@ -2232,7 +2178,7 @@ if (node && node.constructor === RegExp) {
         return error_string;
       }
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
+      /*
 
       type_czech._shapeErrorMess([, , "boolean"], ["super", "man"])
       //VE@603 - Element '2' is supposed to be a 'boolean', but is missing : ['super','man']
@@ -2249,7 +2195,7 @@ if (node && node.constructor === RegExp) {
         return error_string;
       }
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
+      /*
 
       type_czech._shapeContainer([456,789] , ["number"], 'TYPE-EXTRAS', 179);
       //""
@@ -2356,7 +2302,7 @@ type_czech._shapeContainer([ 13, 14, 15 ], { r: "number" }, 'TYPE-EXTRAS', 179);
         return error_string;
       }
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
+      /*
 
       type_czech._arrayOfOneType([1,2,3], 'number', 'TYPE-EXTRAS');
       //""
@@ -2391,7 +2337,7 @@ type_czech._shapeContainer([ 13, 14, 15 ], { r: "number" }, 'TYPE-EXTRAS', 179);
               } else if (OP_UNDEF_OK && variable_type === 'undefined') {
                 // ingore undefined if OP_UNDEF_OK
               } else {
-                let error_local = looksLikeType(type_of_array);
+                let error_local = _looksLikeType(type_of_array);
                 if (!error_local) {
                   const show_element = _toStr(check_element);
                   const error_215 = `ELEMENT '${element_index}' is asserted to be a '${type_of_array}',`
@@ -2407,7 +2353,7 @@ type_czech._shapeContainer([ 13, 14, 15 ], { r: "number" }, 'TYPE-EXTRAS', 179);
         return error_string;
       };
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
+      /*
 
       type_czech._wrongType('string', 0, 'date');
       //"TE@214 -  ELEMENT '0' is assumed to be a 'string', but is mistakenly a 'date'. "
@@ -2437,7 +2383,7 @@ type_czech._shapeContainer([ 13, 14, 15 ], { r: "number" }, 'TYPE-EXTRAS', 179);
           error_string = _consoleError(error_232, 'TE@232');
         }
         if (!error_string) {
-          error_string = looksLikeType(expected_type);
+          error_string = _looksLikeType(expected_type);
           if (!error_string) {
             const error_214 = ` ELEMENT '${element_index}' is assumed to be a '${expected_type}',`
             + ` but is mistakenly a '${real_type}'`;
@@ -2448,7 +2394,7 @@ type_czech._shapeContainer([ 13, 14, 15 ], { r: "number" }, 'TYPE-EXTRAS', 179);
         return error_string;
       };
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
+      /*
 
       type_czech._shapeArrayTypes([ 13, 14, 15 ], ['number'], 'TYPE-VERIFY',0);
       //""
@@ -2505,7 +2451,7 @@ type_czech._shapeContainer([ 13, 14, 15 ], { r: "number" }, 'TYPE-EXTRAS', 179);
         return error_string;
       }
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
+      /*
 
       type_czech._shapePropertyType({r:"N"}, 'r', 11);
       //""
@@ -2528,7 +2474,7 @@ type_czech._shapeContainer([ 13, 14, 15 ], { r: "number" }, 'TYPE-EXTRAS', 179);
         let error_string = '';
         const check_type_type = _shortToLongType(property_type[property_key]);
         if (!_isPlainJsType(check_type_type)) {
-          error_string = looksLikeType(check_type_type);
+          error_string = _looksLikeType(check_type_type);
           if (!error_string) {
             const object_str = _jsonStr(check_type_type);
             const error_210 = `The type '${object_str}' is not a real type`;
@@ -2559,7 +2505,7 @@ type_czech._shapeContainer([ 13, 14, 15 ], { r: "number" }, 'TYPE-EXTRAS', 179);
         return error_string;
       };
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
+      /*
 
       type_czech._shapeCollectionTypes({a:123},  {a:"N"}, 'TYPE-VERIFY');
       //""
@@ -2605,7 +2551,7 @@ type_czech._shapeContainer([ 13, 14, 15 ], { r: "number" }, 'TYPE-EXTRAS', 179);
         return error_string;
       }
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
+      /*
 
       type_czech._shapeScalar(17 ,"number");
       //""
@@ -2671,7 +2617,7 @@ type_czech._shapeScalar(4, 'null');
         return error_string;
       }
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
+      /*
 
       type_czech._shapeVariable([456,789] , ["number"], 'TYPE-EXTRAS');
       //""
@@ -2704,7 +2650,7 @@ type_czech._shapeScalar(4, 'null');
         return error_string;
       }
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
+      /*
 
       type_czech._emptyErrorMess(['EMPTY-ERROR', 'EMPTY-OK'], ['first', 'middle', 'last']);
       //EE@310 - ELEMENT '0' is supposed to be a 'EMPTY-ERROR', but is missing : ['first','middle','last']
@@ -2727,7 +2673,7 @@ type_czech._shapeScalar(4, 'null');
         return error_string;
       }
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
+      /*
 
       type_czech._emptyError('EMPTY-ERROR', 'a-string', 0, ['a-string', 17], 'string', 'EMPTY-VERIFY');
       //""
@@ -2770,7 +2716,7 @@ type_czech._shapeScalar(4, 'null');
         return error_string;
       }
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
+      /*
 
       type_czech._emptyArrayInArray([[11], [13], [17]], ["ER"], 'EMPTY-VERIFY');
       //""
@@ -2810,7 +2756,7 @@ type_czech._shapeScalar(4, 'null');
         return error_string;
       };
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
+      /*
 
       type_czech._emptyArrayTypes([17], ['EMPTY-ERROR'], 'EMPTY-VERIFY');
       //""
@@ -2855,7 +2801,7 @@ type_czech._shapeScalar(4, 'null');
         return error_string;
       }
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
+      /*
 
       type_czech._arrayOfOneShape([1,2,3], 'EMPTY-ERROR', 'EMPTY-EXTRAS');
       //""
@@ -2902,7 +2848,7 @@ type_czech._shapeScalar(4, 'null');
         return error_string;
       };
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
+      /*
 
       type_czech._emptyArrayTypes([ 13, 14, 15 ], ['EMPTY-ERROR'], '_emptyArrayTypes', 0);
 
@@ -2965,7 +2911,7 @@ type_czech._shapeScalar(4, 'null');
         return error_string;
       };
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
+      /*
 
       type_czech._emptyKeysChecked('EMPTY-ERROR', 0, 'var-or-key-name');
       //EE@301 - 'var-or-key-name' is a 'number' which is supposed to be 'EMPTY-ERROR' but has a value of 0
@@ -3008,7 +2954,7 @@ type_czech._shapeScalar(4, 'null');
         return error_string;
       };
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
+      /*
 
       type_czech._emptyCollectionTypes({ r: '' }, { r: 'ER' }, 'EMPTY-VERIFY');
       //TC@13 - Empty Value in a Collection [{'r':''}], expected [{'r':'ER'}]
@@ -3066,7 +3012,7 @@ type_czech._shapeScalar(4, 'null');
         return error_string;
       };
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
+      /*
 
       type_czech._emptyContainer(["a-string"], ['EMPTY-ERROR'], 'EMPTY-VERIFY');
       //""
@@ -3112,7 +3058,7 @@ type_czech._shapeScalar(4, 'null');
         return error_string;
       }
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
+      /*
 
       type_czech._emptyScalar(0, 'EMPTY-ERROR');
       //EE@307 - EMPTY-ER states 'number' must not be empty for the value '0'
@@ -3157,7 +3103,7 @@ type_czech._shapeScalar(4, 'null');
         return error_string;
       }
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
+      /*
 
       type_czech._emptyVariable(17, 'EMPTY-ERROR', 'EMPTY-VERIFY');
       //""
@@ -3187,7 +3133,7 @@ type_czech._shapeScalar(4, 'null');
         return error_string;
       }
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
+      /*
 
       type_czech._emptyCheck([12, false, 'a string'], ['EMPTY-OK'], 'EMPTY-VERIFY');
       //EE@305 - Completely pointless as checking with ['OK'] or ['EMPTY-OK'] matches everything
@@ -3206,7 +3152,7 @@ type_czech._shapeScalar(4, 'null');
         return error_string;
       }
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
+      /*
 
       type_czech._doEitherEmpty([[12, 0, 'not-checked'], [['ER','ER'],['ER','OK']]], 'EMPTY-EXTRAS');
       //""
@@ -3248,7 +3194,7 @@ type_czech._shapeScalar(4, 'null');
         return error_string;
       }
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
+      /*
 
       type_czech._doEitherShape([  {"X":"an-str","Y":1234},   [{"X":"S","Y":"S"},{"X":"S","Y":"N"}]  ], "TYPE-VERIFY");
       //""
@@ -3308,7 +3254,7 @@ type_czech._shapeScalar(4, 'null');
         return error_string;
       }
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
+      /*
 
       type_czech._specParameters(["UNDEF-OK", "DEBUG-CONSOLE-TRACE", "what" ]);
       //TC@21 - Not THROW-EXCEPTIONS/LOG-ERRORS/UNDEF-OK/DEBUG-CONSOLE-TRACE, unknown parameter : 'what'
@@ -3355,7 +3301,7 @@ type_czech._shapeScalar(4, 'null');
         return param_results;
       }
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
+      /*
     type_czech._twoArrays([ 'not-array', ['an-array'] ], 'fail-1');
     TE@217 - TypeCzech.fail-1() called with '[]' versus '![]'. Comparing '"string"' with '["an-array"]'.
 
@@ -3478,7 +3424,7 @@ type_czech._shapeScalar(4, 'null');
         return error_str_3arr;
       }
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
+      /*
 
       type_czech._eitherChecks([1], 'fail-99');
       //ME@406 - TypeCzech.fail-99() needs 2 parameters, not 1
@@ -3544,7 +3490,7 @@ type_czech._shapeScalar(4, 'null');
         return is_variadic;
       }
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
+      /*
 
       type_czech.check_empty([12, 'a-string', false], ['EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR']);
       //IE@501 - ELEMENT '2' is a boolean, 'false', not an array/object/string/Date, it cannot by empty : [12,'a-string',false]
@@ -3672,7 +3618,7 @@ this should be an error????
         }
       }
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
+      /*
 
       //problem is that the first parameter is always the parameters of a function, []
 
@@ -3842,7 +3788,7 @@ type_czech.check_type({0:['a', 'b'], length:1}, ['string']); // ['a', 'b']
         return error_str_3arr;
       }
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
+      /*
 
       type_czech.check_emptyExtra({0:17, 1:'c', length:2}, 'EMPTY-ERROR');
       //""
@@ -3914,7 +3860,7 @@ type_czech.check_type({0:['a', 'b'], length:1}, ['string']); // ['a', 'b']
         }
       }
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
+      /*
 
       type_czech.check_typeExtra([17], ['number', 'number']);
       //"check_typeExtra(arguments, expected_types)"
@@ -3985,7 +3931,7 @@ type_czech.check_type({0:['a', 'b'], length:1}, ['string']); // ['a', 'b']
         return error_str_3arr;
       }
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
+      /*
 
       type_czech.check_typeExtra({0:17, 1:'c', length:2}, 'N');
       //""
@@ -4053,7 +3999,7 @@ type_czech.check_type({0:['a', 'b'], length:1}, ['string']); // ['a', 'b']
         }
       }
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
+      /*
 
       type_czech.check_emptyEither([12, false, 'a string'], 'EMPTY-OK');
       //ME@402 - TypeCzech.check_emptyEither() called with a second parameter as a non-array shape of "EMPTY-OK"
@@ -4095,7 +4041,7 @@ type_czech.check_type({0:['a', 'b'], length:1}, ['string']); // ['a', 'b']
           return error_str_3arr;
         }
       }
-      /* type_czech = TypeCzech('LOG-ERRORS')
+      /*
 
       type_czech.check_typeEither(17, [ "string", "number" ]);
       //""
@@ -4129,7 +4075,7 @@ type_czech.check_type({0:['a', 'b'], length:1}, ['string']); // ['a', 'b']
         }
       }
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
+      /*
 
       function check_func(a_num){ if (a_num>0) return 'only neg nums'}
       function your_func(a_num){ console.log('user-func', a_num)}
@@ -4188,7 +4134,7 @@ type_czech.check_type({0:['a', 'b'], length:1}, ['string']); // ['a', 'b']
         return '';
       }
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
+      /*
 
       long_str = '1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890'
               + '1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890';
@@ -4219,7 +4165,7 @@ type_czech.check_type({0:['a', 'b'], length:1}, ['string']); // ['a', 'b']
         return first_difference;
       }
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
+      /*
 
       type_czech._refDiff('', '')
       //""
@@ -4319,7 +4265,7 @@ type_czech.check_type({0:['a', 'b'], length:1}, ['string']); // ['a', 'b']
         return first_difference;
       }
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
+      /*
 
       type_czech.check_buildSnapshot('my-func', 'my_array', 12);
       //Uncaught TC@56 - TypeCzech.check_buildSnapshot()'s 3rd parameter is not an array/object but instead a 'number'
@@ -4375,7 +4321,7 @@ type_czech.check_type({0:['a', 'b'], length:1}, ['string']); // ['a', 'b']
         return ref_stacks_str;
       }
 
-      /* type_czech = TypeCzech('LOG-ERRORS')
+      /*
 
       type_czech.check_mutatedSnapshot('func-name', 'var-name', 'error-param');
       //Uncaught VE@604 - TypeCzech.check_mutatedSnapshot() needs 2 parameters, not 3
@@ -4536,6 +4482,7 @@ type_czech.check_type({0:['a', 'b'], length:1}, ['string']); // ['a', 'b']
         _isaTypeOf,
         _isPlainJsType,
         _jsonStr,
+        _looksLikeType,
         _missingKey,
         _mutateStacks,
         _refDiff,

@@ -1,4 +1,4 @@
-//  node --trace-uncaught suite-node-gen.js
+//  node --trace-uncaught suite-node-generative.js
 
 require('./node_includes.js');
 

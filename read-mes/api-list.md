@@ -37,19 +37,35 @@ Note that functions with \_check_ in their names are usually placed within PRE a
 ```
 type_czech = TypeCzech('THROW-EXCEPTIONS')
 if (type_czech.isActive()) {
-  tested_value = false
+  tested_value = new Date('1999-10-10')
   check_error=type_czech.check_typeEither(tested_value, ['number','string'])
   error_location = 'the-test-location'
   expected_outcome = 'expected tested_value to be a number or a string'
   type_czech.assert_check(check_error, error_location, tested_value, expected_outcome)
 }
 
-// error as false is not a number or a boolean
+// error Assert Location: the-test-location 
+//       : The value '1999-10-10T00:00:00.000Z', which is a 'date', is not a 'number'
+//       , The value '1999-10-10T00:00:00.000Z', which is a 'date', is not a 'string'
 ```
+
+Usually used inside a then clause of a promise because linkUp() does not work with
+promises; basically, an assert.
+```
+fetch(some_url)
+.then(response => {
+  if (type_czech.isActive()) {
+    type_error = type_czech.check_type(github_data, {html_url:'string'})
+    type_czech.assert_check(type_error, 'Error - some url', response)
+  }
+})
+```
+
   [assert_check() examples](./public/assert_check.md)
 
-### 2 check_buildSnapshot(function_name, variable_name, the_variable)<a name="check-build-snapshot"></a> &
-### 8 check_mutatedSnapshot(function_name, variable_name) <a name="check-mutated-snapshot"></a>
+### 2 check_buildSnapshot(function_name, variable_name, the_variable)<a name="check-build-snapshot"></a>
+&nbsp;&nbsp;&nbsp; in conjunction with <b>8 check_mutatedSnapshot(function_name, variable_name)</b> <a name="check-mutated-snapshot"></a>
+
   Generally used inside both PRE_check() and POST_check() functions that have been linked to 
   a function to be tested. The idea is to build a snapshot of a mutable array or object parameter before the tested function gets called, as in PRE_check_aCollection() below. And then, verify that the array or object has not been mutated after the tested function returns, as in POST_check_aCollection() below.
 ```  

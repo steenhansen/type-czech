@@ -3,16 +3,16 @@ const VERS_NUM = 'v1.0 21-11-01';
 
 let the_exports;
 if (typeof exports === 'undefined') {
-  the_exports = window;
+  the_exports = window; 
 } else {
-  the_exports = exports;
+  the_exports = exports; 
 }
 
 
 
 if (typeof TYPE_CZECH_current_test_number === 'undefined') {
   
-  var TYPE_CZECH_current_test_number = 'no test number assigned yet';
+  var TYPE_CZECH_current_test_number = 'not-in-test-yet'; 
 }
 
 
@@ -38,13 +38,11 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
 
     function _TypeCzech(...the_parameters) {
       
-
-      let t_param_check_func;
-      let t_check_events = false;
-      let t_do_param_checking = false;
-      const t_reference_stacks = {};
-      const t_proxy_targets = new WeakSet();
-
+      let t_param_check_func; 
+      let t_check_events = false; 
+      let t_do_param_checking = false; 
+      const t_reference_stacks = {}; 
+      const t_proxy_targets = new WeakSet(); 
       
 
       const PRE_FUNCTION_NO_THIS = 'PRE-FUNC:'; 
@@ -176,7 +174,6 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
 
       const IS_INIT_CONSOLE = 'TypeCzech-init';
 
-      
       const TYPE_CZECH_EVENTS = {
         bBlink: (back_color) => {
           document.body.style.background = back_color;
@@ -187,16 +184,15 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         onError: () => TYPE_CZECH_EVENTS.bBlink(FAIL_CHECK_COLOR),
       };
 
-
+      function consolelog(...args) {
+        if (OP_DEBUG_CONSOLE_TRACE) {
+          
+          console.log(args);
+        }
+      }
 
       
-      function _coloredConsole(the_args, the_css) {
-        
-        const args_str = _jsonStr(the_args);
-        const the_text = args_str.substring(1, args_str.length - 1);
-        
-        console.log(`%c ${the_text}`, the_css);
-      }
+
 
       
       function _doubleToSingleQuotes(double_quotes) {
@@ -216,12 +212,12 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         return a_collection;
       }
 
+      
       function _isScalar(a_variable) {
         return !_isCollection(a_variable);
       }
 
       
-
       function _toStr(maybe_undef) {
         
         let to_str;
@@ -362,9 +358,6 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
       }
 
       
-
-      
-      
       function _isBuiltInClass(a_type) {
         
         let is_built_in = false;
@@ -403,7 +396,6 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
       }
 
       
-
       function _isaTypeOf(lower_case_type_of) {
         
         let is_type_of = false;
@@ -566,16 +558,28 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         } else {
           
           for (const [key, value] of Object.entries(a_collection)) {
+            let out_key;
+            if (key.match(/[^a-z\d_]/gi)) { 
+              if (key.match(/"/g)) {
+                out_key = `'${key}'`; 
+              } else {
+                out_key = `"${key}"`; 
+              }
+            } else if (key.match(/^\d+[a-z_]/i)) {
+              out_key = `"${key}"`; 
+            } else {
+              out_key = key;
+            }
             const value_json = _toStr(value);
             let object_as_str;
             if (_aTypeOf(value) === 'string') {
               if (value_json === "''") {
-                object_as_str = `${key}:""`;
+                object_as_str = `${out_key}:""`;
               } else {
-                object_as_str = `${key}:"${value_json}"`;
+                object_as_str = `${out_key}:"${value_json}"`;
               }
             } else {
-              object_as_str = `${key}:${value_json}`;
+              object_as_str = `${out_key}:${value_json}`;
             }
             collection_elems.push(object_as_str);
           }
@@ -597,7 +601,8 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         return error_text;
       }
 
-      function looksLikeType(possible_badcase) {
+      
+      function _looksLikeType(possible_badcase) {
         
         let error_string = '';
         const is_type_of = _isaTypeOf(possible_badcase);
@@ -620,7 +625,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         let missing_key;
         if (Object.keys(extra_keys).length > 0) {
           const [share_key, share_type] = Object.entries(extra_keys)[0];
-          missing_key = looksLikeType(share_type);
+          missing_key = _looksLikeType(share_type);
           if (!missing_key) {
             const share_type_str = _toStr(share_type);
             const error_216 = ` The key '${share_key}', which has a type of '${share_type_str}', is missing in the checked object`;
@@ -664,7 +669,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
           : variable_type === 'string' ? true 
             : variable_type === 'regexp' ? true 
               : variable_type === 'date' ? true 
-                : variable_type === 'number');
+                : variable_type === 'number'); 
 
       
       function _typeFromArray(shallow_array, element_index) {
@@ -718,7 +723,6 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         return params_flags;
       }
 
-      
       function error3Array(command_type, incheck_type_error, shape_list) {
         
         const shape_list_str = _toStr(shape_list);
@@ -796,9 +800,11 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         let onParamCheck = () => ''; 
         let onParamError = () => ''; 
 
+        
         let p_check_count = 0; 
         let p_failure_count = 0; 
         let p_call_traps = false; 
+        
 
         function init_ParametersCheck() {
           if (t_do_param_checking) {
@@ -1554,7 +1560,7 @@ if (node && node.constructor === RegExp) {
       function _errorClassName(scalar_type) {
         
         const no_spaces = scalar_type.replace(/\s+/g, '');
-        let error_string = looksLikeType(no_spaces);
+        let error_string = _looksLikeType(no_spaces);
         if (!error_string) {
           if (no_spaces === '[]') {
             const error_222 = "The construct '[]' is not a real type, only a container, thus it cannot"
@@ -1642,7 +1648,7 @@ if (node && node.constructor === RegExp) {
               } else if (OP_UNDEF_OK && variable_type === 'undefined') {
                 
               } else {
-                let error_local = looksLikeType(type_of_array);
+                let error_local = _looksLikeType(type_of_array);
                 if (!error_local) {
                   const show_element = _toStr(check_element);
                   const error_215 = `ELEMENT '${element_index}' is asserted to be a '${type_of_array}',`
@@ -1674,7 +1680,7 @@ if (node && node.constructor === RegExp) {
           error_string = _consoleError(error_232, 'TE@232');
         }
         if (!error_string) {
-          error_string = looksLikeType(expected_type);
+          error_string = _looksLikeType(expected_type);
           if (!error_string) {
             const error_214 = ` ELEMENT '${element_index}' is assumed to be a '${expected_type}',`
             + ` but is mistakenly a '${real_type}'`;
@@ -1734,7 +1740,7 @@ if (node && node.constructor === RegExp) {
         let error_string = '';
         const check_type_type = _shortToLongType(property_type[property_key]);
         if (!_isPlainJsType(check_type_type)) {
-          error_string = looksLikeType(check_type_type);
+          error_string = _looksLikeType(check_type_type);
           if (!error_string) {
             const object_str = _jsonStr(check_type_type);
             const error_210 = `The type '${object_str}' is not a real type`;
@@ -3001,7 +3007,9 @@ if (node && node.constructor === RegExp) {
 
       return {
 
-   
+        
+  
+        
 
         TYPE_CZECH_EVENTS,
 

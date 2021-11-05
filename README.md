@@ -3,7 +3,9 @@
 
 TypeCzech is a run-time type checking JavaScript library that can be programmatically turned on and off.
 Include one file in your web page or in your Node.js file to allow you to type check function parameters
-and function results. Errors can be set to throw halting exceptions or just output to the Console.
+and results. Errors can be set to throw halting exceptions or just output to the Console.
+The motivation is to verify function parameters before execution, and function results after completion with 
+PRE_check() and POST_check() funtions.
 
 Enjoy some TypeScript benefits without the drawbacks of
 
@@ -14,8 +16,10 @@ Enjoy some TypeScript benefits without the drawbacks of
 With TypeCzech you can
 
   -  Check function parameter types, including arrays, and extended objects
-  -  Ensure strings, arrays, and objects are not empty
-  -  Catch mutations in function parameters that are collections
+  -  Ensure strings, arrays, and objects are not empty at run-time
+  -  Catch malformed data from a fetch()
+  -  Specify run-time input validation constraints
+  -  Detect mutations in function parameters that are collections
 
 Missing from TypeCzech
 
@@ -38,155 +42,168 @@ TypeCzech the bad parts
   -  <b>PRE_check_aLottery()</b> is executed just before aLottery() and runs via type_czech.<b>linkUp()</b> 
   -  /**/ highlights added TypeCzech test code that is safely removable or programmatically turned off
 
+```
+/**/  type_czech = TypeCzech('LOG-ERRORS')
+/**/
+/**/  function PRE_check_aLottery(lottery_name, lucky_numbers, draw_date){
+/**/    A_LOTTERY_SIGNATURE = ['string', ['number'], 'date']
+/**/    type_issue = type_czech.check_type(arguments, A_LOTTERY_SIGNATURE)
+/**/    if (type_issue) return type_issue
+/**/
+/**/    empty_issue = type_czech.check_empty(arguments, ['EMPTY-ERROR'])
+/**/    if (empty_issue) return empty_issue
+/**/
+/**/    return ''
+/**/  }
+/**/
+/**/  aLottery = type_czech.linkUp(aLottery, PRE_check_aLottery) 
 
-    /**/  type_czech = TypeCzech('LOG-ERRORS')
-    /**/
-    /**/  function PRE_check_aLottery(lottery_name, lucky_numbers, draw_date){
-    /**/    A_LOTTERY_SIGNATURE = ['string', ['number'], 'date']
-    /**/    type_issue = type_czech.check_type(arguments, A_LOTTERY_SIGNATURE)
-    /**/    if (type_issue) return type_issue
-    /**/
-    /**/    empty_issue = type_czech.check_empty(arguments, ['EMPTY-ERROR'])
-    /**/    if (empty_issue) return empty_issue
-    /**/
-    /**/    return ''
-    /**/  }
-    /**/
-    /**/  aLottery = type_czech.linkUp(aLottery, PRE_check_aLottery) 
-
-    function aLottery(lottery_name, lucky_numbers, draw_date){
-      console.log(`${lottery_name} ::: ${lucky_numbers} ::: ${draw_date}`)
-    }
+function aLottery(lottery_name, lucky_numbers, draw_date){
+  console.log(`${lottery_name} ::: ${lucky_numbers} ::: ${draw_date}`)
+}
+```
 
 [Live editable program on JSFiddle](https://jsfiddle.net/steen_hansen/0xtpLwsc/?00-Readme-Example)
 
 Below is console.log input and output preceded with >>.
+```
+aLottery('El Gordo', [1,2,3,4,5,0], new Date('jun 14 1999'))
+El Gordo ::: 1,2,3,4,5,0 ::: 1999-06-14
 
-    aLottery('El Gordo', [1,2,3,4,5,0], new Date('jun 14 1999'))
-    El Gordo ::: 1,2,3,4,5,0 ::: 1999-06-14
+aLottery('Lotto 649', [1,2,3,4,5,6])
+>>PRE_check_aLottery() aLottery() PRE-FUNC: Index '2' is supposed to be a 'date', but is missing : ['Lotto 649',[1,2,3,4,5,6]]
+>>               check_type(arguments, expected_types)
+>>                ACTUAL TYPES ['string','array']
+>>                ACTUAL VALUE ['Lotto 649',[1,2,3,4,5,6]]
+>>               EXPECTED TYPE ['string',['number'],'date']
+>>            CALLING FUNCTION PRE_check_aLottery(lottery_name, lucky_numbers, draw_date)
+Lotto 649 ::: 1,2,3,4,5,6 :::
 
-    aLottery('Lotto 649', [1,2,3,4,5,6])
-    >>PRE_check_aLottery() aLottery() PRE-FUNC: Index '2' is supposed to be a 'date', but is missing : ['Lotto 649',[1,2,3,4,5,6]]
-    >>               check_type(arguments, expected_types)
-    >>                ACTUAL TYPES ['string','array']
-    >>                ACTUAL VALUE ['Lotto 649',[1,2,3,4,5,6]]
-    >>               EXPECTED TYPE ['string',['number'],'date']
-    >>            CALLING FUNCTION PRE_check_aLottery(lottery_name, lucky_numbers, draw_date)
-    Lotto 649 ::: 1,2,3,4,5,6 :::
+aLottery('Oz Lotto', ['fourty-two'], new Date('jun 14 1999'))
+>>PRE_check_aLottery() aLottery() PRE-FUNC:  ELEMENT '0' is assumed to be a 'number', but is mistakenly a 'string'
+>>               check_type(arguments, expected_types)
+>>                ACTUAL TYPES ['string','array','date']
+>>                ACTUAL VALUE ['Oz Lotto',['fourty-two'],'1999-06-14T07:00:00.000Z']
+>>               EXPECTED TYPE ['string',['number'],'date']
+>>            CALLING FUNCTION PRE_check_aLottery(lottery_name, lucky_numbers, draw_date)
+Oz Lotto ::: fourty-two ::: 1999-06-14
 
-    aLottery('Oz Lotto', ['fourty-two'], new Date('jun 14 1999'))
-    >>PRE_check_aLottery() aLottery() PRE-FUNC:  ELEMENT '0' is assumed to be a 'number', but is mistakenly a 'string'
-    >>               check_type(arguments, expected_types)
-    >>                ACTUAL TYPES ['string','array','date']
-    >>                ACTUAL VALUE ['Oz Lotto',['fourty-two'],'1999-06-14T07:00:00.000Z']
-    >>               EXPECTED TYPE ['string',['number'],'date']
-    >>            CALLING FUNCTION PRE_check_aLottery(lottery_name, lucky_numbers, draw_date)
-    Oz Lotto ::: fourty-two ::: 1999-06-14
+aLottery('Mega Millions', 17, new Date('jun 14 1999'))
+>>PRE_check_aLottery() aLottery() PRE-FUNC: Parameter is meant to be 'array' but is of the wrong type of 'number':17
+>>               check_type(arguments, expected_types)
+>>                ACTUAL TYPES ['string','number','date']
+>>                ACTUAL VALUE ['Mega Millions',17,'1999-06-14T07:00:00.000Z']
+>>               EXPECTED TYPE ['string',['number'],'date']
+>>            CALLING FUNCTION PRE_check_aLottery(lottery_name, lucky_numbers, draw_date)
+Mega Millions ::: 17 ::: 1999-06-14
 
-    aLottery('Mega Millions', 17, new Date('jun 14 1999'))
-    >>PRE_check_aLottery() aLottery() PRE-FUNC: Parameter is meant to be 'array' but is of the wrong type of 'number':17
-    >>               check_type(arguments, expected_types)
-    >>                ACTUAL TYPES ['string','number','date']
-    >>                ACTUAL VALUE ['Mega Millions',17,'1999-06-14T07:00:00.000Z']
-    >>               EXPECTED TYPE ['string',['number'],'date']
-    >>            CALLING FUNCTION PRE_check_aLottery(lottery_name, lucky_numbers, draw_date)
-    Mega Millions ::: 17 ::: 1999-06-14
+aLottery('Powerball', [], new Date('jun 14 1999'))
+>>PRE_check_aLottery() aLottery() PRE-FUNC: ELEMENT '1' is erroneously empty :
+>>               check_empty(arguments, expected_emptys)
+>>                  ACTUAL TYPES ['string','array','date']
+>>                  ACTUAL VALUE ['Powerball',[],'1999-06-14T07:00:00.000Z']
+>>               EMPTY ASSERTION ['EMPTY-ERROR']
+>>            CALLING FUNCTION PRE_check_aLottery(lottery_name, lucky_numbers, draw_date)
+Powerball ::: ::: 1999-06-14
 
-    aLottery('Powerball', [], new Date('jun 14 1999'))
-    >>PRE_check_aLottery() aLottery() PRE-FUNC: ELEMENT '1' is erroneously empty :
-    >>               check_empty(arguments, expected_emptys)
-    >>                  ACTUAL TYPES ['string','array','date']
-    >>                  ACTUAL VALUE ['Powerball',[],'1999-06-14T07:00:00.000Z']
-    >>               EMPTY ASSERTION ['EMPTY-ERROR']
-    >>            CALLING FUNCTION PRE_check_aLottery(lottery_name, lucky_numbers, draw_date)
-    Powerball ::: ::: 1999-06-14
-
-    aLottery('', [1,2,3,4,5,26], new Date('Dec 31 1999'))
-    >>PRE_check_aLottery() aLottery() PRE-FUNC: ELEMENT '0' is erroneously empty :
-    >>               check_empty(arguments, expected_emptys)
-    >>                  ACTUAL TYPES ['string','array','date']
-    >>                  ACTUAL VALUE ['',[1,2,3,4,5,26],'1999-12-31T08:00:00.000Z']
-    >>               EMPTY ASSERTION ['EMPTY-ERROR']
-    >>            CALLING FUNCTION PRE_check_aLottery(lottery_name, lucky_numbers, draw_date)
-    ::: 1,2,3,4,5,26 ::: 1999-12-31
-
+aLottery('', [1,2,3,4,5,26], new Date('Dec 31 1999'))
+>>PRE_check_aLottery() aLottery() PRE-FUNC: ELEMENT '0' is erroneously empty :
+>>               check_empty(arguments, expected_emptys)
+>>                  ACTUAL TYPES ['string','array','date']
+>>                  ACTUAL VALUE ['',[1,2,3,4,5,26],'1999-12-31T08:00:00.000Z']
+>>               EMPTY ASSERTION ['EMPTY-ERROR']
+>>            CALLING FUNCTION PRE_check_aLottery(lottery_name, lucky_numbers, draw_date)
+::: 1,2,3,4,5,26 ::: 1999-12-31
+```
 
 ### The Idea
 Is to 'LOG-ERRORS' or 'THROW-EXCEPTIONS' when errors are found and returned from PRE_check() and POST_check() functions that are linked into yourFunction() during testing and development with linkUp().
 
-In the below example, PRE_check_yourFunction() and POST_check_yourFunction() are only executed, via linkUp(), because TypeCzech.js is loaded. The two commented out lines have no effect when <b>TypeCzech.js is loaded</b>.
+In the below example, PRE_check_yourFunction() and POST_check_yourFunction() are only executed, via linkUp(), because TypeCzech.js is loaded. The two commented out lines have no effect when <b>TypeCzech.js is loaded</b>. PRE_check_yourFunction() checks function parameters before yourFunction() runs, and POST_check_yourFunction() checks function results after yourFunction() runs.
+```
+<script src="TypeCzech.js"></script>
+  
+if (typeof TypeCzech === 'function')
+  type_czech = TypeCzech('THROW-EXCEPTIONS')  // TypeCzech.js is active
+//else
+//  type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
 
-    <script src="TypeCzech.js"></script>
+function PRE_check_yourFunction(param_1, param_2){ /* check parameters before execution */ }
+function POST_check_yourFunction(results){ /*         check results after execution */ }
 
-    if (typeof TypeCzech === 'function')
-      type_czech = TypeCzech('THROW-EXCEPTIONS')  // TypeCzech.js is active
-    //else
-    //  type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
+yourFunction = type_czech.linkUp(yourFunction, PRE_check_yourFunction, POST_check_yourFunction)
 
-    function PRE_check_yourFunction(param_1, param_2){ /* check parameters before execution */ }
-    function POST_check_yourFunction(results){ /*         check results after execution */ }
-    
-    yourFunction = type_czech.linkUp(yourFunction, PRE_check_yourFunction, POST_check_yourFunction)
-
-    function yourFunction(param_1, param_2){
-      return results
-    }
-
+function yourFunction(param_1, param_2){
+  return results
+}
+```
 
 When <b>TypeCzech.js is not loaded</b> only yourFunction() has any effect, as below. Note the linkUp() function is a no-operation when TypeCzech.js is not loaded.
 
-    //if (typeof TypeCzech === 'function')
-    //  type_czech = TypeCzech('THROW-EXCEPTIONS')
-    //else
-      type_czech = { linkUp: (nop) => nop, isActive: (x) => false }  // TypeCzech.js was not loaded
+```
+//if (typeof TypeCzech === 'function')
+//  type_czech = TypeCzech('THROW-EXCEPTIONS')
+//else
+  type_czech = { linkUp: (nop) => nop, isActive: (x) => false }  // TypeCzech.js was not loaded
 
-    //function PRE_check_yourFunction(param_1, param_2){ }
-    //function POST_check_yourFunction(results){ }
-    
-    //yourFunction=type_czech.linkUp(yourFunction, PRE_check_yourFunction, POST_check_yourFunction)
+//function PRE_check_yourFunction(param_1, param_2){ }
+//function POST_check_yourFunction(results){ }
 
-    function yourFunction(param_1, param_2){
-      return results
-    }
+//yourFunction=type_czech.linkUp(yourFunction, PRE_check_yourFunction, POST_check_yourFunction)
+
+function yourFunction(param_1, param_2){
+  return results
+}
+```
 
 <b>So basically linkUp() and isActive() are the only two TypeCzech functions that are always safe to call.</b>
 As long as the below construct is used, regardless of whether or not TypeCzech.js has been loaded. Thus enveloping all TypeCzech calls with linkUp() and isActive() will ensure no reference errors are caused when TypeCzech is turned on or off by not loading the TypeCzech.js file.
+```
+ if (typeof TypeCzech === 'function')
+   type_czech = TypeCzech('THROW-EXCEPTIONS')
+ else
+   type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
 
-    if (typeof TypeCzech === 'function')
-      type_czech = TypeCzech('THROW-EXCEPTIONS')
-    else
-      type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
-
-    type_czech.linkUp()
-    type_czech.isActive()
+ type_czech.linkUp()
+ type_czech.isActive()
+```
 
 ### The Recipe
   TypeCzech function calls should only appear in these three places, encased by either 
 
   - 1 a linked up PRE_check() function
   - 2 a linked up POST_check() function
-  - 3 or inside an isActive() if then statement inside a promise
+  - 3 or inside an isActive() if then statement inside of a promise. Then you
+    have to deliver the error message via an assert_check() call; it's not automatic.
 
-        function PRE_check_yourFunc(){ 
-          /* 1 TypeCzech functions should mostly appear here */
-        }
+```
+function PRE_check_yourFunc(){ 
+  /* 1 TypeCzech functions should mostly appear here to check parameters before yourFunc() runs */
+}
 
-        function POST_check_yourFunc(){ 
-          /* 2 TypeCzech functions sometimes occur here too */
-        }
+function POST_check_yourFunc(){ 
+  /* 2 TypeCzech functions sometimes occur here to check the results of yourFunc() */
+}
+yourFunc = type_czech.linkUp(yourFunc, PRE_check_yourFunc, POST_check_yourFunc)
 
-        yourFunc = type_czech.linkUp(yourFunc, PRE_check_yourFunc, POST_check_yourFunc)
-        
-        function yourFunc(){ }
+function yourFunc(){ }
 
-        fetch(some_url)
-        .then(response => {
-          if (type_czech.isActive()) {
-            /* 3 TypeCzech functions rarely show up here */
-          }
-        })
 
-  This is enables <b>type_czech = { linkUp: (nop) => nop, isActive: (x) => false }</b> to handle TypeCzech.js not being loaded, safely.
+
+fetch(some_url)
+.then(a_response => {
+  if (type_czech.isActive()) {
+    /* 3 TypeCzech functions rarely show up here, but assert_check() is used to deliver errors */
+    type_err = type_czech.check_type(a_response, 'array')
+    type_czech.assert_check(type_err, 'FETCH ERROR', a_response)
+  }
+})
+```
+  This is enables 
+```  
+type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
+```  
+  to handle TypeCzech.js not being loaded, safely.
 
 
 ### [Simple How To Snippets](./read-mes/simple-howto.md)

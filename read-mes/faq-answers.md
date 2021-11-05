@@ -15,7 +15,7 @@ Having easily controllable type checking at runtime in both the browser and Node
   There is virtually no difference between Type-Czech being
   turned off and not existing in the source code of the program.
 
-  However, with a loop of 100,000 lottery checks there is a 
+  However, with a loop of 100,000 [lottery](../example-snippets/00-Readme-Example.html) checks there is a 
   visible slowdown of 4.4 seconds with Type-Czech actively
   checking parameters versus 0.4 seconds with Type-Czech
   turned off or not existing at all.
