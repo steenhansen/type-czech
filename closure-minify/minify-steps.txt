@@ -18,7 +18,7 @@ minify:
   
         function consolelog(...args) {
         if (OP_DEBUG_CONSOLE_TRACE) {
-          // eslint-disable-next-line no-console
+          // eslint-disable-next-line no-console  leave
           console.log(args);
         }
       }

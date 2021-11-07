@@ -1,9 +1,15 @@
 /* eslint-disable */
-
+console.log('1111111111111')
+type_czech = TypeCzech('LOG-ERRORS');
+console.log('2222222222222222222222', type_czech)
 
 if (typeof TypeCzech === 'function') {
+  console.log('333333333333333333')
+
+
+
   check_linkUp_first_last_full = () => {
-    type_czech = TypeCzech('LOG-ERRORS');
+//    type_czech = TypeCzech('LOG-ERRORS');
 
     function PRE_check_First(f_name){
       log(NL2+'PRE -First') 

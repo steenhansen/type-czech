@@ -1,5 +1,5 @@
 /* eslint-disable block-scoped-var */
-const VERS_NUM = 'v1.0 21-11-01';
+const VERS_NUM = 'v1.0 21-11-07';
 
 let the_exports;
 if (typeof exports === 'undefined') {
