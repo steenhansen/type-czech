@@ -1,8 +1,7 @@
-/* eslint-disable indent */
-/* eslint-disable no-multi-spaces */
-/* eslint-disable global-require */
+//  node --trace-uncaught 304-Extending-IIFEs-Node.js
 
-//  node --trace-uncaught 404-Extending-ClassFree-Node.js
+/* eslint-disable */
+
 
 const use_type_czech = true;
 
@@ -11,7 +10,7 @@ const use_type_czech = true;
 /**/    const { TypeCzech } = require('../../TypeCzech.js');
 /**/    type_czech = TypeCzech('LOG-ERRORS');
 /**/  } else {
-/**/    type_czech = { linkUp: (_) => _, isActive: (x) => false };
+/**/    type_czech = { linkUp: (_) => _, isActive: (_) => false };
 /**/  }
 
 const First = require('./First.js')(type_czech);
@@ -20,7 +19,7 @@ const Last = require('./Last.js')(type_czech, First);
 
 const Full = require('./Full.js')(type_czech, Last);
 
-const ted_chiang = Full({ salu: 'Mr', f_name: 'Ted', l_name: 'Chiang' });
+const ted_chiang = Full('Mr', 'Ted', 'Chiang');
 
 ted_chiang.firstMethod(new Date(2008, 10, 15));
 ted_chiang.lastMethod(2009);

@@ -17,9 +17,9 @@ With TypeCzech you can
 
   -  Check function parameter types, including arrays, and extended objects
   -  Ensure strings, arrays, and objects are not empty at run-time
-  -  Catch malformed data from a fetch()
+  -  Catch malformed data from a fetch() at run-time
   -  Specify run-time input validation constraints
-  -  Detect mutations in function parameters that are collections
+  -  Detect run-time mutations in function parameters that are collections
 
 Missing from TypeCzech
 

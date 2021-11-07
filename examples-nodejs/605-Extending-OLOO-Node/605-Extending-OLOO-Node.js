@@ -1,8 +1,6 @@
-/* eslint-disable indent */
-/* eslint-disable no-multi-spaces */
-/* eslint-disable global-require */
+//  node --trace-uncaught 604-Extending-OLOO-Node.js
 
-//  node --trace-uncaught 104-Extending-Classes-Node.js
+/* eslint-disable */
 
 const use_type_czech = true;
 
@@ -15,12 +13,10 @@ const use_type_czech = true;
 /**/  }
 
 const First = require('./First.js')(type_czech);
+ const Last = require('./Last.js')(type_czech, First);
+ const Full = require('./Full.js')(type_czech, Last);
 
-const Last = require('./Last.js')(type_czech, First);
-
-const Full = require('./Full.js')(type_czech, Last);
-
-const ted_chiang = new Full('Mr', 'Ted', 'Chiang');
+const ted_chiang = Full('Mr', 'Ted', 'Chiang');
 
 ted_chiang.firstMethod(new Date(2008, 10, 15));
 ted_chiang.lastMethod(2009);

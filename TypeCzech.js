@@ -1248,15 +1248,24 @@ type_czech.check_interface(variable, interface);
       // /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
       /*
+type_czech._ParametersCheck(false);
+//assert_check_: function assert_check_(error_mess, where_from, actual_value, expected_outcome))
+//confirmParameters: function realConfirmParams(target_proxy, pre_checks, post_checks)
+//countFails_: function countFails_()
+//countTally_: function countTally_()
+//disableChecks_: function disableChecks_()
+//enableChecks_: function enableChecks_()
+//p_call_traps: true
 
-      type_czech._ParametersCheck(false);
-      //Object { confirmParameters:
-
-      events_obj = type_czech.TYPE_CZECH_EVENTS
-      type_czech._ParametersCheck(events_obj);
-      //Object { confirmParameters: realConfirmParams(
-
-      */
+type_czech._ParametersCheck(type_czech.TYPE_CZECH_EVENTS);
+//assert_check_: function assert_check_(error_mess, where_from, actual_value, expected_outcome)
+//confirmParameters: function realConfirmParams(target_proxy, pre_checks, post_checks)
+//countFails_: function countFails_()
+//countTally_: function countTally_()
+//disableChecks_: function disableChecks_()
+//enableChecks_: function enableChecks_()
+//p_call_traps: true
+*/
       function _ParametersCheck(arg_check_events) {
         consolelog('^^^ _ParametersCheck ENTER', arg_check_events, TYPE_CZECH_current_test_number);
         const num_parameters = arguments.length;
@@ -1797,12 +1806,12 @@ type_czech.assert_check(check_error, error_location, actual_value, expected_outc
         init_ParametersCheck();
 
         const public_methods = {
+          assert_check_,
           confirmParameters,
-          enableChecks_,
+          countFails_,
           countTally_,
           disableChecks_,
-          countFails_,
-          assert_check_,
+          enableChecks_,
           p_call_traps,
         };
 
@@ -3433,7 +3442,7 @@ type_czech._shapeScalar(4, 'null');
       //ME@402 - TypeCzech.fail-98() called with a second parameter as a non-array shape of 2
 
       type_czech._eitherChecks([1, [2]], 'fail-97');
-      //UE@701 - TypeCzech.fail-97()  needs at least 2 choices for a union, not 1 of [2]
+      //UE@701 - TypeCzech.fail-97()  needs at least 2 choices for a Either, not 1 of [2]
 
       type_czech._eitherChecks([1, [2, 3]], 'pass-96');
       //""
@@ -3957,7 +3966,7 @@ type_czech.check_type({0:['a', 'b'], length:1}, ['string']); // ['a', 'b']
       type_czech.check_typeExtra([17, 'abc', true], ['N', 'S']);
       //""
 
-      */
+*/
       // eslint-disable-next-line consistent-return
       function check_typeExtra(parameters_obj, shape_list) {
         if (t_param_check_func.p_call_traps) {
@@ -4000,27 +4009,27 @@ type_czech.check_type({0:['a', 'b'], length:1}, ['string']); // ['a', 'b']
       }
 
       /*
+type_czech.check_emptyEither([12, false, 'a string'], 'EMPTY-OK');
+//ME@402 - TypeCzech.check_emptyEither() called with a second parameter as a non-array shape of "EMPTY-OK"
+type_czech.check_emptyEither([12, false, 'a string'], ['EMPTY-OK']);
+//UE@701 - TypeCzech.check_emptyEither()  needs at least 2 choices for an Either, not 1 ["EMPTY-OK"]
+type_czech.check_emptyEither( {a:0, b:12});
+//ME@402 - TypeCzech.check_emptyEither() called with a second parameter as a non-array shape of undefined
+type_czech.check_emptyEither([12, 0], [['ER','ER'],['ER','OK']]);
+//""
+type_czech.check_emptyEither( {a:92, b:Infinity}, [ {a:'ER', b:'ER'}, {a:'ER', b:'OK'}]);
+//
 
-      type_czech.check_emptyEither([12, false, 'a string'], 'EMPTY-OK');
-      //ME@402 - TypeCzech.check_emptyEither() called with a second parameter as a non-array shape of "EMPTY-OK"
+type_czech.check_emptyEither([12, 0, 'is-error'], [['ER','ER'],['ER','OK']]);
+//check_emptyEither()
+//ME@404 - The parameter array [12,0,"is-error"] does not have the same number of elements as ["ER","OK"].  Lengths are different 3 !== 2
+//[["ER","ER"],["ER","OK"]]
 
-      type_czech.check_emptyEither([12, false, 'a string'], ['EMPTY-OK']);
-      //UE@701 - TypeCzech.check_emptyEither()  needs at least 2 choices for a union, not 1 EMPTY-OK
-
-      type_czech.check_emptyEither([12, 0, 'is-error'], [['ER','ER'],['ER','OK']]);
-      //check_emptyEither(arguments, expected_emptys)
-      //ME@404 - The parameter array [12,0,'is-error'] does not have the same number of elements as ['ER','OK'].  Lengths are different 3 !== 2.
-
-      type_czech.check_emptyEither([12, 0], [['ER','ER'],['ER','OK']]);
-      //""
-
-      type_czech.check_emptyEither( {a:0, b:12}, [ {a:'ER', b:'ER'}, {a:'ER', b:'OK'}]);
-      //TC@ - The variable \n~~~~~'{'a':0,'B':12}'\nwhich is a 'object', does not match any in the list \n~~~~~{'a':'ER','B':'ER'}, \n~~~~~{'a':'ER','B':'OK'}
-
-      type_czech.check_emptyEither( {a:0, b:12});
-      //ME@402 - TypeCzech.check_emptyEither() called with a second parameter as a non-array shape of undefined
-
-      */
+type_czech.check_emptyEither( {a:92, b:Infinity}, [ {a:'OK', b:'ER'}, {a:'OK', b:'ER'}]);
+//check_emptyEither()
+//EE@301 -  key 'b' is a 'number' which is reputed to be 'EMPTY-ERROR' but has a value of Infinity
+//[{a:"OK",b:"ER"},{a:"OK",b:"ER"}]
+*/
       // eslint-disable-next-line consistent-return
       function check_emptyEither(parameters_obj, shapes_lists) {
         if (t_param_check_func.p_call_traps) {
@@ -4041,19 +4050,19 @@ type_czech.check_type({0:['a', 'b'], length:1}, ['string']); // ['a', 'b']
           return error_str_3arr;
         }
       }
+
       /*
+type_czech.check_typeEither(17, [ "string", "number" ]);
+//""
 
-      type_czech.check_typeEither(17, [ "string", "number" ]);
-      //""
+type_czech.check_typeEither({a:17, b:false}, [{a:"number"}, {a:"string"}]);
+//check_typeEither()
+//TE@209 - Extra key in checked object - (b:'false'), TE@213 - Property 'a' is indicated to be a 'string', but is inaccurately a 'number' : 17
+//[{a:"number"},{a:"string"}]
 
-      type_czech.check_typeEither({a:17, b:false}, [{a:"number"}, {a:"string"}]);
-      //check_typeEither(arguments, expected_types)
-      //TE@213 - Property 'a' is indicated to be a 'string', but is inaccurately a 'number' : 17TE@209 - Extra key in checked object - (b:'false')
-
-      type_czech.check_typeEither({a:17, b:false}, [{a:"number", b:"boolean"}, {a:"string"}]);
-      //""
-
-      */
+type_czech.check_typeEither({a:17, b:false}, [{a:"number", b:"boolean"}, {a:"string"}]);
+//''
+*/
       // eslint-disable-next-line consistent-return
       function check_typeEither(parameters_obj, possible_shapes) {
         if (t_param_check_func.p_call_traps) {
@@ -4076,32 +4085,34 @@ type_czech.check_type({0:['a', 'b'], length:1}, ['string']); // ['a', 'b']
       }
 
       /*
+function check_func(a_num){ if (a_num>0) return 'only neg nums'}
+function your_func(a_num){}
+your_func = type_czech.linkUp(your_func, check_func);
+your_func(54321)
+//only neg nums
 
-      function check_func(a_num){ if (a_num>0) return 'only neg nums'}
-      function your_func(a_num){ console.log('user-func', a_num)}
-      your_func = type_czech.linkUp(your_func, check_func);
-      your_func(54321)
-      //only neg nums
+function check_func(a_num){return type_czech.check_type(a_num, 'string') }
+function your_func(a_num){}
+your_func = type_czech.linkUp(your_func, check_func);
+your_func(54321)
+//check_func() your_func() PRE-FUNC: TE@226 - The value '54321', which is a 'number', is not a 'string'
+// check_type()
+//     ACTUAL TYPES 'number'
+//     ACTUAL VALUE 54321
+//    EXPECTED TYPE string
+// CALLING FUNCTION check_func(a_num)
 
-      function check_func(a_num){return type_czech.check_type(a_num, 'string') }
-      function your_func(a_num){ console.log('user-func', a_num)}
-      your_func = type_czech.linkUp(your_func, check_func);
-      your_func(54321)
-      //...The variable '54321', which is a 'number', is not a 'string'...
-
-     function check_func(){return type_czech.check_type(arguments, 'string') }
-      function your_func(a_num){ console.log('user-func', a_num)}
-      your_func = type_czech.linkUp(your_func, check_func);
-      your_func(12345)
-      //...The variable '12345', which is a 'number', is not a 'string'...
-
-     function check_func(){return type_czech.check_type(arguments, ['S', 'S']) }
-      function your_func(a_num){ console.log('user-func', a_num)}
-      your_func = type_czech.linkUp(your_func, check_func);
-      your_func('str-1', 'str-2')
-      //""
-
-      */
+function check_func(){return type_czech.check_type(arguments, 'string') }
+function your_func(){}
+your_func = type_czech.linkUp(your_func, check_func);
+your_func(12345)
+//check_func() your_func() PRE-FUNC: TE@226 - The value '54321', which is a 'number', is not a 'string'
+// check_type()
+//     ACTUAL TYPES 'number'
+//     ACTUAL VALUE 54321
+//    EXPECTED TYPE string
+// CALLING FUNCTION check_func(a_num)
+*/
       function linkUp(user_function, pre_check, post_check) {
         consolelog('^^^ check ENTER', user_function, pre_check, post_check, TYPE_CZECH_current_test_number);
         let check_result;
@@ -4135,13 +4146,11 @@ type_czech.check_type({0:['a', 'b'], length:1}, ['string']); // ['a', 'b']
       }
 
       /*
-
-      long_str = '1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890'
-              + '1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890';
-      type_czech._shrinkDiffs(long_str);
-      //"1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890 <<<<<<~~~>>>>>> 12345678901234567890123456789012345678901234567890"
-
-    */
+long_str = '1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890'
+         + '1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890';
+type_czech._shrinkDiffs(long_str);
+//"1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890 <<<<<<~~~>>>>>> 12345678901234567890123456789012345678901234567890"
+*/
       function _shrinkDiffs(long_diff) {
         let short_diff;
         if (long_diff.length < DIFF_BREAK_MIN) {
@@ -4165,62 +4174,6 @@ type_czech.check_type({0:['a', 'b'], length:1}, ['string']); // ['a', 'b']
         return first_difference;
       }
 
-      /*
-
-      type_czech._refDiff('', '')
-      //""
-
-      type_czech._refDiff('', '1')
-      //START-SAME ~ ``
-      //  PRE-DIFF ~ ``
-      // POST-DIFF ~ 1"
-
-      type_czech._refDiff('1', '')
-      //START-SAME ~ ``
-      //  PRE-DIFF ~ 1
-      // POST-DIFF ~ ``"
-
-      type_czech._refDiff('1', '1')
-      //""
-
-      type_czech._refDiff('123', '01234')
-      //START-SAME ~ ``
-      //  PRE-DIFF ~ 123
-      // POST-DIFF ~ 01234"
-
-      type_czech._refDiff('01234', '123')
-      //START-SAME ~ ``
-      //  PRE-DIFF ~ 01234
-      // POST-DIFF ~ 123"
-
-      type_czech._refDiff("{'3':3,'B':'B'}", "{'B':'B'}")
-      //START-SAME ~ {'
-      //  PRE-DIFF ~ 3':3,'B':'B'}
-      // POST-DIFF ~ b':'B'}"
-
-      type_czech._refDiff("{'B':'B'}", "{'3':3,'B':'B'}")
-      //START-SAME ~ {'
-      //  PRE-DIFF ~ b':'B'}
-      // POST-DIFF ~ 3':3,'B':'B'}"
-
-      type_czech._refDiff("{'B':'B','3':3}", "{'B':'B'}")
-      //START-SAME ~ {'B':'B'
-      //  PRE-DIFF ~ ,'3':3}
-      // POST-DIFF ~ }"
-
-      type_czech._refDiff("{'B':'B'}", "{'B':'B','3':3}")
-      //START-SAME ~ {'B':'B'
-      //  PRE-DIFF ~ }
-      // POST-DIFF ~ ,'3':3}"
-
-      type_czech._refDiff('123456789012345678901234567890123456789012345678901234567890',
-                          '1234567890123456789012345678901234567_89012345678901234567890');
-      //START-SAME ~ 1234567890123456789012345678901234567
-      //  PRE-DIFF ~ 89012345678901234567890
-      // POST-DIFF ~ _89012345678901234567890"
-
-      */
-
       function firstDiff(pre_str, post_str) {
         let start_same = 0;
         let hit_end = false;
@@ -4234,6 +4187,64 @@ type_czech.check_type({0:['a', 'b'], length:1}, ['string']); // ['a', 'b']
         return [start_same, hit_end];
       }
 
+      /*
+type_czech._refDiff('', '')
+//""
+
+type_czech._refDiff('', '1')
+//START-SAME ~ ''
+//  PRE-DIFF ~ ''
+// POST-DIFF ~ 1"
+
+type_czech._refDiff('1', '')
+//START-SAME ~ ''
+//  PRE-DIFF ~ 1
+// POST-DIFF ~ ''"
+
+type_czech._refDiff('1', '1')
+//""
+
+type_czech._refDiff('123', '01234')
+//START-SAME ~ ''
+//  PRE-DIFF ~ 123
+// POST-DIFF ~ 01234"
+
+type_czech._refDiff('01234', '123')
+//START-SAME ~ ''
+//  PRE-DIFF ~ 01234
+// POST-DIFF ~ 123"
+
+type_czech._refDiff('[1,2,3]', '[1,X,3]');
+//START-SAME ~ [1,
+//  PRE-DIFF ~ 2,3]
+// POST-DIFF ~ X,3]
+
+type_czech._refDiff("{'3':3,'B':'B'}", "{'B':'B'}")
+//START-SAME ~ {'
+//  PRE-DIFF ~ 3':3,'B':'B'}
+// POST-DIFF ~ b':'B'}"
+
+type_czech._refDiff("{'B':'B'}", "{'3':3,'B':'B'}")
+//START-SAME ~ {'
+//  PRE-DIFF ~ b':'B'}
+// POST-DIFF ~ 3':3,'B':'B'}"
+
+type_czech._refDiff("{'B':'B','3':3}", "{'B':'B'}")
+//START-SAME ~ {'B':'B'
+//  PRE-DIFF ~ ,'3':3}
+// POST-DIFF ~ }"
+
+type_czech._refDiff("{'B':'B'}", "{'B':'B','3':3}")
+//START-SAME ~ {'B':'B'
+//  PRE-DIFF ~ }
+// POST-DIFF ~ ,'3':3}"
+
+type_czech._refDiff('123456789012345678901234567890123456789012345678901234567890',
+                    '1234567890123456789012345678901234567_89012345678901234567890');
+//START-SAME ~ 1234567890123456789012345678901234567
+//  PRE-DIFF ~ 89012345678901234567890
+// POST-DIFF ~ _89012345678901234567890"
+*/
       function _refDiff(pre_str, post_str) {
         consolelog('^^^ refDiff ENTER', pre_str, post_str, TYPE_CZECH_current_test_number);
         let first_difference = '';
@@ -4266,16 +4277,16 @@ type_czech.check_type({0:['a', 'b'], length:1}, ['string']); // ['a', 'b']
       }
 
       /*
+type_czech.check_buildSnapshot('my-func', 'my_array', 12);
+//Uncaught EX@109 - TypeCzech.check_buildSnapshot()'s 3rd parameter is not an array/object but instead a 'number'
 
-      type_czech.check_buildSnapshot('my-func', 'my_array', 12);
-      //Uncaught TC@56 - TypeCzech.check_buildSnapshot()'s 3rd parameter is not an array/object but instead a 'number'
-
-      type_czech.check_buildSnapshot('my-func', 'my_array', [1,2,3]);
-      //{ func_name: "my-func",
-      //    var_name: "my_array",
-      //    collection_ref: Array(3) [ 1, 2, 3 ]
-      //    pre_collect_str: "[1,2,3]"              }
-      */
+type_czech.check_buildSnapshot('my-func', 'my_array', [1,2,3]);
+type_czech.check_buildSnapshot('my-func', 'my_array', [999,888,777]);
+type_czech._mutateStacks();
+//{"my-func-my_array":[
+//  {"collection_ref":[1,2,3],      "func_name":"my-func","pre_collect_str":"[1,2,3]",      "var_name":"my_array"},
+//  {"collection_ref":[999,888,777],"func_name":"my-func","pre_collect_str":"[999,888,777]","var_name":"my_array"}  ]}
+*/
       // eslint-disable-next-line consistent-return
       function check_buildSnapshot(func_name, var_name, collection_ref) {
         if (t_param_check_func.p_call_traps) {
@@ -4316,60 +4327,66 @@ type_czech.check_type({0:['a', 'b'], length:1}, ['string']); // ['a', 'b']
         }
       }
 
+      // for debugging only
       function _mutateStacks() {
         const ref_stacks_str = _fast_json_stable_stringify(t_reference_stacks);
         return ref_stacks_str;
       }
 
       /*
+type_czech.check_mutatedSnapshot('func-name', 'var-name', 'error-param');
+//Uncaught EX@112 - TypeCzech.check_mutatedSnapshot() needs 2 parameters, not 3
 
-      type_czech.check_mutatedSnapshot('func-name', 'var-name', 'error-param');
-      //Uncaught VE@604 - TypeCzech.check_mutatedSnapshot() needs 2 parameters, not 3
+type_czech.check_mutatedSnapshot('noFunc', 'no_array');
+//Uncaught EX@113 - No record of an entry for TypeCzech.check_mutatedSnapshot('noFunc', 'no_array', a_var)
 
-      type_czech.check_mutatedSnapshot('noFunc', 'no_array');
-      //Uncaught TC@47 - No record of a check_buildSnapshot('noFunc-no_array', a_var)
+var my_array = [1,2,3];
+type_czech.check_buildSnapshot('my-func', 'my_array', my_array);
+my_array.push(4);
+type_czech.check_mutatedSnapshot('my-func', 'my_array');
+//check_mutatedSnapshot()
+//ME@405 - The reference variable 'my_array' in function 'my-func()' changed values
+//from [1,2,3]
+//  to [1,2,3,4]
+//
+//START-SAME ~ [1,2,3
+//  PRE-DIFF ~ ]
+// POST-DIFF ~ ,4]
 
-      var my_array = [1,2,3];
-      type_czech.check_buildSnapshot('my-func', 'my_array', my_array);
-      my_array.push(4);
-      type_czech.check_mutatedSnapshot('my-func', 'my_array');
-      //The reference variable 'my_array' in function 'my-func()' changed values
-      //                from [1,2,3]
-      //                  to [1,2,3,4]
-      //
-      //        START-SAME ~ [1,2,3
-      //          PRE-DIFF ~ ``
-      //         POST-DIFF ~ `,4`
-      //          END-SAME ~ ]"
+var my_obj = {a:1, b:2, c:3};
+type_czech.check_buildSnapshot('my-func', 'my_obj', my_obj);
+delete my_obj.b;
+my_obj.b=7;
+type_czech.check_mutatedSnapshot('my-func', 'my_obj');
+//check_mutatedSnapshot()
+//ME@405 - The reference variable 'my_obj' in function 'my-func()' changed values
+//from {"a":1,"b":2,"c":3}
+//  to {"a":1,"b":7,"c":3}
+//
+//START-SAME ~ {"a":1,"b":
+//  PRE-DIFF ~ 2,"c":3}
+// POST-DIFF ~ 7,"c":3}
 
-      var my_obj = {a:1, b:2, c:3};
-      type_czech.check_buildSnapshot('my-func', 'my_obj', my_obj);
-      delete my_obj.b;
-      my_obj.b=7;
-      type_czech.check_mutatedSnapshot('my-func', 'my_obj');
-      //The reference variable 'my_obj' in function 'my-func()' changed values
-      //                from {'a':1,'B':2,'c':3}
-      //                  to {'a':1,'B':7,'c':3}
-      //
-      //        START-SAME ~ {'a':1,'B':
-      //          PRE-DIFF ~ `2`
-      //         POST-DIFF ~ `7`
-      //          END-SAME ~ ,'c':3}
+var my_obj = {a:1n, b:2n, c:3n};
+type_czech.check_buildSnapshot('my-func', 'my_obj', my_obj);
+delete my_obj.b;
+my_obj.b=7;
+type_czech.check_mutatedSnapshot('my-func', 'my_obj');
+//check_mutatedSnapshot()
+//ME@405 - The reference variable 'my_obj' in function 'my-func()' changed values
+//from {"a":"1n","b":"2n","c":"3n"}
+//  to {"a":"1n","b":7,"c":"3n"}
+//
+//START-SAME ~ {"a":"1n","b":
+//  PRE-DIFF ~ "2n","c":"3n"}
+// POST-DIFF ~ 7,"c":"3n"}
 
-      var my_obj = {a:1n, b:2n, c:3n};
-      type_czech.check_buildSnapshot('my-func', 'my_obj', my_obj);
-      delete my_obj.b;
-      my_obj.b=7;
-      type_czech.check_mutatedSnapshot('my-func', 'my_obj');
-      //ME@405 - The reference variable 'my_obj' in function 'my-func()' changed values
-                       from {'a':'1n','b':'2n','c':'3n'}
-                       to {'a':'1n','b':7,'c':'3n'}
-
-                       START-SAME ~ {'a':'1n','b':
-                       PRE-DIFF ~ '2n','c':'3n'}
-                       POST-DIFF ~ 7,'c':'3n'}"
-
-      */
+let my_arr = [1];
+type_czech.check_buildSnapshot('my-func', 'my_arr', my_arr); // re-assignment, not mutation
+my_arr = [2];
+type_czech.check_mutatedSnapshot('my-func', 'my_arr');
+//''
+*/
       // eslint-disable-next-line consistent-return
       function check_mutatedSnapshot(func_name, var_name) {
         if (t_param_check_func.p_call_traps) {
@@ -4533,8 +4550,8 @@ type_czech.check_type({0:['a', 'b'], length:1}, ['string']); // ['a', 'b']
         countFails, // type_czech.countFails();
         countTally, // type_czech.countTally();
 
-        isActive, //     if(type_czech.isActive())
-        linkUp, //       yourFunc = type_czech.linkUp(yourFunc, checkingFunc);
+        isActive, // if(type_czech.isActive())
+        linkUp, //   yourFunc = type_czech.linkUp(yourFunc, checkingFunc);
 
         typeFinal, //  type_final = type_czech.typeFinal(document); // HTMLDocument
         typeIsA, //    if (type_czech.typeIsA(document, 'Node')) {};

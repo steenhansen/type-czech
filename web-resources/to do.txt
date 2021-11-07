@@ -1,4 +1,16 @@
 
+//////////////////////////////////////////////////////////////////////////////
+
+101 was wrong !!! make sure not done again ...!!
+
+
+
+
+
+
+201 was re-written taking out all the procedures 
+
+
 
 
 
@@ -6,15 +18,18 @@ fix up the repl test inside file, and add infinity tests
 
 
 
-1260
-_ParametersCheck
+1260 _ParametersCheck
 
 
 
 
 
-
-
+3971 check_typeExtra   HERE
+4034 check_emptyEither
+4067 check_typeEither
+4114 linkUp
+4279
+4383 check_mutatedSnapshot
 
 
 

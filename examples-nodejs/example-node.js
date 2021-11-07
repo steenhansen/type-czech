@@ -2,7 +2,7 @@
 
 /* eslint-disable */
 
-/**/  const { TypeCzech } = require('./TypeCzech.js');
+/**/  const { TypeCzech } = require('../TypeCzech.js');
 /**/
 /**/  const type_czech = TypeCzech('LOG-ERRORS');
 /**/

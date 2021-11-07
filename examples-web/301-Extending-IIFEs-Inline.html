@@ -272,11 +272,10 @@ Full = (salu, f_name, l_name) => (
   }
 )(salu, f_name, l_name)
 
-/**/  TYPE_CZECH_START = true
-/**/  //TYPE_CZECH_START = false
-/**/
-/**/  if (TYPE_CZECH_START) {
-/**/    type_czech = TypeCzech('LOG-ERRORS');
+/**/  if (typeof TypeCzech === 'function')
+/**/    type_czech = TypeCzech('LOG-ERRORS')
+/**/  else
+/**/    type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
 /**/
 /**/    function PRE_check_First(f_name){
 /**/      log(NL2+'PRE -First') 
@@ -347,7 +346,6 @@ Full = (salu, f_name, l_name) => (
 /**/    Full_PREs = {Full:PRE_check_Full, fullMethod:PRE_check_fullMethod}
 /**/    Full_POSTs= {Full:POST_check_Full, fullMethod:POST_check_fullMethod}
 /**/    Full = type_czech.linkUp(Full, Full_PREs, Full_POSTs)
-/**/  }
 
 const pkd = Full('Mr', 'Philip K', 'Dick')
 linesConsole(1)

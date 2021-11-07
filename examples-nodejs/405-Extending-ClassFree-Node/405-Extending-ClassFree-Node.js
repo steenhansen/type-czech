@@ -1,8 +1,7 @@
-/* eslint-disable indent */
-/* eslint-disable no-multi-spaces */
-/* eslint-disable global-require */
+//  node --trace-uncaught 404-Extending-ClassFree-Node.js
 
-//  node --trace-uncaught 504-Extending-Prototypes-Node.js
+/* eslint-disable */
+
 
 const use_type_czech = true;
 
@@ -20,9 +19,7 @@ const Last = require('./Last.js')(type_czech, First);
 
 const Full = require('./Full.js')(type_czech, Last);
 
-const Person = require('./Person.js')(type_czech, First, Last, Full);
-
-const ted_chiang = Person('Mr', 'Ted', 'Chiang');
+const ted_chiang = Full({ salu: 'Mr', f_name: 'Ted', l_name: 'Chiang' });
 
 ted_chiang.firstMethod(new Date(2008, 10, 15));
 ted_chiang.lastMethod(2009);

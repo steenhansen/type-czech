@@ -213,7 +213,11 @@
 </script>
 
 <script id="check-code">
-/**/function First_check(First){
+/**/  if (typeof TypeCzech === 'function')
+/**/    type_czech = TypeCzech('LOG-ERRORS')
+/**/  else
+/**/    type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
+
 /**/  function PRE_check_First(f_name){
 /**/    log(NL2+'PRE -First') 
 /**/    type_issue = type_czech.check_type(f_name, 'string')
@@ -237,10 +241,7 @@
 /**/  First_PREs = {First:PRE_check_First, firstMethod:PRE_check_firstMethod}
 /**/  First_POSTs = {First:POST_check_First, firstMethod:POST_check_firstMethod}
 /**/  First = type_czech.linkUp(First, First_PREs, First_POSTs)
-/**/  return First
-/**/}
 
-/**/function Last_check(Last){
 /**/  function PRE_check_Last(f_name, l_name){
 /**/    log(LEVEL_1+'PRE -Last') 
 /**/    type_issue = type_czech.check_type([f_name, l_name], ['string', 'string'])
@@ -264,10 +265,7 @@
 /**/  Last_PREs = {Last:PRE_check_Last, lastMethod:PRE_check_lastMethod}
 /**/  Last_POSTs = {Last:POST_check_Last, lastMethod:POST_check_lastMethod}
 /**/  Last = type_czech.linkUp(Last, Last_PREs, Last_POSTs)
-/**/  return Last
-/**/}
 
-/**/function Full_check(Full){
 /**/  function PRE_check_Full(salu, f_name, l_name){
 /**/    log(LEVEL_2+'PRE -Full')
 /**/    pre_full_signature = ['string', 'string', 'string']
@@ -290,8 +288,6 @@
 /**/  Full_PREs = {Full:PRE_check_Full, fullMethod:PRE_check_fullMethod}
 /**/  Full_POSTs = {Full:POST_check_Full, fullMethod:POST_check_fullMethod}
 /**/  Full = type_czech.linkUp(Full, Full_PREs, Full_POSTs)
-/**/  return Full
-/**/}
 
 function First(f_name) {
   FIRST_TEMPLATE = {
@@ -346,16 +342,6 @@ function Full(salu, f_name, l_name) {
   log(NL+LEVEL_2+`CONS-Full :${salu}`)
   return full_object
 }
-
-/**/  TYPE_CZECH_START = true
-/**/  //TYPE_CZECH_START = false
-/**/
-/**/  if (TYPE_CZECH_START) {
-/**/    type_czech = TypeCzech('LOG-ERRORS')
-/**/    First = First_check(First)
-/**/    Last = Last_check(Last)
-/**/    Full = Full_check(Full)
-/**/  } 
 
 margaret_atwood = Full('Ms.', 'Margaret', 'Atwood')
 margaret_atwood.firstMethod( new Date(1985,1,1))
