@@ -4463,6 +4463,7 @@ type_czech.check_mutatedSnapshot('my-func', 'my_arr');
       consolelog('^^^ TypeCzech SETTINGS', parameter_settings);
 
       return {
+        _coloredConsole, // needed for sample programs, never delete
 
         // START debugging access to internal functions
         _ParametersCheck,
@@ -4473,7 +4474,6 @@ type_czech.check_mutatedSnapshot('my-func', 'my_arr');
         _canBeEmpty,
         _className,
         _collectionToStr,
-        _coloredConsole,
         _consoleError,
         _doEitherEmpty,
         _doEitherShape,

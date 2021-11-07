@@ -1,4 +1,4 @@
-
+/* eslint-disable block-scoped-var */
 const VERS_NUM = 'v1.0 21-11-01';
 
 let the_exports;
@@ -32,9 +32,9 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
     }
     return export_tech_czech.type_czech;
 
-    
+   
 
-    
+   
 
     function _TypeCzech(...the_parameters) {
       
@@ -184,17 +184,17 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         onError: () => TYPE_CZECH_EVENTS.bBlink(FAIL_CHECK_COLOR),
       };
 
-      function consolelog(...args) {
-        if (OP_DEBUG_CONSOLE_TRACE) {
-          
-          console.log(args);
-        }
+
+     
+      function _coloredConsole(the_args, the_css) {
+        
+        const args_str = _jsonStr(the_args);
+        const the_text = args_str.substring(1, args_str.length - 1);
+        
+        console.log(`%c ${the_text}`, the_css);
       }
 
-      
-
-
-      
+     
       function _doubleToSingleQuotes(double_quotes) {
         
         const single_quotes = double_quotes.replace(/"/g, "'");
@@ -202,7 +202,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         return single_quotes;
       }
 
-      
+     
       function _isCollection(a_variable) {
         
         
@@ -212,12 +212,12 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         return a_collection;
       }
 
-      
+     
       function _isScalar(a_variable) {
         return !_isCollection(a_variable);
       }
 
-      
+     
       function _toStr(maybe_undef) {
         
         let to_str;
@@ -269,7 +269,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         return to_str;
       }
 
-      
+     
       function _stringifyReplacer(_key, value) {
         
         let replaced_value;
@@ -303,7 +303,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         return replaced_value;
       }
 
-      
+     
       function _jsonStr(an_object) {
         
         const json_str = JSON.stringify(an_object, _stringifyReplacer);
@@ -312,7 +312,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         return obj_str;
       }
 
-      
+     
       function _className(a_var) {
         
         let class_name = '';
@@ -324,7 +324,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         return class_name;
       }
 
-      
+     
       function _isAClass(a_var) {
         
         let is_class = false;
@@ -345,7 +345,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         return is_class;
       }
 
-      
+     
       function _functionName(a_var) {
         
         let function_name = '';
@@ -357,7 +357,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         return function_name;
       }
 
-      
+     
       function _isBuiltInClass(a_type) {
         
         let is_built_in = false;
@@ -370,7 +370,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         return is_built_in;
       }
 
-      
+     
       function _anObjectsType(a_var) {
         
         let is_a_class_type = false;
@@ -395,7 +395,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         return is_a_class_type;
       }
 
-      
+     
       function _isaTypeOf(lower_case_type_of) {
         
         let is_type_of = false;
@@ -408,7 +408,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         return is_type_of;
       }
 
-      
+     
       function typeProtos(a_var) {
         
         let the_prototypes = false;
@@ -442,7 +442,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         return the_prototypes;
       }
 
-      
+     
       function typeFinal(a_var) {
         
         
@@ -465,7 +465,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         return child_type;
       }
 
-      
+     
       function typeIsA(a_var, object_type) {
         
         
@@ -482,7 +482,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         return object_is_a;
       }
 
-      
+     
       function _aTypeOf(a_variable) {
         
         let a_type_of = '';
@@ -504,7 +504,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         return a_type_of;
       }
 
-      
+     
       function _isPlainJsType(a_type) {
         
         let is_plain_js_type = false;
@@ -517,7 +517,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         return is_plain_js_type;
       }
 
-      
+     
       function _shortToLongType(a_type) {
         
         if (SHORT_TO_TYPE_OF[a_type]) {
@@ -528,7 +528,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         return a_type;
       }
 
-      
+     
       function _shortToLongEmpty(an_empty) {
         if (SHORT_EMPTIES[an_empty]) {
           return SHORT_EMPTIES[an_empty];
@@ -536,7 +536,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         return an_empty;
       }
 
-      
+     
       function _collectionToStr(a_collection) {
         
         let collection_str;
@@ -589,7 +589,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         return collection_str;
       }
 
-      
+     
       function _consoleError(error_text, error_tag) {
         if (OP_DEBUG_ERROR_TAGS && error_tag) {
           const debug_error = `${error_tag} - ${error_text}`;
@@ -601,7 +601,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         return error_text;
       }
 
-      
+     
       function _looksLikeType(possible_badcase) {
         
         let error_string = '';
@@ -619,7 +619,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         return error_string;
       }
 
-      
+     
       function _missingKey(extra_keys) {
         
         let missing_key;
@@ -638,7 +638,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         return missing_key;
       }
 
-      
+     
       function _isEmpty(a_variable) {
         
         let is_empty;
@@ -663,7 +663,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         return is_empty;
       }
 
-      
+     
       const _canBeEmpty = (variable_type) => (variable_type === 'array' ? true 
         : variable_type === 'object' ? true 
           : variable_type === 'string' ? true 
@@ -671,7 +671,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
               : variable_type === 'date' ? true 
                 : variable_type === 'number'); 
 
-      
+     
       function _typeFromArray(shallow_array, element_index) {
         
         const shape_length = shallow_array.length;
@@ -685,7 +685,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         return element_type;
       }
 
-      
+     
       function _getParameters(parameters_obj) {
         
         let the_params;
@@ -731,7 +731,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         return error_3_array;
       }
 
-      
+     
       
       function check_interface(introspect_object, expected_interface) {
         if (t_param_check_func.p_call_traps) {
@@ -788,7 +788,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
       
       
 
-      
+     
       function _ParametersCheck(arg_check_events) {
         
         const num_parameters = arguments.length;
@@ -978,7 +978,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
           t_do_param_checking = false;
         }
 
-        
+       
 
         function assert_check_(error_mess, where_from, actual_value, expected_outcome) {
           if (t_param_check_func.p_call_traps) {
@@ -1266,12 +1266,12 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         init_ParametersCheck();
 
         const public_methods = {
+          assert_check_,
           confirmParameters,
-          enableChecks_,
+          countFails_,
           countTally_,
           disableChecks_,
-          countFails_,
-          assert_check_,
+          enableChecks_,
           p_call_traps,
         };
 
@@ -1283,19 +1283,35 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
       
       
 
-      
+     
+
+   
 
     
-
     
-    
+/*
+    cycle.js
+    2021-05-31
+
+    Public Domain.
+
+    NO WARRANTY EXPRESSED OR IMPLIED. USE AT YOUR OWN RISK.
+
+    This code should be minified before deployment.
+    See https:
+
+    USE YOUR OWN COPY. IT IS EXTREMELY UNWISE TO LOAD CODE FROM SERVERS YOU DO
+    NOT CONTROL.
+*/
 
 
 
+/*jslint eval */
 
-
-
-
+/*property
+    $ref, decycle, forEach, get, indexOf, isArray, keys, length, push,
+    retrocycle, set, stringify, test
+*/
 
 const _cycle_loops = {};
 
@@ -1462,7 +1478,7 @@ const _cycle_loops = {};
       
       
      
-    
+   
 
     
 
@@ -1547,15 +1563,15 @@ if (node && node.constructor === RegExp) {
         })(data);
     };
       
-      
-      
+     
+     
 
       
       
       
       
 
-      
+     
 
       function _errorClassName(scalar_type) {
         
@@ -1579,7 +1595,7 @@ if (node && node.constructor === RegExp) {
         return error_string;
       }
 
-      
+     
       function _shapeErrorMess(shallow_array, check_array) {
         
         const extra_shapes = Object.entries(shallow_array);
@@ -1591,7 +1607,7 @@ if (node && node.constructor === RegExp) {
         return error_string;
       }
 
-      
+     
 
       function _shapeContainer(check_container, container_shape, the_type) {
         
@@ -1627,7 +1643,7 @@ if (node && node.constructor === RegExp) {
         return error_string;
       }
 
-      
+     
       const _arrayOfOneType = (check_array, array_type, the_type) => {
         
         let error_string = '';
@@ -1664,7 +1680,7 @@ if (node && node.constructor === RegExp) {
         return error_string;
       };
 
-      
+     
       const _wrongType = (expected_type, element_index, real_type) => {
         
         let error_string = '';
@@ -1691,7 +1707,7 @@ if (node && node.constructor === RegExp) {
         return error_string;
       };
 
-      
+     
       function _shapeArrayTypes(check_array, array_shape, the_type) {
         
         let error_string = '';
@@ -1734,7 +1750,7 @@ if (node && node.constructor === RegExp) {
         return error_string;
       }
 
-      
+     
       const _shapePropertyType = (property_type, property_key, check_variable) => {
         
         let error_string = '';
@@ -1771,7 +1787,7 @@ if (node && node.constructor === RegExp) {
         return error_string;
       };
 
-      
+     
       function _shapeCollectionTypes(check_object, object_shape, the_type) {
         
         let error_string = '';
@@ -1798,7 +1814,7 @@ if (node && node.constructor === RegExp) {
         return error_string;
       }
 
-      
+     
       function _shapeScalar(actual_value, expected_type) {
         
         const expected_long_type = _shortToLongType(expected_type);
@@ -1842,7 +1858,7 @@ if (node && node.constructor === RegExp) {
         return error_string;
       }
 
-      
+     
       function _shapeVariable(check_variable, variable_type, the_type) {
         
         let error_string;
@@ -1855,7 +1871,7 @@ if (node && node.constructor === RegExp) {
         return error_string;
       }
 
-      
+     
       function _emptyErrorMess(shallow_array, check_array) {
         
         let error_string;
@@ -1873,7 +1889,7 @@ if (node && node.constructor === RegExp) {
         return error_string;
       }
 
-      
+     
       function _emptyError(empty_type, check_element, element_index, check_array, variable_type, the_type) {
         
         
@@ -1902,7 +1918,7 @@ if (node && node.constructor === RegExp) {
         return error_string;
       }
 
-      
+     
       const _emptyArrayInArray = (check_array, array_type, the_type) => {
         
         let error_string = '';
@@ -1928,7 +1944,7 @@ if (node && node.constructor === RegExp) {
         return error_string;
       };
 
-      
+     
 
       function emptyArrayEmptyError(check_str) {
         const error_403 = `The parameter array ${check_str} is empty`;
@@ -1950,7 +1966,7 @@ if (node && node.constructor === RegExp) {
         return error_string;
       }
 
-      
+     
       const _arrayOfOneShape = (check_array, array_type, the_type) => {
         
         let error_string = '';
@@ -1983,7 +1999,7 @@ if (node && node.constructor === RegExp) {
         return error_string;
       };
 
-      
+     
       const _emptyArrayTypes = (check_array, array_shape, the_type) => {
         
         let error_string = '';
@@ -2040,7 +2056,7 @@ if (node && node.constructor === RegExp) {
         return error_string;
       };
 
-      
+     
 
       const _emptyKeysChecked = (empty_choice, check_var_or_obj, check_key) => {
         
@@ -2069,7 +2085,7 @@ if (node && node.constructor === RegExp) {
         return error_string;
       };
 
-      
+     
       const _emptyCollectionTypes = (check_object, object_shape, the_type) => {
         
         let error_string = '';
@@ -2107,7 +2123,7 @@ if (node && node.constructor === RegExp) {
         return error_string;
       };
 
-      
+     
       function _emptyContainer(check_container, empty_type, the_type) {
         
         let error_string;
@@ -2139,7 +2155,7 @@ if (node && node.constructor === RegExp) {
         return error_string;
       }
 
-      
+     
       function _emptyScalar(check_variable, empty_type) {
         
         let error_string = '';
@@ -2173,7 +2189,7 @@ if (node && node.constructor === RegExp) {
         return error_string;
       }
 
-      
+     
       function _emptyVariable(check_variable, variable_type, the_type) {
         
         let error_string;
@@ -2186,7 +2202,7 @@ if (node && node.constructor === RegExp) {
         return error_string;
       }
 
-      
+     
       function _emptyCheck(check_variable, variable_type, the_type) {
         
         let error_string;
@@ -2200,7 +2216,7 @@ if (node && node.constructor === RegExp) {
         return error_string;
       }
 
-      
+     
       function _doEitherEmpty(type_parameters, the_type) {
         
         const [check_variable, empty_types] = type_parameters;
@@ -2234,7 +2250,7 @@ if (node && node.constructor === RegExp) {
         return error_string;
       }
 
-      
+     
       function _doEitherShape(type_parameters, the_type) {
         
         const [check_variable, var_types_shapes] = type_parameters;
@@ -2286,7 +2302,7 @@ if (node && node.constructor === RegExp) {
         return error_string;
       }
 
-      
+     
       function _specParameters(the_commands) {
         
         let the_options = the_commands;
@@ -2328,7 +2344,7 @@ if (node && node.constructor === RegExp) {
         return param_results;
       }
 
-      
+     
 
       function notArrayShape(parameters_list, shape_str) {
         
@@ -2436,7 +2452,7 @@ if (node && node.constructor === RegExp) {
         return error_str_3arr;
       }
 
-      
+     
       function _eitherChecks(parameters_shapes, method_name) {
         
         let error_string = '';
@@ -2476,7 +2492,7 @@ if (node && node.constructor === RegExp) {
         return is_variadic;
       }
 
-      
+     
 
       
       function check_empty(parameters_obj, shape_list) {
@@ -2509,7 +2525,7 @@ if (node && node.constructor === RegExp) {
         }
       }
 
-      
+     
       
       function check_emptyVariadic(parameters_obj, shape_list) {
         if (t_param_check_func.p_call_traps) {
@@ -2547,7 +2563,7 @@ if (node && node.constructor === RegExp) {
         }
       }
 
-      
+     
       
       function check_type(parameters_obj, shape_list) {
         if (t_param_check_func.p_call_traps) {
@@ -2578,7 +2594,7 @@ if (node && node.constructor === RegExp) {
         }
       }
 
-      
+     
       
       function check_typeVariadic(parameters_obj, shape_list) {
         if (t_param_check_func.p_call_traps) {
@@ -2632,7 +2648,7 @@ if (node && node.constructor === RegExp) {
         return error_str_3arr;
       }
 
-      
+     
       
       function check_emptyExtra(parameters_obj, shape_list) {
         if (t_param_check_func.p_call_traps) {
@@ -2678,7 +2694,7 @@ if (node && node.constructor === RegExp) {
         }
       }
 
-      
+     
       function extraTypes(parameters_obj, shape_list) {
         
         
@@ -2695,7 +2711,7 @@ if (node && node.constructor === RegExp) {
         return error_str_3arr;
       }
 
-      
+     
       
       function check_typeExtra(parameters_obj, shape_list) {
         if (t_param_check_func.p_call_traps) {
@@ -2737,7 +2753,7 @@ if (node && node.constructor === RegExp) {
         }
       }
 
-      
+     
       
       function check_emptyEither(parameters_obj, shapes_lists) {
         if (t_param_check_func.p_call_traps) {
@@ -2758,7 +2774,8 @@ if (node && node.constructor === RegExp) {
           return error_str_3arr;
         }
       }
-      
+
+     
       
       function check_typeEither(parameters_obj, possible_shapes) {
         if (t_param_check_func.p_call_traps) {
@@ -2780,7 +2797,7 @@ if (node && node.constructor === RegExp) {
         }
       }
 
-      
+     
       function linkUp(user_function, pre_check, post_check) {
         
         let check_result;
@@ -2813,7 +2830,7 @@ if (node && node.constructor === RegExp) {
         return '';
       }
 
-      
+     
       function _shrinkDiffs(long_diff) {
         let short_diff;
         if (long_diff.length < DIFF_BREAK_MIN) {
@@ -2837,8 +2854,6 @@ if (node && node.constructor === RegExp) {
         return first_difference;
       }
 
-      
-
       function firstDiff(pre_str, post_str) {
         let start_same = 0;
         let hit_end = false;
@@ -2852,6 +2867,7 @@ if (node && node.constructor === RegExp) {
         return [start_same, hit_end];
       }
 
+     
       function _refDiff(pre_str, post_str) {
         
         let first_difference = '';
@@ -2883,7 +2899,7 @@ if (node && node.constructor === RegExp) {
         return first_difference;
       }
 
-      
+     
       
       function check_buildSnapshot(func_name, var_name, collection_ref) {
         if (t_param_check_func.p_call_traps) {
@@ -2924,12 +2940,13 @@ if (node && node.constructor === RegExp) {
         }
       }
 
+      
       function _mutateStacks() {
         const ref_stacks_str = _fast_json_stable_stringify(t_reference_stacks);
         return ref_stacks_str;
       }
 
-      
+     
       
       function check_mutatedSnapshot(func_name, var_name) {
         if (t_param_check_func.p_call_traps) {
@@ -3006,10 +3023,9 @@ if (node && node.constructor === RegExp) {
       
 
       return {
+        _coloredConsole, 
 
-        
-  
-        
+
 
         TYPE_CZECH_EVENTS,
 

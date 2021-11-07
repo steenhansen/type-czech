@@ -12,9 +12,9 @@ Greenland called, and it doesn't want its ice back.
 
 minify:
 
-  1  remove debugging code                 consolelog[^;]*;   ==> ''
+  1  remove debugging code 191 instances                consolelog[^;]*;   ==> ''
 
-  2  remove debugging function on line 228 which is now never used
+  2  remove debugging function on line 218 which is now never used
   
         function consolelog(...args) {
         if (OP_DEBUG_CONSOLE_TRACE) {
@@ -23,7 +23,7 @@ minify:
         }
       }
   
-  3  remove debugging function access at line 4497  
+  3  remove debugging function access at line 4462  
         
         // START debugging access to internal functions
         
