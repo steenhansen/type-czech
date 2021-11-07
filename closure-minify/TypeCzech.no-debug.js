@@ -215,6 +215,12 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         onError: () => TYPE_CZECH_EVENTS.bBlink(FAIL_CHECK_COLOR),
       };
 
+      function consolelog(...args) {
+        if (OP_DEBUG_CONSOLE_TRACE) {
+          // eslint-disable-next-line no-console
+          console.log(args);
+        }
+      }
 
       /*
 type_czech._coloredConsole("_my colored text+", 'background: #000; color: #fff');
@@ -4459,7 +4465,65 @@ type_czech.check_mutatedSnapshot('my-func', 'my_arr');
       return {
         _coloredConsole, // needed for sample programs, never delete
 
+        // START debugging access to internal functions
+        _ParametersCheck,
+        _anObjectsType,
+        _arrayOfOneShape,
+        _arrayOfOneType,
+        _aTypeOf,
+        _canBeEmpty,
+        _className,
+        _collectionToStr,
+        _consoleError,
+        _doEitherEmpty,
+        _doEitherShape,
+        _doubleToSingleQuotes,
+        _eitherChecks,
+        _emptyArrayInArray,
+        _emptyArrayTypes,
+        _emptyCheck,
+        _emptyCollectionTypes,
+        _emptyContainer,
+        _emptyError,
+        _emptyErrorMess,
+        _emptyKeysChecked,
+        _emptyScalar,
+        _emptyVariable,
+        _functionName,
+        _getParameters,
+        _isAClass,
+        _isBuiltInClass,
+        _isCollection,
+        _isEmpty,
+        _isScalar,
+        _isaTypeOf,
+        _isPlainJsType,
+        _jsonStr,
+        _looksLikeType,
+        _missingKey,
+        _mutateStacks,
+        _refDiff,
+        _shapeArrayTypes,
+        _shapeCollectionTypes,
+        _shapeContainer,
+        _shapeErrorMess,
+        _shapePropertyType,
+        _shapeScalar,
+        _shapeVariable,
+        _shortToLongEmpty,
+        _shortToLongType,
+        _shrinkDiffs,
+        _specParameters,
+        _stringifyReplacer,
+        _toStr,
+        _twoArrays,
+        _typeFromArray,
+        _wrongType,
 
+        _cycle_loops, //                https://github.com/douglascrockford/JSON-js/blob/master/cycle.js
+        _fast_json_stable_stringify, // https://github.com/epoberezkin/fast-json-stable-stringify
+
+        // END debugging access to internal functions
 
         TYPE_CZECH_EVENTS,
 
