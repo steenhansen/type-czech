@@ -4463,9 +4463,6 @@ type_czech.check_mutatedSnapshot('my-func', 'my_arr');
       consolelog('^^^ TypeCzech SETTINGS', parameter_settings);
 
       return {
-        _coloredConsole, // needed for sample programs, never delete
-
-        // START debugging access to internal functions
         _ParametersCheck,
         _anObjectsType,
         _arrayOfOneShape,
@@ -4474,6 +4471,7 @@ type_czech.check_mutatedSnapshot('my-func', 'my_arr');
         _canBeEmpty,
         _className,
         _collectionToStr,
+        _coloredConsole,
         _consoleError,
         _doEitherEmpty,
         _doEitherShape,
@@ -4522,8 +4520,6 @@ type_czech.check_mutatedSnapshot('my-func', 'my_arr');
 
         _cycle_loops, //                https://github.com/douglascrockford/JSON-js/blob/master/cycle.js
         _fast_json_stable_stringify, // https://github.com/epoberezkin/fast-json-stable-stringify
-
-        // END debugging access to internal functions
 
         TYPE_CZECH_EVENTS,
 

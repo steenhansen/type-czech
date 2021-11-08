@@ -31,8 +31,11 @@ pre {
 <h2>TypeCzech</h2>
 
 <p>
-TypeCzech is a runtime type checking JavaScript library that can be programmatically turned on and off. Include one file in your web pages or in your Node.js files to type check function parameters
-and function results. Errors can be set to throw halting exceptions or just output to the Console.
+  TypeCzech is a run-time type checking JavaScript library that can be programmatically turned on and off.
+  Include one file in your web page or in your Node.js file to allow you to type check function parameters
+  and results. Errors can be set to throw halting exceptions or just output to the Console.
+  The motivation is to verify function parameters before execution, and function results after completion with 
+  PRE_check() and POST_check() funtions.
 </p>
 
 <p>
@@ -48,8 +51,10 @@ Enjoy some TypeScript benefits without the drawbacks of
 With TypeCzech you can
 <ul>
   <li>Check function parameter types, including arrays, and extended objects</li>
-  <li>Ensure strings, arrays, and objects are not empty</li>
-  <li>Catch reference mutations in function parameters</li>
+  <li>Ensure strings, arrays, and objects are not empty at run-time</li>
+  <li>Catch malformed data from a fetch() at run-time</li>
+  <li>Specify run-time input validation constraints</li>
+  <li>Detect run-time mutations in function parameters that are collections</li>
 </ul>
 
 Missing from TypeCzech
@@ -64,16 +69,17 @@ TypeCzech the bad parts
 <ul>
   <li>Verbosity of adding PRE_checking() and linkUp() functions</li>
   <li>Continuously checking parameter mutations of collections can be slow</li>
-  <li>Complicated dynamic minimization of unused tests during runtime, while checking constructors and methods of extended classes</li>
+  <li>When checking constructors and methods of extended classes, production code
+    can get complicated if all TypeCzech testing code is to be completely removed.</li>
 </ul>
 
 <h3>A TypeCzech Example</h3>
 
 <ul>
+  <li>type_czech = TypeCzech('LOG-ERRORS') logs errors to the console instead of throwing exceptions</li>
   <li>type_czech.check_type() ensures that the parameters to aLottery() are a string, then an array of numbers, and finally a date</li>
   <li>type_czech.check_empty() complains when parameters are found to be empty strings, arrays, or objects</li>
   <li>PRE_check_aLottery() is executed just before aLottery() runs via type_czech.linkUp()</li>
-  <li>&gt;&gt; precedes error messages in the console
   <li>/**/ highlights added TypeCzech test code that is safely removable or just turned off</li>
 </ul>
 
@@ -81,12 +87,15 @@ TypeCzech the bad parts
 /**/  type_czech = TypeCzech('LOG-ERRORS')
 /**/  //type_czech = TypeCzech('NO-CHECKING')
 /**/
-/**/  LOTTERY_SIGNATURE = ['string', ['number'], 'date']
-/**/
 /**/  function PRE_check_aLottery(lottery_name, lucky_numbers, draw_date){
-/**/    type_issue = type_czech.check_type(arguments, LOTTERY_SIGNATURE)
+/**/  LOTTERY_SIGNATURE = ['string', ['number'], 'date']
+/**/    type_issue = type_czech.check_type(arguments, A_LOTTERY_SIGNATURE)
 /**/    if (type_issue) return type_issue
-/**/    return type_czech.check_empty(arguments, ['EMPTY-ERROR'])
+/**/
+/**/    empty_issue = type_czech.check_empty(arguments, ['EMPTY-ERROR'])
+/**/    if (empty_issue) return empty_issue
+/**/
+/**/    return ''
 /**/  }
 /**/
 /**/  aLottery = type_czech.linkUp(aLottery, PRE_check_aLottery) 
@@ -383,6 +392,10 @@ aLottery('', [1,2,3,4,5,26], new Date('Dec 31 1999'))
 </div>
 
 
+
+
+
+
 <div><a title="201-Extending-Closures-Inline.html" href="../examples-web/201-Extending-Closures-Inline.html">201-Extending-Closures-Inline</a>
   - Closure modules and checks in one inlined file
   <div class="functions">linkUp()</div>
@@ -397,6 +410,16 @@ aLottery('', [1,2,3,4,5,26], new Date('Dec 31 1999'))
   - Closure modules inlined with imported checks when testing
   <div class="functions">linkUp()</div>
 </div>
+
+<div><a title="204-Extending-Closures-Single.html" href="../examples-web/204-Extending-Closures-Single/204-Extending-Closures-Single.html">204-Extending-Closures-Single</a>
+  - Closure checks in one imported file when testing
+  <div class="functions">linkUp()</div>
+</div>
+
+
+
+
+
 
 
 <div><a title="301-Extending-IIFEs-Inline.html" href="../examples-web/301-Extending-IIFEs-Inline.html">301-Extending-IIFEs-Inline</a>
@@ -414,6 +437,15 @@ aLottery('', [1,2,3,4,5,26], new Date('Dec 31 1999'))
   <div class="functions">linkUp()</div>
 </div>
 
+<div><a title="304-Extending-IIFEs-Single.html" href="../examples-web/304-Extending-IIFEs-Single/304-Extending-IIFEs-Single.html">304-Extending-IIFEs-Single</a>
+  - IIFE checks in one imported file when testing
+  <div class="functions">linkUp()</div>
+</div>
+
+
+
+
+
 
 <div><a title="401-Extending-ClassFree-Inline.html" href="../examples-web/401-Extending-ClassFree-Inline.html">401-Extending-ClassFree-Inline</a>
   - ClassFree constructors and checks in one inlined file
@@ -430,6 +462,16 @@ aLottery('', [1,2,3,4,5,26], new Date('Dec 31 1999'))
   <div class="functions">linkUp()</div>
 </div>
 
+<div><a title="404-Extending-ClassFree-Single.html" href="../examples-web/404-Extending-ClassFree-Single/404-Extending-ClassFree-Single.html">404-Extending-ClassFree-Single</a>
+  - ClassFree constructors checks in one imported file when testing
+  <div class="functions">linkUp()</div>
+</div>
+
+
+
+
+
+
 
 <div><a title="501-Extending-Prototypes-Inline.html" href="../examples-web/501-Extending-Prototypes-Inline.html">501-Extending-Prototypes-Inline</a>
   - Inherited prototypes and checks in one inlined file
@@ -441,10 +483,20 @@ aLottery('', [1,2,3,4,5,26], new Date('Dec 31 1999'))
   <div class="functions">linkUp()</div>
 </div>
 
-<div><a title="503-Extending-Prototypes-Inline.html" href="../examples-web/503-Extending-Prototypes-Production/503-Extending-Prototypes-Production.html">503-Extending-Prototypes-Production</a>
+<div><a title="503-Extending-Prototypes-Production.html" href="../examples-web/503-Extending-Prototypes-Production/503-Extending-Prototypes-Production.html">503-Extending-Prototypes-Production</a>
   - Inherited prototypes inlined with imported checks when testing
   <div class="functions">linkUp()</div>
 </div>
+
+<div><a title="504-Extending-Prototypes-Single.html" href="../examples-web/504-Extending-Prototypes-Single/504-Extending-Prototypes-Single.html">504-Extending-Prototypes-Single</a>
+  - Inherited prototype checks in one imported file when testing
+  <div class="functions">linkUp()</div>
+</div>
+
+
+
+
+
 
 
 <div><a title="601-Extending-OLOO-Inline.html" href="../examples-web/601-Extending-OLOO-Inline.html">601-Extending-OLOO-Inline</a>
@@ -461,6 +513,14 @@ aLottery('', [1,2,3,4,5,26], new Date('Dec 31 1999'))
   - Created OLOO inlined with imported checks when testing
   <div class="functions">linkUp()</div>
 </div>
+
+<div><a title="604-Extending-OLOO-Single.html" href="../examples-web/604-Extending-OLOO-Single/604-Extending-OLOO-Single.html">604-Extending-OLOO-Single</a>
+  - Created OLOO checks in one imported file when testing
+  <div class="functions">linkUp()</div>
+</div>
+
+
+
 
 <br>
 

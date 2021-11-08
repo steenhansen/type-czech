@@ -1,20 +1,4 @@
 
-//////////////////////////////////////////////////////////////////////////////
-
-101 was wrong !!! make sure not done again ...!!
-
-
-
-
-
-
-201 was re-written taking out all the procedures 
-
-
-
-
-
-fix up the repl test inside file, and add infinity tests
 
 
 

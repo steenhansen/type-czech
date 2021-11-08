@@ -14,44 +14,7 @@ minify:
 
   1  remove debugging code 191 instances                consolelog[^;]*;   ==> ''
 
-  2  remove debugging function on line 218 which is now never used
-  
-        function consolelog(...args) {
-        if (OP_DEBUG_CONSOLE_TRACE) {
-          // eslint-disable-next-line no-console  leave
-          console.log(args);
-        }
-      }
-  
-  3  remove debugging function access at line 4462  
-        
-        // START debugging access to internal functions
-        
-        _ParametersCheck,
-        _anObjectsType,
-        _arrayOfOneShape,
-        _arrayOfOneType,
-        _aTypeOf,
-                        ...
-        _toStr,
-        _twoArrays,
-        _typeFromArray,
-        _wrongType,
-
-        _cycle_loops, //                https://github.com/douglascrockford/JSON-js/blob/master/cycle.js
-        _fast_json_stable_stringify, // https://github.com/epoberezkin/fast-json-stable-stringify
-
-        // END debugging access to internal functions
-
-
-
-
-
   4  save as TypeCzech.no-debug.js
-
-  3  remove comments         (/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*+/)|(//.*)
-
-  4  save as TypeCzech.no-comments.js
 
   5  npx google-closure-compiler --language_out ECMASCRIPT_2020 --js=TypeCzech.no-debug.js --js_output_file=TypeCzech.min.js
 
