@@ -72,7 +72,7 @@ test_pre_check_type_single(single_variable, single_signature, 5902, error_mess);
 
 single_variable  = { a: [1, 2, 3] };
 single_signature = { a: 'object' };
-error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@207 - Parameter is meant to be 'object' but is of the wrong type of 'array':[1,2,3]
+error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@207 - Param is meant to be 'object' but is of the wrong type of 'array':[1,2,3]
                                   check_type()
                                       ACTUAL TYPES 'object'
                                       ACTUAL VALUE {a:[1,2,3]}
@@ -82,8 +82,8 @@ test_pre_check_type_single(single_variable, single_signature, 5903, error_mess);
 
 single_variable  = [13, 14, 15];
 single_signature = { r: 'number' };
-error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@219 - Comparing actual [] parameter, with a value of [13,14,15],
-                         against the expected shape of {"r":"number"}. They should be the same type.
+error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@219 - Comparing [] parameter, with a value of [13,14,15],
+                         against expected shape of {"r":"number"}. They should be the same type.
                          You cannot compare an array with a non-array; both []s, or both {"r":"number"}s
                                       check_type()
                                           ACTUAL TYPES 'array'
@@ -94,8 +94,8 @@ test_pre_check_type_single(single_variable, single_signature, 5904, error_mess);
 
 single_variable  = { r: 'a-string' };
 single_signature = ['number'];
-error_mess = ` PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@217 - Comparing actual 'object' parameter, with a value of {r:"a-string"}, 
-                          in relation to the expected shape of ["number"]. They should be the same type.
+error_mess = ` PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@217 - Comparing 'object' parameter, with a value of {r:"a-string"}, 
+                          in relation to expected shape of ["number"]. They should be the same type.
                           You cannot compare an array with a non-array; both []s, or both 'object's. Or same object keys
                                       check_type()
                                           ACTUAL TYPES 'object'
@@ -123,7 +123,7 @@ test_pre_check_type_single(single_variable, single_signature, 5907, error_mess);
 
 single_variable  = { a: [{ r: [ [123],   'A-STRING ! ! !',  987n,     false,     new Date('1999-12-12'), (x) => x,   12,       { a: 3 }, { b: 4 },         /d/,      'abc',    Symbol('sym')   ] }] };
 single_signature = { a: [{ r: [ 'array', ['number'],        'bigint', 'boolean', 'date',                 'function', 'number', 'object', { b: 'number' }, 'regexp', 'string', 'symbol'        ] }] };
-error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@207 - Parameter is meant to be 'array' but is of the wrong type of 'string':A-STRING ! ! !
+error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@207 - Param is meant to be 'array' but is of the wrong type of 'string':A-STRING ! ! !
                           check_type()
                               ACTUAL TYPES 'object'
                               ACTUAL VALUE {a:[{r:[[123],"A-STRING ! ! !",987n,false,1999-12-12T00:00:00.000Z,(x) => x ***,12,{a:3},{b:4},/d/ +++,"abc",Symbol('sym')]}]}
@@ -193,7 +193,7 @@ test_pre_check_type_single(single_variable, single_signature, 5914, error_mess);
 
 single_variable  = { a: [{ r: [ [123],   [1, 2, 3],  987n,     false,     new Date('1999-12-12'), (x) => x,   12,       { a: 3 }, 'A-STRING ! ! !', /d/,      'abc',    Symbol('sym')   ] }] };
 single_signature = { a: [{ r: [ 'array', ['number'], 'bigint', 'boolean', 'date',                 'function', 'number', 'object', { b: 'number' },  'regexp', 'string', 'symbol'        ] }] };
-error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@207 - Parameter is meant to be 'object' but is of the wrong type of 'string':A-STRING ! ! !
+error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@207 - Param is meant to be 'object' but is of the wrong type of 'string':A-STRING ! ! !
 check_type()
     ACTUAL TYPES 'object'
     ACTUAL VALUE {a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ***,12,{a:3},"A-STRING ! ! !",/d/ +++,"abc",Symbol('sym')]}]}
@@ -225,7 +225,7 @@ test_pre_check_type_single(single_variable, single_signature, 5917, error_mess);
 
 single_variable  = [123];
 single_signature = 'date';
-error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@225 - The value '[]', which is a 'array', is not a 'date'
+error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@225 - The value [], an 'array', is not a 'date'
 check_type()
     ACTUAL TYPES 'array'
     ACTUAL VALUE [123]
@@ -235,7 +235,7 @@ test_pre_check_type_single(single_variable, single_signature, 5918, error_mess);
 
 single_variable  = [1, 2, 3];
 single_signature = 'date';
-error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@219 - Comparing actual [] parameter, with a value of [1,2,3], against the expected shape of date. They should be the same type. You cannot compare an array with a non-array; both []s, or both dates
+error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@219 - Comparing [] parameter, with a value of [1,2,3], against expected shape of date. They should be the same type. You cannot compare an array with a non-array; both []s, or both dates
 check_type()
     ACTUAL TYPES 'array'
     ACTUAL VALUE [1,2,3]
@@ -290,7 +290,7 @@ test_pre_check_type_single(single_variable, single_signature, 5924, error_mess);
 
 single_variable  = { a: 3 };
 single_signature = 'date';
-error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@208 - The value '{}', which is a 'object', is not a 'date'
+error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@208 - The value {}, an 'object', is not a 'date'
 check_type()
     ACTUAL TYPES 'object'
     ACTUAL VALUE {a:3}
@@ -347,7 +347,7 @@ test_pre_check_type_single(single_variable, single_signature, 5930, error_mess);
 
 single_variable  =    [[[[[[ 1        ]]]]]];
 single_signature = [  [[[[[[ 'number' ]]]]]]  ];
-error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@207 - Parameter is meant to be 'array' but is of the wrong type of 'number':1
+error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@207 - Param is meant to be 'array' but is of the wrong type of 'number':1
 check_type()
     ACTUAL TYPES 'array'
     ACTUAL VALUE [[[[[[1]]]]]]
@@ -384,7 +384,7 @@ test_pre_check_type_single(single_variable, single_signature, 5934, error_mess);
 
 single_variable  = { a: { b: { c: { d: 12              } } } };
 single_signature = { a: { b: { c: { d: { e: 'number' } } } } };
-error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@210 - The type '{"e":"number"}' is not a real type
+error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@210 - Type '{"e":"number"}' is not a real type
 check_type()
     ACTUAL TYPES 'object'
     ACTUAL VALUE {a:{b:{c:{d:12}}}}
@@ -394,7 +394,7 @@ test_pre_check_type_single(single_variable, single_signature, 5935, error_mess);
 
 single_variable  = { a: { b: { c: { d: { e: 12 }   } } } };
 single_signature = { a: { b: { c: { d: 'number'    } } } };
-error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@207 - Parameter is meant to be 'number' but is of the wrong type of 'object':{"e":12}
+error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@207 - Param is meant to be 'number' but is of the wrong type of 'object':{"e":12}
 check_type()
     ACTUAL TYPES 'object'
     ACTUAL VALUE {a:{b:{c:{d:{e:12}}}}}
@@ -421,7 +421,7 @@ test_pre_check_type_single(single_variable, single_signature, 5938, error_mess);
 
 single_variable  = { a: [ { b: [ { c: [ { d: [ 12              ] } ] } ] } ] };
 single_signature = { a: [ { b: [ { c: [ { d: [ { e: 'number' } ] } ] } ] } ] };
-error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@207 - Parameter is meant to be 'object' but is of the wrong type of 'number':12
+error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@207 - Param is meant to be 'object' but is of the wrong type of 'number':12
 check_type()
     ACTUAL TYPES 'object'
     ACTUAL VALUE {a:[{b:[{c:[{d:[12]}]}]}]}
@@ -458,7 +458,7 @@ test_pre_check_type_single(single_variable, single_signature, 5942, error_mess);
 
 single_variable  = [ { a: [ { b: [ { c: [ { d: [ 12              ] } ] } ] } ] } ];
 single_signature = [ { a: [ { b: [ { c: [ { d: [ { e: 'number' } ] } ] } ] } ] } ];
-error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@207 - Parameter is meant to be 'object' but is of the wrong type of 'number':12
+error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@207 - Param is meant to be 'object' but is of the wrong type of 'number':12
 check_type()
     ACTUAL TYPES 'array'
     ACTUAL VALUE [{a:[{b:[{c:[{d:[12]}]}]}]}]
@@ -495,7 +495,7 @@ test_pre_check_type_single(single_variable, single_signature, 5946, error_mess);
 
 single_variable  =  [ { a: { b: [[ { c: { d: [[ 1        ]] } } ]] } } ];
 single_signature = [[ { a: { b: [[ { c: { d: [[ 'number' ]] } } ]] } } ]];
-error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@207 - Parameter is meant to be 'array' but is of the wrong type of 'object':{"a":{"b":[[{"c":{"d":[[1]]}}]]}}
+error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@207 - Param is meant to be 'array' but is of the wrong type of 'object':{"a":{"b":[[{"c":{"d":[[1]]}}]]}}
 check_type()
     ACTUAL TYPES 'array'
     ACTUAL VALUE [{a:{b:[[{c:{d:[[1]]}}]]}}]
@@ -505,7 +505,7 @@ test_pre_check_type_single(single_variable, single_signature, 5947, error_mess);
 
 single_variable  = [[ { a: { b: [[ { c: { d: [[ 1        ]] } } ]] } } ]];
 single_signature =  [ { a: { b: [[ { c: { d: [[ 'number' ]] } } ]] } } ];
-error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@207 - Parameter is meant to be 'object' but is of the wrong type of 'array':[{"a":{"b":[[{"c":{"d":[[1]]}}]]}}]
+error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@207 - Param is meant to be 'object' but is of the wrong type of 'array':[{"a":{"b":[[{"c":{"d":[[1]]}}]]}}]
 check_type()
     ACTUAL TYPES 'array'
     ACTUAL VALUE [[{a:{b:[[{c:{d:[[1]]}}]]}}]]
@@ -532,7 +532,7 @@ test_pre_check_type_single(single_variable, single_signature, 5950, error_mess);
 
 single_variable  =      { b: [[ { c: { d: [[ 1        ]] } } ]] };
 single_signature = { a: { b: [[ { c: { d: [[ 'number' ]] } } ]] } };
-error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@216 -  The key 'a', which has a type of '{b:[[{c:{d:[["number"]]}}]]}', is missing in the checked object
+error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@216 -  Key 'a', which has a type of '{b:[[{c:{d:[["number"]]}}]]}', is missing in the checked object
 check_type()
     ACTUAL TYPES 'object'
     ACTUAL VALUE {b:[[{c:{d:[[1]]}}]]}
@@ -542,7 +542,7 @@ test_pre_check_type_single(single_variable, single_signature, 5951, error_mess);
 
 single_variable  = { a: { b: [[ { c: { d: [[ 1        ]] } } ]] } };
 single_signature =      { b: [[ { c: { d: [[ 'number' ]] } } ]] };
-error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@216 -  The key 'b', which has a type of '[[{c:{d:[["number"]]}}]]', is missing in the checked object
+error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@216 -  Key 'b', which has a type of '[[{c:{d:[["number"]]}}]]', is missing in the checked object
 check_type()
     ACTUAL TYPES 'object'
     ACTUAL VALUE {a:{b:[[{c:{d:[[1]]}}]]}}
@@ -583,7 +583,7 @@ test_pre_check_type_single(single_variable, single_signature, 5956, error_mess);
 
 single_variable  = [];
 single_signature = ' [  ] ';
-error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@222 - The construct '[]' is not a real type, only a container, thus it cannot serve as a signature for EXPECTED TYPE. Try 'array' or ['string'].
+error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@222 - [] is not a type, but a container, it cannot serve as a signature. Try 'array' or ['string'].
 check_type()
     ACTUAL TYPES 'array'
     ACTUAL VALUE []
@@ -593,7 +593,7 @@ test_pre_check_type_single(single_variable, single_signature, 5957, error_mess);
 
 single_variable  = {};
 single_signature = ' { } ';
-error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@223 - The construct '{}' is not a real type, only a container, thus it cannot serve as a signature for EXPECTED TYPE. Try 'object' or {a:'string'}.
+error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@223 - {} is not a type, but a container, it cannot serve as a signature. Try 'object' or {a:'string'}.
 check_type()
     ACTUAL TYPES 'object'
     ACTUAL VALUE {}
@@ -605,7 +605,7 @@ test_pre_check_type_single(single_variable, single_signature, 5958, error_mess);
 
 single_variable  = [];
 single_signature = 'Array';
-error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@205 - The type 'Array' is not a typeof() type, but it looks just like 'array'
+error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@205 - Type 'Array' is not a typeof(), but looks like 'array'
 check_type()
     ACTUAL TYPES 'array'
     ACTUAL VALUE []
@@ -615,7 +615,7 @@ test_pre_check_type_single(single_variable, single_signature, 5959, error_mess);
 
 single_variable  = 123n;
 single_signature = 'Bigint';
-error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@205 - The type 'Bigint' is not a typeof() type, but it looks just like 'bigint'
+error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@205 - Type 'Bigint' is not a typeof(), but looks like 'bigint'
 check_type()
     ACTUAL TYPES 'bigint'
     ACTUAL VALUE 123n
@@ -625,7 +625,7 @@ test_pre_check_type_single(single_variable, single_signature, 5960, error_mess);
 
 single_variable  = false;
 single_signature = 'Boolean';
-error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@205 - The type 'Boolean' is not a typeof() type, but it looks just like 'boolean'
+error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@205 - Type 'Boolean' is not a typeof(), but looks like 'boolean'
 check_type()
     ACTUAL TYPES 'boolean'
     ACTUAL VALUE false
@@ -635,7 +635,7 @@ test_pre_check_type_single(single_variable, single_signature, 5961, error_mess);
 
 single_variable  = new Date('1999-12-12');
 single_signature = 'Date';
-error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@205 - The type 'Date' is not a typeof() type, but it looks just like 'date'
+error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@205 - Type 'Date' is not a typeof(), but looks like 'date'
 check_type()
     ACTUAL TYPES 'date'
     ACTUAL VALUE 1999-12-12T00:00:00.000Z
@@ -645,7 +645,7 @@ test_pre_check_type_single(single_variable, single_signature, 5962, error_mess);
 
 single_variable  = (x) => x;
 single_signature = 'Function';
-error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@205 - The type 'Function' is not a typeof() type, but it looks just like 'function'
+error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@205 - Type 'Function' is not a typeof(), but looks like 'function'
 check_type()
     ACTUAL TYPES 'function'
     ACTUAL VALUE (x) => x ***
@@ -655,7 +655,7 @@ test_pre_check_type_single(single_variable, single_signature, 5963, error_mess);
 
 single_variable  = 12;
 single_signature = 'Number';
-error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@205 - The type 'Number' is not a typeof() type, but it looks just like 'number'
+error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@205 - Type 'Number' is not a typeof(), but looks like 'number'
 check_type()
     ACTUAL TYPES 'number'
     ACTUAL VALUE 12
@@ -665,7 +665,7 @@ test_pre_check_type_single(single_variable, single_signature, 5964, error_mess);
 
 single_variable  = { a: 12 };
 single_signature = 'Object';
-error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@205 - The type 'Object' is not a typeof() type, but it looks just like 'object'
+error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@205 - Type 'Object' is not a typeof(), but looks like 'object'
 check_type()
     ACTUAL TYPES 'object'
     ACTUAL VALUE {a:12}
@@ -675,7 +675,7 @@ test_pre_check_type_single(single_variable, single_signature, 5965, error_mess);
 
 single_variable  = /d/;
 single_signature = 'Regexp';
-error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@205 - The type 'Regexp' is not a typeof() type, but it looks just like 'regexp'
+error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@205 - Type 'Regexp' is not a typeof(), but looks like 'regexp'
 check_type()
     ACTUAL TYPES 'regexp'
     ACTUAL VALUE /d/ +++
@@ -685,7 +685,7 @@ test_pre_check_type_single(single_variable, single_signature, 5966, error_mess);
 
 single_variable  = 'a-string';
 single_signature = 'String';
-error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@205 - The type 'String' is not a typeof() type, but it looks just like 'string'
+error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@205 - Type 'String' is not a typeof(), but looks like 'string'
 check_type()
     ACTUAL TYPES 'string'
     ACTUAL VALUE "a-string"
@@ -695,7 +695,7 @@ test_pre_check_type_single(single_variable, single_signature, 5967, error_mess);
 
 single_variable  = Symbol('sym');
 single_signature = 'Symbol';
-error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@205 - The type 'Symbol' is not a typeof() type, but it looks just like 'symbol'
+error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@205 - Type 'Symbol' is not a typeof(), but looks like 'symbol'
 check_type()
     ACTUAL TYPES 'symbol'
     ACTUAL VALUE Symbol('sym')
@@ -753,12 +753,12 @@ test_pre_check_type_single(single_variable, single_signature, 5974, error_mess);
 
 single_variable  = 'not-object';
 single_signature = { an_object: 'Boaty-McBoatFace' };
-error_mess = `TE@201 - TypeCzech.check_type() called with '{}' against '!{}'. Contrasting a string type of value not-object, with '{"an_object":"Boaty-McBoatFace"}' an object !!! string <> object`;
+error_mess = `TE@201 - check_type() called with '{}' against '!{}'. Contrasting a string type of value not-object, with '{"an_object":"Boaty-McBoatFace"}' an object !!! string <> object`;
 test_pre_check_type_single(single_variable, single_signature, 5975, error_mess);
 
 single_variable  = 'a-string';
 single_signature = 'null';
-error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@203 - The type 'null' is not a valid check_type(), check_typeEither(), or check_typeExtra() second parameter type
+error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@203 - The type 'null' is not a valid check_type(), check_typeEither(), or check_typeExtra() 2nd parameter type
 check_type()
     ACTUAL TYPES 'string'
     ACTUAL VALUE "a-string"
@@ -768,7 +768,7 @@ test_pre_check_type_single(single_variable, single_signature, 5976, error_mess);
 
 single_variable  = 91;
 single_signature = 'undefined';
-error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@203 - The type 'undefined' is not a valid check_type(), check_typeEither(), or check_typeExtra() second parameter type
+error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@203 - The type 'undefined' is not a valid check_type(), check_typeEither(), or check_typeExtra() 2nd parameter type
 check_type()
     ACTUAL TYPES 'number'
     ACTUAL VALUE 91
@@ -778,7 +778,7 @@ test_pre_check_type_single(single_variable, single_signature, 5977, error_mess);
 
 single_variable  = 91;
 single_signature = 'Ford Torino';
-error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@202 - The type 'Ford Torino' is not the correct classname or not a scalar type
+error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@202 - Type 'Ford Torino' is wrong classname or not a scalar
 check_type()
     ACTUAL TYPES 'number'
     ACTUAL VALUE 91
@@ -798,7 +798,7 @@ test_pre_check_type_single(single_variable, single_signature, 5979, error_mess);
 
 single_variable  = { a: undefined };
 single_signature = { a: 'number' };
-error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@211 - Key 'a' was given to be a 'number' but was instead 'undefined'
+error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@211 - Key 'a' was given to be a 'number' but is 'undefined'
 check_type()
     ACTUAL TYPES 'object'
     ACTUAL VALUE {a:undefined}
@@ -808,7 +808,7 @@ test_pre_check_type_single(single_variable, single_signature, 5980, error_mess);
 
 single_variable  = { a: null };
 single_signature = { a: 'number' };
-error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@212 - Key 'a' was determined to be a 'number' but was instead 'null'
+error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@212 - Key 'a' was determined to be a 'number' but is 'null'
 check_type()
     ACTUAL TYPES 'object'
     ACTUAL VALUE {a:null}
@@ -819,7 +819,7 @@ test_pre_check_type_single(single_variable, single_signature, 5981, error_mess);
 // TE@217
 single_variable  = 'a-string';
 single_signature = ['number'];
-error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@217 - Comparing actual 'string' parameter, with a value of a-string, in relation to the expected shape of ["number"]. They should be the same type. You cannot compare an array with a non-array; both []s, or both 'string's. Or same object keys
+error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@217 - Comparing 'string' parameter, with a value of a-string, in relation to expected shape of ["number"]. They should be the same type. You cannot compare an array with a non-array; both []s, or both 'string's. Or same object keys
 check_type()
     ACTUAL TYPES 'string'
     ACTUAL VALUE "a-string"
@@ -834,7 +834,7 @@ test_pre_check_type_single(single_variable, single_signature, 5983, error_mess);
 
 single_variable  = Date;
 single_signature = 'bad-classname';
-error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@202 - The type 'bad-classname' is not the correct classname or not a scalar type
+error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@202 - Type 'bad-classname' is wrong classname or not a scalar
 check_type()
     ACTUAL TYPES 'function'
     ACTUAL VALUE function Date() { [native code ***
@@ -844,12 +844,12 @@ test_pre_check_type_single(single_variable, single_signature, 5984, error_mess);
 
 single_variable  = 'single_signature-not-string';
 single_signature = 12;
-error_mess = `TE@224 - TypeCzech.check_type() called with second parameter not a string such as 'number'. Matching 'single_signature-not-string' with '12'. Preferably try TypeCzech.check_type(12, 'number')`;
+error_mess = `TE@224 - check_type() called with 2nd param not a string such as 'number'. Matching 'single_signature-not-string' with '12'. Preferably try check_type(12, 'number')`;
 test_pre_check_type_single(single_variable, single_signature, 5985, error_mess);
 
 single_variable  = 'single_signature-null';
 single_signature = null;
-error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@220 - TypeCzech.check_type() called with a first parameter of string and a second shape parameter of null
+error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@220 - check_type() called with 1st param of string and 2nd shape param of null
 check_type()
     ACTUAL TYPES 'string'
     ACTUAL VALUE "single_signature-null"
@@ -859,7 +859,7 @@ test_pre_check_type_single(single_variable, single_signature, 5986, error_mess);
 
 single_variable  = 'single_signature-undefined';
 single_signature = undefined;
-error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@218 - TypeCzech.check_type() called with a first parameter of string and a second shape parameter of undefined
+error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@218 - check_type() called with 1st param of string and 2nd shape param of undefined
 check_type()
     ACTUAL TYPES 'string'
     ACTUAL VALUE "single_signature-undefined"

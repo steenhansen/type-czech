@@ -84,7 +84,7 @@ function _shapeContainer_17003(){
   var check_container =[ 13, 14, 15 ];                                                            
   var container_shape ={ r: "number" };  
   var exact_shape = 'TYPE-EXTRAS';     
-  var expect_error =  `TE@207 - Parameter is meant to be 'object' but is of the wrong type of 'array':[13,14,15]`; 
+  var expect_error =  `TE@207 - Param is meant to be 'object' but is of the wrong type of 'array':[13,14,15]`; 
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_container, container_shape);
         var actual_error = type_czech_test._shapeContainer(check_container, container_shape, exact_shape, type_czech._NOT_VARIAD_ARR_L_179);
@@ -282,7 +282,7 @@ function _shapeContainer_17102(){
   var check_container =[  {E:{B:[[1, 2],     [3, 4]]}},         {C:{D:[[8, false], [7, false]]}} ];                  
   var container_shape =  [  {A:{B:[["n", "n"], ["n", "n"]]}},     {C:{D:[['n', "b"], ['n', "b"]]}} ];       
   var exact_shape = 'TYPE-EXTRAS';     
-  var expect_error =   `TE@216 -  The key 'A', which has a type of '{B:[["n","n"],["n","n"]]}', is missing in the checked object`; 
+  var expect_error =   `TE@216 -  Key 'A', which has a type of '{B:[["n","n"],["n","n"]]}', is missing in the checked object`; 
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS' ); //           ,  'DEBUG-CONSOLE-TRACE'              );
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_container, container_shape);
         var actual_error = type_czech_test._shapeContainer(check_container, container_shape, exact_shape, type_czech._NOT_VARIAD_ARR_L_179);
@@ -307,7 +307,7 @@ function _shapeContainer_17103(){
   var check_container = [  {A:{E:[[1, 2],     [3, 4]]}},         {C:{D:[[8, false], [7, false]]}} ];     
   var container_shape = [  {A:{B:[["n", "n"], ["n", "n"]]}},     {C:{D:[['n', "b"], ['n', "b"]]}} ];     
   var exact_shape = 'TYPE-EXTRAS';     
-  var expect_error =   `TE@216 -  The key 'B', which has a type of '[["n","n"],["n","n"]]', is missing in the checked object`; 
+  var expect_error =   `TE@216 -  Key 'B', which has a type of '[["n","n"],["n","n"]]', is missing in the checked object`; 
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_container, container_shape);
         var actual_error = type_czech_test._shapeContainer(check_container, container_shape, exact_shape, type_czech._NOT_VARIAD_ARR_L_179);

@@ -71,7 +71,7 @@ test_pre_check_type_multi(multi_variable, multi_signature, 5802, error_mess);
 
 multi_variable  = [{ a: [1, 2, 3] }, { a: [1, 2, 3] }];
 multi_signature = [{ a: 'object' }, { a: 'object' }];
-error_mess = `PRE_test_05800() pre_check_type_05800() PRE-FUNC: TE@207 - Parameter is meant to be 'object' but is of the wrong type of 'array':[1,2,3]
+error_mess = `PRE_test_05800() pre_check_type_05800() PRE-FUNC: TE@207 - Param is meant to be 'object' but is of the wrong type of 'array':[1,2,3]
 check_type()
     ACTUAL TYPES 'array'
     ACTUAL VALUE [{a:[1,2,3]},{a:[1,2,3]}]
@@ -81,7 +81,7 @@ test_pre_check_type_multi(multi_variable, multi_signature, 5803, error_mess);
 
 multi_variable  = [ [13, 14, 15], [13, 14, 15] ];
 multi_signature = [ { r: 'number' }, { r: 'number' } ];
-error_mess = `PRE_test_05800() pre_check_type_05800() PRE-FUNC: TE@207 - Parameter is meant to be 'object' but is of the wrong type of 'array':[13,14,15]
+error_mess = `PRE_test_05800() pre_check_type_05800() PRE-FUNC: TE@207 - Param is meant to be 'object' but is of the wrong type of 'array':[13,14,15]
 check_type()
     ACTUAL TYPES 'array'
     ACTUAL VALUE [[13,14,15],[13,14,15]]
@@ -91,7 +91,7 @@ test_pre_check_type_multi(multi_variable, multi_signature, 5804, error_mess);
 
 multi_variable  = [ { r: 'a-string' }, { r: 'a-string' } ];
 multi_signature = [ ['number'], ['number'] ];
-error_mess = `PRE_test_05800() pre_check_type_05800() PRE-FUNC: TE@207 - Parameter is meant to be 'array' but is of the wrong type of 'object':{"r":"a-string"}
+error_mess = `PRE_test_05800() pre_check_type_05800() PRE-FUNC: TE@207 - Param is meant to be 'array' but is of the wrong type of 'object':{"r":"a-string"}
 check_type()
     ACTUAL TYPES 'array'
     ACTUAL VALUE [{r:"a-string"},{r:"a-string"}]
@@ -118,7 +118,7 @@ test_pre_check_type_multi(multi_variable, multi_signature, 5807, error_mess);
 
 multi_variable  = [ { a: [{ r: [ [123],   [1, 2, 3],  987n,     false,     new Date('1999-12-12'), (x) => x,   12,       { a: 3 }, { b: 4 },         /d/,      'abc',    Symbol('sym') ] }] }, { a: [{ r: [ [123],   'A-STRING ! ! !',  987n,     false,     new Date('1999-12-12'), (x) => x,   12,       { a: 3 }, { b: 4 },         /d/,      'abc',    Symbol('sym')   ] }] } ];
 multi_signature = [ { a: [{ r: [ 'array', ['number'], 'bigint', 'boolean', 'date',                 'function', 'number', 'object', { b: 'number' }, 'regexp', 'string', 'symbol'       ] }] }, { a: [{ r: [ 'array', ['number'],        'bigint', 'boolean', 'date',                 'function', 'number', 'object', { b: 'number' }, 'regexp', 'string', 'symbol'        ] }] } ];
-error_mess = ` PRE_test_05800() pre_check_type_05800() PRE-FUNC: TE@207 - Parameter is meant to be 'array' but is of the wrong type of 'string':A-STRING ! ! !
+error_mess = ` PRE_test_05800() pre_check_type_05800() PRE-FUNC: TE@207 - Param is meant to be 'array' but is of the wrong type of 'string':A-STRING ! ! !
 check_type()
     ACTUAL TYPES 'array'
     ACTUAL VALUE [{a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ***,12,{a:3},{b:4},/d/ +++,"abc",Symbol('sym')]}]},{a:[{r:[[123],"A-STRING ! ! !",987n,false,1999-12-12T00:00:00.000Z,(x) => x ***,12,{a:3},{b:4},/d/ +++,"abc",Symbol('sym')]}]}]
@@ -188,7 +188,7 @@ test_pre_check_type_multi(multi_variable, multi_signature, 5814, error_mess);
 
 multi_variable  = [ { a: [{ r: [ [123],   [1, 2, 3],  987n,     false,     new Date('1999-12-12'), (x) => x,   12,       { a: 3 }, { b: 4 },        /d/,      'abc',    Symbol('sym') ] }] }, { a: [{ r: [ [123],   [1, 2, 3],  987n,     false,     new Date('1999-12-12'), (x) => x,   12,       { a: 3 }, 'A-STRING ! ! !', /d/,      'abc',    Symbol('sym')   ] }] } ];
 multi_signature = [ { a: [{ r: [ 'array', ['number'], 'bigint', 'boolean', 'date',                 'function', 'number', 'object', { b: 'number' }, 'regexp', 'string', 'symbol'      ] }] }, { a: [{ r: [ 'array', ['number'], 'bigint', 'boolean', 'date',                 'function', 'number', 'object', { b: 'number' },  'regexp', 'string', 'symbol'        ] }] } ];
-error_mess = `PRE_test_05800() pre_check_type_05800() PRE-FUNC: TE@207 - Parameter is meant to be 'object' but is of the wrong type of 'string':A-STRING ! ! !
+error_mess = `PRE_test_05800() pre_check_type_05800() PRE-FUNC: TE@207 - Param is meant to be 'object' but is of the wrong type of 'string':A-STRING ! ! !
 check_type()
     ACTUAL TYPES 'array'
     ACTUAL VALUE [{a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ***,12,{a:3},{b:4},/d/ +++,"abc",Symbol('sym')]}]},{a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ***,12,{a:3},"A-STRING ! ! !",/d/ +++,"abc",Symbol('sym')]}]}]
@@ -342,7 +342,7 @@ test_pre_check_type_multi(multi_variable, multi_signature, 5830, error_mess);
 
 multi_variable  = [ [  [[[[[[ 1        ]]]]]]  ],    [[[[[[ 1        ]]]]]]    ];
 multi_signature = [ [  [[[[[[ 'number' ]]]]]]  ], [  [[[[[[ 'number' ]]]]]]  ] ];
-error_mess = ` PRE_test_05800() pre_check_type_05800() PRE-FUNC: TE@207 - Parameter is meant to be 'array' but is of the wrong type of 'number':1
+error_mess = ` PRE_test_05800() pre_check_type_05800() PRE-FUNC: TE@207 - Param is meant to be 'array' but is of the wrong type of 'number':1
 check_type()
     ACTUAL TYPES 'array'
     ACTUAL VALUE [[[[[[[[1]]]]]]],[[[[[[1]]]]]]]
@@ -379,7 +379,7 @@ test_pre_check_type_multi(multi_variable, multi_signature, 5834, error_mess);
 
 multi_variable  = [ { a: { b: { c: { d: { e: 12       } } } } }, { a: { b: { c: { d: 12              } } } } ];
 multi_signature = [ { a: { b: { c: { d: { e: 'number' } } } } }, { a: { b: { c: { d: { e: 'number' } } } } } ];
-error_mess = `PRE_test_05800() pre_check_type_05800() PRE-FUNC: TE@210 - The type '{"e":"number"}' is not a real type
+error_mess = `PRE_test_05800() pre_check_type_05800() PRE-FUNC: TE@210 - Type '{"e":"number"}' is not a real type
 check_type()
     ACTUAL TYPES 'array'
     ACTUAL VALUE [{a:{b:{c:{d:{e:12}}}}},{a:{b:{c:{d:12}}}}]
@@ -389,7 +389,7 @@ test_pre_check_type_multi(multi_variable, multi_signature, 5835, error_mess);
 
 multi_variable  = [ { a: { b: { c: { d: 12       } } } }, { a: { b: { c: { d: { e: 12 }   } } } } ];
 multi_signature = [ { a: { b: { c: { d: 'number' } } } }, { a: { b: { c: { d: 'number'    } } } } ];
-error_mess = `PRE_test_05800() pre_check_type_05800() PRE-FUNC: TE@207 - Parameter is meant to be 'number' but is of the wrong type of 'object':{"e":12}
+error_mess = `PRE_test_05800() pre_check_type_05800() PRE-FUNC: TE@207 - Param is meant to be 'number' but is of the wrong type of 'object':{"e":12}
 check_type()
     ACTUAL TYPES 'array'
     ACTUAL VALUE [{a:{b:{c:{d:12}}}},{a:{b:{c:{d:{e:12}}}}}]
@@ -416,7 +416,7 @@ test_pre_check_type_multi(multi_variable, multi_signature, 5838, error_mess);
 
 multi_variable  = [ { a: [ { b: [ { c: [ { d: [ { e: 12 }       ] } ] } ] } ] }, { a: [ { b: [ { c: [ { d: [ 12              ] } ] } ] } ] } ];
 multi_signature = [ { a: [ { b: [ { c: [ { d: [ { e: 'number' } ] } ] } ] } ] }, { a: [ { b: [ { c: [ { d: [ { e: 'number' } ] } ] } ] } ] } ];
-error_mess = `PRE_test_05800() pre_check_type_05800() PRE-FUNC: TE@207 - Parameter is meant to be 'object' but is of the wrong type of 'number':12
+error_mess = `PRE_test_05800() pre_check_type_05800() PRE-FUNC: TE@207 - Param is meant to be 'object' but is of the wrong type of 'number':12
 check_type()
     ACTUAL TYPES 'array'
     ACTUAL VALUE [{a:[{b:[{c:[{d:[{e:12}]}]}]}]},{a:[{b:[{c:[{d:[12]}]}]}]}]
@@ -453,7 +453,7 @@ test_pre_check_type_multi(multi_variable, multi_signature, 5842, error_mess);
 
 multi_variable  = [ [ { a: [ { b: [ { c: [ { d: [ { e: 12       } ] } ] } ] } ] } ], [ { a: [ { b: [ { c: [ { d: [ 12              ] } ] } ] } ] } ] ];
 multi_signature = [ [ { a: [ { b: [ { c: [ { d: [ { e: 'number' } ] } ] } ] } ] } ], [ { a: [ { b: [ { c: [ { d: [ { e: 'number' } ] } ] } ] } ] } ] ];
-error_mess = `PRE_test_05800() pre_check_type_05800() PRE-FUNC: TE@207 - Parameter is meant to be 'object' but is of the wrong type of 'number':12
+error_mess = `PRE_test_05800() pre_check_type_05800() PRE-FUNC: TE@207 - Param is meant to be 'object' but is of the wrong type of 'number':12
 check_type()
     ACTUAL TYPES 'array'
     ACTUAL VALUE [[{a:[{b:[{c:[{d:[{e:12}]}]}]}]}],[{a:[{b:[{c:[{d:[12]}]}]}]}]]
@@ -490,7 +490,7 @@ test_pre_check_type_multi(multi_variable, multi_signature, 5846, error_mess);
 
 multi_variable  = [ [ { a: { b: [[ { c: { d: [[ 1        ]] } } ]] } } ],   [ { a: { b: [[ { c: { d: [[ 1        ]] } } ]] } } ]   ];
 multi_signature = [ [ { a: { b: [[ { c: { d: [[ 'number' ]] } } ]] } } ], [ [ { a: { b: [[ { c: { d: [[ 'number' ]] } } ]] } } ] ] ];
-error_mess = `PRE_test_05800() pre_check_type_05800() PRE-FUNC: TE@207 - Parameter is meant to be 'array' but is of the wrong type of 'object':{"a":{"b":[[{"c":{"d":[[1]]}}]]}}
+error_mess = `PRE_test_05800() pre_check_type_05800() PRE-FUNC: TE@207 - Param is meant to be 'array' but is of the wrong type of 'object':{"a":{"b":[[{"c":{"d":[[1]]}}]]}}
 check_type()
     ACTUAL TYPES 'array'
     ACTUAL VALUE [[{a:{b:[[{c:{d:[[1]]}}]]}}],[{a:{b:[[{c:{d:[[1]]}}]]}}]]
@@ -500,7 +500,7 @@ test_pre_check_type_multi(multi_variable, multi_signature, 5847, error_mess);
 
 multi_variable  = [ [ { a: { b: [[ { c: { d: [[ 1        ]] } } ]] } } ], [ [ { a: { b: [[ { c: { d: [[ 1        ]] } } ]] } } ] ] ];
 multi_signature = [ [ { a: { b: [[ { c: { d: [[ 'number' ]] } } ]] } } ],   [ { a: { b: [[ { c: { d: [[ 'number' ]] } } ]] } } ]   ];
-error_mess = `PRE_test_05800() pre_check_type_05800() PRE-FUNC: TE@207 - Parameter is meant to be 'object' but is of the wrong type of 'array':[{"a":{"b":[[{"c":{"d":[[1]]}}]]}}]
+error_mess = `PRE_test_05800() pre_check_type_05800() PRE-FUNC: TE@207 - Param is meant to be 'object' but is of the wrong type of 'array':[{"a":{"b":[[{"c":{"d":[[1]]}}]]}}]
 check_type()
     ACTUAL TYPES 'array'
     ACTUAL VALUE [[{a:{b:[[{c:{d:[[1]]}}]]}}],[[{a:{b:[[{c:{d:[[1]]}}]]}}]]]
@@ -527,7 +527,7 @@ test_pre_check_type_multi(multi_variable, multi_signature, 5850, error_mess);
 
 multi_variable  = [ { b: [[ { c: { d: [[ 1        ]] } } ]] },      { b: [[ { c: { d: [[ 1        ]] } } ]] }   ];
 multi_signature = [ { b: [[ { c: { d: [[ 'number' ]] } } ]] }, { a: { b: [[ { c: { d: [[ 'number' ]] } } ]] } } ];
-error_mess = `PRE_test_05800() pre_check_type_05800() PRE-FUNC: TE@216 -  The key 'a', which has a type of '{b:[[{c:{d:[["number"]]}}]]}', is missing in the checked object
+error_mess = `PRE_test_05800() pre_check_type_05800() PRE-FUNC: TE@216 -  Key 'a', which has a type of '{b:[[{c:{d:[["number"]]}}]]}', is missing in the checked object
 check_type()
     ACTUAL TYPES 'array'
     ACTUAL VALUE [{b:[[{c:{d:[[1]]}}]]},{b:[[{c:{d:[[1]]}}]]}]
@@ -537,7 +537,7 @@ test_pre_check_type_multi(multi_variable, multi_signature, 5851, error_mess);
 
 multi_variable  = [ { b: [[ { c: { d: [[ 1        ]] } } ]] }, { a: { b: [[ { c: { d: [[ 1        ]] } } ]] } } ];
 multi_signature = [ { b: [[ { c: { d: [[ 'number' ]] } } ]] },      { b: [[ { c: { d: [[ 'number' ]] } } ]] }   ];
-error_mess = `PRE_test_05800() pre_check_type_05800() PRE-FUNC: TE@216 -  The key 'b', which has a type of '[[{c:{d:[["number"]]}}]]', is missing in the checked object
+error_mess = `PRE_test_05800() pre_check_type_05800() PRE-FUNC: TE@216 -  Key 'b', which has a type of '[[{c:{d:[["number"]]}}]]', is missing in the checked object
 check_type()
     ACTUAL TYPES 'array'
     ACTUAL VALUE [{b:[[{c:{d:[[1]]}}]]},{a:{b:[[{c:{d:[[1]]}}]]}}]
@@ -706,7 +706,7 @@ test_pre_check_type_multi(multi_variable, multi_signature, 5874, error_mess);
 
 multi_variable  = [ { an_object: 'robot-sub' }, 'not-object' ];
 multi_signature = [ { an_object: 'string'    }, { an_object: 'Boaty-McBoatFace' } ];
-error_mess = `PRE_test_05800() pre_check_type_05800() PRE-FUNC: TE@207 - Parameter is meant to be 'object' but is of the wrong type of 'string':not-object
+error_mess = `PRE_test_05800() pre_check_type_05800() PRE-FUNC: TE@207 - Param is meant to be 'object' but is of the wrong type of 'string':not-object
 check_type()
     ACTUAL TYPES 'array'
     ACTUAL VALUE [{an_object:"robot-sub"},"not-object"]
@@ -716,7 +716,7 @@ test_pre_check_type_multi(multi_variable, multi_signature, 5875, error_mess);
 
 multi_variable  = [ 'a-string', 'a-string' ];
 multi_signature = [ 'string',   'null' ];
-error_mess = `PRE_test_05800() pre_check_type_05800() PRE-FUNC: TE@204 -  ELEMENT '1' type is invalid 'null'
+error_mess = `PRE_test_05800() pre_check_type_05800() PRE-FUNC: TE@204 -  ELEMENT '1' type is 'null'
 check_type()
     ACTUAL TYPES 'array'
     ACTUAL VALUE ["a-string","a-string"]
@@ -726,7 +726,7 @@ test_pre_check_type_multi(multi_variable, multi_signature, 5876, error_mess);
 
 multi_variable  = [ 91,       92 ];
 multi_signature = [ 'number', 'undefined' ];
-error_mess = `PRE_test_05800() pre_check_type_05800() PRE-FUNC: TE@229 -  ELEMENT '1' type is invalid 'undefined'
+error_mess = `PRE_test_05800() pre_check_type_05800() PRE-FUNC: TE@229 -  ELEMENT '1' type is 'undefined'
 check_type()
     ACTUAL TYPES 'array'
     ACTUAL VALUE [91,92]
@@ -756,7 +756,7 @@ test_pre_check_type_multi(multi_variable, multi_signature, 5879, error_mess);
 
 multi_variable  = [ { a: 1011 },     { a: undefined } ];
 multi_signature = [ { a: 'number' }, { a: 'number' } ];
-error_mess = `PRE_test_05800() pre_check_type_05800() PRE-FUNC: TE@211 - Key 'a' was given to be a 'number' but was instead 'undefined'
+error_mess = `PRE_test_05800() pre_check_type_05800() PRE-FUNC: TE@211 - Key 'a' was given to be a 'number' but is 'undefined'
 check_type()
     ACTUAL TYPES 'array'
     ACTUAL VALUE [{a:1011},{a:undefined}]
@@ -766,7 +766,7 @@ test_pre_check_type_multi(multi_variable, multi_signature, 5880, error_mess);
 
 multi_variable  = [ { a: 1213 },     { a: null } ];
 multi_signature = [ { a: 'number' }, { a: 'number' } ];
-error_mess = `PRE_test_05800() pre_check_type_05800() PRE-FUNC: TE@212 - Key 'a' was determined to be a 'number' but was instead 'null'
+error_mess = `PRE_test_05800() pre_check_type_05800() PRE-FUNC: TE@212 - Key 'a' was determined to be a 'number' but is 'null'
 check_type()
     ACTUAL TYPES 'array'
     ACTUAL VALUE [{a:1213},{a:null}]
@@ -776,7 +776,7 @@ test_pre_check_type_multi(multi_variable, multi_signature, 5881, error_mess);
 
 multi_variable  = [ 14,        'a-string' ];
 multi_signature = [ 'number', ['number'] ];
-error_mess = `PRE_test_05800() pre_check_type_05800() PRE-FUNC: TE@207 - Parameter is meant to be 'array' but is of the wrong type of 'string':a-string
+error_mess = `PRE_test_05800() pre_check_type_05800() PRE-FUNC: TE@207 - Param is meant to be 'array' but is of the wrong type of 'string':a-string
 check_type()
     ACTUAL TYPES 'array'
     ACTUAL VALUE [14,"a-string"]
@@ -801,7 +801,7 @@ test_pre_check_type_multi(multi_variable, multi_signature, 5884, error_mess);
 
 multi_variable  = [ 'multi_signature-not-string', 'multi_signature-not-string' ];
 multi_signature = [ 'string',                     12 ];
-error_mess = `PRE_test_05800() pre_check_type_05800() PRE-FUNC: TE@232 -  ELEMENT '1' type is invalid as it is not a string but instead 12
+error_mess = `PRE_test_05800() pre_check_type_05800() PRE-FUNC: TE@232 -  ELEMENT '1' type is not a string but instead 12
 check_type()
     ACTUAL TYPES 'array'
     ACTUAL VALUE ["multi_signature-not-string","multi_signature-not-string"]
@@ -811,7 +811,7 @@ test_pre_check_type_multi(multi_variable, multi_signature, 5885, error_mess);
 
 multi_variable  = [ 'multi_signature-null', 'multi_signature-null' ];
 multi_signature = [ 'string', null ];
-error_mess = `PRE_test_05800() pre_check_type_05800() PRE-FUNC: TE@232 -  ELEMENT '1' type is invalid as it is not a string but instead null
+error_mess = `PRE_test_05800() pre_check_type_05800() PRE-FUNC: TE@232 -  ELEMENT '1' type is not a string but instead null
 check_type()
     ACTUAL TYPES 'array'
     ACTUAL VALUE ["multi_signature-null","multi_signature-null"]
@@ -821,7 +821,7 @@ test_pre_check_type_multi(multi_variable, multi_signature, 5886, error_mess);
 
 multi_variable  = [ 'multi_signature-undefined', 'multi_signature-undefined' ];
 multi_signature = [ 'string', undefined ];
-error_mess = `PRE_test_05800() pre_check_type_05800() PRE-FUNC: TE@232 -  ELEMENT '1' type is invalid as it is not a string but instead undefined
+error_mess = `PRE_test_05800() pre_check_type_05800() PRE-FUNC: TE@232 -  ELEMENT '1' type is not a string but instead undefined
 check_type()
     ACTUAL TYPES 'array'
     ACTUAL VALUE ["multi_signature-undefined","multi_signature-undefined"]

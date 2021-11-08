@@ -576,7 +576,7 @@ function check_type_05005(){
   var check_param = {0:[{}], length:1};
   var check_shape = 'object';          
   var expect_error = [`check_type()`,
-  `TE@225 - The value '[]', which is a 'array', is not a 'object'`,
+  `TE@225 - The value [], an 'array', is not a 'object'`,
   `object`];
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
@@ -670,7 +670,7 @@ function check_type_05009(){
   var check_param = null;
   var check_shape = 'null'; 
   var expect_error = [`check_type()`,
-  `TE@203 - The type 'null' is not a valid check_type(), check_typeEither(), or check_typeExtra() second parameter type`,
+  `TE@203 - The type 'null' is not a valid check_type(), check_typeEither(), or check_typeExtra() 2nd parameter type`,
   `null`];
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
@@ -693,7 +693,7 @@ function check_type_05010(){
   var check_param = null;
   var check_shape = 'null'; 
   var expect_error = [`check_type()`,
-  `TE@203 - The type 'null' is not a valid check_type(), check_typeEither(), or check_typeExtra() second parameter type`,
+  `TE@203 - The type 'null' is not a valid check_type(), check_typeEither(), or check_typeExtra() 2nd parameter type`,
   `null`];
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
@@ -715,7 +715,7 @@ function check_type_05011(){
   var check_param = { a: [ { b:[ {c:'abcdef'} ] } ],  z:null};
   var check_shape = { a: [ { b:[ {c:'string'} ] } ], z: 'null'};   
   var expect_error = [`check_type()`,
-  `TE@210 - The type 'null' is not a real type`,
+  `TE@210 - Type 'null' is not a real type`,
   `{a:[{b:[{c:"string"}]}],z:"null"}`];
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
@@ -737,7 +737,7 @@ function check_type_05012(){
   var check_param = {0:['a-string'], length:1};
   var check_shape = 'string';  
   var expect_error = ['check_type()',
-  "TE@225 - The value '[]', which is a 'array', is not a 'string'",
+  "TE@225 - The value [], an 'array', is not a 'string'",
   'string'];
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
@@ -761,7 +761,7 @@ function check_type_05013(){
   var check_param = [['a-string']];
   var check_shape = 'string';  
   var expect_error = [`check_type()`,
-  `TE@225 - The value '[]', which is a 'array', is not a 'string'`,
+  `TE@225 - The value [], an 'array', is not a 'string'`,
   `string`];
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
@@ -785,7 +785,7 @@ function check_type_05014(){
   var check_param = 'a-string';
   var check_shape = ['string'];  
   var expect_error = [`check_type()`,
-  `TE@217 - Comparing actual 'string' parameter, with a value of a-string, in relation to the expected shape of ["string"]. They should be the same type. You cannot compare an array with a non-array; both []s, or both 'string's. Or same object keys`,
+  `TE@217 - Comparing 'string' parameter, with a value of a-string, in relation to expected shape of ["string"]. They should be the same type. You cannot compare an array with a non-array; both []s, or both 'string's. Or same object keys`,
   `['string']`];
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);

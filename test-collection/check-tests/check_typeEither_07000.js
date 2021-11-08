@@ -96,7 +96,7 @@ function check_typeEither_07001(){
   var TYPE_CZECH_current_test_number = '07001';       
   var check_param =  {};
   var check_shape =   {a:1};           
-  var expect_error =  `ME@402 - TypeCzech.check_typeEither() called with a second parameter as a non-array shape of {"a":1}`;  
+  var expect_error =  `ME@402 - check_typeEither() called with a 2nd parameter as a non-array shape of {"a":1}`;  
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.check_typeEither(check_param, check_shape);
@@ -117,7 +117,7 @@ function check_typeEither_07002(){
   var TYPE_CZECH_current_test_number = '07002';       
   var check_param =  177;
   var check_shape =  ["string"];            
-  var expect_error =   `UE@701 - TypeCzech.check_typeEither()  needs at least 2 choices for an Either, not 1 of ["string"]`;
+  var expect_error =   `UE@701 - check_typeEither()  needs at least 2 choices for an Either, not 1 of ["string"]`;
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.check_typeEither(check_param, check_shape);

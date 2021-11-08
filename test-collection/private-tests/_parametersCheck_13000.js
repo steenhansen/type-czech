@@ -28,7 +28,7 @@ function _ParametersCheck_13001(){
       return out_of_scope_exception;
     }
   }
-  expect_error ="EX@105 - The first parameter to TypeCzech.linkUp(), target_proxy is not a function, but is instead undefined";
+  expect_error ="EX@105 - 1st param to linkUp(), target_proxy is not a function, but is instead undefined";
         var actual_error;
         try {
           actual_error=get_out_of_scope_err();

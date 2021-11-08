@@ -152,7 +152,7 @@ function check_interface_02003(){
   var check_param =  {show: 17};
   var check_shape =   {show:'function'};           
   var expect_error =  ["check_interface()",
-  "IE@502 - actual type of 'show' is 'number', with a value of '17', not the expected 'function' type",
+  "IE@502 - Actual type of 'show' is 'number', with a value of '17', not the expected 'function' type",
   '{show:"function"}'];
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);

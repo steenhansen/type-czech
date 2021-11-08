@@ -14,11 +14,11 @@ minify:
 
   1  remove debugging code 191 instances                consolelog[^;]*;   ==> ''
 
-  4  save as TypeCzech.no-debug.js
+  2  save as TypeCzech.no-debug.js
 
-  5  npx google-closure-compiler --language_out ECMASCRIPT_2020 --js=TypeCzech.no-debug.js --js_output_file=TypeCzech.min.js
+  3  npx google-closure-compiler --language_out ECMASCRIPT_2020 --js=TypeCzech.no-debug.js --js_output_file=TypeCzech.min.js
 
-  6  copy TypeCzech.min.js to /web-resources/
+  4  copy TypeCzech.min.js to /web-resources/
 
 
 
@@ -29,3 +29,4 @@ ECMASCRIPT_2020
 ECMASCRIPT_2021   crashes in my NodeJs v14.14.0
 
 
+29.1 KB (29,859 bytes)

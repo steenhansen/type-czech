@@ -67,7 +67,7 @@ test_pre_check_typeEither_single(single_variable, single_signature, 7902, error_
 
 single_variable  = 'a-string';
 single_signature = [ 'string'];
-error_mess = 'UE@701 - TypeCzech.check_typeEither()  needs at least 2 choices for an Either, not 1 of ["string"]';
+error_mess = 'UE@701 - check_typeEither()  needs at least 2 choices for an Either, not 1 of ["string"]';
 test_pre_check_typeEither_single(single_variable, single_signature, 7903, error_mess);
 
 single_variable  = false;
@@ -82,7 +82,7 @@ test_pre_check_typeEither_single(single_variable, single_signature, 7904, error_
 
 single_variable  = 'a-string';
 single_signature = 'string';
-error_mess = 'ME@402 - TypeCzech.check_typeEither() called with a second parameter as a non-array shape of string';
+error_mess = 'ME@402 - check_typeEither() called with a 2nd parameter as a non-array shape of string';
 test_pre_check_typeEither_single(single_variable, single_signature, 7905, error_mess);
 
 single_variable  = 'asd';

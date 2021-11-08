@@ -71,7 +71,7 @@ test_pre_check_interface(variable, signature, 2902, error_mess);
 
 variable  = { show: (x) => x };
 signature = { show: 'number' };
-error_mess = `PRE_test_02900() pre_check_interface_02900() PRE-FUNC: IE@502 - actual type of 'show' is 'function', with a value of '(x) => x ***', not the expected 'number' type
+error_mess = `PRE_test_02900() pre_check_interface_02900() PRE-FUNC: IE@502 - Actual type of 'show' is 'function', with a value of '(x) => x ***', not the expected 'number' type
 check_interface()
     ACTUAL TYPES 'object'
     ACTUAL VALUE {show:(x) => x ***}
@@ -81,7 +81,7 @@ test_pre_check_interface(variable, signature, 2903, error_mess);
 
 variable  = { show: 12 };
 signature = { show: 'function' };
-error_mess = `PRE_test_02900() pre_check_interface_02900() PRE-FUNC: IE@502 - actual type of 'show' is 'number', with a value of '12', not the expected 'function' type
+error_mess = `PRE_test_02900() pre_check_interface_02900() PRE-FUNC: IE@502 - Actual type of 'show' is 'number', with a value of '12', not the expected 'function' type
 check_interface()
     ACTUAL TYPES 'object'
     ACTUAL VALUE {show:12}

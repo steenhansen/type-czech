@@ -115,7 +115,7 @@ test_pre_check_empty_multi(multi_variable, multi_signature, 3807, error_mess);
 
 multi_variable  = [ { a: [{ r: [ [123],         [1, 2, 3],       987n,          false,         new Date('1999-12-12'), (x) => x,      12,            { a: 3 },      { b: 4 },             /d/,           'abc',         Symbol('sym') ] }] }, { a: [{ r: [ [123],         [],              987n,          false,         new Date('1999-12-12'), (x) => x,      12,            { a: 3 },      { b: 4 },             /d/,           'abc',         Symbol('sym') ] }] } ];
 multi_signature = [ { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] }, { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] } ];
-error_mess = `PRE_test_3800() pre_check_empty_3800() PRE-FUNC: ME@403 - The parameter array [] is empty
+error_mess = `PRE_test_3800() pre_check_empty_3800() PRE-FUNC: ME@403 - Param array [] is empty
 check_empty()
     ACTUAL TYPES 'array'
     ACTUAL VALUE [{a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ***,12,{a:3},{b:4},/d/ +++,"abc",Symbol('sym')]}]},{a:[{r:[[123],[],987n,false,1999-12-12T00:00:00.000Z,(x) => x ***,12,{a:3},{b:4},/d/ +++,"abc",Symbol('sym')]}]}]
@@ -323,7 +323,7 @@ test_pre_check_empty_multi(multi_variable, multi_signature, 3834, error_mess);
 /* Cannot change as check_emptyExtra() and check_typeExtra() rely on this behavior, Star Fleet can fix it */
 multi_variable  = [ { a: { b: { c: { d: 12            } } } }, { a: { b: { c: { d: 12                   } } } } ];
 multi_signature = [ { a: { b: { c: { d: 'EMPTY-OK' } } } }, { a: { b: { c: { d: { e: 'EMPTY-ERROR' } } } } } ];
-error_mess = `PRE_test_3800() pre_check_empty_3800() PRE-FUNC: EE@303 - Bad empty type key, '{e:"EMPTY-ERROR"}', must be either 'EMPTY-OK', 'EMPTY-ER', 'EMPTY-IG', 'OK', 'ER', or 'IG'
+error_mess = `PRE_test_3800() pre_check_empty_3800() PRE-FUNC: EE@303 - Bad empty type key, '{e:"EMPTY-ERROR"}', must be either 'EMPTY-OK','EMPTY-ER','EMPTY-IG','OK','ER','IG'
 check_empty()
     ACTUAL TYPES 'array'
     ACTUAL VALUE [{a:{b:{c:{d:12}}}},{a:{b:{c:{d:12}}}}]
@@ -355,7 +355,7 @@ test_pre_check_empty_multi(multi_variable, multi_signature, 3838, error_mess);
 
 multi_variable  = [ { a: [ { b: [ { c: [ { d: [ ''         ] } ] } ] } ] },  { a: [ { b: [ { c: [ { d: [ ''                   ] } ] } ] } ] } ];
 multi_signature = [ { a: [ { b: [ { c: [ { d: [ 'EMPTY-OK' ] } ] } ] } ] },  { a: [ { b: [ { c: [ { d: [ { e: 'EMPTY-ERROR' } ] } ] } ] } ] } ];
-error_mess = `PRE_test_3800() pre_check_empty_3800() PRE-FUNC: TE@216 -  The key 'e', which has a type of 'EMPTY-ERROR', is missing in the checked object
+error_mess = `PRE_test_3800() pre_check_empty_3800() PRE-FUNC: TE@216 -  Key 'e', which has a type of 'EMPTY-ERROR', is missing in the checked object
 check_empty()
     ACTUAL TYPES 'array'
     ACTUAL VALUE [{a:[{b:[{c:[{d:[""]}]}]}]},{a:[{b:[{c:[{d:[""]}]}]}]}]
@@ -387,7 +387,7 @@ test_pre_check_empty_multi(multi_variable, multi_signature, 3842, error_mess);
 
 multi_variable  = [  [ { a: [ { b: [ { c: [ { d: [ 12         ] } ] } ] } ] } ],  [ { a: [ { b: [ { c: [ { d: [ 12              ] } ] } ] } ] } ]  ];
 multi_signature = [  [ { a: [ { b: [ { c: [ { d: [ 'EMPTY-OK' ] } ] } ] } ] } ],  [ { a: [ { b: [ { c: [ { d: [ { e: 'EMPTY-ERROR' } ] } ] } ] } ] } ]  ];
-error_mess = `PRE_test_3800() pre_check_empty_3800() PRE-FUNC: TE@216 -  The key 'e', which has a type of 'EMPTY-ERROR', is missing in the checked object
+error_mess = `PRE_test_3800() pre_check_empty_3800() PRE-FUNC: TE@216 -  Key 'e', which has a type of 'EMPTY-ERROR', is missing in the checked object
 check_empty()
     ACTUAL TYPES 'array'
     ACTUAL VALUE [[{a:[{b:[{c:[{d:[12]}]}]}]}],[{a:[{b:[{c:[{d:[12]}]}]}]}]]
@@ -429,7 +429,7 @@ test_pre_check_empty_multi(multi_variable, multi_signature, 3847, error_mess);
 
 multi_variable  = [  [ [ { a: { b: [[ { c: { d: [[ ''         ]] } } ]] } } ] ], [ [ { a: { b: [[ { c: { d: [[ ''            ]] } } ]] } } ] ]  ];
 multi_signature = [    [ { a: { b: [[ { c: { d: [[ 'EMPTY-OK' ]] } } ]] } } ],   [ { a: { b: [[ { c: { d: [[ 'EMPTY-ERROR' ]] } } ]] } } ]    ];
-error_mess = `PRE_test_3800() pre_check_empty_3800() PRE-FUNC: TE@216 -  The key 'a', which has a type of '{b:[[{c:{d:[["EMPTY-OK"]]}}]]}', is missing in the checked object
+error_mess = `PRE_test_3800() pre_check_empty_3800() PRE-FUNC: TE@216 -  Key 'a', which has a type of '{b:[[{c:{d:[["EMPTY-OK"]]}}]]}', is missing in the checked object
 check_empty()
     ACTUAL TYPES 'array'
     ACTUAL VALUE [[[{a:{b:[[{c:{d:[[""]]}}]]}}]],[[{a:{b:[[{c:{d:[[""]]}}]]}}]]]
@@ -456,7 +456,7 @@ test_pre_check_empty_multi(multi_variable, multi_signature, 3850, error_mess);
 
 multi_variable  = [      { b: [[ { c: { d: [[ ''         ]] } } ]] },         { b: [[ { c: { d: [[ ''            ]] } } ]] }      ];
 multi_signature = [ { a: { b: [[ { c: { d: [[ 'EMPTY-OK' ]] } } ]] } },  { a: { b: [[ { c: { d: [[ 'EMPTY-ERROR' ]] } } ]] }  }   ];
-error_mess = `PRE_test_3800() pre_check_empty_3800() PRE-FUNC: TE@216 -  The key 'a', which has a type of '{b:[[{c:{d:[["EMPTY-OK"]]}}]]}', is missing in the checked object
+error_mess = `PRE_test_3800() pre_check_empty_3800() PRE-FUNC: TE@216 -  Key 'a', which has a type of '{b:[[{c:{d:[["EMPTY-OK"]]}}]]}', is missing in the checked object
 check_empty()
     ACTUAL TYPES 'array'
     ACTUAL VALUE [{b:[[{c:{d:[[""]]}}]]},{b:[[{c:{d:[[""]]}}]]}]
@@ -466,7 +466,7 @@ test_pre_check_empty_multi(multi_variable, multi_signature, 3851, error_mess);
 
 multi_variable  = [  { a: { b: [[ { c: { d: [[ ''          ]] } } ]] } },  { a: { b: [[ { c: { d: [[ ''            ]] } } ]] } }  ];
 multi_signature = [       { b: [[ { c: { d: [[ 'EMPTY-EOK' ]] } } ]] },         { b: [[ { c: { d: [[ 'EMPTY-ERROR' ]] } } ]] }    ];
-error_mess = `PRE_test_3800() pre_check_empty_3800() PRE-FUNC: TE@216 -  The key 'b', which has a type of '[[{c:{d:[["EMPTY-EOK"]]}}]]', is missing in the checked object
+error_mess = `PRE_test_3800() pre_check_empty_3800() PRE-FUNC: TE@216 -  Key 'b', which has a type of '[[{c:{d:[["EMPTY-EOK"]]}}]]', is missing in the checked object
 check_empty()
     ACTUAL TYPES 'array'
     ACTUAL VALUE [{a:{b:[[{c:{d:[[""]]}}]]}},{a:{b:[[{c:{d:[[""]]}}]]}}]
@@ -517,7 +517,7 @@ test_pre_check_empty_multi(multi_variable, multi_signature, 3856, error_mess);
 
 multi_variable  = [  [], [] ];
 multi_signature = [  'EMPTY-OK',  ['EMPTY-OK']  ];
-error_mess = `PRE_test_3800() pre_check_empty_3800() PRE-FUNC: ME@403 - The parameter array [] is empty
+error_mess = `PRE_test_3800() pre_check_empty_3800() PRE-FUNC: ME@403 - Param array [] is empty
 check_empty()
     ACTUAL TYPES 'array'
     ACTUAL VALUE [[],[]]
@@ -638,7 +638,7 @@ test_pre_check_empty_multi(multi_variable, multi_signature, 3874, error_mess);
 
 multi_variable  = [ { an_object: 'a-value' }, 'not-object' ];
 multi_signature = [{ an_object: 'EMPTY-ERROR' }, { mt_object: 'EMPTY-ERROR' } ];
-error_mess = `PRE_test_3800() pre_check_empty_3800() PRE-FUNC: TE@216 -  The key 'mt_object', which has a type of 'EMPTY-ERROR', is missing in the checked object
+error_mess = `PRE_test_3800() pre_check_empty_3800() PRE-FUNC: TE@216 -  Key 'mt_object', which has a type of 'EMPTY-ERROR', is missing in the checked object
 check_empty()
     ACTUAL TYPES 'array'
     ACTUAL VALUE [{an_object:"a-value"},"not-object"]
@@ -807,7 +807,7 @@ test_pre_check_empty_multi(multi_variable, multi_signature, 3893, error_mess);
 
 multi_variable  = ["a-s", "B-T" ];
 multi_signature = ["EMPTY-IGNORE", "invalid-empty"];
-error_mess = `PRE_test_3800() pre_check_empty_3800() PRE-FUNC: EE@312 - ELEMENT '1' is incorrect  type, 'invalid-empty', only [ER, EMPTY-ERROR, EMPTY-OK, OK, EMPTY-IGNORE, IG] allowed  : ["a-s","B-T"]
+error_mess = `PRE_test_3800() pre_check_empty_3800() PRE-FUNC: EE@312 - ELEMENT '1' is incorrect  type, 'invalid-empty', only [ER,EMPTY-ERROR,EMPTY-OK,OK,EMPTY-IGNORE,IG] allowed  : ["a-s","B-T"]
 check_empty()
     ACTUAL TYPES 'array'
     ACTUAL VALUE ["a-s","B-T"]
@@ -822,7 +822,7 @@ test_pre_check_empty_multi(multi_variable, multi_signature, 3895, error_mess);
 
 multi_variable  = [  ['first', 'middle', 'last'],                  ['red', 'green', 'blue']                           ];
 multi_signature = [  ['EMPTY-ERROR', 'EMPTY-IGNORE', 'EMPTY-OK'],  ['EMPTY-ERROR', 'INVALID-EMPTY-TYPE', 'EMPTY-OK']  ];
-error_mess = `PRE_test_3800() pre_check_empty_3800() PRE-FUNC: EE@312 - ELEMENT '1' is incorrect  type, 'INVALID-EMPTY-TYPE', only [ER, EMPTY-ERROR, EMPTY-OK, OK, EMPTY-IGNORE, IG] allowed  : ["red","green","blue"]
+error_mess = `PRE_test_3800() pre_check_empty_3800() PRE-FUNC: EE@312 - ELEMENT '1' is incorrect  type, 'INVALID-EMPTY-TYPE', only [ER,EMPTY-ERROR,EMPTY-OK,OK,EMPTY-IGNORE,IG] allowed  : ["red","green","blue"]
 check_empty()
     ACTUAL TYPES 'array'
     ACTUAL VALUE [["first","middle","last"],["red","green","blue"]]

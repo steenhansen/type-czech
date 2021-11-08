@@ -1,5 +1,10 @@
 
+      const error_401 = `TypeCzech.${method_name}() has 2 argu-ments not ${list_of_2.length}`;
 
+
+
+
+      
 
 
 1260 _ParametersCheck

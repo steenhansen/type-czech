@@ -142,7 +142,7 @@ test_pre_check_typeVariadic(parameters, signature, 32904, error_mess);
 
 parameters  = [];
 signature = ['number'];
-error_mess = `PRE_test_32900() pre_check_typeVariadic_32900() PRE-FUNC: ME@409 - There are no parameters to match array signature.
+error_mess = `PRE_test_32900() pre_check_typeVariadic_32900() PRE-FUNC: ME@409 - There are no params to match array signature.
 check_typeVariadic()
     ACTUAL TYPES 
     ACTUAL VALUE 

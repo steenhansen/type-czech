@@ -224,7 +224,7 @@ function link_01001(){
     return actual_e;
   }
   actual=get_out_of_scope_err();
-  expected = 'EX@105 - The first parameter to TypeCzech.linkUp(), target_proxy is not a function, but is instead undefined'
+  expected = 'EX@105 - 1st param to linkUp(), target_proxy is not a function, but is instead undefined'
   if (actual !== expected) {
     console.log(TYPE_CZECH_current_test_number);
     console.log('  actual=', actual);
@@ -282,7 +282,7 @@ function link_01003(){
   }catch(actual_e){ 
     actual = actual_e
   }
-  expected = 'EX@105 - The first parameter to TypeCzech.linkUp(), target_proxy is not a function, but is instead 17'
+  expected = 'EX@105 - 1st param to linkUp(), target_proxy is not a function, but is instead 17'
   if (actual !== expected) {
     console.log(TYPE_CZECH_current_test_number);
     console.log('  actual=', actual);
@@ -308,7 +308,7 @@ function link_01004(){
   }catch(actual_e){ 
     actual = actual_e
   }
-  expected = 'EX@105 - The first parameter to TypeCzech.linkUp(), target_proxy is not a function, but is instead {}'
+  expected = 'EX@105 - 1st param to linkUp(), target_proxy is not a function, but is instead {}'
   if (actual !== expected) {
     console.log(TYPE_CZECH_current_test_number);
     console.log('  actual=', actual);

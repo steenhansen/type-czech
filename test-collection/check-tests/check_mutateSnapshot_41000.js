@@ -60,7 +60,7 @@ function A_PRE_check_yourFunc(the_arg) {
   try {
     return type_czech.check_mutatedSnapshot(the_arg, the_arg)
   } catch (e) {
-    expected_start = 'No record of an entry for TypeCzech.check_mutatedSnapshot('
+    expected_start = 'No record of check_mutatedSnapshot('
     if (e.startsWith(expected_start)) {
       fail_count++
     } else {

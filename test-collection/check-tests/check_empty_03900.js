@@ -114,7 +114,7 @@ test_pre_check_empty_single(single_variable, single_signature, 3907, error_mess)
 
 single_variable  = { a: [{ r: [ [123],         [],              987n,          false,         new Date('1999-12-12'), (x) => x,      12,            { a: 3 },      { b: 4 },             /d/,           'abc',         Symbol('sym') ] }] };
 single_signature = { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] };
-error_mess = `PRE_test_3900() pre_check_empty_3900() PRE-FUNC: ME@403 - The parameter array [] is empty
+error_mess = `PRE_test_3900() pre_check_empty_3900() PRE-FUNC: ME@403 - Param array [] is empty
 check_empty()
     ACTUAL TYPES 'object'
     ACTUAL VALUE {a:[{r:[[123],[],987n,false,1999-12-12T00:00:00.000Z,(x) => x ***,12,{a:3},{b:4},/d/ +++,"abc",Symbol('sym')]}]}
@@ -201,7 +201,7 @@ test_pre_check_empty_single(single_variable, single_signature, 3918, error_mess)
 
 single_variable  = [1, 2, 3];
 single_signature = 'EMPTY-ERROR';
-error_mess = `PRE_test_3900() pre_check_empty_3900() PRE-FUNC: TE@219 - Comparing actual [] parameter, with a value of [1,2,3], against the expected shape of EMPTY-ERROR. They should be the same type. You cannot compare an array with a non-array; both []s, or both EMPTY-ERRORs
+error_mess = `PRE_test_3900() pre_check_empty_3900() PRE-FUNC: TE@219 - Comparing [] parameter, with a value of [1,2,3], against expected shape of EMPTY-ERROR. They should be the same type. You cannot compare an array with a non-array; both []s, or both EMPTY-ERRORs
 check_empty()
     ACTUAL TYPES 'array'
     ACTUAL VALUE [1,2,3]
@@ -327,7 +327,7 @@ test_pre_check_empty_single(single_variable, single_signature, 3934, error_mess)
 /* Cannot change as check_emptyExtra() and check_typeExtra() rely on this behavior, Star Fleet can fix it */
 single_variable  = { a: { b: { c: { d: 12              } } } };
 single_signature = { a: { b: { c: { d: { e: 'EMPTY-ERROR' } } } } };
-error_mess = `PRE_test_3900() pre_check_empty_3900() PRE-FUNC: EE@303 - Bad empty type key, '{e:"EMPTY-ERROR"}', must be either 'EMPTY-OK', 'EMPTY-ER', 'EMPTY-IG', 'OK', 'ER', or 'IG'
+error_mess = `PRE_test_3900() pre_check_empty_3900() PRE-FUNC: EE@303 - Bad empty type key, '{e:"EMPTY-ERROR"}', must be either 'EMPTY-OK','EMPTY-ER','EMPTY-IG','OK','ER','IG'
 check_empty()
     ACTUAL TYPES 'object'
     ACTUAL VALUE {a:{b:{c:{d:12}}}}
@@ -359,7 +359,7 @@ test_pre_check_empty_single(single_variable, single_signature, 3938, error_mess)
 
 single_variable  = { a: [ { b: [ { c: [ { d: [ ''              ] } ] } ] } ] };
 single_signature = { a: [ { b: [ { c: [ { d: [ { e: 'EMPTY-ERROR' } ] } ] } ] } ] };
-error_mess = `PRE_test_3900() pre_check_empty_3900() PRE-FUNC: TE@216 -  The key 'e', which has a type of 'EMPTY-ERROR', is missing in the checked object
+error_mess = `PRE_test_3900() pre_check_empty_3900() PRE-FUNC: TE@216 -  Key 'e', which has a type of 'EMPTY-ERROR', is missing in the checked object
 check_empty()
     ACTUAL TYPES 'object'
     ACTUAL VALUE {a:[{b:[{c:[{d:[""]}]}]}]}
@@ -391,7 +391,7 @@ test_pre_check_empty_single(single_variable, single_signature, 3942, error_mess)
 
 single_variable  = [ { a: [ { b: [ { c: [ { d: [ 12              ] } ] } ] } ] } ];
 single_signature = [ { a: [ { b: [ { c: [ { d: [ { e: 'EMPTY-ERROR' } ] } ] } ] } ] } ];
-error_mess = `PRE_test_3900() pre_check_empty_3900() PRE-FUNC: TE@216 -  The key 'e', which has a type of 'EMPTY-ERROR', is missing in the checked object
+error_mess = `PRE_test_3900() pre_check_empty_3900() PRE-FUNC: TE@216 -  Key 'e', which has a type of 'EMPTY-ERROR', is missing in the checked object
 check_empty()
     ACTUAL TYPES 'array'
     ACTUAL VALUE [{a:[{b:[{c:[{d:[12]}]}]}]}]
@@ -433,7 +433,7 @@ test_pre_check_empty_single(single_variable, single_signature, 3947, error_mess)
 
 single_variable  = [[ { a: { b: [[ { c: { d: [[ ''        ]] } } ]] } } ]];
 single_signature =  [ { a: { b: [[ { c: { d: [[ 'EMPTY-ERROR' ]] } } ]] } } ];
-error_mess = `PRE_test_3900() pre_check_empty_3900() PRE-FUNC: TE@216 -  The key 'a', which has a type of '{b:[[{c:{d:[["EMPTY-ERROR"]]}}]]}', is missing in the checked object
+error_mess = `PRE_test_3900() pre_check_empty_3900() PRE-FUNC: TE@216 -  Key 'a', which has a type of '{b:[[{c:{d:[["EMPTY-ERROR"]]}}]]}', is missing in the checked object
 check_empty()
     ACTUAL TYPES 'array'
     ACTUAL VALUE [[{a:{b:[[{c:{d:[[""]]}}]]}}]]
@@ -460,7 +460,7 @@ test_pre_check_empty_single(single_variable, single_signature, 3950, error_mess)
 
 single_variable  =      { b: [[ { c: { d: [[ ''            ]] } } ]] };
 single_signature = { a: { b: [[ { c: { d: [[ 'EMPTY-ERROR' ]] } } ]] } };
-error_mess = `PRE_test_3900() pre_check_empty_3900() PRE-FUNC: TE@216 -  The key 'a', which has a type of '{b:[[{c:{d:[["EMPTY-ERROR"]]}}]]}', is missing in the checked object
+error_mess = `PRE_test_3900() pre_check_empty_3900() PRE-FUNC: TE@216 -  Key 'a', which has a type of '{b:[[{c:{d:[["EMPTY-ERROR"]]}}]]}', is missing in the checked object
 check_empty()
     ACTUAL TYPES 'object'
     ACTUAL VALUE {b:[[{c:{d:[[""]]}}]]}
@@ -470,7 +470,7 @@ test_pre_check_empty_single(single_variable, single_signature, 3951, error_mess)
 
 single_variable  = { a: { b: [[ { c: { d: [[ ''            ]] } } ]] } };
 single_signature =      { b: [[ { c: { d: [[ 'EMPTY-ERROR' ]] } } ]] };
-error_mess = `PRE_test_3900() pre_check_empty_3900() PRE-FUNC: TE@216 -  The key 'b', which has a type of '[[{c:{d:[["EMPTY-ERROR"]]}}]]', is missing in the checked object
+error_mess = `PRE_test_3900() pre_check_empty_3900() PRE-FUNC: TE@216 -  Key 'b', which has a type of '[[{c:{d:[["EMPTY-ERROR"]]}}]]', is missing in the checked object
 check_empty()
     ACTUAL TYPES 'object'
     ACTUAL VALUE {a:{b:[[{c:{d:[[""]]}}]]}}
@@ -521,7 +521,7 @@ test_pre_check_empty_single(single_variable, single_signature, 3956, error_mess)
 
 single_variable  = [];
 single_signature = ['EMPTY-ERROR'];
-error_mess = `PRE_test_3900() pre_check_empty_3900() PRE-FUNC: ME@403 - The parameter array [] is empty
+error_mess = `PRE_test_3900() pre_check_empty_3900() PRE-FUNC: ME@403 - Param array [] is empty
 check_empty()
     ACTUAL TYPES 'array'
     ACTUAL VALUE []
@@ -531,7 +531,7 @@ test_pre_check_empty_single(single_variable, single_signature, 3957, error_mess)
 
 single_variable  = {};
 single_signature = { a: 'EMPTY-ERROR' };
-error_mess = `PRE_test_3900() pre_check_empty_3900() PRE-FUNC: TE@216 -  The key 'a', which has a type of 'EMPTY-ERROR', is missing in the checked object
+error_mess = `PRE_test_3900() pre_check_empty_3900() PRE-FUNC: TE@216 -  Key 'a', which has a type of 'EMPTY-ERROR', is missing in the checked object
 check_empty()
     ACTUAL TYPES 'object'
     ACTUAL VALUE {}
@@ -636,7 +636,7 @@ test_pre_check_empty_single(single_variable, single_signature, 3974, error_mess)
 
 single_variable  = 'not-object';
 single_signature = { an_object: 'EMPTY-ERROR' };
-error_mess = `TE@201 - TypeCzech.check_empty() called with '{}' against '!{}'. Contrasting a string type of value not-object, with '{"an_object":"EMPTY-ERROR"}' an object !!! string <> object`;
+error_mess = `TE@201 - check_empty() called with '{}' against '!{}'. Contrasting a string type of value not-object, with '{"an_object":"EMPTY-ERROR"}' an object !!! string <> object`;
 test_pre_check_empty_single(single_variable, single_signature, 3975, error_mess);
 
 single_variable  = '';
@@ -701,7 +701,7 @@ test_pre_check_empty_single(single_variable, single_signature, 3981, error_mess)
 
 single_variable  = 'a-string';
 single_signature = ['EMPTY-ERROR'];
-error_mess = `PRE_test_3900() pre_check_empty_3900() PRE-FUNC: TE@217 - Comparing actual 'string' parameter, with a value of a-string, in relation to the expected shape of ["EMPTY-ERROR"]. They should be the same type. You cannot compare an array with a non-array; both []s, or both 'string's. Or same object keys
+error_mess = `PRE_test_3900() pre_check_empty_3900() PRE-FUNC: TE@217 - Comparing 'string' parameter, with a value of a-string, in relation to expected shape of ["EMPTY-ERROR"]. They should be the same type. You cannot compare an array with a non-array; both []s, or both 'string's. Or same object keys
 check_empty()
     ACTUAL TYPES 'string'
     ACTUAL VALUE "a-string"
@@ -780,7 +780,7 @@ test_pre_check_empty_single(single_variable, single_signature, 3994, error_mess)
 
 single_variable  = [12, false, 'a string'];
 single_signature =  ['EMPTY-OK'];
-error_mess = `PRE_test_3900() pre_check_empty_3900() PRE-FUNC: EE@305 - Completely pointless as checking with ['OK'] or ['EMPTY-OK'] matches everything
+error_mess = `PRE_test_3900() pre_check_empty_3900() PRE-FUNC: EE@305 - Pointless as ['EMPTY-OK'] matches all
 check_empty()
     ACTUAL TYPES 'array'
     ACTUAL VALUE [12,false,"a string"]
@@ -790,7 +790,7 @@ test_pre_check_empty_single(single_variable, single_signature, 3995, error_mess)
 
 single_variable  = ['first', 'middle', 'last'];
 single_signature =  ['EMPTY-ERROR', 'INVALID-EMPTY-TYPE', 'EMPTY-OK'];
-error_mess = `PRE_test_3900() pre_check_empty_3900() PRE-FUNC: EE@312 - ELEMENT '1' is incorrect  type, 'INVALID-EMPTY-TYPE', only [ER, EMPTY-ERROR, EMPTY-OK, OK, EMPTY-IGNORE, IG] allowed  : ["first","middle","last"]
+error_mess = `PRE_test_3900() pre_check_empty_3900() PRE-FUNC: EE@312 - ELEMENT '1' is incorrect  type, 'INVALID-EMPTY-TYPE', only [ER,EMPTY-ERROR,EMPTY-OK,OK,EMPTY-IGNORE,IG] allowed  : ["first","middle","last"]
 check_empty()
     ACTUAL TYPES 'array'
     ACTUAL VALUE ["first","middle","last"]

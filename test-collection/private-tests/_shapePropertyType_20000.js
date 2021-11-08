@@ -49,7 +49,7 @@ function _shapePropertyType_20002(){
   var property_type = { jxy:"number"};   
   var property_key ="jxy";   
   var check_variable = undefined;        
-  var expect_error =   `TE@211 - Key 'jxy' was given to be a 'number' but was instead 'undefined'`; 
+  var expect_error =   `TE@211 - Key 'jxy' was given to be a 'number' but is 'undefined'`; 
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(property_type, property_key);
         var actual_error = type_czech_test._shapePropertyType(property_type, property_key, check_variable);
@@ -73,7 +73,7 @@ function _shapePropertyType_20003(){
   var property_type = { jxy:"number"};   
   var property_key ="jxy";   
   var check_variable = null;        
-  var expect_error =   `TE@212 - Key 'jxy' was determined to be a 'number' but was instead 'null'`; 
+  var expect_error =   `TE@212 - Key 'jxy' was determined to be a 'number' but is 'null'`; 
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(property_type, property_key);
         var actual_error = type_czech_test._shapePropertyType(property_type, property_key, check_variable);
