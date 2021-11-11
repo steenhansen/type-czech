@@ -678,7 +678,7 @@ test_pre_check_empty_multi(multi_variable, multi_signature, 3878, error_mess);
 
 multi_variable  = [ { a: 1 },             { a: 1, b: 2 }];
 multi_signature = [ { a: 'EMPTY-ERROR' }, { a: 'EMPTY-ERROR' } ];
-error_mess = `PRE_test_3800() pre_check_empty_3800() PRE-FUNC: EE@315 - Extra key in checked object - (b:'2')
+error_mess = `PRE_test_3800() pre_check_empty_3800() PRE-FUNC: EE@315 - Extra key in checked object - (b:2)
 check_empty()
     ACTUAL TYPES 'array'
     ACTUAL VALUE [{a:1},{a:1,b:2}]
@@ -688,7 +688,7 @@ test_pre_check_empty_multi(multi_variable, multi_signature, 3879, error_mess);
 
 multi_variable  = [ { v: 33 }, { a: undefined } ];
 multi_signature = [ { v: 'EMPTY-OK' }, { a: 'EMPTY-ERROR' } ];
-error_mess = `PRE_test_3800() pre_check_empty_3800() PRE-FUNC: EE@302 - Type cannot be empty 'a' EMPTY-ERROR' is a undefined :: undefined
+error_mess = `PRE_test_3800() pre_check_empty_3800() PRE-FUNC: EE@302 - Type cannot be empty 'a' EMPTY-ERROR is a undefined :: undefined
 check_empty()
     ACTUAL TYPES 'array'
     ACTUAL VALUE [{v:33},{a:undefined}]
@@ -698,7 +698,7 @@ test_pre_check_empty_multi(multi_variable, multi_signature, 3880, error_mess);
 
 multi_variable  = [ { j: 34 },           { a: null } ];
 multi_signature = [ { j: 'EMPTY-IGNORE' }, { a: 'EMPTY-ERROR' } ];
-error_mess = `PRE_test_3800() pre_check_empty_3800() PRE-FUNC: EE@302 - Type cannot be empty 'a' EMPTY-ERROR' is a null :: null
+error_mess = `PRE_test_3800() pre_check_empty_3800() PRE-FUNC: EE@302 - Type cannot be empty 'a' EMPTY-ERROR is a null :: null
 check_empty()
     ACTUAL TYPES 'array'
     ACTUAL VALUE [{j:34},{a:null}]

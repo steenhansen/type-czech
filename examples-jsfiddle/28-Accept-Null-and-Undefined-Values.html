@@ -171,7 +171,7 @@
     
     <a title="502-Extending-Prototypes-Imports.html" href="https://jsfiddle.net/steen_hansen/retqdosm/?502-Extending-Prototypes-Imports" target="_blank">502</a>
     
-    <a title="503-Extending-Prototypes-Inline.html" href="https://jsfiddle.net/steen_hansen/2paqh67m/?503-Extending-Prototypes-Production" target="_blank">503</a>
+    <a title="503-Extending-Prototypes-Production.html" href="https://jsfiddle.net/steen_hansen/2paqh67m/?503-Extending-Prototypes-Production" target="_blank">503</a>
     
     <a title="504-Extending-Prototypes-Single.html" href="https://jsfiddle.net/steen_hansen/0fabr5g3/?504-Extending-Prototypes-Single" target="_blank">504</a>
 
@@ -190,6 +190,7 @@
   </div>
 
 <!--            -------------TYPE 1s-----------------------------       -->
+
 
 
 
@@ -277,6 +278,9 @@ But otherwise, real values are still checked for type, such as 12 not being a st
 /**/  PRE_check_Person = (typeof PRE_check_Person === 'undefined')
 /**/                     ? undefined : PRE_check_Person
 /**/  
+/**/  POST_check_Person = (typeof POST_check_Person === 'undefined')
+/**/                      ? undefined : POST_check_Person
+/**/  
 /**/  function PRE_check_Person(person_obj){
 /**/    let {f_name, l_name} = person_obj
 /**/    person_type = {f_name:'string', l_name:'string'}
@@ -332,17 +336,17 @@ log(marvin)
 <script>
   
 
-  jsToDiv('js-code', "check-code")
+   jsToDiv('js-code', "check-code")
 
-  fromToBoldText(468, 482, 'code', 1)  //', l_name:'string'}
-  fromToBoldText(1170, 1178, 'code', 1)  //l_name:12
+   fromToBoldText(602, 617, 'code', 1)  //', l_name:'string'}
+   fromToBoldText(1304, 1312, 'code', 1)  //l_name:12
 
- fromToBoldText(297, 305, 'log', 1)  //  l_name:12
- fromToBoldText(350, 364, 'log', 1)   // l_name:"string"
+  fromToBoldText(297, 305, 'log', 1)  //  l_name:12
+  fromToBoldText(350, 364, 'log', 1)   // l_name:"string"
 
 
 
- fromToBoldText(686, 693, 'code', 2)  //['string', 'string']
+  fromToBoldText(820, 827, 'code', 2)  //['string', 'string']
 
 fromToBoldText(630, 631, 'log', 2)  //  12
 fromToBoldText(669, 676, 'log', 2)   // ,"string"
@@ -351,7 +355,6 @@ fromToBoldText(669, 676, 'log', 2)   // ,"string"
 
 
 </script>
-
 
 
 <link rel="stylesheet"

@@ -583,7 +583,7 @@ test_pre_check_type_single(single_variable, single_signature, 5956, error_mess);
 
 single_variable  = [];
 single_signature = ' [  ] ';
-error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@222 - [] is not a type, but a container, it cannot serve as a signature. Try 'array' or ['string'].
+error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@222 - [] is a container, not a type/signature, try 'array' or ['string']
 check_type()
     ACTUAL TYPES 'array'
     ACTUAL VALUE []
@@ -593,7 +593,7 @@ test_pre_check_type_single(single_variable, single_signature, 5957, error_mess);
 
 single_variable  = {};
 single_signature = ' { } ';
-error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@223 - {} is not a type, but a container, it cannot serve as a signature. Try 'object' or {a:'string'}.
+error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@223 - {} is container, not a type/signature. Try 'object' or {a:'string'}
 check_type()
     ACTUAL TYPES 'object'
     ACTUAL VALUE {}
@@ -778,7 +778,7 @@ test_pre_check_type_single(single_variable, single_signature, 5977, error_mess);
 
 single_variable  = 91;
 single_signature = 'Ford Torino';
-error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@202 - Type 'Ford Torino' is wrong classname or not a scalar
+error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@202 - Type 'Ford Torino' is unknown classname and not a scalar
 check_type()
     ACTUAL TYPES 'number'
     ACTUAL VALUE 91
@@ -788,7 +788,7 @@ test_pre_check_type_single(single_variable, single_signature, 5978, error_mess);
 
 single_variable  = { a: 1, b: 2 };
 single_signature = { a: 'number' };
-error_mess = ` PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@209 - Extra key in checked object - (b:'2')
+error_mess = ` PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@209 - Extra key in checked object - (b:2)
 check_type()
     ACTUAL TYPES 'object'
     ACTUAL VALUE {a:1,b:2}
@@ -834,7 +834,7 @@ test_pre_check_type_single(single_variable, single_signature, 5983, error_mess);
 
 single_variable  = Date;
 single_signature = 'bad-classname';
-error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@202 - Type 'bad-classname' is wrong classname or not a scalar
+error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@202 - Type 'bad-classname' is unknown classname and not a scalar
 check_type()
     ACTUAL TYPES 'function'
     ACTUAL VALUE function Date() { [native code ***

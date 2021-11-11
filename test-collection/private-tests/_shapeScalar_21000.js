@@ -138,7 +138,7 @@ function _shapeScalar_21006(){
   var TYPE_CZECH_current_test_number = '21006';       
   var check_param =   "a-string";  
   var check_shape = "does-not_exist" ;      
-  var expect_error =  `TE@202 - Type 'does-not_exist' is wrong classname or not a scalar`; 
+  var expect_error =  `TE@202 - Type 'does-not_exist' is unknown classname and not a scalar`; 
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech_test._shapeScalar(check_param, check_shape);

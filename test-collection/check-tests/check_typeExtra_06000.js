@@ -425,7 +425,7 @@ function check_typeExtra_06011(){
   var check_param = [{r:11}];
   var check_shape = [{r:"number"}]; 
   var expect_error =  [`check_typeExtra()`,
-  `TE@234 - check_typeExtra([{r:11}], [{r:"number"}]) try [{r:"number"}, {r:"number"}] as [{r:"number"}] is illegal.`,
+  `TE@234 - check_typeExtra([{r:11}], [{r:"number"}]) try check_type([{r:"number"}, {r:"number"}], [{r:"number"}]) as [{r:"number"}] is illegal.`,
   `[{r:"number"}]`];
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
@@ -537,7 +537,7 @@ function check_typeExtra_06015(){
   var check_param = [[]];
   var check_shape = ['array']; 
   var expect_error = ['check_typeExtra()'
-  ,'TE@234 - check_typeExtra([[]], ["array"]) try [array, array] as ["array"] is illegal.'
+  ,'TE@234 - check_typeExtra([[]], ["array"]) try check_type([array, array], ["array"]) as ["array"] is illegal.'
   ,'["array"]'];
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
@@ -560,7 +560,7 @@ function check_typeExtra_06016(){
   var check_param = [[2], [3]];
   var check_shape = [[]]; 
   var expect_error = [`check_typeExtra()`,
-  `TE@234 - check_typeExtra([[2],[3]], [[]]) try [[], []] as [[]] is illegal.`,
+  `TE@234 - check_typeExtra([[2],[3]], [[]]) try check_type([[], []], [[]]) as [[]] is illegal.`,
   `[[]]`];
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
@@ -584,7 +584,7 @@ function check_typeExtra_06017(){
   var check_param = [[2], [3]];
   var check_shape = ['array']; 
   var expect_error = [`check_typeExtra()`,
-  `TE@234 - check_typeExtra([[2],[3]], ["array"]) try [array, array] as ["array"] is illegal.`,
+  `TE@234 - check_typeExtra([[2],[3]], ["array"]) try check_type([array, array], ["array"]) as ["array"] is illegal.`,
   `["array"]`];
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
@@ -606,7 +606,7 @@ function check_typeExtra_06018(){
   var check_param = [[1,2], [3,4]];
   var check_shape = ['array']; 
   var expect_error = [`check_typeExtra()`,
-  `TE@234 - check_typeExtra([[1,2],[3,4]], ["array"]) try [array, array] as ["array"] is illegal.`,
+  `TE@234 - check_typeExtra([[1,2],[3,4]], ["array"]) try check_type([array, array], ["array"]) as ["array"] is illegal.`,
   `["array"]`];
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
@@ -629,7 +629,7 @@ function check_typeExtra_06019(){
   var check_param = [[1,2], [3,4]];
   var check_shape = [[]]; 
   var expect_error =  [`check_typeExtra()`,
-  `TE@234 - check_typeExtra([[1,2],[3,4]], [[]]) try [[], []] as [[]] is illegal.`,
+  `TE@234 - check_typeExtra([[1,2],[3,4]], [[]]) try check_type([[], []], [[]]) as [[]] is illegal.`,
   `[[]]`];
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
@@ -991,7 +991,7 @@ function check_typeExtra_06032(){
   var check_param = [{r:11}];
   var check_shape = [{r:"number"}];
   var expect_error = [`check_typeExtra()`,
-  `TE@234 - check_typeExtra([{r:11}], [{r:"number"}]) try [{r:"number"}, {r:"number"}] as [{r:"number"}] is illegal.`,
+  `TE@234 - check_typeExtra([{r:11}], [{r:"number"}]) try check_type([{r:"number"}, {r:"number"}], [{r:"number"}]) as [{r:"number"}] is illegal.`,
   `[{r:"number"}]`];
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
@@ -1014,7 +1014,7 @@ function check_typeExtra_06033(){
   var check_param = [{r: 11, e:'for extra'}];
   var check_shape = [{r:"number"}];
   var expect_error = [`check_typeExtra()`,
-  `TE@234 - check_typeExtra([{r:11,e:"for extra"}], [{r:"number"}]) try [{r:"number"}, {r:"number"}] as [{r:"number"}] is illegal.`,
+  `TE@234 - check_typeExtra([{r:11,e:"for extra"}], [{r:"number"}]) try check_type([{r:"number"}, {r:"number"}], [{r:"number"}]) as [{r:"number"}] is illegal.`,
   `[{r:"number"}]`];
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);

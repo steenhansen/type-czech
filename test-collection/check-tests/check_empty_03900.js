@@ -671,7 +671,7 @@ test_pre_check_empty_single(single_variable, single_signature, 3978, error_mess)
 
 single_variable  = { a: 1, b: 2 };
 single_signature = { a: 'EMPTY-ERROR' };
-error_mess = ` PRE_test_3900() pre_check_empty_3900() PRE-FUNC: EE@315 - Extra key in checked object - (b:'2')
+error_mess = ` PRE_test_3900() pre_check_empty_3900() PRE-FUNC: EE@315 - Extra key in checked object - (b:2)
 check_empty()
     ACTUAL TYPES 'object'
     ACTUAL VALUE {a:1,b:2}
@@ -681,7 +681,7 @@ test_pre_check_empty_single(single_variable, single_signature, 3979, error_mess)
 
 single_variable  = { a: undefined };
 single_signature = { a: 'EMPTY-ERROR' };
-error_mess = `PRE_test_3900() pre_check_empty_3900() PRE-FUNC: EE@302 - Type cannot be empty 'a' EMPTY-ERROR' is a undefined :: undefined
+error_mess = `PRE_test_3900() pre_check_empty_3900() PRE-FUNC: EE@302 - Type cannot be empty 'a' EMPTY-ERROR is a undefined :: undefined
 check_empty()
     ACTUAL TYPES 'object'
     ACTUAL VALUE {a:undefined}
@@ -691,7 +691,7 @@ test_pre_check_empty_single(single_variable, single_signature, 3980, error_mess)
 
 single_variable  = { a: null };
 single_signature = { a: 'EMPTY-ERROR' };
-error_mess = `PRE_test_3900() pre_check_empty_3900() PRE-FUNC: EE@302 - Type cannot be empty 'a' EMPTY-ERROR' is a null :: null
+error_mess = `PRE_test_3900() pre_check_empty_3900() PRE-FUNC: EE@302 - Type cannot be empty 'a' EMPTY-ERROR is a null :: null
 check_empty()
     ACTUAL TYPES 'object'
     ACTUAL VALUE {a:null}

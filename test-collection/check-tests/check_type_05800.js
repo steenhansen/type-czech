@@ -746,7 +746,7 @@ test_pre_check_type_multi(multi_variable, multi_signature, 5878, error_mess);
 
 multi_variable  = [ { a: 1,        b: 2 },        { a: 3, b: 4 } ];
 multi_signature = [ { a: 'number', b: 'number' }, { a: 'number' } ];
-error_mess = `PRE_test_05800() pre_check_type_05800() PRE-FUNC: TE@209 - Extra key in checked object - (b:'4')
+error_mess = `PRE_test_05800() pre_check_type_05800() PRE-FUNC: TE@209 - Extra key in checked object - (b:4)
 check_type()
     ACTUAL TYPES 'array'
     ACTUAL VALUE [{a:1,b:2},{a:3,b:4}]

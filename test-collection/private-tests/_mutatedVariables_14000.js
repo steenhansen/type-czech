@@ -21,8 +21,8 @@ failed_mutatedVariables = 0;
 function _mutatedVariables_14001(){
   var TYPE_CZECH_current_test_number = '14001';       
   var mutate_14001 = [1,2,3];    
-  var expect_error = `check_mutatedSnapshot(),ME@405 - Reference variable 'mutate_14001' in ` + 
-                     `function '_mutatedVariables_14001()' changed values from [1,2,3] to [1,2,3,4] ` + 
+  var expect_error = `check_mutatedSnapshot(),ME@405 - Ref var 'mutate_14001' in ` + 
+                     `func '_mutatedVariables_14001()' changed from [1,2,3] to [1,2,3,4] ` + 
                      `START-SAME ~ [1,2,3 PRE-DIFF ~ ] POST-DIFF ~ ,4],''`;
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         var actual_error;
@@ -50,7 +50,7 @@ function _mutatedVariables_14001(){
 function _mutatedVariables_14002(){
   var TYPE_CZECH_current_test_number = '14002';       
   var mutate_14002 = 14;    
-  var expect_error = `EX@109 - check_buildSnapshot()'s 3rd param is not an array/object but instead a 'number'`;
+  var expect_error = `EX@109 - check_buildSnapshot()'s 3rd param not array/object but a 'number'`;
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         var actual_error;
         try {
@@ -71,8 +71,8 @@ function _mutatedVariables_14002(){
 function _mutatedVariables_14003(){
   var TYPE_CZECH_current_test_number = '14003';       
   var mutate_14003 = {a:1, b:2, c:3};
-  var expect_error = `check_mutatedSnapshot(),ME@405 - Reference variable 'mutate_14003' in ` + 
-                     `function '_mutatedVariables_14003()' changed values from {"a":1,"b":2,"c":3} to ` + 
+  var expect_error = `check_mutatedSnapshot(),ME@405 - Ref var 'mutate_14003' in ` + 
+                     `func '_mutatedVariables_14003()' changed from {"a":1,"b":2,"c":3} to ` + 
                      `{"a":1,"b":"7","c":3} START-SAME ~ {"a":1,"b": PRE-DIFF ~ 2,"c":3} POST-DIFF ~ "7","c":3},''`;
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         var actual_error;
@@ -100,7 +100,7 @@ function _mutatedVariables_14003(){
 function _mutatedVariables_14004(){
   var TYPE_CZECH_current_test_number = '14004';  
   var mutate_14004 = [1];  
-  var expect_error =  `POST_recurseArr() recurseArr() POST-FUNC: ME@405 - Reference variable 'mutate_14004' in function 'recurseArr()' changed values from [1,2,3] to [1,2,"THREE"] START-SAME ~ [1,2, PRE-DIFF ~ 3] POST-DIFF ~ "THREE"] check_mutatedSnapshot() ACTUAL TYPES 'string' ACTUAL VALUE "1,2,THREE,4,5"| "1,2,THREE,4"| "1,2,THREE" CALLING FUNCTION POST_recurseArr(mutate_14004)`;
+  var expect_error =  `POST_recurseArr() recurseArr() POST-FUNC: ME@405 - Ref var 'mutate_14004' in func 'recurseArr()' changed from [1,2,3] to [1,2,"THREE"] START-SAME ~ [1,2, PRE-DIFF ~ 3] POST-DIFF ~ "THREE"] check_mutatedSnapshot() ACTUAL TYPES 'string' ACTUAL VALUE "1,2,THREE,4,5"| "1,2,THREE,4"| "1,2,THREE" CALLING FUNCTION POST_recurseArr(mutate_14004)`;
   var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
   function PRE_recurseArr(mutate_14004){
     type_czech_test.check_buildSnapshot('recurseArr', 'mutate_14004', mutate_14004);

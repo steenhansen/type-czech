@@ -1,24 +1,14 @@
 
-      const error_401 = `TypeCzech.${method_name}() has 2 argu-ments not ${list_of_2.length}`;
 
 
+the example snippets do not have the x04 pages in their menus
+change list
 
 
-      
+on 41 and going up, 1st example-snippet with X04 pages linked in
 
-
-1260 _ParametersCheck
-
-
-
-
-
-3971 check_typeExtra   HERE
-4034 check_emptyEither
-4067 check_typeEither
-4114 linkUp
-4279
-4383 check_mutatedSnapshot
+all jsFiddle ok but changed
+need snippets 00-40 fixed now
 
 
 
@@ -29,8 +19,6 @@
 
 
 
-
-do we test the null hypothesis? infiity
 
 
 ////////////////////////////////////////////

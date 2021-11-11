@@ -81,7 +81,7 @@ test_pre_check_typeEither_multi(multi_variable, multi_signature, 7804, error_mes
 
 multi_variable  = { n: 12, s: 'Holiday Road' };
 multi_signature = [ { n: 'number', b: 'boolean' }, { r: 'regexp', s: 'string' } ];
-error_mess = `PRE_test_07800() pre_check_typeEither_07800() PRE-FUNC: TE@209 - Extra key in checked object - (s:'Holiday Road')TE@216 -  Key 'b', which has a type of 'boolean', is missing in the checked object, TE@209 - Extra key in checked object - (n:'12')TE@216 -  Key 'r', which has a type of 'regexp', is missing in the checked object
+error_mess = `PRE_test_07800() pre_check_typeEither_07800() PRE-FUNC: TE@209 - Extra key in checked object - (s:'Holiday Road')TE@216 -  Key 'b', which has a type of 'boolean', is missing in the checked object, TE@209 - Extra key in checked object - (n:12)TE@216 -  Key 'r', which has a type of 'regexp', is missing in the checked object
 check_typeEither()
     ACTUAL TYPES 'object'
     ACTUAL VALUE {n:12,s:"Holiday Road"}

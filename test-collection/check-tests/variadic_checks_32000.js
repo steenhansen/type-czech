@@ -214,8 +214,8 @@ function variadic_32201(){
 function variadic_32201(){
   var TYPE_CZECH_current_test_number = '32201';       
   var mutate_14001 = [1,2,3];    
-  var expect_error = `check_mutatedSnapshot(),ME@405 - Reference variable 'mutate_14001' in ` + 
-                     `function '_mutatedVariables_14001()' changed values from [1,2,3] to [1,2,3,4] ` + 
+  var expect_error = `check_mutatedSnapshot(),ME@405 - Ref var 'mutate_14001' in ` + 
+                     `func '_mutatedVariables_14001()' changed from [1,2,3] to [1,2,3,4] ` + 
                      `START-SAME ~ [1,2,3 PRE-DIFF ~ ] POST-DIFF ~ ,4],''`;
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         var actual_error;

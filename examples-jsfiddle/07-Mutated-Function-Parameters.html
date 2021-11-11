@@ -45,6 +45,7 @@
 
 
 
+
   
 
 <!--            ----------------TYPE 1--------------------------       -->
@@ -203,7 +204,7 @@
     
     <a title="502-Extending-Prototypes-Imports.html" href="https://jsfiddle.net/steen_hansen/retqdosm/?502-Extending-Prototypes-Imports" target="_blank">502</a>
     
-    <a title="503-Extending-Prototypes-Inline.html" href="https://jsfiddle.net/steen_hansen/2paqh67m/?503-Extending-Prototypes-Production" target="_blank">503</a>
+    <a title="503-Extending-Prototypes-Production.html" href="https://jsfiddle.net/steen_hansen/2paqh67m/?503-Extending-Prototypes-Production" target="_blank">503</a>
     
     <a title="504-Extending-Prototypes-Single.html" href="https://jsfiddle.net/steen_hansen/0fabr5g3/?504-Extending-Prototypes-Single" target="_blank">504</a>
 
@@ -275,11 +276,11 @@ log = captureConsole("log-text")
 /**/  PersonArray  = type_czech.linkUp(PersonArray, PRE_check_Person, POST_check_Person) 
 
 function PersonArray(name_array){
-let [f_name, l_name] =name_array
-if (!l_name){
-  name_array.push('array-last-name')
-}
-return `${f_name} ${l_name}`
+  let [f_name, l_name] =name_array
+  if (!l_name){
+    name_array.push('array-last-name')
+  }
+  return `${f_name} ${l_name}`
 }
 
 cleopatra = PersonArray(['Cleopatra', 'VII'])
@@ -295,11 +296,11 @@ linesConsole(2)
 /**/  PersonObject =type_czech.linkUp(PersonObject, PRE_check_Person, POST_check_Person) 
 
 function PersonObject(name_object){
-let {f_name, l_name} =name_object
-if (!l_name){
-  name_object.l_name = 'object-last-name'
-}
-return `${f_name} ${l_name}`
+  let {f_name, l_name} =name_object
+  if (!l_name){
+    name_object.l_name = 'object-last-name'
+  }
+  return `${f_name} ${l_name}`
 }
 
 atahualpa = PersonObject({f_name:'Atahualpa'})
@@ -321,26 +322,25 @@ log(louis)
 
 
 
+
 <script>
   
 
   jsToDiv('js-code', "check-code")
 
 
+  fromToBoldText(1086, 1098, 'code', 1)  // ['Catherine']
+  fromToBoldText(927, 960, 'code', 1)  // name_array.push('array-last-name')
 
+  fromToBoldText(129, 141, 'log', 1)     // ['Catherine']
+  fromToBoldText(156, 186, 'log', 1)     // ['Catherine','array-last-name']
 
+ 
+   fromToBoldText(1389, 1408, 'code', 2)  // {f_name:'Atahualpa'}
+   fromToBoldText(1286, 1324, 'code', 2)  //name_object.l_name = 'object-last-name'
+   fromToBoldText(577, 598, 'log', 2)    //  {f_name:'Atahualpa'}
+   fromToBoldText(613, 662, 'log', 2)    //  {'f_name':'Atahualpa','l_name':'object-last-name'}
 
- fromToBoldText(1086, 1098, 'code', 1)  // ['Catherine']
- fromToBoldText(927, 960, 'code', 1)  // name_array.push('array-last-name')
-
- fromToBoldText(155, 167, 'log', 1)     // ['Catherine']
- fromToBoldText(182, 212, 'log', 1)     // ['Catherine','array-last-name']
-
-
-  fromToBoldText(1389, 1408, 'code', 2)  // {f_name:'Atahualpa'}
-  fromToBoldText(1286, 1324, 'code', 2)  //name_object.l_name = 'object-last-name'
-  fromToBoldText(629, 650, 'log', 2)    //  {f_name:'Atahualpa'}
-  fromToBoldText(665, 714, 'log', 2)    //  {'f_name':'Atahualpa','l_name':'object-last-name'}
 
 
 

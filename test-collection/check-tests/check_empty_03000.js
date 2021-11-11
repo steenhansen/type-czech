@@ -766,7 +766,7 @@ function check_empty_03021(){
   var check_param = {num_JJ:18};
   var check_shape =    {num_y:"EMPTY-OK"};  
   var expect_error =   [`check_empty()`,
-  `EE@315 - Extra key in checked object - (num_JJ:'18')TE@216 -  Key 'num_y', which has a type of 'EMPTY-OK', is missing in the checked object`,
+  `EE@315 - Extra key in checked object - (num_JJ:18)TE@216 -  Key 'num_y', which has a type of 'EMPTY-OK', is missing in the checked object`,
   `{num_y:"EMPTY-OK"}`];
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
@@ -1073,7 +1073,7 @@ function check_empty_03035(){
   var check_param = {num_JJ:18};
   var check_shape =  {num_y:"EMPTY-OK"};
   var expect_error =  [`check_empty()`,
-  `EE@315 - Extra key in checked object - (num_JJ:'18')TE@216 -  Key 'num_y', which has a type of 'EMPTY-OK', is missing in the checked object`,
+  `EE@315 - Extra key in checked object - (num_JJ:18)TE@216 -  Key 'num_y', which has a type of 'EMPTY-OK', is missing in the checked object`,
   `{num_y:"EMPTY-OK"}`];
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
@@ -1098,7 +1098,7 @@ function check_empty_03036(){
   var check_param = {0: [{num_TTTTTTT:18}], length:1};
   var check_shape =  [{num_iiiii:"EMPTY-OK"}];
   var expect_error = [`check_empty()`,
-  `EE@315 - Extra key in checked object - (num_TTTTTTT:'18')TE@216 -  Key 'num_iiiii', which has a type of 'EMPTY-OK', is missing in the checked object`,
+  `EE@315 - Extra key in checked object - (num_TTTTTTT:18)TE@216 -  Key 'num_iiiii', which has a type of 'EMPTY-OK', is missing in the checked object`,
   `[{num_iiiii:"EMPTY-OK"}]`];
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);

@@ -12,7 +12,7 @@ Greenland called, and it doesn't want its ice back.
 
 minify:
 
-  1  remove debugging code 191 instances                consolelog[^;]*;   ==> ''
+  1  remove debugging code 194 instances        consolelog[^;]*;   ==> ''
 
   2  save as TypeCzech.no-debug.js
 
@@ -20,7 +20,7 @@ minify:
 
   4  copy TypeCzech.min.js to /web-resources/
 
-
+  5 copy TypeCzech.min.js to /
 
 
 
@@ -28,5 +28,3 @@ https://github.com/google/closure-compiler/wiki/Flags-and-Options
 ECMASCRIPT_2020 
 ECMASCRIPT_2021   crashes in my NodeJs v14.14.0
 
-
-29.1 KB (29,859 bytes)
