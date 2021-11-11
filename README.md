@@ -209,9 +209,9 @@ type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
 ### [Simple How To Snippets](./read-mes/simple-howto.md)
 
 
-### [61 Page Editable Tutorial on JSFiddle](https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Contents)
+### [65 Page Editable Tutorial on JSFiddle](https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Contents)
 
-### [61 Page Local Browsable Tutorial](./example-snippets/example-contents.html)
+### [65 Page Local Browsable Tutorial](./example-snippets/example-contents.html)
 
 ### [TypeCzech API](./read-mes/api-list.md)
 

@@ -1,21 +1,6 @@
 
 
 
-the example snippets do not have the x04 pages in their menus
-change list
-
-
-on 41 and going up, 1st example-snippet with X04 pages linked in
-
-all jsFiddle ok but changed
-need snippets 00-40 fixed now
-
-
-
-
-
-
-
 
 
 

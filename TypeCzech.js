@@ -1,5 +1,5 @@
 /* eslint-disable block-scoped-var */
-const VERS_NUM = 'v1.0 21-11-07';
+const VERS_NUM = 'v1.0 21-11-11';
 
 let the_exports;
 if (typeof exports === 'undefined') {
@@ -12,11 +12,11 @@ if (typeof exports === 'undefined') {
 // eslint-disable-next-line block-scoped-var, no-use-before-define
 if (typeof TYPE_CZECH_current_test_number === 'undefined') {
   // eslint-disable-next-line no-var, vars-on-top
-  var TYPE_CZECH_current_test_number = 'not-in-test-yet'; // assigned in the test
+  var TYPE_CZECH_current_test_number = 'not-in-test-yet'; // global variable assigned in the test
 }
 
 // eslint-disable-next-line func-names
-(function (export_tech_czech) {
+(function (export_tech_czech) { // TypeCzech object, browser or Node.Js
   // eslint-disable-next-line func-names,no-param-reassign
   export_tech_czech.TypeCzech = function () {
     if (arguments.length > 0) {
@@ -67,7 +67,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
     CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     */
 
-    function _TypeCzech(...the_parameters) {
+    function _TypeCzech(...the_parameters) { // type_czech = TypeCzech('LOG-ERRORS')
       // start TypeCzech variables
       let t_param_check_func; // reference to _ParametersCheck()
       let t_check_events = false; // sometimes set to TYPE_CZECH_EVENTS
@@ -105,13 +105,13 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
       const DIFF_BEGIN_LEN = 100;
       const DIFF_END_LEN = 50;
       const DIFF_BREAK_MIN = DIFF_BEGIN_LEN + DIFF_END_LEN + 10;
-      const DIFF_SEPARATOR = '<<<~~~>>>';
+      const DIFF_SEPARATOR = '<<<~~~>>>'; // hide tonnes of diff text
 
       const MESS_TYPE_VARIADIC = 'check_typeVariadic()';
       const MESS_EMPTY_VARIADIC = 'check_emptyVariadic()';
 
       const MESS_OBJ_INTERFACE = 'check_interface()';
-      const MESS_MUTATED = 'check_mutatedSnapshot()';
+      const MESS_MUTATED = 'check_mutatedSnapshot()'; // which function call caused error
 
       const MESS_TYPE_VERIFY = 'check_type()';
       const MESS_TYPE_EXTRAS = 'check_typeExtra()';
@@ -124,10 +124,10 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
       const MESS_ASSERT_CHECK = 'assert_check()';
 
       const TRACE_COLORS = 'background: #ee0; color: #00F';
-      const ERROR_COLORS = 'background: #ee0; color: #F00';
+      const ERROR_COLORS = 'background: #ee0; color: #F00'; // background colors on check events
       const START_COLORS = 'background: #cc0; color: #080';
 
-      const BLANK_REF_DIFF = "''";
+      const BLANK_REF_DIFF = "''"; // no difference indicator
 
       const CZECH_ERROR_INDENT = '\n\t\t';
 
@@ -141,6 +141,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
       const EMPTY_ER = 'EMPTY-ERROR';
       const EMPTY_IG = 'EMPTY-IGNORE';
 
+      // Short empty types:  'OK',         'ER',         'IG'
       const SHORT_EMPTIES = { OK: EMPTY_OK, ER: EMPTY_ER, IG: EMPTY_IG };
 
       const TYPE_EXTRAS = 'TYPE-EXTRAS';
@@ -188,7 +189,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
       const INFINITY_AS_STR = 'Infinity';
 
       const PLAIN_UNDEFINED_STR_VALUE = 'Str_ify:und';
-      const QUOTED_UNDEFINED_STR_VALUE = `"${PLAIN_UNDEFINED_STR_VALUE}"`;
+      const QUOTED_UNDEFINED_STR_VALUE = `"${PLAIN_UNDEFINED_STR_VALUE}"`; // temporary values
 
       const PLAIN_NULL_STR_VALUE = 'Str_ify:null';
       const QUOTED_NULL_STR_VALUE = `"${PLAIN_NULL_STR_VALUE}"`;
@@ -215,7 +216,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
         onError: () => TYPE_CZECH_EVENTS.bBlink(FAIL_CHECK_COLOR),
       };
 
-      function consolelog(...args) {
+      function consolelog(...args) { // for complete debug tracing
         if (OP_DEBUG_CONSOLE_TRACE) {
           // eslint-disable-next-line no-console
           console.log(args);
@@ -257,7 +258,7 @@ type_czech._isCollection(12);
         consolelog('^^^ _isCollection ENTER', a_variable, TYPE_CZECH_current_test_number);
         // eslint-disable-next-line no-use-before-define
         const a_type = _aTypeOf(a_variable);
-        const a_collection = (a_type === 'array') ? true : a_type === 'object';
+        const a_collection = (a_type === 'array') ? true : a_type === 'object'; // only [] and {}
         consolelog('^^^ _isCollection EXIT', a_collection);
         return a_collection;
       }
@@ -387,11 +388,11 @@ type_czech._stringifyReplacer('not-used', Symbol("sym"));
         } else if (typeof value === 'function') {
           const func_text = String(value);
           const no_new_lines = func_text.replace(/\s+/g, ' ');
-          const func_start = no_new_lines.substring(0, START_OF_FUNCTION_LEN);
+          const func_start = no_new_lines.substring(0, START_OF_FUNCTION_LEN); // shorten function for display
           replaced_value = `${func_start} ***`;
-        } else if (value && value.constructor === RegExp) {
+        } else if (value && value.constructor === RegExp) { // NB mutations not shortened
           const regex_text = String(value);
-          const regex_start = regex_text.substring(0, START_OF_FUNCTION_LEN);
+          const regex_start = regex_text.substring(0, START_OF_FUNCTION_LEN); // shorten regex for display
           replaced_value = `${regex_start} +++`;
         } else if (typeof value === 'string') {
           replaced_value = value;
@@ -631,19 +632,19 @@ type_czech.typeProtos(new Object());
         let the_prototypes = false;
         if (a_var !== null && typeof a_var !== 'undefined') {
           const proto_sequence = [];
+
           // eslint-disable-next-line no-inner-declarations
           function nextPrototype(an_object) {
             const current_proto = Object.getPrototypeOf(an_object);
             if (current_proto !== null) {
               const proto_type = current_proto.constructor.name;
               proto_sequence.push(proto_type);
-              nextPrototype(current_proto);
+              nextPrototype(current_proto); // recursive
             }
           }
 
           const first_proto = Object.getPrototypeOf(a_var);
           const first_type = first_proto.constructor.name;
-
           if (first_type !== 'object' && CONSTRUCTOR_PROTOTYPES.includes(first_type)) {
             the_prototypes = [first_type];
           } else {
@@ -884,7 +885,7 @@ type_czech._collectionToStr({ "f'f": 1});
         consolelog('^^^ _collectionToStr ENTER', a_collection, TYPE_CZECH_current_test_number);
         let collection_str;
         const collection_elems = [];
-        if (Array.isArray(a_collection)) {
+        if (Array.isArray(a_collection)) { // array to string
           a_collection.forEach((an_element) => {
             const array_json = _toStr(an_element);
             if (_aTypeOf(an_element) === 'string') {
@@ -900,9 +901,9 @@ type_czech._collectionToStr({ "f'f": 1});
           collection_str = `[${collection_elems.join()}]`;
         } else {
           // eslint-disable-next-line no-restricted-syntax
-          for (const [key, value] of Object.entries(a_collection)) {
+          for (const [key, value] of Object.entries(a_collection)) { // an object to string
             let out_key;
-            if (key.match(/[^a-z\d_]/gi)) { // has annoying chars
+            if (key.match(/[^a-z\d_]/gi)) { // key has annoying chars
               if (key.match(/"/g)) {
                 out_key = `'${key}'`; // has double quote
               } else {
@@ -913,7 +914,7 @@ type_czech._collectionToStr({ "f'f": 1});
             } else {
               out_key = key;
             }
-            const value_json = _toStr(value);
+            const value_json = _toStr(value); // now for value
             let object_as_str;
             if (_aTypeOf(value) === 'string') {
               if (value_json === "''") {
@@ -940,7 +941,7 @@ type_czech._consoleError("errorText", 'TheTAG');
         if (OP_DEBUG_ERROR_TAGS && error_tag) {
           const debug_error = `${error_tag} - ${error_text}`;
           if (OP_DEBUG_CONSOLE_TRACE) {
-            _coloredConsole(debug_error, ERROR_COLORS);
+            _coloredConsole(debug_error, ERROR_COLORS); // only if type_czech = TypeCzech('LOG-ERRORS')
           }
           return debug_error;
         }
@@ -961,7 +962,7 @@ type_czech._looksLikeType("date");
         const is_type_of = _isaTypeOf(possible_badcase);
         if (!is_type_of) {
           if (typeof possible_badcase === 'string') {
-            const pos_lower_type = possible_badcase.toLowerCase();
+            const pos_lower_type = possible_badcase.toLowerCase(); // 'Number' should be 'number'
             if (TYPE_OF_TO_PROTO[pos_lower_type]) {
               const error_205 = `Type '${possible_badcase}' is not a typeof(), but looks like '${pos_lower_type}'`;
               error_string = _consoleError(error_205, 'TE@205');
@@ -1027,7 +1028,7 @@ type_czech._isEmpty(85n);
         let is_empty;
         if (a_variable instanceof Date) {
           // eslint-disable-next-line eqeqeq
-          is_empty = (a_variable == 'Invalid Date');
+          is_empty = (a_variable == 'Invalid Date'); // [], {}, NaN, Infinity, '', new Date(''), EMPTY_REGEXP, null, undefined
         } else if (a_variable instanceof RegExp) {
           const regExp_str = a_variable.toString();
           is_empty = (regExp_str === EMPTY_REGEXP);
@@ -1060,7 +1061,7 @@ type_czech._canBeEmpty(85n)
 type_czech._canBeEmpty('boolean')
 //false
 */
-      const _canBeEmpty = (variable_type) => (variable_type === 'array' ? true // []
+      const _canBeEmpty = (variable_type) => (variable_type === 'array' ? true // [] -- string types checked, not values
         : variable_type === 'object' ? true // {}
           : variable_type === 'string' ? true // ''
             : variable_type === 'regexp' ? true // new RegExp()
@@ -1106,7 +1107,7 @@ type_czech._getParameters({0:'zero', length:1});
 type_czech._getParameters({length:0});
 //[ [], true, true]
 */
-      function _getParameters(parameters_obj) {
+      function _getParameters(parameters_obj) { // this does both PRE_check() and POST_check()s
         consolelog('^^^ _getParameters ENTER', parameters_obj, TYPE_CZECH_current_test_number);
         let the_params;
         const odd_parameters = parameters_obj === null
@@ -1135,7 +1136,7 @@ type_czech._getParameters({length:0});
             // this is an outgoing post result check
           }
         } else {
-          the_params = Array.from(parameters_obj); // aFunction with more than 1 arg
+          the_params = Array.from(parameters_obj); // a function with more than 1 arg
           one_param = false;
         }
         const params_flags = [the_params, no_parameters, one_param];
@@ -1194,7 +1195,7 @@ type_czech.check_interface(variable, interface);
 //''
 */
       // eslint-disable-next-line consistent-return
-      function check_interface(introspect_object, expected_interface) {
+      function check_interface(introspect_object, expected_interface) { // Not like Java methods only, can be anything
         if (t_param_check_func.p_call_traps) {
           consolelog('^^^ check_interface ENTER', introspect_object, expected_interface, TYPE_CZECH_current_test_number);
           // eslint-disable-next-line no-unused-vars
@@ -1320,7 +1321,7 @@ type_czech._ParametersCheck(type_czech.TYPE_CZECH_EVENTS);
         }
 
         function getHtmlTypes(list_of_parameters) {
-          consolelog('^^^ getHtmlTypes ENTER', list_of_parameters);
+          consolelog('^^^ getHtmlTypes ENTER', list_of_parameters); // DOM types, not JavaScript types
           const real_types = [];
           list_of_parameters.forEach((a_variable) => {
             const is_html_type = typeFinal(a_variable);
@@ -1335,6 +1336,7 @@ type_czech._ParametersCheck(type_czech.TYPE_CZECH_EVENTS);
           return real_types;
         }
 
+        // The error message generator
         function actualVsExpected(list_of_parameters, exception_str, any_errors, func_name_params) {
           consolelog('^^^ actualVsExpected list_of_parameters', list_of_parameters);
           consolelog('^^^ actualVsExpected exception_str', exception_str);
@@ -1425,6 +1427,7 @@ type_czech._ParametersCheck(type_czech.TYPE_CZECH_EVENTS);
           return funct_params;
         }
 
+        // Closures and functions have no this
         function applyNoThis(target_name, list_of_parameters, the_check) {
           consolelog('^^^ applyNoThis ENTER', target_name, list_of_parameters, the_check, TYPE_CZECH_current_test_number);
           const funct_params = argumentsParamWarn(the_check);
@@ -1433,6 +1436,7 @@ type_czech._ParametersCheck(type_czech.TYPE_CZECH_EVENTS);
           outputCheck(the_errors, the_check.name, target_name, list_of_parameters, funct_params);
         }
 
+        // Only classes and prototypes have a this
         function applyWithThis(target_name, this_arg, list_of_parameters, the_check) {
           consolelog('^^^ applyWithThis ENTER', target_name, this_arg, list_of_parameters, the_check, TYPE_CZECH_current_test_number);
           const funct_params = argumentsParamWarn(the_check);
@@ -1522,9 +1526,8 @@ type_czech.assert_check(check_error, error_location, actual_value, expected_outc
 //    ACTUAL VALUE {m-n_o:"p-e_r"}
 //  EXPECTED
 //CALLING FUNCTION TypeCzech.assert_check()
-
 */
-
+        // This flows into the TypeCzech error messages without being linkUp(), for promises
         function assert_check_(error_mess, where_from, actual_value, expected_outcome) {
           if (t_param_check_func.p_call_traps) {
             consolelog('^^^ assert_check_ ENTER', error_mess, where_from, actual_value, expected_outcome);
@@ -1655,6 +1658,7 @@ type_czech.assert_check(check_error, error_location, actual_value, expected_outc
           return new Proxy(target_proxy, proxy_handler);
         }
 
+        // This is where a bunch of methods gets all linked up
         function proxyMethods(class_name, class_object, pre_checks, post_checks) {
           consolelog('^^^ proxyMethods ENTER', class_name, class_object, pre_checks, post_checks, TYPE_CZECH_current_test_number);
           const proxied_methods = new Set();
@@ -1811,13 +1815,13 @@ type_czech.assert_check(check_error, error_location, actual_value, expected_outc
         init_ParametersCheck();
 
         const public_methods = {
-          assert_check_,
+          assert_check_, // called by assert_check()
           confirmParameters,
-          countFails_,
-          countTally_,
-          disableChecks_,
-          enableChecks_,
-          p_call_traps,
+          countFails_, // called by countFails()
+          countTally_, // called by countTally()
+          disableChecks_, // called by disableChecks()
+          enableChecks_, // called by enableChecks()
+          p_call_traps, // call checking functions true or false
         };
 
         return public_methods;
@@ -3124,8 +3128,8 @@ type_czech._doEitherShape([  {"X":"an-str","Y":1234},   [{"X":"s","Y":"s"},{"X":
           const possible_error = _shapeVariable(check_variable, variable_type, the_type);
           if (possible_error === '') {
             found_shape = true;
-            consolelog('^^^ *** MATCH EitherShape', check_variable);
-            consolelog('^^^ *** MATCH EitherShape', variable_type);
+            consolelog('^^^ MATCH EitherShape', check_variable);
+            consolelog('^^^ MATCH EitherShape', variable_type);
           } else {
             shape_errors.push(possible_error);
           }
@@ -3158,7 +3162,7 @@ type_czech._specParameters(["UNDEF-OK", "DEBUG-CONSOLE-TRACE", "what" ]);
         if (Array.isArray(first_param)) {
           the_options = first_param;
         }
-        the_options.forEach((a_parameter) => {
+        the_options.forEach((a_parameter) => { // option order is not important
           if (typeof a_parameter === 'object') {
             t_check_events = a_parameter;
           } else if (a_parameter === 'UNDEF-OK') {
@@ -3167,7 +3171,7 @@ type_czech._specParameters(["UNDEF-OK", "DEBUG-CONSOLE-TRACE", "what" ]);
             OP_DEBUG_CONSOLE_TRACE = 'DEBUG-CONSOLE-TRACE';
           } else if (a_parameter === 'THROW-EXCEPTIONS') {
             OP_THROW_EXCEPTIONS = 'THROW-EXCEPTIONS';
-          } else if (a_parameter === 'NO-ERROR-MESSAGES') {
+          } else if (a_parameter === 'NO-ERROR-MESSAGES') { // for testing, so don't get a million error messages in console
             OP_NO_ERROR_MESSAGES = 'NO-ERROR-MESSAGES';
           } else if (a_parameter === 'LOG-ERRORS') {
             OP_LOG_ERRORS = 'LOG-ERRORS';
@@ -3968,7 +3972,7 @@ your_func(12345)
         return t_param_check_func.enableChecks_();
       }
       function disableChecks() {
-        return t_param_check_func.disableChecks_();
+        return t_param_check_func.disableChecks_(); // call _ParametersCheck()
       }
       function countFails() {
         return t_param_check_func.countFails_();
@@ -3978,7 +3982,7 @@ your_func(12345)
         if (t_param_check_func.p_call_traps && error_mess) {
           return t_param_check_func.assert_check_(error_mess, where_from, actual_value, expected_mess);
         }
-        return '';
+        return ''; // No error, return nada
       }
 
       /*
@@ -4163,7 +4167,7 @@ type_czech._mutateStacks();
         }
       }
 
-      // for debugging only
+      // for debugging only, to view all the mutation states
       function _mutateStacks() {
         const ref_stacks_str = _fast_json_stable_stringify(t_reference_stacks);
         return ref_stacks_str;
@@ -4299,10 +4303,9 @@ type_czech.check_mutatedSnapshot('my-func', 'my_arr');
       consolelog('^^^ TypeCzech SETTINGS', parameter_settings);
 
       return {
-        _coloredConsole, // needed for sample programs, never delete
+        // START debugging access to internal functions, do not use
+        _ParametersCheck, // The function that links functions/classes/objects to their PRE_check() and POST_check() functions
 
-        // START debugging access to internal functions
-        _ParametersCheck,
         _anObjectsType,
         _arrayOfOneShape,
         _arrayOfOneType,
@@ -4310,6 +4313,7 @@ type_czech.check_mutatedSnapshot('my-func', 'my_arr');
         _canBeEmpty,
         _className,
         _collectionToStr,
+        _coloredConsole,
         _consoleError,
         _doEitherEmpty,
         _doEitherShape,
@@ -4360,9 +4364,9 @@ type_czech.check_mutatedSnapshot('my-func', 'my_arr');
         _cycle_loops, //                https://github.com/douglascrockford/JSON-js/blob/master/cycle.js
         _fast_json_stable_stringify, // https://github.com/epoberezkin/fast-json-stable-stringify
 
-        // END debugging access to internal functions
+        // END debugging access to internal functions, do not use
 
-        // START public functions
+        // START public usable functions
 
         TYPE_CZECH_EVENTS,
 
