@@ -278,11 +278,10 @@ function captureConsole(div_id) {
     const long_js_date = /(\d\d\d\d-\d\d-\d\d)\w\d\d:\d\d:\d\d.\d\d\d\w/gi;
     const obj_lines = div_text2.replace(long_js_date, '$1');
 
-//console.old('herere', obj_lines)
+    const split_native_code = /function \(\) {\S/gi;
+    const obj_lines2 = obj_lines.replace(split_native_code, 'function () {');
 
-
-
-    const single_chars = obj_lines.split('');
+    const single_chars = obj_lines2.split('');
     let accum_span = '';
     // eslint-disable-next-line no-restricted-syntax
     for (const single_char of single_chars) {
