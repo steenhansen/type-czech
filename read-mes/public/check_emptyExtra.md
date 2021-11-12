@@ -9,7 +9,8 @@
   -  [4 Extra Object Result Empty Check](#extra-object-result-empty-check)
 
 ## 0 Illegal Extra Parameter Empty Check<a name="illigal-extra-single-array-parameter-empty-check"></a>
-
+Because the below example has a one dimensional signature of ['EMPTY-ERROR'] it does not
+work. The signature ['EMPTY-ERROR'] means an array of any size that has no empty elements. The signatures of check_emptyExtra() that deal with arrays must have at least two elements in the signature. The function check_typeExtra() has the same issue.
 ```
 function PRE_check_illegalArrayExtra(){
   return type_czech.check_emptyExtra(arguments, ['EMPTY-ERROR'])
@@ -24,8 +25,41 @@ function illegalArrayExtra(single_array_with_extra){
 illegalArrayExtra([1, 2, 3])  // PRE error - try [EMPTY-ERROR, EMPTY-ERROR] as ["EMPTY-ERROR"] is prohibited.
 ```
 
+The below example has followed the suggestion of the above error message, and makes sure there are no empty
+elements in an array.
+```
+function PRE_check_noEmptyElementsArray(){
+  return type_czech.check_empty(arguments, ['EMPTY-ERROR'])
+}
 
+type_czech = TypeCzech('LOG-ERRORS')
+noEmptyElementsArray = type_czech.linkUp(noEmptyElementsArray, PRE_check_noEmptyElementsArray) 
 
+function noEmptyElementsArray(single_array_with_extra){
+}
+
+noEmptyElementsArray([1, 'cat', false])
+
+noEmptyElementsArray([1, 'cat', '']) // fail
+```
+
+The below example works because there are two elements in the array signature. This ensures that the first two parameters are not empty, and ignores the rest.
+```
+function PRE_check_arrayExtraOk(){
+  return type_czech.check_emptyExtra(arguments, ['EMPTY-ERROR', 'EMPTY-ERROR'])
+}
+
+type_czech = TypeCzech('LOG-ERRORS')
+arrayExtraOk = type_czech.linkUp(arrayExtraOk, PRE_check_arrayExtraOk) 
+
+function arrayExtraOk(single_array_with_extra){
+}
+
+arrayExtraOk([1, 2, ''])
+
+arrayExtraOk([1, '']) // fail
+
+```
 
 
 

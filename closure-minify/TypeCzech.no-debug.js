@@ -1,5 +1,5 @@
 /* eslint-disable block-scoped-var */
-const VERS_NUM = 'v1.0 21-11-11';
+const VERS_NUM = 'v1.0 21-11-12';
 
 let the_exports;
 if (typeof exports === 'undefined') {
@@ -1469,7 +1469,7 @@ type_czech._ParametersCheck(type_czech.TYPE_CZECH_EVENTS);
 check_error=type_czech.check_typeEither(false,['number','string'])
 error_location = 'thirdParty call'
 actual_value = false
-type_czech.assert_check(check_error, error_location, actual_value)
+type_czech.assert_check(check_error, error_location, actual_value, 'not-used')
 //Assert Location: thirdParty call()  TE@226 - The value 'false', which is a 'boolean', is not a 'number', TE@226 - The value 'false', which is a 'boolean', is not a 'string'
 //check_typeEither()
 //    ACTUAL TYPES 'boolean'
@@ -1517,8 +1517,7 @@ if (type_czech.isActive()) {
 check_error= {"a-b_c":"d-e_f"}
 error_location =  {"h-h_i":"j-k_l"}
 actual_value = {"m-n_o":"p-e_r"}
-expected_outcome = {"s-t_u":"v-w_x"}
-type_czech.assert_check(check_error, error_location, actual_value, expected_outcome)
+type_czech.assert_check(check_error, error_location, actual_value, 'not-used')
 //Assert Location: {h-h_i:"j-k_l"}
 // Assert Message: {a-b_c:"d-e_f"}
 //TypeCzech.assert_check()
@@ -2353,7 +2352,7 @@ type_czech._wrongType(undefined, 2, 'number');
           error_string = _consoleError(error_229, 'TE@229');
         } else if (typeof expected_type !== 'string') {
           const bad_type = _toStr(expected_type);
-          const error_232 = ` ELEMENT '${element_index}' type is not a string but instead ${bad_type}`;
+          const error_232 = ` ELEMENT '${element_index}' type is not a valid string, like 'number', but instead ${bad_type}`;
           error_string = _consoleError(error_232, 'TE@232');
         }
         if (!error_string) {

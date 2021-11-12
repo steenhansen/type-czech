@@ -25,7 +25,7 @@
   "_npmVersion": "3.10.10",
   "dependencies": {
   },
-  "description": "TypeCzech is a run-time type checking JavaScript library that can be programmatically turned on and off",
+  "description": "TypeCzech is a run-time type checking JavaScript library that can be toggled on and off",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/steenhansen/type-czech.git"

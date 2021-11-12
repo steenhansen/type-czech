@@ -801,7 +801,7 @@ test_pre_check_type_multi(multi_variable, multi_signature, 5884, error_mess);
 
 multi_variable  = [ 'multi_signature-not-string', 'multi_signature-not-string' ];
 multi_signature = [ 'string',                     12 ];
-error_mess = `PRE_test_05800() pre_check_type_05800() PRE-FUNC: TE@232 -  ELEMENT '1' type is not a string but instead 12
+error_mess = `PRE_test_05800() pre_check_type_05800() PRE-FUNC: TE@232 -  ELEMENT '1' type is not a valid string, like 'number', but instead 12
 check_type()
     ACTUAL TYPES 'array'
     ACTUAL VALUE ["multi_signature-not-string","multi_signature-not-string"]
@@ -811,7 +811,7 @@ test_pre_check_type_multi(multi_variable, multi_signature, 5885, error_mess);
 
 multi_variable  = [ 'multi_signature-null', 'multi_signature-null' ];
 multi_signature = [ 'string', null ];
-error_mess = `PRE_test_05800() pre_check_type_05800() PRE-FUNC: TE@232 -  ELEMENT '1' type is not a string but instead null
+error_mess = `PRE_test_05800() pre_check_type_05800() PRE-FUNC: TE@232 -  ELEMENT '1' type is not a valid string, like 'number', but instead null
 check_type()
     ACTUAL TYPES 'array'
     ACTUAL VALUE ["multi_signature-null","multi_signature-null"]
@@ -821,7 +821,7 @@ test_pre_check_type_multi(multi_variable, multi_signature, 5886, error_mess);
 
 multi_variable  = [ 'multi_signature-undefined', 'multi_signature-undefined' ];
 multi_signature = [ 'string', undefined ];
-error_mess = `PRE_test_05800() pre_check_type_05800() PRE-FUNC: TE@232 -  ELEMENT '1' type is not a string but instead undefined
+error_mess = `PRE_test_05800() pre_check_type_05800() PRE-FUNC: TE@232 -  ELEMENT '1' type is not a valid string, like 'number', but instead undefined
 check_type()
     ACTUAL TYPES 'array'
     ACTUAL VALUE ["multi_signature-undefined","multi_signature-undefined"]

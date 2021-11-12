@@ -66,10 +66,14 @@ noEmptyArray([ [1,2,3], 'a', {} ])  // PRE error
 
 
 ## 3 Array Empty Parameter Check<a name="array-empty-parameter-check"></a>
-    
 ```
 function PRE_check_firstFilled(){
-  return type_czech.check_empty(arguments, ['EMPTY-ERROR', 'EMPTY-OK', 'EMPTY-OK'])
+  return type_czech.check_empty(arguments, ['EMPTY-ERROR', 'EMPTY-OK', 'EMPTY-OK']) // arguments version
+}
+```
+```
+function PRE_check_firstFilled(an_array){
+  return type_czech.check_empty(an_array, ['EMPTY-ERROR', 'EMPTY-OK', 'EMPTY-OK']) // or parameter version
 }
 
 type_czech = TypeCzech('LOG-ERRORS')
@@ -107,7 +111,6 @@ filledObject({a:'aardvark', b:'buffallo'})
 filledObject({a:'armadillo', b:''})  
 
 filledObject({a:'', b:'bison'})  // PRE error 
-
 ```
 
 
@@ -116,11 +119,12 @@ filledObject({a:'', b:'bison'})  // PRE error
 ## 5 Empty Result Check<a name="empty-result-check"></a>
 ```
 function POST_check_filledReturn(){
-  return type_czech.check_empty(arguments, 'EMPTY-ERROR')
+  return type_czech.check_empty(arguments, 'EMPTY-ERROR') // arguments version 
 }
 ```
+```
 function POST_check_filledReturn(a_variable){
-  return type_czech.check_empty(a_variable, 'EMPTY-ERROR')
+  return type_czech.check_empty(a_variable, 'EMPTY-ERROR') // or parameter version
 }
 
 type_czech = TypeCzech('LOG-ERRORS')
@@ -145,7 +149,6 @@ function POST_check_arrayReturn(){
 }
 ```
 ```
-
 function POST_check_arrayReturn(an_array){
   return type_czech.check_empty(an_array, ['EMPTY-ERROR'])  // or parameter version
 }
@@ -160,7 +163,6 @@ function arrayReturn(an_array){
 arrayReturn([1, 'two', {a:1}, [1,2,3] ])  
 
 arrayReturn(['']) // PRE error     
-
 ```
 
 
@@ -173,7 +175,6 @@ function POST_check_objectReturn(){
 }
 ```
 ```
-
 function POST_check_objectReturn(an_object){
   return type_czech.check_empty(an_object, {a:'EMPTY-ERROR'})  // or parameter version
 }
@@ -188,7 +189,6 @@ function objectReturn(an_object){
 objectReturn({a:'not-empty'})  
 
 objectReturn({a:''}) // PRE error     
-
 ```
 
 

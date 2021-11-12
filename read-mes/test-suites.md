@@ -12,12 +12,17 @@
 
 
 ### [Browser REPL](../test-collection/repl.html)
-Load TypeCzech in a browser so can easily execute functions, in the console, that appear in the comments like: 
+Load TypeCzech in a browser so can easily execute functions, in the console, that appear in the comments of TypeCzech.js, like: 
 <pre>
-type_czech.check_type('a-string', 'number');
+type_czech.check_type('not-a-number', 'number');
 </pre>
 
-
+Resulting in the plain error message of:
+<pre>
+>>check_type()
+>>TE@226 - The value 'not-a-number', which is a 'string', is not a 'number'
+>>number
+</pre>
 
 &copy; 2021 Steen Hansen
 

@@ -23,6 +23,8 @@ minify:
 
   5 copy TypeCzech.min.js to /
 
+  6 copy TypeCzech.js to /examples-php
+  
 ///////////////////////////////////////////////////////
 
 https://github.com/google/closure-compiler/wiki/Flags-and-Options

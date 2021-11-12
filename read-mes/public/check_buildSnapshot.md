@@ -19,17 +19,17 @@ function POST_check_anArray(){
 anArray = type_czech.linkUp(anArray, PRE_check_anArray, POST_check_anArray) 
 
 function anArray(an_array){
-  if (an_array.length ===4)
-    an_array.push(5)
+  if (an_array[0] === 1)
+    an_array[0] = 'An-Error'
 }
 
-anArray([1,2,3])
+anArray([9,8,7])
 
-anArray([1,2,3,4]) // POST error
+anArray([1,2,3]) // POST error
 
 ```
    
-## 1 Mutation Check an Object<a name="mutation-check-an-object"></a>
+## 2 Mutation Check an Object<a name="mutation-check-an-object"></a>
   
 ```
 type_czech = TypeCzech('LOG-ERRORS')

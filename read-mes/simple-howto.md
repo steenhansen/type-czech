@@ -1,6 +1,13 @@
 
 ## Simple How To Check For:
 
+Note that for brevity's sake these examples do not have the on/off construct of:
+```
+if (typeof TypeCzech === 'function')
+  type_czech = TypeCzech('THROW-EXCEPTIONS')
+else
+  type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
+```
 
   -  [1 String Parameter](#string-parameter)
   -  [2 Positive Number Parameter](#positive-number)
@@ -11,7 +18,7 @@
   -  [6 Non-Empty Parameter](#not-empty)
   -  [7 Array of Arrays Parameter](#array-of-arrays)
 
-  -  [8 Returned Results](#returned-results)
+  -  [8 Returned Results Constraints](#returned-results-constraints)
 
   -  [9 Array of Arrays Result](#arr-arr-result)
   -  [10 Exactly Three Parameters](#three-params)
@@ -73,8 +80,8 @@
     /**/    string_issue = type_czech.check_type(a_sentence, 'string')
     /**/    if (string_issue)
     /**/      return `Error, '${a_sentence}' is not a string`
-    /**/    upper_then_period_end = new RegExp(/^[A-Z].*\.$/)
-    /**/    is_sentence = a_sentence.match(upper_then_period_end)
+    /**/    one_upper_anythings_then_period = new RegExp(/^[A-Z].*\.$/)
+    /**/    is_sentence = a_sentence.match(one_upper_anythings_then_period)
     /**/    if (!is_sentence) 
     /**/      return `Error, '${a_sentence}' is not a sentence`
     /**/  }
@@ -186,7 +193,7 @@
 
 
 
-### 8 Returned Results<a name="returned-results"></a>
+### 8 Returned Results Constraints<a name="returned-results-constraints"></a>
 
     /**/  type_czech = TypeCzech('LOG-ERRORS')
     /**/  //type_czech = TypeCzech('NO-CHECKING')
@@ -244,31 +251,48 @@
     arrOf3Nums([1,2,3,4]) //fail
     arrOf3Nums(['one',2,3]) //fail
 
-### 11 Parameter Mutated<a name="parameter-mutated"></a>
+Shorter version
 
-    /**/  if (typeof TypeCzech === 'function') 
-    /**/    type_czech = TypeCzech('THROW-EXCEPTIONS')
-    /**/  else
-    /**/    type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
+    /**/  type_czech = TypeCzech('LOG-ERRORS') 
+    /**/  
+    /**/  function PRE_check_arrOf3Nums(){
+    /**/    THREE_NUMBERS = ['number','number','number']
+    /**/    return type_czech.check_type(arguments, THREE_NUMBERS)
+    /**/  }
+    /**/  
+    /**/  arrOf3Nums = type_czech.linkUp(arrOf3Nums, PRE_check_arrOf3Nums) 
+
+    function arrOf3Nums(arr_of_3_nums){ }
+
+    arrOf3Nums([1,2,3]) //pass
+
+    arrOf3Nums([1,2,3,4]) //fail
+    arrOf3Nums(['one',2,3]) //fail
+
+
+
+
+
+### 11 Parameter Mutated<a name="parameter-mutated"></a>
+Note that check_buildSnapshot() is called in the PRE_check() function to record the object value. 
+And then the object is checked for any mutations, after isElvis() returns, in the POST_check() function via check_mutatedSnapshot().
+
+    /**/  type_czech = TypeCzech('THROW-EXCEPTIONS')
     /**/  
     /**/  function PRE_check_isElvis(name_object){
     /**/    type_czech.check_buildSnapshot('isElvis', 'name_object', name_object)
     /**/  }
     /**/  
     /**/  function POST_check_isElvis(){
-    /**/    elvis_mutation = type_czech.check_mutatedSnapshot('isElvis', 'name_object')
-    /**/    if (elvis_mutation) return elvis_mutation
+    /**/    mutation_error = type_czech.check_mutatedSnapshot('isElvis', 'name_object')
+    /**/    if (mutation_error) return mutation_error
     /**/  }
-    /**/  
-    /**/  PRE_check_isElvis = (typeof PRE_check_isElvis === 'undefined') ? undefined : PRE_check_isElvis
-    /**/  POST_check_isElvis = (typeof POST_check_isElvis === 'undefined') ? undefined : POST_check_isElvis
     /**/  
     /**/  isElvis = type_czech.linkUp(isElvis, PRE_check_isElvis, POST_check_isElvis) 
 
     function isElvis(elvis_object){
       if (elvis_object.the_name === 'Presley')
         elvis_object.the_name ='Aaron Presley'
-      return elvis_object.the_name
     }
 
     isElvis({the_name:'Elvis'}) //pass
@@ -279,7 +303,6 @@
 ### 12 Every Type in Array<a name="every-array"></a>
 
     /**/  type_czech = TypeCzech('LOG-ERRORS')
-    /**/  //type_czech = TypeCzech('NO-CHECKING')
     /**/
     /**/  function PRE_check_yourFunc() { 
     /**/    all_types = [ 'array', 'bigint', 'boolean', 'date', 'function', 
@@ -311,7 +334,6 @@
 ### 13 Every Type in Object<a name="every-object"></a>
 
     /**/  type_czech = TypeCzech('THROW-EXCEPTIONS')
-    /**/  //type_czech = TypeCzech('NO-CHECKING')
     /**/
     /**/  function PRE_check_yourFunc() { 
     /**/    all_types = { the_array:'array', the_bigInt:'bigint', the_boolean:'boolean', 
@@ -345,7 +367,6 @@
 ### 14 Array of Many Types<a name="mixed-array"></a>
 
     /**/  type_czech = TypeCzech('LOG-ERRORS')
-    /**/  //type_czech = TypeCzech('NO-CHECKING')
     /**/
     /**/  function PRE_check_yourFunc() { 
     /**/    return type_czech.check_type(arguments, ['number', 'string', 'boolean', 'date'])
@@ -363,7 +384,6 @@
 ### 15 Object of Many Types<a name="mixed-object"></a>
 
     /**/  type_czech = TypeCzech('THROW-EXCEPTIONS')
-    /**/  //type_czech = TypeCzech('NO-CHECKING')
     /**/
     /**/  function PRE_check_yourFunc() { 
     /**/    all_types = { the_array:'array', the_object:'object', the_bigInt:'bigint',
@@ -390,7 +410,6 @@
 ### 16 String Cased<a name="string-cased"></a>
 
     /**/  type_czech = TypeCzech('LOG-ERRORS')
-    /**/  //type_czech = TypeCzech('NO-CHECKING')
     /**/
     /**/  function PRE_check_yourFunc(a_name) { 
     /**/    cased_name = new RegExp(/^[A-Z][a-z]* [A-Z][a-z]*$/)

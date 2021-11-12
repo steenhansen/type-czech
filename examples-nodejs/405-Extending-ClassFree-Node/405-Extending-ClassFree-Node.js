@@ -1,4 +1,4 @@
-//  node --trace-uncaught 404-Extending-ClassFree-Node.js
+//  node --trace-uncaught 405-Extending-ClassFree-Node.js
 
 /* eslint-disable */
 

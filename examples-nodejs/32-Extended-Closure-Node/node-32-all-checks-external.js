@@ -1,4 +1,4 @@
-/* node node-42-all-checks-external.js */
+/* node node-32-all-checks-external.js */
 
 
 function First(f_name){
@@ -29,9 +29,8 @@ function Full(salu, f_name, l_name){
           lastMethod:last.lastMethod}
 }
 
-//console.log('ddddd', check_linkUp_first_last_full)
 
-var {First, Last, Full} = require('./node-42-type-czech.js')(First, Last, Full);
+var {First, Last, Full} = require('./pre_post_funcs-42.js')(First, Last, Full);
 
 william_gibson = Full('Mr', 'Larry', 'Niven')
 william_gibson.firstMethod(new Date(1970,10,1))

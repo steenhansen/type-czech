@@ -1,7 +1,7 @@
 
 # TypeCzech
 
-TypeCzech is a run-time type checking JavaScript library that can be programmatically turned on and off.
+TypeCzech is a run-time type checking JavaScript library that can be toggled on and off.
 Include one file in your web page or in your Node.js file to allow you to type check function parameters
 and results. Errors can be set to throw halting exceptions or just output to the Console.
 The motivation is to verify function parameters before execution, and function results after completion with 
@@ -17,9 +17,9 @@ With TypeCzech you can
 
   -  Check function parameter types, including arrays, and extended objects
   -  Ensure strings, arrays, and objects are not empty at run-time
-  -  Catch malformed data from a fetch() at run-time
+  -  Catch malformed data from a fetch() call at run-time
   -  Specify run-time input validation constraints
-  -  Detect run-time mutations in function parameters that are collections
+  -  Detect run-time mutations in array and object function parameters
 
 Missing from TypeCzech
 
@@ -29,16 +29,16 @@ Missing from TypeCzech
 
 TypeCzech the bad parts
 
-  - Verbosity of adding PRE_checking(), POST_checking(), and linkUp() functions 
+  - Verbosity of adding PRE_checking(), POST_checking(), and linkUp() functions to source
   - Continuously checking parameter mutations of large collections can be slow
   - When checking constructors and methods of extended classes, production code
-  can get complicated if all TypeCzech testing code is to be completely removed.
+  can get complicated if all TypeCzech testing code is to be completely removed for production.
 
 ## The Example
 
   -  type_czech = <b>TypeCzech('LOG-ERRORS')</b> logs errors to the console instead of throwing exceptions
   -  type_czech.<b>check_type()</b> checks that the parameter types to aLottery() are first a string, then an array of numbers, and finally a date
-  -  type_czech.<b>check_empty()</b> complains when parameters are found to be empty strings, arrays, or objects
+  -  type_czech.<b>check_emptyVariadic()</b> complains when parameters are found to be empty strings, arrays, or objects
   -  <b>PRE_check_aLottery()</b> is executed just before aLottery() and runs via type_czech.<b>linkUp()</b> 
   -  /**/ highlights added TypeCzech test code that is safely removable or programmatically turned off
 
@@ -50,7 +50,7 @@ TypeCzech the bad parts
 /**/    type_issue = type_czech.check_type(arguments, A_LOTTERY_SIGNATURE)
 /**/    if (type_issue) return type_issue
 /**/
-/**/    empty_issue = type_czech.check_empty(arguments, ['EMPTY-ERROR'])
+/**/    empty_issue = type_czech.check_emptyVariadic(arguments, ['EMPTY-ERROR'])
 /**/    if (empty_issue) return empty_issue
 /**/
 /**/    return ''
@@ -71,8 +71,8 @@ aLottery('El Gordo', [1,2,3,4,5,0], new Date('jun 14 1999'))
 El Gordo ::: 1,2,3,4,5,0 ::: 1999-06-14
 
 aLottery('Lotto 649', [1,2,3,4,5,6])
->>PRE_check_aLottery() aLottery() PRE-FUNC: Index '2' is supposed to be a 'date', but is missing : ['Lotto 649',[1,2,3,4,5,6]]
->>               check_type(arguments, expected_types)
+>>PRE_check_aLottery() aLottery() PRE-FUNC: Element '2' is supposed to be a 'date', but is missing : ['Lotto 649',[1,2,3,4,5,6]]
+>>               check_type()
 >>                ACTUAL TYPES ['string','array']
 >>                ACTUAL VALUE ['Lotto 649',[1,2,3,4,5,6]]
 >>               EXPECTED TYPE ['string',['number'],'date']
@@ -81,7 +81,7 @@ Lotto 649 ::: 1,2,3,4,5,6 :::
 
 aLottery('Oz Lotto', ['fourty-two'], new Date('jun 14 1999'))
 >>PRE_check_aLottery() aLottery() PRE-FUNC:  ELEMENT '0' is assumed to be a 'number', but is mistakenly a 'string'
->>               check_type(arguments, expected_types)
+>>               check_type()
 >>                ACTUAL TYPES ['string','array','date']
 >>                ACTUAL VALUE ['Oz Lotto',['fourty-two'],'1999-06-14T07:00:00.000Z']
 >>               EXPECTED TYPE ['string',['number'],'date']
@@ -89,8 +89,8 @@ aLottery('Oz Lotto', ['fourty-two'], new Date('jun 14 1999'))
 Oz Lotto ::: fourty-two ::: 1999-06-14
 
 aLottery('Mega Millions', 17, new Date('jun 14 1999'))
->>PRE_check_aLottery() aLottery() PRE-FUNC: Parameter is meant to be 'array' but is of the wrong type of 'number':17
->>               check_type(arguments, expected_types)
+>>PRE_check_aLottery() aLottery() PRE-FUNC: Param is meant to be 'array' but is of the wrong type of 'number':17
+>>               check_type()
 >>                ACTUAL TYPES ['string','number','date']
 >>                ACTUAL VALUE ['Mega Millions',17,'1999-06-14T07:00:00.000Z']
 >>               EXPECTED TYPE ['string',['number'],'date']
@@ -98,8 +98,8 @@ aLottery('Mega Millions', 17, new Date('jun 14 1999'))
 Mega Millions ::: 17 ::: 1999-06-14
 
 aLottery('Powerball', [], new Date('jun 14 1999'))
->>PRE_check_aLottery() aLottery() PRE-FUNC: ELEMENT '1' is erroneously empty :
->>               check_empty(arguments, expected_emptys)
+>>PRE_check_aLottery() aLottery() PRE-FUNC: ELEMENT '1' is asserted to be a 'EMPTY-ERROR', but is really 'EMPTY' : []
+>>               check_empty()
 >>                  ACTUAL TYPES ['string','array','date']
 >>                  ACTUAL VALUE ['Powerball',[],'1999-06-14T07:00:00.000Z']
 >>               EMPTY ASSERTION ['EMPTY-ERROR']
@@ -107,8 +107,8 @@ aLottery('Powerball', [], new Date('jun 14 1999'))
 Powerball ::: ::: 1999-06-14
 
 aLottery('', [1,2,3,4,5,26], new Date('Dec 31 1999'))
->>PRE_check_aLottery() aLottery() PRE-FUNC: ELEMENT '0' is erroneously empty :
->>               check_empty(arguments, expected_emptys)
+>>PRE_check_aLottery() aLottery() PRE-FUNC: ELEMENT '0' is asserted to be a 'EMPTY-ERROR', but is really 'EMPTY' : ''
+>>               check_empty()
 >>                  ACTUAL TYPES ['string','array','date']
 >>                  ACTUAL VALUE ['',[1,2,3,4,5,26],'1999-12-31T08:00:00.000Z']
 >>               EMPTY ASSERTION ['EMPTY-ERROR']
@@ -169,20 +169,20 @@ As long as the below construct is used, regardless of whether or not TypeCzech.j
 ```
 
 ### The Recipe
-  TypeCzech function calls should only appear in these three places, encased by either 
+  TypeCzech function calls should only appear in these three places: 
 
-  - 1 a linked up PRE_check() function
-  - 2 a linked up POST_check() function
-  - 3 or inside an isActive() if then statement inside of a promise. Then you
+  - A. encased by a linked up PRE_check() function
+  - B. wrapped by a linked up POST_check() function
+  - C. or inside an isActive() if then statement inside of a promise. Then you
     have to deliver the error message via an assert_check() call; it's not automatic.
 
 ```
 function PRE_check_yourFunc(){ 
-  /* 1 TypeCzech functions should mostly appear here to check parameters before yourFunc() runs */
+  /* A. TypeCzech functions should mostly appear here to check parameters before yourFunc() runs */
 }
 
 function POST_check_yourFunc(){ 
-  /* 2 TypeCzech functions sometimes occur here to check the results of yourFunc() */
+  /* B. TypeCzech functions sometimes occur here to check the results of yourFunc() */
 }
 yourFunc = type_czech.linkUp(yourFunc, PRE_check_yourFunc, POST_check_yourFunc)
 
@@ -193,20 +193,25 @@ function yourFunc(){ }
 fetch(some_url)
 .then(a_response => {
   if (type_czech.isActive()) {
-    /* 3 TypeCzech functions rarely show up here, but assert_check() is used to deliver errors */
+    /* C. TypeCzech functions rarely show up here, but assert_check() is used to deliver errors */
     type_err = type_czech.check_type(a_response, 'array')
-    type_czech.assert_check(type_err, 'FETCH ERROR', a_response)
+    type_czech.assert_check(type_err, 'FETCH ERROR', a_response) // report type error if any
   }
 })
 ```
-  This is enables 
+Above in the fetch() promise chain, if the variable 'a_response' is not an array then
+the variable 'type_err' will not be an empty string. If the 'type_err' is not an empty string, then type_czech.assert_check() will throw or console.log the error message. So if the variable 'a_response' is an array then the fetch() code will run without incident.
+
+
+
+
+When TypeCzech.js is not loaded, then the below construct renders all linkUp() calls into having no effect.
 ```  
 type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
 ```  
-  to handle TypeCzech.js not being loaded, safely.
 
 
-### [Simple How To Snippets](./read-mes/simple-howto.md)
+### [16 Simple How To Snippets](./read-mes/simple-howto.md)
 
 
 ### [65 Page Editable Tutorial on JSFiddle](https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Contents)

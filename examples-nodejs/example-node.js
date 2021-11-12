@@ -11,7 +11,7 @@
 /**/  function PRE_aLottery(lottery_name, lucky_numbers, draw_date) {
 /**/    const type_issue = type_czech.check_type(arguments, LOTTERY_SIGNATURE);
 /**/    if (type_issue) return type_issue;
-/**/    return type_czech.check_empty(arguments, ['EMPTY-ERROR']);
+/**/    return type_czech.check_emptyVariadic(arguments, ['EMPTY-ERROR']);
 /**/  }
 /**/
 /**/  aLottery = type_czech.linkUp(aLottery, PRE_aLottery);

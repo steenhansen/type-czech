@@ -5,66 +5,81 @@
 
 ## API
   -  [1 assert_check()](#assert-check)
-  -  [2 check_buildSnapshot()](#check-build-snapshot)
+  -  [2 check_buildSnapshot() & check_mutatedSnapshot()](#check-build-snapshot)
   -  [3 check_empty()](#check-empty)
   -  [4 check_emptyEither()](#check-empty-either)
   -  [5 check_emptyExtra()](#check-empty-extra)
   -  [6 check_emptyVariadic()](#check-empty-variadic)
   -  [7 check_interface()](#check-interface)
-  -  [8 check_mutatedSnapshot()](#check-mutated-snapshot)
-  -  [9 check_type()](#check-type)
-  -  [10 check_typeEither()](#check-type-either)
-  -  [11 check_typeExtra()](#check-type-extra)
-  -  [12 check_typeVariadic()](#check-type-variadic)
-  -  [13 countFails()](#count-fails) 
-  -  [14 countTally()](#count-tally) 
-  -  [15 enableChecks()](#enable-checks) 
-  -  [16 disableChecks()](#disable-checks) 
-  -  [17 isActive()](#is-active) 
-  -  [18 linkUp()](#link-up)
-  -  [19 typeFinal()](#type-final)
-  -  [20 typeIsA()](#type-is-a) 
-  -  [21 typeProtos()](#type-protos)
+  -  [8 check_type()](#check-type)
+  -  [9 check_typeEither()](#check-type-either)
+  -  [10 check_typeExtra()](#check-type-extra)
+  -  [11 check_typeVariadic()](#check-type-variadic)
+  -  [12 countFails()](#count-fails) 
+  -  [13 countTally()](#count-tally) 
+  -  [14 enableChecks()](#enable-checks) 
+  -  [15 disableChecks()](#disable-checks) 
+  -  [16 isActive()](#is-active) 
+  -  [17 linkUp()](#link-up)
+  -  [18 typeFinal()](#type-final)
+  -  [19 typeIsA()](#type-is-a) 
+  -  [20 typeProtos()](#type-protos)
 
-Note that functions with \_check_ in their names are usually placed within PRE and POST checking functions as their error messages are logged in the console or throw exceptions.
+Note that function calls that have names that start with check_ are usually placed within PRE and POST checking functions as their error messages are automatically logged in the console or thrown as exceptions.
 
 ### 1 assert_check(the_error, err_location, err_variable, err_explanation)<a name="assert-check"></a>
 
-  If check_error is an empty string then nothing happens. Otherwise the error 
+  This function is nearly always placed inside a promise chain, without PRE_check() and POST_check() functions being present.
+  Below, if check_error is an empty string then nothing happens. Otherwise the error 
   is funneled through TypeCzech so as to use halting exceptions or informing console.logs for
   error delivery. Basically an 'assert', but it must be guarded with isActive() for production
-  when TypeCzech is not loaded. 
+  when TypeCzech is not loaded. The last, fourth parameter, is only used when the first parameter is not a TypeCzech error.
 ```
 type_czech = TypeCzech('THROW-EXCEPTIONS')
 if (type_czech.isActive()) {
   tested_value = new Date('1999-10-10')
   check_error=type_czech.check_typeEither(tested_value, ['number','string'])
-  error_location = 'the-test-location'
+  error_location = 'not-used'
   expected_outcome = 'expected tested_value to be a number or a string'
   type_czech.assert_check(check_error, error_location, tested_value, expected_outcome)
 }
 
-// error Assert Location: the-test-location 
-//       : The value '1999-10-10T00:00:00.000Z', which is a 'date', is not a 'number'
-//       , The value '1999-10-10T00:00:00.000Z', which is a 'date', is not a 'string'
+>>Uncaught Error:  Assert Location: the-test-location : The value '1999-10-10T00:00:00.000Z', 
+>>which is a 'date', is not a 'number', The value >>'1999-10-10T00:00:00.000Z', which is a 'date', is not a 'string'
+>>check_typeEither()
+>>    ACTUAL TYPES 'date'
+>>    ACTUAL VALUE 1999-10-10T00:00:00.000Z
+>>   EXPECTED TYPE ["number","string"]
+>>CALLING FUNCTION assert_check()
 ```
 
-Usually used inside a then clause of a promise because linkUp() does not work with
-promises; basically, an assert.
+Here an assert_check() is placed inside a then clause of a promise because linkUp() does not work with
+promises. Program flow will interupted because the below response is incorrect, to
+fix use {country:'string'}.
 ```
-fetch(some_url)
-.then(response => {
+type_czech = TypeCzech('THROW-EXCEPTIONS')
+your_ip = 'https://get.geojs.io/v1/ip/country.json'
+fetch(your_ip)
+  .then(response => response.json())
+  .then(the_response => {
   if (type_czech.isActive()) {
-    type_error = type_czech.check_type(github_data, {html_url:'string'})
-    type_czech.assert_check(type_error, 'Error - some url', response)
+    type_error = type_czech.check_typeExtra(the_response, {country:'number'})
+    type_czech.assert_check(type_error, 'Error - some url', the_response)
   }
 })
+
+>>Uncaught (in promise) Error:  Assert Location: Error - some url :
+>>    Key 'country', which has a type of 'number', is missing in the checked object
+>>check_typeExtra()
+>>    ACTUAL TYPES 'object'
+>>    ACTUAL VALUE {country:"CA",country_3:"CAN",ip:"123.123.123.123",name:"Canada"}
+>>   EXPECTED TYPE {country:"number"}
+>>CALLING FUNCTION assert_check()
 ```
 
   [assert_check() examples](./public/assert_check.md)
 
-### 2 check_buildSnapshot(function_name, variable_name, the_variable)<a name="check-build-snapshot"></a>
-&nbsp;&nbsp;&nbsp; in conjunction with <b>8 check_mutatedSnapshot(function_name, variable_name)</b> <a name="check-mutated-snapshot"></a>
+### 2 check_buildSnapshot(function_name, variable_name, the_variable) & &nbsp;&nbsp;&nbsp;check_mutatedSnapshot(function_name, variable_name)<a name="check-build-snapshot"></a>
 
   Generally used inside both PRE_check() and POST_check() functions that have been linked to 
   a function to be tested. The idea is to build a snapshot of a mutable array or object parameter before the tested function gets called, as in PRE_check_aCollection() below. And then, verify that the array or object has not been mutated after the tested function returns, as in POST_check_aCollection() below.
@@ -242,7 +257,7 @@ wantedProperties({my_func: x=>x, my_number: 'not-a-number'})  // PRE error
 
   [check_interface() examples](./public/check_interface.md)
 
-### 9 check_type(a_variable, type_signature) <a name="check-type"></a>
+### 8 check_type(a_variable, type_signature) <a name="check-type"></a>
   Used inside both PRE_check() and POST_check() functions that have been linked to 
   a function to be tested.
 
@@ -279,7 +294,7 @@ oneString(12)  // PRE error
 
 
 
-### 10 check_typeEither(a_variable, type_signatures)<a name="check-type-either"></a>
+### 9 check_typeEither(a_variable, type_signatures)<a name="check-type-either"></a>
   Used inside both PRE_check() and POST_check() functions that have been linked to 
   a function to be tested.
 
@@ -312,7 +327,7 @@ eitherObject( {first: 'Bob', middle: 'Bob'}) // PRE error
 
 
 
-### 11 check_typeExtra(a_variable, type_signature)<a name="check-type-extra"></a>
+### 10 check_typeExtra(a_variable, type_signature)<a name="check-type-extra"></a>
   Generally used inside both PRE_check() and POST_check() functions that have been linked to 
   a function to be tested.
   
@@ -343,7 +358,7 @@ extraParams({make: 'Toyota'}) // PRE error
 
 
 
-### 12 check_typeVariadic(arguments, type_signature)<a name="check-type-variadic"></a>
+### 11 check_typeVariadic(arguments, type_signature)<a name="check-type-variadic"></a>
   Generally used inside both PRE_check() and POST_check() functions that have been linked to 
   a function to be tested.
   
@@ -367,7 +382,7 @@ someNumbers(1, 'two', 3) // PRE error
 ```
   [check_typeVariadic() examples](./public/check_typeVariadic.md)
 
-### 13 countFails()<a name="count-fails"></a>
+### 12 countFails()<a name="count-fails"></a>
  
   Get number of failed check function calls, both PRE_check() and POST_check().
 ```
@@ -391,7 +406,7 @@ anArray([])
 console.log( 'Number Fails 2 : ', type_czech.countFails() )
 ```
  
-### 14 countTally()<a name="count-tally"></a>
+### 13 countTally()<a name="count-tally"></a>
 
   Get number of total check function calls, both PRE_check() and POST_check().
 ```
@@ -421,7 +436,7 @@ console.log( 'Number Checks 5 : ', type_czech.countTally() )
 
 
 
-### 15 enableChecks()<a name="enable-checks"></a>
+### 14 enableChecks()<a name="enable-checks"></a>
  
   Start checking of functions after disabling them. Cannot enable checking
   from a non-active TypeCzech instance, started from TypeCzech() or TypeCzech('NO-ERROR-MESSAGES')
@@ -450,7 +465,7 @@ type_czech.enableChecks()
 oneUppercase('push me pull you') // PRE error
 ```
 
-### 16 disableChecks()<a name="disable-checks"></a>
+### 15 disableChecks()<a name="disable-checks"></a>
  
   Stop checking of functions.
 ```
@@ -475,7 +490,7 @@ type_czech.disableChecks()
 isRoman('1177 BC') // not checked
 ```
 
-### 17 isActive()<a name="is-active"></a>
+### 16 isActive()<a name="is-active"></a>
 
   Returns true if TypeCzech is checking errors. This returns false if TypeCzech was not loaded in Node.js or the browser. Can turn off with disableChecks().
 
@@ -491,7 +506,7 @@ type_czech.enableChecks()
 console.log( type_czech.isActive(), ' == true')
 ```
 
-### 18 linkUp(tested_func, before_checking_func, after_checking_func)<a name="link-up"></a>
+### 17 linkUp(tested_func, before_checking_func, after_checking_func)<a name="link-up"></a>
   Link functions, classes, closures, IIFEs, and Prototypes to parameter and result checking functions.
 ```
 type_czech = TypeCzech('LOG-ERRORS')
@@ -518,7 +533,7 @@ oneString(12)  // PRE and POST error
 
 
 
-### 19 typeFinal(a_variable)<a name="type-final"></a>
+### 18 typeFinal(a_variable)<a name="type-final"></a>
 
 
   Returns the last inherited prototype or classname of its lineage.
@@ -534,7 +549,7 @@ type_czech.typeFinal(a_last)  // Last
   
   [typeFinal() examples](./public/typeFinal.md)   
 
-### 20 typeIsA(a_variable, variable_type)<a name="type-is-a"></a>
+### 19 typeIsA(a_variable, variable_type)<a name="type-is-a"></a>
 
   Returns true if first parameter variable is of the second type.
 ```
@@ -545,7 +560,7 @@ type_czech.typeIsA(document, "Object")       // true
 ```
   [typeIsA() examples](./public/typeIsA.md)  
 
-### 21 typeProtos(a_variable)<a name="type-protos"></a>
+### 20 typeProtos(a_variable)<a name="type-protos"></a>
 
   Returns the prototype lineage an objects or class.
 

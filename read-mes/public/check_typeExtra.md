@@ -9,7 +9,8 @@
   -  [4 Extra Object Result Type Check](#extra-object-result-type-check)
 
 ## 0 Illegal Extra Parameter Type Check<a name="illigal-extra-single-array-parameter-type-check"></a>
-
+Because the below example has a one dimensional signature of ['number'] it does not
+work. The signature ['number'] means an array of any size that has numbers. The signatures of check_typeExtra() that deal with arrays must have at least two elements in the signature. The function check_emptyExtra() has the same issue.
 ```
 function PRE_check_illegalArrayExtra(){
   return type_czech.check_typeExtra(arguments, ['number'])
@@ -23,6 +24,46 @@ function illegalArrayExtra(single_array_with_extra){
 
 illegalArrayExtra([1, 2, 3])  // PRE error - try [number, number] as ["number"] is illegal
 ```
+
+
+
+The below example has followed the suggestion of the above error message, and makes sure that all 
+elements in an array are numbers.
+```
+function PRE_check_onlyNumbersArray(){
+  return type_czech.check_type(arguments, ['number'])
+}
+
+type_czech = TypeCzech('LOG-ERRORS')
+onlyNumbersArray = type_czech.linkUp(onlyNumbersArray, PRE_check_onlyNumbersArray) 
+
+function onlyNumbersArray(single_array_with_extra){
+}
+
+onlyNumbersArray([1, 2, 3])
+
+onlyNumbersArray([1, 2, 'doge']) // fail
+```
+
+The below example works because there are two elements in the array signature. This ensures that the first parameters is a number, the 
+second a string, and ignores the rest.
+```
+function PRE_check_arrayExtraOk(){
+  return type_czech.check_typeExtra(arguments, ['number', 'string'])
+}
+
+type_czech = TypeCzech('LOG-ERRORS')
+arrayExtraOk = type_czech.linkUp(arrayExtraOk, PRE_check_arrayExtraOk) 
+
+function arrayExtraOk(single_array_with_extra){
+}
+
+arrayExtraOk([1, 'Rock Lobster', 'un-checked-extra'])
+
+arrayExtraOk([1, 2, 'un-checked-fail']) // fail
+
+```
+
 
 ## 1 Extra Multi Array Parameter Type Check<a name="extra-multi-array-parameter-type-check"></a>
 

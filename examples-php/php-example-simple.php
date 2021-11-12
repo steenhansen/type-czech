@@ -38,6 +38,9 @@ $js_always_second = <<<'EOD'
     }
 
     aLottery('El Gordo', [1,2,3,4,5,0], new Date('jun 14 1999'));
+    console.log('...');
+    console.log('...');
+    console.log('...');
     aLottery('Mega Millions', 17, new Date('jun 14 1999'));
     aLottery('Powerball', [], new Date('jun 14 1999'));
   </script>
@@ -45,7 +48,7 @@ EOD;
 
 if (TYPE_CHECK_JS) {
   print $js_only_if_type_check_first;
-  print "TypeCzech was turned ON, open console to view output and see type error";
+  print "TypeCzech was turned ON, open console to view output and see type errors";
 } else {
   print "TypeCzech was turned OFF, open console to view output";
 }

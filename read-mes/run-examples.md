@@ -5,6 +5,7 @@
 
 ### Node.js Examples
   -  [example-node.js](../examples-nodejs/example-node.js)
+  -  [32-Extending-Classes-Node.js](../examples-nodejs/32-Extended-Closure-Node/node-32-all-checks-external.js)
   -  [105-Extending-Classes-Node.js](../examples-nodejs/105-Extending-Classes-Node/105-Extending-Classes-Node.js)
   -  [205-Extending-Closures-Node.js](../examples-nodejs/205-Extending-Closures-Node/205-Extending-Closures-Node.js)
   -  [305-Extending-IIFEs-Node.js](../examples-nodejs/305-Extending-IIFEs-Node/305-Extending-IIFEs-Node.js)
