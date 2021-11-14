@@ -5,7 +5,7 @@ TypeCzech is a run-time type checking JavaScript library that can be toggled on 
 Include one file in your web page or in your Node.js file to allow you to type check function parameters
 and results. Errors can be set to throw halting exceptions or just output to the Console.
 The motivation is to verify function parameters before execution, and function results after completion with 
-PRE_check() and POST_check() funtions.
+PRE_check() and POST_check() functions.
 
 Enjoy some TypeScript benefits without the drawbacks of
 
