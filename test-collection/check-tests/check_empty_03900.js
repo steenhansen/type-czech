@@ -636,7 +636,12 @@ test_pre_check_empty_single(single_variable, single_signature, 3974, error_mess)
 
 single_variable  = 'not-object';
 single_signature = { an_object: 'EMPTY-ERROR' };
-error_mess = `TE@201 - check_empty() called with '{}' against '!{}'. Contrasting a string type of value not-object, with '{"an_object":"EMPTY-ERROR"}' an object !!! string <> object`;
+error_mess = `PRE_test_3900() pre_check_empty_3900() PRE-FUNC: TE@201 - check_empty() called with '{}' against '!{}'. Contrasting a string type of value not-object, with '{"an_object":"EMPTY-ERROR"}' an object !!! string <> object
+check_empty()
+    ACTUAL TYPES 'string'
+    ACTUAL VALUE "not-object"
+ EMPTY ASSERTION {'an_object':'EMPTY-ERROR'}
+CALLING FUNCTION PRE_test_3900()`;
 test_pre_check_empty_single(single_variable, single_signature, 3975, error_mess);
 
 single_variable  = '';

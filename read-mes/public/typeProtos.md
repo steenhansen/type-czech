@@ -3,6 +3,8 @@
   -  [1 Class TypeProtos](#class-type-protos)
   -  [2 HTML TypeProtos](#html-type-protos)
 
+#### All examples below can be executed in the console of [repl.html](../../test-collection/repl.html)
+
 ## 1 Class TypeProtos<a name="class-type-protos"></a>
 
 ```

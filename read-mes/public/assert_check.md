@@ -2,6 +2,8 @@
 ## assert_check()
   -  [1 Assert Check in a Promise](#assert-check-in-a-promise) 
 
+#### All examples below can be executed in the console of [repl.html](../../test-collection/repl.html)
+
 ## 1 Assert check_type() in a Promise<a name="assert-check-in-a-promise"></a>
 
  Ask [GeoJS](#https://www.geojs.io/) for the country belonging to an ip, [USA 8.8.8.8](#https://get.geojs.io/v1/ip/country.json?ip=8.8.8.8) in this example, and 
@@ -29,9 +31,9 @@ function getIpCountryInfo(ip_numbers){
   .then(geo_data => console.log(geo_data[0]))
 }
 
-getIpCountryInfo('8.8.8.8')
+getIpCountryInfo('8.8.8.8') // pass
 
-getIpCountryInfo('error-no-country')  // error
+getIpCountryInfo('error-no-country')  // assert_check fail - wrong object
 
 ```
    

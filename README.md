@@ -210,15 +210,16 @@ When TypeCzech.js is not loaded, then the below construct renders all linkUp() c
 type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
 ```  
 
+### [65 Page Live Editable Tutorial on JSFiddle](https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Contents)
 
 ### [16 Simple How To Snippets](./read-mes/simple-howto.md)
 
+### [TypeCzech API](./read-mes/api-list.md)
 
-### [65 Page Editable Tutorial on JSFiddle](https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Contents)
+
 
 ### [65 Page Local Browsable Tutorial](./example-snippets/example-contents.html)
 
-### [TypeCzech API](./read-mes/api-list.md)
 
 ### [Node.js and PHP Examples](./read-mes/run-examples.md)
 
@@ -232,7 +233,7 @@ type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
 
 ### [FAQ](./read-mes/faq-answers.md)
 
-### [Dependencies](./read-mes/needed-dependencies.md)
+### [Dependencies](./read-mes/the-dependencies.md)
 
 ### Created by
 [Steen Hansen](https://github.com/steenhansen)

@@ -3,6 +3,8 @@
   -  [1 Mutation Check an Array](#mutation-check-an-array) 
   -  [2 Mutation Check an Object](#mutation-check-an-object) 
 
+#### All examples below can be executed in the console of [repl.html](../../test-collection/repl.html)
+
 ## 1 Mutation Check an Array<a name="mutation-check-an-array"></a>
   
 ```
@@ -23,10 +25,9 @@ function anArray(an_array){
     an_array[0] = 'An-Error'
 }
 
-anArray([9,8,7])
+anArray([9,8,7]) // pass
 
-anArray([1,2,3]) // POST error
-
+anArray([1,2,3]) // POST fail - changed to ["An-Error",2,3] 
 ```
    
 ## 2 Mutation Check an Object<a name="mutation-check-an-object"></a>
@@ -47,13 +48,11 @@ anObject = type_czech.linkUp(anObject, PRE_check_anObject, POST_check_anObject)
 function anObject(an_object){
   if (typeof an_object.extra === 'undefined')
     an_object.extra = 'is mutated'
-
 }
 
-anObject({data:'data', extra:'extra'})
+anObject({data:'data', extra:'extra'}) // pass
 
-anObject({an_error:'oh yeah'}) // POST error
-
+anObject({an_err:'yep'}) // POST fail - changed to {"an_err":"yep","extra":"is mutated"} 
 ```
 
 &copy; 2021 Steen Hansen 

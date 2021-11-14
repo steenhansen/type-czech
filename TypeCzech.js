@@ -1,5 +1,5 @@
 /* eslint-disable block-scoped-var */
-const VERS_NUM = 'v1.0 21-11-12';
+const VERS_NUM = 'v1.0 21-11-13';
 
 let the_exports;
 if (typeof exports === 'undefined') {
@@ -3266,7 +3266,7 @@ type_czech._twoArrays([       'a-string', ['string']            ], 'methodName')
         let error_str_3arr = '';
         if (list_of_2.length !== 2) {
           const error_401 = `${method_name}() has 2 argu-ments not ${list_of_2.length}`;
-          error_str_3arr = _consoleError(error_401, 'ME@401');
+          error_str_3arr = paramError(error_401, 'ME@401', '', message_type_empty);
         } else {
           const [parameters_list, shape_list] = list_of_2;
           const parameter_type = _aTypeOf(parameters_list);
@@ -3305,13 +3305,13 @@ type_czech._twoArrays([       'a-string', ['string']            ], 'methodName')
                 const error_201 = `${method_name}() called with '{}' against '!{}'.`
                 + ` Contrasting a ${parameter_type} type of value ${param_value}, with '${shape_str}' an ${shape_type}`
                 + ` !!! ${parameter_type} <> ${shape_type}`;
-                error_str_3arr = _consoleError(error_201, 'TE@201');
+                error_str_3arr = paramError(error_201, 'TE@201', shape_str, message_type_empty);
               }
             } else if (shape_type !== 'string') {
               const error_224 = `${method_name}() called with 2nd param not a string such as 'number'.`
                           + ` Matching '${param_value}' with '${shape_str}'.`
                           + ` Preferably try ${method_name}(12, 'number')`;
-              error_str_3arr = _consoleError(error_224, 'TE@224');
+              error_str_3arr = paramError(error_224, 'TE@224', shape_str, message_type_empty);
             }
           }
         }

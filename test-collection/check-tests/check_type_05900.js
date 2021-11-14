@@ -753,7 +753,12 @@ test_pre_check_type_single(single_variable, single_signature, 5974, error_mess);
 
 single_variable  = 'not-object';
 single_signature = { an_object: 'Boaty-McBoatFace' };
-error_mess = `TE@201 - check_type() called with '{}' against '!{}'. Contrasting a string type of value not-object, with '{"an_object":"Boaty-McBoatFace"}' an object !!! string <> object`;
+error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@201 - check_type() called with '{}' against '!{}'. Contrasting a string type of value not-object, with '{"an_object":"Boaty-McBoatFace"}' an object !!! string <> object
+check_type()
+    ACTUAL TYPES 'string'
+    ACTUAL VALUE "not-object"
+   EXPECTED TYPE {'an_object':'Boaty-McBoatFace'}
+CALLING FUNCTION PRE_test_05900()`;
 test_pre_check_type_single(single_variable, single_signature, 5975, error_mess);
 
 single_variable  = 'a-string';
@@ -844,7 +849,12 @@ test_pre_check_type_single(single_variable, single_signature, 5984, error_mess);
 
 single_variable  = 'single_signature-not-string';
 single_signature = 12;
-error_mess = `TE@224 - check_type() called with 2nd param not a string such as 'number'. Matching 'single_signature-not-string' with '12'. Preferably try check_type(12, 'number')`;
+error_mess = `PRE_test_05900() pre_check_type_05900() PRE-FUNC: TE@224 - check_type() called with 2nd param not a string such as 'number'. Matching 'single_signature-not-string' with '12'. Preferably try check_type(12, 'number')
+check_type()
+    ACTUAL TYPES 'string'
+    ACTUAL VALUE "single_signature-not-string"
+   EXPECTED TYPE 12
+CALLING FUNCTION PRE_test_05900()`;
 test_pre_check_type_single(single_variable, single_signature, 5985, error_mess);
 
 single_variable  = 'single_signature-null';

@@ -5,6 +5,8 @@
   -  [1 Either Parameter Type Check](#either-empty-parameter-check)
   -  [2 Either Empty Result Check](#either-empty-result-check)
 
+#### All examples below can be executed in the console of [repl.html](../../test-collection/repl.html)
+
 ## 1 Either Parameter Type Check<a name="either-empty-parameter-check"></a>
   
 ```
@@ -17,14 +19,13 @@ function PRE_check_firstOrSecond(){
 type_czech = TypeCzech('LOG-ERRORS')
 firstOrSecond = type_czech.linkUp(firstOrSecond, PRE_check_firstOrSecond) 
 
-function firstOrSecond(first, second){
-}
+function firstOrSecond(first, second){ }
 
-firstOrSecond('full', 'full')  
-firstOrSecond('full', '')  
-firstOrSecond('', 'full')  
+firstOrSecond('full', 'full') // pass
+firstOrSecond('full', '')     // pass
+firstOrSecond('', 'full')     // pass
 
-firstOrSecond('', '')  // PRE errror
+firstOrSecond('', '') // PRE fail - both empty
 
 ```
 
@@ -51,11 +52,11 @@ function firstOrSecond(first, second){
   return [first, second]
 }
 
-firstOrSecond('full', 'full')  
-firstOrSecond('full', '')  
-firstOrSecond('', 'full')  
+firstOrSecond('full', 'full') // pass
+firstOrSecond('full', '')     // pass
+firstOrSecond('', 'full')     // pass
 
-firstOrSecond('', '')  // PRE error
+firstOrSecond('', '') // POST fail - both empty
 ```
 
 

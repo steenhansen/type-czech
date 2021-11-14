@@ -8,6 +8,8 @@
   -  [3 Extra Multi Array Result Empty Check](#extra-multi-array-result-empty-check)
   -  [4 Extra Object Result Empty Check](#extra-object-result-empty-check)
 
+#### All examples below can be executed in the console of [repl.html](../../test-collection/repl.html)
+
 ## 0 Illegal Extra Parameter Empty Check<a name="illigal-extra-single-array-parameter-empty-check"></a>
 Because the below example has a one dimensional signature of ['EMPTY-ERROR'] it does not
 work. The signature ['EMPTY-ERROR'] means an array of any size that has no empty elements. The signatures of check_emptyExtra() that deal with arrays must have at least two elements in the signature. The function check_typeExtra() has the same issue.
@@ -38,9 +40,9 @@ noEmptyElementsArray = type_czech.linkUp(noEmptyElementsArray, PRE_check_noEmpty
 function noEmptyElementsArray(single_array_with_extra){
 }
 
-noEmptyElementsArray([1, 'cat', false])
+noEmptyElementsArray([1, 'cat', false]) // pass
 
-noEmptyElementsArray([1, 'cat', '']) // fail
+noEmptyElementsArray([1, 'cat', '']) // PRE fail - last parameter is empty
 ```
 
 The below example works because there are two elements in the array signature. This ensures that the first two parameters are not empty, and ignores the rest.
@@ -52,12 +54,11 @@ function PRE_check_arrayExtraOk(){
 type_czech = TypeCzech('LOG-ERRORS')
 arrayExtraOk = type_czech.linkUp(arrayExtraOk, PRE_check_arrayExtraOk) 
 
-function arrayExtraOk(single_array_with_extra){
-}
+function arrayExtraOk(single_array_with_extra){ }
 
-arrayExtraOk([1, 2, ''])
+arrayExtraOk([1, 2, '']) // pass
 
-arrayExtraOk([1, '']) // fail
+arrayExtraOk([1, '']) // PRE fail - second parameter is an empty string ''
 
 ```
 
@@ -74,14 +75,13 @@ function PRE_check_arrayExtra(){
 type_czech = TypeCzech('LOG-ERRORS')
 arrayExtra = type_czech.linkUp(arrayExtra, PRE_check_arrayExtra) 
 
-function arrayExtra(single_array_with_extra){
-}
+function arrayExtra(single_array_with_extra){ }
 
-arrayExtra([1, 'Abba'])
+arrayExtra([1, 'Abba']) // pass
 
-arrayExtra([1984, 'Blondie', false, [], {}])
+arrayExtra([1984, 'Blondie', false, [], {}]) // pass
 
-arrayExtra([0])  // PRE error
+arrayExtra([0])  // PRE fail - missing second parameter
 ```
 
 
@@ -95,14 +95,13 @@ function PRE_check_objectExtra(){
 type_czech = TypeCzech('LOG-ERRORS')
 objectExtra = type_czech.linkUp(objectExtra, PRE_check_objectExtra) 
 
-function objectExtra(single_object_with_extra){
-}
+function objectExtra(single_object_with_extra){ }
 
-objectExtra({song:'Deacon Blues'})
+objectExtra({song:'Deacon Blues'}) // pass
 
-objectExtra({song:'Peg', album:'Aja' })
+objectExtra({song:'Peg', album:'Aja' }) // pass
 
-objectExtra({album:'Gaucho' })  // PRE error
+objectExtra({album:'Gaucho' })  // PRE fail - no song
 ```
 
 
@@ -125,11 +124,11 @@ function arrayExtra(single_array_with_extra){
   return single_array_with_extra
 }
 
-arrayExtra([1991, 'Nirvana'])
+arrayExtra([1991, 'Nirvana']) // pass
 
-arrayExtra([1991, 'Nevermind', false, [], {}])
+arrayExtra([1991, 'Nevermind', false, [], {}]) // pass
 
-arrayExtra([43])  // PRE error
+arrayExtra([43])  // PRE fail - no second parameter
 ```
 
 
@@ -154,11 +153,11 @@ function objectExtra(single_object_with_extra){
   return single_object_with_extra
 }
 
-objectExtra({song:'Take a Chance With Me'})
+objectExtra({song:'Take a Chance With Me'}) // pass
 
-objectExtra({song:'More Than This', album:'Avalon' })
+objectExtra({song:'More Than This', album:'Avalon' }) // pass
 
-objectExtra({album:'Avalon' })  // PRE error
+objectExtra({album:'Avalon' })  // PRE fail - no song property
 ```
 
 

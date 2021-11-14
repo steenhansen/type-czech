@@ -8,6 +8,8 @@
   -  [3 Extra Multi Array Result Type Check](#extra-multi-array-result-type-check)
   -  [4 Extra Object Result Type Check](#extra-object-result-type-check)
 
+#### All examples below can be executed in the console of [repl.html](../../test-collection/repl.html)
+
 ## 0 Illegal Extra Parameter Type Check<a name="illigal-extra-single-array-parameter-type-check"></a>
 Because the below example has a one dimensional signature of ['number'] it does not
 work. The signature ['number'] means an array of any size that has numbers. The signatures of check_typeExtra() that deal with arrays must have at least two elements in the signature. The function check_emptyExtra() has the same issue.
@@ -19,10 +21,9 @@ function PRE_check_illegalArrayExtra(){
 type_czech = TypeCzech('LOG-ERRORS')
 illegalArrayExtra = type_czech.linkUp(illegalArrayExtra, PRE_check_illegalArrayExtra) 
 
-function illegalArrayExtra(single_array_with_extra){
-}
+function illegalArrayExtra(single_array_with_extra){ }
 
-illegalArrayExtra([1, 2, 3])  // PRE error - try [number, number] as ["number"] is illegal
+illegalArrayExtra([1, 2, 3])  // PRE fail - try [number, number] as ["number"] is illegal
 ```
 
 
@@ -37,12 +38,11 @@ function PRE_check_onlyNumbersArray(){
 type_czech = TypeCzech('LOG-ERRORS')
 onlyNumbersArray = type_czech.linkUp(onlyNumbersArray, PRE_check_onlyNumbersArray) 
 
-function onlyNumbersArray(single_array_with_extra){
-}
+function onlyNumbersArray(single_array_with_extra){ }
 
-onlyNumbersArray([1, 2, 3])
+onlyNumbersArray([1, 2, 3]) // pass
 
-onlyNumbersArray([1, 2, 'doge']) // fail
+onlyNumbersArray([1, 2, 'doge']) // PRE fail - 'doge' is not a number
 ```
 
 The below example works because there are two elements in the array signature. This ensures that the first parameters is a number, the 
@@ -55,12 +55,11 @@ function PRE_check_arrayExtraOk(){
 type_czech = TypeCzech('LOG-ERRORS')
 arrayExtraOk = type_czech.linkUp(arrayExtraOk, PRE_check_arrayExtraOk) 
 
-function arrayExtraOk(single_array_with_extra){
-}
+function arrayExtraOk(single_array_with_extra){ }
 
-arrayExtraOk([1, 'Rock Lobster', 'un-checked-extra'])
+arrayExtraOk([1, 'Rock Lobster', 'un-checked-extra']) // pass
 
-arrayExtraOk([1, 2, 'un-checked-fail']) // fail
+arrayExtraOk([1, 2, 'un-checked-fail']) // PRE fail 2 is not a string
 
 ```
 
@@ -75,14 +74,13 @@ function PRE_check_arrayExtra(){
 type_czech = TypeCzech('LOG-ERRORS')
 arrayExtra = type_czech.linkUp(arrayExtra, PRE_check_arrayExtra) 
 
-function arrayExtra(single_array_with_extra){
-}
+function arrayExtra(single_array_with_extra){ }
 
-arrayExtra([1, 'Abba'])
+arrayExtra([1, 'Abba']) // pass
 
-arrayExtra([1984, 'Blondie', false, [], {}])
+arrayExtra([1984, 'Blondie', false, [], {}]) // pass
 
-arrayExtra([0])  // PRE error
+arrayExtra([0])  // PRE fail - missing 2nd string parameter
 ```
 
 
@@ -96,14 +94,13 @@ function PRE_check_objectExtra(){
 type_czech = TypeCzech('LOG-ERRORS')
 objectExtra = type_czech.linkUp(objectExtra, PRE_check_objectExtra) 
 
-function objectExtra(single_object_with_extra){
-}
+function objectExtra(single_object_with_extra){ }
 
-objectExtra({song:'Deacon Blues'})
+objectExtra({song:'Deacon Blues'}) // pass
 
-objectExtra({song:'Peg', album:'Aja' })
+objectExtra({song:'Peg', album:'Aja' }) // pass
 
-objectExtra({album:'Gaucho' })  // PRE error
+objectExtra({album:'Gaucho' })  // PRE fail - missing 'song' property
 ```
 
 
@@ -126,11 +123,11 @@ function arrayExtra(single_array_with_extra){
   return single_array_with_extra
 }
 
-arrayExtra([1991, 'Nirvana'])
+arrayExtra([1991, 'Nirvana']) // pass
 
-arrayExtra([1991, 'Nevermind', false, [], {}])
+arrayExtra([1991, 'Nevermind', false, [], {}]) // pass
 
-arrayExtra([43])  // PRE error
+arrayExtra([43])  // PRE fail - missing 2nd string in result
 ```
 
 
@@ -155,11 +152,11 @@ function objectExtra(single_object_with_extra){
   return single_object_with_extra
 }
 
-objectExtra({song:'Take a Chance With Me'})
+objectExtra({song:'Take a Chance With Me'}) // pass
 
-objectExtra({song:'More Than This', album:'Avalon' })
+objectExtra({song:'More Than This', album:'Avalon' }) // pass
 
-objectExtra({album:'Avalon' })  // PRE error
+objectExtra({album:'Avalon' })  // PRE fail - missing song property in result
 ```
 
 

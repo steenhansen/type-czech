@@ -10,10 +10,8 @@ The TypeCzech.js file is 195KB, while the minified file on jsDelivr is only 29KB
 
     <script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech/web-resources/TypeCzech.min.js"></script>
 
-
-
 ### Not Loading Library
-By not loading TypeCzech.js the linkUp() function turns into a nop with no effects. The function PRE_check_posNum() is still parsed, but never executed.
+By not loading TypeCzech.js the linkUp() function turns into a nop with no effects. The function PRE_check_notNegNum() is still parsed, but never executed.
 
     /**/  // TypeCzech = 'src not loaded in this page via commenting'
     /**/
@@ -22,24 +20,23 @@ By not loading TypeCzech.js the linkUp() function turns into a nop with no effec
     /**/  else
     /**/    type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
     /**/  
-    /**/  function PRE_check_posNum(a_number){
+    /**/  function PRE_check_notNegNum(a_number){
     /**/    if (a_number<1) return `Error, ${a_number} is not positive`
     /**/      return ''
     /**/  }
     /**/  
-    /**/  posNum = type_czech.linkUp(posNum, PRE_check_posNum) // does nothing
+    /**/  notNegNum = type_czech.linkUp(notNegNum, PRE_check_notNegNum) // does nothing
 
-    function posNum(a_number){
-      console.log('My positive number', a_number)
-    }
+    function notNegNum(a_number){ }
 
-    posNum(-321)           
-    >>My positive number -321
-    
-    posNum('not-checked')
-    >>My positive number not-checked
+    notNegNum(-321)  // not checked
+    notNegNum('-55')  // not checked
 
-### Turn On and Off with a Constant
+    notNegNum(19)             // not checked
+    notNegNum('not-negative') // not checked
+
+### Turned ON with a Constant
+The checking function PRE_check_notNegNum() is called before every execution of the notNegNum() and will 'LOG-ERRORS' to console if any negative numbers are found. 
 
     /**/  // TypeCzech = 'always loaded and parsed'
     /**/
@@ -50,29 +47,55 @@ By not loading TypeCzech.js the linkUp() function turns into a nop with no effec
     /**/  else
     /**/    type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
     /**/  
-    /**/  function PRE_check_posNum(a_number){
+    /**/  function PRE_check_notNegNum(a_number){
     /**/    if (a_number<1) return `Error, ${a_number} is not positive`
     /**/      return ''
     /**/  }
     /**/  
-    /**/  posNum = type_czech.linkUp(posNum, PRE_check_posNum)
+    /**/  notNegNum = type_czech.linkUp(notNegNum, PRE_check_notNegNum)
 
-    function posNum(a_number){
-      console.log('My positive number', a_number)
-    }
+    function notNegNum(a_number){  }
 
-    posNum(-321)
-    >>My positive number -321
+    notNegNum(-321)  // PRE fail
+    notNegNum('-55')  // PRE fail
 
-    posNum('not-checked')
-    >>My positive number not-checked
+    notNegNum(19)             // pass
+    notNegNum('not-negative') // pass
 
 
 
+### Turned OFF with a Constant
+Checking function does not effect execution as TypeCzech is turned off via 
+    
+    type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
+And results in no calls to Pre_check_notNegNum().
 
+    /**/  // TypeCzech = 'always loaded and parsed'
+    /**/
+    /**/  CHECKING_IS_ON = false
+    /**/
+    /**/  if (CHECKING_IS_ON) 
+    /**/    type_czech = TypeCzech('LOG-ERRORS')
+    /**/  else
+    /**/    type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
+    /**/  
+    /**/  function PRE_check_notNegNum(a_number){
+    /**/    if (a_number<1) return `Error, ${a_number} is not positive`
+    /**/      return ''
+    /**/  }
+    /**/  
+    /**/  notNegNum = type_czech.linkUp(notNegNum, PRE_check_notNegNum)
+
+    function notNegNum(a_number){  }
+
+    notNegNum(-321)  // not checked
+    notNegNum('-55') // not checked
+
+    notNegNum(19)             // not checked
+    notNegNum('not-negative') // not checked
 
 ### Undefined Checking Function 
-This idea is more likely done with Node.js than in the browser.
+Checking function does not effect execution because checking function is undefined.
 
     /**/  // TypeCzech = 'always loaded and parsed'
     /**/
@@ -81,25 +104,23 @@ This idea is more likely done with Node.js than in the browser.
     /**/  else
     /**/    type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
     /**/  
-          //  function PRE_check_posNum(a_number){
+          //  function PRE_check_notNegNum(a_number){
           //    if (a_number<1) return `Error, ${a_number} is not positive`
           //      return ''
           //  }
     /**/  
-    /**/  PRE_check_posNum = (typeof PRE_check_posNum === 'undefined') ? undefined : PRE_check_posNum
+    /**/  PRE_check_notNegNum = (typeof PRE_check_notNegNum === 'undefined') 
+    /**/                        ? undefined : PRE_check_notNegNum
     /**/  
-    /**/  posNum = type_czech.linkUp(posNum, PRE_check_posNum) // does nothing
+    /**/  notNegNum = type_czech.linkUp(notNegNum, PRE_check_notNegNum) // does nothing
 
-    function posNum(a_number){
-      console.log('My positive number', a_number)
-    }
+    function notNegNum(a_number){ }
 
-    posNum(-321)
-    >>My positive number -321
+    notNegNum(-321)  // not checked
+    notNegNum('-55') // not checked
 
-    posNum('not-checked')
-    >>My positive number not-checked
-
+    notNegNum(19)             // not checked
+    notNegNum('not-negative') // not checked
 
 
 

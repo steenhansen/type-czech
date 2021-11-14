@@ -57,7 +57,7 @@ Having easily controllable type checking at runtime in both the browser and Node
         fetch(some_url)
         .then(response => {
           if (type_czech.isActive()) {
-            /* and TypeCzech functions infrequently show up here */
+            /* and TypeCzech functions infrequently show up here paired with an assert_check() */
           }
         })
 

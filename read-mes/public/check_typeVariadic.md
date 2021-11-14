@@ -4,6 +4,8 @@
   -  [1 Variadic Parameter Type Check](#variadic-parameter-type-check)  
   -  [2 Limited Variadic Parameter Type Check](#limited-variadic-parameter-type-check)  
 
+#### All examples below can be executed in the console of [repl.html](../../test-collection/repl.html)
+
 ## 1 Variadic Parameter Type Check<a name="variadic-parameter-type-check"></a>
   
 ```
@@ -14,13 +16,12 @@ function PRE_check_someNumbers(){
 type_czech = TypeCzech('LOG-ERRORS')
 someNumbers = type_czech.linkUp(someNumbers, PRE_check_someNumbers) 
 
-function someNumbers(){
-}
+function someNumbers(){ }
 
-someNumbers(1,2,3,4,5)
+someNumbers(1,2,3,4,5) // pass
 
-someNumbers()  // PRE error
-someNumbers('a-string')  // PRE error         
+someNumbers() // PRE fail - no parameters
+someNumbers('a-string') // PRE fail - not a number
 ```
 
 ## 1 Limited Variadic Parameter Type Check<a name="limited-variadic-parameter-type-check"></a>
@@ -35,15 +36,14 @@ function PRE_check_someNumbers(){
 type_czech = TypeCzech('LOG-ERRORS')
 someNumbers = type_czech.linkUp(someNumbers, PRE_check_someNumbers) 
 
-function someNumbers(){
-}
+function someNumbers(){ }
 
-someNumbers(1,2,3)  // PRE error   
+someNumbers(1,2,3)  // PRE fail - 3 parameters
 
-someNumbers(1,2,3,4)
-someNumbers(1,2,3,4,5)
+someNumbers(1,2,3,4) // pass
+someNumbers(1,2,3,4,5) // pass
 
-someNumbers(1,2,3,4,5,6)  // PRE error   
+someNumbers(1,2,3,4,5,6)  // PRE fail - 6 parameters
 
 ```
 

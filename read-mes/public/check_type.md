@@ -18,6 +18,9 @@
   -  [13 Multi Typed Array Result Type Check](#multi-typed-array-result-type-check)
   -  [14 Typed Object Result Type Check](#typed-object-result-type-check)
 
+
+#### All examples below can be executed in the console of [repl.html](../../test-collection/repl.html)
+
 ## 1 Single Scalar Parameter Type Check<a name="single-scalar-parameter-type-check"></a>
   
 ```
@@ -33,11 +36,11 @@ function PRE_check_oneNumber(a_number){
 type_czech = TypeCzech('LOG-ERRORS')
 oneNumber = type_czech.linkUp(oneNumber, PRE_check_oneNumber) 
 
-function oneNumber(a_number){
-}
+function oneNumber(a_number){ }
 
-oneNumber(12)  
-oneNumber('a-string') // PRE error         
+oneNumber(12) // pass
+
+oneNumber('a-string') // PRE fail 'a-string' is not a number         
 ```
 
 ## 2 Single Array Parameter Type Check<a name="single-array-parameter-type-check"></a>
@@ -55,11 +58,11 @@ function PRE_check_oneArray(an_array){
 type_czech = TypeCzech('LOG-ERRORS')
 oneArray = type_czech.linkUp(oneArray, PRE_check_oneArray) 
 
-function oneArray(an_array){
-}
+function oneArray(an_array){ }
 
-oneArray([1, 'two', {a:1}, [] ])  
-oneArray({a:1}) // PRE error     
+oneArray([1, 'two', {c:3}, [] ]) // pass
+
+oneArray({a:1}) // PRE fail - object not an array
 ```
 ## 3 Single Typed Array Parameter Type Check<a name="single-typed-array-parameter-type-check"></a>
     
@@ -76,11 +79,11 @@ function PRE_check_oneArray(an_array){
 type_czech = TypeCzech('LOG-ERRORS')
 oneArray = type_czech.linkUp(oneArray, PRE_check_oneArray) 
 
-function oneArray(an_array){
-}
+function oneArray(an_array){ }
 
-oneArray([1, 2, 3, 4])  
-oneArray([false]) // PRE error     
+oneArray([1, 2, 3, 4]) // pass
+
+oneArray([false]) // PRE fail - boolean not number     
 ```
 
 ## 4 Single Object Parameter Type Check<a name="single-object-parameter-type-check"></a>
@@ -97,13 +100,12 @@ function PRE_check_oneObject(an_object){
 type_czech = TypeCzech('LOG-ERRORS')
 oneObject = type_czech.linkUp(oneObject, PRE_check_oneObject) 
 
-function oneObject(an_object){
-}
+function oneObject(an_object){ }
 
-oneObject({})  
-oneObject({a:1})
+oneObject({})    // pass
+oneObject({a:1}) // pass
 
-oneObject([])  // PRE error
+oneObject([]) // PRE fail - array not object
 ```
 
 
@@ -123,12 +125,12 @@ function PRE_check_oneObject(oneObject){
 type_czech = TypeCzech('LOG-ERRORS')
 oneObject = type_czech.linkUp(oneObject, PRE_check_oneObject) 
 
-function oneObject(an_array){
-}
+function oneObject(an_array){ }
 
-oneObject({a:'aardvark'})  
-oneObject({a:14}) // PRE error         
-oneObject({b:'capybara'}) // PRE error 
+oneObject({a:'aardvark'}) // pass
+
+oneObject({a:14})         // PRE fail 14 not a string
+oneObject({b:'capybara'}) // PRE fail missing key 'a'
 ```
 
 
@@ -147,11 +149,11 @@ function PRE_check_multiParams(){
 type_czech = TypeCzech('LOG-ERRORS')
 multiParams = type_czech.linkUp(multiParams, PRE_check_multiParams) 
 
-function multiParams(an_array){
-}
+function multiParams(an_array){ }
 
-multiParams([1, 'one', false])
-multiParams([1999, 'Sharknado', {} ]) // PRE error         
+multiParams([1, 'one', false]) // pass
+
+multiParams([1999, 'Sharknado', {} ]) // PRE fail - object not boolean
 ```
 
 ## 7 HTML Type Check<a name="html-type-check"></a>
@@ -169,41 +171,41 @@ function PRE_check_htmlButton(html_element){   // or parameter version
 type_czech = TypeCzech('LOG-ERRORS')
 htmlButton = type_czech.linkUp(htmlButton, PRE_check_htmlButton) 
 
-function htmlButton(html_element){
-}
+function htmlButton(html_element){ }
 
-htmlButton(document.createElement('button'))
+htmlButton(document.createElement('button')) // pass
 
-htmlButton('hi there')
-htmlButton(document.createElement('div'))
+htmlButton('hi there')                    // PRE fail - string not button
+htmlButton(document.createElement('div')) // PRE fail - div not button
 ```
 
 ## 8 Class Type Check<a name="class-type-check"></a>
 Applies to closures, IIFEs, ClassFrees, Prototypess, and OLLOs.
 ```
-function PRE_check_theLast(){  // arguments version
+function PRE_check_classOperate(){  // arguments version
   return type_czech.check_type(arguments, 'Last')  
 }
 ```
 ```
-function PRE_check_theLast(a_last){   // or parameter version
+function PRE_check_classOperate(a_last){   // or parameter version
   return type_czech.check_type(a_last, 'Last')
 }
 
 type_czech = TypeCzech('LOG-ERRORS')
-theLast = type_czech.linkUp(theLast, PRE_check_theLast) 
 
+classOperate = type_czech.linkUp(classOperate, PRE_check_classOperate) 
 function classOperate(a_last){
 }
 
 class First { constructor() { } }
 class Last extends First { constructor() { super() } }
+
 a_last = new Last()
 a_first = new First()
 
-classOperate(a_last)
+classOperate(a_last)  // pass
 
-classOperate(a_first)  // PRE error
+classOperate(a_first)  // PRE fail - is a 'First' not a 'Last'
 ```
 
 ## 9 Class and Methods Type Check<a name="class-and-methtods-type-check"></a>
@@ -241,18 +243,18 @@ type_czech = TypeCzech('LOG-ERRORS')
 
 Person = type_czech.linkUp(Person, PRE_CLASS_Person, POST_CLASS_Person)
 
-person_1 = new Person('Jonas Salk')
-person_1.showInfo(1952)
+person_1 = new Person('Jonas Salk') // pass
+person_1.showInfo(1952)             // pass
 
-person_2 = new Person(1234) // PRE_check_Person error
+person_2 = new Person(1234) // PRE fail - expected a string
 
 person_3 = new Person('Mad Max')
-person_3.showInfo('error')  // PRE_check_showInfo error
+person_3.showInfo('error')  // PRE fail - expected a number
 
 person_4 = new Person('Lady Gaga')
-person_4.showInfo(0)  // POST_check_showInfo error
+person_4.showInfo(0)  // POST fail - expected an array , not a string
 
-person_5 = new Person('Pol Pot')  // POST_check_Person error
+person_5 = new Person('Pol Pot')  // POST fail - matched 'Pol Pot'
 ```
 
 
@@ -275,8 +277,9 @@ function returnString(return_result){
   return return_result
 }
 
-returnString('two')  
-returnString(false) // POST error         
+returnString('two') // pass
+
+returnString(false) // POST fail - not a string         
 ```
 
 ## 11 Array Result Type Check<a name="array-result-type-check"></a>
@@ -298,8 +301,9 @@ function anArray(an_array){
   return an_array
 }
 
-anArray([1, 'two', {a:1}, [] ])  
-anArray({a:1}) // PRE error     
+anArray([1, 'two', {c:3}, [] ]) // pass
+
+anArray({a:1}) // PRE fail - object not array
 ```
 
 ## 12 Typed Array Result Type Check<a name="typed-array-result-type-check"></a>
@@ -321,8 +325,9 @@ function booleanArray(an_array){
   return an_array
 }
 
-booleanArray([true, false, true])  
-booleanArray([1, 0, 1]) // PRE error     
+booleanArray([true, false, true]) // pass
+
+booleanArray([1, 0, 1]) // PRE fail - array of numbers not booleans
 ```
 
 ## 13 Multi Typed Array Result Type Check<a name="multi-typed-array-result-type-check"></a>
@@ -344,8 +349,9 @@ function numBoolStr(an_array){
   return an_array
 }
 
-numBoolStr([1, false, 'three'])  
-numBoolStr({}) // PRE error     
+numBoolStr([1, false, 'three']) // pass
+
+numBoolStr({}) // PRE fail - object not an array of number,boolean,string
 ```
 
 ## 14 Typed Object Result Type Check<a name="typed-object-result-type-check"></a>
@@ -367,8 +373,9 @@ function objectAbc(an_array){
   return an_array
 }
 
-objectAbc({a:1, b:false, c:'three'})  
-objectAbc([]) // PRE error     
+objectAbc({a:1, b:false, c:'three'}) // pass
+
+objectAbc([]) // PRE fail - array not object with a,b,c keys
 ```
 
 

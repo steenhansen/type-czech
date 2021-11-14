@@ -31,7 +31,7 @@ else
   -  [16 String Cased](#string-cased)
 
 
-
+#### All examples below can be executed in the console of [repl.html](../test-collection/repl.html)
 
 
 ### 1 String Parameter<a name="string-parameter"></a>
@@ -46,9 +46,9 @@ else
 
     function aString(){ }
 
-    aString('a-string') //pass
+    aString('a-string') // pass
     
-    aString(99) //fail
+    aString(99) // fail - a number
 
 
 ### 2 Positive Number Parameter<a name="positive-number"></a>
@@ -65,11 +65,11 @@ else
 
     function expectPosNum(){ }
 
-    expectPosNum(1) //pass
+    expectPosNum(1) // pass
 
-    expectPosNum('not-a-number') //fail
+    expectPosNum('not-a-number') // fail - not a number
     
-    expectPosNum(-4) //fail
+    expectPosNum(-4) // fail - negative
     
 
 ### 3 RegExp match Parameter<a name="regexp-match"></a>
@@ -92,9 +92,9 @@ else
 
     expectsSentence('Starts with uppercase and ends with period.') //pass
 
-    expectsSentence('starts with lowercase and no period') //fail
+    expectsSentence('starts with lowercase and no period') // fail - bad start and end
 
-    expectsSentence(17) //fail
+    expectsSentence(17) // fail - not a string
 
 ### 4 Parameter Contained in Set<a name="in-set"></a>
 
@@ -111,11 +111,11 @@ else
       
     function expectsCMYK(){ }
         
-    expectsCMYK('cyan') //pass
+    expectsCMYK('cyan') // pass
 
-    expectsCMYK('russian blue') //fail
+    expectsCMYK('russian blue') // fail - not in CMYK_COLORS
 
-    expectsCMYK(1234) //fail
+    expectsCMYK(1234) // fail - not in CMYK_COLORS
 
 
 ### 5 Sorted Parameters<a name="sorted-parameters"></a>
@@ -138,7 +138,7 @@ else
 
     expectsAsc(1,22,333,4444) // pass
     
-    expectsAsc(4444,333,2,1) // fail
+    expectsAsc(4444,333,2,1) // fail - sorted wrong way
 
 ### 6 Non-Empty Parameter<a name="not-empty"></a>
 
@@ -156,13 +156,13 @@ else
 
     isNotEmpty({a:1}) // pass
 
-    isNotEmpty([1]) // pass
+    isNotEmpty([1]) // pass 
 
-    isNotEmpty('') // fail
+    isNotEmpty('') // fail - empty
    
-    isNotEmpty({}) // fail
+    isNotEmpty({}) // fail - empty
 
-    isNotEmpty([]) // fail
+    isNotEmpty([]) // fail - empty
 
 
 
@@ -187,9 +187,9 @@ else
 
     arrOfNumArr(array_array) // pass
 
-    arrOfNumArr([1,2,3]) // fail
+    arrOfNumArr([1,2,3]) // fail - just an array
 
-    arrOfNumArr( [ array_array, array_array] ) // fail
+    arrOfNumArr( [ array_array, array_array] ) // fail - array of array of array
 
 
 
@@ -211,8 +211,8 @@ else
 
     yourFunc(150)  // pass
 
-    yourFunc(22)  // fail
-    yourFunc(333) // fail
+    yourFunc(22)  // fail - too small
+    yourFunc(333) // fail - too big
 
 ### 9 Array of Number Arrays Result<a name="arr-arr-result"></a>
 
@@ -228,9 +228,9 @@ else
       return an_array
     }
 
-    arrArrRes([ [1], [2,2], [3,3,4] ]) //pass
+    arrArrRes([ [1], [2,2], [3,3,4] ]) // pass
 
-    arrArrRes([ [1], ['an-error'] ])  // fail
+    arrArrRes([ [1], ['an-error'] ])  // fail - array of string
 
 ### 10 Exactly Three Number Parameters<a name="three-params"></a>
 
@@ -246,10 +246,10 @@ else
 
     function arrOf3Nums(arr_of_3_nums){ }
 
-    arrOf3Nums([1,2,3]) //pass
+    arrOf3Nums([1,2,3]) // pass
 
-    arrOf3Nums([1,2,3,4]) //fail
-    arrOf3Nums(['one',2,3]) //fail
+    arrOf3Nums([1,2,3,4])   // fail - four numbers
+    arrOf3Nums(['one',2,3]) // fail - first parameter a string
 
 Shorter version
 
@@ -264,10 +264,10 @@ Shorter version
 
     function arrOf3Nums(arr_of_3_nums){ }
 
-    arrOf3Nums([1,2,3]) //pass
+    arrOf3Nums([1,2,3]) // pass
 
-    arrOf3Nums([1,2,3,4]) //fail
-    arrOf3Nums(['one',2,3]) //fail
+    arrOf3Nums([1,2,3,4])   // fail - four numbers
+    arrOf3Nums(['one',2,3]) // fail - first parameter a string
 
 
 
@@ -297,7 +297,7 @@ And then the object is checked for any mutations, after isElvis() returns, in th
 
     isElvis({the_name:'Elvis'}) //pass
 
-    isElvis({the_name:'Presley'}) // fail
+    isElvis({the_name:'Presley'}) // fail - the_name changed to 'Aaron Presley'
 
 
 ### 12 Every Type in Array<a name="every-array"></a>
@@ -327,9 +327,9 @@ And then the object is checked for any mutations, after isElvis() returns, in th
     yourFunc([ the_array, the_bigInt, the_boolean, the_date, the_function,
             the_number, the_object, the_regExp, the_string, the_symbol])   // pass
 
-    the_boolean = 1
+    the_boolean = 1 // fail - the_boolean is a number
     yourFunc([ the_array, the_bigInt, the_boolean, the_date, the_function,
-            the_number, the_object, the_regExp, the_string, the_symbol])   // fail
+            the_number, the_object, the_regExp, the_string, the_symbol])  
 
 ### 13 Every Type in Object<a name="every-object"></a>
 
@@ -360,9 +360,9 @@ And then the object is checked for any mutations, after isElvis() returns, in th
     yourFunc({ the_array, the_bigInt, the_boolean, the_date, the_function,
             the_number, the_object, the_regExp, the_string, the_symbol})   // pass
     
-    the_boolean = 1
+    the_boolean = 1 // fail - the_boolean is a number
     yourFunc({ the_array, the_bigInt, the_boolean, the_date, the_function,
-            the_number, the_object, the_regExp, the_string, the_symbol})   // fail
+            the_number, the_object, the_regExp, the_string, the_symbol})
 
 ### 14 Array of Many Types<a name="mixed-array"></a>
 
@@ -378,7 +378,7 @@ And then the object is checked for any mutations, after isElvis() returns, in th
 
     yourFunc(1, 'a-string', false, new Date('1999-12-31')) // pass
     
-    yourFunc(1, 'a-string', false, '1999-12-31') // fail
+    yourFunc(1, 'a-string', false, '1999-12-31') // fail - string not date
 
 
 ### 15 Object of Many Types<a name="mixed-object"></a>
@@ -400,11 +400,11 @@ And then the object is checked for any mutations, after isElvis() returns, in th
     the_object = {the_key:77}
     the_bigInt = 1234567890n
     the_numb_array = [ [1], [2], [3] ]
-    the_char_object = {a: 'A', b:'B'} 
-    yourFunc({ the_array, the_object, the_bigInt, the_numb_array, the_char_object}) // pass
+    the_char_object = {a: 'A', b:'B'} // pass
+    yourFunc({ the_array, the_object, the_bigInt, the_numb_array, the_char_object})
     
-    the_error = {A: 'A', b:'B'} 
-    yourFunc({ the_array, the_object, the_bigInt, the_numb_array, the_error }) // fail
+    the_error = {A: 'A', b:'B'} // fail - key is uppercase 'A' not lowercase 'a'
+    yourFunc({ the_array, the_object, the_bigInt, the_numb_array, the_error }) 
 
 
 ### 16 String Cased<a name="string-cased"></a>
@@ -424,7 +424,7 @@ And then the object is checked for any mutations, after isElvis() returns, in th
     
     yourFunc('Bob Marley')  // pass
 
-    yourFunc('king philip') // fail
+    yourFunc('king philip') // fail - all lower case
     
 
 

@@ -3,6 +3,8 @@
   -  [1 Class typeFinal](#class-type-final)
   -  [2 HTML typeFinal](#html-type-final)
 
+#### All examples below can be executed in the console of [repl.html](../../test-collection/repl.html)
+
 ## 1 Class typeFinal<a name="class-type-final"></a>
 
 ```
@@ -30,7 +32,7 @@ class FullName extends LastName {
 
 ted_chiang = new FullName('Mr', 'Ted', 'Chiang')
 
-type_czech.typeFinal(ted_chiang, "FullName")
+type_czech.typeFinal(ted_chiang) // FullName
 ```
 
 ## 2 HTML typeFinal<a name="html-type-final"></a>
@@ -38,6 +40,6 @@ type_czech.typeFinal(ted_chiang, "FullName")
 ```
 type_czech = TypeCzech('LOG-ERRORS')
 
-type_czech.typeFinal(document, "HTMLDocument") 
+type_czech.typeFinal(document) // HTMLDocument
 ```
 
