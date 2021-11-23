@@ -15,8 +15,8 @@
 
     TypeCzech can stop and start checking parameters with:
     <ul>
-      <li><b>enableChecks()</b></li>
-      <li><b>disableChecks()</b></li>
+      <li><b>enableTests()</b></li>
+      <li><b>disableTests()</b></li>
     </ul>
     TypeCzech defaults to checking parameters when initilized.
     
@@ -28,13 +28,13 @@
 
 
  Once TypeCzech is logging or throwing errors from checking functions, then the only
-way to stop the test exceptions or console logging is to is use the type_czech.disableChecks()
+way to stop the test exceptions or console logging is to is use the type_czech.disableTests()
 function. From then on all PRE and POST checking functions will not report errors, but will
 still consume
-a non-trivial amount of resources. So <b>never use type_czech.disableChecks() in production</b>.
+a non-trivial amount of resources. So <b>never use type_czech.disableTests() in production</b>.
 <br><br>
 
-Note that enableChecks() cannot start TypeCzech function checking from a non-active TypeCzech instance.
+Note that enableTests() cannot start TypeCzech function checking from a non-active TypeCzech instance.
 <br><br>
   </div>
 
@@ -123,7 +123,7 @@ Note that enableChecks() cannot start TypeCzech function checking from a non-act
     
     <a title="24-Empty-Either-Checks.html" href="https://jsfiddle.net/steen_hansen/1dL76zws/?24-Empty-Either-Checks" target="_blank">24</a>
     
-    <a title="25-Accessing-PRE-POST-Arguments.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Accessing-PRE-POST-Arguments" target="_blank">25</a>
+    <a title="25-Default-Parameters.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Default-Parameters" target="_blank">25</a>
     
     <a title="26-Type-and-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Type-and-Empty-Abbreviations" target="_blank">26</a>
     
@@ -259,7 +259,7 @@ Note that enableChecks() cannot start TypeCzech function checking from a non-act
 /**/    type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
 /**/  
 /**/  function PRE_check_Person(){
-/**/    return type_czech.check_type(arguments, ['string', 'string'])
+/**/    return type_czech.checkParam_type(arguments, ['string', 'string'])
 /**/  }
 /**/  
 /**/  PRE_check_Person = (typeof PRE_check_Person === 'undefined')
@@ -280,7 +280,7 @@ try {
 
 linesConsole(2)
 
-/**/  type_czech.enableChecks()
+/**/  type_czech.enableTests()
 
 Person('Prince', 'Charles')
 
@@ -294,7 +294,7 @@ Person('Elizabeth', 2)
 
 linesConsole(4)
 
-/**/  type_czech.disableChecks()
+/**/  type_czech.disableTests()
 /**/  failure_total = type_czech.countFails()
 /**/  check_total = type_czech.countTally()
 

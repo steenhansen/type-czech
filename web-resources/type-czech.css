@@ -125,3 +125,7 @@ table, th, td {
   height:98vh;
   position:relative;
 }
+
+.console-runnable{
+  background:#e0ffe0;
+}

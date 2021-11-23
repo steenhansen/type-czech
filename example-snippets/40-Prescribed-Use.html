@@ -151,7 +151,7 @@ PRE_check_aLottery = (typeof PRE_check_aLottery === 'undefined')
     
     <a title="24-Empty-Either-Checks.html" href="../example-snippets/24-Empty-Either-Checks.html">24</a>
     
-    <a title="25-Accessing-PRE-POST-Arguments.html" href="../example-snippets/25-Accessing-PRE-POST-Arguments.html">25</a>
+    <a title="25-Default-Parameters.html" href="../example-snippets/25-Default-Parameters.html">25</a>
     
     <a title="26-Type-and-Empty-Abbreviations.html" href="../example-snippets/26-Type-and-Empty-Abbreviations.html">26</a>
     
@@ -251,13 +251,15 @@ function runEnvironment(TypeCzech, pre_check_exists) {
 /**/                       ? undefined : PRE_check_aLottery
 
   if (pre_check_exists) {
-    function PRE_check_aLottery (){
+    function PRE_check_aLottery (lottery_name, lucky_numbers, draw_date){
+      the_parameters = [lottery_name, lucky_numbers, draw_date]
       LOTTERY_SIGNATURE = ['string', ['number'], 'date']
-      type_issue = type_czech.check_type(arguments, LOTTERY_SIGNATURE)
-      if (type_issue) return type_issue
+      LOTTERY_EMPTIES = ['EMPTY-ERROR', ['EMPTY-ERROR'], 'EMPTY-ERROR']
+      issue=type_czech.checkParam_type(the_parameters,LOTTERY_SIGNATURE)
+      if (issue) return issue
   
-      empty_err=type_czech.check_emptyVariadic(arguments,['EMPTY-ERROR'])
-      if (empty_err) return empty_err
+      error=type_czech.checkParam_empty(the_parameters,LOTTERY_EMPTIES)
+      if (error) return error
 
       return ''
     }
@@ -288,8 +290,6 @@ aLottery('Powerball', [], new Date('mar 3 3333'))
 
 aLottery = runEnvironment(false, false)
 aLottery('Powerball', [], new Date('apr 4 4444'))
-
-
 </script>
 
 <script>

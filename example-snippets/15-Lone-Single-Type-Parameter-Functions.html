@@ -16,22 +16,6 @@
   <div id='explanation-text'>
 <br>
     
-    To check for exactly one parameter, as with PRE_check_exactly1Str(), the arguments length has to 
-    be checked, otherwise the extra parameters are just ignored. Note the parameter names 
-    string_1 and string_2 are place holders and the arguments object is used instead.
-
-    <br><br>
-    So when only checking a single lone parameter, leave off the array brackets - [ ], to verfiy
-    that there is only one number being passed into the function.
-
-<pre>
-type_czech.check_type(arguments, 'number')              // one number
-type_czech.check_type(arguments, ['number', 'number'])  // two numbers
-type_czech.check_type(arguments, ['date', 'string'])    // two values
-</pre>
-
-
-
 </div>
 
 
@@ -116,7 +100,7 @@ type_czech.check_type(arguments, ['date', 'string'])    // two values
     
     <a title="24-Empty-Either-Checks.html" href="../example-snippets/24-Empty-Either-Checks.html">24</a>
     
-    <a title="25-Accessing-PRE-POST-Arguments.html" href="../example-snippets/25-Accessing-PRE-POST-Arguments.html">25</a>
+    <a title="25-Default-Parameters.html" href="../example-snippets/25-Default-Parameters.html">25</a>
     
     <a title="26-Type-and-Empty-Abbreviations.html" href="../example-snippets/26-Type-and-Empty-Abbreviations.html">26</a>
     
@@ -223,64 +207,58 @@ type_czech.check_type(arguments, ['date', 'string'])    // two values
 /**/    type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
 /**/
 /**/  PRE_check_exactly1Str = (typeof PRE_check_exactly1Str === 'undefined')
-/**/                    ? undefined : PRE_check_exactly1Str
+/**/                          ? undefined : PRE_check_exactly1Str
 /**/
-/**/  PRE_check_exactly2Strs=(typeof PRE_check_exactly2Strs === 'undefined')
-/**/                     ? undefined : PRE_check_exactly2Strs
+/**/  PRE_check_want1Array=(typeof PRE_check_want1Array === 'undefined')
+/**/                      ? undefined : PRE_check_want1Array
+/**/
+/**/  PRE_check_need1Object=(typeof PRE_check_need1Object === 'undefined')
+/**/                      ? undefined : PRE_check_need1Object
 /**/  
 /**/  function PRE_check_exactly1Str(string_1){
-/**/    num_args = arguments.length
-/**/    if (num_args !== 1) return `PRE, not 1 but ${num_args} params`
-/**/    return type_czech.check_type(arguments, 'string')
+/**/    return type_czech.checkParam_type(string_1, 'string')
 /**/  }
 /**/  
-/**/  function PRE_check_exactly2Strs(string_1, string_2){
-/**/     return type_czech.check_type(arguments, ['string', 'string'] )
+/**/  function PRE_check_want1Array(an_array){
+/**/    return type_czech.checkParam_type(an_array, 'array')
 /**/  }
-/**/  
-/**/  exactly1Str = type_czech.linkUp(exactly1Str, PRE_check_exactly1Str)
 /**/
-/**/  exactly2Strs = type_czech.linkUp(exactly2Strs, PRE_check_exactly2Strs)
+/**/  function PRE_check_need1Object(an_object){
+/**/    return type_czech.checkParam_type(an_object, 'object')
+/**/  }
+/**/
+/**/  exactly1Str = type_czech.linkUp(exactly1Str, PRE_check_exactly1Str)
+/**/  want1Array = type_czech.linkUp(want1Array, PRE_check_want1Array)
+/**/  need1Object = type_czech.linkUp(need1Object, PRE_check_need1Object)
 
 function exactly1Str(one_string) {
   return one_string
 }
 
-function exactly2Strs(string_1, string_2) {
-  return [string_1, string_2]
+function want1Array(an_array) {
+  return an_array
 }
 
-log('EXPECT_1_GOT_1 : ', exactly1Str('One'))
+function need1Object(an_object) {
+  return an_object
+}
+
+log('EXPECT_1_GOT_0 : ', exactly1Str() )
 
 linesConsole(3)
 
-expect_1_got_2 =  exactly1Str('1-one', '2-two') 
+log('EXPECT_1_GOT_1 : ', exactly1Str('A-One'))
 linesConsole(1)
-log('EXPECT_1_GOT_2 : ')
-log(expect_1_got_2)
-
-
-
-linesConsole(3)
-
-
-expect_2_got_1 =  exactly2Strs('one-1') 
-linesConsole(1)
-log('EXPECT_2_GOT_1 : ')
-log(expect_2_got_1)
+log('  WANT_1_GOT_1 : ', want1Array([1]))
+log('  NEED_1_GOT_1 : ', need1Object({a:'b'}) )
 
 linesConsole(2)
 
-
-expect_2_got_2 =  exactly2Strs('ONE', 'TWO') 
-log('EXPECT_2_GOT_2 : ', expect_2_got_2)
-
-
+log('EXPECT_1_GOT_2 : ', exactly1Str('B-one', 'B-two') )
 linesConsole(2)
-
-
-expect_2_got_3 =  exactly2Strs('one', 'two', 'three') 
-log('EXPECT_2_GOT_3 : ', expect_2_got_3)
+log('  WANT_1_GOT_2 : ', want1Array([2], [3]) )
+linesConsole(1)
+log('  NEED_1_GOT_2 : ', need1Object({c:'d'}, {e:'f'}))
 </script>
 
 

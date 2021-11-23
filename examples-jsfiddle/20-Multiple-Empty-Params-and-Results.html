@@ -19,7 +19,7 @@
     <br>
 
 To see if a function has multiple parameters or return results that lack content, such as empty strings, arrays with 
-no elements, or an objects with no properties use check_empty().
+no elements, or an objects with no properties use checkParam_empty().
 
 <br><br>
 Null and undefined values are also considered to be empty with no value.
@@ -117,7 +117,7 @@ Null and undefined values are also considered to be empty with no value.
     
     <a title="24-Empty-Either-Checks.html" href="https://jsfiddle.net/steen_hansen/1dL76zws/?24-Empty-Either-Checks" target="_blank">24</a>
     
-    <a title="25-Accessing-PRE-POST-Arguments.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Accessing-PRE-POST-Arguments" target="_blank">25</a>
+    <a title="25-Default-Parameters.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Default-Parameters" target="_blank">25</a>
     
     <a title="26-Type-and-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Type-and-Empty-Abbreviations" target="_blank">26</a>
     
@@ -264,11 +264,11 @@ Null and undefined values are also considered to be empty with no value.
 /**/  POST_check_Person_EMPTYS = {l_name:'EMPTY-ERROR', b_date:'EMPTY-OK'}
 /**/
 /**/  function PRE_check_Person(f_name, l_name, b_date){
-/**/    return type_czech.check_empty(arguments, PRE_check_Person_EMPTYS)
+/**/    return type_czech.checkParam_empty(arguments, PRE_check_Person_EMPTYS)
 /**/  }
 /**/
 /**/  function POST_check_Person(person_obj){
-/**/    return type_czech.check_empty(arguments, POST_check_Person_EMPTYS)
+/**/    return type_czech.checkParam_empty(arguments, POST_check_Person_EMPTYS)
 /**/  }
 /**/
 /**/  Person = type_czech.linkUp(Person, PRE_check_Person, POST_check_Person)

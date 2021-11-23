@@ -20,7 +20,7 @@ Use the arguments parameter object to check all parameters.
     /**/  type_czech = TypeCzech('LOG-ERRORS')
     /**/
     /**/  function PRE_check_yourFunc(){
-    /**/    return type_czech.check_type(arguments, ['string', 'number'])
+    /**/    return type_czech.checkParam_type(arguments, ['string', 'number'])
     /**/  }
     /**/
     /**/  yourFunc = type_czech.linkUp(yourFunc, PRE_check_yourFunc)
@@ -36,7 +36,7 @@ when use the arguments object.
     /**/  type_czech = TypeCzech('LOG-ERRORS')
     /**/
     /**/  function POST_check_Person(result_value){
-    /**/    return type_czech.check_empty(result_value, 'EMPTY-ERROR')
+    /**/    return type_czech.checkParam_empty(result_value, 'EMPTY-ERROR')
     /**/  }
     /**/
     /**/  yourFunc = type_czech.linkUp(yourFunc, undefined, POST_check_yourFunc)
@@ -53,10 +53,10 @@ parameters only when actually individually testing them as below.
     /**/  type_czech = TypeCzech('LOG-ERRORS')
     /**/
     /**/  function PRE_check_yourFunc(first_name, last_name){
-    /**/    type_issue = type_czech.check_type(arguments, ['string', 'string'])
+    /**/    type_issue = type_czech.checkParam_type(arguments, ['string', 'string'])
     /**/    if (type_issue) return type_issue
     /**/
-    /**/    empty_issue = type_czech.check_empty(arguments, ['EMPTY-ERROR', 'EMPTY-ERROR'])
+    /**/    empty_issue = type_czech.checkParam_empty(arguments, ['EMPTY-ERROR', 'EMPTY-ERROR'])
     /**/    if (empty_issue) return empty_issue
     /**/
     /**/    if (first_name.length===1) return 'Error, first_name is 1 character'

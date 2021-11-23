@@ -3,7 +3,7 @@
 
 
 
-<div id='js-div' style="width:51%">
+<div id='js-div' style="width:53%">
   <a href='https://github.com/steenhansen/type-czech' class='git-hub'>GitHub Package</a>
   <div id='js-code'>the javascript</div>
 
@@ -75,7 +75,7 @@
     
     <a title="24-Empty-Either-Checks.html" href="../example-snippets/24-Empty-Either-Checks.html">24</a>
     
-    <a title="25-Accessing-PRE-POST-Arguments.html" href="../example-snippets/25-Accessing-PRE-POST-Arguments.html">25</a>
+    <a title="25-Default-Parameters.html" href="../example-snippets/25-Default-Parameters.html">25</a>
     
     <a title="26-Type-and-Empty-Abbreviations.html" href="../example-snippets/26-Type-and-Empty-Abbreviations.html">26</a>
     
@@ -153,22 +153,23 @@
 
 </div>
 
-<div id="the-explanation" style="width:49%">
+<div id="the-explanation" style="width:47%">
   <div class='an-explantion'>24 - Empty Either Checks</div>
   <div id='explanation-text'>
     <br>
 
     If a function can take parameters with different empty signatures then valuelessness 
-    can be caught with a call to check_emptyEither(arguments, array_of_signatures).
+    can be caught with a call to checkParam_emptyEither().
 
     <br><br>
 
-<pre>
-function PRE_check_firstMidLast(){
-  first_last = [ 'EMPTY-ERROR', 'EMPTY-ERROR' ]
-  first_middle_last = [ 'EMPTY-ERROR', 'EMPTY-OK', 'EMPTY-ERROR' ]
-  signatures_types = [ first_last, first_middle_last ]
-  return type_czech.check_emptyEither(arguments, signatures_types)
+<pre title='Copy and paste the green code below into the console to run' class='console-runnable'>
+function PRE_check_firstMidLast(first, middle, last){
+  the_parameters = [first, middle, last]
+  first_middle_last = [ 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ]
+  first_only = [ 'EMPTY-ERROR', 'EMPTY-OK', 'EMPTY-OK' ]
+  signature = [ first_middle_last, first_only ]
+  return type_czech.checkParam_emptyEither(the_parameters, signature)
 }
 
 firstMidLast = type_czech.linkUp(firstMidLast, PRE_check_firstMidLast)
@@ -176,11 +177,11 @@ firstMidLast = type_czech.linkUp(firstMidLast, PRE_check_firstMidLast)
 function firstMidLast(first, middle, last){
 }
 
-firstMidLast('first', 'last')
-firstMidLast('first', '', 'last')
+firstMidLast('pass_a', 'middle-a', 'last-a') // pass first_middle_last
+firstMidLast('pass_b', '', '')               // pass first_only
 
-firstMidLast('first', '')           // error
-firstMidLast('first', 'middle', '') // error
+firstMidLast('', 'fail_c', '')
+firstMidLast('', 'fail_d', 'last-d')
 </pre>
     
     
@@ -236,18 +237,19 @@ firstMidLast('first', 'middle', '') // error
 /**/  POST_check_Person = (typeof POST_check_Person === 'undefined')
 /**/                      ? undefined : POST_check_Person
 /**/
-/**/  function PRE_check_Person(){
+/**/  function PRE_check_Person(f_name, l_name, b_date){
+/**/    the_parameters = [f_name, l_name, b_date]
 /**/    PRE_check_Name_only = [ 'EMPTY-ERROR', 'EMPTY-ERROR' ]
 /**/    PRE_check_Date_Year = ['EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR']
 /**/    PRE_signatures = [ PRE_check_Name_only, PRE_check_Date_Year]
-/**/    return type_czech.check_emptyEither(arguments, PRE_signatures)
+/**/    return type_czech.checkParam_emptyEither(the_parameters, PRE_signatures)
 /**/  }
 /**/  
-/**/  function POST_check_Person(){
+/**/  function POST_check_Person(result_object){
 /**/    POST_check_date={f_name:'EMPTY-ERROR', l_name:'ER', b_date:'ER' }
 /**/    POST_check_year={f_name:'EMPTY-ERROR', l_name:'ER', b_year:'ER' }
-/**/    POST_check_signatures = [POST_check_date, POST_check_year]
-/**/    return type_czech.check_emptyEither(arguments, POST_check_signatures)
+/**/    POST_signatures = [POST_check_date, POST_check_year]
+/**/    return type_czech.checkParam_emptyEither(result_object, POST_signatures)
 /**/  }
 /**/  
 /**/  Person = type_czech.linkUp(Person, PRE_check_Person, POST_check_Person)
@@ -261,7 +263,6 @@ function Person(f_name, l_name, b_date){
   return result_object
 }
 
-
 jim = Person('Jim', '')
 log(jim)
 
@@ -272,9 +273,7 @@ linesConsole(1)
 chuck = Person('Charles', 'Windsor', new Date(1948,11,14))
 log(chuck)
 
-
 linesConsole(1)
-
 
 alan_turing = Person('Alan', 'Turing', 1912)
 log(alan_turing)

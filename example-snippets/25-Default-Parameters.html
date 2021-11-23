@@ -1,12 +1,13 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>25-Accessing-PRE-POST-Arguments</title>
+<title>25-Default-Parameters</title>
 
 
-  
-<div id='js-div' style="width:49%">
+
+
+
+<div id='js-div' style="width:59%">
   <a href='https://github.com/steenhansen/type-czech' class='git-hub'>GitHub Package</a>
   <div id='js-code'>the javascript</div>
-  
   <br>
 
 
@@ -27,13 +28,52 @@
 
 
 
-<!--            ----------------TYPE 1--------------------------       -->
+
+
+
+
+
+
+
+</div>
+
+
+<div id="the-explanation" style="width:41%">
+  <div class='an-explantion'>25 - Default Parameters</div>
+  <div id='explanation-text'> 
+    <br>
+     TypeCzech cannot see default parameters, but it can see how many parameters there are
+     in a function call. So the trick is to verify different signatures according to the 
+     number of parameters. In the upper example to the left, a ['string', 'number'] is
+     checked for when there are two parameters. If there is only one parameter then it 
+     must be a 'string'. Otherwise no type checks, which results in both defaults of
+      'Denzel Washington 66' being used.
+     <br><br>
+     The lower example to the left, always expects the first parameter to be a 'string'.
+     The second parameter is ignored as an extra parameter.
+     <br><br>
+
+  </div>
+
+  <div id="console-log"  >
+    <div class='a-title'>Console Output</div>
+    <div id='log-text'></div>
+    <br>
+  </div>
+
+
+
+
+  
+<!--            -----------------TYPE 1------------------------       -->
 
 <script src="../web-resources/consolelog.js"></script>
 <script src="../TypeCzech.js"></script>
 <link rel="stylesheet" href="../web-resources/type-czech.css">
 
-<!--            ---------------TYPE 1s---------------------------       -->
+<script src="https://cdn.jsdelivr.net/npm/ramda@0.25/dist/ramda.min.js"></script>
+
+<!--            ------------------TYPE 1------------------------       -->
 
 
 <div id='js-fiddles'>
@@ -93,7 +133,7 @@
     
     <a title="24-Empty-Either-Checks.html" href="../example-snippets/24-Empty-Either-Checks.html">24</a>
     
-    <a title="25-Accessing-PRE-POST-Arguments.html" href="../example-snippets/25-Accessing-PRE-POST-Arguments.html">25</a>
+    <a title="25-Default-Parameters.html" href="../example-snippets/25-Default-Parameters.html">25</a>
     
     <a title="26-Type-and-Empty-Abbreviations.html" href="../example-snippets/26-Type-and-Empty-Abbreviations.html">26</a>
     
@@ -160,102 +200,16 @@
     <a title="604-Extending-OLOO-Single.html"     href="../examples-web/604-Extending-OLOO-Single/604-Extending-OLOO-Single.html">604</a>
 
 
+
     &copy; 2021 Steen Hansen
   </div>
 
-<!--            ---------------TYPE 1s---------------------------       -->
-
-
-
-
-
-
-
-    
-</div>
-
-<div id="the-explanation" style="width:51%" class='code-scroll'>
-  <div class='an-explantion'>25 - PRE and POST Arguments</div>
-  <div id='explanation-text'>
-    <br>
-      The arguments object serves as a useful all purpose array-like parameter variable,
-      thus normal functions are much easier to use with TypeCzech than arrow functions 
-      which lack the arguments object.
-      Both standard parameters and the argument object can be used in PRE and POST
-      checking functions, such as this page's examples.
-     <br><br>
-
-      Checking for exactly one string parameter only via parameter name.
-      <pre>type_czech.check_type(single_parameter, 'string')</pre>
-
-      Seeking exactly one string parameter only via arguments object.
-      <pre>type_czech.check_type(arguments, 'string')</pre>
-
-      Validating an array of strings via parameter names with a length of exactly 3.
-      <pre>type_czech.check_type([first_str, second_str, third_str], ['string'])</pre>
-      
-      Looking for an array of strings with any number of element via arguments object.
-      <pre>type_czech.check_typeVariadic(arguments, ['string'])</pre>
-
-      
-
-      
-<div style="font-weight: bold; text-align: center;">Two Similar Checks</div>
-
-Here <span class="purp-similar">check_type(arguments, ['string'])</span> verifies that
-<span class="purp-similar">one array of strings is the sole parameter</span> with
- a parameter of <span class="purp-similar">( ['cat', 'dog', 'bird'] )</span>.
-<pre>
-function PRE_check_arrayOfStrs(){
-  return type_czech.check_type(arguments, ['string'])
-}
-
-arrayOfStrs = type_czech.linkUp(arrayOfStrs, PRE_check_arrayOfStrs) 
-
-function arrayOfStrs(){
-  console.log('arrayOfStrs()', arguments)
-}
-arrayOfStrs( [ 'cat', 'dog', 'bird' ] )
-</pre>
-
-
-Below shows <span class="purp-similar">check_typeVariadic(arguments, ['string'])</span> 
-testing that one or more strings are separately passed as 
-<span class="purp-similar">one or more variadic parameters</span> with 
-parameters of <span class="purp-similar">( 'cat', 'dog', 'bird' )</span>, not an array
-as above.
-<pre>
-function PRE_check_variadicStrs(){
-  return type_czech.check_typeVariadic(arguments, ['string'])
-}
-  
-variadicStrs = type_czech.linkUp(variadicStrs, PRE_check_variadicStrs) 
-  
-function variadicStrs(){
-  console.log('variadicStrs()', arguments)
-}
-
-variadicStrs( 'cat', 'dog', 'bird' )
-</pre>
-  
-
-
- </div>
-
- <div id="console-log"  >
-  <div class='a-title'>Console Output</div>
-  <div style='margin-top:-32px;' id='log-text'></div>
-
-</div>
-
+<!--            ------------------TYPE 1------------------------       -->
 
 
 
 
 </div>
-
-
-
 
 
 
@@ -275,72 +229,74 @@ variadicStrs( 'cat', 'dog', 'bird' )
 
 <script>
   log = captureConsole("log-text")
-
-  // convenience console logs
-  function postP(some_text, the_var) {
-    log(NL1 + 'POST ' + some_text, the_var)
-  }
-
-  function preP(some_text, the_var) {
-    log(NL1 + 'PRE ' + some_text, the_var)
-  }
-
 </script>
-
 
 
 
 <script id="check-code">
-/**/  if (typeof TypeCzech === 'function')
-/**/    type_czech = TypeCzech('LOG-ERRORS')
-/**/  else
-/**/    type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
+/**/  type_czech = TypeCzech('LOG-ERRORS')
 /**/
-/**/  PRE_check_Person = (typeof PRE_check_Person==='undefined') 
-/**/                     ? undefined : PRE_check_Person
-/**/
-/**/  POST_check_Person = (typeof POST_check_Person==='undefined')
-/**/                      ? undefined : POST_check_Person
-/**/
-/**/  function PRE_check_Person(f_name, l_name){
-/**/    preP(`(f_name,l_name)=Alan,Turing          =`,f_name+','+l_name)
-/**/    preP(`    [arguments]={0:"Alan",1:"Turing"}=`,arguments)
-/**/    preP(`   arguments[0]=Alan                 =`,arguments[0])
-/**/    preP(`   arguments[1]=Turing               =`,arguments[1]+NL2)
-/**/
-/**/    PRE_issues_a=type_czech.check_type(arguments,['string','string'])
-/**/    PRE_issues_b=type_czech.check_typeVariadic(arguments, ['string'])
-/**/    PRE_issues_c=type_czech.check_type([f_name,l_name],['string'])
-/**/    PRE_issues_d=type_czech.check_type(f_name,          'string')
-/**/
-/**/    return PRE_issues_a + PRE_issues_b + PRE_issues_c + PRE_issues_d
+/**/  function PRE_check_nameAge(persons_name, persons_age){
+/**/    if (persons_name !== undefined && persons_age !== undefined)
+/**/      return type_czech.checkParam_type([persons_name,persons_age],['string','number'])
+/**/    if (persons_name !== undefined)
+/**/      return type_czech.checkParam_typeExtra([persons_name, persons_age], 'string')
 /**/  }
 /**/  
-/**/  function POST_check_Person(person_o){
-/**/    let {f_name, l_name} = person_o
-/**/    postP(` person_o=Object{f_name:"Alan",l_name:"Turing"}=`,person_o)
-/**/    postP(`arguments={0:{f_name:"Alan",l_name:"Turing"}}  =`,arguments)
-/**/    postP(`   f_name=Alan                                 =`,f_name)
-/**/    postP(`   l_name=Turing                               =`,l_name)
-/**/
-/**/    POST_issues_a = type_czech.check_type(arguments, 'object')
-/**/    POST_issues_b = type_czech.check_type(person_o, 'object')
-/**/    POST_signature = {f_name:'string', l_name:'string'}
-/**/    POST_issues_c = type_czech.check_type(person_o, POST_signature)
-/**/
-/**/    return POST_issues_a + POST_issues_b + POST_issues_c
-/**/  }
-/**/  
-/**/  Person=type_czech.linkUp(Person, PRE_check_Person, POST_check_Person)
+/**/  nameAge = type_czech.linkUp(nameAge, PRE_check_nameAge) 
 
-function Person(f_name, l_name){
-  return { f_name, l_name }
+function nameAge(persons_name = 'Denzel Washington', persons_age = 66){
+  console.log(persons_name + ' ' + persons_age)
 }
 
-Person('Alan', 'Turing')
+nameAge()
+
+linesConsole(2)
+
+nameAge('Billy Bob')
+
+linesConsole(2)
+
+nameAge('Angelina Jolie', 46)
+
+linesConsole(2)
+
+nameAge('Bad-Age', false)
+
+linesConsole(3)
+
+/**/  function PRE_check_petType(a_name, fav_collection){
+/**/    return type_czech.checkParam_typeExtra([a_name, fav_collection], 'string')
+/**/  }
+/**/  petType = type_czech.linkUp(petType, PRE_check_petType) 
+
+function keyValueReduce(accum, key_value) {
+  accum.push(key_value[0] + ':' + key_value[1])
+  return accum
+}
+
+function collectionAsStr(fav_collection){
+  if (Array.isArray(fav_collection)) {
+    return fav_collection.reduce((accum, curr) => `${accum}, ${curr}`);
+  } 
+  fav_as_array = Object.entries(fav_collection).reduce(keyValueReduce, []);
+  return fav_as_array.join(', ')
+}
+
+function petType(a_name, fav_collection = [1,2,3]){
+  console.log(a_name + ' : ' + collectionAsStr(fav_collection) )
+}
+
+petType('Bob', {movie:'Matchstick Men', sport:'Jai Alai', island:'Viequez'})
+
+linesConsole(2)
+
+petType('Bill')
+
+linesConsole(2)
+
+petType(['Bart'], ['Red', 'White', 'Blue'])
 </script>
-
-
 
 
 
@@ -355,6 +311,29 @@ Person('Alan', 'Turing')
 <script>
 
   jsToDiv('js-code', "check-code")
+
+
+  fromToBoldText(579, 583, 'code', 1)  //  false
+
+
+
+   fromToBoldText(266, 270, 'log', 1)    //false
+   fromToBoldText(308, 315, 'log', 1)    //"number"
+
+   fromToBoldText(379, 383, 'log', 1)    //false
+
+////////////////////////
+fromToBoldText(1361, 1368, 'code', 2)  //  ['Bart']
+
+
+
+fromToBoldText(724, 731, 'log', 2)    //["Bart"]
+fromToBoldText(782, 787, 'log', 2)    //string
+
+
+fromToBoldText(842, 845, 'log', 2)    //Bart 
+
+
 
 </script>
 

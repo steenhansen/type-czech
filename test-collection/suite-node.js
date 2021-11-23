@@ -12,22 +12,22 @@ global.TEST_number_generatives = 120;
 require('./public-tests/linkUp_01000.js');
 require('./check-tests/check_interface_02000.js');
 require('./check-tests/check_interface_02900.js');
-require('./check-tests/check_empty_03000.js');
-require('./check-tests/check_empty_03800.js');
-require('./check-tests/check_empty_03900.js');
+require('./check-tests/checkParam_empty_03000.js');
+require('./check-tests/checkParam_empty_03800.js');
+require('./check-tests/checkParam_empty_03900.js');
 
 
-require('./check-tests/check_emptyEither_04000.js');
+require('./check-tests/checkParam_emptyEither_04000.js');
 
-require('./check-tests/check_type_05000.js');
-require('./check-tests/check_type_05800.js');
-require('./check-tests/check_type_05900.js');
+require('./check-tests/checkParam_type_05000.js');
+require('./check-tests/checkParam_type_05800.js');
+require('./check-tests/checkParam_type_05900.js');
 
-require('./check-tests/check_typeExtra_06000.js');
+require('./check-tests/checkParam_typeExtra_06000.js');
 
-require('./check-tests/check_typeEither_07000.js');
-require('./check-tests/check_typeEither_07800.js');
-require('./check-tests/check_typeEither_07900.js');
+require('./check-tests/checkParam_typeEither_07000.js');
+require('./check-tests/checkParam_typeEither_07800.js');
+require('./check-tests/checkParam_typeEither_07900.js');
 
 require('./private-tests/_cycle_loops_08000.js');
 require('./private-tests/_aTypeOf_09000.js');
@@ -54,22 +54,28 @@ require('./private-tests/_jsonStr_27000.js');
 require('./private-tests/_shrinkDiffs_28000.js');
 require('./private-tests/_toStr_29000.js');
 
-require('./check-tests/check_emptyExtra_30000.js');
+require('./check-tests/checkParam_emptyExtra_30000.js');
 require('./private-tests/_eitherChecks_31000.js');
 
 require('./check-tests/variadic_checks_32000.js');
-require('./check-tests/check_emptyVariadic_32800.js');
-require('./check-tests/check_typeVariadic_32900.js');
+require('./check-tests/checkArgs_emptyVariadic_32800.js');
+require('./check-tests/checkArgs_typeVariadic_32900.js');
 
 require('./check-tests/check_buildSnapshot_40000.js');
 require('./check-tests/check_mutateSnapshot_41000.js');
 require('./public-tests/typeCzech_90000.js');
-require('./public-tests/enableChecks_42000.js');
-require('./public-tests/disableChecks_43000.js');
+require('./public-tests/enableTests_42000.js');
+require('./public-tests/disableTests_43000.js');
 require('./public-tests/countFails_44000.js');
 require('./public-tests/countTally_45000.js');
+
+require('./check-tests/signature_checkParam_type_46000.js');
 
 require('./dynamic-generative/random-signatures.js');
 
 console.log('total fails = ', global.TEST_total_fails);
 console.log('total checks = ', global.TEST_total_checks);
+
+if (global.TEST_total_checks !== 1582 || global.TEST_total_fails !== 0) {
+  console.log("Houston we have an error problem!")
+} 

@@ -3,14 +3,14 @@
 
 
 
-<div id='js-div' style="width:55%">
+<div id='js-div' style="width:53%">
   <a href='https://github.com/steenhansen/type-czech' class='git-hub'>GitHub Package</a>
   <div id='js-code'>the javascript</div>
 </div>
 
  
 
-<div id="the-explanation" style="width:45%">
+<div id="the-explanation" style="width:47%">
   <div class='an-explantion'>13 - Parameter and Result Multi Scalar Types</div>
   <div id='explanation-text'>
     <br>
@@ -164,7 +164,7 @@ return result to not match the correct signature.
     
     <a title="24-Empty-Either-Checks.html" href="../example-snippets/24-Empty-Either-Checks.html">24</a>
     
-    <a title="25-Accessing-PRE-POST-Arguments.html" href="../example-snippets/25-Accessing-PRE-POST-Arguments.html">25</a>
+    <a title="25-Default-Parameters.html" href="../example-snippets/25-Default-Parameters.html">25</a>
     
     <a title="26-Type-and-Empty-Abbreviations.html" href="../example-snippets/26-Type-and-Empty-Abbreviations.html">26</a>
     
@@ -298,11 +298,14 @@ return result to not match the correct signature.
 /**/                      ? undefined : POST_check_Person
 /**/  
 /**/  function PRE_check_Person(f_name, l_name, b_date){
-/**/    return type_czech.check_type(arguments, ['string', 'string', 'date'])
+/**/    the_parameters = [f_name, l_name, b_date]  
+/**/    the_signature = ['string', 'string', 'date']
+/**/    return type_czech.checkParam_type(the_parameters, the_signature)
 /**/  }
 /**/  
-/**/  function POST_check_Person(an_array){
-/**/    return type_czech.check_type(arguments, ['number', 'string', 'string'])
+/**/  function POST_check_Person(birth_first_last_arr){
+/**/    result_signature = ['number', 'string', 'string']  
+/**/    return type_czech.checkParam_type(birth_first_last_arr, result_signature)
 /**/  }
 /**/  
 /**/  Person = type_czech.linkUp(Person, PRE_check_Person, POST_check_Person)
@@ -311,7 +314,8 @@ function Person(f_name, l_name, b_date){
   birth_year = b_date.getFullYear()
   if (l_name === '')
     l_name = undefined                   // deliberate POST error
-  return [birth_year, f_name, l_name]
+  birth_first_last_arr = [birth_year, f_name, l_name]
+  return birth_first_last_arr
 }
 
 chuck = Person('Charles', 'Windsor', new Date(1948,11,14))

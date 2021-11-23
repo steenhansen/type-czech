@@ -90,7 +90,7 @@
     
     <a title="24-Empty-Either-Checks.html" href="https://jsfiddle.net/steen_hansen/1dL76zws/?24-Empty-Either-Checks" target="_blank">24</a>
     
-    <a title="25-Accessing-PRE-POST-Arguments.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Accessing-PRE-POST-Arguments" target="_blank">25</a>
+    <a title="25-Default-Parameters.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Default-Parameters" target="_blank">25</a>
     
     <a title="26-Type-and-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Type-and-Empty-Abbreviations" target="_blank">26</a>
     
@@ -212,7 +212,7 @@
 
     <br><br>
     
-    Code containing an assert_check() <b>must</b> ensure that TypeCzech is alive and running
+    Code containing an check_assert() <b>must</b> ensure that TypeCzech is alive and running
     with an isActive() call or an error may occur later in production when TypeCzech is turned off. 
 <pre>
 if (type_czech.isActive()) {
@@ -220,17 +220,17 @@ if (type_czech.isActive()) {
   error_loc = "error-location-TEST-ZXC-47"
   var_value = "variable-value"
   expected_mess = "expected-message"
-  type_czech.assert_check(check_error, error_loc, var_value, expected_mess)
+  type_czech.check_assert(check_error, error_loc, var_value, expected_mess)
 }
 </pre>
 
-Note that assert_check() usually works outside of the general linked up PRE_check_functions().
+Note that check_assert() usually works outside of the general linked up PRE_check_functions().
 This function is needed to follow the chosen error delivery method for TypeCzech of 'THROW-EXCEPTIONS', 'LOG-ERRORS', 
 or 'NO-CHECKING'.
 
 <br><br>
     
-Note that if checking is turned off, via <b>TypeCzech.disableChecks()</b>, or with           
+Note that if checking is turned off, via <b>TypeCzech.disableTests()</b>, or with           
 <b>TypeCzech('NO-CHECKING')</b> then all checking functions below will return 
 immediately without doing any work.
 
@@ -242,17 +242,17 @@ immediately without doing any work.
 
             <div style="float:left; width:23%; margin-left:-6px;">
               <ul>
-                <li>check_empty()</li>
-                <li>check_emptyEither()</li>
-                <li>check_emptyExtra()</li>
+                <li>checkParam_empty()</li>
+                <li>checkParam_emptyEither()</li>
+                <li>checkParam_emptyExtra()</li>
               </ul>
             </div>
           
             <div style="float:left; width:22%">
               <ul>
-                <li>check_type()</li>
-                <li>check_typeEither()</li>
-                <li>check_typeExtra()</li>
+                <li>checkParam_type()</li>
+                <li>checkParam_typeEither()</li>
+                <li>checkParam_typeExtra()</li>
               </ul>
             </div>
           
@@ -266,9 +266,9 @@ immediately without doing any work.
 
             <div style="float:left; width:11%">
               <ul>
-                <li>check_emptyVariadic()</li>
-                <li>check_typeVariadic()</li>
-                <li>assert_check()</li>
+                <li>checkArgs_emptyVariadic()</li>
+                <li>checkArgs_typeVariadic()</li>
+                <li>check_assert()</li>
               </ul>
             </div>
 
@@ -318,7 +318,7 @@ if (type_czech.isActive()) {
     check_err = `TEST ERROR A-17, year was not 1999 but ${test_year}`
     err_location = 'TESTING test_1999.getFullYear()'
     expected = 'Year should have been 1999'
-    type_czech.assert_check(check_err, err_location, test_year, expected)
+    type_czech.check_assert(check_err, err_location, test_year, expected)
   }
 }
 
@@ -340,8 +340,8 @@ fetch('https://api.github.com/users/steenhansen')
 .then(response => response.json())
 .then(github_data => {
   if (type_czech.isActive()) {
-    type_err = type_czech.check_typeExtra(github_data, {html_url:'string'})
-    type_czech.assert_check(type_err, 'Error - github_api', github_data)
+    type_err = type_czech.checkParam_typeExtra(github_data, {html_url:'string'})
+    type_czech.check_assert(type_err, 'Error - github_api', github_data)
   }
   log('GitHub : ', github_data.html_url)
 })
@@ -351,8 +351,8 @@ fetch('https://api.github.com/users/steenhansen')
     .then(github_data => {
       if (type_czech.isActive()) {    // object not array is correct type
         log('|||')
-        type_err = type_czech.check_type(github_data, 'array')
-        type_czech.assert_check(type_err, 'FETCH ERROR', github_data)
+        type_err = type_czech.checkParam_type(github_data, 'array')
+        type_czech.check_assert(type_err, 'FETCH ERROR', github_data)
       }
     })
 })

@@ -161,7 +161,7 @@ PRE_check_aLottery = (typeof PRE_check_aLottery === 'undefined')
     
     <a title="24-Empty-Either-Checks.html" href="https://jsfiddle.net/steen_hansen/1dL76zws/?24-Empty-Either-Checks" target="_blank">24</a>
     
-    <a title="25-Accessing-PRE-POST-Arguments.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Accessing-PRE-POST-Arguments" target="_blank">25</a>
+    <a title="25-Default-Parameters.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Default-Parameters" target="_blank">25</a>
     
     <a title="26-Type-and-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Type-and-Empty-Abbreviations" target="_blank">26</a>
     
@@ -293,10 +293,10 @@ function runEnvironment(TypeCzech, pre_check_exists) {
   if (pre_check_exists) {
     function PRE_check_aLottery (){
       LOTTERY_SIGNATURE = ['string', ['number'], 'date']
-      type_issue = type_czech.check_type(arguments, LOTTERY_SIGNATURE)
+      type_issue = type_czech.checkParam_type(arguments, LOTTERY_SIGNATURE)
       if (type_issue) return type_issue
   
-      empty_err=type_czech.check_emptyVariadic(arguments,['EMPTY-ERROR'])
+      empty_err=type_czech.checkArgs_emptyVariadic(arguments,['EMPTY-ERROR'])
       if (empty_err) return empty_err
 
       return ''

@@ -36,7 +36,7 @@
 </ul>
 
 
-Alan Turing is used to show the error messages that occur when an object is check_type()ed against the 
+Alan Turing is used to show the error messages that occur when an object is checkParam_type()ed against the 
 'array' type in the PRE_check_Person() checking function. 
 
 
@@ -139,7 +139,7 @@ the POST_check_Person() function.
     
     <a title="24-Empty-Either-Checks.html" href="https://jsfiddle.net/steen_hansen/1dL76zws/?24-Empty-Either-Checks" target="_blank">24</a>
     
-    <a title="25-Accessing-PRE-POST-Arguments.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Accessing-PRE-POST-Arguments" target="_blank">25</a>
+    <a title="25-Default-Parameters.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Default-Parameters" target="_blank">25</a>
     
     <a title="26-Type-and-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Type-and-Empty-Abbreviations" target="_blank">26</a>
     
@@ -289,11 +289,11 @@ the POST_check_Person() function.
 /**/                ? undefined : POST_check_Person
 /**/  
 /**/  function PRE_check_Person(an_array){
-/**/    return type_czech.check_type(arguments, 'array')
+/**/    return type_czech.checkParam_type(arguments, 'array')
 /**/  }
 /**/  
 /**/  function POST_check_Person(an_object){
-/**/    return type_czech.check_type(arguments, 'object')
+/**/    return type_czech.checkParam_type(arguments, 'object')
 /**/  }
 /**/  
 /**/  Person = type_czech.linkUp(Person, PRE_check_Person,

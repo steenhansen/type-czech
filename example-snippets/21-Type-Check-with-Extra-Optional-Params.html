@@ -81,7 +81,7 @@
     
     <a title="24-Empty-Either-Checks.html" href="../example-snippets/24-Empty-Either-Checks.html">24</a>
     
-    <a title="25-Accessing-PRE-POST-Arguments.html" href="../example-snippets/25-Accessing-PRE-POST-Arguments.html">25</a>
+    <a title="25-Default-Parameters.html" href="../example-snippets/25-Default-Parameters.html">25</a>
     
     <a title="26-Type-and-Empty-Abbreviations.html" href="../example-snippets/26-Type-and-Empty-Abbreviations.html">26</a>
     
@@ -166,57 +166,57 @@
   <div class='an-explantion'>21 - Type Check with Extra Optional Parameters</div>
   <div id='explanation-text'>
     <br>
-    This is only for type checking <b>single</b> objects and <b>single</b> array parameter and result types.
-    Please note that in the example to the left that the lone <span class='purp-similar'>person_obj</span>
-    and  <span class='purp-similar'>person_array</span>
-   parameters are referenced, not the <b>arguments</b> object. The idea is that extra 
-   values, to be ignored, are inside the checked variable.
+    This is only for type checking parameters and results that are <b>single objects</b> and <b>single arrays</b>.
+    The idea is that extra values, to be ignored, are inside the checked collection variable.
     
-    <br><br>
-    To also check the string 'IGNORED-STRING' the checking function can be changed to :
-<pre>
-function PRE_check_Person(person_obj, ignored_string){
-  person_issue=type_czech.check_typeExtra(person_obj,{f_name:'string'})
-  if (person_issue) return person_issue
-
-  return type_czech.check_type(ignored_string, 'string')
-}
-</pre> 
-
   Extra optional parameter values are not checked for correct type, they are just ignored. 
   As long as the correct declared type shape is not violated, any additional elective 
-  parameters will be overlooked when using 
-  check_typeExtra(<b>VARIABLE_NAME</b>, expected_types); and not using
-  the arguments object.
+  parameters will be overlooked .
     
   <br><br>
   Objects specify their mandatory keys and types, whilst arrays just check the
-  begining elements for types, and ignore the rest undescribed elements.
-    <hr>
-The <b>single element</b> checking construct style <b>check_typeExtra(arguments, ['number'])</b> gives an error
-as it is not clear where the extra parameter arguments would go, in the array, or after the array.
+  beginning elements for types, and ignore the rest undescribed elements.
 
 <br><br>
-Because <b>check_typeExtra(arguments, {a:'number'})</b> means extra properties inside an object are allowed,
-like {a:'number'} or {a:'number', b:'string', c:'boolean'}.
-<br><br>
+Thus checkParam_typeExtra(an_object, <b>{a:'string'}</b>) means extra properties
+ inside the parameter_object are allowed after the string property of 'a'.
 
-But <b>check_type(arguments, ['number'])</b> indicates any sized array of numbers, like
-[1] or [1,2,3].
-<br><br>
+<pre title='Copy and paste the green code below into the console to run' class='console-runnable'>
+func0 = (an_object) => an_object
+PRE_check_func0 = (an_object) => { 
+  return type_czech.checkParam_typeExtra(an_object, {a:'string'})
+}
+func0 = type_czech.linkUp(func0, PRE_check_func0)
+func0({a:'pass'})
+func0({a:'pass', b:'string', c:'boolean'})
+func0({fail:17})
+</pre>
 
-Then check_typeExtra(arguments, ['number'])</b> as above, could refer to either
-<ul>
-  <li>aFunctionCall([1, 'extra-a', 'extra-b', 'extra-c'])</li>
-  <li>aFunctionCall([1,2,3], 'extra-a')</li>
-</ul>
-These two examples do not make much sense, and would never be used.
-<br><br>
-Therefore, like the example to the left, there must an array with at least two types for it
-to be legal, like <b>check_typeExtra(arguments, ['number', 'number'])</b> with no ambiguity.
-<br><br>
+And checkParam_typeExtra(an_array, <b>'number'</b>) refers to <b>one</b>
+number and something extra possibly.
+<pre title='Copy and paste the green code below into the console to run' class='console-runnable'>
+func1 = (an_array) => an_array
+PRE_check_func1 = (an_array) => { 
+  return type_czech.checkParam_typeExtra(an_array, 'number')
+}
+func1 = type_czech.linkUp(func1, PRE_check_func1)
+func1([1, 'pass', 'pass', 'pass'])
+func1(['all-bad', 'fail', 'fail', 'fail'])
+</pre>
 
-  </div>
+Whereas checkParam_typeExtra(an_array, <b>['number', 'boolean']</b>) refers to <b>two</b>
+things, a number and a boolean possibly followed by something extra.
+<pre title='Copy and paste the green code below into the console to run' class='console-runnable'>
+func2 = (an_array) => an_array
+PRE_check_func2 = (an_array) => { 
+  the_signature = ['number', 'boolean']
+  return type_czech.checkParam_typeExtra(an_array, the_signature)
+}
+func2 = type_czech.linkUp(func2, PRE_check_func2)
+func2([7, true, 'pass', 'pass', 'pass'])
+func2([8, 'fail', 'fail', 'fail', 'fail'])
+</pre>
+</div>
 
 
   <div id="console-log"  >
@@ -269,11 +269,11 @@ to be legal, like <b>check_typeExtra(arguments, ['number', 'number'])</b> with n
 /**/                      ? undefined : POST_check_Person
 /**/  
 /**/  function PRE_check_Person(person_obj){
-/**/    return type_czech.check_typeExtra(person_obj, {f_name:'string'})
+/**/    return type_czech.checkParam_typeExtra(person_obj, {f_name:'string'})
 /**/  }
 /**/  
 /**/  function POST_check_Person(person_arr){
-/**/    return type_czech.check_typeExtra(person_arr, ['string', 'string'])
+/**/    return type_czech.checkParam_typeExtra(person_arr, ['string','string'])
 /**/  }
 /**/  
 /**/  Person = type_czech.linkUp(Person, PRE_check_Person, POST_check_Person)

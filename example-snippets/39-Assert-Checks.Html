@@ -78,7 +78,7 @@
     
     <a title="24-Empty-Either-Checks.html" href="../example-snippets/24-Empty-Either-Checks.html">24</a>
     
-    <a title="25-Accessing-PRE-POST-Arguments.html" href="../example-snippets/25-Accessing-PRE-POST-Arguments.html">25</a>
+    <a title="25-Default-Parameters.html" href="../example-snippets/25-Default-Parameters.html">25</a>
     
     <a title="26-Type-and-Empty-Abbreviations.html" href="../example-snippets/26-Type-and-Empty-Abbreviations.html">26</a>
     
@@ -162,7 +162,7 @@
 
 
 
-  <div class='an-explantion'>39 - Assert Checks</div>
+  <div class='an-explantion'>39 - Check Asserts</div>
   <div id='explanation-text'>
     <br>
 
@@ -171,25 +171,25 @@
 
     <br><br>
     
-    Code containing an assert_check() <b>must</b> ensure that TypeCzech is alive and running
+    Code containing an check_assert() <b>must</b> ensure that TypeCzech is alive and running
     with an isActive() call or an error may occur later in production when TypeCzech is turned off. 
-<pre>
+<pre title='Copy and paste the green code below into the console to run' class='console-runnable'>
 if (type_czech.isActive()) {
   check_error= "check-error"
   error_loc = "error-location-TEST-ZXC-47"
   var_value = "variable-value"
   expected_mess = "expected-message"
-  type_czech.assert_check(check_error, error_loc, var_value, expected_mess)
+  type_czech.check_assert(check_error, error_loc, var_value, expected_mess)
 }
 </pre>
 
-Note that assert_check() usually works outside of the general linked up PRE_check_functions().
+Note that check_assert() usually works outside of the general linked up PRE_check_functions().
 This function is needed to follow the chosen error delivery method for TypeCzech of 'THROW-EXCEPTIONS', 'LOG-ERRORS', 
 or 'NO-CHECKING'.
 
 <br><br>
     
-Note that if checking is turned off, via <b>TypeCzech.disableChecks()</b>, or with           
+Note that if checking is turned off, via <b>TypeCzech.disableTests()</b>, or with           
 <b>TypeCzech('NO-CHECKING')</b> then all checking functions below will return 
 immediately without doing any work.
 
@@ -199,35 +199,30 @@ immediately without doing any work.
 
           <div>
 
-            <div style="float:left; width:23%; margin-left:-6px;">
+            <div style="float:left; width:33%; margin-left:-6px;">
               <ul>
-                <li>check_empty()</li>
-                <li>check_emptyEither()</li>
-                <li>check_emptyExtra()</li>
+                <li>checkParam_type()</li>
+                <li>checkParam_typeEither()</li>
+                <li>checkParam_typeExtra()</li>
+                <li>checkArgs_typeVariadic()</li>
               </ul>
             </div>
           
-            <div style="float:left; width:22%">
+            <div style="float:left; width:33%">
               <ul>
-                <li>check_type()</li>
-                <li>check_typeEither()</li>
-                <li>check_typeExtra()</li>
+                <li>checkParam_empty()</li>
+                <li>checkParam_emptyEither()</li>
+                <li>checkParam_emptyExtra()</li>
+                <li>checkArgs_emptyVariadic()</li>
               </ul>
             </div>
           
-            <div style="float:left; width:29%">
+            <div style="float:left; width:33%">
               <ul>
                 <li>check_interface()</li>
                 <li>check_mutatedSnapshot()</li>
                 <li>check_buildSnapshot()</li>
-              </ul>
-            </div>
-
-            <div style="float:left; width:11%">
-              <ul>
-                <li>check_emptyVariadic()</li>
-                <li>check_typeVariadic()</li>
-                <li>assert_check()</li>
+                <li>check_assert()</li>
               </ul>
             </div>
 
@@ -237,7 +232,7 @@ immediately without doing any work.
 
           </div>
 
-          <br><br><br><br> <br>
+          <br><br><br><br> <br><br> <br>
 
 
 
@@ -275,9 +270,9 @@ test_year = test_1999.getFullYear()
 if (type_czech.isActive()) {
   if (test_year !== 1999) {
     check_err = `TEST ERROR A-17, year was not 1999 but ${test_year}`
-    err_location = 'TESTING test_1999.getFullYear()'
-    expected = 'Year should have been 1999'
-    type_czech.assert_check(check_err, err_location, test_year, expected)
+    err_call = 'test_1999.getFullYear()'
+    was_expected = 'Year should have been 1999'
+    type_czech.check_assert(check_err, err_call, test_year, was_expected)
   }
 }
 
@@ -299,8 +294,8 @@ fetch('https://api.github.com/users/steenhansen')
 .then(response => response.json())
 .then(github_data => {
   if (type_czech.isActive()) {
-    type_err = type_czech.check_typeExtra(github_data, {html_url:'string'})
-    type_czech.assert_check(type_err, 'Error - github_api', github_data)
+    error=type_czech.checkParam_typeExtra(github_data,{html_url:'string'})
+    type_czech.check_assert(error, 'Error - github_api', github_data)
   }
   log('GitHub : ', github_data.html_url)
 })
@@ -310,8 +305,8 @@ fetch('https://api.github.com/users/steenhansen')
     .then(github_data => {
       if (type_czech.isActive()) {    // object not array is correct type
         log('|||')
-        type_err = type_czech.check_type(github_data, 'array')
-        type_czech.assert_check(type_err, 'FETCH ERROR', github_data)
+        type_err = type_czech.checkParam_type(github_data, 'array')
+        type_czech.check_assert(type_err, 'FETCH ERROR', github_data)
       }
     })
 })              // The GitHub API is rate limited so it may stop working

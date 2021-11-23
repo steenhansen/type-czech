@@ -6,9 +6,9 @@ function TypeCzech_Last() {
     function PRE_check_Last(spec){
       log(LEVEL_1+'PRE-Last') 
       pre_last_sig = { f_name: 'string', l_name: 'string' }
-      type_issue = type_czech.check_typeExtra(arguments, pre_last_sig)
+      type_issue = type_czech.checkParam_typeExtra(spec, pre_last_sig)
       if (type_issue) return type_issue;
-      return type_czech.check_emptyExtra(arguments, {l_name: 'EMPTY-ERROR' });
+      return type_czech.checkParam_emptyExtra(spec, {l_name: 'EMPTY-ERROR' });
     }
     function POST_check_Last(Last){
       log(LEVEL_1+"POST-Last") 
@@ -17,11 +17,11 @@ function TypeCzech_Last() {
     }
     function PRE_check_lastMethod(a_year){
       log(LEVEL_1+"PRE -lastMethod")
-      return type_czech.check_type(arguments, 'number')
+      return type_czech.checkParam_type(a_year, 'number')
     }
     function POST_check_lastMethod(a_year){
       log(LEVEL_1+"POST-lastMethod") 
-      return type_czech.check_type(arguments, 'number')
+      return type_czech.checkParam_type(a_year, 'number')
     }
 
 

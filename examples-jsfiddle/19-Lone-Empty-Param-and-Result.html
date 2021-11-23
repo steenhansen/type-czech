@@ -92,7 +92,7 @@
     
     <a title="24-Empty-Either-Checks.html" href="https://jsfiddle.net/steen_hansen/1dL76zws/?24-Empty-Either-Checks" target="_blank">24</a>
     
-    <a title="25-Accessing-PRE-POST-Arguments.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Accessing-PRE-POST-Arguments" target="_blank">25</a>
+    <a title="25-Default-Parameters.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Default-Parameters" target="_blank">25</a>
     
     <a title="26-Type-and-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Type-and-Empty-Abbreviations" target="_blank">26</a>
     
@@ -206,7 +206,7 @@
   <div class='an-explantion'>19 - Lone Empty Parameter and Result</div>
 
   <div id='explanation-text'>
-    Use check_empty(arguments, expected_empty) to verify that a lone parameter or return result is not empty.
+    Use checkParam_empty(arguments, expected_empty) to verify that a lone parameter or return result is not empty.
     Good for ensuring that a function's single string, array, and object parameter and or result has a useful value.
 
     When a parameter corresponds to 'EMPTY-ERROR' and its contents are valueless then an error is returned, 
@@ -316,7 +316,7 @@
 /**/    PRE_check_hasValue = PRE_check_hasValue
 /**/  
 /**/  function PRE_check_hasValue(){
-/**/    return type_czech.check_empty(
+/**/    return type_czech.checkParam_empty(
 /**/                   arguments, 'EMPTY-ERROR')
 /**/  }
 /**/

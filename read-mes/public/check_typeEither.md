@@ -1,5 +1,5 @@
 
-## check_typeEither()
+## checkParam_typeEither()
   -  [1 Either Parameter Type Check](#either-parameter-type-check)
   -  [2 Either Result Type Check](#either-result-type-check)
 
@@ -9,12 +9,12 @@
   
 ```
 function PRE_check_arrayOrObject(){
-  return type_czech.check_typeEither(arguments, ['array', 'object']) // arguments version
+  return type_czech.checkParam_typeEither(arguments, ['array', 'object']) // arguments version
 }
 ```
 ```
 function PRE_check_arrayOrObject(arr_or_obj){
-  return type_czech.check_typeEither(arr_or_obj, ['array', 'object'])  // or parameter version
+  return type_czech.checkParam_typeEither(arr_or_obj, ['array', 'object'])  // or parameter version
 }
 
 type_czech = TypeCzech('LOG-ERRORS')
@@ -34,12 +34,12 @@ arrayOrObject(12) // PRE fail - number is not array or object
   
 ```
 function POST_check_arrayOrObject(){
-  return type_czech.check_typeEither(arguments, ['array', 'object'])  // arguments version
+  return type_czech.checkParam_typeEither(arguments, ['array', 'object'])  // arguments version
 }
 ```
 ```
 function POST_check_arrayOrObject(return_result){
-  return type_czech.check_typeEither(return_result, ['array', 'object'])  // or parameter version
+  return type_czech.checkParam_typeEither(return_result, ['array', 'object'])  // or parameter version
 }
 
 type_czech = TypeCzech('LOG-ERRORS')

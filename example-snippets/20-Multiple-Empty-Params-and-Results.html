@@ -5,21 +5,21 @@
 
 
 
-<div id='js-div' style="width:50%">
+<div id='js-div' style="width:54%">
   <a href='https://github.com/steenhansen/type-czech' class='git-hub'>GitHub Package</a>
         <div id='js-code'>the javascript</div>
 </div>
 
 
 
-<div id="the-explanation" style="width:50%">
+<div id="the-explanation" style="width:46%">
   <div class='an-explantion'>20 - Multiple Empty Parameters and Results</div>
 
   <div id='explanation-text'>
     <br>
 
 To see if a function has multiple parameters or return results that lack content, such as empty strings, arrays with 
-no elements, or an objects with no properties use check_empty().
+no elements, or an objects with no properties use checkParam_empty().
 
 <br><br>
 Null and undefined values are also considered to be empty with no value.
@@ -109,7 +109,7 @@ Null and undefined values are also considered to be empty with no value.
     
     <a title="24-Empty-Either-Checks.html" href="../example-snippets/24-Empty-Either-Checks.html">24</a>
     
-    <a title="25-Accessing-PRE-POST-Arguments.html" href="../example-snippets/25-Accessing-PRE-POST-Arguments.html">25</a>
+    <a title="25-Default-Parameters.html" href="../example-snippets/25-Default-Parameters.html">25</a>
     
     <a title="26-Type-and-Empty-Abbreviations.html" href="../example-snippets/26-Type-and-Empty-Abbreviations.html">26</a>
     
@@ -228,11 +228,12 @@ Null and undefined values are also considered to be empty with no value.
 /**/  POST_check_Person_EMPTYS = {l_name:'EMPTY-ERROR', b_date:'EMPTY-OK'}
 /**/
 /**/  function PRE_check_Person(f_name, l_name, b_date){
-/**/    return type_czech.check_empty(arguments, PRE_check_Person_EMPTYS)
+/**/    the_parameters = [f_name, l_name, b_date]
+/**/    return type_czech.checkParam_empty(the_parameters, PRE_check_Person_EMPTYS)
 /**/  }
 /**/
 /**/  function POST_check_Person(person_obj){
-/**/    return type_czech.check_empty(arguments, POST_check_Person_EMPTYS)
+/**/    return type_czech.checkParam_empty(person_obj, POST_check_Person_EMPTYS)
 /**/  }
 /**/
 /**/  Person = type_czech.linkUp(Person, PRE_check_Person, POST_check_Person)

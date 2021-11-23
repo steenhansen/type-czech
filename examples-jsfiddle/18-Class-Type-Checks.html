@@ -22,7 +22,7 @@
     The object should be first checked for a valid type, to make sure the 
     expected prototype methods are there.
 <pre>
-type_czech.check_type(class_variable, "the-class-name")
+type_czech.checkParam_type(class_variable, "the-class-name")
 </pre>
 
 Then, the object's interface should be checked just in case a needed method
@@ -132,7 +132,7 @@ a reference error is generated stating
     
     <a title="24-Empty-Either-Checks.html" href="https://jsfiddle.net/steen_hansen/1dL76zws/?24-Empty-Either-Checks" target="_blank">24</a>
     
-    <a title="25-Accessing-PRE-POST-Arguments.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Accessing-PRE-POST-Arguments" target="_blank">25</a>
+    <a title="25-Default-Parameters.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Default-Parameters" target="_blank">25</a>
     
     <a title="26-Type-and-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Type-and-Empty-Abbreviations" target="_blank">26</a>
     
@@ -286,7 +286,7 @@ a reference error is generated stating
 /**/  function POST_check_Person(a_person){
 /**/    interface_error=type_czech.check_interface(arguments,PERSON_INTERFACE)
 /**/    if (interface_error) return interface_error
-/**/    return type_czech.check_type(arguments, "Person")
+/**/    return type_czech.checkParam_type(arguments, "Person")
 /**/  }
 
 class Person {
@@ -308,7 +308,7 @@ linesConsole(2)
 const person_prototype = Object.getPrototypeOf(a_person)
 delete person_prototype.showPerson
 
-person_type_issue = type_czech.check_type(a_person, "Person")
+person_type_issue = type_czech.checkParam_type(a_person, "Person")
 if (person_type_issue){
   log('person_type_issue', person_type_issue)
 } else {

@@ -81,7 +81,7 @@
     
     <a title="24-Empty-Either-Checks.html" href="../example-snippets/24-Empty-Either-Checks.html">24</a>
     
-    <a title="25-Accessing-PRE-POST-Arguments.html" href="../example-snippets/25-Accessing-PRE-POST-Arguments.html">25</a>
+    <a title="25-Default-Parameters.html" href="../example-snippets/25-Default-Parameters.html">25</a>
     
     <a title="26-Type-and-Empty-Abbreviations.html" href="../example-snippets/26-Type-and-Empty-Abbreviations.html">26</a>
     
@@ -175,14 +175,14 @@
 
 The 'UNDEF-OK' option is only useful with type shapes, and thus these functions:
 <ul>
-  <li><b>check_type</b>(actual_arguments, expected_shape)</li>
-  <li><b>check_typeExtra</b>(actual_arguments, expected_shape)</li>
-  <li><b>check_typeEither</b>(actual_arguments, possible_shapes)</li>
+  <li><b>checkParam_type</b>(actual_arguments, expected_shape)</li>
+  <li><b>checkParam_typeExtra</b>(actual_arguments, expected_shape)</li>
+  <li><b>checkParam_typeEither</b>(actual_arguments, possible_shapes)</li>
 </ul>
 
 
 
-In this page's example, null and undefined do not cause any errors with check_type(arguments, signature).
+In this page's example, null and undefined do not cause any errors with checkParam_type().
 But otherwise, real values are still checked for type, such as 12 not being a string.
 <br><br>
  </div>
@@ -245,13 +245,13 @@ But otherwise, real values are still checked for type, such as 12 not being a st
 /**/  function PRE_check_Person(person_obj){
 /**/    let {f_name, l_name} = person_obj
 /**/    person_type = {f_name:'string', l_name:'string'}
-/**/    return type_czech.check_type(arguments, person_type)
+/**/    return type_czech.checkParam_type(person_obj, person_type)
 /**/  }
 /**/  
 /**/  function POST_check_Person(person_array){
 /**/    let [f_name, l_name] = person_array
 /**/    person_type = ['string', 'string']
-/**/    return type_czech.check_type(arguments, person_type)
+/**/    return type_czech.checkParam_type(person_array, person_type)
 /**/  }
 /**/  
 /**/  Person=type_czech.linkUp(Person,PRE_check_Person,POST_check_Person)

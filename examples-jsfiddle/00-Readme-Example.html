@@ -90,7 +90,7 @@
     
     <a title="24-Empty-Either-Checks.html" href="https://jsfiddle.net/steen_hansen/1dL76zws/?24-Empty-Either-Checks" target="_blank">24</a>
     
-    <a title="25-Accessing-PRE-POST-Arguments.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Accessing-PRE-POST-Arguments" target="_blank">25</a>
+    <a title="25-Default-Parameters.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Default-Parameters" target="_blank">25</a>
     
     <a title="26-Type-and-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Type-and-Empty-Abbreviations" target="_blank">26</a>
     
@@ -223,20 +223,20 @@ type_czech = TypeCzech()
  
  When TypeCzech is turned on, PRE_check_aLottery() ensures that aLottery()'s parameters
   are a string, an array 
- of numbers, and a date with the check_type() call.
+ of numbers, and a date with the checkParam_type() call.
 <br><br>
- PRE_check_aLottery() also gives warning when parameters are empty with the check_empty() call. This means that an error
+ PRE_check_aLottery() also gives warning when parameters are empty with the checkParam_empty() call. This means that an error
  occurs when the lottery_name is an empty string, and/or if there are no numbers in the lucky_numbers array. 
  <br><br>
 TypeCzech functions are best used with the arguments object, the below verbose function works just as well.
 <pre>
 function PRE_check_aLottery(lottery_name, lucky_numbers, draw_date){
   the_parameters = [lottery_name, lucky_numbers, draw_date]
-  type_issue = type_czech.check_type(the_parameters, LOTTERY_SIGNATURE)
+  type_issue = type_czech.checkParam_type(the_parameters, LOTTERY_SIGNATURE)
   if (type_issue) 
     return type_issue
 
-  empty_issue = type_czech.check_empty(the_parameters, ['EMPTY-ERROR'])
+  empty_issue = type_czech.checkParam_empty(the_parameters, ['EMPTY-ERROR'])
   if (empty_issue)
     return empty_issue
   
@@ -276,11 +276,11 @@ function PRE_check_aLottery(lottery_name, lucky_numbers, draw_date){
 /**/  LOTTERY_SIGNATURE = ['string', ['number'], 'date']
 /**/
 /**/  function PRE_check_aLottery(){
-/**/    type_issue = type_czech.check_type(arguments, LOTTERY_SIGNATURE)
+/**/    type_issue = type_czech.checkParam_type(arguments, LOTTERY_SIGNATURE)
 /**/    if (type_issue) 
 /**/      return type_issue
 /**/
-/**/    empty_issue=type_czech.check_emptyVariadic(arguments,['EMPTY-ERROR'])
+/**/    empty_issue=type_czech.checkArgs_emptyVariadic(arguments,['EMPTY-ERROR'])
 /**/    if (empty_issue) 
 /**/      return empty_issue
 /**/

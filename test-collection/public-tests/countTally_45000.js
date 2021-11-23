@@ -17,7 +17,7 @@ function B_yourFunc() { }
 
 
 
-type_czech.enableChecks();
+type_czech.enableTests();
 
 if (type_czech.countTally() !== 0) throw 'A._countTally()_1';
 

@@ -19,65 +19,88 @@ var TEST_number_generatives = 120;
 
 
 
-<script src="public-tests/linkUp_01000.js"></script> 
-
-                              <script src="check-tests/check_interface_02000.js"></script> 
-
-
-                             
-                              <script src="check-tests/check_interface_02900.js"></script>  
-
-
-                              <script src="check-tests/check_empty_03000.js"></script>  
-                              
-                              <script src="check-tests/check_empty_03800.js"></script> 
-                              <script src="check-tests/check_empty_03900.js"></script> 
-<script src="check-tests/check_emptyEither_04000.js"></script>
-
-
-      
-                                   <script src="check-tests/check_type_05000.js"></script> 
-
-
-
-
-
-
-
-
-
-
-
-
-                              <script src="check-tests/check_type_05800.js"></script>   
-                       
-                              <script src="check-tests/check_type_05900.js"></script>
-                          
-                                
-      <script src="check-tests/check_typeExtra_06000.js"></script>  
-
-      <script src="check-tests/check_typeEither_07000.js"></script> 
-   
-     
-      
-      <script src="check-tests/check_typeEither_07800.js"></script>     
-      
-     
-        <script src="check-tests/check_typeEither_07900.js"></script>
+  <script src="public-tests/linkUp_01000.js"></script>
  
+                             <script src="check-tests/check_interface_02000.js"></script> 
+
+ 
+                             
+                              <script src="check-tests/check_interface_02900.js"></script>   
+
+                              <script src="check-tests/checkParam_empty_03000.js"></script>  
+                      
+                              <script src="check-tests/checkParam_empty_03800.js"></script> 
+        
+                              <script src="check-tests/checkParam_empty_03900.js"></script> 
+
+<script src="check-tests/checkParam_emptyEither_04000.js"></script> 
+
+
+     
+                                   <script src="check-tests/checkParam_type_05000.js"></script> 
+
+
+                                 
+
+                            <script src="check-tests/checkParam_type_05800.js"></script>   
+           
+                            
+                           
+                              <script src="check-tests/checkParam_type_05900.js"></script>
+                        
+
+
+
+  
+                                
+      <script src="check-tests/checkParam_typeExtra_06000.js"></script>  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+      <script src="check-tests/checkParam_typeEither_07000.js"></script> 
+
+        
+      
+      <script src="check-tests/checkParam_typeEither_07800.js"></script>     
+         
+   
+        <script src="check-tests/checkParam_typeEither_07900.js"></script>
+ 
+
 <script src="private-tests/_cycle_loops_08000.js"></script> 
+
+
+
 <script src="private-tests/_aTypeOf_09000.js"></script>   
 
 
 
-
+ 
 
 <script src="private-tests/_isCollection_10000.js"></script>   
+
 <script src="private-tests/_isEmpty_11000.js"></script>   
+
 <script src="private-tests/_missingKey_12000.js"></script>
+
 <script src="private-tests/_parametersCheck_13000.js"></script> 
+
+
 <script src="private-tests/_mutatedVariables_14000.js"></script> 
+
+
 <script src="private-tests/_shapeArrayTypes_15000.js"></script>
+
 <script src="private-tests/_shapeCollectionTypes_16000.js"></script>
 
 
@@ -87,7 +110,7 @@ var TEST_number_generatives = 120;
 
 
 <script src="private-tests/_refDiff_19000.js"></script> 
- 
+
 
 
 
@@ -103,30 +126,34 @@ var TEST_number_generatives = 120;
 <script src="private-tests/_jsonStr_27000.js"></script> 
 <script src="private-tests/_shrinkDiffs_28000.js"></script> 
 <script src="private-tests/_toStr_29000.js"></script> 
-
-
-
+ 
 
  
 
 
-      <script src="check-tests/check_emptyExtra_30000.js"></script>
+
+      <script src="check-tests/checkParam_emptyExtra_30000.js"></script>
+      
+
 <script src="private-tests/_eitherChecks_31000.js"></script>
 
+ 
             <script src="check-tests/variadic_checks_32000.js"></script>
-            <script src="check-tests/check_emptyVariadic_32800.js"></script>
-            <script src="check-tests/check_typeVariadic_32900.js"></script>
 
 
+
+
+            <script src="check-tests/checkArgs_emptyVariadic_32800.js"></script>
+    
+  
+            <script src="check-tests/checkArgs_typeVariadic_32900.js"></script>
+
+  
             <script src="check-tests/check_buildSnapshot_40000.js"></script> 
-
+  
             <script src="check-tests/check_mutateSnapshot_41000.js"></script> 
-
+ 
 <script src="public-tests/typeCzech_90000.js"></script> 
-
-
-<script src="public-tests/enableChecks_42000.js"></script>
-<script src="public-tests/disableChecks_43000.js"></script>
 <script src="public-tests/countFails_44000.js"></script>
 <script src="public-tests/countTally_45000.js"></script> 
 
@@ -134,19 +161,23 @@ var TEST_number_generatives = 120;
 
 
 
-
-
-
-
-
-
-
-
+<script src="public-tests/enableTests_42000.js"></script>
+<script src="public-tests/disableTests_43000.js"></script>
+ 
 
 
 <script src="./dynamic-generative/random-signatures.js"></script> 
+ 
 
 
+<script src="check-tests/signature_checkParam_type_46000.js"></script> 
+
+
+
+
+
+
+ 
 
 
 
@@ -155,6 +186,10 @@ var TEST_number_generatives = 120;
 <script>
       console.log('total fails = ', TEST_total_fails)
       console.log('total checks = ', TEST_total_checks)
+
+      if (TEST_total_checks !== 1549 || TEST_total_fails !== 0) {
+            console.log("Houston we have an error problem!")
+      } 
 </script>
 
 

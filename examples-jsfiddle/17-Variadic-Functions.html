@@ -89,7 +89,7 @@
     
     <a title="24-Empty-Either-Checks.html" href="https://jsfiddle.net/steen_hansen/1dL76zws/?24-Empty-Either-Checks" target="_blank">24</a>
     
-    <a title="25-Accessing-PRE-POST-Arguments.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Accessing-PRE-POST-Arguments" target="_blank">25</a>
+    <a title="25-Default-Parameters.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Default-Parameters" target="_blank">25</a>
     
     <a title="26-Type-and-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Type-and-Empty-Abbreviations" target="_blank">26</a>
     
@@ -213,9 +213,9 @@
     <br>
 <pre>
 function PRE_check_oneTo3strings() {
- if (!type_czech.check_type(arguments, 'string')) return ''
- if (!type_czech.check_type(arguments, ['string', 'string'])) return ''
- if (!type_czech.check_type(arguments,['string','string','string'])) return ''
+ if (!type_czech.checkParam_type(arguments, 'string')) return ''
+ if (!type_czech.checkParam_type(arguments, ['string', 'string'])) return ''
+ if (!type_czech.checkParam_type(arguments,['string','string','string'])) return ''
  return 'Error, not ONE to THREE strings but - ' + arguments.length
 }
 oneTo3strings = type_czech.linkUp(oneTo3strings, PRE_check_oneTo3strings)
@@ -225,12 +225,12 @@ oneTo3strings()                             // error
 oneTo3strings('s-1', 's-2')
 oneTo3strings('s-1', 's-2', 's-3', 's-4')   // error
 </pre>
-Here check_typeVariadic() accomplishes the same task as above with the help of a length check.
+Here checkArgs_typeVariadic() accomplishes the same task as above with the help of a length check.
 <pre>
 function PRE_check_oneTo3strings() {
   if (arguments.length!== 1 || arguments.length!==2 || arguments.length!== 3) 
     return 'Error, not ONE, TWO, or THREE args but - ' + arguments.length
-  return type_czech.check_typeVariadic(arguments, ['string'])
+  return type_czech.checkArgs_typeVariadic(arguments, ['string'])
 }
 </pre>
   </div>
@@ -268,7 +268,7 @@ function variadicFunc () {
 /**/  //type_czech = TypeCzech('NO-CHECKING')
 /**/
 /**/  function PRE_check_variadicFunc() {
-/**/    return type_czech.check_typeVariadic(arguments, ['number'])
+/**/    return type_czech.checkArgs_typeVariadic(arguments, ['number'])
 /**/  }
 /**/
 /**/  variadicFunc=type_czech.linkUp(variadicFunc,PRE_check_variadicFunc)
@@ -294,7 +294,7 @@ function variadicArrs () {
 }
 
 /**/  function PRE_check_variadicArrs() {
-/**/    return type_czech.check_typeVariadic(arguments, [['number']])
+/**/    return type_czech.checkArgs_typeVariadic(arguments, [['number']])
 /**/  }
 /**/
 /**/  variadicArrs=type_czech.linkUp(variadicArrs,PRE_check_variadicArrs)

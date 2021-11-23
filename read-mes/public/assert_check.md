@@ -1,10 +1,10 @@
 
-## assert_check()
+## check_assert()
   -  [1 Assert Check in a Promise](#assert-check-in-a-promise) 
 
 #### All examples below can be executed in the console of [repl.html](../../test-collection/repl.html)
 
-## 1 Assert check_type() in a Promise<a name="assert-check-in-a-promise"></a>
+## 1 Assert checkParam_type() in a Promise<a name="assert-check-in-a-promise"></a>
 
  Ask [GeoJS](#https://www.geojs.io/) for the country belonging to an ip, [USA 8.8.8.8](#https://get.geojs.io/v1/ip/country.json?ip=8.8.8.8) in this example, and 
  check that the object returned has the expected keys of country/country_3/ip/name.
@@ -23,8 +23,8 @@ function getIpCountryInfo(ip_numbers){
   .then(response => response.json())
   .then(geo_data => {
     if (type_czech.isActive()) {
-      type_err = type_czech.check_type(geo_data, GeoJS_SIGNATURE)
-      type_czech.assert_check(type_err, 'Error - GeoJs.io error', geo_data)
+      type_err = type_czech.checkParam_type(geo_data, GeoJS_SIGNATURE)
+      type_czech.check_assert(type_err, 'Error - GeoJs.io error', geo_data)
     }
     return geo_data
   })
@@ -33,7 +33,7 @@ function getIpCountryInfo(ip_numbers){
 
 getIpCountryInfo('8.8.8.8') // pass
 
-getIpCountryInfo('error-no-country')  // assert_check fail - wrong object
+getIpCountryInfo('error-no-country')  // check_assert fail - wrong object
 
 ```
    

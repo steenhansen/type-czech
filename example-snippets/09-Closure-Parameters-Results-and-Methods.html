@@ -4,7 +4,7 @@
 
 
 
-<div id='js-div' style="width:45%">
+<div id='js-div' style="width:47%">
   <a href='https://github.com/steenhansen/type-czech' class='git-hub'>GitHub Package</a>
   <div id='js-code'>the javascript</div>
 
@@ -81,7 +81,7 @@
     
     <a title="24-Empty-Either-Checks.html" href="../example-snippets/24-Empty-Either-Checks.html">24</a>
     
-    <a title="25-Accessing-PRE-POST-Arguments.html" href="../example-snippets/25-Accessing-PRE-POST-Arguments.html">25</a>
+    <a title="25-Default-Parameters.html" href="../example-snippets/25-Default-Parameters.html">25</a>
     
     <a title="26-Type-and-Empty-Abbreviations.html" href="../example-snippets/26-Type-and-Empty-Abbreviations.html">26</a>
     
@@ -165,21 +165,21 @@
 </div>
 
 
-<div id="the-explanation" style="width:55%">
+<div id="the-explanation" style="width:53%">
   <div class='an-explantion'>09 - Closure Parameters, Results, and Methods</div>
   <div id='explanation-text'>
     <br>
 
 Closures with multiple PRE and POST checking functions must be wrapped up in 
 objects like below for everything to be linked up in an orderly fashion.
-<pre>
-function PRE_check_yourClosure(init){console.log('PRE closure - ', init)}
+<pre title='Copy and paste the green code below into the console to run' class='console-runnable'>
+function PRE_check_yourClosure(init){console.log('PRE closure-', init)}
 
-function POST_check_yourClosure(result){console.log('POST closure - ', result)}
+function POST_check_yourClosure(result){console.log('POST closure-', result)}
 
-function PRE_check_yourFunction(input){console.log('PRE function - ', input)}
+function PRE_check_yourFunction(input){console.log('PRE function-', input)}
 
-function POST_check_yourFunction(output){console.log('POST function - ', output)}
+function POST_check_yourFunction(output){console.log('POST function-', output)}
 
 PRE_checks_closure = {yourClosure:PRE_check_yourClosure,
                       yourFunction:PRE_check_yourFunction}
@@ -201,11 +201,12 @@ function yourClosure(init_closure){
 
 a_closure = yourClosure('hi')
 a_closure.yourFunction('there')
-
->> PRE closure - hi
->> POST closure - Object { yourFunction: Proxy }
->> PRE function - there
->> POST function - hi there
+</pre>
+<pre>
+>> PRE closure- hi
+>> POST closure- Object { yourFunction: Proxy }
+>> PRE function- there
+>> POST function- hi there
 >> "hi there"
 </pre>
 

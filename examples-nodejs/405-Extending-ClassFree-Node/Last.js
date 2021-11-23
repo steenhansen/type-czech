@@ -28,9 +28,9 @@ module.exports = function create_Last(type_czech, First) {
 /**/    function PRE_Last(spec) {
 /**/      console.log('PRE -Last');
 /**/      const pre_last_sig = { f_name: 'string', l_name: 'string' };
-/**/      const type_issue = type_czech.check_typeExtra(arguments, pre_last_sig);
+/**/      const type_issue = type_czech.checkParam_typeExtra(arguments, pre_last_sig);
 /**/      if (type_issue) return type_issue;
-/**/      return type_czech.check_emptyExtra(arguments, { l_name: 'EMPTY-ERROR' });
+/**/      return type_czech.checkParam_emptyExtra(arguments, { l_name: 'EMPTY-ERROR' });
 /**/    }
 /**/
 /**/    // eslint-disable-next-line no-shadow
@@ -41,12 +41,12 @@ module.exports = function create_Last(type_czech, First) {
 /**/
 /**/    function PRE_lastMethod(a_year) {
 /**/      console.log('PRE -lastMethod');
-/**/      return type_czech.check_type(arguments, 'number');
+/**/      return type_czech.checkParam_type(arguments, 'number');
 /**/    }
 /**/
 /**/    function POST_lastMethod(a_year) {
 /**/      console.log('POST-lastMethod');
-/**/      return type_czech.check_type(arguments, 'number');
+/**/      return type_czech.checkParam_type(arguments, 'number');
 /**/    }
 /**/
 /**/    const Last_PREs = { Last: PRE_Last, lastMethod: PRE_lastMethod };

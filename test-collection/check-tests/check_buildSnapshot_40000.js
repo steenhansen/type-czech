@@ -11,10 +11,10 @@
 
 function test_pre_check_buildSnapshot(parameters_array, signature_of_parameters, error_id, expected_error) {
   const type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
-  tested_check_typeVariadic_40000 += 1;
+  tested_checkArgs_typeVariadic_40000 += 1;
 
-  function PRE_test_40000() {
-    return type_czech.check_buildSnapshot(arguments, signature_of_parameters);
+  function PRE_test_40000(a_var) {
+    return type_czech.check_buildSnapshot(a_var, signature_of_parameters);
   }
 
   function pre_check_buildSnapshot_40000() {}
@@ -27,20 +27,20 @@ function test_pre_check_buildSnapshot(parameters_array, signature_of_parameters,
       // expected route with no error message
     } catch (e) {
       // failing path
-      failed_check_typeVariadic_40000 += 1;
+      failed_checkArgs_typeVariadic_40000 += 1;
       console.log('FAIL, should be no error but got ', e, error_id);
     }
   } else {
     try {
       pre_check_buildSnapshot_40000(...parameters_array);
       // failing path, should have been an exception
-      failed_check_typeVariadic_40000 += 1;
+      failed_checkArgs_typeVariadic_40000 += 1;
       consoleExpectedActual(expected_error, 'MISSING-EXCEPTION', error_id);
     } catch (e) {
       const error_not_match_exception = errorNotMatchException(expected_error, e);
       if (error_not_match_exception) {
         // failing path, the error was wrong
-        failed_check_typeVariadic_40000 += 1;
+        failed_checkArgs_typeVariadic_40000 += 1;
         consoleExpectedActual(expected_error, e, error_id);
       } else {
         // expected route with an error message
@@ -50,21 +50,28 @@ function test_pre_check_buildSnapshot(parameters_array, signature_of_parameters,
   afterCheck(parameters_array, signature_of_parameters, before_var_value, error_id);
 }
 
-tested_check_typeVariadic_40000 = 0;
-failed_check_typeVariadic_40000 = 0;
+tested_checkArgs_typeVariadic_40000 = 0;
+failed_checkArgs_typeVariadic_40000 = 0;
 
 //////////////////////////////////////////
 type_czech = TypeCzech('NO-ERROR-MESSAGES');
+
+function A_PRE_check_yourFunc(a_collection) {
+  try {
+    type_czech.check_buildSnapshot('func_name', 'var_name', a_collection)
+ } catch(e) {
+   //console.log('check_buildSnapshot', e)
+ }
+ }
+
+function A_yourFunc(an_arg) { }
+
+A_yourFunc = type_czech.linkUp(A_yourFunc, A_PRE_check_yourFunc);
+
 fail_tests = 0
 total_tests = 0
-function A_yourFunc(an_arg){
-  try {
-    ref_object = type_czech.check_buildSnapshot(an_arg, an_arg, an_arg)
-  } catch(e) {
-    fail_tests += 1
-  }
-  total_tests += 1
-}
+
+
 
 A_yourFunc([1])                    // pass 1 A array
 A_yourFunc({b:10})                 // pass 2 G object
@@ -82,6 +89,9 @@ A_yourFunc([{},{}] )               // pass 13 2 empty - [obj obj]
 A_yourFunc({g:[]},{h:[]})          // pass 14 3 empty - {arr arr}
 A_yourFunc({i:''},{j:''})          // pass 15 4 empty - {str str}
 A_yourFunc({k:{}},{l:{}})          // pass 16 5 empty - {obj obj}
+TEST_total_checks += expectedAndFailedTests(16, 0, 'A-Pass', 'check_buildSnapshot().md');
+
+
 A_yourFunc(234n)                        // fail 1 B bigint
 A_yourFunc(false)                       // fail 2 C boolean
 A_yourFunc(new Date('2005-06-07'))      // fail 3 D date
@@ -98,34 +108,10 @@ A_yourFunc(null)                        // fail 13 Q empty null
 A_yourFunc(undefined)                   // fail 14 R empty undefined
 A_yourFunc()                            // fail 15 S empty nothing
 A_yourFunc(14,15,16)                    // fail 16 U multi args
-            expected_tests = 32
-            expected_fails = 32
-if (expected_tests !== total_tests) 
-    throw `A. _check_buildSnapshot().md ${expected_tests} expected_tests !== ${total_tests} total_tests`
-else if (expected_fails !== fail_tests) 
-    throw `A. _check_buildSnapshot().md ${expected_fails} expected_fails !== ${fail_tests} fail_tests`
-else if (typeof TEST_total_checks === 'undefined')
-  console.log('no-issues: pass', expected_tests-expected_fails, ' fail', expected_fails)
-else
-  TEST_total_checks += expected_tests
+TEST_total_checks += expectedAndFailedTests(16, 16, 'A-Fail', 'check_buildSnapshot().md');
+
 // /////////////////////////////////////////////////////////////////////////////////////////////
 
-// parameters  = ['a', 'b', 'c'];
-// signature = ['string'];
-// error_mess = '';
-// test_pre_check_buildSnapshot(parameters, signature, 40001, error_mess);
-
-// expected_tests = 5;
-// expected_fails = 0;
-// if (expected_tests !== tested_check_typeVariadic_40000) {
-//   throw new Error(`check_typeVariadic_40000().md ${expected_tests} expected_tests !== ${tested_check_typeVariadic_40000} tested_check_typeVariadic_40000`);
-// } else if (expected_fails !== failed_check_typeVariadic_40000) {
-//   throw new Error(`check_typeVariadic_40000().md ${expected_fails} expected_fails !== ${failed_check_typeVariadic_40000} failed_check_typeVariadic_40000`);
-// } else if (typeof TEST_total_checks === 'undefined') {
-//   console.log('no-issues: pass', expected_tests - expected_fails, ' fail', expected_fails);
-// } else {
-//   TEST_total_checks += expected_tests;
-// }
 
 /*
 ### B. check_buildSnapshot() check internal TypeCzech stack structure 
@@ -134,8 +120,9 @@ else
 stack_str = ''
 type_czech = TypeCzech('NO-ERROR-MESSAGES')
 function B_PRE_check_recurseArr(growing_array){
-  type_czech.check_buildSnapshot('B_PRE_check_recurseArr', 'growing_array', growing_array)
+  build_snapshot = type_czech.check_buildSnapshot('B_PRE_check_recurseArr', 'growing_array', growing_array)
   stack_str = type_czech._mutateStacks()
+  return build_snapshot;
 }
 function B_POST_check_recurseArr(growing_array){
   return type_czech.check_mutatedSnapshot('B_PRE_check_recurseArr', 'growing_array')
@@ -194,7 +181,7 @@ if (B_expected_second_stack === stack_str){
 
 type_czech = TypeCzech('NO-ERROR-MESSAGES')
 function C_PRE_check_yourFunc(c_collection) {
-  type_czech.check_buildSnapshot({a:12}, 'var-name', c_collection)
+  return type_czech.check_buildSnapshot({a:12}, 'var-name', c_collection)
 }
 C_yourFunc = type_czech.linkUp(C_yourFunc, C_PRE_check_yourFunc) 
 function C_yourFunc(c_collection) { }
@@ -222,7 +209,7 @@ if (is_correct){
 
 type_czech = TypeCzech('NO-ERROR-MESSAGES')
 function D_PRE_check_yourFunc(d_collection) {
-  type_czech.check_buildSnapshot('func-name', {b:13}, d_collection)
+  return type_czech.check_buildSnapshot('func-name', {b:13}, d_collection)
 }
 D_yourFunc = type_czech.linkUp(D_yourFunc, D_PRE_check_yourFunc) 
 function D_yourFunc(d_collection) { }
@@ -247,7 +234,7 @@ if (is_correct){
 
 type_czech = TypeCzech('NO-ERROR-MESSAGES')
 function E_PRE_check_yourFunc(e_scalar) {
-  type_czech.check_buildSnapshot('func-name', 'var-name', 'not a collection')
+  return type_czech.check_buildSnapshot('func-name', 'var-name', 'not a collection')
 }
 E_yourFunc = type_czech.linkUp(E_yourFunc, E_PRE_check_yourFunc) 
 function E_yourFunc(e_scalar) { }
@@ -273,7 +260,7 @@ if (is_correct){
 
 type_czech = TypeCzech('NO-ERROR-MESSAGES')
 function F_PRE_check_yourFunc(f_variable) {
-  type_czech.check_buildSnapshot('func-name', 'var-name')
+  return type_czech.check_buildSnapshot('func-name', 'var-name')
 }
 F_yourFunc = type_czech.linkUp(F_yourFunc, F_PRE_check_yourFunc) 
 function F_yourFunc(f_variable) { }

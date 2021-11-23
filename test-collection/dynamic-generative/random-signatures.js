@@ -19,7 +19,10 @@ function reflectTree(tree_str, show_data) {
     console.log('       Types:', JSON.stringify(no_merge_type));
     console.log();
   }
-  const test_no_merge = type_czech_test.check_type(the_arguments, no_merge_type);
+  //const test_no_merge = type_czech_test.checkParam_type(the_arguments, no_merge_type);
+  var [test_no_merge, _, _] = type_czech_test.checkParam_type(the_arguments, no_merge_type);
+
+
   return test_no_merge;
 }
 
@@ -46,7 +49,7 @@ function mutliNumTypeToSingleNum(tree_str, show_data) {
     console.log('Multi Same, not merged');
     console.log();
   }
-  const test_no_merge = type_czech_test.check_type(the_arguments, merge_type);
+  var [test_no_merge, _, _] = type_czech_test.checkParam_type(the_arguments, merge_type);
   return test_no_merge;
 }
 
@@ -58,7 +61,7 @@ function numberArgToString(tree_str, the_values, show_data) {
       console.log();
     }
     const merge_type = noMergetreeType(tree_str);
-    const num_to_str_value_error = type_czech_test.check_type(bad_arguments, merge_type);
+    var [num_to_str_value_error, _, _] = type_czech_test.checkParam_type(bad_arguments, merge_type);
     if (num_to_str_value_error === '') {
       return 'numberArgToString() failed, as there was no error on the change from a number to string VALUE?';
     }
@@ -74,7 +77,7 @@ function keyRenameKtoXinArgs(tree_str, the_keys, show_data) {
       console.log();
     }
     const merge_type = noMergetreeType(tree_str);
-    const key_k_now_x_error = type_czech_test.check_type(bad_arguments, merge_type);
+    var [key_k_now_x_error, _, _] = type_czech_test.checkParam_type(bad_arguments, merge_type);
     if (key_k_now_x_error === '') {
       return 'keyRenameKtoXinArgs() failed, as there was no error on the change of a key of "k" to "x" in VALUES?';
     }
@@ -90,7 +93,7 @@ function numberTypeToStringType(tree_str, the_values, show_data) {
       console.log();
     }
     const the_arguments = treeAsArguments(tree_str);
-    const num_to_str_type_error = type_czech_test.check_type(the_arguments, bad_types);
+    var [num_to_str_type_error, _, _] = type_czech_test.checkParam_type(the_arguments, bad_types);
     if (num_to_str_type_error === '') {
       return 'numberTypeToStringType() failed, as there was no error on the change from a number to string TYPE?';
     }
@@ -106,7 +109,7 @@ function keyRenameKtoXinTypes(tree_str, the_keys, show_data) {
       console.log('merge_type with one "x123" key:', JSON.stringify(merge_type));
       console.log();
     }
-    const key_k_now_x_error = type_czech_test.check_type(the_arguments, merge_type);
+    var [key_k_now_x_error, _, _]  = type_czech_test.checkParam_type(the_arguments, merge_type);
     if (key_k_now_x_error === '') {
       return 'keyRenameKtoXinArgs() failed, as there was no error on the change of a key of "k" to "x" in TYPES?';
     }
@@ -125,6 +128,7 @@ function generativeTest(stop_index, show_data = false) {
 
   // check un-changed tree is un-changed
   const reflect_error = reflectTree(tree_str, show_data);
+
   if (reflect_error) throw new Error(`Reflect Error:${reflect_error}`);
 
   // ['N', 'N', 'N'] => ['N']       multiple array TYPES fold into one

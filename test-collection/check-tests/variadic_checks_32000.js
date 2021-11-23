@@ -27,7 +27,7 @@ function variadic_32001(){
 
   type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
 
-  function PRE_yourFunc() { return type_czech.check_typeVariadic(arguments, ['number']) }
+  function PRE_yourFunc() { return type_czech.checkArgs_typeVariadic(arguments, ['number']) }
   yourFunc = type_czech.linkUp(yourFunc, PRE_yourFunc) 
   function yourFunc(){}
 
@@ -39,15 +39,9 @@ function variadic_32001(){
   }
   if (was_exception) {
     console.log(TYPE_CZECH_current_test_number);
-    console.log('  actual=', 'No Exception');
-    console.log('expected=', 'Exception');
+    if (typeof tested_signatures !== 'undefined') failed_signatures ++;
     }
-    no_console_mess = '';
-  
-                                              if (was_exception) {
-                                                failed_variadic_types ++;
-                                              }
-                                              tested_variadic_types ++;
+    if (typeof tested_signatures !== 'undefined') tested_signatures ++;
 }
 
 
@@ -60,7 +54,7 @@ function variadic_32002(){
 
   type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
 
-  function PRE_yourFunc() { return type_czech.check_typeVariadic(arguments, ['number']) }
+  function PRE_yourFunc() { return type_czech.checkArgs_typeVariadic(arguments, ['number']) }
   yourFunc = type_czech.linkUp(yourFunc, PRE_yourFunc) 
   function yourFunc(){}
 
@@ -74,15 +68,9 @@ function variadic_32002(){
   }
   if (was_exception) {
     console.log(TYPE_CZECH_current_test_number);
-    console.log('  actual=', 'No Exception');
-    console.log('expected=', 'Exception');
+    if (typeof tested_signatures !== 'undefined') failed_signatures ++;
     }
-    no_console_mess = '';
-  
-                                              if (was_exception) {
-                                                failed_variadic_types ++;
-                                              }
-                                              tested_variadic_types ++;
+    if (typeof tested_signatures !== 'undefined') tested_signatures ++;
 }
 
 function variadic_32003(){
@@ -90,29 +78,22 @@ function variadic_32003(){
   TYPE_CZECH_current_test_number = '32003';
   type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
 
-  function PRE_yourFunc() { return type_czech.check_type(arguments, 'array') }
+  function PRE_yourFunc() { return type_czech.checkParam_type(arguments, 'array') }
   yourFunc = type_czech.linkUp(yourFunc, PRE_yourFunc) 
   function yourFunc(){}
 
   actual_error = '';
   try {  
-    yourFunc(1,2,3,4,5,6,7,8,9)
+    yourFunc(1,2,3,4,5,6,7,8,9)          // is this valid????
     was_exception = false;
   }catch(actual_e){ 
     actual_error = actual_e
     was_exception = true;
   }
   if (was_exception) {
-    console.log(TYPE_CZECH_current_test_number);
-    console.log('  actual=', 'No Exception');
-    console.log('expected=', 'Exception');
+    if (typeof tested_signatures !== 'undefined') failed_signatures ++;
     }
-    no_console_mess = '';
-  
-                                              if (was_exception) {
-                                                failed_variadic_types ++;
-                                              }
-                                              tested_variadic_types ++;
+    if (typeof tested_signatures !== 'undefined') tested_signatures ++;
 }
 
 
@@ -123,7 +104,7 @@ function variadic_32101(){
  // type_czech=TypeCzech('LOG-ERRORS')           /// works correctly
   type_czech=TypeCzech('THROW-EXCEPTIONS');
 
-  function PRE_yourFunc() { return type_czech.check_type(arguments, ['number']) }
+  function PRE_yourFunc(a_var) { return type_czech.checkParam_type(a_var, ['number']) }
   yourFunc = type_czech.linkUp(yourFunc, PRE_yourFunc) 
   function yourFunc(){}
 
@@ -137,22 +118,16 @@ function variadic_32101(){
   }
   if (!was_exception) {
     console.log(TYPE_CZECH_current_test_number);
-    console.log('  actual=', 'No Exception');
-    console.log('expected=', 'Exception');
+    if (typeof tested_signatures !== 'undefined') failed_signatures ++;
     }
-    no_console_mess = '';
-  
-                                              if (!was_exception) {
-                                                failed_variadic_types ++;
-                                              }
-                                              tested_variadic_types ++;
+    if (typeof tested_signatures !== 'undefined') tested_signatures ++;
 }
 
 function variadic_32102(){
   TYPE_CZECH_current_test_number = '32102';
   type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
 
-  function PRE_yourFunc() { return type_czech.check_typeVariadic(arguments, ['number']) }
+  function PRE_yourFunc() { return type_czech.checkArgs_typeVariadic(arguments, ['number']) }
   yourFunc = type_czech.linkUp(yourFunc, PRE_yourFunc) 
   function yourFunc(){}
 
@@ -166,46 +141,11 @@ function variadic_32102(){
   }
   if (was_exception) {
     console.log(TYPE_CZECH_current_test_number);
-    console.log('  actual=', 'No Exception');
-    console.log('expected=', 'Exception');
+    if (typeof tested_signatures !== 'undefined') failed_signatures ++;
     }
-    no_console_mess = '';
-  
-                                              if (was_exception) {
-                                                failed_variadic_types ++;
-                                              }
-                                              tested_variadic_types ++;
+    if (typeof tested_signatures !== 'undefined') tested_signatures ++;
 }
 
-function variadic_32201(){
-  TYPE_CZECH_current_test_number = '32201';
-
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
-
-  function PRE_yourFunc() { return type_czech.check_type(arguments, ['number']) }
-  yourFunc = type_czech.linkUp(yourFunc, PRE_yourFunc) 
-  function yourFunc(){}
-
-  actual_error = '';
-  try {  
-    yourFunc([1])
-    was_exception = false;
-  }catch(actual_e){ 
-    actual_error = actual_e
-    was_exception = true;
-  }
-  if (was_exception) {
-    console.log(TYPE_CZECH_current_test_number);
-    console.log('  actual=', 'No Exception');
-    console.log('expected=', 'Exception');
-    }
-    no_console_mess = '';
-  
-                                              if (was_exception) {
-                                                failed_variadic_types ++;
-                                              }
-                                              tested_variadic_types ++;
-}
 
 
 
@@ -222,7 +162,7 @@ function variadic_32201(){
         try {
           type_czech.check_buildSnapshot('_mutatedVariables_14001', 'mutate_14001', mutate_14001);
           mutate_14001.push(4);
-          actual_error = type_czech.check_mutatedSnapshot('_mutatedVariables_14001', 'mutate_14001');
+          var actual_error = type_czech.check_mutatedSnapshot('_mutatedVariables_14001', 'mutate_14001');
         } catch (e) { }
         actual_error = ((actual_error.join()).replace(/\s+/g, ' ')).trim(); 
         if (actual_error !== expect_error) {

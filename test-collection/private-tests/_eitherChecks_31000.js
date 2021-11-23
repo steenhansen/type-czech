@@ -10,8 +10,8 @@ TEST_total_fails += failed_eitherChecks;
 TEST_total_checks += tested_eitherChecks;
 
 if (TEST_show_random) {
-  console.log('check_type failed tests 05000', failed_eitherChecks);
-  console.log('check_type passed tests 05000', tested_eitherChecks);
+  console.log('checkParam_type failed tests 05000', failed_eitherChecks);
+  console.log('checkParam_type passed tests 05000', tested_eitherChecks);
 }
 
 function _eitherChecks_31001(){

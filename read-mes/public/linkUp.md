@@ -108,7 +108,7 @@ notNull(null) // POST fail - null parameter and result
 Check that a date parameter is in the month of February.
 ```
 function PRE_check_mustBeFebruary(){  // arguments version
-  date_issue = type_czech.check_type(arguments, 'date') 
+  date_issue = type_czech.checkParam_type(arguments, 'date') 
   if (date_issue) return date_issue
   try {
     if (arguments[0].getMonth()===1) 
@@ -119,7 +119,7 @@ function PRE_check_mustBeFebruary(){  // arguments version
 ```
 ```
 function PRE_check_mustBeFebruary(a_date){  // or parameter version
-  date_issue = type_czech.check_type(a_date, 'date') 
+  date_issue = type_czech.checkParam_type(a_date, 'date') 
   if (date_issue) return date_issue
   try {
     if (a_date.getMonth()===1) 
@@ -145,7 +145,7 @@ Check if a string parameter has its first character capitalized.
   
 ```
 function PRE_check_firstCapital(){  // arguments version
-  string_issue = type_czech.check_type(arguments, 'string')
+  string_issue = type_czech.checkParam_type(arguments, 'string')
   if (string_issue) return string_issue
   if (!arguments[0].match(/^[A-Z]/))
     return 'ERROR, word does not start with a capital letter'
@@ -153,7 +153,7 @@ function PRE_check_firstCapital(){  // arguments version
 ```
 ```
 function PRE_check_firstCapital(a_word){  // or parameter version
-  string_issue = type_czech.check_type(a_word, 'string')
+  string_issue = type_czech.checkParam_type(a_word, 'string')
   if (string_issue) return string_issue
   if (!a_word.match(/^[A-Z]/))
     return 'ERROR, word does not start with a capital letter'

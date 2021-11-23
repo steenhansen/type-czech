@@ -215,7 +215,7 @@ in green text.
     
     <a title="24-Empty-Either-Checks.html" href="https://jsfiddle.net/steen_hansen/1dL76zws/?24-Empty-Either-Checks" target="_blank">24</a>
     
-    <a title="25-Accessing-PRE-POST-Arguments.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Accessing-PRE-POST-Arguments" target="_blank">25</a>
+    <a title="25-Default-Parameters.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Default-Parameters" target="_blank">25</a>
     
     <a title="26-Type-and-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Type-and-Empty-Abbreviations" target="_blank">26</a>
     
@@ -391,7 +391,7 @@ linesConsole(2)
 /**/  function PRE_check_alterImgHref(image_href_id, source_addr){
 /**/    html_element = document.getElementById(image_href_id)
 /**/    ANCHOR_OR_IMG = ['HTMLAnchorElement','HTMLImageElement']
-/**/    type_issue=type_czech.check_typeEither(html_element, ANCHOR_OR_IMG)
+/**/    type_issue=type_czech.checkParam_typeEither(html_element, ANCHOR_OR_IMG)
 /**/    if (type_issue) return type_issue
 /**/
 /**/    html_type = type_czech.typeFinal(html_element)

@@ -22,7 +22,7 @@ module.exports = function create_Person(type_czech, First, Last, Full) {
 
 /**/  if (type_czech.isActive()) {
 /**/    function PRE_Person(salu, f_name, l_name) {
-/**/      return type_czech.check_type(arguments, ['string', 'string', 'string']);
+/**/      return type_czech.checkParam_type(arguments, ['string', 'string', 'string']);
 /**/    }
 /**/    // eslint-disable-next-line no-shadow
 /**/    function POST_Person(Person) {

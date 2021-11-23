@@ -1,5 +1,5 @@
 
-## check_typeExtra()
+## checkParam_typeExtra()
   -  [0 Illegal Extra Single Array Parameter Type Check](#illigal-extra-single-array-parameter-type-check)
 
   -  [1 Extra Multi Array Parameter Type Check](#extra-multi-array-parameter-type-check)
@@ -10,46 +10,57 @@
 
 #### All examples below can be executed in the console of [repl.html](../../test-collection/repl.html)
 
-## 0 Illegal Extra Parameter Type Check<a name="illigal-extra-single-array-parameter-type-check"></a>
+## 0 Illegal Extra Array Parameter Type Check<a name="illigal-extra-single-array-parameter-type-check"></a>
+
+##### &nbsp;&nbsp;&nbsp; checkParam_typeExtra(arguments, <b>['number']</b>) // does not work
+
 Because the below example has a one dimensional signature of ['number'] it does not
-work. The signature ['number'] means an array of any size that has numbers. The signatures of check_typeExtra() that deal with arrays must have at least two elements in the signature. The function check_emptyExtra() has the same issue.
+work. The signature ['number'] means an array of any size that has numbers. 
 ```
-function PRE_check_illegalArrayExtra(){
-  return type_czech.check_typeExtra(arguments, ['number'])
+function PRE_check_illegal_typeExtra(){
+  return type_czech.checkParam_typeExtra(arguments, ['number']) // does not work
 }
 
 type_czech = TypeCzech('LOG-ERRORS')
-illegalArrayExtra = type_czech.linkUp(illegalArrayExtra, PRE_check_illegalArrayExtra) 
+illegal_typeExtra = type_czech.linkUp(illegal_typeExtra, PRE_check_illegal_typeExtra) 
 
-function illegalArrayExtra(single_array_with_extra){ }
+function illegal_typeExtra(){ }
 
-illegalArrayExtra([1, 2, 3])  // PRE fail - try [number, number] as ["number"] is illegal
+illegal_typeExtra(1, 'a-str')  // PRE fail - try checkParam_typeExtra([1,"a-str"], 'number') as ["number"] is illegal
+
 ```
 
-
+### One Parameter Type Check With Extra Values
+##### &nbsp;&nbsp;&nbsp; checkParam_typeExtra(arguments, <b>'number'</b>)
 
 The below example has followed the suggestion of the above error message, and makes sure that all 
-elements in an array are numbers.
+elements in an array are numbers. So the 'number' refers to the first parameter.
 ```
-function PRE_check_onlyNumbersArray(){
-  return type_czech.check_type(arguments, ['number'])
+function PRE_check_legal_typeExtra(){
+  return type_czech.checkParam_typeExtra(arguments, 'number')
 }
 
 type_czech = TypeCzech('LOG-ERRORS')
-onlyNumbersArray = type_czech.linkUp(onlyNumbersArray, PRE_check_onlyNumbersArray) 
+legal_typeExtra = type_czech.linkUp(legal_typeExtra, PRE_check_legal_typeExtra) 
 
-function onlyNumbersArray(single_array_with_extra){ }
+function legal_typeExtra(){ }
 
-onlyNumbersArray([1, 2, 3]) // pass
+legal_typeExtra(1)              // pass
+legal_typeExtra(2, 'a-string')  // pass
+legal_typeExtra(3, false, true) // pass
 
-onlyNumbersArray([1, 2, 'doge']) // PRE fail - 'doge' is not a number
+legal_typeExtra('doge') // PRE fail - 'doge' is not a number
+legal_typeExtra(false)  // PRE fail - false is not a number
 ```
 
-The below example works because there are two elements in the array signature. This ensures that the first parameters is a number, the 
-second a string, and ignores the rest.
+### Two Parameter Type Check With Extra Values
+##### &nbsp;&nbsp;&nbsp; checkParam_typeExtra(arguments, <b>['number', 'string']</b>)
+
+This example requires the first parameter to be a number, the second a string, while any types of elements may follow.
+
 ```
 function PRE_check_arrayExtraOk(){
-  return type_czech.check_typeExtra(arguments, ['number', 'string'])
+  return type_czech.checkParam_typeExtra(arguments, ['number', 'string'])
 }
 
 type_czech = TypeCzech('LOG-ERRORS')
@@ -57,7 +68,7 @@ arrayExtraOk = type_czech.linkUp(arrayExtraOk, PRE_check_arrayExtraOk)
 
 function arrayExtraOk(single_array_with_extra){ }
 
-arrayExtraOk([1, 'Rock Lobster', 'un-checked-extra']) // pass
+arrayExtraOk([1, 'Rock Lobster', {}]) // pass
 
 arrayExtraOk([1, 2, 'un-checked-fail']) // PRE fail 2 is not a string
 
@@ -68,7 +79,7 @@ arrayExtraOk([1, 2, 'un-checked-fail']) // PRE fail 2 is not a string
 
 ```
 function PRE_check_arrayExtra(){
-  return type_czech.check_typeExtra(arguments, ['number', 'string'])
+  return type_czech.checkParam_typeExtra(arguments, ['number', 'string'])
 }
 
 type_czech = TypeCzech('LOG-ERRORS')
@@ -88,7 +99,7 @@ arrayExtra([0])  // PRE fail - missing 2nd string parameter
 
 ```
 function PRE_check_objectExtra(){
-  return type_czech.check_typeExtra(arguments, {song: 'string'})
+  return type_czech.checkParam_typeExtra(arguments, {song: 'string'})
 }
 
 type_czech = TypeCzech('LOG-ERRORS')
@@ -113,7 +124,7 @@ objectExtra({album:'Gaucho' })  // PRE fail - missing 'song' property
 
 ```
 function POST_check_arrayExtra(return_result){
-  return type_czech.check_typeExtra(return_result, ['number', 'string'])
+  return type_czech.checkParam_typeExtra(return_result, ['number', 'string'])
 }
 
 type_czech = TypeCzech('LOG-ERRORS')
@@ -142,7 +153,7 @@ arrayExtra([43])  // PRE fail - missing 2nd string in result
 
 ```
 function POST_check_objectExtra(return_result){
-  return type_czech.check_typeExtra(return_result, {song: 'string'})
+  return type_czech.checkParam_typeExtra(return_result, {song: 'string'})
 }
 
 type_czech = TypeCzech('LOG-ERRORS')

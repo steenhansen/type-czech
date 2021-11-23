@@ -99,7 +99,7 @@
 <br>
     The PRE_check_Person() function first verifies that an object is the construction parameter,
     then that object is tested for the correct keys and types, finally
-    all keys are checked for being check_empty.
+    all keys are checked for being checkParam_empty.
     
     <br><br>
     After which the POST_check_Person() function first certifies that the constructor
@@ -209,7 +209,7 @@
     
     <a title="24-Empty-Either-Checks.html" href="https://jsfiddle.net/steen_hansen/1dL76zws/?24-Empty-Either-Checks" target="_blank">24</a>
     
-    <a title="25-Accessing-PRE-POST-Arguments.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Accessing-PRE-POST-Arguments" target="_blank">25</a>
+    <a title="25-Default-Parameters.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Default-Parameters" target="_blank">25</a>
     
     <a title="26-Type-and-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Type-and-Empty-Abbreviations" target="_blank">26</a>
     
@@ -374,25 +374,25 @@
 /**/                      ? undefined : POST_check_Person
 /**/
 /**/  function PRE_check_Person(){
-/**/    redundant_object_test =  type_czech.check_type(arguments, 'o')
+/**/    redundant_object_test =  type_czech.checkParam_type(arguments, 'o')
 /**/    if (redundant_object_test) return redundant_object_test
 /**/
 /**/    person_types = {f_name:'s', l_name:'s', b_date:'d'}
-/**/    type_issue = type_czech.check_type(arguments, person_types)
+/**/    type_issue = type_czech.checkParam_type(arguments, person_types)
 /**/    if (type_issue) return type_issue
 /**/
 /**/    person_empties = {f_name:'ER', l_name:'OK', b_date:'ER'}
-/**/    return type_czech.check_empty(arguments, person_empties)
+/**/    return type_czech.checkParam_empty(arguments, person_empties)
 /**/  }
 /**/
 /**/  function POST_check_Person(){
-/**/    array_issue = type_czech.check_type(arguments, 'a')
+/**/    array_issue = type_czech.checkParam_type(arguments, 'a')
 /**/    if (array_issue) return array_issue
 /**/
-/**/    type_issue = type_czech.check_type(arguments, ['s', 'd'])
+/**/    type_issue = type_czech.checkParam_type(arguments, ['s', 'd'])
 /**/    if (type_issue) return type_issue
 /**/
-/**/    return type_czech.check_empty(arguments, ['ER', 'OK'])
+/**/    return type_czech.checkParam_empty(arguments, ['ER', 'OK'])
 /**/  }
 /**/  
 /**/  Person=type_czech.linkUp(Person, PRE_check_Person, POST_check_Person)

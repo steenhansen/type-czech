@@ -79,7 +79,7 @@
     
     <a title="24-Empty-Either-Checks.html" href="../example-snippets/24-Empty-Either-Checks.html">24</a>
     
-    <a title="25-Accessing-PRE-POST-Arguments.html" href="../example-snippets/25-Accessing-PRE-POST-Arguments.html">25</a>
+    <a title="25-Default-Parameters.html" href="../example-snippets/25-Default-Parameters.html">25</a>
     
     <a title="26-Type-and-Empty-Abbreviations.html" href="../example-snippets/26-Type-and-Empty-Abbreviations.html">26</a>
     
@@ -159,38 +159,48 @@
 </div>
 
 
-<div id="the-explanation" style="width:52%">
+<div id="the-explanation" style="width:52%" class='code-scroll'>
   <div class='an-explantion'>17 - Variadic Functions</div>
   <div id='explanation-text'>
     <br>
-    Variadic functions with one type can easily be checked by TypeCzech without
-    resorting to checking multiple different possible signature types as 
-    the below example does.
-    
 
-    <br>
-<pre>
-function PRE_check_oneTo3strings() {
- if (!type_czech.check_type(arguments, 'string')) return ''
- if (!type_czech.check_type(arguments, ['string', 'string'])) return ''
- if (!type_czech.check_type(arguments,['string','string','string'])) return ''
- return 'Error, not ONE to THREE strings but - ' + arguments.length
-}
-oneTo3strings = type_czech.linkUp(oneTo3strings, PRE_check_oneTo3strings)
-function oneTo3strings() {}
+The reason that no parameters satifies checkArgs_typeVariadic() is that it makes it
+easy to limit the function to one element or any other number via checking the 
+number of arguments. 
 
-oneTo3strings()                             // error
-oneTo3strings('s-1', 's-2')
-oneTo3strings('s-1', 's-2', 's-3', 's-4')   // error
-</pre>
-Here check_typeVariadic() accomplishes the same task as above with the help of a length check.
-<pre>
-function PRE_check_oneTo3strings() {
-  if (arguments.length!== 1 || arguments.length!==2 || arguments.length!== 3) 
-    return 'Error, not ONE, TWO, or THREE args but - ' + arguments.length
-  return type_czech.check_typeVariadic(arguments, ['string'])
+<br><br>
+Limit variadicStrs() to 1 or more strings.    
+<pre title='Copy and paste the green code below into the console to run' class='console-runnable'>
+function PRE_check_variadicStrs() {
+  if (arguments.length === 0 ) 
+    return 'Error, no parameters'
+  return type_czech.checkArgs_typeVariadic(arguments, ['string'])
 }
+variadicStrs=type_czech.linkUp(variadicStrs, PRE_check_variadicStrs)
+function variadicStrs () { console.log(arguments)}
+
+variadicStrs('pass', 'check')
+variadicStrs() // fail
 </pre>
+      
+
+Limit variadicStrs() to 1 or 2 or 3 strings only.    
+<pre title='Copy and paste the green code below into the console to run' class='console-runnable'>
+function PRE_check_variadicStrs() {
+  number_args = arguments.length
+  if (number_args< 1 || number_args> 3) 
+    return 'Error, not 1, 2, or 3 args but - ' + arguments.length
+  return type_czech.checkArgs_typeVariadic(arguments, ['string'])
+}
+variadicStrs=type_czech.linkUp(variadicStrs, PRE_check_variadicStrs)
+function variadicStrs () {}
+
+variadicStrs('pass', 'check')
+variadicStrs('will', 'fail', 'with', '4-strings')
+variadicStrs() // fail
+</pre>
+
+
   </div>
 
 
@@ -218,7 +228,7 @@ function PRE_check_oneTo3strings() {
 /**/  //  <script src="../TypeCzech.js">
 
 function variadicFunc () {
-  console.log([...arguments].join())
+  console.log(': ', [...arguments].join())
 }
 
 /**/  type_czech = TypeCzech('LOG-ERRORS')
@@ -226,19 +236,19 @@ function variadicFunc () {
 /**/  //type_czech = TypeCzech('NO-CHECKING')
 /**/
 /**/  function PRE_check_variadicFunc() {
-/**/    return type_czech.check_typeVariadic(arguments, ['number'])
+/**/    return type_czech.checkArgs_typeVariadic(arguments, ['number'])
 /**/  }
 /**/
 /**/  variadicFunc=type_czech.linkUp(variadicFunc,PRE_check_variadicFunc)
+
+variadicFunc()
+
+linesConsole(2)
 
 variadicFunc(0,1,2)
 
 
 linesConsole(2)
-
-
-
-
 
 variadicFunc(0,1,2,'Three',4,5,6)
 
@@ -248,14 +258,18 @@ linesConsole(2)
 
 
 function variadicArrs () {
-  console.log('[' + [...arguments].join('], [') + ']')
+  console.log(' - [' + [...arguments].join('], [') + ']')
 }
 
 /**/  function PRE_check_variadicArrs() {
-/**/    return type_czech.check_typeVariadic(arguments, [['number']])
+/**/    return type_czech.checkArgs_typeVariadic(arguments, [['number']])
 /**/  }
 /**/
 /**/  variadicArrs=type_czech.linkUp(variadicArrs,PRE_check_variadicArrs)
+
+variadicArrs()
+
+linesConsole(3)
 
 variadicArrs( [1], [1,2], [1,2,3], [1,2,3,4] )
 

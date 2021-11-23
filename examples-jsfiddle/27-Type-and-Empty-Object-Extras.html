@@ -19,13 +19,13 @@
     Important wanted parameters are still checked, but unlisted arguments are ignored.
 
 <br><br>
-   In the example to the left, by using the check_typeExtra()
+   In the example to the left, by using the checkParam_typeExtra()
     function, only the listed parameters of 'salu', 'f_name', and 'l_name' are checked for valid types.
     <br><br>
 
 
 
-    Only the parameters 'f_name' and 'l_name' are checked for emptiness with the check_emptyExtra() function.
+    Only the parameters 'f_name' and 'l_name' are checked for emptiness with the checkParam_emptyExtra() function.
 
     <br><br>
 
@@ -121,7 +121,7 @@
     
     <a title="24-Empty-Either-Checks.html" href="https://jsfiddle.net/steen_hansen/1dL76zws/?24-Empty-Either-Checks" target="_blank">24</a>
     
-    <a title="25-Accessing-PRE-POST-Arguments.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Accessing-PRE-POST-Arguments" target="_blank">25</a>
+    <a title="25-Default-Parameters.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Default-Parameters" target="_blank">25</a>
     
     <a title="26-Type-and-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Type-and-Empty-Abbreviations" target="_blank">26</a>
     
@@ -263,10 +263,10 @@
 /**/  PERSON_EMPTIES = {f_name:'EMPTY-ERROR', l_name:'EMPTY-ERROR'}
 /**/
 /**/  function PRE_check_personExtra(person_object) {
-/**/    type_error=type_czech.check_typeExtra(person_object,PERSON_TYPE_SIGNATURE)
+/**/    type_error=type_czech.checkParam_typeExtra(person_object,PERSON_TYPE_SIGNATURE)
 /**/    if (type_error) return type_error
 /**/
-/**/    empty_error = type_czech.check_emptyExtra(person_object, PERSON_EMPTIES)
+/**/    empty_error = type_czech.checkParam_emptyExtra(person_object, PERSON_EMPTIES)
 /**/    if (empty_error) return empty_error
 /**/  }
 /**/

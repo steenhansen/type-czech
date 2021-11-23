@@ -79,7 +79,7 @@
     
     <a title="24-Empty-Either-Checks.html" href="../example-snippets/24-Empty-Either-Checks.html">24</a>
     
-    <a title="25-Accessing-PRE-POST-Arguments.html" href="../example-snippets/25-Accessing-PRE-POST-Arguments.html">25</a>
+    <a title="25-Default-Parameters.html" href="../example-snippets/25-Default-Parameters.html">25</a>
     
     <a title="26-Type-and-Empty-Abbreviations.html" href="../example-snippets/26-Type-and-Empty-Abbreviations.html">26</a>
     
@@ -162,15 +162,15 @@
     <br>
 
   If a function can take parameters with multiple different type shapes then conformity 
-  can be checked with a check_typeEither(arguments, array_of_signatures) call.
+  can be checked with a checkParam_typeEither() call.
 
   <br><br>
   In the example below, the function objNumArr() is only allowed to receive a 
   single parameter of an object, a single number, or an array. Run by pasting into console.
-<pre>
-function PRE_check_obj_num_arr(){
+<pre title='Copy and paste the green code below into the console to run' class='console-runnable'>
+function PRE_check_obj_num_arr(obj_num_arr){
   allowed_types = ['object', 'number', 'array']
-  return type_czech.check_typeEither(arguments, allowed_types)
+  return type_czech.checkParam_typeEither(obj_num_arr, allowed_types)
 }  
 
 objNumArr = type_czech.linkUp(objNumArr, PRE_check_obj_num_arr)
@@ -180,9 +180,9 @@ function objNumArr(obj_num_arr){}
 objNumArr({})
 objNumArr([])
 objNumArr([1, 2, 3])
-objNumArr(242, 'this is ignored')
+objNumArr(9876543210)
 
-objNumArr('a-string')    // Fails with really long error message
+objNumArr('Fails with really long error message')
 </pre>
 
   </div>
@@ -238,18 +238,19 @@ objNumArr('a-string')    // Fails with really long error message
 /**/  POST_check_Person = (typeof POST_check_Person === 'undefined')
 /**/                      ? undefined : POST_check_Person
 /**/
-/**/  function PRE_check_Person(){
+/**/  function PRE_check_Person(f_name, l_name, b_date){
+/**/    the_parameters = [f_name, l_name, b_date]
 /**/    PRE_check_date = [ 'string', 'string', 'date' ]
 /**/    PRE_check_year = [ 'string', 'string', 'number' ]
-/**/    PRE_check_signatures = [PRE_check_date, PRE_check_year]
-/**/    return type_czech.check_typeEither(arguments, PRE_check_signatures)
+/**/    PRE_signatures = [PRE_check_date, PRE_check_year]
+/**/    return type_czech.checkParam_typeEither(the_parameters, PRE_signatures)
 /**/  }
 /**/  
-/**/  function POST_check_Person(){
+/**/  function POST_check_Person(result_object){
 /**/    POST_check_date = { f_name:'string', l_name:'string', b_date:'date' }
 /**/    POST_check_year = { f_name:'string', l_name:'string', b_year:'number' }
-/**/    POST_check_signatures = [POST_check_date, POST_check_year]
-/**/    return type_czech.check_typeEither(arguments, POST_check_signatures)
+/**/    POST_signatures = [POST_check_date, POST_check_year]
+/**/    return type_czech.checkParam_typeEither(result_object, POST_signatures)
 /**/  }
 /**/  
 /**/  Person = type_czech.linkUp(Person, PRE_check_Person, POST_check_Person)

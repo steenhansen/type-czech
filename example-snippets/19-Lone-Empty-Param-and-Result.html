@@ -83,7 +83,7 @@
     
     <a title="24-Empty-Either-Checks.html" href="../example-snippets/24-Empty-Either-Checks.html">24</a>
     
-    <a title="25-Accessing-PRE-POST-Arguments.html" href="../example-snippets/25-Accessing-PRE-POST-Arguments.html">25</a>
+    <a title="25-Default-Parameters.html" href="../example-snippets/25-Default-Parameters.html">25</a>
     
     <a title="26-Type-and-Empty-Abbreviations.html" href="../example-snippets/26-Type-and-Empty-Abbreviations.html">26</a>
     
@@ -166,11 +166,11 @@
 
 
 
-<div id="the-explanation" style="width:68%;" >
+<div id="the-explanation" style="width:68%;">
   <div class='an-explantion'>19 - Lone Empty Parameter and Result</div>
 
   <div id='explanation-text'>
-    Use check_empty(arguments, expected_empty) to verify that a lone parameter or return result is not empty.
+    Use checkParam_empty() to verify that a lone parameter or return result is not empty.
     Good for ensuring that a function's single string, array, and object parameter and or result has a useful value.
 
     When a parameter corresponds to 'EMPTY-ERROR' and its contents are valueless then an error is returned, 
@@ -221,7 +221,7 @@
               <li style="float:left; width:18%;list-style: none;"><b>Empty Categories</b></li>
               <li style="float:left; width:22%;">'<b>EMPTY-OK</b>'<br>
                 Valueless variable is ok</li>
-              <li style="float:left; width:23%;">'<b>EMPTY-ER</b>'&nbsp;Valueless<br>
+              <li style="float:left; width:21%;">'<b>EMPTY-ER</b>'&nbsp;Valueless<br>
                  variable is an Error</li>
               <li>'<b>EMPTY-IGNORE</b>'&nbsp;&nbsp;&nbsp;Functions, Symbols, BigInts,
                 </li>
@@ -279,9 +279,9 @@
 /**/  else
 /**/    PRE_check_hasValue = PRE_check_hasValue
 /**/  
-/**/  function PRE_check_hasValue(){
-/**/    return type_czech.check_empty(
-/**/                   arguments, 'EMPTY-ERROR')
+/**/  function PRE_check_hasValue(a_variable){
+/**/    return type_czech.checkParam_empty(
+/**/                   a_variable, 'EMPTY-ERROR')
 /**/  }
 /**/
 /**/  hasValue = type_czech.linkUp(hasValue,

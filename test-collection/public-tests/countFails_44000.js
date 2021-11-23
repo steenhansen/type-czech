@@ -10,7 +10,7 @@ function A_PRE_check_yourFunc() { return 'found-an-error'; }
 A_yourFunc = type_czech.linkUp(A_yourFunc, A_PRE_check_yourFunc) 
 function A_yourFunc() { }
 
-type_czech.enableChecks();
+type_czech.enableTests();
 
 if (type_czech.countFails() !== 0) throw 'A._countFails()_1';
 

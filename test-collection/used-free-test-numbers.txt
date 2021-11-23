@@ -10,9 +10,9 @@
 02000 HasInterface-tests.js         
 03000 Valueless-tests.js             
 04000 ValuelessUnion-tests.js          alll bad
-05000 check_type-tests_05000.js                
-06000 check_typeExtra-tests.js          
-07000 check_typeEither-tests.js           
+05000 checkParam_type-tests_05000.js                
+06000 checkParam_typeExtra-tests.js          
+07000 checkParam_typeEither-tests.js           
                         08000 check_interfaceExtra-tests_08000.js     
 09000 _aTypeOf-tests.js             
 
@@ -38,7 +38,7 @@
 28000 _shrinkDiffs-tests_28000.js
 29000 check_objectEmptyExtra-tests_29000.js
 
-30000 check_emptyExtra_30000.js
+30000 checkParam_emptyExtra_30000.js
 
 31000 _unionChecks-tests_31000.js'
 
@@ -51,8 +51,8 @@ check_mutatedSnapshot === 41,000
 
 
 
-enableChecks_42000.js
-disableChecks_43000.js
+enableTests_42000.js
+disableTests_43000.js
 countFails_44000.js
 countTally_45000.js
 

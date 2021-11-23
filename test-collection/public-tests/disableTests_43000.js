@@ -1,8 +1,8 @@
 
 /*
-## disableChecks()
+## disableTests()
 
-### A. Test disableChecks() stops.
+### A. Test disableTests() stops.
 */
 
 type_czech = TypeCzech('NO-ERROR-MESSAGES')
@@ -10,19 +10,19 @@ function A_PRE_check_yourFunc() { }
 A_yourFunc = type_czech.linkUp(A_yourFunc, A_PRE_check_yourFunc) 
 function A_yourFunc() { }
 
-type_czech.enableChecks();
+type_czech.enableTests();
 
-if (type_czech.countTally() !== 0) throw 'A._disableChecks()_1'
-
-A_yourFunc();
-
-if (type_czech.countTally() !== 1) throw 'A._disableChecks()_2'
-
-type_czech.disableChecks();
+if (type_czech.countTally() !== 0) throw 'A._disableTests()_1'
 
 A_yourFunc();
 
-if (type_czech.countTally() !== 1) throw 'A._disableChecks()_3'
+if (type_czech.countTally() !== 1) throw 'A._disableTests()_2'
+
+type_czech.disableTests();
+
+A_yourFunc();
+
+if (type_czech.countTally() !== 1) throw 'A._disableTests()_3'
 
 if (typeof TEST_total_checks === 'undefined')
   console.log('no-issues: pass')

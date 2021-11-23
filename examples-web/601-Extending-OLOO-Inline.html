@@ -116,7 +116,7 @@
     
     <a title="24-Empty-Either-Checks.html" href="../example-snippets/24-Empty-Either-Checks.html">24</a>
     
-    <a title="25-Accessing-PRE-POST-Arguments.html" href="../example-snippets/25-Accessing-PRE-POST-Arguments.html">25</a>
+    <a title="25-Default-Parameters.html" href="../example-snippets/25-Default-Parameters.html">25</a>
     
     <a title="26-Type-and-Empty-Abbreviations.html" href="../example-snippets/26-Type-and-Empty-Abbreviations.html">26</a>
     
@@ -257,22 +257,22 @@
 
 /**/  function PRE_check_First(f_name){
 /**/    log(NL2+'PRE -First') 
-/**/    type_issue = type_czech.check_type(f_name, 'string')
+/**/    type_issue = type_czech.checkParam_type(f_name, 'string')
 /**/    if (type_issue) return type_issue;
-/**/    return type_czech.check_empty(arguments, 'EMPTY-ERROR');
+/**/    return type_czech.checkParam_empty(f_name, 'EMPTY-ERROR');
 /**/  }
 /**/  function POST_check_First(First){ 
 /**/    log(NL1+'POST-First') 
 /**/    post_first_signature = { f_name: 'string',  firstMethod: 'function' }
-/**/    return type_czech.check_type(First, post_first_signature)
+/**/    return type_czech.checkParam_type(First, post_first_signature)
 /**/  }
 /**/  function PRE_check_firstMethod(a_date){ 
 /**/    log(NL+'PRE -firstMethod')
-/**/    return type_czech.check_type(arguments, 'date')
+/**/    return type_czech.checkParam_type(a_date, 'date')
 /**/  }
 /**/  function POST_check_firstMethod(a_date){
 /**/    log('POST-firstMethod') 
-/**/    return type_czech.check_type(arguments, 'date')
+/**/    return type_czech.checkParam_type(a_date, 'date')
 /**/  }
 /**/
 /**/  First_PREs = {First:PRE_check_First, firstMethod:PRE_check_firstMethod}
@@ -281,9 +281,9 @@
 
 /**/  function PRE_check_Last(f_name, l_name){
 /**/    log(LEVEL_1+'PRE -Last') 
-/**/    type_issue = type_czech.check_type([f_name, l_name], ['string', 'string'])
+/**/    type_issue = type_czech.checkParam_type([f_name, l_name], ['string', 'string'])
 /**/    if (type_issue) return type_issue;
-/**/    return type_czech.check_empty(arguments, ['EMPTY-ERROR', 'EMPTY-ERROR']);
+/**/    return type_czech.checkParam_empty([f_name, l_name], ['EMPTY-ERROR', 'EMPTY-ERROR']);
 /**/  }
 /**/  function POST_check_Last(Last){
 /**/    log(LEVEL_1+'POST-Last') 
@@ -292,11 +292,11 @@
 /**/  }
 /**/  function PRE_check_lastMethod(a_year){
 /**/    log(LEVEL_1+'PRE -lastMethod') 
-/**/    return type_czech.check_type(arguments, 'number')
+/**/    return type_czech.checkParam_type(a_year, 'number')
 /**/  }
 /**/  function POST_check_lastMethod(a_year){
 /**/    log(LEVEL_1+'POST-lastMethod')
-/**/    return type_czech.check_type(arguments, 'number')
+/**/    return type_czech.checkParam_type(a_year, 'number')
 /**/  }
 /**/
 /**/  Last_PREs = {Last:PRE_check_Last, lastMethod:PRE_check_lastMethod}
@@ -306,7 +306,7 @@
 /**/  function PRE_check_Full(salu, f_name, l_name){
 /**/    log(LEVEL_2+'PRE -Full')
 /**/    pre_full_signature = ['string', 'string', 'string']
-/**/    return type_czech.check_type(arguments, pre_full_signature)
+/**/    return type_czech.checkParam_type([salu, f_name, l_name], pre_full_signature)
 /**/  }
 /**/  function POST_check_Full(Full){ 
 /**/    log(LEVEL_2+'POST-Full')
@@ -315,11 +315,11 @@
 /**/  }
 /**/  function PRE_check_fullMethod(a_book){ 
 /**/    log(LEVEL_2+'PRE -fullMethod')
-/**/    return type_czech.check_type(arguments, 'string')
+/**/    return type_czech.checkParam_type(a_book, 'string')
 /**/  }
 /**/  function POST_check_fullMethod(a_book){ 
 /**/    log(LEVEL_2+'POST-fullMethod')
-/**/    return type_czech.check_type(arguments, 'string')
+/**/    return type_czech.checkParam_type(a_book, 'string')
 /**/  }
 /**/
 /**/  Full_PREs = {Full:PRE_check_Full, fullMethod:PRE_check_fullMethod}

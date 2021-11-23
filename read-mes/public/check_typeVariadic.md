@@ -1,5 +1,5 @@
 
-## check_typeVariadic()
+## checkArgs_typeVariadic()
 
   -  [1 Variadic Parameter Type Check](#variadic-parameter-type-check)  
   -  [2 Limited Variadic Parameter Type Check](#limited-variadic-parameter-type-check)  
@@ -10,7 +10,7 @@
   
 ```
 function PRE_check_someNumbers(){
-  return type_czech.check_typeVariadic(arguments, ['number'])
+  return type_czech.checkArgs_typeVariadic(arguments, ['number'])
 }
 
 type_czech = TypeCzech('LOG-ERRORS')
@@ -30,7 +30,7 @@ someNumbers('a-string') // PRE fail - not a number
 function PRE_check_someNumbers(){
   if (arguments.length < 4 || arguments.length > 5) 
     return 'Error, must have 4 or 5 numbers, not ' + arguments.length
-  return type_czech.check_typeVariadic(arguments, ['number'])
+  return type_czech.checkArgs_typeVariadic(arguments, ['number'])
 }
 
 type_czech = TypeCzech('LOG-ERRORS')

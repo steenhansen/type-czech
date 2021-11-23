@@ -21,8 +21,8 @@ if (TEST_show_random) {
 function check_interface_02000(){
 
   type_czech = TypeCzech('NO-ERROR-MESSAGES')
-  function A_PRE_check_yourFunc() {
-    return type_czech.check_interface(arguments, {show:'function'})
+  function A_PRE_check_yourFunc(a_var) {
+    return type_czech.check_interface(a_var, {show:'function'})
   }
               A_yourFunc = type_czech.linkUp(A_yourFunc, A_PRE_check_yourFunc) 
               function A_yourFunc(){ }
@@ -58,19 +58,7 @@ function check_interface_02000(){
   A_yourFunc({g:[]},{h:[]})          // fail 30 3 empty - {arr arr}
   A_yourFunc({i:''},{j:''})          // fail 31 4 empty - {str str}
   A_yourFunc({k:{}},{l:{}})          // fail 32 5 empty - {obj obj}
-              expected_tests = 32
-              expected_fails = 32
-  fail_tests = type_czech.countFails()
-  total_tests = type_czech.countTally()
-  if (expected_tests !== total_tests) 
-      throw `A. _check_interface().md ${expected_tests} expected_tests !== ${total_tests} total_tests`
-  else if (expected_fails !== fail_tests) 
-      throw `A. _check_interface().md ${expected_fails} expected_fails !== ${fail_tests} fail_tests`
-  else if (typeof TEST_total_checks === 'undefined')
-    console.log('no-issues: pass', expected_tests-expected_fails, ' fail', expected_fails)
-  else
-    TEST_total_checks += expected_tests
-
+  TEST_total_checks += expectedAndFailedTests(32, 32, 'A-Fail', '_check_interface().md');
 
 
     
@@ -79,8 +67,8 @@ function check_interface_02000(){
 */
 
   type_czech = TypeCzech('NO-ERROR-MESSAGES')
-  function B_PRE_check_yourFunc() {
-    return type_czech.check_interface(arguments, {show:'function'})
+  function B_PRE_check_yourFunc(a_var) {
+    return type_czech.check_interface(a_var, {show:'function'})
   }
               B_yourFunc = type_czech.linkUp(B_yourFunc, B_PRE_check_yourFunc) 
               function B_yourFunc(){ }
@@ -110,7 +98,7 @@ function check_interface_02001(){
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.check_interface(check_param, check_shape);
-        if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
+            if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
         if (Array.isArray(actual_error)) actual_error = actual_error.reduce((accum, curr) => `${accum}\n${curr}`);
         if (Array.isArray(expect_error)) expect_error = expect_error.reduce((accum, curr) => `${accum}\n${curr}`);
         if (actual_error !== expect_error) {
@@ -168,3 +156,5 @@ function check_interface_02003(){
         }
         if (typeof tested_check_interface !=='undefined') tested_check_interface ++;
 }
+
+TEST_total_checks += 3;

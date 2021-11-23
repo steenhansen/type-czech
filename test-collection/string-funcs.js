@@ -74,13 +74,30 @@ function consoleExpectedActual(expected_error, e, error_id) {
   console.log('             ACTUAL ERROR:', e);
 }
 
+function expectedAndFailedTests(expected_tests, expected_fails, which_letter, the_file) {
+  fail_tests = type_czech.countFails();
+  total_tests = type_czech.countTally();
+  if (expected_tests !== total_tests)
+    throw `${which_letter} ${the_file} ${expected_tests} expected_tests !== ${total_tests} total_tests`
+  else if (expected_fails !== fail_tests) 
+    throw `${which_letter} ${the_file} ${expected_fails} expected_fails !== ${fail_tests} fail_tests`
+  else if  (typeof TEST_total_checks === 'undefined')
+    console.log('no-issues: pass', expected_tests-expected_fails, ' fail', expected_fails)
+  else
+    TEST_total_checks += expected_tests
+  type_czech.countZero();
+  return expected_tests;
+}
+
+
 try {
   // eslint-disable-next-line object-curly-newline
   const test_funcs = { errorLabel, beforeCheck, afterCheck,
                        errorMessage, testError, oneLineString,
-                       arrayErrorToString, errorNotMatchException, consoleExpectedActual,
+                       arrayErrorToString, errorNotMatchException, consoleExpectedActual,expectedAndFailedTests
                     };
   module.exports = test_funcs;
 } catch (e) {
   //
 }
+

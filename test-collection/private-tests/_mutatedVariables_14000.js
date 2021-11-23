@@ -29,7 +29,7 @@ function _mutatedVariables_14001(){
         try {
           type_czech_test.check_buildSnapshot('_mutatedVariables_14001', 'mutate_14001', mutate_14001);
           mutate_14001.push(4);
-          actual_error = type_czech_test.check_mutatedSnapshot('_mutatedVariables_14001', 'mutate_14001');
+          var actual_error = type_czech_test.check_mutatedSnapshot('_mutatedVariables_14001', 'mutate_14001');
         } catch (e) { }
         actual_error = ((actual_error.join()).replace(/\s+/g, ' ')).trim(); 
         if (actual_error !== expect_error) {
@@ -79,7 +79,7 @@ function _mutatedVariables_14003(){
         try {
           type_czech_test.check_buildSnapshot('_mutatedVariables_14003', 'mutate_14003', mutate_14003);
           mutate_14003.b = "7";
-          actual_error = type_czech_test.check_mutatedSnapshot('_mutatedVariables_14003', 'mutate_14003');
+          var actual_error = type_czech_test.check_mutatedSnapshot('_mutatedVariables_14003', 'mutate_14003');
         } catch (e) {  }
         actual_error = ((actual_error.join()).replace(/\s+/g, ' ')).trim(); 
         if (actual_error !== expect_error) {
@@ -100,13 +100,14 @@ function _mutatedVariables_14003(){
 function _mutatedVariables_14004(){
   var TYPE_CZECH_current_test_number = '14004';  
   var mutate_14004 = [1];  
-  var expect_error =  `POST_recurseArr() recurseArr() POST-FUNC: ME@405 - Ref var 'mutate_14004' in func 'recurseArr()' changed from [1,2,3] to [1,2,"THREE"] START-SAME ~ [1,2, PRE-DIFF ~ 3] POST-DIFF ~ "THREE"] check_mutatedSnapshot() ACTUAL TYPES 'string' ACTUAL VALUE "1,2,THREE,4,5"| "1,2,THREE,4"| "1,2,THREE" CALLING FUNCTION POST_recurseArr(mutate_14004)`;
+  var expect_error =  `POST_recurseArr() POST-FUNC: ME@405 - Ref var 'mutate_14004' in func 'recurseArr()' changed from [1,2,3] to [1,2,"THREE"] START-SAME ~ [1,2, PRE-DIFF ~ 3] POST-DIFF ~ "THREE"] CHECKER check_mutatedSnapshot() ACTUAL TYPE 'string' VALUES "1,2,THREE,4,5"| "1,2,THREE,4"| "1,2,THREE" ORIGIN recurseArr(mutate_14004)`;
   var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
   function PRE_recurseArr(mutate_14004){
     type_czech_test.check_buildSnapshot('recurseArr', 'mutate_14004', mutate_14004);
   }
   function POST_recurseArr(mutate_14004){
-    return type_czech_test.check_mutatedSnapshot('recurseArr', 'mutate_14004');
+    mutate_issue = type_czech_test.check_mutatedSnapshot('recurseArr', 'mutate_14004');
+    return mutate_issue;
   }
   function recurseArr(mutate_14004, stop_recurse){
     next_index = mutate_14004.length + 1;

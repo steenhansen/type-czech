@@ -171,7 +171,7 @@ return result to not match the correct signature.
     
     <a title="24-Empty-Either-Checks.html" href="https://jsfiddle.net/steen_hansen/1dL76zws/?24-Empty-Either-Checks" target="_blank">24</a>
     
-    <a title="25-Accessing-PRE-POST-Arguments.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Accessing-PRE-POST-Arguments" target="_blank">25</a>
+    <a title="25-Default-Parameters.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Default-Parameters" target="_blank">25</a>
     
     <a title="26-Type-and-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Type-and-Empty-Abbreviations" target="_blank">26</a>
     
@@ -329,11 +329,11 @@ return result to not match the correct signature.
 /**/                      ? undefined : POST_check_Person
 /**/  
 /**/  function PRE_check_Person(f_name, l_name, b_date){
-/**/    return type_czech.check_type(arguments, ['string', 'string', 'date'])
+/**/    return type_czech.checkParam_type(arguments, ['string', 'string', 'date'])
 /**/  }
 /**/  
 /**/  function POST_check_Person(an_array){
-/**/    return type_czech.check_type(arguments, ['number', 'string', 'string'])
+/**/    return type_czech.checkParam_type(arguments, ['number', 'string', 'string'])
 /**/  }
 /**/  
 /**/  Person = type_czech.linkUp(Person, PRE_check_Person, POST_check_Person)

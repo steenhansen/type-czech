@@ -36,7 +36,7 @@
 </ul>
 
 
-Alan Turing is used to show the error messages that occur when an object is check_type()ed against the 
+Alan Turing is used to show the error messages that occur when an object is checkParam_type()ed against the 
 'array' type in the PRE_check_Person() checking function. 
 
 
@@ -136,7 +136,7 @@ the POST_check_Person() function.
     
     <a title="24-Empty-Either-Checks.html" href="../example-snippets/24-Empty-Either-Checks.html">24</a>
     
-    <a title="25-Accessing-PRE-POST-Arguments.html" href="../example-snippets/25-Accessing-PRE-POST-Arguments.html">25</a>
+    <a title="25-Default-Parameters.html" href="../example-snippets/25-Default-Parameters.html">25</a>
     
     <a title="26-Type-and-Empty-Abbreviations.html" href="../example-snippets/26-Type-and-Empty-Abbreviations.html">26</a>
     
@@ -254,11 +254,11 @@ the POST_check_Person() function.
 /**/                ? undefined : POST_check_Person
 /**/  
 /**/  function PRE_check_Person(an_array){
-/**/    return type_czech.check_type(arguments, 'array')
+/**/    return type_czech.checkParam_type(an_array, 'array')
 /**/  }
 /**/  
 /**/  function POST_check_Person(an_object){
-/**/    return type_czech.check_type(arguments, 'object')
+/**/    return type_czech.checkParam_type(an_object, 'object')
 /**/  }
 /**/  
 /**/  Person = type_czech.linkUp(Person, PRE_check_Person,

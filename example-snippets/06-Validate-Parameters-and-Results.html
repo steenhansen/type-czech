@@ -20,16 +20,29 @@ conditions of functions can be viewed without asserts actually littering the fun
 <br><br>
 Note that any function names can be used, not just PRE_check_function_name() and POST_check_function_name(),
 which are used to lessen confusion.
+<pre title='Copy and paste the green code below into the console to run' class='console-runnable'>
+function before_Person(first_name, last_name){
+  console.log('before Person:', first_name, last_name)
+  if (first_name.match(/^[a-z]/))
+    return 'ERROR, first name not capitalized: ' + first_name
+}
+
+function Person(first_name, last_name){
+  console.log('in Person:', first_name, last_name)
+  return {first: first_name, last: last_name} 
+}
+
+function person_after(person_result) {
+  console.log('after Person:', person_result)
+}
+
+Person = type_czech.linkUp(Person, before_Person, person_after) 
+jane_doe = Person('Jane', 'Pass')
+john_doe = Person('john', 'fail')
+</pre>
+
 <pre>
-
-function BEFORE_Person(){}
-
-function Person(){}
-
-function person_after() {}
-
-Person = type_czech.linkUp(Person, BEFORE_Person, person_after) 
-
+>> ERROR, first name not capitalized: john
 </pre>
 
   </div>
@@ -110,7 +123,7 @@ Person = type_czech.linkUp(Person, BEFORE_Person, person_after)
     
     <a title="24-Empty-Either-Checks.html" href="../example-snippets/24-Empty-Either-Checks.html">24</a>
     
-    <a title="25-Accessing-PRE-POST-Arguments.html" href="../example-snippets/25-Accessing-PRE-POST-Arguments.html">25</a>
+    <a title="25-Default-Parameters.html" href="../example-snippets/25-Default-Parameters.html">25</a>
     
     <a title="26-Type-and-Empty-Abbreviations.html" href="../example-snippets/26-Type-and-Empty-Abbreviations.html">26</a>
     

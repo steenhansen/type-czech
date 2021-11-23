@@ -39,7 +39,7 @@ else
     /**/  type_czech = TypeCzech('THROW-EXCEPTIONS')
     /**/  
     /**/  function PRE_check_aString(){
-    /**/    return type_czech.check_type(arguments, 'string')
+    /**/    return type_czech.checkParam_type(arguments, 'string')
     /**/  }
     /**/  
     /**/  aString = type_czech.linkUp(aString, PRE_check_aString) 
@@ -56,7 +56,7 @@ else
     /**/  type_czech = TypeCzech('LOG-ERRORS')
     /**/  
     /**/  function PRE_check_expectPosNum(a_number){
-    /**/    not_number = type_czech.check_type(arguments, 'number')
+    /**/    not_number = type_czech.checkParam_type(arguments, 'number')
     /**/    if (not_number) return `Error, ${a_number} is not a Number`
     /**/    if (a_number<1) return `Error, ${a_number} is not positive`
     /**/  }
@@ -77,7 +77,7 @@ else
     /**/  type_czech = TypeCzech('THROW-EXCEPTIONS')
     /**/    
     /**/  function PRE_check_expectsSentence(a_sentence){ 
-    /**/    string_issue = type_czech.check_type(a_sentence, 'string')
+    /**/    string_issue = type_czech.checkParam_type(a_sentence, 'string')
     /**/    if (string_issue)
     /**/      return `Error, '${a_sentence}' is not a string`
     /**/    one_upper_anythings_then_period = new RegExp(/^[A-Z].*\.$/)
@@ -145,7 +145,7 @@ else
     /**/  type_czech = TypeCzech('LOG-ERRORS') 
     /**/  
     /**/  function PRE_check_isNotEmpty(){
-    /**/    return type_czech.check_empty(arguments, 'EMPTY-ERROR')
+    /**/    return type_czech.checkParam_empty(arguments, 'EMPTY-ERROR')
     /**/  }
     /**/  
     /**/  isNotEmpty = type_czech.linkUp(isNotEmpty, PRE_check_isNotEmpty) 
@@ -171,7 +171,7 @@ else
     /**/  type_czech = TypeCzech('LOG-ERRORS') 
     /**/  
     /**/  function PRE_check_arrOfNumArr(){
-    /**/    return type_czech.check_type(arguments, [ ['number'] ] )
+    /**/    return type_czech.checkParam_type(arguments, [ ['number'] ] )
     /**/  }
     /**/  
     /**/  arrOfNumArr = type_czech.linkUp(arrOfNumArr, PRE_check_arrOfNumArr) 
@@ -219,7 +219,7 @@ else
     /**/  type_czech = TypeCzech('THROW-EXCEPTIONS')
     /**/  
     /**/  function POST_check_arrArrRes(){
-    /**/    return type_czech.check_type(arguments, [['number']])
+    /**/    return type_czech.checkParam_type(arguments, [['number']])
     /**/  }
     /**/  
     /**/  arrArrRes = type_czech.linkUp(arrArrRes, undefined, POST_check_arrArrRes) 
@@ -239,7 +239,7 @@ else
     /**/  function PRE_check_arrOf3Nums(arr_of_3_nums){
     /**/    arr_len = arr_of_3_nums.length
     /**/    if (arr_len !== 3) return `Array length is ${arr_len} <> 3`
-    /**/    return type_czech.check_type(arguments, ['number'])
+    /**/    return type_czech.checkParam_type(arguments, ['number'])
     /**/  }
     /**/  
     /**/  arrOf3Nums = type_czech.linkUp(arrOf3Nums, PRE_check_arrOf3Nums) 
@@ -257,7 +257,7 @@ Shorter version
     /**/  
     /**/  function PRE_check_arrOf3Nums(){
     /**/    THREE_NUMBERS = ['number','number','number']
-    /**/    return type_czech.check_type(arguments, THREE_NUMBERS)
+    /**/    return type_czech.checkParam_type(arguments, THREE_NUMBERS)
     /**/  }
     /**/  
     /**/  arrOf3Nums = type_czech.linkUp(arrOf3Nums, PRE_check_arrOf3Nums) 
@@ -307,7 +307,7 @@ And then the object is checked for any mutations, after isElvis() returns, in th
     /**/  function PRE_check_yourFunc() { 
     /**/    all_types = [ 'array', 'bigint', 'boolean', 'date', 'function', 
     /**/                  'number', 'object', 'regexp', 'string', 'symbol' ]
-    /**/    return type_czech.check_type(arguments, all_types)
+    /**/    return type_czech.checkParam_type(arguments, all_types)
     /**/  }
     /**/
     /**/  yourFunc = type_czech.linkUp(yourFunc, PRE_check_yourFunc) 
@@ -340,7 +340,7 @@ And then the object is checked for any mutations, after isElvis() returns, in th
     /**/                  the_date:'date', the_function:'function', the_number:'number',
     /**/                   the_object:'object', the_regExp:'regexp', the_string:'string',
     /**/                    the_symbol:'symbol' }
-    /**/    return type_czech.check_type(arguments, all_types)
+    /**/    return type_czech.checkParam_type(arguments, all_types)
     /**/  }
     /**/
     /**/  yourFunc = type_czech.linkUp(yourFunc, PRE_check_yourFunc) 
@@ -369,7 +369,7 @@ And then the object is checked for any mutations, after isElvis() returns, in th
     /**/  type_czech = TypeCzech('LOG-ERRORS')
     /**/
     /**/  function PRE_check_yourFunc() { 
-    /**/    return type_czech.check_type(arguments, ['number', 'string', 'boolean', 'date'])
+    /**/    return type_czech.checkParam_type(arguments, ['number', 'string', 'boolean', 'date'])
     /**/  }
     /**/
     /**/  yourFunc = type_czech.linkUp(yourFunc, PRE_check_yourFunc) 
@@ -389,7 +389,7 @@ And then the object is checked for any mutations, after isElvis() returns, in th
     /**/    all_types = { the_array:'array', the_object:'object', the_bigInt:'bigint',
     /**/                 the_numb_array: [['number']], 
     /**/                 the_char_object:{a:'string', b:'string'} }
-    /**/    return type_czech.check_type(arguments, all_types)
+    /**/    return type_czech.checkParam_type(arguments, all_types)
     /**/  }
     /**/
     /**/  yourFunc = type_czech.linkUp(yourFunc, PRE_check_yourFunc) 

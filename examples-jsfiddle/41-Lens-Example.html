@@ -53,8 +53,8 @@ function PRE_check_getAddress(an_address){
   the_city  = R.view(SUB_LENSES.city_lens, an_address)
   the_zip   = R.view(SUB_LENSES.zip_lens, an_address)
   the_addr = {the_first, the_last, the_state, the_city, the_zip}
-  type_err = type_czech.check_type(the_addr, ADDR_SHAPE)
-  type_czech.assert_check(type_err, 'ERROR - Lenses', the_addr)
+  type_err = type_czech.checkParam_type(the_addr, ADDR_SHAPE)
+  type_czech.check_assert(type_err, 'ERROR - Lenses', the_addr)
 }
 
 function getAddress(an_address){
@@ -162,7 +162,7 @@ function getAddress(an_address){
     
     <a title="24-Empty-Either-Checks.html" href="https://jsfiddle.net/steen_hansen/1dL76zws/?24-Empty-Either-Checks" target="_blank">24</a>
     
-    <a title="25-Accessing-PRE-POST-Arguments.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Accessing-PRE-POST-Arguments" target="_blank">25</a>
+    <a title="25-Default-Parameters.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Default-Parameters" target="_blank">25</a>
     
     <a title="26-Type-and-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Type-and-Empty-Abbreviations" target="_blank">26</a>
     
@@ -313,8 +313,8 @@ function getAddress(an_address){
 /**/    the_city  = R.view(the_lenses.city_lens, an_address)
 /**/    the_zip   = R.view(the_lenses.zip_lens, an_address)
 /**/    the_addr = {the_first, the_last, the_state, the_city, the_zip}
-/**/    type_err = type_czech.check_type(the_addr, ADDR_SHAPE)
-/**/    type_czech.assert_check(type_err, 'ERROR - Lenses', the_addr)
+/**/    type_err = type_czech.checkParam_type(the_addr, ADDR_SHAPE)
+/**/    type_czech.check_assert(type_err, 'ERROR - Lenses', the_addr)
 /**/  }
 /**/  
 /**/  getAddress = type_czech.linkUp(getAddress, PRE_check_getAddress)

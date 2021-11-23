@@ -89,7 +89,7 @@
     
     <a title="24-Empty-Either-Checks.html" href="https://jsfiddle.net/steen_hansen/1dL76zws/?24-Empty-Either-Checks" target="_blank">24</a>
     
-    <a title="25-Accessing-PRE-POST-Arguments.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Accessing-PRE-POST-Arguments" target="_blank">25</a>
+    <a title="25-Default-Parameters.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Default-Parameters" target="_blank">25</a>
     
     <a title="26-Type-and-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Type-and-Empty-Abbreviations" target="_blank">26</a>
     
@@ -215,7 +215,7 @@ aLottery = type_czech.linkUp(aLottery, PRE_check_aLottery)
 </pre>
 Otherwise a function not defined error will occur.
     <br><br>
-Note that check_emptyVariadic() and check_typeVariadic cannot be used with arrow
+Note that checkArgs_emptyVariadic() and checkArgs_typeVariadic cannot be used with arrow
 functions as there is no arguments object.
 
 <br><br>
@@ -261,10 +261,10 @@ aLottery = (lottery_name, lucky_numbers, draw_date) => {
 /**/
 /**/  PRE_check_aLottery = (lottery_name, lucky_numbers, draw_date) =>{
 /**/    the_arguments = [lottery_name, lucky_numbers, draw_date]
-/**/    type_issue=type_czech.check_type(the_arguments, LOTTERY_SIGNATURE)
+/**/    type_issue=type_czech.checkParam_type(the_arguments, LOTTERY_SIGNATURE)
 /**/    if (type_issue) return type_issue
 /**/
-/**/    empty_err=type_czech.check_empty(the_arguments,['EMPTY-ERROR'])
+/**/    empty_err=type_czech.checkParam_empty(the_arguments,['EMPTY-ERROR'])
 /**/    return empty_err
 /**/  }
 /**/

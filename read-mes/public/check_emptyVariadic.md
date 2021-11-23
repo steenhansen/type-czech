@@ -1,5 +1,5 @@
 
-## check_emptyVariadic()
+## checkArgs_emptyVariadic()
 
   -  [1 Variadic Empty Parameter Check](#variadic-empty-parameter-check)  
   -  [2 Limited Variadic Empty Parameter Check](#limited-variadic-empty-parameter-check)  
@@ -10,7 +10,7 @@
   
 ```
 function PRE_check_someVariables(){
-  return type_czech.check_emptyVariadic(arguments, ['EMPTY-ERROR'])
+  return type_czech.checkArgs_emptyVariadic(arguments, ['EMPTY-ERROR'])
 }
 
 type_czech = TypeCzech('LOG-ERRORS')
@@ -32,7 +32,7 @@ someVariables({}) // PRE fail - {} is emtpy
 function PRE_check_someVariables(){
   if (arguments.length < 4 || arguments.length > 5) 
     return 'Error, must have 4 or 5 numbers, not ' + arguments.length
-  return type_czech.check_emptyVariadic(arguments, ['EMPTY-ERROR'])
+  return type_czech.checkArgs_emptyVariadic(arguments, ['EMPTY-ERROR'])
 }
 
 type_czech = TypeCzech('LOG-ERRORS')

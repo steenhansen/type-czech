@@ -5,7 +5,7 @@
 
 
 
-<div id='js-div' style="width:45%">
+<div id='js-div' style="width:47%">
   <a href='https://github.com/steenhansen/type-czech' class='git-hub'>GitHub Package</a>
   <div id='js-code'>the javascript</div>
   <br>
@@ -89,7 +89,7 @@
     
     <a title="24-Empty-Either-Checks.html" href="../example-snippets/24-Empty-Either-Checks.html">24</a>
     
-    <a title="25-Accessing-PRE-POST-Arguments.html" href="../example-snippets/25-Accessing-PRE-POST-Arguments.html">25</a>
+    <a title="25-Default-Parameters.html" href="../example-snippets/25-Default-Parameters.html">25</a>
     
     <a title="26-Type-and-Empty-Abbreviations.html" href="../example-snippets/26-Type-and-Empty-Abbreviations.html">26</a>
     
@@ -179,36 +179,39 @@
 </div>
 
 
-<div id="the-explanation" style="width:55%">
+<div id="the-explanation" style="width:53%">
   <div class='an-explantion'>11 - Object Properties</div>
   <div id='explanation-text'> 
     <br>
-    Object structure can be checked with check_type(). This code checks that the
+    Object structure can be checked with checkParam_type(). This code checks that the
      properties of funcOne and funcTwo are both
     functions. And the property a_number must be a Number type. Missing or 
     extra properties will cause errors.
-<pre>
-FUNC_NUM_FUNC_STRUCTURE = { funcOne: 'function', 
-                            a_number: 'number',
-                            funcTwo: 'function' }
-func_num_func_obj = {funcOne: x=>x, a_number:12, funcTwo: y=>y}
-check_error = type_czech.check_type(func_num_func_obj, FUNC_NUM_FUNC_STRUCTURE)
+<pre title='Copy and paste the green code below into the console to run' class='console-runnable'>
+FUNC_NUM_FUNC = { func1: 'function', a_num: 'number', an_str: 'string' }
+pass_func_num_func = {func1: x=>x, a_num:12, an_str: 'passes-test'}
+type_czech.checkParam_type(pass_func_num_func, FUNC_NUM_FUNC)
+
+fail_func_num_func = {a_string:'fails-test'}
+type_czech.checkParam_type(fail_func_num_func, FUNC_NUM_FUNC)
 </pre>
 
 The below example shows how to ignore some properties, while still type checking
 at least one property. Here we only ensure that the property funcOne is a 
 Function, the extra property my_string is ignored.
-<pre>
-FUNC_ONE_ONLY_STRUCT = { funcOne: 'function'}
-func_num_func_obj = {funcOne: x=>x, my_string:'some-string'}
-check_error = type_czech.check_typeExtra(func_num_func_obj, FUNC_ONE_ONLY_STRUCT)
+<pre title='Copy and paste the green code below into the console to run' class='console-runnable'>
+FUNC_ONE_ONLY = { funcOne: 'function'}
+func_num_func_obj = {funcOne: x=>x, my_string:'passes-test'}
+type_czech.checkParam_typeExtra(func_num_func_obj, FUNC_ONE_ONLY)
+
+fail_num_func_obj = {funcOne: 1, my_string:'fails-test'}
+type_czech.checkParam_typeExtra(fail_num_func_obj, FUNC_ONE_ONLY)
 </pre>
 
 
     In the examples to the left, the first person() function parameter is checked to 
-    see if it implements the showPerson() function, if not it fails the check_type() call.
-    <br><br>
-  TypeCzech is set to throw exceptions in this example.
+    see if it implements the showPerson() function, if not it fails the checkParam_type() call.
+
   </div>
 
   <div id="console-log"  >
@@ -252,7 +255,7 @@ check_error = type_czech.check_typeExtra(func_num_func_obj, FUNC_ONE_ONLY_STRUCT
 /**/
 /**/  function PRE_check_callMethod(an_object){
 /**/    WANTED_PROPERTIES = {showPerson: 'function'}
-/**/    return type_czech.check_type(an_object, WANTED_PROPERTIES)
+/**/    return type_czech.checkParam_type(an_object, WANTED_PROPERTIES)
 /**/  }
 /**/  
 /**/  callMethod = type_czech.linkUp(callMethod, PRE_check_callMethod)
@@ -265,7 +268,7 @@ show_person = (x) => log(`A object with a showPerson()`)
 has_showPerson = {showPerson: show_person}
 callMethod(has_showPerson)
 
-linesConsole(3)
+linesConsole(2)
 
 no_showPerson = {a_key:'not-a-function'}
 try{
@@ -278,7 +281,7 @@ try{
 }
 
 
-linesConsole(3)
+linesConsole(2)
 
 wrong_showPerson = {showPerson:'a-string'}
 try{

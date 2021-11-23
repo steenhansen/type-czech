@@ -86,7 +86,7 @@
     
     <a title="24-Empty-Either-Checks.html" href="https://jsfiddle.net/steen_hansen/1dL76zws/?24-Empty-Either-Checks" target="_blank">24</a>
     
-    <a title="25-Accessing-PRE-POST-Arguments.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Accessing-PRE-POST-Arguments" target="_blank">25</a>
+    <a title="25-Default-Parameters.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Default-Parameters" target="_blank">25</a>
     
     <a title="26-Type-and-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Type-and-Empty-Abbreviations" target="_blank">26</a>
     
@@ -201,7 +201,7 @@
     <br>
 
     If a function can take parameters with different empty signatures then valuelessness 
-    can be caught with a call to check_emptyEither(arguments, array_of_signatures).
+    can be caught with a call to checkParam_emptyEither(arguments, array_of_signatures).
 
     <br><br>
 
@@ -210,7 +210,7 @@ function PRE_check_firstMidLast(){
   first_last = [ 'EMPTY-ERROR', 'EMPTY-ERROR' ]
   first_middle_last = [ 'EMPTY-ERROR', 'EMPTY-OK', 'EMPTY-ERROR' ]
   signatures_types = [ first_last, first_middle_last ]
-  return type_czech.check_emptyEither(arguments, signatures_types)
+  return type_czech.checkParam_emptyEither(arguments, signatures_types)
 }
 
 firstMidLast = type_czech.linkUp(firstMidLast, PRE_check_firstMidLast)
@@ -282,14 +282,14 @@ firstMidLast('first', 'middle', '') // error
 /**/    PRE_check_Name_only = [ 'EMPTY-ERROR', 'EMPTY-ERROR' ]
 /**/    PRE_check_Date_Year = ['EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR']
 /**/    PRE_signatures = [ PRE_check_Name_only, PRE_check_Date_Year]
-/**/    return type_czech.check_emptyEither(arguments, PRE_signatures)
+/**/    return type_czech.checkParam_emptyEither(arguments, PRE_signatures)
 /**/  }
 /**/  
 /**/  function POST_check_Person(){
 /**/    POST_check_date={f_name:'EMPTY-ERROR', l_name:'ER', b_date:'ER' }
 /**/    POST_check_year={f_name:'EMPTY-ERROR', l_name:'ER', b_year:'ER' }
 /**/    POST_check_signatures = [POST_check_date, POST_check_year]
-/**/    return type_czech.check_emptyEither(arguments, POST_check_signatures)
+/**/    return type_czech.checkParam_emptyEither(arguments, POST_check_signatures)
 /**/  }
 /**/  
 /**/  Person = type_czech.linkUp(Person, PRE_check_Person, POST_check_Person)

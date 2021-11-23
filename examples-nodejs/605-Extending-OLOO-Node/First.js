@@ -32,25 +32,25 @@ module.exports = function create_First(type_czech) {
 /**/  if (type_czech.isActive()) {
 /**/    function PRE_First(f_name) {
 /**/      console.log('PRE -First');
-/**/      const type_issue = type_czech.check_type(f_name, 'string');
+/**/      const type_issue = type_czech.checkParam_type(f_name, 'string');
 /**/      if (type_issue) return type_issue;
-/**/      return type_czech.check_empty(arguments, 'EMPTY-ERROR');
+/**/      return type_czech.checkParam_empty(arguments, 'EMPTY-ERROR');
 /**/    }
 /**/
 /**/    // eslint-disable-next-line no-shadow
 /**/    function POST_First(First) {
 /**/      console.log('POST-First');
-/**/      return type_czech.check_type(First, { f_name: 'string',  firstMethod: 'function' });
+/**/      return type_czech.checkParam_type(First, { f_name: 'string',  firstMethod: 'function' });
 /**/    }
 /**/
 /**/    function PRE_firstMethod(a_date) {
 /**/      console.log('PRE -firstMethod');
-/**/      return type_czech.check_type(arguments, 'date');
+/**/      return type_czech.checkParam_type(arguments, 'date');
 /**/    }
 /**/
 /**/    function POST_firstMethod(a_date) {
 /**/      console.log('POST-firstMethod');
-/**/      return type_czech.check_type(arguments, 'date');
+/**/      return type_czech.checkParam_type(arguments, 'date');
 /**/    }
 /**/
 /**/    const First_PREs = { First: PRE_First, firstMethod: PRE_firstMethod };

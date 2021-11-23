@@ -19,23 +19,23 @@
 <br>
 <pre>
 // one string
-type_czech.check_type(arguments, 'string')
+type_czech.checkParam_type(arguments, 'string')
 
 // array of any number of strings 1 ... X
-type_czech.check_type(arguments, ['string'])
+type_czech.checkParam_type(arguments, ['string'])
 
 // array of exactly 2 strings
-type_czech.check_type(arguments, ['string', 'string'])
+type_czech.checkParam_type(arguments, ['string', 'string'])
 
 // arrays of arrays of any type
-type_czech.check_type(arguments, [ 'array' ])
+type_czech.checkParam_type(arguments, [ 'array' ])
 
 // arrays of string arrays
-type_czech.check_type(arguments, [ ['string'] ])
+type_czech.checkParam_type(arguments, [ ['string'] ])
 
 // arrays of [string, number] arrays 
 // [  ['a', 1],  ['b', 2], ['c', 3], ['d', 4]  ]
-type_czech.check_type(arguments, [ ['string', 'number'] ])
+type_czech.checkParam_type(arguments, [ ['string', 'number'] ])
 
 </pre>
 
@@ -129,7 +129,7 @@ type_czech.check_type(arguments, [ ['string', 'number'] ])
     
     <a title="24-Empty-Either-Checks.html" href="https://jsfiddle.net/steen_hansen/1dL76zws/?24-Empty-Either-Checks" target="_blank">24</a>
     
-    <a title="25-Accessing-PRE-POST-Arguments.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Accessing-PRE-POST-Arguments" target="_blank">25</a>
+    <a title="25-Default-Parameters.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Default-Parameters" target="_blank">25</a>
     
     <a title="26-Type-and-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Type-and-Empty-Abbreviations" target="_blank">26</a>
     
@@ -270,11 +270,11 @@ type_czech.check_type(arguments, [ ['string', 'number'] ])
 /**/                       ? undefined : PRE_check_arrOfArrOfNum
 /**/
 /**/  function PRE_check_arrayOfStrings(an_array){
-/**/    return type_czech.check_type(arguments, ['string'])
+/**/    return type_czech.checkParam_type(arguments, ['string'])
 /**/  }
 /**/ 
 /**/  function PRE_check_arrOfArrOfNum(an_array_of_array){
-/**/    return type_czech.check_type(arguments, [ ['number'] ])
+/**/    return type_czech.checkParam_type(arguments, [ ['number'] ])
 /**/  }
 /**/  
 /**/  arrayOfStrings = type_czech.linkUp(arrayOfStrings, PRE_check_arrayOfStrings)

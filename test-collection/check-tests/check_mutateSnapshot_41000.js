@@ -11,10 +11,10 @@
 
 function test_pre_check_mutateSnapshot(parameters_array, signature_of_parameters, error_id, expected_error) {
   const type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
-  tested_check_typeVariadic_41000 += 1;
+  tested_checkArgs_typeVariadic_41000 += 1;
 
-  function PRE_test_41000() {
-    return type_czech.check_mutateSnapshot(arguments, signature_of_parameters);
+  function PRE_test_41000(a_var) {
+    return type_czech.check_mutateSnapshot(a_var, signature_of_parameters);
   }
 
   function pre_check_mutateSnapshot_41000() {}
@@ -27,20 +27,20 @@ function test_pre_check_mutateSnapshot(parameters_array, signature_of_parameters
       // expected route with no error message
     } catch (e) {
       // failing path
-      failed_check_typeVariadic_41000 += 1;
+      failed_checkArgs_typeVariadic_41000 += 1;
       console.log('FAIL, should be no error but got ', e, error_id);
     }
   } else {
     try {
       pre_check_mutateSnapshot_41000(...parameters_array);
       // failing path, should have been an exception
-      failed_check_typeVariadic_41000 += 1;
+      failed_checkArgs_typeVariadic_41000 += 1;
       consoleExpectedActual(expected_error, 'MISSING-EXCEPTION', error_id);
     } catch (e) {
       const error_not_match_exception = errorNotMatchException(expected_error, e);
       if (error_not_match_exception) {
         // failing path, the error was wrong
-        failed_check_typeVariadic_41000 += 1;
+        failed_checkArgs_typeVariadic_41000 += 1;
         consoleExpectedActual(expected_error, e, error_id);
       } else {
         // expected route with an error message
@@ -50,11 +50,11 @@ function test_pre_check_mutateSnapshot(parameters_array, signature_of_parameters
   afterCheck(parameters_array, signature_of_parameters, before_var_value, error_id);
 }
 
-tested_check_typeVariadic_41000 = 0;
-failed_check_typeVariadic_41000 = 0;
+tested_checkArgs_typeVariadic_41000 = 0;
+failed_checkArgs_typeVariadic_41000 = 0;
 
 //////////////////////////////////////////
-type_czech = TypeCzech('NO-ERROR-MESSAGES')
+type_czech = TypeCzech('LOG-ERRORS')   // 'NO-ERROR-MESSAGES')               /// NOT SURE ....
 fail_count = 0
 function A_PRE_check_yourFunc(the_arg) {
   try {
@@ -103,18 +103,8 @@ A_yourFunc([{},{}] )               // fail 29 2 empty - [obj obj]
 A_yourFunc({g:[]},{h:[]})          // fail 30 3 empty - {arr arr}
 A_yourFunc({i:''},{j:''})          // fail 31 4 empty - {str str}
 A_yourFunc({k:{}},{l:{}})          // fail 32 5 empty - {obj obj}
-            expected_tests = 32
-            expected_fails = 32
-//fail_tests = type_czech.countFails()
-total_tests = type_czech.countTally()
-if (expected_tests !== total_tests) 
-    throw `A. _check_mutatedSnapshot().md ${expected_tests} expected_tests !== ${total_tests} total_tests`
-else if (expected_fails !== fail_count) 
-    throw `A. _check_mutatedSnapshot().md ${expected_fails} expected_fails !== ${fail_count} fail_count`
-else if (typeof TEST_total_checks === 'undefined')
-  console.log('no-issues: pass', expected_tests-expected_fails, ' fail', expected_fails)
-else
-  TEST_total_checks += expected_tests
+TEST_total_checks += expectedAndFailedTests(32, 32, 'A-Fail', '_check_mutatedSnapshot().md');
+
 
 
 
@@ -122,59 +112,43 @@ else
 ### B. check_mutatedSnapshot() fail from extra element in array or object
 */
 
-type_czech = TypeCzech('NO-ERROR-MESSAGES')
+type_czech = TypeCzech('NO-ERROR-MESSAGES');                 // 'LOG-ERRORS'
 function B_PRE_check_yourFunc(b_collection) {
-  type_czech.check_buildSnapshot('B_PRE_check_yourFunc', 'b_collection', b_collection)
-}
+   type_czech.check_buildSnapshot('B_PRE_check_yourFunc', 'b_collection', b_collection);
+  }
 function B_POST_check_yourFunc() {
-  return type_czech.check_mutatedSnapshot('B_PRE_check_yourFunc', 'b_collection')
+  mutate_issue = type_czech.check_mutatedSnapshot('B_PRE_check_yourFunc', 'b_collection');
+  return mutate_issue;
 }
-B_yourFunc = type_czech.linkUp(B_yourFunc, B_PRE_check_yourFunc, B_POST_check_yourFunc) 
+B_yourFunc = type_czech.linkUp(B_yourFunc, B_PRE_check_yourFunc, B_POST_check_yourFunc);
 
 function B_yourFunc(b_collection, change_function){
   change_function(b_collection)
 }
 
-  B_yourFunc([1,2,3], x=>{ x.push('four'); x.pop() }) // pass 1,2
+  B_yourFunc([1,2,3], x=>{ x.push('four'); x.pop() }) // pass 1-pre, 2-post
   B_yourFunc([1,2,3], x=>x)                           // pass 3,4
   B_yourFunc({a:1}, x=> { x.a=2; x.a=1})              // pass 5,6
   B_yourFunc({a:1}, x=>x)                             // pass 7,8
-
-  B_yourFunc([1,2,3], x=> x.pop())        // fail 1
-  B_yourFunc([1,2,3], x=> x.push('four')) // fail 2
-  B_yourFunc([1,2,3], x=> x[1]=5)         // fail 3
-  B_yourFunc({a:1, b:2}, x=> delete x.b)  // fail 4
-  B_yourFunc({a:1}, x=> x.b=2)            // fail 5
-  B_yourFunc({a:1}, x=> x.a=2)            // fail 6
-            expected_tests = 20
-            expected_fails = 6
-fail_tests = type_czech.countFails()
-total_tests = type_czech.countTally()
-if (expected_tests !== total_tests) 
-    throw `B. _check_mutatedSnapshot().md ${expected_tests} expected_tests !== ${total_tests} total_tests`
-else if (expected_fails !== fail_tests) 
-    throw `B. _check_mutatedSnapshot().md ${expected_fails} expected_fails !== ${fail_tests} fail_tests`
-else if (typeof TEST_total_checks === 'undefined')
-  console.log('no-issues: pass', expected_tests-expected_fails, ' fail', expected_fails)
-else
-  TEST_total_checks += expected_tests
+  TEST_total_checks += expectedAndFailedTests(8, 0, 'B-Pass', '_check_mutatedSnapshot().md');
 
 
+  B_yourFunc([1,2,3], x=> x.pop())        // pre-pass-1, post-fail-1
+  B_yourFunc([1,2,3], x=> x.push('four')) // pre-pass-3, post-fail-4
+  B_yourFunc([1,2,3], x=> x[1]=5)         // pre-pass-5, post-fail-6
+  B_yourFunc({a:1, b:2}, x=> delete x.b)  // pre-pass-7, post-fail-8
+  B_yourFunc({a:1}, x=> x.b=2)            // pre-pass-9, post-fail-10
+  B_yourFunc({a:1}, x=> x.a=2)            // pre-pass-11, post-fail-12
+  // 12 tests, 6 fails
+  TEST_total_checks += expectedAndFailedTests(12, 6, 'B-Fail', '_check_mutatedSnapshot().md');
 
-
-
-
-
-
-
-
-/*
+  /*
 ### C. check_mutatedSnapshot() fail from recursive calls
 */
 
 type_czech = TypeCzech('NO-ERROR-MESSAGES')
 function C_PRE_check_recurseArr(growing_array){
-  type_czech.check_buildSnapshot('C_PRE_check_recurseArr', 'growing_array', growing_array)
+  return type_czech.check_buildSnapshot('C_PRE_check_recurseArr', 'growing_array', growing_array)
 }
 
 function C_POST_check_recurseArr(growing_array){
@@ -220,7 +194,7 @@ else
 
 type_czech = TypeCzech('LOG-ERRORS')
 function D_PRE_check_yourFunc(b_collection) {
-  type_czech.check_buildSnapshot('D_PRE_check_yourFunc', 'b_collection', b_collection)
+  return type_czech.check_buildSnapshot('D_PRE_check_yourFunc', 'b_collection', b_collection)
 }
 function D_POST_check_yourFunc() {
   return type_czech.check_mutatedSnapshot('D_PRE_check_yourFunc', 'b_collection', 'error-param')

@@ -43,15 +43,15 @@ Type Errors:
   TE@224 Signature type is not a string
   TE@225 Type should be Array
   TE@226 Variable does not match expected type
-  TE@227 TypeCzech.check_typeExtra(collection_a, collection_b) needs two collections to work
-  TE@228 check_typeExtra(array_2_elems_a, array_2_elems_b) needs each array to have at least two types to work
+  TE@227 TypeCzech.checkParam_typeExtra(collection_a, collection_b) needs two collections to work
+  TE@228 checkParam_typeExtra(array_2_elems_a, array_2_elems_b) needs each array to have at least two types to work
   TE@229 undefined is not a valid type
   TE@229 Only a string can be a valid type
   TE@230 Incorrect type
-  TE@231 TypeCzech.check_emptyExtra(collection_a, collection_b) needs two collections to work
+  TE@231 TypeCzech.checkParam_emptyExtra(collection_a, collection_b) needs two collections to work
   TE@232 Element type invalid
-  TE@234 check_typeExtra(params, ['number']) is illegal
-  TE@234 check_emptyExtra(params, ['EMPTY-ERROR']) is prohibited
+  TE@234 checkParam_typeExtra(params, ['number']) is illegal
+  TE@234 checkParam_emptyExtra(params, ['EMPTY-ERROR']) is prohibited
 
 Empty Errors:
   EE@301 an empty variable that is an error
@@ -70,9 +70,11 @@ Empty Errors:
   EE@314 Internal, Empty Array type has an empty array
   EE@315 Extra key in checked object
   EE@316 Empty Array type has an empty array
+    EE@317 checkParam_emptyExtra(array_param_a, array_param_a) needs two arrays to work
+    EE@318 checkParam_emptyExtra(array_2_elems_a, array_2_elems_b) needs each array to have at least two types to work
+  EE@319 checkParam_emptyExtra has first parameter empty
+  EE@320 checkParam_typeExtra has first parameter wrong type
 
-    EE@317 check_emptyExtra(array_param_a, array_param_a) needs two arrays to work
-    EE@318 check_emptyExtra(array_2_elems_a, array_2_elems_b) needs each array to have at least two types to work
 
 Misc Errors:
   ME@401 a_checking_function() not called with required 2 parameters
@@ -93,12 +95,12 @@ Interface Errors:
   IE@505 Interface argument is not an object
 
 Variadic Errors:
-  VE@601 Use check_typeVariadic(num_params, ['number']) instead of check_typeVariadic(num_params, 'number')
-  VE@602 Use check_type() instead of check_typeVariadic()
-  VE@603 Use check_typeVariadic() instead of check_type()
-  VE@604 Use check_emptyVariadic() instead of check_empty()
-  VE@605 Use check_emptyVariadic(X,Y) instead of check_emptyVariadic(A,B)
-  VE@606 Use check_empty() instead of check_emptyVariadic()
+  VE@601 Use checkArgs_typeVariadic(num_params, ['number']) instead of checkArgs_typeVariadic(num_params, 'number')
+  VE@602 Use checkParam_type() instead of checkArgs_typeVariadic()
+  VE@603 Use checkArgs_typeVariadic() instead of checkParam_type()
+  VE@604 Use checkArgs_emptyVariadic() instead of checkParam_empty()
+  VE@605 Use checkArgs_emptyVariadic(X,Y) instead of checkArgs_emptyVariadic(A,B)
+  VE@606 Use checkParam_empty() instead of checkArgs_emptyVariadic()
 
 Either Errors:
   UE@701 Need at least 2 choices for either type  ****

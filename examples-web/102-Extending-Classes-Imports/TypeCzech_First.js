@@ -3,9 +3,9 @@ function TypeCzech_First() {
   if (type_czech.isActive()) {
     function PRE_check_First(f_name){
       log(NL+'PRE -First') 
-      type_issue = type_czech.check_type(f_name, 'string')
+      type_issue = type_czech.checkParam_type(f_name, 'string')
       if (type_issue) return type_issue;
-      return type_czech.check_empty(arguments, 'EMPTY-ERROR');      
+      return type_czech.checkParam_empty(f_name, 'EMPTY-ERROR');      
     }
     function POST_check_First(First){
       log(NL+'POST-First')
@@ -14,11 +14,11 @@ function TypeCzech_First() {
     }
     function PRE_check_firstMethod(a_date){
       log('PRE -firstMethod') 
-      return type_czech.check_type(arguments, 'date')
+      return type_czech.checkParam_type(a_date, 'date')
     }
     function POST_check_firstMethod(a_date){
       log('POST-firstMethod') 
-      return type_czech.check_type(arguments, 'date')
+      return type_czech.checkParam_type(a_date, 'date')
     }
 
 

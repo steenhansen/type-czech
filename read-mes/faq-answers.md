@@ -40,12 +40,12 @@ Having easily controllable type checking at runtime in both the browser and Node
 
         function PRE_check_yourFunction(param_1, param_2){ 
           /* TypeCzech functions always appear here */
-          return type_check.check_type(arguments, ['string', 'string'])
+          return type_check.checkParam_type(arguments, ['string', 'string'])
         }
 
         function POST_check_yourFunction(results){ 
           /* and TypeCzech functions sometimes appear here */
-          type_check.check_empty(results, 'EMPTY-ERROR')
+          type_check.checkParam_empty(results, 'EMPTY-ERROR')
         }
         
         yourFunction = type_czech.linkUp(yourFunction, PRE_check_yourFunction, POST_check_yourFunction)
@@ -57,7 +57,7 @@ Having easily controllable type checking at runtime in both the browser and Node
         fetch(some_url)
         .then(response => {
           if (type_czech.isActive()) {
-            /* and TypeCzech functions infrequently show up here paired with an assert_check() */
+            /* and TypeCzech functions infrequently show up here paired with an check_assert() */
           }
         })
 
