@@ -131,21 +131,28 @@ Is to 'LOG-ERRORS' or 'THROW-EXCEPTIONS' when errors are found and returned from
 
 In the below example, PRE_check_yourFunction() and POST_check_yourFunction() are only executed, via linkUp(), because TypeCzech.js is loaded. The two commented out lines have no effect when <b>TypeCzech.js is loaded</b>. PRE_check_yourFunction() checks function parameters before yourFunction() runs, and POST_check_yourFunction() checks function results after yourFunction() runs.
 ```
-<script src="TypeCzech.js"></script>
-  
+// <script src="TypeCzech.js"></script>
+
 if (typeof TypeCzech === 'function')
   type_czech = TypeCzech('THROW-EXCEPTIONS')  // TypeCzech.js is active
 //else
 //  type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
 
-function PRE_check_yourFunction(param_1, param_2){ /* check parameters before execution */ }
-function POST_check_yourFunction(results){ /*         check results after execution */ }
+function PRE_check_yourFunction(param_1, param_2){
+  console.log('PRE', param_1, param_2) // parameters before function execution
+}
+function POST_check_yourFunction(results){ 
+  console.log('POST', results) // results after function execution
+}
 
 yourFunction = type_czech.linkUp(yourFunction, PRE_check_yourFunction, POST_check_yourFunction)
 
 function yourFunction(param_1, param_2){
-  return results
+  console.log('yourFunction()', param_1, param_2)
+  return [param_1, param_2]
 }
+
+yourFunction(1, 'two')
 ```
 
 When <b>TypeCzech.js is not loaded</b> only yourFunction() has any effect, as below. Note the linkUp() function is a no-operation when TypeCzech.js is not loaded.
@@ -156,14 +163,17 @@ When <b>TypeCzech.js is not loaded</b> only yourFunction() has any effect, as be
 //else
   type_czech = { linkUp: (nop) => nop, isActive: (x) => false }  // TypeCzech.js was not loaded
 
-//function PRE_check_yourFunction(param_1, param_2){ }
-//function POST_check_yourFunction(results){ }
+//function PRE_check_yourFunction(){ }
+//function POST_check_yourFunction(){ }
 
 //yourFunction=type_czech.linkUp(yourFunction, PRE_check_yourFunction, POST_check_yourFunction)
 
 function yourFunction(param_1, param_2){
-  return results
+  console.log('yourFunction()', param_1, param_2)
+  return [param_1, param_2]
 }
+
+yourFunction(1, 'two')
 ```
 
 <b>So basically linkUp() and isActive() are the only two TypeCzech functions that are always safe to call.</b>
@@ -174,12 +184,12 @@ As long as the below construct is used, regardless of whether or not TypeCzech.j
  else
    type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
 
- type_czech.linkUp()
+ type_czech.linkUp(aFunction, PRE_check_aFunction, POST_check_aFunction)
  type_czech.isActive()
 ```
 
 ### The Recipe
-  TypeCzech function calls should only appear in these three places: 
+  TypeCzech function checking calls should only appear in these three places: 
 
   - A. encased by a linked up PRE_check() function
   - B. wrapped by a linked up POST_check() function
@@ -187,30 +197,30 @@ As long as the below construct is used, regardless of whether or not TypeCzech.j
     have to deliver the error message via an check_assert() call; it's not automatic.
 
 ```
-function PRE_check_yourFunc(){ 
+function PRE_check_yourFunc(param_1, param_2, param_3){ 
   /* A. TypeCzech functions should mostly appear here to check parameters before yourFunc() runs */
 }
 
-function POST_check_yourFunc(){ 
+function POST_check_yourFunc(function_result){ 
   /* B. TypeCzech functions sometimes occur here to check the results of yourFunc() */
 }
 yourFunc = type_czech.linkUp(yourFunc, PRE_check_yourFunc, POST_check_yourFunc)
 
-function yourFunc(){ }
-
-
+function yourFunc(param_1, param_2, param_3){ 
+  return function_result
+}
 
 fetch(some_url)
-.then(a_response => {
+.then(response_value => {
   if (type_czech.isActive()) {
     /* C. TypeCzech functions rarely show up here, but check_assert() is used to deliver errors */
-    type_err = type_czech.checkParam_type(a_response, 'array')
-    type_czech.check_assert(type_err, 'FETCH ERROR', a_response) // report type error if any
+    type_err = type_czech.checkParam_type(response_value, 'array')
+    type_czech.check_assert(type_err, 'ERROR IS HERE', response_value, expected_error) // report type error if any
   }
 })
 ```
-Above in the fetch() promise chain, if the variable 'a_response' is not an array then
-the variable 'type_err' will not be an empty string. If the 'type_err' is not an empty string, then type_czech.check_assert() will throw or console.log the error message. So if the variable 'a_response' is an array then the fetch() code will run without incident.
+Above in the fetch() promise chain, if the variable 'response_value' is not an array then
+the variable 'type_err' will not be an empty string. If the 'type_err' is not an empty string, then type_czech.check_assert() will throw or console.log the error message. So if the variable 'response_value' is an array then the fetch() code will run without incident.
 
 
 
@@ -220,7 +230,7 @@ When TypeCzech.js is not loaded, then the below construct renders all linkUp() c
 type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
 ```  
 
-### [Type Signatures](./read-mes/type-signature.md)
+### [Type Signatures](./read-mes/type-signatures.md)
 
 
 ### [65 Page Live Editable Tutorial on JSFiddle](https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Contents)

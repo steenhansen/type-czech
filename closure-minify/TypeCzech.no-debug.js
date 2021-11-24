@@ -1,5 +1,5 @@
 /* eslint-disable block-scoped-var */
-const VERS_NUM = 'v1.0.0 2021-11-23';
+const VERS_NUM = 'v1.0.0 2021-11-24';
 
 /*
     TypeCzech contains:
@@ -60,7 +60,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
     } else if (typeof export_tech_czech.TYPE_CZECH_COMMANDS !== 'undefined'
         && export_tech_czech.TYPE_CZECH_COMMANDS.length > 0) {
       // eslint-disable-next-line no-use-before-define, no-param-reassign
-      export_tech_czech.type_czech = _TypeCzech(export_tech_czech.TYPE_CZECH_COMMANDS);
+      export_tech_czech.type_czech = _TypeCzech(export_tech_czech.TYPE_CZECH_COMMANDS); // for examples
     } else {
       // eslint-disable-next-line no-param-reassign, no-unused-vars
       export_tech_czech.type_czech = { linkUp: (nop) => nop, isActive: (_) => false };
@@ -92,19 +92,19 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
 
       let OP_THROW_EXCEPTIONS = false; // 'THROW-EXCEPTIONS'
       let OP_NO_ERROR_MESSAGES = false; // 'NO-ERROR-MESSAGES'
-      let OP_LOG_ERRORS = false; //       'LOG-ERRORS'   'NO-CHECKING' stops checking
+      let OP_LOG_ERRORS = false; //       'LOG-ERRORS'          'NO-CHECKING' stops checking
 
       // 'UNDEF-OK' only affects checkParam_type(), checkParam_typeExtra(), checkParam_typeEither(), and checkParam_typeExtra()
       let OP_UNDEF_OK = false; //            'UNDEF-OK'
 
       let OP_CONSOLE_COUNT = false; //       'CONSOLE-COUNT'
       let OP_DEBUG_ERROR_TAGS = false;//     'DEBUG-ERROR-TAGS' show "TC@123" for fast finding of bugs
-      let OP_DEBUG_CONSOLE_TRACE = false; // 'DEBUG-CONSOLE-TRACE'
+      let OP_DEBUG_CONSOLE_TRACE = false; // 'DEBUG-CONSOLE-TRACE' shows all function entries and exits
 
       const DIFF_BEGIN_LEN = 100;
       const DIFF_END_LEN = 50;
       const DIFF_BREAK_MIN = DIFF_BEGIN_LEN + DIFF_END_LEN + 10;
-      const DIFF_SEPARATOR = '<<<~~~>>>'; // hide tonnes of diff text
+      const DIFF_SEPARATOR = '<<<~~~>>>'; // hides tonnes of diff text
 
       const MESS_TYPE_VARIADIC = 'checkArgs_typeVariadic()';
       const MESS_EMPTY_VARIADIC = 'checkArgs_emptyVariadic()';
@@ -127,7 +127,7 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
       const ERROR_COLORS = 'background: #ee0; color: #F00'; // background colors on check events
       const START_COLORS = 'background: #cc0; color: #080';
 
-      const BLANK_REF_DIFF = "''"; // no difference indicator
+      const BLANK_REF_DIFF = "''"; // no difference indication
 
       const CZECH_ERROR_INDENT = '\n\t\t';
 
@@ -188,16 +188,16 @@ if (typeof TYPE_CZECH_current_test_number === 'undefined') {
       const NAN_AS_STR = 'NaN';
       const INFINITY_AS_STR = 'Infinity';
 
-      const PLAIN_UNDEFINED_STR_VALUE = 'Str_ify:und';
+      const PLAIN_UNDEFINED_STR_VALUE = 'Str_ify_100057_100193:und_200087';
       const QUOTED_UNDEFINED_STR_VALUE = `"${PLAIN_UNDEFINED_STR_VALUE}"`; // temporary values
 
-      const PLAIN_NULL_STR_VALUE = 'Str_ify:null';
+      const PLAIN_NULL_STR_VALUE = 'Str_ify_100333_100417:null_200227';
       const QUOTED_NULL_STR_VALUE = `"${PLAIN_NULL_STR_VALUE}"`;
 
-      const PLAIN_NAN_STR_VALUE = 'Str_ify:NaN';
+      const PLAIN_NAN_STR_VALUE = 'Str_ify_100523_100669:NaN_200351'; // Not perfect, but good enough for me
       const QUOTED_NAN_STR_VALUE = `"${PLAIN_NAN_STR_VALUE}"`;
 
-      const PLAIN_INFINITY_STR_VALUE = 'Str_ify:Inf';
+      const PLAIN_INFINITY_STR_VALUE = 'Str_ify_100799_100931:Inf_200461';
       const QUOTED_INFINITY_STR_VALUE = `"${PLAIN_INFINITY_STR_VALUE}"`;
 
       const START_CHECK_COLOR = 'green';
@@ -252,6 +252,8 @@ type_czech._isCollection([]);
 //true
 type_czech._isCollection({});
 //true
+type_czech._isCollection('');
+//false
 type_czech._isCollection(12);
 //false
 */
@@ -274,17 +276,26 @@ type_czech._isArgumentsObject([1]);
 type_czech._isArgumentsObject({abc:17, length:0});
 //false
 
-type_czech._isArgumentsObject({0:'a', length:11});
+type_czech._isArgumentsObject({def:18, length:1});
 //false
 
-type_czech._isArgumentsObject({0:'a', 2:'b', length:2});
+type_czech._isArgumentsObject({ghi:19, length:2});
 //false
 
-type_czech._isArgumentsObject({length:0});
-//true
+function test_a_1901(a_var){
+  console.log('true', type_czech._isArgumentsObject(arguments));
+}
+test_a_1901(1901)
 
-type_czech._isArgumentsObject({0:'a', length:1});
-//true
+function test_b_1902(a_var){
+  console.log('true', type_czech._isArgumentsObject(arguments));
+}
+test_b_1902(1902)
+
+function test_c_1903(a_var){
+  console.log('true', type_czech._isArgumentsObject(arguments));
+}
+test_c_1903(1903, 1904)
 */
       function _isArgumentsObject(the_params) {
         
@@ -346,8 +357,6 @@ type_czech._toStr(Symbol('sym'))
 //Symbol('sym')
 type_czech._toStr({a:1, "b b":22, c:33});
 //{a:1,\"b b\":22,c:33}
-type_czech._toStr(Infinity)
-//"Infinity"
 type_czech._toStr("")
 //''
 */
@@ -404,13 +413,13 @@ type_czech._toStr("")
 
       /*
 type_czech._stringifyReplacer('not-used', Infinity);
-//Str_ify:Inf
+//Str_ify_100799_100931:Inf_200461
 type_czech._stringifyReplacer('not-used', 12n);
 //12n
 type_czech._stringifyReplacer('not-used', undefined);
-//Str_ify:und
+//Str_ify_100057_100193:und_200087
 type_czech._stringifyReplacer('not-used', NaN);
-//Str_ify:NaN
+//Str_ify_100523_100669:NaN_200351
 type_czech._stringifyReplacer('not-used', function(x,y,z){console.log(x,y,z)});
 //function(x,y,z){console.log(x, ***
 type_czech._stringifyReplacer('not-used', Symbol("sym"));
@@ -457,7 +466,7 @@ type_czech._jsonStr(Infinity);
 type_czech._jsonStr(undefined);
 //undefined
 type_czech._jsonStr({a:1, b:22n, c:undefined, d:{e:'f', g:'h'}});
-//{\"a\":1,\"b\":\"22n\",\"c\":\"Str_ify:und\",\"d\":{\"e\":\"f\",\"g\":\"h\"}}
+//{\"a\":1,\"b\":\"22n\",\"c\":\"Str_ify_100057_100193:und_200087\",\"d\":{\"e\":\"f\",\"g\":\"h\"}}
 type_czech._jsonStr([1n,[2n,[3n,[4n]]]]);
 //[\"1n\",[\"2n\",[\"3n\",[\"4n\"]]]]
 type_czech._jsonStr(Symbol("sym"))
@@ -465,9 +474,9 @@ type_czech._jsonStr(Symbol("sym"))
 type_czech._jsonStr("")
 //''
 type_czech._jsonStr({Infinity:Infinity, NaN: NaN, null:null, undefined:undefined})
-//{\"Infinity\":\"Str_ify:Inf\",\"NaN\":\"Str_ify:NaN\",\"null\":\"Str_ify:null\",\"undefined\":\"Str_ify:und\"}
+//{\"Infinity\":\"Str_ify_100799_100931:Inf_200461\",\"NaN\":\"Str_ify_100523_100669:NaN_200351\",\"null\":\"Str_ify_100333_100417:null_200227\",\"undefined\":\"Str_ify_100057_100193:und_200087\"}
 type_czech._jsonStr([Infinity, NaN, null, undefined])
-//[\"Str_ify:Inf\",\"Str_ify:NaN\",\"Str_ify:null\",\"Str_ify:und\"]
+//[\"Str_ify_100799_100931:Inf_200461\",\"Str_ify_100523_100669:NaN_200351\",\"Str_ify_100333_100417:null_200227\",\"Str_ify_100057_100193:und_200087\"]
 */
       function _jsonStr(an_object) {
         
@@ -591,7 +600,7 @@ type_czech._isBuiltInClass([]);
 
       /*
 type_czech._anObjectsType('a-string');
-//String
+//string
 type_czech._anObjectsType(x=>x);
 //false
 type_czech._anObjectsType({});
@@ -743,7 +752,7 @@ type_czech.typeIsA(null, 'null');
 //true
 type_czech.typeIsA(undefined, 'undefined');
 //true
-type_czech.typeIsA(Infinity, 'number');
+type_czech.typeIsA(undefined, 'undefined');
 //true
 type_czech.typeIsA(NaN, 'number');
 //true
@@ -872,7 +881,7 @@ type_czech._shortToLongType("Y");
 //Y
 type_czech._shortToLongType("n");
 //number
-type_czech._shortToLongType("n");
+type_czech._shortToLongType("N");
 //N
 */
       function _shortToLongType(a_type) {
@@ -985,7 +994,7 @@ type_czech._consoleError("errorText", 'TheTAG');
         if (OP_DEBUG_ERROR_TAGS && error_tag) {
           const debug_error = `${error_tag} - ${error_text}`;
           if (OP_DEBUG_CONSOLE_TRACE) {
-            _coloredConsole(debug_error, ERROR_COLORS); // only if type_czech = TypeCzech('LOG-ERRORS')
+            _coloredConsole(debug_error, ERROR_COLORS);
           }
           return debug_error;
         }
@@ -1045,7 +1054,7 @@ type_czech._isEmpty(new Date(''));
 type_czech._isEmpty('');
 //true
 type_czech._isEmpty(' ');
-//true
+//false
 type_czech._isEmpty(0);
 //false
 type_czech._isEmpty(NaN);
@@ -1170,7 +1179,7 @@ type_czech._getParameters({length:0});
         } else if (parameters_obj.length === 0) {
           if (!Array.isArray(parameters_obj)) {
             no_parameters = true;
-            // this is an incoming PRE parameter check
+            // this is most likely an incoming PRE parameter check
           } else {
             // this is an outgoing post result check
           }
@@ -1179,7 +1188,7 @@ type_czech._getParameters({length:0});
           if (!Array.isArray(parameters_obj)) {
             // eslint-disable-next-line prefer-destructuring
             the_params = parameters_obj[0];
-            // this is an incoming PRE parameter check
+            // this is most likely an incoming PRE parameter check
           } else {
             the_params = parameters_obj;
             // this is an outgoing post result check
@@ -1310,8 +1319,11 @@ type_czech._ParametersCheck(false);
 //confirmParameters: function realConfirmParams(target_proxy, pre_checks, post_checks)
 //countFails_: function countFails_()
 //countTally_: function countTally_()
+//countZero_: function countZero_()
 //disableTests_: function disableTests_()
 //enableTests_: function enableTests_()
+//newCheck: function newCheck()
+//newFail: function newFail()
 //p_call_traps: true
 
 type_czech._ParametersCheck(type_czech.TYPE_CZECH_EVENTS);
@@ -1319,8 +1331,11 @@ type_czech._ParametersCheck(type_czech.TYPE_CZECH_EVENTS);
 //confirmParameters: function realConfirmParams(target_proxy, pre_checks, post_checks)
 //countFails_: function countFails_()
 //countTally_: function countTally_()
+//countZero_: function countZero_()
 //disableTests_: function disableTests_()
 //enableTests_: function enableTests_()
+//newCheck: function newCheck()
+//newFail: function newFail()
 //p_call_traps: true
 */
       function _ParametersCheck(arg_check_events) {
@@ -1595,12 +1610,12 @@ check_error=type_czech.checkParam_typeEither(false,['number','string'])
 error_location = 'thirdParty call'
 actual_value = false
 type_czech.check_assert(check_error, error_location, actual_value, 'not-used')
-//Assert Location: thirdParty call()  TE@226 - The value 'false', which is a 'boolean', is not a 'number', TE@226 - The value 'false', which is a 'boolean', is not a 'string'
-//checkParam_typeEither()
-//    ACTUAL TYPES 'boolean'
-//    ACTUAL VALUE false
+//TE@226 - The value 'false', which is a 'boolean', is not a 'number', TE@226 - The value 'false', which is a 'boolean', is not a 'string'
+//         CHECKER checkParam_typeEither()
+//     ACTUAL TYPE 'boolean'
+//          VALUES false
 //   EXPECTED TYPE ["number","string"]
-//CALLING FUNCTION TypeCzech.check_assert()
+//          ORIGIN thirdParty call
 
 test_1999 = new Date('1999-12-12')
 test_1999.setFullYear(2000);
@@ -1613,13 +1628,12 @@ if (type_czech.isActive()) {
     type_czech.check_assert(check_error, error_location, test_year, expected_outcome)
   }
 }
-//Assert Location: TESTING test_1999.getFullYear()
-// Assert Message: TEST ERROR A-17, year was not 1999 but incorrectly 2000
-//  TypeCzech.check_assert()
-//      ACTUAL TYPES 'number'
-//      ACTUAL VALUE 2000
-//    EXPECTED Year should have been 1999
-//  CALLING FUNCTION TypeCzech.check_assert()
+//MESSAGE TEST ERROR A-17, year was not 1999 but incorrectly 2000
+//         CHECKER check_assert()
+//     ACTUAL TYPE 'number'
+//          VALUES 2000
+//        EXPECTED Year should have been 1999
+//          ORIGIN TESTING test_1999.getFullYear()
 
 test_1999 = new Date('1999-12-12')
 test_1999.setFullYear(2000);
@@ -1631,25 +1645,24 @@ if (type_czech.isActive()) {
     type_czech.check_assert(check_error, error_location, test_year)
   }
 }
-//Assert Location: TESTING test_1999.getFullYear()
-// Assert Message: TEST ERROR A-17, year was not 1999 but incorrectly 2000
-//  TypeCzech.check_assert()
-//      ACTUAL TYPES 'number'
-//      ACTUAL VALUE 2000
-//    EXPECTED
-//  CALLING FUNCTION TypeCzech.check_assert()
+//MESSAGE TEST ERROR A-17, year was not 1999 but incorrectly 2000
+//         CHECKER check_assert()
+//     ACTUAL TYPE 'number'
+//          VALUES 2000
+//        EXPECTED
+//          ORIGIN TESTING test_1999.getFullYear()
 
 error_mess= "a-clarifying-error-message"
 err_call =  "myBadFunction()"
 actual_value = {"the-causal":"error-value"}
 expected_outcome = "expected-world-peace"
-type_czech.check_assert(error_mess, err_call, actual_value, expected_outcome)       // this be good
-//     MESSAGE a-clarifying-error-message
-//     CHECKER check_assert()
-// ACTUAL TYPE 'object'
-//      VALUES {"the-causal":"error-value"}
-//    EXPECTED expected-world-peace
-//      ORIGIN myBadFunction()
+type_czech.check_assert(error_mess, err_call, actual_value, expected_outcome)
+//MESSAGE a-clarifying-error-message
+//         CHECKER check_assert()
+//     ACTUAL TYPE 'object'
+//          VALUES {"the-causal":"error-value"}
+//        EXPECTED expected-world-peace
+//          ORIGIN myBadFunction()
 */
         // This flows into the TypeCzech error messages without being linkUp(), for promises
         function check_assert_(error_mess, err_call, actual_value, expected_outcome) {
@@ -1673,8 +1686,6 @@ type_czech.check_assert(error_mess, err_call, actual_value, expected_outcome)   
               error_mess = [MESS_CHECK_ASSERT, new_message_error, expected_outcome_str];
             }
             const list_of_parameters = [actual_value];
-            
-            
             
             
             
@@ -1830,7 +1841,7 @@ type_czech.check_assert(error_mess, err_call, actual_value, expected_outcome)   
           if (typeof pre_post_checks === 'function') {
             the_check = pre_post_checks;
           } else if (typeof pre_post_checks === 'undefined') {
-            the_check = false; // NB, no checks from an empty PRE(s)
+            the_check = false; // NB, no checks from an empty undefined PRE_check()
           } else {
             the_check = pre_post_checks[class_name];
           }
@@ -1974,7 +1985,7 @@ type_czech._cycle_loops.decycle({the_window:window});
 type_czech._cycle_loops.decycle(window);
 ///Object { close: close(), stop: stop(), focus: focus(), blur: blur(), open: open(), alert: alert(), confirm: confirm(), prompt: prompt(), print: print(), postMessage: postMessage(), … }
 
-var a = [1n, 2n, 3n];
+var a = ['loop', 2n, 3n];
 a[0] = a;
 type_czech._cycle_loops.decycle(a);
 //[{"$ref":"$"}, 2n, 3n]
@@ -2240,12 +2251,8 @@ if (typeof node === 'number' && !Number.isFinite(node)) return 'Infinity';
 if (node === undefined) return 'undefined';
 if (typeof node === 'bigint') return JSON.stringify(node + 'n');
 if (typeof node === 'symbol') return node.toString();
-if (typeof node === 'function') {
-  return String(node);
-}
-if (node && node.constructor === RegExp) {
-  return String(node);
-}
+if (typeof node === 'function') return String(node);
+if (node && node.constructor === RegExp) return String(node);
 // end of modifications
 
             //if (node === undefined) return;
@@ -2375,7 +2382,7 @@ type_czech._shapeContainer( [  [[1, false], [2, false]], [[1, false], [2, 2]] ] 
 type_czech._shapeContainer({a:[1,2,3]}, {a:'object'}, 'TYPE-EXTRAS', 179);
 //TE@207 - Param is meant to be 'object' but is of the wrong type of 'array':[1,2,3]
 type_czech._shapeContainer([ 13, 14, 15 ], { r: "number" }, 'TYPE-EXTRAS', 179);
-TE@207 - Param is meant to be 'object' but is of the wrong type of 'array':[13,14,15]
+//TE@207 - Param is meant to be 'object' but is of the wrong type of 'array':[13,14,15]
 */
       function _shapeContainer(check_container, container_shape, the_type) {
         
@@ -2548,7 +2555,7 @@ type_czech._shapeArrayTypes([], ['number'], 'TYPE-VERIFY');
 type_czech._shapePropertyType({r:"n"}, 'r', 11);
 //""
 type_czech._shapePropertyType({r:"not-real"}, 'r', 11);
-//TE@210 - The type 'not-real' is not checkParam_type
+//TE@210 - Type 'not-real' is not a real type
 type_czech._shapePropertyType({r:"n"}, 'r', undefined);
 //TE@211 - Key 'r' was given to be a 'number' but is 'undefined'
 type_czech._shapePropertyType({r:"n"}, 'r', null);
@@ -2696,19 +2703,14 @@ type_czech._shapeScalar(4, 'null');
       /*
 type_czech._shapeVariable([456,789] , ["number"], 'TYPE-EXTRAS');
 //""
-
 type_czech._shapeVariable([[456,789]] , [["number"]], 'TYPE-EXTRAS');
 //""
-
 type_czech._shapeVariable(17 ,"number", 'TYPE-VERIFY');
 //""
-
 type_czech._shapeVariable(17 ,"string", 'TYPE-VERIFY');
-//IE@502 - The variable '17', which is a 'number', is not a 'string'
-
+//TE@226 - The variable '17', which is a 'number', is not a 'string'
 type_czech._shapeVariable({a:123, b:456}, {a:"number", b:"string"}, 'TYPE-VERIFY');
 //TE@213 - Property 'b' is indicated to be a 'string', but is inaccurately a 'number' : 456
-
 type_czech._shapeVariable(['hello', 'there'] , ["string"], 'TYPE-VERIFY');
 //''
 */
@@ -2787,7 +2789,7 @@ type_czech._emptyError('bad-EMPTY', 'a-string', 0, ['a-string', 17], 'string', '
 type_czech._emptyArrayInArray([[11], [13], [17]], ["ER"], 'EMPTY-VERIFY');
 //""
 type_czech._emptyArrayInArray([[11], [NaN], [17]], ["ER"], 'EMPTY-VERIFY');
-//EE@311 - ELEMENT '0' is erroneously empty :  inside [1]
+//EE@311 - ELEMENT '0' is erroneously empty :
 type_czech._emptyArrayInArray([["a-s", "", "c-s"], ["x-s",  "y-s", "z-s"]],   ["ER", "ER", "ER"], 'EMPTY-VERIFY');
 //
 type_czech._emptyArrayInArray([["a-s", "", "c-s"], ["x-s",  "y-s", "z-s"]],   [["ER", "ER", "ER"]], 'EMPTY-VERIFY');
@@ -2898,7 +2900,7 @@ type_czech._emptyArrayTypes(['', ''], ['EMPTY-OK', 'EMPTY-ERROR'], 'EMPTY-EXTRAS
 type_czech._emptyArrayTypes(['an-str', 'an-str'], ['EMPTY-OK', 'EMPTY-ERROR'], 'EMPTY-EXTRAS');
 //""
 type_czech._emptyArrayTypes([],["EMPTY-ER"],"EMPTY-VERIFY");
-//ME@403 - The parameter array [] is empty.
+//ME@403 - Param array [] is empty.
 */
       const _emptyArrayTypes = (check_array, array_shape, the_type) => {
         
@@ -2996,19 +2998,14 @@ type_czech._emptyKeysChecked('EMPTY-ERROR', {}, 'var-or-key-name');
       /*
 type_czech._emptyCollectionTypes({ r: '' }, { r: 'ER' }, 'EMPTY-VERIFY');
 //EE@301 -  key 'r' is a 'string' which is reputed to be 'EMPTY-ERROR' but has a value of ''
-
 type_czech._emptyCollectionTypes({ r: 11 }, { r: 'ER' }, 'EMPTY-VERIFY');
 //""
-
 type_czech._emptyCollectionTypes([[]], [['ER']], 'EMPTY-VERIFY');
 //EE@309 - Key '0' was understood to be 'EMPTY-ERROR' but was rather '[]'
-
 type_czech._emptyCollectionTypes([1,2], ["ER"], 'EMPTY-VERIFY');
 //EE@315 - Extra key in checked object - (1:2)
-
 type_czech._emptyCollectionTypes([1,'2'], ["ER"], 'EMPTY-VERIFY');
 //EE@315 - Extra key in checked object - (1:'2')
-
 type_czech._emptyCollectionTypes([1,2], ["ER"], 'EMPTY-EXTRAS');
 //""
 */
@@ -3061,7 +3058,6 @@ type_czech._emptyContainer({zero:0}, ['EMPTY-ERROR'], 'EMPTY-VERIFY');
 //EE@314 - Variable {zero:0} must be an array but is instead a 'object', : {zero:0}
 type_czech._emptyContainer([''], ['EMPTY-OK', 'EMPTY-ERROR'], 'EMPTY-EXTRAS');
 //''
-
 type_czech.checkParam_empty([''], ['EMPTY-OK', 'EMPTY-ERROR']);
 //checkParam_empty()
 //ME@404 - Param array [""] does not have the same number of elems as ["EMPTY-OK","EMPTY-ERROR"].  Different lengths 1 !== 2
@@ -3277,7 +3273,14 @@ type_czech._doEitherShape([  {"X":"an-str","Y":1234},   [{"X":"s","Y":"s"},{"X":
 
       /*
 type_czech._specParameters(["UNDEF-OK", "DEBUG-CONSOLE-TRACE", "what" ]);
+//[ "^^^ _jsonStr ENTER", "what", "49002" ]
+//[ "^^^ _stringifyReplacer ENTER", "", "what", "49002" ]
+//           ...
+//[ "^^^ _jsonStr EXIT", "EX@107 - Not THROW-EXCEPTIONS/LOG-ERRORS/UNDEF-OK/DEBUG-CONSOLE-TRACE/NO-CHECKING, unknown : what" ]
+//X@107 - Not THROW-EXCEPTIONS/LOG-ERRORS/UNDEF-OK/DEBUG-CONSOLE-TRACE/NO-CHECKING, unknown : wha
 //Uncaught EX@107 - Not THROW-EXCEPTIONS/LOG-ERRORS/UNDEF-OK/DEBUG-CONSOLE-TRACE/NO-CHECKING, unknown : what
+
+// REFRESH browser as now everything will be traced
 */
       function _specParameters(the_commands) {
         
@@ -3322,29 +3325,29 @@ type_czech._specParameters(["UNDEF-OK", "DEBUG-CONSOLE-TRACE", "what" ]);
 
       /*
 type_czech._twoArrays([ 'not-object', {an_object:'Boaty-McBoatFace'} ], 'fail-2');
+//fail-2()
 //TE@201 - fail-2() called with '{}' against '!{}'. Contrasting a string type of value not-object, with '{\"an_object\":\"Boaty-McBoatFace\"}' an object !!! string <> object
+//{'an_object':'Boaty-McBoatFace'}
+
 type_czech._twoArrays([12, 'var-type-as-string'], 'ok-1');
 //''
 type_czech._twoArrays([['a-string'], 'string'], 'methodName');
 //''
 
 type_czech._twoArrays([ 'not-array', ['an-array'] ], 'fail-1');
-//undefined
-//TE@217 - Comparing 'string' parameter, with a value of not-array, in relation to expected shape of [\"an-array\"]. They should be the same type. You cannot compare an array with a non-array; both []s, or both 'string's. Or same object keys
+//fail-1()
+//TE@217 - Comparing 'string' parameter, with a value of not-array, to expected shape of [\"an-array\"].
 //["an-array"]
 
 type_czech._twoArrays([       'a-string', ['string']            ], 'methodName');
-//undefined
-//TE@217 - Comparing 'string' parameter, with a value of a-string, in relation to expected shape of [\"string\"]. They should be the same type. You cannot compare an array with a non-array; both []s, or both 'string's. Or same object keys
+//methodName()
+//TE@217 - Comparing 'string' parameter, with a value of a-string, to expected shape of [\"string\"].
 //['string']
 */
       function notArrayShape(parameters_list, shape_str) {
         
         const params_string = _toStr(parameters_list);
         const long_shape = _shortToLongType(shape_str);
-        // const error_219 = 'Comparing [] parameter, with a'
-        //     + ` value of ${params_string}, against expected shape of ${long_shape}. They should be the same type.`
-        //     + ` You cannot compare an array with a non-array; both []s, or both ${long_shape}s`;
         const error_219 = `Comparing [] parameter, with a value of ${params_string}, against expected shape of ${long_shape}.`;
         
         return error_219;
@@ -3354,9 +3357,6 @@ type_czech._twoArrays([       'a-string', ['string']            ], 'methodName')
         
         const params_string = _toStr(parameters_list);
         const long_shape = _shortToLongType(shape_str);
-        // const error_217 = `Comparing '${param_type}' parameter,`
-        // + ` with a value of ${params_string}, in relation to expected shape of ${long_shape}. They should be the`
-        // + ` same type. You cannot compare an array with a non-array; both []s, or both '${param_type}'s. Or same object keys`;
         const error_217 = `Comparing '${param_type}' parameter, with a value of ${params_string}, to expected shape of ${long_shape}.`;
         
         return error_217;
@@ -3529,6 +3529,8 @@ type_czech.checkParam_empty([12, [], 'a-string'], ['EMPTY-ERROR', 'EMPTY-OK', 'E
 //""
 type_czech.checkParam_empty({}, 'EMPTY-OK');
 //
+type_czech.checkParam_empty('a-string', 'EMPTY-ERROR');
+//
 
 type_czech.checkParam_empty([12, [], 'a-string'], ['EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR']);
 //checkParam_empty()
@@ -3550,7 +3552,6 @@ type_czech.checkParam_empty(null, 'EMPTY-ERROR');
 //EE@308 - A 'null' cannot be empty, so the state of 'EMPTY-ERROR' is illegal for the value 'null'
 //'EMPTY-ERROR'
 */
-
       // eslint-disable-next-line consistent-return
       function checkParam_empty(parameters_obj, shape_list) {
         if (t_param_check_func.p_call_traps) {
@@ -3589,25 +3590,29 @@ type_czech.checkParam_empty(null, 'EMPTY-ERROR');
       /*
 type_czech.checkArgs_emptyVariadic('a', 'EMPTY-ERROR');
 //checkArgs_emptyVariadic()
-//VE@605 - Use checkArgs_emptyVariadic(a, ['EMPTY-ERROR']') instead of checkArgs_emptyVariadic(a, 'EMPTY-ERROR')
+//Used parameters as first parameter to checkArgs_emptyVariadic(), this is wrong, for variadics use arguments.
 //EMPTY-ERROR
 
 type_czech.checkArgs_emptyVariadic(['a', 'b'], 'EMPTY-ERROR');
 //checkArgs_emptyVariadic()
-//VE@605 - Use checkArgs_emptyVariadic(["a","b"], ['EMPTY-ERROR']') instead of checkArgs_emptyVariadic(["a","b"], 'EMPTY-ERROR')
+//Used parameters as first parameter to checkArgs_emptyVariadic(), this is wrong, for variadics use arguments.
 //EMPTY-ERROR
 type_czech.checkArgs_emptyVariadic(["a","b"], ['EMPTY-ERROR']);
-//''
+//checkArgs_emptyVariadic()
+//Used parameters as first parameter to checkArgs_emptyVariadic(), this is wrong, for variadics use arguments.
+//[\"EMPTY-ERROR\"]
 
 type_czech.checkArgs_emptyVariadic(['a', 99], ['EMPTY-ERROR', 'EMPTY-OK']);
 //checkArgs_emptyVariadic()
-//VE@606 - Use checkParam_empty(["a",99], ["EMPTY-ERROR","EMPTY-OK"]) instead of checkArgs_emptyVariadic()
+//Used parameters as first parameter to checkArgs_emptyVariadic(), this is wrong, for variadics use arguments.
 //Array [ "EMPTY-ERROR", "EMPTY-OK" ]
 type_czech.checkParam_empty(["a",99], ["EMPTY-ERROR","EMPTY-OK"])
 //'
 
 type_czech.checkArgs_emptyVariadic(['a', 'b','c'], ['EMPTY-ERROR']);
-//""
+//checkArgs_emptyVariadic()
+//Used parameters as first parameter to checkArgs_emptyVariadic(), this is wrong, for variadics use arguments.
+//[\"EMPTY-ERROR\"]
 */
       // eslint-disable-next-line consistent-return
       function checkArgs_emptyVariadic(parameters_obj, shape_list) {
@@ -3687,7 +3692,7 @@ type_czech.checkParam_type([[['a']]], [["n"]]);
 
 type_czech.checkParam_type('a-string', ['string']);
 //checkParam_type()
-//TE@217 - Comparing 'string' parameter, with a value of a-string, in relation to expected shape of [\"string\"]. They should be the same type. You cannot compare an array with a non-array; both []s, or both 'string's. Or same object keys
+//TE@217 - Comparing 'string' parameter, with a value of a-string, to expected shape of [\"string\"].
 //['string']
 
 type_czech.checkParam_type([1,2,3], ["n", "n", "n"]);
@@ -3749,23 +3754,18 @@ type_czech.checkParam_type('a', 'string');
       /*
 type_czech.checkArgs_typeVariadic('a', 'string');
 //checkArgs_typeVariadic()
-//VE@601 - Use checkArgs_typeVariadic(a, ['string']') instead of checkArgs_typeVariadic(a, 'string')
+//Used parameters as first parameter to checkArgs_typeVariadic(), this is wrong, for variadics use arguments.
 //"string"
 
 type_czech.checkArgs_typeVariadic(['a','b'], 'string');
 //checkArgs_typeVariadic()
-//VE@601 - Use checkArgs_typeVariadic(['a','b'], ['string']') instead of checkArgs_typeVariadic(['a','b'], 'string')
+//Used parameters as first parameter to checkArgs_typeVariadic(), this is wrong, for variadics use arguments.
 //"string"
 
 type_czech.checkArgs_typeVariadic(['a', 99], ['string', 'number']);
 //checkArgs_typeVariadic()
-//VE@602 - Use checkParam_type(['a',99], ['string','number']') instead of checkArgs_typeVariadic()
+//Used parameters as first parameter to checkArgs_typeVariadic(), this is wrong, for variadics use arguments.
 //Array [ "string", "number" ]
-
-type_czech.checkArgs_typeVariadic('a', ['string']);
-//''
-type_czech.checkArgs_typeVariadic(['a', 'b','c'], ['string']);
-//""
 */
       // eslint-disable-next-line consistent-return
       function checkArgs_typeVariadic(parameters_obj, shape_list) {
@@ -3830,27 +3830,22 @@ type_czech.checkArgs_typeVariadic(['a', 'b','c'], ['string']);
       }
 
       /*
+type_czech.checkParam_emptyExtra('a-string', 'EMPTY-ERROR');
+""
 type_czech.checkParam_emptyExtra([17, 'c'], 'EMPTY-ERROR');
-//checkParam_emptyExtra()
-//TE@31 - checkParam_emptyExtra([17,"c"], EMPTY-ERROR) needs 2 collections to work
-//EMPTY-ERROR
-
-type_czech.checkParam_emptyExtra([17, 'c'], ['EMPTY-ERROR']);
-//checkParam_emptyExtra()
-//TE@235 - checkParam_emptyExtra([17,"c"], ["EMPTY-ERROR"]) try checkParam_emptyExtra([17,"c"], "EMPTY-ERROR") as ["EMPTY-ERROR"] is prohibited.
-//['EMPTY-ERROR']
+//""
 type_czech.checkParam_emptyExtra([17,""], "EMPTY-ERROR")
 //''
-
 type_czech.checkParam_emptyExtra(17, ['EMPTY-ERROR', 'EMPTY-ERROR']);
-//checkParam_emptyExtra()
-//EE@317 - checkParam_emptyExtra(17, [\"EMPTY-ERROR\",\"EMPTY-ERROR\"]) needs 2 arrays to work
-//['EMPTY-ERROR', 'EMPTY-ERROR']
-
+//""
 type_czech.checkParam_emptyExtra({a:17}, {a:'EMPTY-ERROR'});
 //''
 type_czech.checkParam_emptyExtra([17, 'abc', true], ['EMPTY-ERROR', 'EMPTY-ERROR']);
 //''
+type_czech.checkParam_emptyExtra([17, 'c'], ['EMPTY-ERROR']);
+//checkParam_emptyExtra()
+//TE@235 - checkParam_emptyExtra([17,"c"], ["EMPTY-ERROR"]) try checkParam_emptyExtra([17,"c"], "EMPTY-ERROR") as ["EMPTY-ERROR"] is prohibited.
+//['EMPTY-ERROR']
 */
       // eslint-disable-next-line consistent-return
       function checkParam_emptyExtra(parameters_obj, shape_list) {
@@ -3907,19 +3902,7 @@ type_czech.checkParam_emptyExtra([17, 'abc', true], ['EMPTY-ERROR', 'EMPTY-ERROR
           return error_str_3arr;
         }
       }
-      /*
-function PRE_check_noEmptyElementsArray(){
-  return type_czech.checkParam_emptyExtra(arguments, 'ER')
-}
 
-type_czech = TypeCzech('LOG-ERRORS')
-noEmptyElementsArray = type_czech.linkUp(noEmptyElementsArray, PRE_check_noEmptyElementsArray)
-
-function noEmptyElementsArray(single_array_with_extra){
-}
-noEmptyElementsArray('', '') // PRE fail - first parameter is empty
-
-*/
       function extraTypes(parameters_obj, shape_list) {
         
         // eslint-disable-next-line no-unused-vars
@@ -3939,14 +3922,15 @@ noEmptyElementsArray('', '') // PRE fail - first parameter is empty
       /*
 type_czech.checkParam_typeExtra([17], ['number', 'number']);
 //checkParam_typeExtra()
-//TE@228 - checkParam_typeExtra([17], ["number","number"]) needs each array to have at least 2 types to work
+//TE@221 - Element '1' is supposed to be a 'number', but is missing : [17]
 //['number','number']
 
 type_czech.checkParam_typeExtra([17, 'abc'], ['number']);
 //checkParam_typeExtra()
-//TE@234 - checkParam_typeExtra([17,"abc"], ["number"]) try checkParam_type([number, number], ["number"]) as ["number"] is illegal.
-// "['number']"
+//TE@234 - checkParam_typeExtra([17,\"abc\"], [\"number\"]) try checkParam_typeExtra([17,\"abc\"], 'number') as [\"number\"] is illegal.
+//"['number']"
 type_czech.checkParam_type([17, 12], ['number']);
+//""
 
 type_czech.checkParam_typeExtra([1,2], ["n", "n", "n"]);
 //checkParam_typeExtra()
@@ -3979,18 +3963,16 @@ type_czech.checkParam_typeExtra({a:17, b:false}, {a:'n'});
 //''
 
 type_czech.checkParam_typeExtra([17, 'c'], 'n');
-//checkParam_typeExtra()
-//TE@227 - checkParam_typeExtra([17,"c"], n) needs 2 collections to work
-//n
+//""
 
 type_czech.checkParam_typeExtra(17, ['n','s']);
 //checkParam_typeExtra()
-//TE@227 - checkParam_typeExtra(17, ["n","s"]) needs 2 collections to work
+//EE@320 - checkParam_typeExtra(17, '[\"n\",\"s\"]') has the first param wrong. TE@230 - The type '[\"n\",\"s\"]' is invalid
 //['n', 's']
 
 type_czech.checkParam_typeExtra([17], ['n', 's']);
 //checkParam_typeExtra()
-//TE@228 - checkParam_typeExtra([17], [\"n\",\"s\"]) needs each array to have at least 2 types to work
+//TE@221 - Element '1' is supposed to be a 's', but is missing : [17]
 //['n', 's']
 
 type_czech.checkParam_typeExtra([17, 'abc', true], ['n', 's']);
@@ -4000,13 +3982,18 @@ type_czech.checkParam_typeExtra([17, 'c'], ['n', 's']);
 
 type_czech.checkParam_typeExtra([17, 'c'], ['n']);
 //checkParam_typeExtra()
-//TE@234 - checkParam_typeExtra([17,"c"], ["n"]) try [n, n] as ["n"] is illegal.
+//TE@234 - checkParam_typeExtra([17,\"c\"], [\"n\"]) try checkParam_typeExtra([17,\"c\"], 'n') as [\"n\"] is illegal.
 //['n']
-type_czech.checkParam_type([17, 16,], ['n']);
+type_czech.checkParam_typeExtra([17, 16,], 'n');
 //''
 
 type_czech.checkParam_typeExtra(['17', 'c'], 'n');
-//''
+//checkParam_typeExtra()
+//EE@320 - checkParam_typeExtra([\"17\",\"c\"], 'n') has the first param wrong. TE@226 - The value '17', which is a 'string', is not a 'number'
+//n
+
+type_czech.checkParam_typeExtra(17, 'number');
+//
 */
       // eslint-disable-next-line consistent-return
       function checkParam_typeExtra(parameters_obj, shape_list) {
@@ -4073,11 +4060,13 @@ type_czech.checkParam_emptyEither([12, false, 'a string'], 'EMPTY-OK');
 type_czech.checkParam_emptyEither([12, false, 'a string'], ['EMPTY-OK']);
 //UE@701 - TypeCzech.checkParam_emptyEither()  needs at least 2 choices for an Either, not 1 ["EMPTY-OK"]
 type_czech.checkParam_emptyEither( {a:0, b:12});
-//ME@402 - TypeCzech.checkParam_emptyEither() called with a second parameter as a non-array shape of undefined
+//ME@402 - TypeCzech.checkParam_emptyEither() called with a 2nd as a non-array shape of undefined
 type_czech.checkParam_emptyEither([12, 0], [['ER','ER'],['ER','OK']]);
 //""
 type_czech.checkParam_emptyEither( {a:92, b:Infinity}, [ {a:'ER', b:'ER'}, {a:'ER', b:'OK'}]);
 //
+type_czech.checkParam_emptyEither('a-string', ['EMPTY-ERROR', 'EMPTY-OK']);
+//""
 
 type_czech.checkParam_emptyEither([12, 0, 'is-error'], [['ER','ER'],['ER','OK']]);
 //checkParam_emptyEither()
@@ -4120,14 +4109,12 @@ type_czech.checkParam_emptyEither( {a:92, b:Infinity}, [ {a:'OK', b:'ER'}, {a:'O
       /*
 type_czech.checkParam_typeEither(17, [ "string", "number" ]);
 //""
-
+type_czech.checkParam_typeEither({a:17, b:false}, [{a:"number", b:"boolean"}, {a:"string"}]);
+//''
 type_czech.checkParam_typeEither({a:17, b:false}, [{a:"number"}, {a:"string"}]);
 //checkParam_typeEither()
 //TE@209 - Extra key in checked object - (b:'false'), TE@213 - Property 'a' is indicated to be a 'string', but is inaccurately a 'number' : 17
 //[{a:"number"},{a:"string"}]
-
-type_czech.checkParam_typeEither({a:17, b:false}, [{a:"number", b:"boolean"}, {a:"string"}]);
-//''
 */
       // eslint-disable-next-line consistent-return
       function checkParam_typeEither(parameters_obj, possible_shapes) {
@@ -4162,29 +4149,29 @@ function check_func(a_num){ if (a_num>0) return 'only neg nums'}
 function your_func(a_num){}
 your_func = type_czech.linkUp(your_func, check_func);
 your_func(54321)
-//only neg nums
+//Uncaught Error: only neg nums
 
 function check_func(a_num){return type_czech.checkParam_type(a_num, 'string') }
 function your_func(a_num){}
 your_func = type_czech.linkUp(your_func, check_func);
 your_func(54321)
-//check_func() your_func() PRE-FUNC: TE@226 - The value '54321', which is a 'number', is not a 'string'
-// checkParam_type()
-//     ACTUAL TYPES 'number'
-//     ACTUAL VALUE 54321
-//    EXPECTED TYPE string
-// CALLING FUNCTION check_func(a_num)
+//check_func() PRE-FUNC: TE@226 - The value '54321', which is a 'number', is not a 'string'
+//         CHECKER checkParam_type()
+//     ACTUAL TYPE 'number'
+//          VALUES 54321
+//   EXPECTED TYPE string
+//          ORIGIN your_func(a_num)
 
 function check_func(){return type_czech.checkParam_type(arguments, 'string') }
 function your_func(){}
 your_func = type_czech.linkUp(your_func, check_func);
 your_func(12345)
-//check_func() your_func() PRE-FUNC: TE@226 - The value '54321', which is a 'number', is not a 'string'
-// checkParam_type()
-//     ACTUAL TYPES 'number'
-//     ACTUAL VALUE 54321
-//    EXPECTED TYPE string
-// CALLING FUNCTION check_func(a_num)
+//check_func() PRE-FUNC: Used arguments object as first parameter to checkParam_type(), this is unsafe, use parameters.
+//         CHECKER checkParam_type()
+//     ACTUAL TYPE 'number'
+//          VALUES 12345
+//   EXPECTED TYPE string
+//          ORIGIN your_func()
 */
       function linkUp(user_function, pre_check, post_check) {
         
@@ -4205,7 +4192,7 @@ your_func(12345)
         return t_param_check_func.enableTests_();
       }
       function disableTests() {
-        return t_param_check_func.disableTests_(); // call _ParametersCheck()
+        return t_param_check_func.disableTests_(); // t_param_check_func === _ParametersCheck() result
       }
       function countFails() {
         return t_param_check_func.countFails_();
@@ -4299,11 +4286,11 @@ type_czech._refDiff('[1,2,3]', '[1,X,3]');
 type_czech._refDiff("{'3':3,'B':'B'}", "{'B':'B'}")
 //START-SAME ~ {'
 //  PRE-DIFF ~ 3':3,'B':'B'}
-// POST-DIFF ~ b':'B'}"
+// POST-DIFF ~ B':'B'}"
 
 type_czech._refDiff("{'B':'B'}", "{'3':3,'B':'B'}")
 //START-SAME ~ {'
-//  PRE-DIFF ~ b':'B'}
+//  PRE-DIFF ~ B':'B'}
 // POST-DIFF ~ 3':3,'B':'B'}"
 
 type_czech._refDiff("{'B':'B','3':3}", "{'B':'B'}")
@@ -4427,7 +4414,7 @@ type_czech.check_buildSnapshot('my-func', 'my_array', my_array);
 my_array.push(4);
 type_czech.check_mutatedSnapshot('my-func', 'my_array');
 //check_mutatedSnapshot()
-//ME@405 - The reference variable 'my_array' in function 'my-func()' changed values
+//ME@405 - The reference variable 'my_array' in function 'my-func()' changed
 //from [1,2,3]
 //  to [1,2,3,4]
 //
@@ -4441,7 +4428,7 @@ delete my_obj.b;
 my_obj.b=7;
 type_czech.check_mutatedSnapshot('my-func', 'my_obj');
 //check_mutatedSnapshot()
-//ME@405 - The reference variable 'my_obj' in function 'my-func()' changed values
+//ME@405 - The reference variable 'my_obj' in function 'my-func()' changed
 //from {"a":1,"b":2,"c":3}
 //  to {"a":1,"b":7,"c":3}
 //
@@ -4455,7 +4442,7 @@ delete my_obj.b;
 my_obj.b=7;
 type_czech.check_mutatedSnapshot('my-func', 'my_obj');
 //check_mutatedSnapshot()
-//ME@405 - The reference variable 'my_obj' in function 'my-func()' changed values
+//ME@405 - The reference variable 'my_obj' in function 'my-func()' changed
 //from {"a":"1n","b":"2n","c":"3n"}
 //  to {"a":"1n","b":7,"c":"3n"}
 //
@@ -4614,32 +4601,31 @@ type_czech.check_mutatedSnapshot('my-func', 'my_arr');
         // START public usable functions
 
         TYPE_CZECH_EVENTS,
-
-        checkArgs_emptyVariadic, // check_error = type_czech.checkArgs_emptyVariadic(['EMPTY-ERROR']);
-        checkArgs_typeVariadic, // check_error = type_czech.checkArgs_typeVariadic(['string']);
-
         check_assert, // type_czech.check_assert(  type_czech.checkParam_typeEither(str_or_num, ['number', 'string'])  , 'strOrNumAPI', str_or_num)
         check_buildSnapshot, //   type_czech.check_buildSnapshot('yourFunc', 'your_array', [1,2,3]);
-        check_mutatedSnapshot, // check_error = type_czech.check_mutatedSnapshot('Person-Obj-Arr', 'a_person');
         check_interface, // check_error = type_czech.check_interface({log:x=>x, show:y=>y}, {log:'f', show:'f'});
+        check_mutatedSnapshot, // check_error = type_czech.check_mutatedSnapshot('Person-Obj-Arr', 'a_person');
 
-        enableTests, //  type_czech.enableTests();
-        disableTests, // type_czech.disableTests();
+        checkArgs_emptyVariadic, // check_error = type_czech.checkArgs_emptyVariadic(arguments, ['EMPTY-ERROR']);
+        checkArgs_typeVariadic, // check_error = type_czech.checkArgs_typeVariadic(arguments, ['string']);
+
+        checkParam_empty, //         check_error = type_czech.checkParam_empty(param_1, 'EMPTY-ERROR');
+        checkParam_emptyEither, //   check_error = type_czech.checkParam_emptyEither(param_1, ['EMPTY-ERROR', 'EMPTY-OK']);
+        checkParam_emptyExtra, //    check_error = type_czech.checkParam_emptyExtra(param_1, 'EMPTY-ERROR');
+
+        checkParam_type, //         check_error = type_czech.checkParam_type(param_1, 'number');
+        checkParam_typeEither, //   check_error = type_czech.checkParam_typeEither(param_1, ['number', 'string']);
+        checkParam_typeExtra, //    check_error = type_czech.checkParam_typeExtra(param_1, 'number');
 
         countFails, // type_czech.countFails();
         countTally, // type_czech.countTally();
         countZero, // type_czech.countZero();
 
+        enableTests, //  type_czech.enableTests();
+        disableTests, // type_czech.disableTests();
+
         isActive, // if(type_czech.isActive())
         linkUp, //   yourFunc = type_czech.linkUp(yourFunc, checkingFunc);
-
-        checkParam_type, //         check_error = type_czech.checkParam_type(arguments, ['number', 'string']);
-        checkParam_typeEither, //   check_error = type_czech.checkParam_typeEither(arguments, [['number'], ['string']]);
-        checkParam_typeExtra, //    check_error = type_czech.checkParam_typeExtra(arguments, ['number', 'string']);
-
-        checkParam_empty, //         check_error = type_czech.checkParam_empty(arguments, ['EMPTY-ERROR', 'EMPTY-OK']);
-        checkParam_emptyEither, //   check_error = type_czech.checkParam_emptyEither(arguments, [['EMPTY-ERROR'], ['EMPTY-OK']]);
-        checkParam_emptyExtra, //    check_error = type_czech.checkParam_emptyExtra(arguments, ['EMPTY-ERROR', 'EMPTY-OK']);
 
         typeFinal, //  type_final = type_czech.typeFinal(document); // HTMLDocument
         typeIsA, //    if (type_czech.typeIsA(document, 'Node')) {};

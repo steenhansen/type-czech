@@ -69,9 +69,12 @@ require('./public-tests/disableTests_43000.js');
 require('./public-tests/countFails_44000.js');
 require('./public-tests/countTally_45000.js');
 
-require('./check-tests/signature_checkParam_type_46000.js');
-
 require('./dynamic-generative/random-signatures.js');
+
+require('./check-tests/signature_checkParam_type_46000.js');
+require('./check-tests/signature_checkArgs_typeVariadic_47000.js');
+require('./check-tests/signature_checkArgs_emptyVariadic_48000.js');
+require('./check-tests/check_assert_49000.js');
 
 console.log('total fails = ', global.TEST_total_fails);
 console.log('total checks = ', global.TEST_total_checks);
