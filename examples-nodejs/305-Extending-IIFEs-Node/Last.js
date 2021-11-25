@@ -30,7 +30,7 @@ module.exports = function create_Last(type_czech, First) {
 /**/      console.log('PRE -Last');
 /**/      const type_issue = type_czech.checkParam_type([f_name, l_name], ['string', 'string']);
 /**/      if (type_issue) return type_issue;
-/**/      return type_czech.checkParam_empty(arguments, ['EMPTY-ERROR', 'EMPTY-ERROR']);
+/**/      return type_czech.checkParam_empty([f_name, l_name], ['EMPTY-ERROR', 'EMPTY-ERROR']);
 /**/    }
 /**/
 /**/    // eslint-disable-next-line no-shadow
@@ -41,12 +41,12 @@ module.exports = function create_Last(type_czech, First) {
 /**/
 /**/    function PRE_lastMethod(a_year) {
 /**/      console.log('PRE -lastMethod');
-/**/      return type_czech.checkParam_type(arguments, 'number');
+/**/      return type_czech.checkParam_type(a_year, 'number');
 /**/    }
 /**/
 /**/    function POST_lastMethod(a_year) {
 /**/      console.log('POST-lastMethod');
-/**/      return type_czech.checkParam_type(arguments, 'number');
+/**/      return type_czech.checkParam_type(a_year, 'number');
 /**/    }
 /**/
 /**/    const Last_PREs = { Last: PRE_Last, lastMethod: PRE_lastMethod };

@@ -1,5 +1,6 @@
 /* node node-32-all-checks-external.js */
 
+// This is the node version of '32 - Extended Closure Type Checks'
 
 function First(f_name){
   console.log(`CONS-First :${f_name}`)

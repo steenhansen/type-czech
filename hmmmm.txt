@@ -1,0 +1,98 @@
+
+
+
+function early(in_early){ 
+  console.log('early', in_early);
+}
+
+function PRE_check_early(in_early) {
+  console.log('check early', in_early)
+  type_issue = type_czech.checkParam_type(in_early, 'number')
+  if (type_issue) 
+    return type_issue
+}
+
+early = type_czech.linkUp(early, PRE_check_early) 
+
+
+function lottery(in_lottery){
+  early(in_lottery)
+  console.log('lottery', in_lottery)
+}
+
+function PRE_check_lottery(in_lottery) {
+    console.log('check lottery', in_lottery)
+  type_issue = type_czech.checkParam_type(in_lottery, 'string')
+  if (type_issue) 
+    return type_issue
+}
+lottery = type_czech.linkUp(lottery, PRE_check_lottery) 
+
+lottery(19)
+
+////////////////////////////////////
+print what is in []
+////
+function early(in_early){ 
+  console.log('early', in_early);
+}
+
+function PRE_check_early(in_early) {
+  console.log('check early', in_early)
+  type_issue = type_czech.checkParam_type(in_early, 'number')
+  if (type_issue) 
+    return type_issue
+}
+
+early = type_czech.linkUp(early, PRE_check_early) 
+
+
+function lottery(in_lottery){
+ 
+  console.log('lottery', in_lottery)
+}
+
+function PRE_check_lottery(in_lottery) {
+    console.log('check lottery', in_lottery)
+     early(in_lottery)
+  type_issue = type_czech.checkParam_type(in_lottery, 'string')
+  if (type_issue) 
+    return type_issue
+}
+lottery = type_czech.linkUp(lottery, PRE_check_lottery) 
+
+lottery(17)
+
+//////////////////////////////////////////////////////
+
+
+type_czech = TypeCzech('THROW-EXCEPTIONS')
+
+function early(in_early){ 
+  console.log('early', in_early);
+}
+
+function PRE_check_early(in_early) {
+  console.log('check early', in_early)
+  return type_czech.checkParam_empty(in_early, 'ER')
+}
+
+early = type_czech.linkUp(early, PRE_check_early) 
+
+
+function lottery(in_lottery){
+   console.log('lottery', in_lottery)
+}
+
+function PRE_check_lottery(in_lottery) {
+  console.log('check lottery', in_lottery)
+  type_czech.checkParam_type(in_lottery, 'number')
+  
+  early(in_lottery)
+return 'addddddddddd'
+}
+lottery = type_czech.linkUp(lottery, PRE_check_lottery) 
+
+lottery(17)
+
+

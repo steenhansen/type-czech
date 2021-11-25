@@ -1,29 +1,161 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>19 - Lone Empty Parameter and Result</title>
+<title>42 - Extended Objects</title>
 
 
 
 
 
-<div id='js-div' style="width:32%">
+<div id='js-div' style="width:90%">
+  
+  <div class='an-explantion' style='background-color:#ffffff;'>42 - Extended Objects</div>
+
   <a href='https://github.com/steenhansen/type-czech' class='git-hub'>GitHub Package</a>
+
   <br><br>
-        <div id='js-code'>the javascript</div>
+The examples 101 to 605 all model a person's name. The entities are First, Last, and Full.
+With each type of object also having an associated method; firstMethod(), lastMethod(), and fullMethod().
 
-        <br><br>
+Full inherites behavior from 
+Last, while Last builds on First.
+<br><br>
+The extended objects that contain or inherit functions are classes, closures, IIFEs, 
+background-color:classFree objects, prototypes, and OLOOs.
+<br><br>
+
+
+
+
+  <table style='width:95%'>
+
+
+    <tr>
+      <td style='width:40%'>&nbsp;</td>
+      <td class='nice-top'>Classes</td>
+      <td class='nice-top'>Closures</td>
+      <td class='nice-top'>IIFEs</td>
+      <td class='nice-top'>ClassFree Objects</td>
+      <td class='nice-top'>Prototypes</td>
+      <td class='nice-top'>OLOOs</td>
+    </tr>
+
+    <tr>
+      <td>One file containing the extended objects and TypeCzech functions<br>&nbsp;</td>
+        <td class='nice-middle'><a title="101-Extending-Classes-Inline.html" href="../examples-web/101-Extending-Classes-Inline.html">101</a></td>
+        <td class='nice-middle'> <a title="201-Extending-Closures-Inline.html" href="../examples-web/201-Extending-Closures-Inline.html">201</a></td>
+        <td class='nice-middle'>  <a title="301-Extending-IIFEs-Inline.html"     href="../examples-web/301-Extending-IIFEs-Inline.html">301</a></td>
+        <td class='nice-middle'>   <a title="401-Extending-ClassFree-Inline.html"     href="../examples-web/401-Extending-ClassFree-Inline.html">401</a></td>
+        <td class='nice-middle'>   <a title="501-Extending-Prototypes-Inline.html"     href="../examples-web/501-Extending-Prototypes-Inline.html">501</a></td>
+        <td class='nice-middle'>   <a title="601-Extending-OLOO-Inline.html"     href="../examples-web/601-Extending-OLOO-Inline.html">601</a></td>
+    </tr>
+
+    <tr>
+      <td>Seven separate files with extended objects and TypeCzech functions in their own files<br>&nbsp;</td>
+        <td class='nice-middle'> <a title="102-Extending-Classes-Imports.html" href="../examples-web/102-Extending-Classes-Imports/102-Extending-Classes-Imports.html">102</a></td>
+        <td class='nice-middle'> <a title="202-Extending-Closures-Imports.html"    href="../examples-web/202-Extending-Closures-Imports/202-Extending-Closures-Imports.html">202</a></td>
+        <td class='nice-middle'><a title="302-Extending-IIFEs-Imports.html"    href="../examples-web/302-Extending-IIFEs-Imports/302-Extending-IIFEs-Imports.html">302</a></td>
+        <td class='nice-middle'>  <a title="402-Extending-ClassFree-Imports.html"    href="../examples-web/402-Extending-ClassFree-Imports/402-Extending-ClassFree-Imports.html">402</a></td>
+        <td class='nice-middle'><a title="502-Extending-Prototypes-Imports.html"    href="../examples-web/502-Extending-Prototypes-Imports/502-Extending-Prototypes-Imports.html">502</a></td>
+        <td class='nice-middle'> <a title="602-Extending-OLOO-Imports.html"    href="../examples-web/602-Extending-OLOO-Imports/602-Extending-OLOO-Imports.html">602</a></td>
+    </tr>
+
+    <tr>
+      <td>Four distinct files with extended objects packaged together with their corresponding TypeCzech functions<br>&nbsp;</td>
+        <td class='nice-middle'><a title="103-Extending-Classes-Production.html" href="../examples-web/103-Extending-Classes-Production/103-Extending-Classes-Production.html">103</a></td>
+        <td class='nice-middle'><a title="203-Extending-Closures-Production.html" href="../examples-web/203-Extending-Closures-Production/203-Extending-Closures-Production.html">203</a></td>
+        <td class='nice-middle'><a title="303-Extending-IIFEs-Production.html" href="../examples-web/303-Extending-IIFEs-Production/303-Extending-IIFEs-Production.html">303</a></td>
+        <td class='nice-middle'><a title="403-Extending-ClassFree-Production.html" href="../examples-web/403-Extending-ClassFree-Production/403-Extending-ClassFree-Production.html">403</a></td>
+        <td class='nice-middle'><a title="503-Extending-Prototypes-Production.html" href="../examples-web/503-Extending-Prototypes-Production/503-Extending-Prototypes-Production.html">503</a></td>
+        <td class='nice-middle'><a title="603-Extending-OLOO-Production.html" href="../examples-web/603-Extending-OLOO-Production/603-Extending-OLOO-Production.html">603</a></td>
+    </tr>
+
+    <tr>
+      <td>Two files with extended objects in one html file and TypeCzech functions in another Javascript file<br>&nbsp;</td>
+        <td>not worth effort</td>
+        <td class='nice-middle'><a title="204-Extending-Closures-Single.html"     href="../examples-web/204-Extending-Closures-Single/204-Extending-Closures-Single.html">204</a></td>
+        <td class='nice-middle'><a title="304-Extending-IIFEs-Single.html"     href="../examples-web/304-Extending-IIFEs-Single/304-Extending-IIFEs-Single.html">304</a></td>
+        <td class='nice-middle'><a title="404-Extending-ClassFree-Single.html"     href="../examples-web/404-Extending-ClassFree-Single/404-Extending-ClassFree-Single.html">404</a></td>
+        <td class='nice-middle'><a title="504-Extending-Prototypes-Single.html"     href="../examples-web/504-Extending-Prototypes-Single/504-Extending-Prototypes-Single.html">504</a></td>
+        <td class='nice-middle'> <a title="604-Extending-OLOO-Single.html"     href="../examples-web/604-Extending-OLOO-Single/604-Extending-OLOO-Single.html">604</a></td>
+    </tr>
+
+    <tr>
+      <td>&nbsp;</td>
+        <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td> <td>&nbsp;</td><td>&nbsp;</td>
+    </tr>
+
+    <tr>
+      <td>Four Node.js files with extended objects packaged together with their corresponding TypeCzech functions.
+          Inside of <span style='white-space:nowrap'>/examples-nodejs/</span><br>&nbsp;</td>
+        <td class='nice-middle'>105</td>
+        <td class='nice-middle'>205</td>
+        <td class='nice-middle'>305</td>
+        <td class='nice-middle'>405</td>
+        <td class='nice-middle'>505</td>
+        <td class='nice-middle'>605</td>
+    </tr>
+
+
+  </table>
+
+
+
+  <div id='js-code'></div>
+  <br>
+
+ 
 
 
 
 
 
 
-<!--            ----------------TYPE 1--------------------------       -->
 
-<script src="../web-resources/consolelog.js"></script>
-<script src="../TypeCzech.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+<div id="the-explanation" style="width:10%">
+  <div class='an-explantion'></div>
+  <div id='explanation-text'> 
+
+
+
+
+  </div>
+
+  <div id="console-log"  >
+    <div class='a-title'></div>
+    <div id='log-text'></div>
+    <br>
+  </div>
+
+
+
+
+  
+<!--            -----------------TYPE 6------------------------       -->
+
 <link rel="stylesheet" href="../web-resources/type-czech.css">
 
-<!--            -------------TYPE 1s-----------------------------       -->
+
+
+<!--            ------------------TYPE 6------------------------       -->
 
 
 <div id='js-fiddles'>
@@ -120,6 +252,8 @@
 
     <a title="42-Extended-Objects.html" href="../example-snippets/42-Extended-Objects.html">42</a>
 
+
+
     &nbsp;&nbsp;
 
     <a title="101-Extending-Classes-Inline.html" href="../examples-web/101-Extending-Classes-Inline.html">101</a>
@@ -152,90 +286,11 @@
     <a title="604-Extending-OLOO-Single.html"     href="../examples-web/604-Extending-OLOO-Single/604-Extending-OLOO-Single.html">604</a>
 
 
-   &copy; 2021 Steen Hansen
+
+    &copy; 2021 Steen Hansen
   </div>
 
-<!--            -------------TYPE 1s-----------------------------       -->
-
-
-
-
-
-
-
-          
-</div>
-
-
-
-<div id="the-explanation" style="width:68%;">
-  <div class='an-explantion'>19 - Lone Empty Parameter and Result</div>
-
-  <div id='explanation-text'>
-    Use checkParam_empty() to verify that a lone parameter or return result is not empty.
-    Good for ensuring that a function's single string, array, and object parameter and or result has a useful value.
-
-    When a parameter corresponds to 'EMPTY-ERROR' and its contents are valueless then an error is returned, 
-    which causes the PRE_check function to throw an exception or console log the error.
-
-    <div>
-      <div style="margin-top:10px; float:left; width:17%;">
-        <b>Empty or <br>Valueless Data</b>
-      </div>
-
-      <div style="float:left; width:13%">
-        <ul>
-          <li>null</li>
-          <li>undefined</li>
-    
-        </ul>
-      </div>
-    
-      <div style="float:left; width:22%;">
-        <ul>
-          <li><b>""</b> - empty string</li>
-          <li>NaN - not a number</li>
-    
-        </ul>
-      </div>
-     
-      <div style="float:right; width:24%;">
-        <ul>
-          <li><b>[ ]</b> - no elements in array</li>
-          <li><b>{ }</b> - no members in object</li>
-        </ul>
-      </div>
-     
-     
-      <div>
-        <ul>
-          <li>new Date("")</li>
-          <li>new RegExp("") <b>or</b> /(?:)/ </li>
-        </ul>
-      </div>
-    
-    </div>
-
-
-
-<div>
-         <ul style="margin-bottom:6px">
-              <li style="float:left; width:18%;list-style: none;"><b>Empty Categories</b></li>
-              <li style="float:left; width:22%;">'<b>EMPTY-OK</b>'<br>
-                Valueless variable is ok</li>
-              <li style="float:left; width:21%;">'<b>EMPTY-ER</b>'&nbsp;Valueless<br>
-                 variable is an Error</li>
-              <li>'<b>EMPTY-IGNORE</b>'&nbsp;&nbsp;&nbsp;Functions, Symbols, BigInts,
-                </li>
-                <span style='float:right; padding-right:8px;'>and Booleans cannot be empty; a hint</span>
-        </ul>
-</div>
-
-<br>
-
-
-
-
+<!--            ------------------TYPE 6------------------------       -->
 
 
 
@@ -244,12 +299,8 @@
 
 
 
-<div id="console-log"  >
-  <div class='a-title'>Console Output</div>
-  <div id='log-text'></div>
-</div>
 
-</div>
+
 
 
 
@@ -269,52 +320,10 @@
 
 
 <script id="check-code">
-/**/  if (typeof TypeCzech === 'function')
-/**/    type_czech = TypeCzech('LOG-ERRORS')
-/**/  else
-/**/    type_czech = { linkUp: (nop) => nop, 
-/**/                   isActive: (x) => false }
-/**/
-/**/  UnDefined = 'undefined'
-/**/  if (typeof PRE_check_hasValue===UnDefined)
-/**/    PRE_check_hasValue = undefined
-/**/  else
-/**/    PRE_check_hasValue = PRE_check_hasValue
-/**/  
-/**/  function PRE_check_hasValue(a_variable){
-/**/    return type_czech.checkParam_empty(
-/**/                   a_variable, 'EMPTY-ERROR')
-/**/  }
-/**/
-/**/  hasValue = type_czech.linkUp(hasValue,
-/**/                         PRE_check_hasValue)
 
-
-function hasValue(a_variable) {
-  return a_variable
-}
-
-
-log(hasValue(['is-ok']))
-
-
-linesConsole(1)
-
-
-hasValue('')
-
-
-hasValue(new Date(''))
-
-
-hasValue({})
-
-
-hasValue(NaN)
-
-
-hasValue([])
 </script>
+
+
 
 
 
@@ -329,26 +338,20 @@ hasValue([])
   jsToDiv('js-code', "check-code")
 
 
+  fromToBoldText(785, 795, 'code', 1)  //  the_zip:'n'
 
 
-  fromToBoldText(709, 710, 'code', 1)    //hasValue('')
-  fromToBoldText(201, 202, 'log', 1)    // ACTUAL VALUE ""
-  fromToBoldText(229, 239, 'log', 1)    //  EMPTY ASSERTION EMPTY-ERROR
+   fromToBoldText(2207, 2220, 'code', 1)  //  zip: 'B73 5BL'
 
+   fromToBoldText(374, 390, 'log', 1)    //the_zip:"B73 5BL"
 
-
-  fromToBoldText(749, 750, 'code', 2)    //hasValue({})
-  fromToBoldText(764, 765, 'log', 2)    // ACTUAL VALUE {}
-  fromToBoldText(792, 802, 'log', 2)    //EMPTY ASSERTION EMPTY-ERROR
-
-
-  fromToBoldText(780, 781, 'code', 3)  // hasValue([])
-  fromToBoldText(1326, 1327, 'log', 3)  // ACTUAL VALUE []
-  fromToBoldText(1354, 1364, 'log', 3)  // EMPTY ASSERTION EMPTY-ERROR
+   fromToBoldText(473, 483, 'log', 1)    //the_zip:"n"
 
 
 </script>
 
+
 <link rel="stylesheet"
   href="https://fonts.googleapis.com/css?family=Inconsolata">
+
   

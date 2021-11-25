@@ -9,7 +9,7 @@
 /**/  const LOTTERY_SIGNATURE = ['string', ['number'], 'date'];
 /**/
 /**/  function PRE_aLottery(lottery_name, lucky_numbers, draw_date) {
-/**/    const type_issue = type_czech.checkParam_type(arguments, LOTTERY_SIGNATURE);
+/**/    const type_issue = type_czech.checkParam_type([lottery_name, lucky_numbers, draw_date], LOTTERY_SIGNATURE);
 /**/    if (type_issue) return type_issue;
 /**/    return type_czech.checkArgs_emptyVariadic(arguments, ['EMPTY-ERROR']);
 /**/  }

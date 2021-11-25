@@ -129,3 +129,12 @@ table, th, td {
 .console-runnable{
   background:#e0ffe0;
 }
+
+td.nice-top{
+  text-align: center;
+  width:10%;
+}
+
+td.nice-middle{
+  text-align: center;
+}

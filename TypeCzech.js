@@ -3582,7 +3582,9 @@ type_czech.checkParam_empty(null, 'EMPTY-ERROR');
             }
           }
           consolelog('^^^ checkParam_empty EXIT', error_str_3arr);
+        //  console.log('empty start', last_shape_method)
           last_shape_method = [shape_list, MESS_EMPTY_VERIFY];
+          //console.log('empty end', last_shape_method)
           return error_str_3arr;
         }
       }
@@ -3746,7 +3748,9 @@ type_czech.checkParam_type('a', 'string');
             }
           }
           consolelog('^^^ checkParam_type EXIT', error_str_3arr, shape_list);
+   // console.log('type start', last_shape_method)
           last_shape_method = [shape_list, MESS_TYPE_VERIFY];
+   // console.log('type end', last_shape_method)
           return error_str_3arr;
         }
       }
