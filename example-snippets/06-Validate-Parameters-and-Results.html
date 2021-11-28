@@ -6,59 +6,8 @@
 <div id='js-div' style="width:52%">
   <a href='https://github.com/steenhansen/type-czech' class='git-hub'>GitHub Package</a>
   <div id='js-code'>the javascript</div>
-</div>
 
-
-<div id="the-explanation" style="width:48%">
-  <div class='an-explantion'>06 - Validate Parameters And Results</div>
-  <div id='explanation-text'>
-    <br>
-
-One use for the linkUp(your_function, before_test, after_test) construct is
-to help with debugging and testing without changing the actual source code. The before and after
-conditions of functions can be viewed without asserts actually littering the functions.
-<br><br>
-Note that any function names can be used, not just PRE_check_function_name() and POST_check_function_name(),
-which are used to lessen confusion.
-<pre title='Copy and paste the green code below into the console to run' class='console-runnable'>
-function before_Person(first_name, last_name){
-  console.log('before Person:', first_name, last_name)
-  if (first_name.match(/^[a-z]/))
-    return 'ERROR, first name not capitalized: ' + first_name
-}
-
-function Person(first_name, last_name){
-  console.log('in Person:', first_name, last_name)
-  return {first: first_name, last: last_name} 
-}
-
-function person_after(person_result) {
-  console.log('after Person:', person_result)
-}
-
-Person = type_czech.linkUp(Person, before_Person, person_after) 
-jane_doe = Person('Jane', 'Pass')
-john_doe = Person('john', 'fail')
-</pre>
-
-<pre>
->> ERROR, first name not capitalized: john
-</pre>
-
-  </div>
-
-  <div id="console-log"  >
-    <div class='a-title'>Console Output</div>
-    <div id='log-text'></div>
-    <br>
-  </div>
-
-  <br><br>
-
-
-
-
-<!--            --------------------TYPE 1----------------------       -->
+  <!--            --------------------TYPE 1----------------------       -->
 
 <script src="../web-resources/consolelog.js"></script>
 <script src="../TypeCzech.js"></script>
@@ -199,6 +148,60 @@ john_doe = Person('john', 'fail')
 
 
 
+</div>
+
+
+<div id="the-explanation" style="width:48%" class='code-scroll'>
+  <div class='an-explantion'>06 - Validate Parameters And Results</div>
+  <div id='explanation-text'>
+    <br>
+
+One use for the linkUp(your_function, before_test, after_test) construct is
+to help with debugging and testing without changing the actual source code. The before and after
+conditions of functions can be viewed without asserts actually littering the functions.
+<br><br>
+Note that any function names can be used, not just PRE_check_function_name() and POST_check_function_name(),
+which are used to lessen confusion.
+<pre title='Copy and paste the green code below into the console to run' class='console-runnable'>
+function before_Person(first_name, last_name){
+  console.log('before Person:', first_name, last_name)
+  if (first_name.match(/^[a-z]/))
+    return 'ERROR, first name not capitalized: ' + first_name
+}
+
+function Person(first_name, last_name){
+  console.log('in Person:', first_name, last_name)
+  return {first: first_name, last: last_name} 
+}
+
+function person_after(person_result) {
+  console.log('after Person:', person_result)
+}
+
+Person = type_czech.linkUp(Person, before_Person, person_after) 
+jane_doe = Person('Jane', 'Pass')
+john_doe = Person('john', 'fail')
+</pre>
+
+<pre>
+>> ERROR, first name not capitalized: john
+</pre>
+
+  </div>
+
+  <div id="console-log"  >
+    <div class='a-title'>Console Output</div>
+    <div id='log-text'></div>
+    <br>
+  </div>
+
+  <br><br>
+
+
+
+
+
+
 
 
 
@@ -264,16 +267,14 @@ function Person(f_name, l_name){
 }
 
 cleopatra = Person('Cleopatra', 'VII')
-linesConsole(2)
 log('out A : ', cleopatra)
 
 linesConsole(3)
 
 atahualpa = Person('Atahualpa')
-linesConsole(1)
 log('out B : ', atahualpa)
 
-linesConsole(2)
+linesConsole(3)
 
 catherine = Person('cATHERINE', 'II')
 log(NL +'out C : ', catherine)
@@ -281,7 +282,6 @@ log(NL +'out C : ', catherine)
 linesConsole(3)
 
 louis = Person('Louis', 'XIV')
-linesConsole(1)
 log('out D : ', louis)
 
 </script>

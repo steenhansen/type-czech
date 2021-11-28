@@ -21,9 +21,7 @@ failed_mutatedVariables = 0;
 function _mutatedVariables_14001(){
   var TYPE_CZECH_current_test_number = '14001';       
   var mutate_14001 = [1,2,3];    
-  var expect_error = `check_mutatedSnapshot(),ME@405 - Ref var 'mutate_14001' in ` + 
-                     `func '_mutatedVariables_14001()' changed from [1,2,3] to [1,2,3,4] ` + 
-                     `START-SAME ~ [1,2,3 PRE-DIFF ~ ] POST-DIFF ~ ,4],''`;
+  var expect_error = `ME@405 - Variable 'mutate_14001' changed from [1,2,3] to [1,2,3,4] START-SAME ~ [1,2,3 PRE-DIFF ~ ] POST-DIFF ~ ,4]`;
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         var actual_error;
         try {
@@ -31,7 +29,7 @@ function _mutatedVariables_14001(){
           mutate_14001.push(4);
           var actual_error = type_czech_test.check_mutatedSnapshot('_mutatedVariables_14001', 'mutate_14001');
         } catch (e) { }
-        actual_error = ((actual_error.join()).replace(/\s+/g, ' ')).trim(); 
+        actual_error = actual_error.replace(/\s+/g, ' ').trim(); 
         if (actual_error !== expect_error) {
           console.log(TYPE_CZECH_current_test_number, 'actual=', actual_error);
           console.log(                          '    expected=', expect_error);
@@ -71,9 +69,7 @@ function _mutatedVariables_14002(){
 function _mutatedVariables_14003(){
   var TYPE_CZECH_current_test_number = '14003';       
   var mutate_14003 = {a:1, b:2, c:3};
-  var expect_error = `check_mutatedSnapshot(),ME@405 - Ref var 'mutate_14003' in ` + 
-                     `func '_mutatedVariables_14003()' changed from {"a":1,"b":2,"c":3} to ` + 
-                     `{"a":1,"b":"7","c":3} START-SAME ~ {"a":1,"b": PRE-DIFF ~ 2,"c":3} POST-DIFF ~ "7","c":3},''`;
+  var expect_error = `ME@405 - Variable 'mutate_14003' changed from {"a":1,"b":2,"c":3} to {"a":1,"b":"7","c":3} START-SAME ~ {"a":1,"b": PRE-DIFF ~ 2,"c":3} POST-DIFF ~ "7","c":3}`;
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         var actual_error;
         try {
@@ -81,7 +77,7 @@ function _mutatedVariables_14003(){
           mutate_14003.b = "7";
           var actual_error = type_czech_test.check_mutatedSnapshot('_mutatedVariables_14003', 'mutate_14003');
         } catch (e) {  }
-        actual_error = ((actual_error.join()).replace(/\s+/g, ' ')).trim(); 
+        actual_error = actual_error.replace(/\s+/g, ' ').trim(); 
         if (actual_error !== expect_error) {
           console.log(TYPE_CZECH_current_test_number, 'actual=', actual_error);
           console.log(                          '    expected=', expect_error);
@@ -100,7 +96,7 @@ function _mutatedVariables_14003(){
 function _mutatedVariables_14004(){
   var TYPE_CZECH_current_test_number = '14004';  
   var mutate_14004 = [1];  
-  var expect_error =  `POST_recurseArr() POST-FUNC: ME@405 - Ref var 'mutate_14004' in func 'recurseArr()' changed from [1,2,3] to [1,2,"THREE"] START-SAME ~ [1,2, PRE-DIFF ~ 3] POST-DIFF ~ "THREE"] CHECKER check_mutatedSnapshot() ACTUAL TYPE 'string' VALUES "1,2,THREE,4,5"| "1,2,THREE,4"| "1,2,THREE" ORIGIN recurseArr(mutate_14004)`;
+  var expect_error =  `POST_recurseArr() POST-FUNC: ME@405 - Variable 'mutate_14004' changed from [1,2,3] to [1,2,"THREE"] START-SAME ~ [1,2, PRE-DIFF ~ 3] POST-DIFF ~ "THREE"] CHECKER check_mutatedSnapshot() ACTUAL TYPE 'string' VALUES "1,2,THREE,4,5"| "1,2,THREE,4"| "1,2,THREE" MUTATED VARIABLE mutate_14004 ORIGIN recurseArr(mutate_14004)`;
   var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
   function PRE_recurseArr(mutate_14004){
     type_czech_test.check_buildSnapshot('recurseArr', 'mutate_14004', mutate_14004);

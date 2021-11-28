@@ -65,7 +65,7 @@ error_mess = `PRE_test_02900() PRE-FUNC: IE@501 - Interface missing key 'no_matc
 CHECKER check_interface()
 ACTUAL TYPE 'object'
  VALUES {show:(x) => x ***}
-EMPTY ASSERTION {no_match:"function"}
+EMPTY ASSERTION {"no_match":"function"}
  ORIGIN pre_check_interface_02900(a_var)`;
 test_pre_check_interface(variable, signature, 2902, error_mess);
 
@@ -75,7 +75,7 @@ error_mess = `PRE_test_02900() PRE-FUNC: IE@502 - Actual type of 'show' is 'func
 CHECKER check_interface()
 ACTUAL TYPE 'object'
  VALUES {show:(x) => x ***}
-EMPTY ASSERTION {show:"number"}
+EMPTY ASSERTION {"show":"number"}
  ORIGIN pre_check_interface_02900(a_var)`;
 test_pre_check_interface(variable, signature, 2903, error_mess);
 
@@ -85,7 +85,7 @@ error_mess = `PRE_test_02900() PRE-FUNC: IE@502 - Actual type of 'show' is 'numb
 CHECKER check_interface()
 ACTUAL TYPE 'object'
  VALUES {show:12}
-EMPTY ASSERTION {show:"function"}
+EMPTY ASSERTION {"show":"function"}
  ORIGIN pre_check_interface_02900(a_var)`;
 test_pre_check_interface(variable, signature, 2904, error_mess);
 
@@ -105,7 +105,7 @@ error_mess = `PRE_test_02900() PRE-FUNC: IE@505 - Function argument is not an ob
 CHECKER check_interface()
 ACTUAL TYPE 'array'
  VALUES [98]
-EMPTY ASSERTION {show:"number"}
+EMPTY ASSERTION {"show":"number"}
  ORIGIN pre_check_interface_02900(a_var)`;
 test_pre_check_interface(variable, signature, 2907, error_mess);
 

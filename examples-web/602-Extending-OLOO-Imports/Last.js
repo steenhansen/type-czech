@@ -3,10 +3,12 @@
 function Last() {
   function Last(f_name, l_name) {
     LAST_TEMPLATE = {
-      oloo_type: 'Last',
       lastMethod(a_year){
-        log(LEVEL_1+`RUN -lastMethod :${a_year} ${this.f_name} ${this.l_name}`) 
+        log(LEVEL_1+`RUN -lastMethod :${a_year} ${f_name} ${l_name}`) 
         return a_year
+      },
+      instanceOf(){
+        return 'Last'
       }
     }
     first = First(f_name)

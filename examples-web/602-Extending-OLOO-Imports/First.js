@@ -3,13 +3,12 @@
 function First() {
   function First(f_name) {
     FIRST_TEMPLATE = {
-      oloo_type: 'First',
       firstMethod(a_date){
-        log(NL+`RUN -firstMethod :${this.f_name} `, a_date) 
+        log(NL+`RUN -firstMethod :${f_name} `, a_date) 
         return a_date
       },
       instanceOf(){
-        return this.oloo_type
+        return 'First'
       }
     }
     first_object = Object.create(FIRST_TEMPLATE)

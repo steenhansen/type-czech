@@ -62,14 +62,17 @@ function signature_check_assert_49002(){
   err_call = 'thirdParty call'
   actual_value = false
   expected_outcome = "blank string as no error"
-  expected_error = `TE@226 - The value 'false', which is a 'boolean', is not a 'number', TE@226 - The value 'false', which is a 'boolean', is not a 'string'
-  CHECKER checkParam_typeEither()
-ACTUAL TYPE 'boolean'
-   VALUES false
-EXPECTED TYPE ["number","string"]
-   ORIGIN thirdParty call
+expected_error = `
+MESSAGE TE@226 - The value 'false', which is a 'boolean', is not a 'number', TE@226 - The value 'false', which is a 'boolean', is not a 'string' 
+		         CHECKER check_assert()
+		     ACTUAL TYPE 'boolean'
+		          VALUES false
+		        EXPECTED blank string as no error
+		          ORIGIN thirdParty call
 `
-  try {
+
+
+try {
     type_czech.check_assert(error_mess, err_call, actual_value, expected_outcome);
     was_exception = false;
   } catch (e) {

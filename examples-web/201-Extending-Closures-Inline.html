@@ -300,7 +300,7 @@
 /**/    log(LEVEL_1+'PRE-Last') 
 /**/    type_issue = type_czech.checkParam_type([f_name, l_name], ['string', 'string'])
 /**/    if (type_issue) return type_issue;
-/**/    return type_czech.checkParam_empty([f_name, l_name], ['EMPTY-ERROR', 'EMPTY-ERROR']);
+/**/    return type_czech.checkParam_empty([f_name,l_name],['EMPTY-ERROR','ER']);
 /**/  }
 /**/  function POST_check_Last(Last){
 /**/    log(LEVEL_1+"POST-Last")
@@ -322,7 +322,7 @@
 
 /**/  function PRE_check_Full(salu, f_name, l_name){
 /**/    log(LEVEL_2+'PRE-Full') 
-/**/    return type_czech.checkParam_type([salu, f_name, l_name], ['string', 'string', 'string'])
+/**/    return type_czech.checkParam_type([salu,f_name,l_name],['string','s','string'])
 /**/  }
 /**/  function POST_check_Full(Full){
 /**/    log(LEVEL_2+"POST-Full") 

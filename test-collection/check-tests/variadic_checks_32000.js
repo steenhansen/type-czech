@@ -154,9 +154,7 @@ function variadic_32102(){
 function variadic_32201(){
   var TYPE_CZECH_current_test_number = '32201';       
   var mutate_14001 = [1,2,3];    
-  var expect_error = `check_mutatedSnapshot(),ME@405 - Ref var 'mutate_14001' in ` + 
-                     `func '_mutatedVariables_14001()' changed from [1,2,3] to [1,2,3,4] ` + 
-                     `START-SAME ~ [1,2,3 PRE-DIFF ~ ] POST-DIFF ~ ,4],''`;
+  var expect_error = `ME@405 - Variable 'mutate_14001' changed from [1,2,3] to [1,2,3,4] START-SAME ~ [1,2,3 PRE-DIFF ~ ] POST-DIFF ~ ,4]`;
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         var actual_error;
         try {
@@ -164,7 +162,7 @@ function variadic_32201(){
           mutate_14001.push(4);
           var actual_error = type_czech.check_mutatedSnapshot('_mutatedVariables_14001', 'mutate_14001');
         } catch (e) { }
-        actual_error = ((actual_error.join()).replace(/\s+/g, ' ')).trim(); 
+        actual_error = actual_error.replace(/\s+/g, ' ').trim(); 
         if (actual_error !== expect_error) {
           console.log(TYPE_CZECH_current_test_number, 'actual=', actual_error);
           console.log(                          '    expected=', expect_error);

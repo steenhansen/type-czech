@@ -5,7 +5,7 @@ global.TypeCzech = TypeCzech;
 const {
   errorLabel, beforeCheck, afterCheck,
   testError, oneLineString, errorMessage,
-  arrayErrorToString, errorNotMatchException, consoleExpectedActual,
+  arrayErrorToString, errorNotMatchException, consoleExpectedActual, expectedAndFailedTests,
 } = require('./string-funcs.js');
 
 const { getRandomInt } = require('./dynamic-generative/getRandomInt.js');
@@ -29,3 +29,4 @@ global.arrayErrorToString = arrayErrorToString;
 
 global.errorNotMatchException = errorNotMatchException;
 global.consoleExpectedActual = consoleExpectedActual;
+global.expectedAndFailedTests = expectedAndFailedTests;

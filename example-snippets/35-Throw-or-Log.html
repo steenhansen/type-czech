@@ -3,88 +3,11 @@
 
 
   
-<div id='js-div' style="width:58%">
+<div id='js-div' style="width:55%">
   <a href='https://github.com/steenhansen/type-czech' class='git-hub'>GitHub Package</a>
   <div id='js-code'>the javascript</div>
-</div>
 
-
-<div id="the-explanation" style="width:42%">
-  <div class='an-explantion'>35 - Throw, Log, or Ignore TypeCzech Parameter Checks</div>
-  <div id='explanation-text'>
-    <br>
-    The TypeCzech library will only check parameters when either 'THROW-EXCEPTIONS'
-     or 'LOG-ERRORS' is the command on initialization. 
-
-    <ul>
-      <li>
-        <b>THROW-EXCEPTIONS</b> causes errors to throw an exception and possibly halt
-      </li>
-      <li>
-        <b>LOG-ERRORS</b> causes parameter errors to be logged in the console
-        </li>
-    </ul>
-<pre>
-type_czech = TypeCzech('LOG-ERRORS')
-
-type_czech = TypeCzech('THROW-EXCEPTIONS')
-</pre>
-    Two additional possible options are 'UNDEF-OK' and 'CONSOLE-COUNT'
-
-    <ul>
-      <li>
-        <b>UNDEF-OK</b> accepts typeless null and undefined values when checking parameter type shapes
-        without any type errors. In other words null and undefined are like wild cards.
-      </li>
-      <li>
-        <b>CONSOLE-COUNT</b> will output a run count of parameter checking functions in Console so when 
-          testing, can view if parameter tests are actually executing
-        </li>
-    </ul>
-
-Option order is un-important, the below two examples produces the same output
-<pre>
-type_czech=TypeCzech('LOG-ERRORS','UNDEF-OK','CONSOLE-COUNT')
-</pre>
-
-<pre>
-type_czech=TypeCzech('UNDEF-OK','CONSOLE-COUNT','LOG-ERRORS')
-</pre>
-
-
-Note that no parameter checking occurs with 
-<pre>
-type_czech = TypeCzech()
-</pre>
-or with
-<pre>
-type_czech = TypeCzech('NO-CHECKING')
-</pre>
-Thus parameter checking can be easily turned off when changing from development to production code.
-
-<br>
-
-  </div>
-
-
-  <div id="console-log" >
-    <div class='a-title'>Console Output</div>
-    <div id='log-text'></div>
-    <br>
-  </div>
-  <br>
-
-
-
-
-
-
-
-
-
-
-
-
+<br><br>  
   
 <!--            ----------------TYPE 1--------------------------       -->
 
@@ -226,6 +149,83 @@ Thus parameter checking can be easily turned off when changing from development 
 <!--            ------------TYPE 1------------------------------       -->
 
 
+</div>
+
+
+<div id="the-explanation" style="width:45%">
+  <div class='an-explantion'>35 - Throw, Log, or Ignore TypeCzech Parameter Checks</div>
+  <div id='explanation-text'>
+    <br>
+    The TypeCzech library will only check parameters when either 'THROW-EXCEPTIONS'
+     or 'LOG-ERRORS' is the command on initialization. 
+
+    <ul>
+      <li>
+        <b>THROW-EXCEPTIONS</b> causes errors to throw an exception and possibly halt
+      </li>
+      <li>
+        <b>LOG-ERRORS</b> causes parameter errors to be logged in the console
+        </li>
+    </ul>
+<pre>
+type_czech = TypeCzech('LOG-ERRORS')
+
+type_czech = TypeCzech('THROW-EXCEPTIONS')
+</pre>
+    Two additional possible options are 'UNDEF-OK' and 'CONSOLE-COUNT'
+
+    <ul>
+      <li>
+        <b>UNDEF-OK</b> accepts typeless null and undefined values when checking parameter type shapes
+        without any type errors. In other words null and undefined are like wild cards.
+      </li>
+      <li>
+        <b>CONSOLE-COUNT</b> will output a run count of parameter checking functions in Console so when 
+          testing, can view if parameter tests are actually executing
+        </li>
+    </ul>
+
+Option order is un-important, the below two examples produces the same output
+<pre>
+type_czech=TypeCzech('LOG-ERRORS','UNDEF-OK','CONSOLE-COUNT')
+</pre>
+
+<pre>
+type_czech=TypeCzech('UNDEF-OK','CONSOLE-COUNT','LOG-ERRORS')
+</pre>
+
+
+Note that no parameter checking occurs with either of these two
+<pre>
+type_czech = TypeCzech()
+
+type_czech = TypeCzech('NO-CHECKING')
+</pre>
+Thus parameter checking can be easily turned off when changing from development to production code.
+
+<br>
+
+  </div>
+
+
+  <div id="console-log" >
+    <div class='a-title'>Console Output</div>
+    <div id='log-text'></div>
+    <br>
+  </div>
+  <br>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -293,22 +293,19 @@ Thus parameter checking can be easily turned off when changing from development 
 /**/             type_czech_THROW.linkUp(Person_THROW_EXCEPTIONS, PRE_check_Person) 
 /**/  
 /**/  type_czech_NONE = TypeCzech('NO-CHECKING')
-/**/  Person_NO_CHECKING = type_czech_NONE.linkUp(Person_NO_CHECKING, PRE_check_Person) 
+/**/  Person_NO_CHECKING=type_czech_NONE.linkUp(Person_NO_CHECKING,PRE_check_Person) 
 /**/  
 /**/  type_czech_OFF = TypeCzech()
 /**/  Person_OFF = type_czech_OFF.linkUp(Person_OFF, PRE_check_Person) 
 
 function Person(f_name){
-  log(NL+f_name+' in Person() function')
+  log(f_name+' in Person() function')
 }
 
 
 
 Person_LOG_ERRORS('Evangeline')
-
-
 linesConsole(2)
-
 
 try {
   Person_THROW_EXCEPTIONS('Persephone')
@@ -316,15 +313,7 @@ try {
   log('Exception - ' + e)
 }
 
-
-
-
-
-linesConsole(3)
-
-
 Person_NO_CHECKING('Evangeline')
-
 
 linesConsole(1)
 

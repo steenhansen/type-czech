@@ -39,7 +39,7 @@ function checkParam_type_05000(){
   type_czech = TypeCzech('NO-ERROR-MESSAGES')
   function A_PRE_check_yourFunc(a_var) {
     type_issue = type_czech.checkParam_type(a_var, 'number')
-   // console.log('type_issue', type_issue)
+   //console.log(a_var, 'type_issue', type_issue)
     return type_issue
   }
               A_yourFunc = type_czech.linkUp(A_yourFunc, A_PRE_check_yourFunc) 
@@ -373,9 +373,7 @@ function checkParam_type_05001(){
   var TYPE_CZECH_current_test_number = '05001';       
   var check_param =  {cylinders:4, fuel:"gasoline", sneak:"extra"} ;
   var check_shape = {cylinders:"number", fuel:"string"};           
-  var expect_error = [`checkParam_type()`,
-  `TE@209 - Extra key in checked object - (sneak:'extra')`,
-  `{cylinders:"number",fuel:"string"}`];
+  var expect_error =`TE@209 - Extra key in checked object - (sneak:'extra')`;
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.checkParam_type(check_param, check_shape);
@@ -459,9 +457,7 @@ function checkParam_type_05005(){
   var TYPE_CZECH_current_test_number = '05005';       
   var check_param = {0:[{}], length:1};
   var check_shape = 'object';          
-  var expect_error = [`checkParam_type()`,
-  `TE@225 - The value [], an 'array', is not a 'object'`,
-  `object`];
+  var expect_error = `TE@225 - The value [], an 'array', is not a 'object'`;
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error= type_czech.checkParam_type(check_param, check_shape);
@@ -528,9 +524,7 @@ function checkParam_type_05008(){
   var TYPE_CZECH_current_test_number = '05008';       
   var check_param = {cylinders:4, fuel:"gasoline", sneak:"extra"};
   var check_shape = {cylinders:"number", fuel:"string"};
-  var expect_error = [`checkParam_type()`,
-  `TE@209 - Extra key in checked object - (sneak:'extra')`,
-  `{cylinders:"number",fuel:"string"}`];
+  var expect_error = `TE@209 - Extra key in checked object - (sneak:'extra')`;
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error= type_czech.checkParam_type(check_param, check_shape);
@@ -553,9 +547,7 @@ function checkParam_type_05009(){
   var TYPE_CZECH_current_test_number = '05009';          // SAME AS 5010 ??? TEST
   var check_param = null;
   var check_shape = 'null'; 
-  var expect_error = [`checkParam_type()`,
-  `TE@203 - The type 'null' is not a valid checkParam_type(), checkParam_typeEither(), or checkParam_typeExtra() 2nd parameter type`,
-  `null`];
+  var expect_error = `TE@203 - The type 'null' is not a valid checkParam_type(), checkParam_typeEither(), or checkParam_typeExtra() 2nd parameter type`;
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error= type_czech.checkParam_type(check_param, check_shape);
@@ -576,9 +568,7 @@ function checkParam_type_05010(){
   var TYPE_CZECH_current_test_number = '05010';
   var check_param = null;
   var check_shape = 'null'; 
-  var expect_error = [`checkParam_type()`,
-  `TE@203 - The type 'null' is not a valid checkParam_type(), checkParam_typeEither(), or checkParam_typeExtra() 2nd parameter type`,
-  `null`];
+  var expect_error = `TE@203 - The type 'null' is not a valid checkParam_type(), checkParam_typeEither(), or checkParam_typeExtra() 2nd parameter type`;
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error= type_czech.checkParam_type(check_param, check_shape);
@@ -598,9 +588,7 @@ function checkParam_type_05011(){
   var TYPE_CZECH_current_test_number = '05011';
   var check_param = { a: [ { b:[ {c:'abcdef'} ] } ],  z:null};
   var check_shape = { a: [ { b:[ {c:'string'} ] } ], z: 'null'};   
-  var expect_error = [`checkParam_type()`,
-  `TE@210 - Type 'null' is not a real type`,
-  `{a:[{b:[{c:"string"}]}],z:"null"}`];
+  var expect_error = `TE@210 - Type 'null' is not a real type`;
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error= type_czech.checkParam_type(check_param, check_shape);
@@ -620,9 +608,7 @@ function checkParam_type_05012(){
   var TYPE_CZECH_current_test_number = '05012';
   var check_param = {0:['a-string'], length:1};
   var check_shape = 'string';  
-  var expect_error = ['checkParam_type()',
-  "TE@225 - The value [], an 'array', is not a 'string'",
-  'string'];
+  var expect_error = "TE@225 - The value [], an 'array', is not a 'string'";
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error= type_czech.checkParam_type(check_param, check_shape);
@@ -644,9 +630,7 @@ function checkParam_type_05013(){
   var TYPE_CZECH_current_test_number = '05013';
   var check_param = [['a-string']];
   var check_shape = 'string';  
-  var expect_error = [`checkParam_type()`,
-  `TE@225 - The value [], an 'array', is not a 'string'`,
-  `string`];
+  var expect_error = `TE@225 - The value [], an 'array', is not a 'string'`;
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error= type_czech.checkParam_type(check_param, check_shape);
@@ -668,9 +652,7 @@ function checkParam_type_05014(){
   var TYPE_CZECH_current_test_number = '05014';
   var check_param = 'a-string';
   var check_shape = ['string'];  
-  var expect_error = [`checkParam_type()`,
-  `TE@217 - Comparing 'string' parameter, with a value of a-string, to expected shape of ["string"].`,
-  `['string']`];
+  var expect_error =`TE@217 - Comparing 'string' parameter, with a value of a-string, to expected shape of ["string"].`;
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error= type_czech.checkParam_type(check_param, check_shape);

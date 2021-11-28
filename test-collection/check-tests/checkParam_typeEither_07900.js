@@ -67,7 +67,12 @@ test_pre_checkParam_typeEither_single(single_variable, single_signature, 7902, e
 
 single_variable  = 'a-string';
 single_signature = [ 'string'];
-error_mess = 'UE@701 - checkParam_typeEither()  needs at least 2 choices for an Either, not 1 of ["string"]';
+error_mess = `PRE_test_07900() PRE-FUNC: UE@701 - checkParam_typeEither()  needs at least 2 choices for an Either, not 1 of ["string"]
+CHECKER checkParam_typeEither()
+ACTUAL TYPE 'string'
+ VALUES "a-string"
+EXPECTED TYPE ["string"]
+ ORIGIN pre_checkParam_typeEither_07900(a_var)`;
 test_pre_checkParam_typeEither_single(single_variable, single_signature, 7903, error_mess);
 
 single_variable  = false;
@@ -82,7 +87,12 @@ test_pre_checkParam_typeEither_single(single_variable, single_signature, 7904, e
 
 single_variable  = 'a-string';
 single_signature = 'string';
-error_mess = 'ME@402 - checkParam_typeEither() called with a 2nd parameter as a non-array shape of string';
+error_mess = `PRE_test_07900() PRE-FUNC: ME@402 - checkParam_typeEither() called with a 2nd parameter as a non-array shape of string
+CHECKER checkParam_typeEither()
+ACTUAL TYPE 'string'
+ VALUES "a-string"
+EXPECTED TYPE string
+ ORIGIN pre_checkParam_typeEither_07900(a_var)`;
 test_pre_checkParam_typeEither_single(single_variable, single_signature, 7905, error_mess);
 
 single_variable  = 'asd';
@@ -101,7 +111,7 @@ error_mess = `PRE_test_07900() PRE-FUNC: TE@226 - The value 'Symbol('sym')', whi
 CHECKER checkParam_typeEither()
 ACTUAL TYPE 'symbol'
  VALUES Symbol('sym')
-EXPECTED TYPE ["array",["number"],"bigint","boolean","date","function","number","object",{b:"number"},"regexp","string"]
+EXPECTED TYPE ["array",["number"],"bigint","boolean","date","function","number","object",{"b":"number"},"regexp","string"]
  ORIGIN pre_checkParam_typeEither_07900(a_var)`;
 test_pre_checkParam_typeEither_single(single_variable, single_signature, 7908, error_mess);
 

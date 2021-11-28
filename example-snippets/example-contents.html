@@ -18,10 +18,6 @@ div {
   margin-left:100px;
   margin-bottom:16px;
 }
-
-a {
-  margin-left:16px;
-}
   
 * {
   font-family: arial;
@@ -72,7 +68,17 @@ Missing from TypeCzech
 TypeCzech the good parts
 <ul>
   <li>Type signatures are plain JavaScript variables made of objects, arrays, and strings. No special type variables, no annotations, and no generics.</li>
-  <li>Checking functions are easily detachable into a separate file. To stop all TypeCzech checking just stop importing the TypeCzech library in production or development.</li>
+  <li>Checking functions are easily detachable into a separate file. To stop all
+     TypeCzech checking just stop importing the TypeCzech library in production or development.
+    
+     Decouple 
+     with a comment as 
+     in <a title="03-Turn-Off-Library-Not-Loaded" href="https://jsfiddle.net/steen_hansen/m1tce27f/?03-Turn-Off-Library-Not-Loaded">03-Turn-Off-Library-Not-Loaded</a>,
+     a variable as
+     in <a title="102-Extending-Classes-Imports"  href="https://jsfiddle.net/steen_hansen/rs4nqL7k/?102-Extending-Classes-Imports" >102-Extending-Classes-Imports</a>,
+     or an if statement as 
+     in <a title="204-Extending-Closures-Single"  href="https://jsfiddle.net/steen_hansen/8kbtyfz1/?204-Extending-Closures-Single" >204-Extending-Closures-Single</a>.
+    </li>
   <li>Does not introduce function syntax into your code, just plain functions. No .d.ts files just plain JavaScript.</li>
 </ul>
 
@@ -587,6 +593,7 @@ type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
 </div>
 
 <div><a title="42-Extended-Objects.html" href="42-Extended-Objects.html">42-Extended-Objects</a>
+  - Extended Object Types
 </div>
 
 

@@ -17,8 +17,6 @@ var TEST_number_generatives = 120;
 
 </script>
 
-
-
   <script src="public-tests/linkUp_01000.js"></script>
  
                              <script src="check-tests/check_interface_02000.js"></script> 
@@ -38,13 +36,13 @@ var TEST_number_generatives = 120;
 
      
                                    <script src="check-tests/checkParam_type_05000.js"></script> 
-
+ 
 
                                  
 
                             <script src="check-tests/checkParam_type_05800.js"></script>   
            
-                            
+                          
                            
                               <script src="check-tests/checkParam_type_05900.js"></script>
                         
@@ -84,7 +82,7 @@ var TEST_number_generatives = 120;
 <script src="private-tests/_aTypeOf_09000.js"></script>   
 
 
-
+   
  
 
 <script src="private-tests/_isCollection_10000.js"></script>   
@@ -182,18 +180,31 @@ var TEST_number_generatives = 120;
 
  <script src="check-tests/check_assert_49000.js"></script> 
 
+ 
 
+ <script src="public-tests/nested_checks_50000.js"></script> 
  
 
 
 
+ <script src="public-tests/class_check_51000.js"></script> 
+ <script src="public-tests/closure_check_52000.js"></script> 
+ <script src="public-tests/iife_check_53000.js"></script> 
+  <script src="public-tests/classfree_check_54000.js"></script> 
+  <script src="public-tests/prototype_check_55000.js"></script> 
+
+
+
+
+
+ <script src="public-tests/oloo_check_56000.js"></script> 
 
 
 <script>
       console.log('total fails = ', TEST_total_fails)
       console.log('total checks = ', TEST_total_checks)
 
-      if (TEST_total_checks !== 1714 || TEST_total_fails !== 0) {
+      if (TEST_total_checks !== 1724 || TEST_total_fails !== 0) {
             console.log("Houston we have an error problem!")
       } 
 </script>

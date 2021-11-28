@@ -225,11 +225,11 @@
 /**/
 /**/  function PRE_check_Person(f_name, l_name){
 /**/    if (arguments.length !== 2) 
-/**/      return `PRE: ${arguments.length} parameter(s), not 2`
+/**/      return `${arguments.length} parameter(s), not 2`
 /**/
 /**/    const regnal_numbers = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII']
 /**/    if (!regnal_numbers.includes(l_name))
-/**/      return `PRE: bad regnal number '${l_name}'`
+/**/      return `Bad regnal number '${l_name}'`
 /**/
 /**/    return ''
 /**/  }

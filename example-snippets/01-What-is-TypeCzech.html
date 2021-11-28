@@ -2,7 +2,7 @@
 <title>01 - What is TypeCzech?</title>
 
 
-<div id='js-div' style="width:50%;" >
+<div id='js-div' style="width:45%;" >
   <a href='https://github.com/steenhansen/type-czech' class='git-hub'>GitHub Package</a>
   <div id='js-code'>the javascript</div>
   <br><br>
@@ -161,24 +161,21 @@
 </div>
 
 
-<div id="the-explanation" style="width:50%" >
+<div id="the-explanation" style="width:55%" >
   <div class='an-explantion'>01 - What is TypeCzech?</div>
   <div id='explanation-text'>
     <br>
       TypeCzech is a library that enables checking functions to be called before
       and after your functions run. These special functions can check for correct types,
-      certain argument values, and mutation of parameters.
+      certain argument values, and mutation of parameters. TypeCzech requires ECMAScript 2015 (ES6).
     <br><br>
-    TypeCzech requires ECMAScript 2015 (ES6).
-    <br><br>
-    In the example to the left, the function PRE_check_Person() is executed before
-    the Person() function while POST_check_Person() is run after the Person() function is finished.
-      <br><br>
+    In the example to the left, the function before_Person() is executed before
+    the Person() function while after_Person() is run after the Person() function is finished.
       The Person() function's input and output variables and values are accessable 
       for inspection.
       <br><br>
-      The PRE &amp;POST checking functions signal errors by returning an error message;
-      an empty string "" means no error as shown in with PRE_check_Person(). TypeCzech can be set to simply
+      The before &amp; after checking functions signal errors by returning an error message;
+      an empty string "" means no error as shown in with before_Person(). TypeCzech can be set to simply
       log error messages to the console, or to stop execution via an exception as below.
 
 <pre>
@@ -191,20 +188,19 @@ For example when using the below code, no PRE/POST checking functions are called
 type_czech = TypeCzech()
 </pre>
 
-The PRE &amp; POST checking functions are linked to the function to be tested via this odd
-looking function call.
+The before &amp; after checking functions are linked to the function to be tested via this function call.
 <pre>
-Person = type_czech.linkUp(Person, PRE_check_Person, POST_check_Person)
+Person = type_czech.linkUp(Person, before_Person, after_Person)
 </pre>
 
-An example with no POST checking function, just leave it off.
+An example with no after checking function, just leave it off.
 <pre>
-Person = type_czech.linkUp(Person, PRE_check_Person)
+Person = type_czech.linkUp(Person, before_Person)
 </pre>
 
-When there is no PRE checking function, use undefined as a placeholder.
+When there is no before checking function, use undefined as a placeholder.
 <pre>
-Person = type_czech.linkUp(Person, undefined, POST_check_Person)
+Person = type_czech.linkUp(Person, undefined, after_Person)
 </pre>
 
 
@@ -249,32 +245,35 @@ the difference between the testing code and normal source code.
 /**/
 /**/  //  type_czech = TypeCzech('THROW-EXCEPTIONS')
 /**/
-/**/  function PRE_check_Person(f_name){
-/**/    log('PRE_check_Person() :', f_name)
+/**/  function before_Person(f_name){
+/**/    log('before Person, parameter =', f_name)
 /**/    NO_ERROR = ''
 /**/    return NO_ERROR
 /**/  }
 /**/
-/**/  function POST_check_Person(person_result){
-/**/    log(NL2 + 'POST_check_Person() :', person_result)
-/**/    POST_ERROR = NL2 + 'Error Message - if result is not an empty string'
+/**/  function after_Person(person_result){
+/**/    log(NL1 + 'after Person, result =', person_result)
+/**/    log(NL2)
+/**/    if (person_result === 'BOB')
+/**/      POST_ERROR = 'Error Message for Bob'
+/**/    else
+/**/      POST_ERROR = ''
 /**/    return POST_ERROR
 /**/  }
 /**/
-/**/  Person = type_czech.linkUp(Person, PRE_check_Person, POST_check_Person)
+/**/  Person = type_czech.linkUp(Person, before_Person, after_Person)
 
 function Person(f_name) {
+  log(NL1 + 'inside Person, parameter =', f_name)
   person_result = f_name.toUpperCase()
-  first_to_upper = f_name + ' to ' + person_result
-  log(NL2 + 'function Person() :', first_to_upper)
   return person_result
 }
 
+Person('barbara')
+
+linesConsole(1)
+
 Person('bob')
-
-
-
-
 </script>
 
 

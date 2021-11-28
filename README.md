@@ -30,7 +30,8 @@ Missing from TypeCzech
 TypeCzech the good parts
   - Type signatures are plain JavaScript variables made of objects, arrays, and strings.
     No special type variables, no annotations, and no generics.
-  - Checking functions are easily detachable into a separate file. To stop all TypeCzech checking just stop importing the TypeCzech library in production or development.
+  - Checking functions are easily detachable into a separate file. To stop all TypeCzech checking just stop importing the TypeCzech library in production or development. Decouple 
+  with a comment as in [03-Turn-Off-Library-Not-Loaded](https://jsfiddle.net/steen_hansen/m1tce27f/?03-Turn-Off-Library-Not-Loaded), a variable as in [102-Extending-Classes-Imports](https://jsfiddle.net/steen_hansen/rs4nqL7k/?102-Extending-Classes-Imports), or an if statement as in [204-Extending-Closures-Single](https://jsfiddle.net/steen_hansen/8kbtyfz1/?204-Extending-Closures-Single).
   - Does not introduce function syntax into your code, just plain functions. No .d.ts files just plain JavaScript.
 
 TypeCzech the bad parts

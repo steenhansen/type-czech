@@ -4,13 +4,13 @@
 
 
   
-<div id='js-div' style="width:60%;" class='code-scroll'>
+<div id='js-div' style="width:57%;" class='code-scroll'>
   <a href='https://github.com/steenhansen/type-czech' class='git-hub'>GitHub Package</a>
   <div id='js-code'>the javascript</div>
 </div>
 
 
-<div id="the-explanation" style="width:40%" >
+<div id="the-explanation" style="width:43%" >
   <div class='an-explantion'>601 - Created OLOO Inline</div>
   <div id='explanation-text'>
 
@@ -285,7 +285,7 @@
 /**/    log(LEVEL_1+'PRE -Last') 
 /**/    type_issue = type_czech.checkParam_type([f_name, l_name], ['string', 'string'])
 /**/    if (type_issue) return type_issue;
-/**/    return type_czech.checkParam_empty([f_name, l_name], ['EMPTY-ERROR', 'EMPTY-ERROR']);
+/**/    return type_czech.checkParam_empty([f_name,l_name],['EMPTY-ERROR','ER']);
 /**/  }
 /**/  function POST_check_Last(Last){
 /**/    log(LEVEL_1+'POST-Last') 
@@ -330,13 +330,12 @@
 
 function First(f_name) {
   FIRST_TEMPLATE = {
-    oloo_type: 'First',
     firstMethod(a_date){
-      log(NL+`RUN -firstMethod :${this.f_name} `, a_date) 
+      log(NL+`RUN -firstMethod :${f_name} `, a_date) 
       return a_date
     },
     instanceOf(){
-      return this.oloo_type
+      return 'First'
     }
   }
   first_object = Object.create(FIRST_TEMPLATE)
@@ -347,10 +346,12 @@ function First(f_name) {
 
 function Last(f_name, l_name) {
   LAST_TEMPLATE = {
-    oloo_type: 'Last',
     lastMethod(a_year){
-      log(LEVEL_1+`RUN -lastMethod :${a_year} ${this.f_name} ${this.l_name}`)
+      log(LEVEL_1+`RUN -lastMethod :${a_year} ${f_name} ${l_name}`)
       return a_year
+    },
+    instanceOf(){
+      return 'Last'
     }
   }
   first = First(f_name)
@@ -363,14 +364,15 @@ function Last(f_name, l_name) {
 
 function Full(salu, f_name, l_name) {
   FULL_TEMPLATE = {
-    oloo_type: 'Full',
     fullMethod(a_book){
-      log(LEVEL_2+`RUN -fullMethod :${a_book} ${this.salu} ${this.l_name}`)
+      log(LEVEL_2+`RUN -fullMethod :${a_book} ${salu} ${l_name}`)
       return a_book
     },
+    instanceOf(){
+      return 'Full'
+    },
     showName() {
-      const the_name = `${this.salu} ${this.f_name} ${this.l_name} ` +
-                       `- ${this.oloo_type}`
+      const the_name = `${salu} ${f_name} ${l_name}`
       console.log('Name: ', the_name)
     },
   }

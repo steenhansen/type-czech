@@ -65,7 +65,7 @@ error_mess = `PRE_test_3800() PRE-FUNC: EE@301 -  key 'y' is a 'string' which is
 CHECKER checkParam_empty()
 ACTUAL TYPE 'array'
  VALUES [{x:[{y:"full"}]},{x:[{y:""}]}]
-EMPTY ASSERTION [{x:[{y:"EMPTY-ERROR"}]},{x:[{y:"EMPTY-ERROR"}]}]
+EMPTY ASSERTION [{"x":[{"y":"EMPTY-ERROR"}]},{"x":[{"y":"EMPTY-ERROR"}]}]
  ORIGIN pre_checkParam_empty_3800(an_array)`;
 test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3802, error_mess);
 
@@ -80,7 +80,7 @@ error_mess = `PRE_test_3800() PRE-FUNC: EE@306 - ELEMENT '1' is asserted to be a
 CHECKER checkParam_empty()
 ACTUAL TYPE 'array'
  VALUES [{a:[1,2,3]},{c:[1,NaN,3]}]
-EMPTY ASSERTION [{a:["EMPTY-ERROR"]},{c:["EMPTY-ERROR"]}]
+EMPTY ASSERTION [{"a":["EMPTY-ERROR"]},{"c":["EMPTY-ERROR"]}]
  ORIGIN pre_checkParam_empty_3800(an_array)`;
 test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3804, error_mess);
 
@@ -90,7 +90,7 @@ error_mess = `PRE_test_3800() PRE-FUNC: EE@309 - Key 't' was understood to be 'E
 CHECKER checkParam_empty()
 ACTUAL TYPE 'array'
  VALUES [{r:{}},{t:{}}]
-EMPTY ASSERTION [{r:"EMPTY-OK"},{t:"EMPTY-ERROR"}]
+EMPTY ASSERTION [{"r":"EMPTY-OK"},{"t":"EMPTY-ERROR"}]
  ORIGIN pre_checkParam_empty_3800(an_array)`;
 test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3805, error_mess);
 
@@ -109,7 +109,7 @@ error_mess = `PRE_test_3800() PRE-FUNC: EE@311 - ELEMENT '0' is erroneously empt
 CHECKER checkParam_empty()
 ACTUAL TYPE 'array'
  VALUES [{a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ***,12,{a:3},{b:4},/d/ +++,"abc",Symbol('sym')]}]},{a:[{r:[[],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ***,12,{a:3},{b:4},/d/ +++,"abc",Symbol('sym')]}]}]
-EMPTY ASSERTION [{a:[{r:["EMPTY-ERROR",["EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{b:"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]},{a:[{r:["EMPTY-ERROR",["EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{b:"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]}]
+EMPTY ASSERTION [{"a":[{"r":["EMPTY-ERROR",["EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{"b":"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]},{"a":[{"r":["EMPTY-ERROR",["EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{"b":"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]}]
  ORIGIN pre_checkParam_empty_3800(an_array)`;
 test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3807, error_mess);
 
@@ -119,7 +119,7 @@ error_mess = `PRE_test_3800() PRE-FUNC: ME@403 - Param array [] is empty
 CHECKER checkParam_empty()
 ACTUAL TYPE 'array'
  VALUES [{a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ***,12,{a:3},{b:4},/d/ +++,"abc",Symbol('sym')]}]},{a:[{r:[[123],[],987n,false,1999-12-12T00:00:00.000Z,(x) => x ***,12,{a:3},{b:4},/d/ +++,"abc",Symbol('sym')]}]}]
-EMPTY ASSERTION [{a:[{r:["EMPTY-ERROR",["EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{b:"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]},{a:[{r:["EMPTY-ERROR",["EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{b:"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]}]
+EMPTY ASSERTION [{"a":[{"r":["EMPTY-ERROR",["EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{"b":"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]},{"a":[{"r":["EMPTY-ERROR",["EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{"b":"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]}]
  ORIGIN pre_checkParam_empty_3800(an_array)`;
 test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3808, error_mess);
 
@@ -139,7 +139,7 @@ error_mess = `PRE_test_3800() PRE-FUNC: EE@311 - ELEMENT '4' is erroneously empt
 CHECKER checkParam_empty()
 ACTUAL TYPE 'array'
  VALUES [{a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ***,12,{a:3},{b:4},/d/ +++,"abc",Symbol('sym')]}]},{a:[{r:[[123],[1,2,3],987n,false,null,(x) => x ***,12,{a:3},{b:4},/d/ +++,"abc",Symbol('sym')]}]}]
-EMPTY ASSERTION [{a:[{r:["EMPTY-ERROR",["EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{b:"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]},{a:[{r:["EMPTY-ERROR",["EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{b:"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]}]
+EMPTY ASSERTION [{"a":[{"r":["EMPTY-ERROR",["EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{"b":"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]},{"a":[{"r":["EMPTY-ERROR",["EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{"b":"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]}]
  ORIGIN pre_checkParam_empty_3800(an_array)`;
 test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3811, error_mess);
 
@@ -154,7 +154,7 @@ error_mess = `PRE_test_3800() PRE-FUNC: EE@311 - ELEMENT '6' is erroneously empt
 CHECKER checkParam_empty()
 ACTUAL TYPE 'array'
  VALUES [{a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ***,12,{a:3},{b:4},/d/ +++,"abc",Symbol('sym')]}]},{a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ***,NaN,{a:3},{b:4},/d/ +++,"abc",Symbol('sym')]}]}]
-EMPTY ASSERTION [{a:[{r:["EMPTY-ERROR",["EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{b:"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]},{a:[{r:["EMPTY-ERROR",["EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{b:"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]}]
+EMPTY ASSERTION [{"a":[{"r":["EMPTY-ERROR",["EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{"b":"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]},{"a":[{"r":["EMPTY-ERROR",["EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{"b":"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]}]
  ORIGIN pre_checkParam_empty_3800(an_array)`;
 test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3813, error_mess);
 
@@ -169,7 +169,7 @@ error_mess = `PRE_test_3800() PRE-FUNC: EE@301 -  key 'b' is a 'string' which is
 CHECKER checkParam_empty()
 ACTUAL TYPE 'array'
  VALUES [{a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ***,12,{a:3},{b:4},/d/ +++,"abc",Symbol('sym')]}]},{a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ***,12,{a:3},{b:""},/d/ +++,"abc",Symbol('sym')]}]}]
-EMPTY ASSERTION [{a:[{r:["EMPTY-ERROR",["EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{b:"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]},{a:[{r:["EMPTY-ERROR",["EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{b:"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]}]
+EMPTY ASSERTION [{"a":[{"r":["EMPTY-ERROR",["EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{"b":"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]},{"a":[{"r":["EMPTY-ERROR",["EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{"b":"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]}]
  ORIGIN pre_checkParam_empty_3800(an_array)`;
 test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3815, error_mess);
 
@@ -179,7 +179,7 @@ error_mess = `PRE_test_3800() PRE-FUNC: EE@311 - ELEMENT '9' is erroneously empt
 CHECKER checkParam_empty()
 ACTUAL TYPE 'array'
  VALUES [{a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ***,12,{a:3},{b:4},/d/ +++,"abc",Symbol('sym')]}]},{a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ***,12,{a:3},{b:4},/(?:)/ +++,"abc",Symbol('sym')]}]}]
-EMPTY ASSERTION [{a:[{r:["EMPTY-ERROR",["EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{b:"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]},{a:[{r:["EMPTY-ERROR",["EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{b:"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]}]
+EMPTY ASSERTION [{"a":[{"r":["EMPTY-ERROR",["EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{"b":"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]},{"a":[{"r":["EMPTY-ERROR",["EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{"b":"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]}]
  ORIGIN pre_checkParam_empty_3800(an_array)`;
 test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3816, error_mess);
 
@@ -315,7 +315,7 @@ error_mess = `PRE_test_3800() PRE-FUNC: EE@301 -  key 'e' is a 'string' which is
 CHECKER checkParam_empty()
 ACTUAL TYPE 'array'
  VALUES [{a:{b:{c:{d:{e:""}}}}},{a:{b:{c:{d:{e:""}}}}}]
-EMPTY ASSERTION [{a:{b:{c:{d:{e:"EMPTY-OK"}}}}},{a:{b:{c:{d:{e:"EMPTY-ERROR"}}}}}]
+EMPTY ASSERTION [{"a":{"b":{"c":{"d":{"e":"EMPTY-OK"}}}}},{"a":{"b":{"c":{"d":{"e":"EMPTY-ERROR"}}}}}]
  ORIGIN pre_checkParam_empty_3800(an_array)`;
 test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3834, error_mess);
 
@@ -327,7 +327,7 @@ error_mess = `PRE_test_3800() PRE-FUNC: EE@303 - Bad empty type key, '{e:"EMPTY-
 CHECKER checkParam_empty()
 ACTUAL TYPE 'array'
  VALUES [{a:{b:{c:{d:12}}}},{a:{b:{c:{d:12}}}}]
-EMPTY ASSERTION [{a:{b:{c:{d:"EMPTY-OK"}}}},{a:{b:{c:{d:{e:"EMPTY-ERROR"}}}}}]
+EMPTY ASSERTION [{"a":{"b":{"c":{"d":"EMPTY-OK"}}}},{"a":{"b":{"c":{"d":{"e":"EMPTY-ERROR"}}}}}]
  ORIGIN pre_checkParam_empty_3800(an_array)`;
 test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3835, error_mess);
 
@@ -349,7 +349,7 @@ error_mess = `PRE_test_3800() PRE-FUNC: EE@301 -  key 'e' is a 'string' which is
 CHECKER checkParam_empty()
 ACTUAL TYPE 'array'
  VALUES [{a:[{b:[{c:[{d:[{e:""}]}]}]}]},{a:[{b:[{c:[{d:[{e:""}]}]}]}]}]
-EMPTY ASSERTION [{a:[{b:[{c:[{d:[{e:"EMPTY-OK"}]}]}]}]},{a:[{b:[{c:[{d:[{e:"EMPTY-ERROR"}]}]}]}]}]
+EMPTY ASSERTION [{"a":[{"b":[{"c":[{"d":[{"e":"EMPTY-OK"}]}]}]}]},{"a":[{"b":[{"c":[{"d":[{"e":"EMPTY-ERROR"}]}]}]}]}]
  ORIGIN pre_checkParam_empty_3800(an_array)`;
 test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3838, error_mess);
 
@@ -359,7 +359,7 @@ error_mess = `PRE_test_3800() PRE-FUNC: TE@216 -  Key 'e', which has a type of '
 CHECKER checkParam_empty()
 ACTUAL TYPE 'array'
  VALUES [{a:[{b:[{c:[{d:[""]}]}]}]},{a:[{b:[{c:[{d:[""]}]}]}]}]
-EMPTY ASSERTION [{a:[{b:[{c:[{d:["EMPTY-OK"]}]}]}]},{a:[{b:[{c:[{d:[{e:"EMPTY-ERROR"}]}]}]}]}]
+EMPTY ASSERTION [{"a":[{"b":[{"c":[{"d":["EMPTY-OK"]}]}]}]},{"a":[{"b":[{"c":[{"d":[{"e":"EMPTY-ERROR"}]}]}]}]}]
  ORIGIN pre_checkParam_empty_3800(an_array)`;
 test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3839, error_mess);
 
@@ -381,7 +381,7 @@ error_mess = `PRE_test_3800() PRE-FUNC: EE@301 -  key 'e' is a 'string' which is
 CHECKER checkParam_empty()
 ACTUAL TYPE 'array'
  VALUES [[{a:[{b:[{c:[{d:[{e:""}]}]}]}]}],[{a:[{b:[{c:[{d:[{e:""}]}]}]}]}]]
-EMPTY ASSERTION [[{a:[{b:[{c:[{d:[{e:"EMPTY-OK"}]}]}]}]}],[{a:[{b:[{c:[{d:[{e:"EMPTY-ERROR"}]}]}]}]}]]
+EMPTY ASSERTION [[{"a":[{"b":[{"c":[{"d":[{"e":"EMPTY-OK"}]}]}]}]}],[{"a":[{"b":[{"c":[{"d":[{"e":"EMPTY-ERROR"}]}]}]}]}]]
  ORIGIN pre_checkParam_empty_3800(an_array)`;
 test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3842, error_mess);
 
@@ -391,7 +391,7 @@ error_mess = `PRE_test_3800() PRE-FUNC: TE@216 -  Key 'e', which has a type of '
 CHECKER checkParam_empty()
 ACTUAL TYPE 'array'
  VALUES [[{a:[{b:[{c:[{d:[12]}]}]}]}],[{a:[{b:[{c:[{d:[12]}]}]}]}]]
-EMPTY ASSERTION [[{a:[{b:[{c:[{d:["EMPTY-OK"]}]}]}]}],[{a:[{b:[{c:[{d:[{e:"EMPTY-ERROR"}]}]}]}]}]]
+EMPTY ASSERTION [[{"a":[{"b":[{"c":[{"d":["EMPTY-OK"]}]}]}]}],[{"a":[{"b":[{"c":[{"d":[{"e":"EMPTY-ERROR"}]}]}]}]}]]
  ORIGIN pre_checkParam_empty_3800(an_array)`;
 test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3843, error_mess);
 
@@ -413,7 +413,7 @@ error_mess = `PRE_test_3800() PRE-FUNC: EE@311 - ELEMENT '0' is erroneously empt
 CHECKER checkParam_empty()
 ACTUAL TYPE 'array'
  VALUES [[[{a:{b:[[{c:{d:[[""]]}}]]}}]],[[{a:{b:[[{c:{d:[[""]]}}]]}}]]]
-EMPTY ASSERTION [[[{a:{b:[[{c:{d:[["EMPTY-OK"]]}}]]}}]],[[{a:{b:[[{c:{d:[["EMPTY-ERROR"]]}}]]}}]]]
+EMPTY ASSERTION [[[{"a":{"b":[[{"c":{"d":[["EMPTY-OK"]]}}]]}}]],[[{"a":{"b":[[{"c":{"d":[["EMPTY-ERROR"]]}}]]}}]]]
  ORIGIN pre_checkParam_empty_3800(an_array)`;
 test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3846, error_mess);
 
@@ -423,7 +423,7 @@ error_mess = `PRE_test_3800() PRE-FUNC: EE@314 - Variable {a:{b:[[{c:{d:[[1]]}}]
 CHECKER checkParam_empty()
 ACTUAL TYPE 'array'
  VALUES [[{a:{b:[[{c:{d:[[1]]}}]]}}],[{a:{b:[[{c:{d:[[1]]}}]]}}]]
-EMPTY ASSERTION [[[{a:{b:[[{c:{d:[["EMPTY-OK"]]}}]]}}]],[[{a:{b:[[{c:{d:[["EMPTY-ERROR"]]}}]]}}]]]
+EMPTY ASSERTION [[[{"a":{"b":[[{"c":{"d":[["EMPTY-OK"]]}}]]}}]],[[{"a":{"b":[[{"c":{"d":[["EMPTY-ERROR"]]}}]]}}]]]
  ORIGIN pre_checkParam_empty_3800(an_array)`;
 test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3847, error_mess);
 
@@ -433,7 +433,7 @@ error_mess = `PRE_test_3800() PRE-FUNC: TE@216 -  Key 'a', which has a type of '
 CHECKER checkParam_empty()
 ACTUAL TYPE 'array'
  VALUES [[[{a:{b:[[{c:{d:[[""]]}}]]}}]],[[{a:{b:[[{c:{d:[[""]]}}]]}}]]]
-EMPTY ASSERTION [[{a:{b:[[{c:{d:[["EMPTY-OK"]]}}]]}}],[{a:{b:[[{c:{d:[["EMPTY-ERROR"]]}}]]}}]]
+EMPTY ASSERTION [[{"a":{"b":[[{"c":{"d":[["EMPTY-OK"]]}}]]}}],[{"a":{"b":[[{"c":{"d":[["EMPTY-ERROR"]]}}]]}}]]
  ORIGIN pre_checkParam_empty_3800(an_array)`;
 test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3848, error_mess);
 
@@ -450,7 +450,7 @@ error_mess = `PRE_test_3800() PRE-FUNC: EE@311 - ELEMENT '0' is erroneously empt
 CHECKER checkParam_empty()
 ACTUAL TYPE 'array'
  VALUES [{a:{b:[[{c:{d:[[""]]}}]]}},{a:{b:[[{c:{d:[[""]]}}]]}}]
-EMPTY ASSERTION [{a:{b:[[{c:{d:[["EMPTY-OK"]]}}]]}},{a:{b:[[{c:{d:[["EMPTY-ERROR"]]}}]]}}]
+EMPTY ASSERTION [{"a":{"b":[[{"c":{"d":[["EMPTY-OK"]]}}]]}},{"a":{"b":[[{"c":{"d":[["EMPTY-ERROR"]]}}]]}}]
  ORIGIN pre_checkParam_empty_3800(an_array)`;
 test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3850, error_mess);
 
@@ -460,7 +460,7 @@ error_mess = `PRE_test_3800() PRE-FUNC: TE@216 -  Key 'a', which has a type of '
 CHECKER checkParam_empty()
 ACTUAL TYPE 'array'
  VALUES [{b:[[{c:{d:[[""]]}}]]},{b:[[{c:{d:[[""]]}}]]}]
-EMPTY ASSERTION [{a:{b:[[{c:{d:[["EMPTY-OK"]]}}]]}},{a:{b:[[{c:{d:[["EMPTY-ERROR"]]}}]]}}]
+EMPTY ASSERTION [{"a":{"b":[[{"c":{"d":[["EMPTY-OK"]]}}]]}},{"a":{"b":[[{"c":{"d":[["EMPTY-ERROR"]]}}]]}}]
  ORIGIN pre_checkParam_empty_3800(an_array)`;
 test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3851, error_mess);
 
@@ -470,7 +470,7 @@ error_mess = `PRE_test_3800() PRE-FUNC: TE@216 -  Key 'b', which has a type of '
 CHECKER checkParam_empty()
 ACTUAL TYPE 'array'
  VALUES [{a:{b:[[{c:{d:[[""]]}}]]}},{a:{b:[[{c:{d:[[""]]}}]]}}]
-EMPTY ASSERTION [{b:[[{c:{d:[["EMPTY-EOK"]]}}]]},{b:[[{c:{d:[["EMPTY-ERROR"]]}}]]}]
+EMPTY ASSERTION [{"b":[[{"c":{"d":[["EMPTY-EOK"]]}}]]},{"b":[[{"c":{"d":[["EMPTY-ERROR"]]}}]]}]
  ORIGIN pre_checkParam_empty_3800(an_array)`;
 test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3852, error_mess);
 
@@ -531,7 +531,7 @@ error_mess = `PRE_test_3800() PRE-FUNC: EE@301 -  key 'b' is a 'string' which is
 CHECKER checkParam_empty()
 ACTUAL TYPE 'array'
  VALUES [{a:""},{b:""}]
-EMPTY ASSERTION [{a:"EMPTY-OK"},{b:"EMPTY-ERROR"}]
+EMPTY ASSERTION [{"a":"EMPTY-OK"},{"b":"EMPTY-ERROR"}]
  ORIGIN pre_checkParam_empty_3800(an_array)`;
 test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3858, error_mess);
 
@@ -642,7 +642,7 @@ error_mess = `PRE_test_3800() PRE-FUNC: TE@216 -  Key 'mt_object', which has a t
 CHECKER checkParam_empty()
 ACTUAL TYPE 'array'
  VALUES [{an_object:"a-value"},"not-object"]
-EMPTY ASSERTION [{an_object:"EMPTY-ERROR"},{mt_object:"EMPTY-ERROR"}]
+EMPTY ASSERTION [{"an_object":"EMPTY-ERROR"},{"mt_object":"EMPTY-ERROR"}]
  ORIGIN pre_checkParam_empty_3800(an_array)`;
 test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3875, error_mess);
 
@@ -682,7 +682,7 @@ error_mess = `PRE_test_3800() PRE-FUNC: EE@315 - Extra key in checked object - (
 CHECKER checkParam_empty()
 ACTUAL TYPE 'array'
  VALUES [{a:1},{a:1,b:2}]
-EMPTY ASSERTION [{a:"EMPTY-ERROR"},{a:"EMPTY-ERROR"}]
+EMPTY ASSERTION [{"a":"EMPTY-ERROR"},{"a":"EMPTY-ERROR"}]
  ORIGIN pre_checkParam_empty_3800(an_array)`;
 test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3879, error_mess);
 
@@ -692,7 +692,7 @@ error_mess = `PRE_test_3800() PRE-FUNC: EE@302 - Type cannot be empty 'a' EMPTY-
 CHECKER checkParam_empty()
 ACTUAL TYPE 'array'
  VALUES [{v:33},{a:undefined}]
-EMPTY ASSERTION [{v:"EMPTY-OK"},{a:"EMPTY-ERROR"}]
+EMPTY ASSERTION [{"v":"EMPTY-OK"},{"a":"EMPTY-ERROR"}]
  ORIGIN pre_checkParam_empty_3800(an_array)`;
 test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3880, error_mess);
 
@@ -702,7 +702,7 @@ error_mess = `PRE_test_3800() PRE-FUNC: EE@302 - Type cannot be empty 'a' EMPTY-
 CHECKER checkParam_empty()
 ACTUAL TYPE 'array'
  VALUES [{j:34},{a:null}]
-EMPTY ASSERTION [{j:"EMPTY-IGNORE"},{a:"EMPTY-ERROR"}]
+EMPTY ASSERTION [{"j":"EMPTY-IGNORE"},{"a":"EMPTY-ERROR"}]
  ORIGIN pre_checkParam_empty_3800(an_array)`;
 test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3881, error_mess);
 

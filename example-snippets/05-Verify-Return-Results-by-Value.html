@@ -246,7 +246,7 @@ Person = type_czech.linkUp(Person, undefined, POST_check_Person)
 /**/  function POST_check_Person(first_last){
 /**/    royal_name = new RegExp(/^[A-Z][a-z]*\s[IVX]*$/)
 /**/    if (!first_last.match(royal_name))
-/**/      return NL+`POST, name is not formatted royally - ${first_last}`
+/**/      return `Name is not formatted royally - ${first_last}`
 /**/
 /**/    return ''
 /**/  }
@@ -259,22 +259,21 @@ function Person(f_name, regnal_number){
 }
 
 cleopatra = Person('Cleopatra', 'VII')
-linesConsole(2)
+
 log('out A : ', cleopatra)
 
-linesConsole(1)
+linesConsole(4)
 
 atahualpa = Person('Atahualpa')
-linesConsole(1)
 log('out B : ', atahualpa)
 
-linesConsole(1)
+linesConsole(4)
 
 catherine = Person('cATHERINE', 'II')
-log(NL +'out C : ', catherine)
+log('out C : ', catherine)
 
 
-linesConsole(1)
+linesConsole(3)
 
 louis = Person('Louis', 'XIV')
 linesConsole(1)

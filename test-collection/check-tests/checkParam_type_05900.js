@@ -66,7 +66,7 @@ error_mess = `PRE_test_05900() PRE-FUNC: TE@213 - Property 'y' is indicated to b
 CHECKER checkParam_type()
 ACTUAL TYPE 'object'
  VALUES {x:[{y:123456}]}
-EXPECTED TYPE {x:[{y:"string"}]}
+EXPECTED TYPE {"x":[{"y":"string"}]}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5902, error_mess);
 
@@ -76,7 +76,7 @@ error_mess = `PRE_test_05900() PRE-FUNC: TE@207 - Param is meant to be 'object' 
 CHECKER checkParam_type()
 ACTUAL TYPE 'object'
  VALUES {a:[1,2,3]}
-EXPECTED TYPE {a:"object"}
+EXPECTED TYPE {"a":"object"}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5903, error_mess);
 
@@ -86,7 +86,7 @@ error_mess = `PRE_test_05900() PRE-FUNC: TE@219 - Comparing [] parameter, with a
 CHECKER checkParam_type()
 ACTUAL TYPE 'array'
  VALUES [13,14,15]
-EXPECTED TYPE {'r':'number'}
+EXPECTED TYPE {"r":"number"}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5904, error_mess);
 
@@ -96,7 +96,7 @@ error_mess = `PRE_test_05900() PRE-FUNC: TE@217 - Comparing 'object' parameter, 
 CHECKER checkParam_type()
 ACTUAL TYPE 'object'
  VALUES {r:"a-string"}
-EXPECTED TYPE ['number']
+EXPECTED TYPE ["number"]
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5905, error_mess);
 
@@ -113,7 +113,7 @@ error_mess = `PRE_test_05900() PRE-FUNC: TE@214 -  ELEMENT '0' is assumed to be 
 CHECKER checkParam_type()
 ACTUAL TYPE 'object'
  VALUES {a:[{r:["A-STRING ! ! !",[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ***,12,{a:3},{b:4},/d/ +++,"abc",Symbol('sym')]}]}
-EXPECTED TYPE {a:[{r:["array",["number"],"bigint","boolean","date","function","number","object",{b:"number"},"regexp","string","symbol"]}]}
+EXPECTED TYPE {"a":[{"r":["array",["number"],"bigint","boolean","date","function","number","object",{"b":"number"},"regexp","string","symbol"]}]}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5907, error_mess);
 
@@ -123,7 +123,7 @@ error_mess = `PRE_test_05900() PRE-FUNC: TE@207 - Param is meant to be 'array' b
 CHECKER checkParam_type()
 ACTUAL TYPE 'object'
  VALUES {a:[{r:[[123],"A-STRING ! ! !",987n,false,1999-12-12T00:00:00.000Z,(x) => x ***,12,{a:3},{b:4},/d/ +++,"abc",Symbol('sym')]}]}
-EXPECTED TYPE {a:[{r:["array",["number"],"bigint","boolean","date","function","number","object",{b:"number"},"regexp","string","symbol"]}]}
+EXPECTED TYPE {"a":[{"r":["array",["number"],"bigint","boolean","date","function","number","object",{"b":"number"},"regexp","string","symbol"]}]}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5908, error_mess);
 
@@ -133,7 +133,7 @@ error_mess = `PRE_test_05900() PRE-FUNC: TE@214 -  ELEMENT '2' is assumed to be 
 CHECKER checkParam_type()
 ACTUAL TYPE 'object'
  VALUES {a:[{r:[[123],[1,2,3],"A-STRING ! ! !",false,1999-12-12T00:00:00.000Z,(x) => x ***,12,{a:3},{b:4},/d/ +++,"abc",Symbol('sym')]}]}
-EXPECTED TYPE {a:[{r:["array",["number"],"bigint","boolean","date","function","number","object",{b:"number"},"regexp","string","symbol"]}]}
+EXPECTED TYPE {"a":[{"r":["array",["number"],"bigint","boolean","date","function","number","object",{"b":"number"},"regexp","string","symbol"]}]}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5909, error_mess);
 
@@ -143,7 +143,7 @@ error_mess = `PRE_test_05900() PRE-FUNC: TE@214 -  ELEMENT '3' is assumed to be 
 CHECKER checkParam_type()
 ACTUAL TYPE 'object'
  VALUES {a:[{r:[[123],[1,2,3],987n,"A-STRING ! ! !",1999-12-12T00:00:00.000Z,(x) => x ***,12,{a:3},{b:4},/d/ +++,"abc",Symbol('sym')]}]}
-EXPECTED TYPE {a:[{r:["array",["number"],"bigint","boolean","date","function","number","object",{b:"number"},"regexp","string","symbol"]}]}
+EXPECTED TYPE {"a":[{"r":["array",["number"],"bigint","boolean","date","function","number","object",{"b":"number"},"regexp","string","symbol"]}]}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5910, error_mess);
 
@@ -153,7 +153,7 @@ error_mess = `PRE_test_05900() PRE-FUNC: TE@214 -  ELEMENT '4' is assumed to be 
 CHECKER checkParam_type()
 ACTUAL TYPE 'object'
  VALUES {a:[{r:[[123],[1,2,3],987n,false,"A-STRING ! ! !",(x) => x ***,12,{a:3},{b:4},/d/ +++,"abc",Symbol('sym')]}]}
-EXPECTED TYPE {a:[{r:["array",["number"],"bigint","boolean","date","function","number","object",{b:"number"},"regexp","string","symbol"]}]}
+EXPECTED TYPE {"a":[{"r":["array",["number"],"bigint","boolean","date","function","number","object",{"b":"number"},"regexp","string","symbol"]}]}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5911, error_mess);
 
@@ -163,7 +163,7 @@ error_mess = `PRE_test_05900() PRE-FUNC: TE@214 -  ELEMENT '5' is assumed to be 
 CHECKER checkParam_type()
 ACTUAL TYPE 'object'
  VALUES {a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,"A-STRING ! ! !",12,{a:3},{b:4},/d/ +++,"abc",Symbol('sym')]}]}
-EXPECTED TYPE {a:[{r:["array",["number"],"bigint","boolean","date","function","number","object",{b:"number"},"regexp","string","symbol"]}]}
+EXPECTED TYPE {"a":[{"r":["array",["number"],"bigint","boolean","date","function","number","object",{"b":"number"},"regexp","string","symbol"]}]}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5912, error_mess);
 
@@ -173,7 +173,7 @@ error_mess = `PRE_test_05900() PRE-FUNC: TE@214 -  ELEMENT '6' is assumed to be 
 CHECKER checkParam_type()
 ACTUAL TYPE 'object'
  VALUES {a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ***,"A-STRING ! ! !",{a:3},{b:4},/d/ +++,"abc",Symbol('sym')]}]}
-EXPECTED TYPE {a:[{r:["array",["number"],"bigint","boolean","date","function","number","object",{b:"number"},"regexp","string","symbol"]}]}
+EXPECTED TYPE {"a":[{"r":["array",["number"],"bigint","boolean","date","function","number","object",{"b":"number"},"regexp","string","symbol"]}]}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5913, error_mess);
 
@@ -183,7 +183,7 @@ error_mess = `PRE_test_05900() PRE-FUNC: TE@214 -  ELEMENT '7' is assumed to be 
 CHECKER checkParam_type()
 ACTUAL TYPE 'object'
  VALUES {a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ***,12,"A-STRING ! ! !",{b:4},/d/ +++,"abc",Symbol('sym')]}]}
-EXPECTED TYPE {a:[{r:["array",["number"],"bigint","boolean","date","function","number","object",{b:"number"},"regexp","string","symbol"]}]}
+EXPECTED TYPE {"a":[{"r":["array",["number"],"bigint","boolean","date","function","number","object",{"b":"number"},"regexp","string","symbol"]}]}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5914, error_mess);
 
@@ -193,7 +193,7 @@ error_mess = `PRE_test_05900() PRE-FUNC: TE@207 - Param is meant to be 'object' 
 CHECKER checkParam_type()
 ACTUAL TYPE 'object'
  VALUES {a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ***,12,{a:3},"A-STRING ! ! !",/d/ +++,"abc",Symbol('sym')]}]}
-EXPECTED TYPE {a:[{r:["array",["number"],"bigint","boolean","date","function","number","object",{b:"number"},"regexp","string","symbol"]}]}
+EXPECTED TYPE {"a":[{"r":["array",["number"],"bigint","boolean","date","function","number","object",{"b":"number"},"regexp","string","symbol"]}]}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5915, error_mess);
 
@@ -203,7 +203,7 @@ error_mess = `PRE_test_05900() PRE-FUNC: TE@214 -  ELEMENT '9' is assumed to be 
 CHECKER checkParam_type()
 ACTUAL TYPE 'object'
  VALUES {a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ***,12,{a:3},{b:4},"A-STRING ! ! !","abc",Symbol('sym')]}]}
-EXPECTED TYPE {a:[{r:["array",["number"],"bigint","boolean","date","function","number","object",{b:"number"},"regexp","string","symbol"]}]}
+EXPECTED TYPE {"a":[{"r":["array",["number"],"bigint","boolean","date","function","number","object",{"b":"number"},"regexp","string","symbol"]}]}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5916, error_mess);
 
@@ -213,7 +213,7 @@ error_mess = `PRE_test_05900() PRE-FUNC: TE@214 -  ELEMENT '11' is assumed to be
 CHECKER checkParam_type()
 ACTUAL TYPE 'object'
  VALUES {a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ***,12,{a:3},{b:4},/d/ +++,"abc","A-STRING ! ! !"]}]}
-EXPECTED TYPE {a:[{r:["array",["number"],"bigint","boolean","date","function","number","object",{b:"number"},"regexp","string","symbol"]}]}
+EXPECTED TYPE {"a":[{"r":["array",["number"],"bigint","boolean","date","function","number","object",{"b":"number"},"regexp","string","symbol"]}]}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5917, error_mess);
 
@@ -374,7 +374,7 @@ error_mess = `PRE_test_05900() PRE-FUNC: TE@213 - Property 'e' is indicated to b
 CHECKER checkParam_type()
 ACTUAL TYPE 'object'
  VALUES {a:{b:{c:{d:{e:12}}}}}
-EXPECTED TYPE {a:{b:{c:{d:{e:"string"}}}}}
+EXPECTED TYPE {"a":{"b":{"c":{"d":{"e":"string"}}}}}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5934, error_mess);
 
@@ -384,7 +384,7 @@ error_mess = `PRE_test_05900() PRE-FUNC: TE@210 - Type '{"e":"number"}' is not a
 CHECKER checkParam_type()
 ACTUAL TYPE 'object'
  VALUES {a:{b:{c:{d:12}}}}
-EXPECTED TYPE {a:{b:{c:{d:{e:"number"}}}}}
+EXPECTED TYPE {"a":{"b":{"c":{"d":{"e":"number"}}}}}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5935, error_mess);
 
@@ -394,7 +394,7 @@ error_mess = `PRE_test_05900() PRE-FUNC: TE@207 - Param is meant to be 'number' 
 CHECKER checkParam_type()
 ACTUAL TYPE 'object'
  VALUES {a:{b:{c:{d:{e:12}}}}}
-EXPECTED TYPE {a:{b:{c:{d:"number"}}}}
+EXPECTED TYPE {"a":{"b":{"c":{"d":"number"}}}}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5936, error_mess);
 
@@ -411,7 +411,7 @@ error_mess = `PRE_test_05900() PRE-FUNC: TE@213 - Property 'e' is indicated to b
 CHECKER checkParam_type()
 ACTUAL TYPE 'object'
  VALUES {a:[{b:[{c:[{d:[{e:12}]}]}]}]}
-EXPECTED TYPE {a:[{b:[{c:[{d:[{e:"string"}]}]}]}]}
+EXPECTED TYPE {"a":[{"b":[{"c":[{"d":[{"e":"string"}]}]}]}]}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5938, error_mess);
 
@@ -421,7 +421,7 @@ error_mess = `PRE_test_05900() PRE-FUNC: TE@207 - Param is meant to be 'object' 
 CHECKER checkParam_type()
 ACTUAL TYPE 'object'
  VALUES {a:[{b:[{c:[{d:[12]}]}]}]}
-EXPECTED TYPE {a:[{b:[{c:[{d:[{e:"number"}]}]}]}]}
+EXPECTED TYPE {"a":[{"b":[{"c":[{"d":[{"e":"number"}]}]}]}]}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5939, error_mess);
 
@@ -431,7 +431,7 @@ error_mess = `PRE_test_05900() PRE-FUNC: TE@214 -  ELEMENT '0' is assumed to be 
 CHECKER checkParam_type()
 ACTUAL TYPE 'object'
  VALUES {a:[{b:[{c:[{d:[{e:12}]}]}]}]}
-EXPECTED TYPE {a:[{b:[{c:[{d:["number"]}]}]}]}
+EXPECTED TYPE {"a":[{"b":[{"c":[{"d":["number"]}]}]}]}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5940, error_mess);
 
@@ -448,7 +448,7 @@ error_mess = `PRE_test_05900() PRE-FUNC: TE@213 - Property 'e' is indicated to b
 CHECKER checkParam_type()
 ACTUAL TYPE 'array'
  VALUES [{a:[{b:[{c:[{d:[{e:12}]}]}]}]}]
-EXPECTED TYPE [{a:[{b:[{c:[{d:[{e:"string"}]}]}]}]}]
+EXPECTED TYPE [{"a":[{"b":[{"c":[{"d":[{"e":"string"}]}]}]}]}]
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5942, error_mess);
 
@@ -458,7 +458,7 @@ error_mess = `PRE_test_05900() PRE-FUNC: TE@207 - Param is meant to be 'object' 
 CHECKER checkParam_type()
 ACTUAL TYPE 'array'
  VALUES [{a:[{b:[{c:[{d:[12]}]}]}]}]
-EXPECTED TYPE [{a:[{b:[{c:[{d:[{e:"number"}]}]}]}]}]
+EXPECTED TYPE [{"a":[{"b":[{"c":[{"d":[{"e":"number"}]}]}]}]}]
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5943, error_mess);
 
@@ -468,7 +468,7 @@ error_mess = `PRE_test_05900() PRE-FUNC: TE@214 -  ELEMENT '0' is assumed to be 
 CHECKER checkParam_type()
 ACTUAL TYPE 'array'
  VALUES [{a:[{b:[{c:[{d:[{e:12}]}]}]}]}]
-EXPECTED TYPE [{a:[{b:[{c:[{d:["number"]}]}]}]}]
+EXPECTED TYPE [{"a":[{"b":[{"c":[{"d":["number"]}]}]}]}]
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5944, error_mess);
 
@@ -485,7 +485,7 @@ error_mess = `PRE_test_05900() PRE-FUNC: TE@214 -  ELEMENT '0' is assumed to be 
 CHECKER checkParam_type()
 ACTUAL TYPE 'array'
  VALUES [[{a:{b:[[{c:{d:[[1]]}}]]}}]]
-EXPECTED TYPE [[{a:{b:[[{c:{d:[["string"]]}}]]}}]]
+EXPECTED TYPE [[{"a":{"b":[[{"c":{"d":[["string"]]}}]]}}]]
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5946, error_mess);
 
@@ -495,7 +495,7 @@ error_mess = `PRE_test_05900() PRE-FUNC: TE@207 - Param is meant to be 'array' b
 CHECKER checkParam_type()
 ACTUAL TYPE 'array'
  VALUES [{a:{b:[[{c:{d:[[1]]}}]]}}]
-EXPECTED TYPE [[{a:{b:[[{c:{d:[["number"]]}}]]}}]]
+EXPECTED TYPE [[{"a":{"b":[[{"c":{"d":[["number"]]}}]]}}]]
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5947, error_mess);
 
@@ -505,7 +505,7 @@ error_mess = `PRE_test_05900() PRE-FUNC: TE@207 - Param is meant to be 'object' 
 CHECKER checkParam_type()
 ACTUAL TYPE 'array'
  VALUES [[{a:{b:[[{c:{d:[[1]]}}]]}}]]
-EXPECTED TYPE [{a:{b:[[{c:{d:[["number"]]}}]]}}]
+EXPECTED TYPE [{"a":{"b":[[{"c":{"d":[["number"]]}}]]}}]
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5948, error_mess);
 
@@ -522,7 +522,7 @@ error_mess = `PRE_test_05900() PRE-FUNC: TE@214 -  ELEMENT '0' is assumed to be 
 CHECKER checkParam_type()
 ACTUAL TYPE 'object'
  VALUES {a:{b:[[{c:{d:[[1]]}}]]}}
-EXPECTED TYPE {a:{b:[[{c:{d:[["string"]]}}]]}}
+EXPECTED TYPE {"a":{"b":[[{"c":{"d":[["string"]]}}]]}}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5950, error_mess);
 
@@ -532,7 +532,7 @@ error_mess = `PRE_test_05900() PRE-FUNC: TE@216 -  Key 'a', which has a type of 
 CHECKER checkParam_type()
 ACTUAL TYPE 'object'
  VALUES {b:[[{c:{d:[[1]]}}]]}
-EXPECTED TYPE {a:{b:[[{c:{d:[["number"]]}}]]}}
+EXPECTED TYPE {"a":{"b":[[{"c":{"d":[["number"]]}}]]}}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5951, error_mess);
 
@@ -542,7 +542,7 @@ error_mess = `PRE_test_05900() PRE-FUNC: TE@216 -  Key 'b', which has a type of 
 CHECKER checkParam_type()
 ACTUAL TYPE 'object'
  VALUES {a:{b:[[{c:{d:[[1]]}}]]}}
-EXPECTED TYPE {b:[[{c:{d:[["number"]]}}]]}
+EXPECTED TYPE {"b":[[{"c":{"d":[["number"]]}}]]}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5952, error_mess);
 
@@ -753,7 +753,7 @@ error_mess = `PRE_test_05900() PRE-FUNC: TE@201 - checkParam_type() called with 
 CHECKER checkParam_type()
 ACTUAL TYPE 'string'
  VALUES "not-object"
-EXPECTED TYPE {'an_object':'Boaty-McBoatFace'}
+EXPECTED TYPE {"an_object":"Boaty-McBoatFace"}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5975, error_mess);
 
@@ -793,7 +793,7 @@ error_mess = `PRE_test_05900() PRE-FUNC: TE@209 - Extra key in checked object - 
 CHECKER checkParam_type()
 ACTUAL TYPE 'object'
  VALUES {a:1,b:2}
-EXPECTED TYPE {a:"number"}
+EXPECTED TYPE {"a":"number"}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5979, error_mess);
 
@@ -803,7 +803,7 @@ error_mess = `PRE_test_05900() PRE-FUNC: TE@211 - Key 'a' was given to be a 'num
 CHECKER checkParam_type()
 ACTUAL TYPE 'object'
  VALUES {a:undefined}
-EXPECTED TYPE {a:"number"}
+EXPECTED TYPE {"a":"number"}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5980, error_mess);
 
@@ -813,7 +813,7 @@ error_mess = `PRE_test_05900() PRE-FUNC: TE@212 - Key 'a' was determined to be a
 CHECKER checkParam_type()
 ACTUAL TYPE 'object'
  VALUES {a:null}
-EXPECTED TYPE {a:"number"}
+EXPECTED TYPE {"a":"number"}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5981, error_mess);
 
@@ -824,7 +824,7 @@ error_mess = `PRE_test_05900() PRE-FUNC: TE@217 - Comparing 'string' parameter, 
 CHECKER checkParam_type()
 ACTUAL TYPE 'string'
  VALUES "a-string"
-EXPECTED TYPE ['number']
+EXPECTED TYPE ["number"]
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5982, error_mess);
 

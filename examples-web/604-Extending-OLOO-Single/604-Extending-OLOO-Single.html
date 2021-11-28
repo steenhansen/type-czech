@@ -4,7 +4,7 @@
 
 
   
-<div id='js-div' style="width:63%; "  class='code-scroll'>
+<div id='js-div' style="width:59%;">
   <a href='https://github.com/steenhansen/type-czech' class='git-hub'>GitHub Package</a>
   <div id='js-code'>the javascript</div>
   <br>
@@ -16,7 +16,7 @@
 </div>
 
 
-<div id="the-explanation" style="width:37%">
+<div id="the-explanation" style="width:41%">
   <div class='an-explantion'>604 - Extending OLOO Single</div>
   <div id='explanation-text'>
     <br>
@@ -280,23 +280,22 @@ if (typeof check_linkUp_first_last_full === 'function')
 /**/ //<script src="./604-oloo-external-checks.js">
 
 function First(f_name) {
-  FIRST_TEMPLATE = {  oloo_type: 'First',
-                      firstMethod(a_date){
-                        log(NL+`RUN -firstMethod :${this.f_name} `, a_date) 
-                        return a_date
+  FIRST_TEMPLATE = {  firstMethod(a_date){
+                        log(NL+`RUN -firstMethod :${f_name} `, a_date) 
+                        return a_date 
                       },
-                      instanceOf(){ return this.oloo_type }    }
+                      instanceOf(){ return 'First' }    }
   first_object = Object.create(FIRST_TEMPLATE)
   first_object.f_name = f_name
   log(NL+`CONS-First :${f_name}`)
   return first_object  }
 
 function Last(f_name, l_name) {
-  LAST_TEMPLATE = { oloo_type: 'Last',
-                    lastMethod(a_year){
-                      log(LEVEL_1+`RUN -lastMethod :${a_year} ${this.f_name} ${this.l_name}`)
-                      return a_year
-                    }    }
+  LAST_TEMPLATE = { lastMethod(a_year){
+                      log(LEVEL_1+`RUN -lastMethod :${a_year} ${f_name} ${l_name}`)
+                      return a_year 
+                    },
+                    instanceOf(){ return 'Last' }    }
   first = First(f_name)
   Object.setPrototypeOf(LAST_TEMPLATE, first)
   last_object = Object.create(LAST_TEMPLATE)
@@ -305,14 +304,12 @@ function Last(f_name, l_name) {
   return last_object  }
 
 function Full(salu, f_name, l_name) {
-  FULL_TEMPLATE = { oloo_type: 'Full',
-                    fullMethod(a_book){
-                      log(LEVEL_2+`RUN -fullMethod :${a_book} ${this.salu} ${this.l_name}`)
-                      return a_book
-                    },
+  FULL_TEMPLATE = { fullMethod(a_book){
+                      log(LEVEL_2+`RUN -fullMethod :${a_book} ${salu} ${l_name}`)
+                      return a_book },
                     showName() {
-                      return  `${this.salu} ${this.f_name} ${this.l_name} - ${this.oloo_type}`
-                    }    }
+                       return  `${salu} ${f_name} ${l_name}` },
+                    instanceOf(){ return 'Full' }    }
   last = Last(f_name, l_name) 
   Object.setPrototypeOf(FULL_TEMPLATE, last)
   full_object = Object.create(FULL_TEMPLATE)

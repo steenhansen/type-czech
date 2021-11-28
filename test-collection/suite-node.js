@@ -4,6 +4,9 @@ require('./node_includes.js');
 
 const { TypeCzech } = require('../TypeCzech.js');
 
+
+
+
 global.TEST_total_checks = 0;
 global.TEST_total_fails = 0;
 global.TEST_show_random = false;
@@ -76,9 +79,20 @@ require('./check-tests/signature_checkArgs_typeVariadic_47000.js');
 require('./check-tests/signature_checkArgs_emptyVariadic_48000.js');
 require('./check-tests/check_assert_49000.js');
 
+require('./public-tests/nested_checks_50000.js');
+require('./public-tests/class_check_51000.js');
+require('./public-tests/closure_check_52000.js');
+
+require('./public-tests/iife_check_53000.js');
+require('./public-tests/classfree_check_54000.js');
+require('./public-tests/prototype_check_55000.js');
+require('./public-tests/oloo_check_56000.js');
+
+
+
 console.log('total fails = ', global.TEST_total_fails);
 console.log('total checks = ', global.TEST_total_checks);
 
-if (global.TEST_total_checks !== 1582 || global.TEST_total_fails !== 0) {
+if (global.TEST_total_checks !== 1724 || global.TEST_total_fails !== 0) {
   console.log("Houston we have an error problem!")
 } 

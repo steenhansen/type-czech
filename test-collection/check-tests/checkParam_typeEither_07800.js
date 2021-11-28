@@ -85,7 +85,7 @@ error_mess = `PRE_test_07800() PRE-FUNC: TE@209 - Extra key in checked object - 
 CHECKER checkParam_typeEither()
 ACTUAL TYPE 'object'
  VALUES {n:12,s:"Holiday Road"}
-EXPECTED TYPE [{n:"number",b:"boolean"},{r:"regexp",s:"string"}]
+EXPECTED TYPE [{"n":"number","b":"boolean"},{"r":"regexp","s":"string"}]
  ORIGIN pre_checkParam_typeEither_07800(a_var)`;
 test_pre_checkParam_typeEither_multi(multi_variable, multi_signature, 7805, error_mess);
 
@@ -96,7 +96,12 @@ test_pre_checkParam_typeEither_multi(multi_variable, multi_signature, 7806, erro
 
 multi_variable  = ['a-string', 123];
 multi_signature = ['string'];
-error_mess = 'UE@701 - checkParam_typeEither()  needs at least 2 choices for an Either, not 1 of ["string"]';
+error_mess = `PRE_test_07800() PRE-FUNC: UE@701 - checkParam_typeEither()  needs at least 2 choices for an Either, not 1 of ["string"]
+CHECKER checkParam_typeEither()
+ACTUAL TYPE 'array'
+ VALUES ["a-string",123]
+EXPECTED TYPE ["string"]
+ ORIGIN pre_checkParam_typeEither_07800(a_var)`;
 test_pre_checkParam_typeEither_multi(multi_variable, multi_signature, 7807, error_mess);
 
 multi_variable  = [false, false];
@@ -147,12 +152,12 @@ test_pre_checkParam_typeEither_multi(multi_variable, multi_signature, 7809, erro
 multi_variable  = 'asd';
 multi_signature = [ 'HTMLDivElement', 'string'];
 error_mess = '';
-test_pre_checkParam_typeEither_multi(multi_variable, multi_signature, 7806, error_mess);
+test_pre_checkParam_typeEither_multi(multi_variable, multi_signature, 7810, error_mess);
 
 multi_variable  = Symbol('sym');
 multi_signature = [ 'array', ['number'], 'bigint', 'boolean', 'date', 'function', 'number', 'object', { b: 'number' }, 'regexp', 'string', 'symbol' ];
 error_mess = '';
-test_pre_checkParam_typeEither_multi(multi_variable, multi_signature, 7807, error_mess);
+test_pre_checkParam_typeEither_multi(multi_variable, multi_signature, 7811, error_mess);
 
 multi_variable  = Symbol('sym');
 multi_signature = [ 'array', ['number'], 'bigint', 'boolean', 'date', 'function', 'number', 'object', { b: 'number' }, 'regexp', 'string'];
@@ -160,29 +165,29 @@ error_mess = `PRE_test_07800() PRE-FUNC: TE@226 - The value 'Symbol('sym')', whi
 CHECKER checkParam_typeEither()
 ACTUAL TYPE 'symbol'
  VALUES Symbol('sym')
-EXPECTED TYPE ["array",["number"],"bigint","boolean","date","function","number","object",{b:"number"},"regexp","string"]
+EXPECTED TYPE ["array",["number"],"bigint","boolean","date","function","number","object",{"b":"number"},"regexp","string"]
  ORIGIN pre_checkParam_typeEither_07800(a_var)`;
-test_pre_checkParam_typeEither_multi(multi_variable, multi_signature, 7808, error_mess);
+test_pre_checkParam_typeEither_multi(multi_variable, multi_signature, 7812, error_mess);
 
 multi_variable  = { a: 3 };
 multi_signature = [ { a: 'number' }, { b: 'string' } ];
 error_mess = '';
-test_pre_checkParam_typeEither_multi(multi_variable, multi_signature, 7809, error_mess);
+test_pre_checkParam_typeEither_multi(multi_variable, multi_signature, 7813, error_mess);
 
 multi_variable  = { b: 'Cheap Trick' };
 multi_signature = [ { a: 'number' }, { b: 'string' } ];
 error_mess = '';
-test_pre_checkParam_typeEither_multi(multi_variable, multi_signature, 7810, error_mess);
+test_pre_checkParam_typeEither_multi(multi_variable, multi_signature, 7814, error_mess);
 
 multi_variable  = [1, 2, 3, 4];
 multi_signature = [ ['number'], ['string'] ];
 error_mess = '';
-test_pre_checkParam_typeEither_multi(multi_variable, multi_signature, 7811, error_mess);
+test_pre_checkParam_typeEither_multi(multi_variable, multi_signature, 7815, error_mess);
 
 multi_variable  = ['a', 'b', 'c'];
 multi_signature = [ ['number'], ['string'] ];
 error_mess = '';
-test_pre_checkParam_typeEither_multi(multi_variable, multi_signature, 7812, error_mess);
+test_pre_checkParam_typeEither_multi(multi_variable, multi_signature, 7816, error_mess);
 
 multi_variable  = 'asd';
 multi_signature = [ 12, false];
@@ -192,6 +197,6 @@ ACTUAL TYPE 'string'
  VALUES "asd"
 EXPECTED TYPE [12,false]
  ORIGIN pre_checkParam_typeEither_07800(a_var)`;
-test_pre_checkParam_typeEither_multi(multi_variable, multi_signature, 7813, error_mess);
+test_pre_checkParam_typeEither_multi(multi_variable, multi_signature, 7817, error_mess);
 
 TEST_total_checks += 13;
