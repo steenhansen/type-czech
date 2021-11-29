@@ -1,5 +1,5 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>39-Assert-Checks</title>
+<title>39 - Check Asserts</title>
 
 
   
@@ -12,19 +12,17 @@
   <br>
 
 
+  
+
+  
+
 
 
 <!--            ------------------TYPE 1------------------------       -->
-
 <script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/consolelog.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/TypeCzech.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/type-czech.css">
-
 <!--            -------------------TYPE 1-----------------------       -->
-
-
-
-
 <div id='js-fiddles'>
   <a title="Example-Contents" href="https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Contents" target="_blank">Contents</a>
 
@@ -126,6 +124,9 @@
   <a title="41-Lens-Example.html" href="https://jsfiddle.net/steen_hansen/fxt8ag56/?41-Lens-Example" target="_blank">41</a>
 
 
+  <a title="42 - Extended Objects.html" href="https://jsfiddle.net/steen_hansen/rvau7yes/?42-Extended-Objects" target="_blank">42</a>
+
+
     &nbsp;&nbsp;
 
     <a title="101-Extending-Classes-Inline.html" href="https://jsfiddle.net/steen_hansen/cnLrm6ad/?101-Extending-Classes-Inline" target="_blank">101</a>
@@ -188,8 +189,8 @@
     &copy; 2021 Steen Hansen
 
   </div>
-
 <!--            -------------------TYPE 1-----------------------       -->
+
 
 
 
@@ -203,7 +204,7 @@
 
 
 
-  <div class='an-explantion'>39 - Assert Checks</div>
+  <div class='an-explantion'>39 - Check Asserts</div>
   <div id='explanation-text'>
     <br>
 
@@ -214,7 +215,7 @@
     
     Code containing an check_assert() <b>must</b> ensure that TypeCzech is alive and running
     with an isActive() call or an error may occur later in production when TypeCzech is turned off. 
-<pre>
+<pre title='Copy and paste the green code below into the console to run' class='console-runnable'>
 if (type_czech.isActive()) {
   check_error= "check-error"
   error_loc = "error-location-TEST-ZXC-47"
@@ -240,34 +241,29 @@ immediately without doing any work.
 
           <div>
 
-            <div style="float:left; width:23%; margin-left:-6px;">
-              <ul>
-                <li>checkParam_empty()</li>
-                <li>checkParam_emptyEither()</li>
-                <li>checkParam_emptyExtra()</li>
-              </ul>
-            </div>
-          
-            <div style="float:left; width:22%">
+            <div style="float:left; width:33%; margin-left:-6px;">
               <ul>
                 <li>checkParam_type()</li>
                 <li>checkParam_typeEither()</li>
                 <li>checkParam_typeExtra()</li>
+                <li>checkArgs_typeVariadic()</li>
               </ul>
             </div>
           
-            <div style="float:left; width:29%">
+            <div style="float:left; width:33%">
+              <ul>
+                <li>checkParam_empty()</li>
+                <li>checkParam_emptyEither()</li>
+                <li>checkParam_emptyExtra()</li>
+                <li>checkArgs_emptyVariadic()</li>
+              </ul>
+            </div>
+          
+            <div style="float:left; width:33%">
               <ul>
                 <li>check_interface()</li>
                 <li>check_mutatedSnapshot()</li>
                 <li>check_buildSnapshot()</li>
-              </ul>
-            </div>
-
-            <div style="float:left; width:11%">
-              <ul>
-                <li>checkArgs_emptyVariadic()</li>
-                <li>checkArgs_typeVariadic()</li>
                 <li>check_assert()</li>
               </ul>
             </div>
@@ -278,7 +274,7 @@ immediately without doing any work.
 
           </div>
 
-          <br><br><br><br> <br>
+          <br><br><br><br> <br><br> <br>
 
 
 
@@ -316,9 +312,9 @@ test_year = test_1999.getFullYear()
 if (type_czech.isActive()) {
   if (test_year !== 1999) {
     check_err = `TEST ERROR A-17, year was not 1999 but ${test_year}`
-    err_location = 'TESTING test_1999.getFullYear()'
-    expected = 'Year should have been 1999'
-    type_czech.check_assert(check_err, err_location, test_year, expected)
+    err_call = 'test_1999.getFullYear()'
+    was_expected = 'Year should have been 1999'
+    type_czech.check_assert(check_err, err_call, test_year, was_expected)
   }
 }
 
@@ -340,8 +336,8 @@ fetch('https://api.github.com/users/steenhansen')
 .then(response => response.json())
 .then(github_data => {
   if (type_czech.isActive()) {
-    type_err = type_czech.checkParam_typeExtra(github_data, {html_url:'string'})
-    type_czech.check_assert(type_err, 'Error - github_api', github_data)
+    error=type_czech.checkParam_typeExtra(github_data,{html_url:'string'})
+    type_czech.check_assert(error, 'Error - github_api', github_data)
   }
   log('GitHub : ', github_data.html_url)
 })
@@ -355,35 +351,33 @@ fetch('https://api.github.com/users/steenhansen')
         type_czech.check_assert(type_err, 'FETCH ERROR', github_data)
       }
     })
-})
+})              // The GitHub API is rate limited so it may stop working
 </script>
 
 
 
 <script>
-  jsToDiv('js-code', "check-code");
+   jsToDiv('js-code', "check-code");
 
-   fromToBoldText(205, 208, 'code', 1)  // 2000
-   fromToBoldText(319, 322, 'code', 1)  //   1999
+    fromToBoldText(205, 208, 'code', 1)  // 2000
+    fromToBoldText(319, 322, 'code', 1)  //   1999
 
-  fromToBoldText(199, 202, 'log', 1)  //  2000
-  fromToBoldText(245, 248, 'log', 1)  // 1999
-
-
-// ///////////////////////
-
-  fromToBoldText(693, 701, 'code', 2)  // Not https
-
-
-  fromToBoldText(298, 306, 'log', 2)  //   Not https
+   fromToBoldText(179, 182, 'log', 1)  //  2000
+   fromToBoldText(231, 234, 'log', 1)  // 1999
 
 
 // ///////////////////////
 
-fromToBoldText(1344, 1349, 'code', 4)  // object
-fromToBoldText(1563, 1615, 'code', 3)  // // The GitHub API is rate limited so it may stop working
+   fromToBoldText(685, 693, 'code', 2)  // Not https
 
 
+   fromToBoldText(316, 324, 'log', 2)  //   Not https
+
+
+// ///////////////////////
+
+fromToBoldText(1332, 1347, 'code', 4)  // object
+fromToBoldText(1556, 1608, 'code', 3)  // // The GitHub API is rate limited so it may stop working
 
 
 

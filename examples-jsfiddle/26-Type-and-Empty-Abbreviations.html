@@ -1,5 +1,5 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>26-Type-and-Empty-Abbreviations</title>
+<title>26 - Type and Empty Abbreviations</title>
 
 
 <div id='js-div' style="width:50%;">
@@ -131,19 +131,16 @@
 
 
 
+
+
   
 
 
 <!--            ------------TYPE 1------------------------------       -->
-
 <script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/consolelog.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/TypeCzech.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/type-czech.css">
-
 <!--            --------------TYPE 1----------------------------       -->
-
-
-
 <div id='js-fiddles'>
   <a title="Example-Contents" href="https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Contents" target="_blank">Contents</a>
 
@@ -245,6 +242,9 @@
   <a title="41-Lens-Example.html" href="https://jsfiddle.net/steen_hansen/fxt8ag56/?41-Lens-Example" target="_blank">41</a>
 
 
+  <a title="42 - Extended Objects.html" href="https://jsfiddle.net/steen_hansen/rvau7yes/?42-Extended-Objects" target="_blank">42</a>
+
+
     &nbsp;&nbsp;
 
     <a title="101-Extending-Classes-Inline.html" href="https://jsfiddle.net/steen_hansen/cnLrm6ad/?101-Extending-Classes-Inline" target="_blank">101</a>
@@ -307,9 +307,7 @@
     &copy; 2021 Steen Hansen
 
   </div>
-
 <!--            --------------TYPE 1----------------------------       -->
-
 
 
 
@@ -373,26 +371,26 @@
 /**/  POST_check_Person = (typeof POST_check_Person==='undefined') 
 /**/                      ? undefined : POST_check_Person
 /**/
-/**/  function PRE_check_Person(){
-/**/    redundant_object_test =  type_czech.checkParam_type(arguments, 'o')
+/**/  function PRE_check_Person(a_person){
+/**/    redundant_object_test =  type_czech.checkParam_type(a_person, 'o')
 /**/    if (redundant_object_test) return redundant_object_test
 /**/
 /**/    person_types = {f_name:'s', l_name:'s', b_date:'d'}
-/**/    type_issue = type_czech.checkParam_type(arguments, person_types)
+/**/    type_issue = type_czech.checkParam_type(a_person, person_types)
 /**/    if (type_issue) return type_issue
 /**/
 /**/    person_empties = {f_name:'ER', l_name:'OK', b_date:'ER'}
-/**/    return type_czech.checkParam_empty(arguments, person_empties)
+/**/    return type_czech.checkParam_empty(a_person, person_empties)
 /**/  }
 /**/
-/**/  function POST_check_Person(){
-/**/    array_issue = type_czech.checkParam_type(arguments, 'a')
+/**/  function POST_check_Person(person_array){
+/**/    array_issue = type_czech.checkParam_type(person_array, 'a')
 /**/    if (array_issue) return array_issue
 /**/
-/**/    type_issue = type_czech.checkParam_type(arguments, ['s', 'd'])
+/**/    type_issue = type_czech.checkParam_type(person_array, ['s', 'd'])
 /**/    if (type_issue) return type_issue
 /**/
-/**/    return type_czech.checkParam_empty(arguments, ['ER', 'OK'])
+/**/    return type_czech.checkParam_empty(person_array, ['ER', 'OK'])
 /**/  }
 /**/  
 /**/  Person=type_czech.linkUp(Person, PRE_check_Person, POST_check_Person)
@@ -433,32 +431,31 @@ log(string_person)
 
 
 
-
 <script>
   
 
   jsToDiv('js-code', "check-code");
 
-  fromToBoldText(832, 842, 'code', 1)  // b_date:'ER'}
+  fromToBoldText(848, 858, 'code', 1)  // b_date:'ER'}
 
-  fromToBoldText(1627, 1645, 'code', 1)  // b_date:new Date('')
+  fromToBoldText(1683, 1701, 'code', 1)  // b_date:new Date('')
 
-  fromToBoldText(270, 280, 'log', 1)    //b_date:null
-  fromToBoldText(333, 343, 'log', 1)    //b_date:"ER
-
-
+  fromToBoldText(283, 293, 'log', 1)    //b_date:null
+  fromToBoldText(350, 362, 'log', 1)    //b_date:"ER
 
 
 
-  fromToBoldText(1231, 1234, 'code', 2)   // heck_empty(arguments, ['ER',
-
-  fromToBoldText(1423, 1428, 'code', 2)  // person_array = [l_name,
-
-  fromToBoldText(1740, 1748, 'code', 2)  // l_name:''
 
 
-  fromToBoldText(578, 579, 'log', 2)    //ACTUAL VALUE [""
-  fromToBoldText(619, 622, 'log', 2)    // EMPTY ASSERTION ["ER"
+  fromToBoldText(1287, 1290, 'code', 2)   // heck_empty(arguments, ['ER',
+
+  fromToBoldText(1479, 1484, 'code', 2)  // person_array = [l_name,
+
+  fromToBoldText(1796, 1804, 'code', 2)  // l_name:''
+
+
+  fromToBoldText(608, 609, 'log', 2)    //ACTUAL VALUE [""
+  fromToBoldText(649, 652, 'log', 2)    // EMPTY ASSERTION ["ER"
 
 
 </script>

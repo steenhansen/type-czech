@@ -2,7 +2,7 @@
 # Dependencies
 
 ## JavaScript
-TypeCzech requires ECMAScript 2015 (ES6)
+TypeCzech requires ECMAScript 2015 (ES6) for Proxy, Reflect
 
 ## Node.js
 TypeCzech requires Node.js 15.14.0 for replaceAll()

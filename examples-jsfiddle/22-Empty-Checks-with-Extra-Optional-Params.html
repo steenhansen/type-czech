@@ -1,10 +1,10 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>22-Empty-Checks-with-Extra-Optional-Params</title>
+<title>22 - Empty Checks with Extra Optional Parameters</title>
 
 
 
   
-<div id='js-div' style="width:54%">
+<div id='js-div' style="width:51%">
   <a href='https://github.com/steenhansen/type-czech' class='git-hub'>GitHub Package</a>
   <div id='js-code'>the javascript</div>
   <br>
@@ -19,16 +19,13 @@
 
 
 
-<!--            ----------------TYPE 1--------------------------       -->
 
+
+<!--            ----------------TYPE 1--------------------------       -->
 <script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/consolelog.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/TypeCzech.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/type-czech.css">
-
 <!--            ---------------TYPE 1---------------------------       -->
-
-
-
 <div id='js-fiddles'>
   <a title="Example-Contents" href="https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Contents" target="_blank">Contents</a>
 
@@ -129,6 +126,8 @@
 
   <a title="41-Lens-Example.html" href="https://jsfiddle.net/steen_hansen/fxt8ag56/?41-Lens-Example" target="_blank">41</a>
 
+  <a title="42 - Extended Objects.html" href="https://jsfiddle.net/steen_hansen/rvau7yes/?42-Extended-Objects" target="_blank">42</a>
+
 
     &nbsp;&nbsp;
 
@@ -192,7 +191,6 @@
     &copy; 2021 Steen Hansen
 
   </div>
-
 <!--            ---------------TYPE 1---------------------------       -->
 
 
@@ -208,48 +206,63 @@
 
 
 
-<div id="the-explanation" style="width:46%">
+<div id="the-explanation" style="width:49%" class='code-scroll'>
   <div class='an-explantion'>22 - Empty Checks with Extra Optional Parameters</div>
   <div id='explanation-text'>
     <br>
 
-    This is only for checking <b>single</b> objects and <b>single</b> array parameters and results
-    for emptiness.
-    Please note that in the example to the left that the lone <span class='purp-similar'>person_obj</span>
-    is referenced, not the <b>arguments</b> object. The argument object is a single array in POST_check_Person(),
-    which means that the arguments or object_1 can be tested.
-    
-    <br><br>
-    To also check the string 'IGNORED-STRING' the checking function could be changed to :
-<pre>
-function PRE_check_Person(person_obj, ignored_string){
-  p_signature = {f_name:'EMPTY-OK', l_name:'EMPTY-ERROR'}
-  person_issue = type_czech.checkParam_emptyExtra(person_obj, p_signature)
-  if (person_issue) return person_issue
-
-  return type_czech.checkParam_empty(ignored_string, 'EMPTY-ERROR')
-}
-</pre> 
+    This is only for empty checking parameters and results that are <b>single objects</b> and <b>single arrays</b>.
+    The idea is that extra values, to be ignored, are inside the checked collection variable.
 
 
-    Extra optional parameter values are not checked for being empty, they are just ignored. 
-    As long as the correct declared shape of empty states is not violated, any additional elective 
-    parameters will be overlooked when using 
-    checkParam_emptyExtra(<b>VARIABLE_NAME</b>,&nbsp;expected_empty); and not using
-    the arguments object.
-    <br><br>
-  
-    Objects specify their mandatory keys and types, whilst arrays just check the
-    begining elements for types, and ignore the rest undescribed elements.
+    Extra optional parameter values are not checked for emptiness, they are just ignored. 
+    As long as the correct declared type shape is not violated, any additional elective 
+    parameters will be overlooked .
       
     <br><br>
+    Objects specify their mandatory empty description, whilst arrays just check the
+    beginning elements for being valueless, and ignore the rest undescribed elements.
+  
+  <br><br>
+  Thus checkParam_emptyExtra(an_object, <b>{a:'EMPTY-ERROR'}</b>) means extra properties
+   inside the parameter_object are ignored after the number property of 'a'.
+  
+<pre title='Copy and paste the green code below into the console to run' class='console-runnable'>
+func0 = (an_object) => an_object
+PRE_check_func0 = (an_object) => { 
+  return type_czech.checkParam_emptyExtra(an_object, {a:'EMPTY-ERROR'})
+}
+func0 = type_czech.linkUp(func0, PRE_check_func0)
+func0({a:11})        //pass
+func0({a:'pass'})    
+func0({b:''})        //fail - empty
+func0({b:'bad-key'}) //fail - not 'a' key
+</pre>
 
+And checkParam_emptyExtra(an_array, <b>'EMPTY-ERROR'</b>) refers to <b>one</b>
+number and something extra possibly.
+<pre title='Copy and paste the green code below into the console to run' class='console-runnable'>
+func1 = (an_array) => an_array
+PRE_check_func1 = (an_array) => { 
+  return type_czech.checkParam_emptyExtra(an_array, 'EMPTY-ERROR')
+}
+func1 = type_czech.linkUp(func1, PRE_check_func1)
+func1([1, '', '', '', 'pass'])
+func1(['', 'fail', 'fail', 'fail'])
+</pre>
 
-
-
-
-
-
+Whereas checkParam_emptyExtra(an_array, <b>['EMPTY-ERROR', 'EMPTY-ERROR']</b>) refers to <b>two</b>
+entities that should not be empty, possibly followed by something extra.
+<pre title='Copy and paste the green code below into the console to run' class='console-runnable'>
+func2 = (an_array) => an_array
+PRE_check_func2 = (an_array) => { 
+  the_signature = ['EMPTY-ERROR', 'EMPTY-ERROR']
+  return type_czech.checkParam_emptyExtra(an_array, the_signature)
+}
+func2 = type_czech.linkUp(func2, PRE_check_func2)
+func2([7, true, '', '', '', 'pass'])
+func2([{}, '', 'fail', 'fail', 'fail'])
+</pre>
 </div>
 
 
@@ -306,7 +319,8 @@ function PRE_check_Person(person_obj, ignored_string){
 /**/  }
 /**/  
 /**/  function POST_check_Person(object_1){
-/**/    return type_czech.checkParam_emptyExtra(arguments, ['EMPTY-OK', 'EMPTY-ERROR'])
+/**/    empty_signature = ['EMPTY-OK', 'EMPTY-ERROR']  
+/**/    return type_czech.checkParam_emptyExtra(object_1, empty_signature)
 /**/  }
 /**/  
 /**/  Person = type_czech.linkUp(Person, PRE_check_Person, POST_check_Person)
@@ -328,7 +342,6 @@ guy = Person({f_name:'Guy', l_name:'Lafleur', extra_1:10}, 'IGNORED-STRING')
 log(guy)
 
 linesConsole(1)
-
 
 hakeem = Person({f_name:'Hakeem Olajuwon'})
 log( hakeem)
@@ -356,34 +369,35 @@ log(mc_enroe)
 
 
 
+
 <script>
   
 
   jsToDiv('js-code', "check-code")
-
   
   fromToBoldText(504, 544, 'code', 1)  //{f_name:'EMPTY-OK', l_name:'EMPTY-ERROR'}
 
-  fromToBoldText(1412, 1437, 'code', 1)  //{f_name:'Hakeem Olajuwon'}
+  fromToBoldText(1464, 1489, 'code', 1)  //{f_name:'Hakeem Olajuwon'}
 
 
-  fromToBoldText(249, 274, 'log', 1)    //  {f_name:"Hakeem Olajuwon"}
-  fromToBoldText(301, 340, 'log', 1)    //  {f_name:"EMPTY-OK",l_name:"EMPTY-ERROR"}
+  fromToBoldText(262, 287, 'log', 1)    //  {f_name:"Hakeem Olajuwon"}
+  fromToBoldText(314, 357, 'log', 1)    //  {f_name:"EMPTY-OK",l_name:"EMPTY-ERROR"}
 
 
 
 
-  fromToBoldText(732, 758, 'code', 2)  //['EMPTY-OK', 'EMPTY-ERROR']
+  fromToBoldText(709, 735, 'code', 2)  //['EMPTY-OK', 'EMPTY-ERROR']
 
-  fromToBoldText(565, 593, 'log', 2)    // ["Hakeem Olajuwon",undefined]
-  fromToBoldText(620, 645, 'log', 2)    // ["EMPTY-OK","EMPTY-ERROR"]
+  fromToBoldText(585, 613, 'log', 2)    // ["Hakeem Olajuwon",undefined]
+  fromToBoldText(640, 665, 'log', 2)    // ["EMPTY-OK","EMPTY-ERROR"]
 
 
 
 
 
   fromToBoldText(464, 473, 'code', 4)  // person_obj
-fromToBoldText(589, 598, 'code', 4)  // person_obj
+fromToBoldText(594, 603, 'code', 4)  // person_obj
+
 
 
   

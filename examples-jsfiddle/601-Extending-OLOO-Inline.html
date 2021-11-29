@@ -1,16 +1,16 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>601-Created-OLOO-Inline</title>
+<title>601 - Created OLOO Inline</title>
 
 
 
   
-<div id='js-div' style="width:60%;" class='code-scroll'>
+<div id='js-div' style="width:57%;" class='code-scroll'>
   <a href='https://github.com/steenhansen/type-czech' class='git-hub'>GitHub Package</a>
   <div id='js-code'>the javascript</div>
 </div>
 
 
-<div id="the-explanation" style="width:40%" >
+<div id="the-explanation" style="width:43%" >
   <div class='an-explantion'>601 - Created OLOO Inline</div>
   <div id='explanation-text'>
 
@@ -47,21 +47,18 @@
 
 
 
+  
+
 
 
 
   
 
 <!--            -----------------TYPE 1-------------------------       -->
-
 <script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/consolelog.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/TypeCzech.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/type-czech.css">
-
 <!--            -----------------TYPE 1-------------------------       -->
-
-
-
 <div id='js-fiddles'>
   <a title="Example-Contents" href="https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Contents" target="_blank">Contents</a>
 
@@ -161,6 +158,7 @@
   <a title="40-Prescribed-Use.html" href="https://jsfiddle.net/steen_hansen/m1atu7qj/?40-Prescribed-Use" target="_blank">40</a>
 
   <a title="41-Lens-Example.html" href="https://jsfiddle.net/steen_hansen/fxt8ag56/?41-Lens-Example" target="_blank">41</a>
+  <a title="42 - Extended Objects.html" href="https://jsfiddle.net/steen_hansen/rvau7yes/?42-Extended-Objects" target="_blank">42</a>
 
 
     &nbsp;&nbsp;
@@ -225,10 +223,12 @@
     &copy; 2021 Steen Hansen
 
   </div>
-
-    
-    
 <!--            -----------------TYPE 1-------------------------       -->
+
+
+
+
+
 
 
 
@@ -242,12 +242,16 @@
 </script>
 
 <script id="check-code">
-/**/function First_check(First){
+/**/  if (typeof TypeCzech === 'function')
+/**/    type_czech = TypeCzech('LOG-ERRORS')
+/**/  else
+/**/    type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
+
 /**/  function PRE_check_First(f_name){
 /**/    log(NL2+'PRE -First') 
 /**/    type_issue = type_czech.checkParam_type(f_name, 'string')
 /**/    if (type_issue) return type_issue;
-/**/    return type_czech.checkParam_empty(arguments, 'EMPTY-ERROR');
+/**/    return type_czech.checkParam_empty(f_name, 'EMPTY-ERROR');
 /**/  }
 /**/  function POST_check_First(First){ 
 /**/    log(NL1+'POST-First') 
@@ -256,25 +260,22 @@
 /**/  }
 /**/  function PRE_check_firstMethod(a_date){ 
 /**/    log(NL+'PRE -firstMethod')
-/**/    return type_czech.checkParam_type(arguments, 'date')
+/**/    return type_czech.checkParam_type(a_date, 'date')
 /**/  }
 /**/  function POST_check_firstMethod(a_date){
 /**/    log('POST-firstMethod') 
-/**/    return type_czech.checkParam_type(arguments, 'date')
+/**/    return type_czech.checkParam_type(a_date, 'date')
 /**/  }
 /**/
 /**/  First_PREs = {First:PRE_check_First, firstMethod:PRE_check_firstMethod}
 /**/  First_POSTs = {First:POST_check_First, firstMethod:POST_check_firstMethod}
 /**/  First = type_czech.linkUp(First, First_PREs, First_POSTs)
-/**/  return First
-/**/}
 
-/**/function Last_check(Last){
 /**/  function PRE_check_Last(f_name, l_name){
 /**/    log(LEVEL_1+'PRE -Last') 
 /**/    type_issue = type_czech.checkParam_type([f_name, l_name], ['string', 'string'])
 /**/    if (type_issue) return type_issue;
-/**/    return type_czech.checkParam_empty(arguments, ['EMPTY-ERROR', 'EMPTY-ERROR']);
+/**/    return type_czech.checkParam_empty([f_name,l_name],['EMPTY-ERROR','ER']);
 /**/  }
 /**/  function POST_check_Last(Last){
 /**/    log(LEVEL_1+'POST-Last') 
@@ -283,24 +284,21 @@
 /**/  }
 /**/  function PRE_check_lastMethod(a_year){
 /**/    log(LEVEL_1+'PRE -lastMethod') 
-/**/    return type_czech.checkParam_type(arguments, 'number')
+/**/    return type_czech.checkParam_type(a_year, 'number')
 /**/  }
 /**/  function POST_check_lastMethod(a_year){
 /**/    log(LEVEL_1+'POST-lastMethod')
-/**/    return type_czech.checkParam_type(arguments, 'number')
+/**/    return type_czech.checkParam_type(a_year, 'number')
 /**/  }
 /**/
 /**/  Last_PREs = {Last:PRE_check_Last, lastMethod:PRE_check_lastMethod}
 /**/  Last_POSTs = {Last:POST_check_Last, lastMethod:POST_check_lastMethod}
 /**/  Last = type_czech.linkUp(Last, Last_PREs, Last_POSTs)
-/**/  return Last
-/**/}
 
-/**/function Full_check(Full){
 /**/  function PRE_check_Full(salu, f_name, l_name){
 /**/    log(LEVEL_2+'PRE -Full')
 /**/    pre_full_signature = ['string', 'string', 'string']
-/**/    return type_czech.checkParam_type(arguments, pre_full_signature)
+/**/    return type_czech.checkParam_type([salu, f_name, l_name], pre_full_signature)
 /**/  }
 /**/  function POST_check_Full(Full){ 
 /**/    log(LEVEL_2+'POST-Full')
@@ -309,28 +307,25 @@
 /**/  }
 /**/  function PRE_check_fullMethod(a_book){ 
 /**/    log(LEVEL_2+'PRE -fullMethod')
-/**/    return type_czech.checkParam_type(arguments, 'string')
+/**/    return type_czech.checkParam_type(a_book, 'string')
 /**/  }
 /**/  function POST_check_fullMethod(a_book){ 
 /**/    log(LEVEL_2+'POST-fullMethod')
-/**/    return type_czech.checkParam_type(arguments, 'string')
+/**/    return type_czech.checkParam_type(a_book, 'string')
 /**/  }
 /**/
 /**/  Full_PREs = {Full:PRE_check_Full, fullMethod:PRE_check_fullMethod}
 /**/  Full_POSTs = {Full:POST_check_Full, fullMethod:POST_check_fullMethod}
 /**/  Full = type_czech.linkUp(Full, Full_PREs, Full_POSTs)
-/**/  return Full
-/**/}
 
 function First(f_name) {
   FIRST_TEMPLATE = {
-    oloo_type: 'First',
     firstMethod(a_date){
-      log(NL+`RUN -firstMethod :${this.f_name} `, a_date) 
+      log(NL+`RUN -firstMethod :${f_name} `, a_date) 
       return a_date
     },
     instanceOf(){
-      return this.oloo_type
+      return 'First'
     }
   }
   first_object = Object.create(FIRST_TEMPLATE)
@@ -341,10 +336,12 @@ function First(f_name) {
 
 function Last(f_name, l_name) {
   LAST_TEMPLATE = {
-    oloo_type: 'Last',
     lastMethod(a_year){
-      log(LEVEL_1+`RUN -lastMethod :${a_year} ${this.f_name} ${this.l_name}`)
+      log(LEVEL_1+`RUN -lastMethod :${a_year} ${f_name} ${l_name}`)
       return a_year
+    },
+    instanceOf(){
+      return 'Last'
     }
   }
   first = First(f_name)
@@ -357,14 +354,15 @@ function Last(f_name, l_name) {
 
 function Full(salu, f_name, l_name) {
   FULL_TEMPLATE = {
-    oloo_type: 'Full',
     fullMethod(a_book){
-      log(LEVEL_2+`RUN -fullMethod :${a_book} ${this.salu} ${this.l_name}`)
+      log(LEVEL_2+`RUN -fullMethod :${a_book} ${salu} ${l_name}`)
       return a_book
     },
+    instanceOf(){
+      return 'Full'
+    },
     showName() {
-      const the_name = `${this.salu} ${this.f_name} ${this.l_name} ` +
-                       `- ${this.oloo_type}`
+      const the_name = `${salu} ${f_name} ${l_name}`
       console.log('Name: ', the_name)
     },
   }
@@ -375,16 +373,6 @@ function Full(salu, f_name, l_name) {
   log(NL+LEVEL_2+`CONS-Full :${salu}`)
   return full_object
 }
-
-/**/  TYPE_CZECH_START = true
-/**/  //TYPE_CZECH_START = false
-/**/
-/**/  if (TYPE_CZECH_START) {
-/**/    type_czech = TypeCzech('LOG-ERRORS')
-/**/    First = First_check(First)
-/**/    Last = Last_check(Last)
-/**/    Full = Full_check(Full)
-/**/  } 
 
 margaret_atwood = Full('Ms.', 'Margaret', 'Atwood')
 margaret_atwood.firstMethod( new Date(1985,1,1))
@@ -406,9 +394,9 @@ margaret_atwood.showName()
 jsToDiv('js-code', "check-code");      
 
 
-fromToBoldText(3263, 3278, 'code', 1)  //RUN -firstMethod
-  fromToBoldText(3646, 3660, 'code', 2)  // RUN -lastMethod
-  fromToBoldText(4069, 4083, 'code', 3)  // RUN -fullMethod
+fromToBoldText(3294, 3309, 'code', 1)  //RUN -firstMethod
+  fromToBoldText(3642, 3656, 'code', 2)  // RUN -lastMethod
+  fromToBoldText(4077, 4091, 'code', 3)  // RUN -fullMethod
 
  
 fromToBoldText(210, 225, 'log', 1)    //RUN -firstMethod
@@ -420,3 +408,5 @@ fromToBoldText(406, 420, 'log', 3)    //RUN -fullMethod
 
 <link rel="stylesheet"
   href="https://fonts.googleapis.com/css?family=Inconsolata">
+
+  

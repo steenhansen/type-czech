@@ -1,5 +1,5 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>401-ClassFree-Constructors-Inline</title>
+<title>401 - ClassFree Constructors Inline</title>
 
 
 
@@ -53,20 +53,20 @@
   <br><br>
 
 
-  
+
+
+
+
+
+
+
 
 
 <!--            ------------------TYPE 1------------------------       -->
-
 <script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/consolelog.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/TypeCzech.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/type-czech.css">
-
 <!--            -------------------TYPE 1-----------------------       -->
-
-
-
-
 <div id='js-fiddles'>
   <a title="Example-Contents" href="https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Contents" target="_blank">Contents</a>
 
@@ -167,6 +167,8 @@
 
   <a title="41-Lens-Example.html" href="https://jsfiddle.net/steen_hansen/fxt8ag56/?41-Lens-Example" target="_blank">41</a>
 
+  <a title="42 - Extended Objects.html" href="https://jsfiddle.net/steen_hansen/rvau7yes/?42-Extended-Objects" target="_blank">42</a>
+
 
     &nbsp;&nbsp;
 
@@ -230,10 +232,21 @@
     &copy; 2021 Steen Hansen
 
   </div>
-  
-
-  
 <!--            -------------------TYPE 1-----------------------       -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -262,88 +275,6 @@
 </script>
 
 <script id="check-code">
-/**/function First_check(First){
-/**/  function PRE_check_First(spec){
-/**/    log(NL2+'PRE -First') 
-/**/    pre_first_sig = { f_name: 'string' }
-/**/    type_issue = type_czech.checkParam_typeExtra(arguments, pre_first_sig)
-/**/    if (type_issue) return type_issue;
-/**/    return type_czech.checkParam_emptyExtra(arguments, {f_name: 'EMPTY-ERROR' });
-/**/  }
-/**/  function POST_check_First(First){
-/**/    log(NL1+'POST-First') 
-/**/    return type_czech.check_interface(First, { firstMethod: 'function' })
-/**/  }
-/**/  function PRE_check_firstMethod(a_date){
-/**/    log('PRE -firstMethod') 
-/**/    return type_czech.checkParam_type(arguments, 'date')
-/**/  }
-/**/  function POST_check_firstMethod(a_date){
-/**/    log('POST-firstMethod') 
-/**/    return type_czech.checkParam_type(arguments, 'date')
-/**/  }
-/**/
-/**/  First_PREs = {First:PRE_check_First, firstMethod:PRE_check_firstMethod}
-/**/  First_POSTs = {First:POST_check_First, firstMethod:POST_check_firstMethod}
-/**/  First = type_czech.linkUp(First, First_PREs, First_POSTs)
-/**/  return First
-/**/}
-
-/**/function Last_check(Last){
-/**/  function PRE_check_Last(spec){
-/**/    log(LEVEL_1+'PRE-Last') 
-/**/    pre_last_sig = { f_name: 'string', l_name: 'string' }
-/**/    type_issue = type_czech.checkParam_typeExtra(arguments, pre_last_sig)
-/**/    if (type_issue) return type_issue;
-/**/    return type_czech.checkParam_emptyExtra(arguments, {l_name: 'EMPTY-ERROR' });
-/**/  }
-/**/  function POST_check_Last(Last){
-/**/    log(LEVEL_1+"POST-Last") 
-/**/    post_last_sig = {firstMethod:'function', lastMethod:'function'}
-/**/    return type_czech.check_interface(Last, post_last_sig)
-/**/  }
-/**/  function PRE_check_lastMethod(a_year){
-/**/    log(LEVEL_1+"PRE -lastMethod")
-/**/    return type_czech.checkParam_type(arguments, 'number')
-/**/  }
-/**/  function POST_check_lastMethod(a_year){
-/**/    log(LEVEL_1+"POST-lastMethod") 
-/**/    return type_czech.checkParam_type(arguments, 'number')
-/**/  }
-/**/
-/**/  Last_PREs = {Last:PRE_check_Last, lastMethod:PRE_check_lastMethod}
-/**/  Last_POSTs = {Last:POST_check_Last, lastMethod:POST_check_lastMethod}
-/**/  Last = type_czech.linkUp(Last, Last_PREs, Last_POSTs)
-/**/  return Last
-/**/}
-
-/**/function Full_check(Full){
-/**/  function PRE_check_Full(spec){  
-/**/    log(LEVEL_2+'PRE-Full') 
-/**/    pre_full_sig = {salu:'string', f_name:'string', l_name:'string'}
-/**/    return type_czech.checkParam_typeExtra(arguments, pre_full_sig)
-/**/}
-/**/  function POST_check_Full(Full){
-/**/    log(LEVEL_2+"POST-Full") 
-/**/    return type_czech.check_interface(Full, {firstMethod:'function',
-/**/              lastMethod:'function', fullMethod: 'function', 
-/**/              showName: 'function' })
-/**/   }
-/**/  function PRE_check_fullMethod(a_book){
-/**/    log(LEVEL_2+"PRE -fullMethod") 
-/**/    return type_czech.checkParam_type(arguments, 'string')
-/**/  }
-/**/  function POST_check_fullMethod(a_book){
-/**/    log(LEVEL_2+"POST-fullMethod") 
-/**/    return type_czech.checkParam_type(arguments, 'string')
-/**/  }
-/**/
-/**/  Full_PREs = {Full:PRE_check_Full, fullMethod:PRE_check_fullMethod}
-/**/  Full_POSTs= {Full:POST_check_Full, fullMethod:POST_check_fullMethod}
-/**/  Full = type_czech.linkUp(Full, Full_PREs, Full_POSTs)
-/**/  return Full
-/**/}
-
 First = function (spec) {
   let {f_name} = spec
   log(NL+`CONS-First :${f_name}`)
@@ -383,15 +314,83 @@ Full = function (spec) {
   return Object.freeze(full_object)
 }
 
-/**/  TYPE_CZECH_START = true
-/**/  //TYPE_CZECH_START = false
-/**/
-/**/  if (TYPE_CZECH_START) {
+/**/  if (typeof TypeCzech === 'function')
 /**/    type_czech = TypeCzech('LOG-ERRORS')
-/**/    First = First_check(First)
-/**/    Last = Last_check(Last)
-/**/    Full = Full_check(Full)
+/**/  else
+/**/    type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
+/**/
+/**/  function PRE_check_First(spec){
+/**/    log(NL2+'PRE -First') 
+/**/    pre_first_sig = { f_name: 'string' }
+/**/    type_issue = type_czech.checkParam_typeExtra(spec, pre_first_sig)
+/**/    if (type_issue) return type_issue;
+/**/    return type_czech.checkParam_emptyExtra(spec, {f_name: 'EMPTY-ERROR' });
 /**/  }
+/**/  function POST_check_First(First){
+/**/    log(NL1+'POST-First') 
+/**/    return type_czech.check_interface(First, { firstMethod: 'function' })
+/**/  }
+/**/  function PRE_check_firstMethod(a_date){
+/**/    log('PRE -firstMethod') 
+/**/    return type_czech.checkParam_type(a_date, 'date')
+/**/  }
+/**/  function POST_check_firstMethod(a_date){
+/**/    log('POST-firstMethod') 
+/**/    return type_czech.checkParam_type(a_date, 'date')
+/**/  }
+/**/
+/**/  First_PREs = {First:PRE_check_First, firstMethod:PRE_check_firstMethod}
+/**/  First_POSTs = {First:POST_check_First, firstMethod:POST_check_firstMethod}
+/**/  First = type_czech.linkUp(First, First_PREs, First_POSTs)
+
+/**/  function PRE_check_Last(spec){
+/**/    log(LEVEL_1+'PRE-Last') 
+/**/    pre_last_sig = { f_name: 'string', l_name: 'string' }
+/**/    type_issue = type_czech.checkParam_typeExtra(spec, pre_last_sig)
+/**/    if (type_issue) return type_issue;
+/**/    return type_czech.checkParam_emptyExtra(spec, {l_name: 'EMPTY-ERROR' });
+/**/  }
+/**/  function POST_check_Last(Last){
+/**/    log(LEVEL_1+"POST-Last") 
+/**/    post_last_sig = {firstMethod:'function', lastMethod:'function'}
+/**/    return type_czech.check_interface(Last, post_last_sig)
+/**/  }
+/**/  function PRE_check_lastMethod(a_year){
+/**/    log(LEVEL_1+"PRE -lastMethod")
+/**/    return type_czech.checkParam_type(a_year, 'number')
+/**/  }
+/**/  function POST_check_lastMethod(a_year){
+/**/    log(LEVEL_1+"POST-lastMethod") 
+/**/    return type_czech.checkParam_type(a_year, 'number')
+/**/  }
+/**/
+/**/  Last_PREs = {Last:PRE_check_Last, lastMethod:PRE_check_lastMethod}
+/**/  Last_POSTs = {Last:POST_check_Last, lastMethod:POST_check_lastMethod}
+/**/  Last = type_czech.linkUp(Last, Last_PREs, Last_POSTs)
+
+/**/  function PRE_check_Full(spec){  
+/**/    log(LEVEL_2+'PRE-Full') 
+/**/    pre_full_sig = {salu:'string', f_name:'string', l_name:'string'}
+/**/    return type_czech.checkParam_typeExtra(spec, pre_full_sig)
+/**/}
+/**/  function POST_check_Full(Full){
+/**/    log(LEVEL_2+"POST-Full") 
+/**/    return type_czech.check_interface(Full, {firstMethod:'function',
+/**/              lastMethod:'function', fullMethod: 'function', 
+/**/              showName: 'function' })
+/**/   }
+/**/  function PRE_check_fullMethod(a_book){
+/**/    log(LEVEL_2+"PRE -fullMethod") 
+/**/    return type_czech.checkParam_type(a_book, 'string')
+/**/  }
+/**/  function POST_check_fullMethod(a_book){
+/**/    log(LEVEL_2+"POST-fullMethod") 
+/**/    return type_czech.checkParam_type(a_book, 'string')
+/**/  }
+/**/
+/**/  Full_PREs = {Full:PRE_check_Full, fullMethod:PRE_check_fullMethod}
+/**/  Full_POSTs= {Full:POST_check_Full, fullMethod:POST_check_fullMethod}
+/**/  Full = type_czech.linkUp(Full, Full_PREs, Full_POSTs)
 
 const frank_herbert = Full({salu: 'Mr', f_name:'Frank', l_name:'Herbert'})
 linesConsole(1)
@@ -413,9 +412,9 @@ frank_herbert.showName();
 jsToDiv('js-code', "check-code");      
 
 
-fromToBoldText(3352, 3367, 'code', 1)  //RUN -firstMethod
-  fromToBoldText(3677, 3691, 'code', 2)  // RUN -lastMethod
-  fromToBoldText(4046, 4060, 'code', 3)  // RUN -fullMethod
+fromToBoldText(131, 146, 'code', 1)  //RUN -firstMethod
+  fromToBoldText(456, 470, 'code', 2)  // RUN -lastMethod
+  fromToBoldText(825, 839, 'code', 3)  // RUN -fullMethod
 
  
 fromToBoldText(224, 239, 'log', 1)    //RUN -firstMethod

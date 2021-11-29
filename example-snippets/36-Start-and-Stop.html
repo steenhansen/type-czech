@@ -54,14 +54,10 @@ Note that enableTests() cannot start TypeCzech function checking from a non-acti
 
 
 <!--            ----------------TYPE 1--------------------------       -->
-
 <script src="../web-resources/consolelog.js"></script>
 <script src="../TypeCzech.js"></script>
 <link rel="stylesheet" href="../web-resources/type-czech.css">
-
 <!--            --------------TYPE 1----------------------------       -->
-
-
 <div id='js-fiddles'>
   <a title="Example-Contents" href="../example-snippets/example-contents.html">Contents</a>
   
@@ -190,10 +186,12 @@ Note that enableTests() cannot start TypeCzech function checking from a non-acti
 
     &copy; 2021 Steen Hansen
   </div>
-
-
-
 <!--            --------------TYPE 1----------------------------       -->
+
+
+
+
+
 
 
 
@@ -250,14 +248,14 @@ try {
 
 linesConsole(2)
 
-/**/  type_czech.enableTests()
+/**/  type_czech.enableTests() // errors 0:0 checks
 
-Person('Prince', 'Charles')
+Person('Prince', 'Charles') // errors 0:1 checks
 
  linesConsole(2)
 
 try {
-Person('Elizabeth', 2)
+Person('Elizabeth', 2) // errors 1:2 checks
 } catch (e) {
   log('Exception: Elizabeth 2 - counted')
 }
@@ -268,9 +266,9 @@ linesConsole(4)
 /**/  failure_total = type_czech.countFails()
 /**/  check_total = type_czech.countTally()
 
-log( 'Counted errors : ',  failure_total)
+log( 'Counted errors enabled : ',  failure_total)
 linesConsole(1)
-log( 'Counted checks : ', check_total)
+log( 'Counted checks enabled : ', check_total)
 
 linesConsole(4)
 
@@ -283,9 +281,9 @@ linesConsole(4)
 /**/  failure_total = type_czech.countFails()
 /**/  check_total = type_czech.countTally()
 
-log( 'Counted errors : ',  failure_total)
+log( 'Counted errors disabled : ',  failure_total)
 linesConsole(1)
-log( 'Counted checks : ', check_total)
+log( 'Counted checks disabled : ', check_total)
 </script>
 
 
@@ -317,28 +315,28 @@ log( 'Counted checks : ', check_total)
 
   jsToDiv('js-code', "check-code");
 
-  fromToBoldText(648, 656, 'code', 1)  //Exception
-  fromToBoldText(802, 810, 'code', 4)  //Exception
+  fromToBoldText(674, 682, 'code', 1)  //Exception
+  fromToBoldText(890, 898, 'code', 4)  //Exception
 
   fromToBoldText(1, 9, 'log', 1)    //Exception
   fromToBoldText(61, 69, 'log', 4)    //Exception
 
 
 
-  fromToBoldText(1054, 1065, 'code', 2)  //Ghengis Khan - no exception
-  fromToBoldText(1092, 1098, 'code', 2)  //Temüjin - no exception
+  fromToBoldText(1157, 1168, 'code', 2)  //Ghengis Khan - no exception
+  fromToBoldText(1195, 1201, 'code', 2)  //Temüjin - no exception
 
-  fromToBoldText(138, 149, 'log', 2)    //Ghengis Khan - no exception
-  fromToBoldText(185, 191, 'log', 2)    //Temüjin - no exception
-
-
+  fromToBoldText(154, 165, 'log', 2)    //Ghengis Khan - no exception
+  fromToBoldText(201, 207, 'log', 2)    //Temüjin - no exception
 
 
-  fromToBoldText(93, 106, 'log', 3)  //Counted errors : 1
-  fromToBoldText(111, 124, 'log', 3)  //Counted checks : 2
 
-  fromToBoldText(218, 231, 'log', 3)    //Counted errors : 1
-  fromToBoldText(236, 249, 'log', 3)  //Counted checks : 2
+
+  fromToBoldText(118, 118, 'log', 3)  //Counted errors : 1
+  fromToBoldText(144, 144, 'log', 3)  //Counted checks : 2
+
+  fromToBoldText(260, 260, 'log', 3)    //Counted errors : 1
+  fromToBoldText(287, 287, 'log', 3)  //Counted checks : 2
 
 
 </script>

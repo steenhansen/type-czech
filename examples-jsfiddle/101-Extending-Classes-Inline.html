@@ -1,5 +1,5 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>101-Extended-Classes-Inline</title>
+<title>101 - Extended Classes Inline</title>
 
 
   
@@ -52,16 +52,10 @@
 
   
 <!--            ------------------TYPE 1------------------------       -->
-
 <script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/consolelog.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/TypeCzech.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/type-czech.css">
-
 <!--            -----------------TYPE 1-------------------------       -->
-
-
-
-
 <div id='js-fiddles'>
   <a title="Example-Contents" href="https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Contents" target="_blank">Contents</a>
 
@@ -162,6 +156,9 @@
 
   <a title="41-Lens-Example.html" href="https://jsfiddle.net/steen_hansen/fxt8ag56/?41-Lens-Example" target="_blank">41</a>
 
+  
+ <a title="42 - Extended Objects.html" href="https://jsfiddle.net/steen_hansen/rvau7yes/?42-Extended-Objects" target="_blank">42</a>
+
 
     &nbsp;&nbsp;
 
@@ -225,9 +222,12 @@
     &copy; 2021 Steen Hansen
 
   </div>
-  
+<!--            -----------------TYPE 1-------------------------       -->
 
-  <!--            -----------------TYPE 1-------------------------       -->
+
+
+
+
 
 
 
@@ -252,12 +252,27 @@
 
 
 <script id="check-code">
-/**/function First_check(First){
+class First { 
+  constructor(f_name) { 
+    this.f_name = f_name 
+    log(NL+`CONS-First :${f_name}`) 
+  }
+  firstMethod(a_date) { 
+    log(NL+`RUN -firstMethod :${this.f_name} `, a_date) 
+    return a_date
+  }  
+}
+
+/**/  if (typeof TypeCzech === 'function')
+/**/    type_czech = TypeCzech('LOG-ERRORS')
+/**/  else
+/**/    type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
+
 /**/  function PRE_check_First(f_name){
 /**/    log(NL2+'PRE -First') 
 /**/    type_issue = type_czech.checkParam_type(f_name, 'string')
 /**/    if (type_issue) return type_issue;
-/**/    return type_czech.checkParam_empty(arguments, 'EMPTY-ERROR');
+/**/    return type_czech.checkParam_empty(f_name, 'EMPTY-ERROR');
 /**/  }
 /**/  function POST_check_First(First){
 /**/    log(NL1+'POST-First')
@@ -266,25 +281,34 @@
 /**/  }
 /**/  function PRE_check_firstMethod(a_date){
 /**/    log('PRE -firstMethod') 
-/**/    return type_czech.checkParam_type(arguments, 'date')
+/**/    return type_czech.checkParam_type(a_date, 'date')
 /**/  }
 /**/  function POST_check_firstMethod(a_date){
 /**/    log('POST-firstMethod') 
-/**/    return type_czech.checkParam_type(arguments, 'date')
+/**/    return type_czech.checkParam_type(a_date, 'date')
 /**/  }
-/**/
 /**/  First_PREs = {First:PRE_check_First, firstMethod:PRE_check_firstMethod}
 /**/  First_POSTs = {First:POST_check_First, firstMethod:POST_check_firstMethod}
 /**/  First = type_czech.linkUp(First, First_PREs, First_POSTs)
-/**/  return First
-/**/}
 
-/**/function Last_check(Last){
+class Last extends First{  
+  constructor(f_name, l_name) {
+    super(f_name);
+    this.l_name = l_name
+    log(NL+LEVEL_1+`CONS-Last :${f_name} ${l_name}`)  
+  }
+  lastMethod(a_year){ 
+    const last_mess = `RUN -lastMethod :${a_year} ${this.f_name} ${this.l_name}`
+    log(LEVEL_1+last_mess) 
+    return a_year
+  }
+}
+
 /**/  function PRE_check_Last(f_name, l_name){
 /**/    log(LEVEL_1+'PRE-Last') 
-/**/    type_issue = type_czech.checkParam_type([f_name, l_name], ['string', 'string'])
+/**/    type_issue = type_czech.checkParam_type([f_name, l_name], ['s', 's'])
 /**/    if (type_issue) return type_issue;
-/**/    return type_czech.checkParam_empty(arguments, ['EMPTY-ERROR', 'EMPTY-ERROR']);
+/**/    return type_czech.checkParam_empty([f_name, l_name], ['ER', 'ER']);
 /**/  }
 /**/  function POST_check_Last(Last){
 /**/    log(LEVEL_1+"POST-Last") 
@@ -294,23 +318,35 @@
 /**/  }
 /**/  function PRE_check_lastMethod(a_year){
 /**/    log(LEVEL_1+"PRE -lastMethod") 
-/**/    return type_czech.checkParam_type(arguments, 'number')
+/**/    return type_czech.checkParam_type(a_year, 'number')
 /**/  }
 /**/  function POST_check_lastMethod(a_year){
 /**/    log(LEVEL_1+"POST-lastMethod") 
-/**/    return type_czech.checkParam_type(arguments, 'number')
+/**/    return type_czech.checkParam_type(a_year, 'number')
 /**/  }
-/**/
 /**/  Last_PREs = {Last:PRE_check_Last, lastMethod:PRE_check_lastMethod}
 /**/  Last_POSTs = {Last:POST_check_Last, lastMethod:POST_check_lastMethod}
 /**/  Last = type_czech.linkUp(Last, Last_PREs, Last_POSTs)
-/**/  return Last
-/**/}
 
-/**/function Full_check(Full){
+class Full extends Last {
+  constructor(salu, f_name, l_name) { 
+    super(f_name, l_name);
+    this.salu = salu
+    log(NL+LEVEL_2+`CONS-Full :${salu} ${f_name} ${l_name}`) 
+  }
+  fullMethod(a_book){
+    const full_mess = `RUN -fullMethod :${a_book} ${this.salu} ${this.l_name}`
+    log(LEVEL_2+full_mess)
+    return a_book
+  }
+  showName() {
+    return `${this.salu} ${this.f_name} ${this.l_name}`
+  }
+}
+
 /**/  function PRE_check_Full(salu, f_name, l_name){
 /**/    log(LEVEL_2+'PRE-Full') 
-/**/    return type_czech.checkParam_type(arguments, ['string', 'string', 'string']);
+/**/    return type_czech.checkParam_type([salu, f_name, l_name], ['s', 's', 's']);
 /**/  }
 /**/  function POST_check_Full(Full){
 /**/    log(LEVEL_2+"POST-Full") 
@@ -320,87 +356,15 @@
 /**/  }
 /**/  function PRE_check_fullMethod(a_book){
 /**/    log(LEVEL_2+"PRE -fullMethod") 
-/**/    return type_czech.checkParam_type(arguments, 'string')
+/**/    return type_czech.checkParam_type(a_book, 'string')
 /**/  }
 /**/  function POST_check_fullMethod(a_book){
 /**/    log(LEVEL_2+"POST-fullMethod") 
-/**/    return type_czech.checkParam_type(arguments, 'string')
+/**/    return type_czech.checkParam_type(a_book, 'string')
 /**/  }
-/**/
 /**/  Full_PREs = {Full:PRE_check_Full, fullMethod:PRE_check_fullMethod}
 /**/  Full_POSTs= {Full:POST_check_Full, fullMethod:POST_check_fullMethod}
 /**/  Full = type_czech.linkUp(Full, Full_PREs, Full_POSTs)
-/**/  return Full
-/**/}
-
-function init_First(){
-  class First { 
-    constructor(f_name) { 
-      this.f_name = f_name 
-      log(NL+`CONS-First :${f_name}`) 
-    }
-    firstMethod(a_date) { 
-      log(NL+`RUN -firstMethod :${this.f_name} `, a_date) 
-      return a_date
-    }  
-  }
-  return First
-}
-
-function init_Last(First){
-  class Last extends First{  
-    constructor(f_name, l_name) {
-      super(f_name);
-      this.l_name = l_name
-      log(NL+LEVEL_1+`CONS-Last :${f_name} ${l_name}`)  
-    }
-    lastMethod(a_year){ 
-      const last_mess = `RUN -lastMethod :${a_year} ${this.f_name} ${this.l_name}`
-      log(LEVEL_1+last_mess) 
-      return a_year
-    }
-  }
-  return Last
-}
-
-function init_Full(Last){
-  class Full extends Last {
-    constructor(salu, f_name, l_name) { 
-      super(f_name, l_name);
-      this.salu = salu
-      log(NL+LEVEL_2+`CONS-Full :${salu} ${f_name} ${l_name}`) 
-    }
-    fullMethod(a_book){
-      const full_mess = `RUN -fullMethod :${a_book} ${this.salu} ${this.l_name}`
-      log(LEVEL_2+full_mess)
-      return a_book
-    }
-    showName() {
-      const the_name = `${this.salu} ${this.f_name} ${this.l_name}`
-      console.log('Name: ', the_name)
-    }
-  }
-  return Full
-}
-
-/**/  TYPE_CZECH_START = true
-/**/  //TYPE_CZECH_START = false
-/**/
-/**/  if (TYPE_CZECH_START) {
-/**/    type_czech = TypeCzech('LOG-ERRORS', 'DEBUG-ERROR-TAGS')
-/**/    First = init_First()
-/**/    First = First_check(First)
-/**/  
-/**/    Last = init_Last(First)
-/**/    Last = Last_check(Last)
-/**/    
-/**/    Full = init_Full(Last)
-/**/    Full = Full_check(Full)
-/**/  } else {
-        First = init_First()
-        Last = init_Last(First)
-        Full = init_Full(Last)
-/**/  }
 
 ted_chiang = new Full('Mr', 'Ted', 'Chiang')
 linesConsole(1)
@@ -410,7 +374,7 @@ ted_chiang.lastMethod(2009)
 linesConsole(1)
 ted_chiang.fullMethod('Exhalation')
 linesConsole(2)
-ted_chiang.showName()
+log( ted_chiang.showName() )
 </script>
   
   
@@ -424,9 +388,9 @@ ted_chiang.showName()
   jsToDiv('js-code', "check-code");      
 
 
-  fromToBoldText(3453, 3468, 'code', 1)  //RUN -firstMethod
-    fromToBoldText(3800, 3814, 'code', 2)  // RUN -lastMethod
-    fromToBoldText(4201, 4215, 'code', 3)  // RUN -fullMethod
+  fromToBoldText(145, 160, 'code', 1)  //RUN -firstMethod
+    fromToBoldText(1598, 1612, 'code', 2)  // RUN -lastMethod
+    fromToBoldText(3026, 3040, 'code', 3)  // RUN -fullMethod
 
    
   fromToBoldText(216, 231, 'log', 1)    //RUN -firstMethod
@@ -442,3 +406,6 @@ ted_chiang.showName()
 
 <link rel="stylesheet"
   href="https://fonts.googleapis.com/css?family=Inconsolata">
+
+
+  

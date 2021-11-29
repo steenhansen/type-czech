@@ -50,13 +50,10 @@ Person = type_czech.linkUp(Person, undefined, POST_check_Person)
 
 
 <!--            ---------------TYPE 1---------------------------       -->
-
 <script src="../web-resources/consolelog.js"></script>
 <script src="../TypeCzech.js"></script>
 <link rel="stylesheet" href="../web-resources/type-czech.css">
-
 <!--            ---------------TYPE 1s---------------------------       -->
-
 <div id='js-fiddles'>
   <a title="Example-Contents" href="../example-snippets/example-contents.html">Contents</a>
   
@@ -185,7 +182,6 @@ Person = type_czech.linkUp(Person, undefined, POST_check_Person)
 
     &copy; 2021 Steen Hansen
   </div>
-
 <!--            ---------------TYPE 1s---------------------------       -->
 
 
@@ -293,14 +289,15 @@ log('out D : ', louis)
 
   jsToDiv('js-code', "check-code")
 
+  fromToBoldText(386, 391, 'code', 1)  //  ^[A-Z]
+   fromToBoldText(882, 882, 'code', 1)  //  Person('cATHERINE', 'II')
+   fromToBoldText(360, 360, 'log', 1)    // ally - cATHERINE II
+   fromToBoldText(459, 459, 'log', 1)    // ally - cATHERINE II
 
-   fromToBoldText(890, 890, 'code', 1)  //  Person('cATHERINE', 'II')
-   fromToBoldText(172, 172, 'log', 1)    // ally - cATHERINE II
 
-
-   fromToBoldText(840, 840, 'code', 2)  // )
-   fromToBoldText(488, 508, 'code', 2)  // not formatted royally
-   fromToBoldText(39, 59, 'log', 2)  // not formatted royally
+   fromToBoldText(378, 383, 'code', 2)  // RegExp
+   fromToBoldText(832, 832, 'code', 2)  // )
+   fromToBoldText(204, 212, 'log', 2)  // not formatted royally
 
 
 </script>

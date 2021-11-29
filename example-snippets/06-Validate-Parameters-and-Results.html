@@ -7,14 +7,14 @@
   <a href='https://github.com/steenhansen/type-czech' class='git-hub'>GitHub Package</a>
   <div id='js-code'>the javascript</div>
 
-  <!--            --------------------TYPE 1----------------------       -->
 
+
+
+<!--            --------------------TYPE 1----------------------       -->
 <script src="../web-resources/consolelog.js"></script>
 <script src="../TypeCzech.js"></script>
 <link rel="stylesheet" href="../web-resources/type-czech.css">
-
 <!--            ----------------TYPE 1--------------------------       -->
-
 <div id='js-fiddles'>
   <a title="Example-Contents" href="../example-snippets/example-contents.html">Contents</a>
   
@@ -143,8 +143,10 @@
 
     &copy; 2021 Steen Hansen
   </div>
-
 <!--            ----------------TYPE 1--------------------------       -->
+
+
+
 
 
 
@@ -302,17 +304,24 @@ log('out D : ', louis)
 
    jsToDiv('js-code', "check-code")
 
-   fromToBoldText(1383, 1383, 'code', 1)  //  (c)
-   fromToBoldText(196, 196, 'log', 1)    //c
+   fromToBoldText(879, 884, 'code', 1)  //  ^[A-Z]
+   
+   fromToBoldText(1383, 1383, 'code', 1)  //  ('c
+   fromToBoldText(681, 681, 'log', 1)    //c
+
+
+
 
     fromToBoldText(491, 512, 'code', 2)  // arguments.length !== 2
    fromToBoldText(1321, 1333, 'code', 2)  //  ('Atahualpa')
-   fromToBoldText(29, 47, 'log', 2)    // PRE: 1 parameters, not 2
+   fromToBoldText(59, 77, 'log', 2)    // PRE: 1 parameters, not 2
 
 
 
 
 
+   fromToBoldText(1458, 1460, 'code', 3)  //  XIV
+   fromToBoldText(824, 826, 'log', 3)    // XIV
 
 
 </script>

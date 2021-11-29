@@ -1,5 +1,5 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>15-Lone-Single-Type-Parameter-Functions </title>
+<title>15 - Lone Single Type Parameter Functions</title>
 
 
 
@@ -16,22 +16,6 @@
   <div id='explanation-text'>
 <br>
     
-    To check for exactly one parameter, as with PRE_check_exactly1Str(), the arguments length has to 
-    be checked, otherwise the extra parameters are just ignored. Note the parameter names 
-    string_1 and string_2 are place holders and the arguments object is used instead.
-
-    <br><br>
-    So when only checking a single lone parameter, leave off the array brackets - [ ], to verfiy
-    that there is only one number being passed into the function.
-
-<pre>
-type_czech.checkParam_type(arguments, 'number')              // one number
-type_czech.checkParam_type(arguments, ['number', 'number'])  // two numbers
-type_czech.checkParam_type(arguments, ['date', 'string'])    // two values
-</pre>
-
-
-
 </div>
 
 
@@ -44,17 +28,15 @@ type_czech.checkParam_type(arguments, ['date', 'string'])    // two values
 
 
 
+
+
+
   
 <!--            ---------------TYPE 1---------------------------       -->
-
 <script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/consolelog.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/TypeCzech.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/type-czech.css">
-
 <!--            ---------------TYPE 1---------------------------       -->
-
-
-
 <div id='js-fiddles'>
   <a title="Example-Contents" href="https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Contents" target="_blank">Contents</a>
 
@@ -155,6 +137,10 @@ type_czech.checkParam_type(arguments, ['date', 'string'])    // two values
 
   <a title="41-Lens-Example.html" href="https://jsfiddle.net/steen_hansen/fxt8ag56/?41-Lens-Example" target="_blank">41</a>
 
+  
+ <a title="42 - Extended Objects.html" href="https://jsfiddle.net/steen_hansen/rvau7yes/?42-Extended-Objects" target="_blank">42</a>
+
+
 
     &nbsp;&nbsp;
 
@@ -218,8 +204,10 @@ type_czech.checkParam_type(arguments, ['date', 'string'])    // two values
     &copy; 2021 Steen Hansen
 
   </div>
-
 <!--            ---------------TYPE 1---------------------------       -->
+
+
+
 
 
 
@@ -256,64 +244,58 @@ type_czech.checkParam_type(arguments, ['date', 'string'])    // two values
 /**/    type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
 /**/
 /**/  PRE_check_exactly1Str = (typeof PRE_check_exactly1Str === 'undefined')
-/**/                    ? undefined : PRE_check_exactly1Str
+/**/                          ? undefined : PRE_check_exactly1Str
 /**/
-/**/  PRE_check_exactly2Strs=(typeof PRE_check_exactly2Strs === 'undefined')
-/**/                     ? undefined : PRE_check_exactly2Strs
+/**/  PRE_check_want1Array=(typeof PRE_check_want1Array === 'undefined')
+/**/                      ? undefined : PRE_check_want1Array
+/**/
+/**/  PRE_check_need1Object=(typeof PRE_check_need1Object === 'undefined')
+/**/                      ? undefined : PRE_check_need1Object
 /**/  
 /**/  function PRE_check_exactly1Str(string_1){
-/**/    num_args = arguments.length
-/**/    if (num_args !== 1) return `PRE, not 1 but ${num_args} params`
-/**/    return type_czech.checkParam_type(arguments, 'string')
+/**/    return type_czech.checkParam_type(string_1, 'string')
 /**/  }
 /**/  
-/**/  function PRE_check_exactly2Strs(string_1, string_2){
-/**/     return type_czech.checkParam_type(arguments, ['string', 'string'] )
+/**/  function PRE_check_want1Array(an_array){
+/**/    return type_czech.checkParam_type(an_array, 'array')
 /**/  }
-/**/  
-/**/  exactly1Str = type_czech.linkUp(exactly1Str, PRE_check_exactly1Str)
 /**/
-/**/  exactly2Strs = type_czech.linkUp(exactly2Strs, PRE_check_exactly2Strs)
+/**/  function PRE_check_need1Object(an_object){
+/**/    return type_czech.checkParam_type(an_object, 'object')
+/**/  }
+/**/
+/**/  exactly1Str = type_czech.linkUp(exactly1Str, PRE_check_exactly1Str)
+/**/  want1Array = type_czech.linkUp(want1Array, PRE_check_want1Array)
+/**/  need1Object = type_czech.linkUp(need1Object, PRE_check_need1Object)
 
 function exactly1Str(one_string) {
   return one_string
 }
 
-function exactly2Strs(string_1, string_2) {
-  return [string_1, string_2]
+function want1Array(an_array) {
+  return an_array
 }
 
-log('EXPECT_1_GOT_1 : ', exactly1Str('One'))
+function need1Object(an_object) {
+  return an_object
+}
+
+log('EXPECT_1_GOT_0 : ', exactly1Str() )
 
 linesConsole(3)
 
-expect_1_got_2 =  exactly1Str('1-one', '2-two') 
+log('EXPECT_1_GOT_1 : ', exactly1Str('A-One'))
 linesConsole(1)
-log('EXPECT_1_GOT_2 : ')
-log(expect_1_got_2)
-
-
-
-linesConsole(3)
-
-
-expect_2_got_1 =  exactly2Strs('one-1') 
-linesConsole(1)
-log('EXPECT_2_GOT_1 : ')
-log(expect_2_got_1)
+log('  WANT_1_GOT_1 : ', want1Array([1]))
+log('  NEED_1_GOT_1 : ', need1Object({a:'b'}) )
 
 linesConsole(2)
 
-
-expect_2_got_2 =  exactly2Strs('ONE', 'TWO') 
-log('EXPECT_2_GOT_2 : ', expect_2_got_2)
-
-
+log('EXPECT_1_GOT_2 : ', exactly1Str('B-one', 'B-two') )
 linesConsole(2)
-
-
-expect_2_got_3 =  exactly2Strs('one', 'two', 'three') 
-log('EXPECT_2_GOT_3 : ', expect_2_got_3)
+log('  WANT_1_GOT_2 : ', want1Array([2], [3]) )
+linesConsole(1)
+log('  NEED_1_GOT_2 : ', need1Object({c:'d'}, {e:'f'}))
 </script>
 
 
@@ -328,27 +310,30 @@ log('EXPECT_2_GOT_3 : ', expect_2_got_3)
   jsToDiv('js-code', "check-code");
 
 
-  fromToBoldText(583, 615, 'code', 3)  // PRE, not 1 but ${num_args} params
-  fromToBoldText(1193, 1221, 'code', 3)  //  exactly1Str('1-one', '2-two')
-
-  fromToBoldText(23, 45, 'log', 3)    //PRE, not 1 but 2 params
-
-
-
-  fromToBoldText(1289, 1309, 'code', 1)  //exactly2Strs('one-1') 
-
-  fromToBoldText(431, 437, 'log', 1) //"one-1"
-  fromToBoldText(464, 482, 'log', 1) //   EXPECTED TYPE ['string','string'] 
-  fromToBoldText(577, 604, 'log', 1) // [ "one-1", "undefined" ]
+  fromToBoldText(1389, 1401, 'code', 3)  // exactly1Str() 
+  
+  fromToBoldText(47, 55, 'log', 3)    // 'undefined'
+  fromToBoldText(197, 202, 'log', 3)    // string
 
 
 
-  fromToBoldText(1466, 1500, 'code', 2)  //  exactly2Strs('one', 'two', 'three')       
 
-  fromToBoldText(849, 869, 'log', 2)    ///["one","two","three"]
-  fromToBoldText(896, 914, 'log', 2)     ///["string","string"]
+  fromToBoldText(1626, 1645, 'code', 1)  //want1Array([2], [3]) 
 
-  fromToBoldText(1009, 1028, 'log', 2)     ///[ "one", "two" ]
+  fromToBoldText(846, 860, 'log', 1) //   'array','array'
+  fromToBoldText(920, 924, 'log', 1) // array
+
+
+
+
+  fromToBoldText(1686, 1701, 'code', 2)  //  {c:'d'}, {e:'f'}      
+
+  fromToBoldText(1208, 1222, 'log', 2)    // {c:"d"},{e:"f"}
+
+  fromToBoldText(1249, 1254, 'log', 2)     //object
+
+
+
 
 
 </script>

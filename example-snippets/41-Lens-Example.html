@@ -67,6 +67,10 @@ function getAddress(an_address){
 }
 </pre>
 
+Note use of check_assert() with the results of checkParam_type(); no return 
+statement needed.
+<br><br>
+
 
 
   </div>
@@ -82,16 +86,11 @@ function getAddress(an_address){
 
   
 <!--            -----------------TYPE 1------------------------       -->
-
 <script src="../web-resources/consolelog.js"></script>
 <script src="../TypeCzech.js"></script>
 <link rel="stylesheet" href="../web-resources/type-czech.css">
-
 <script src="https://cdn.jsdelivr.net/npm/ramda@0.25/dist/ramda.min.js"></script>
-
 <!--            ------------------TYPE 1------------------------       -->
-
-
 <div id='js-fiddles'>
   <a title="Example-Contents" href="../example-snippets/example-contents.html">Contents</a>
   
@@ -221,8 +220,11 @@ function getAddress(an_address){
 
     &copy; 2021 Steen Hansen
   </div>
-
 <!--            ------------------TYPE 1------------------------       -->
+
+
+
+
 
 
 
@@ -324,13 +326,18 @@ log('Duran Duran : ', getAddress(duran_duran, SUB_LENSES) )
 
 
   fromToBoldText(785, 795, 'code', 1)  //  the_zip:'n'
+  fromToBoldText(2212, 2225, 'code', 1)  //  zip: 'B73 5BL'
+  fromToBoldText(118, 207, 'log', 1)    //Property 'the_zip' is indicated to be a 'number', but is inaccurately a 'string' : B73 5BL
 
 
-   fromToBoldText(2207, 2220, 'code', 1)  //  zip: 'B73 5BL'
 
-   fromToBoldText(374, 390, 'log', 1)    //the_zip:"B73 5BL"
+fromToBoldText(1975, 1979, 'code', 2)  //12345
+fromToBoldText(38, 42, 'log', 2)  //   12345
 
-   fromToBoldText(473, 483, 'log', 1)    //the_zip:"n"
+
+fromToBoldText(2082, 2086, 'code', 3)  //90210
+fromToBoldText(78, 82, 'log', 3)  //   90210
+
 
 
 </script>

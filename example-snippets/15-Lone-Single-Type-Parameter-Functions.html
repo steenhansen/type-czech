@@ -35,14 +35,10 @@
 
   
 <!--            ---------------TYPE 1---------------------------       -->
-
 <script src="../web-resources/consolelog.js"></script>
 <script src="../TypeCzech.js"></script>
 <link rel="stylesheet" href="../web-resources/type-czech.css">
-
 <!--            ---------------TYPE 1---------------------------       -->
-
-
 <div id='js-fiddles'>
   <a title="Example-Contents" href="../example-snippets/example-contents.html">Contents</a>
   
@@ -171,7 +167,6 @@
 
     &copy; 2021 Steen Hansen
   </div>
-
 <!--            ---------------TYPE 1---------------------------       -->
 
 
@@ -275,27 +270,28 @@ log('  NEED_1_GOT_2 : ', need1Object({c:'d'}, {e:'f'}))
   jsToDiv('js-code', "check-code");
 
 
-  fromToBoldText(583, 615, 'code', 3)  // PRE, not 1 but ${num_args} params
-  fromToBoldText(1193, 1221, 'code', 3)  //  exactly1Str('1-one', '2-two')
-
-  fromToBoldText(23, 45, 'log', 3)    //PRE, not 1 but 2 params
-
-
-
-  fromToBoldText(1289, 1309, 'code', 1)  //exactly2Strs('one-1') 
-
-  fromToBoldText(431, 437, 'log', 1) //"one-1"
-  fromToBoldText(464, 482, 'log', 1) //   EXPECTED TYPE ['string','string'] 
-  fromToBoldText(577, 604, 'log', 1) // [ "one-1", "undefined" ]
+  fromToBoldText(1389, 1401, 'code', 3)  // exactly1Str() 
+  
+  fromToBoldText(47, 55, 'log', 3)    // 'undefined'
+  fromToBoldText(197, 202, 'log', 3)    // string
 
 
 
-  fromToBoldText(1466, 1500, 'code', 2)  //  exactly2Strs('one', 'two', 'three')       
 
-  fromToBoldText(849, 869, 'log', 2)    ///["one","two","three"]
-  fromToBoldText(896, 914, 'log', 2)     ///["string","string"]
+  fromToBoldText(1626, 1645, 'code', 1)  //want1Array([2], [3]) 
 
-  fromToBoldText(1009, 1028, 'log', 2)     ///[ "one", "two" ]
+  fromToBoldText(846, 860, 'log', 1) //   'array','array'
+  fromToBoldText(920, 924, 'log', 1) // array
+
+
+
+
+  fromToBoldText(1686, 1701, 'code', 2)  //  {c:'d'}, {e:'f'}      
+
+  fromToBoldText(1208, 1222, 'log', 2)    // {c:"d"},{e:"f"}
+
+  fromToBoldText(1249, 1254, 'log', 2)     //object
+
 
 
 

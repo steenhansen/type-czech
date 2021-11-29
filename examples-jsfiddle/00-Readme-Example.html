@@ -1,13 +1,16 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>00-Readme-Example</title>
+<title>00 - Readme Example</title>
 
   
-<div id='js-div' style="width:51%;" >
+<div id='js-div' style="width:54%;" >
   <a href='https://github.com/steenhansen/type-czech' class='git-hub'>GitHub Package</a>
   <div id='js-code'>the javascript</div>
   <br><br>
 
   
+
+
+
 
   
 
@@ -15,16 +18,10 @@
 
 
 <!--            ------------------TYPE 1------------------------       -->
-
 <script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/consolelog.js"></script>
-
 <script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/TypeCzech.min.js"></script>
-
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/type-czech.css">
-
 <!--            -------------------TYPE 1-----------------------       -->
-
-
 <div id='js-fiddles'>
   <a title="Example-Contents" href="https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Contents" target="_blank">Contents</a>
 
@@ -125,7 +122,9 @@
 
   <a title="41-Lens-Example.html" href="https://jsfiddle.net/steen_hansen/fxt8ag56/?41-Lens-Example" target="_blank">41</a>
 
+  <a title="42 - Extended Objects.html" href="https://jsfiddle.net/steen_hansen/rvau7yes/?42-Extended-Objects" target="_blank">42</a>
 
+  
     &nbsp;&nbsp;
 
     <a title="101-Extending-Classes-Inline.html" href="https://jsfiddle.net/steen_hansen/cnLrm6ad/?101-Extending-Classes-Inline" target="_blank">101</a>
@@ -188,8 +187,8 @@
     &copy; 2021 Steen Hansen
 
   </div>
-  
 <!--            -------------------TYPE 1-----------------------       -->
+
 
 
 
@@ -202,7 +201,7 @@
 </div>
 
 
-<div id="the-explanation" style="width:49%" class='code-scroll'>
+<div id="the-explanation" style="width:46%" class='code-scroll'>
   <div class='an-explantion'>00 - Readme Example</div>
   <div id='explanation-text'>
     <br>
@@ -228,21 +227,6 @@ type_czech = TypeCzech()
  PRE_check_aLottery() also gives warning when parameters are empty with the checkParam_empty() call. This means that an error
  occurs when the lottery_name is an empty string, and/or if there are no numbers in the lucky_numbers array. 
  <br><br>
-TypeCzech functions are best used with the arguments object, the below verbose function works just as well.
-<pre>
-function PRE_check_aLottery(lottery_name, lucky_numbers, draw_date){
-  the_parameters = [lottery_name, lucky_numbers, draw_date]
-  type_issue = type_czech.checkParam_type(the_parameters, LOTTERY_SIGNATURE)
-  if (type_issue) 
-    return type_issue
-
-  empty_issue = type_czech.checkParam_empty(the_parameters, ['EMPTY-ERROR'])
-  if (empty_issue)
-    return empty_issue
-  
-  return ''
-}
-</pre>
 
 
 
@@ -265,34 +249,31 @@ function PRE_check_aLottery(lottery_name, lucky_numbers, draw_date){
 
 
 <script id="check-code">
+  
+function aLottery(lottery_name, lucky_numbers, draw_date){
+  console.log(`${lottery_name} ::: ${lucky_numbers} ::: `, draw_date)
+}
+
 /**/  //  <script src="../TypeCzech.js">
 /**/
-/**/  //  type_czech = TypeCzech('NO-CHECKING')
-/**/
-/**/  //  type_czech = TypeCzech('THROW-EXCEPTIONS')
-
 /**/  type_czech = TypeCzech('LOG-ERRORS')
 /**/
 /**/  LOTTERY_SIGNATURE = ['string', ['number'], 'date']
 /**/
-/**/  function PRE_check_aLottery(){
-/**/    type_issue = type_czech.checkParam_type(arguments, LOTTERY_SIGNATURE)
+/**/  function PRE_check_aLottery(lottery_name, lucky_numbers, draw_date) {
+/**/    the_parameters = [lottery_name, lucky_numbers, draw_date]
+/**/    type_issue = type_czech.checkParam_type(the_parameters, LOTTERY_SIGNATURE)
 /**/    if (type_issue) 
 /**/      return type_issue
 /**/
-/**/    empty_issue=type_czech.checkArgs_emptyVariadic(arguments,['EMPTY-ERROR'])
-/**/    if (empty_issue) 
+/**/    empty_issue = type_czech.checkArgs_emptyVariadic(arguments, ['EMPTY-ERROR'])
+/**/    if (empty_issue)
 /**/      return empty_issue
 /**/
-/**/    return ''
+/**/    return '' // no issues
 /**/  }
 /**/
 /**/  aLottery = type_czech.linkUp(aLottery, PRE_check_aLottery) 
-
-function aLottery(lottery_name, lucky_numbers, draw_date){
-  the_lottery = `${lottery_name} ::: ${lucky_numbers} :::`
-  console.log(the_lottery, draw_date)
-}
 
 aLottery('El Gordo', [1,2,3,4,5,0], new Date('jun 14 1999'))
 
@@ -302,11 +283,11 @@ aLottery('Powerball', [], new Date('jun 14 1999'))
 
 linesConsole(2)
 
-aLottery('', [1,2,3,4,5,26], new Date('Dec 31 1999'))
+ aLottery('', [1,2,3,4,5,26], new Date('Dec 31 1999'))
 
 linesConsole(2)
 
-aLottery('Mega Millions', 17, new Date('jun 14 1999'))
+ aLottery('Mega Millions', 17, new Date('jun 14 1999'))
 
 linesConsole(2)
 
@@ -324,29 +305,27 @@ aLottery('Oz Lotto', ['fourty-two'], new Date('jun 14 1999'))
 
 
 
-
-
 <script>
 
-jsToDiv('js-code', "check-code")
+   jsToDiv('js-code', "check-code")
 
-fromToBoldText(911, 912, 'code', 1)  // []
+   fromToBoldText(914, 915, 'code', 1)  // []
 
-fromToBoldText(275, 276, 'log', 1)    // []
-fromToBoldText(315, 329, 'log', 1)    // ["EMPTY-ERROR"]
-
-
-fromToBoldText(1022, 1023, 'code', 2)  // 17
-
-fromToBoldText(1020, 1021, 'log', 2)    // 17
-fromToBoldText(1070, 1079, 'log', 2)    // ['number']
+   fromToBoldText(286, 287, 'log', 1)    // []
+   fromToBoldText(326, 340, 'log', 1)    // ["EMPTY-ERROR"]
 
 
+   fromToBoldText(1027, 1028, 'code', 2)  // 17
 
-fromToBoldText(1111, 1124, 'code', 3)  // ['fourty-two']
+   fromToBoldText(1110, 1111, 'log', 2)    // 17
+   fromToBoldText(1160, 1169, 'log', 2)    // ['number']
 
-fromToBoldText(1784, 1795, 'log', 3)    //"fourty-two"
-fromToBoldText(1846, 1853, 'log', 3)    //  "number"
+
+
+   fromToBoldText(1116, 1129, 'code', 3)  // ['fourty-two']
+
+   fromToBoldText(1938, 1951, 'log', 3)    //"fourty-two"
+   fromToBoldText(2000, 2009, 'log', 3)    //  "number"
 
 
 

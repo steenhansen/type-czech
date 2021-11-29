@@ -84,16 +84,18 @@ PRE_check_aLottery = (typeof PRE_check_aLottery === 'undefined')
 
 
 
-<!--            ------------------TYPE 1------------------------       -->
 
+
+
+
+
+
+
+<!--            ------------------TYPE 1------------------------       -->
 <script src="../web-resources/consolelog.js"></script>
 <script src="../TypeCzech.js"></script>
 <link rel="stylesheet" href="../web-resources/type-czech.css">
-
 <!--            -------------------TYPE 1-----------------------       -->
-
-
-
 <div id='js-fiddles'>
   <a title="Example-Contents" href="../example-snippets/example-contents.html">Contents</a>
   
@@ -223,8 +225,19 @@ PRE_check_aLottery = (typeof PRE_check_aLottery === 'undefined')
     
     &copy; 2021 Steen Hansen
   </div>
-
 <!--            -------------------TYPE 1-----------------------       -->
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   
@@ -256,7 +269,7 @@ function runEnvironment(TypeCzech, pre_check_exists) {
     function PRE_check_aLottery (lottery_name, lucky_numbers, draw_date){
       the_parameters = [lottery_name, lucky_numbers, draw_date]
       LOTTERY_SIGNATURE = ['string', ['number'], 'date']
-      LOTTERY_EMPTIES = ['EMPTY-ERROR', ['EMPTY-ERROR'], 'EMPTY-ERROR']
+      LOTTERY_EMPTIES = ['EMPTY-ERROR']
       issue=type_czech.checkParam_type(the_parameters,LOTTERY_SIGNATURE)
       if (issue) return issue
   
@@ -308,11 +321,11 @@ fromToBoldText(233, 296, 'code', 2)  //  PRE_check_aLottery = (typeof PRE_check_
 fromToBoldText(325, 356, 'code', 2)  //  ? undefined : PRE_check_aLottery
 
 
-fromToBoldText(1143, 1157, 'code', 3)  //  TypeCzech, true
+fromToBoldText(1267, 1281, 'code', 4)  //  TypeCzech, true
 
-fromToBoldText(1182, 1183, 'code', 4)  //  []
-fromToBoldText(237, 238, 'log', 4)  //  []
-fromToBoldText(277, 291, 'log', 4)  // ["EMPTY-ERROR"]
+fromToBoldText(1306, 1307, 'code', 3)  //  []
+fromToBoldText(240, 241, 'log', 3)  //  []
+fromToBoldText(280, 294, 'log', 3)  // ["EMPTY-ERROR"]
 
 
 </script>

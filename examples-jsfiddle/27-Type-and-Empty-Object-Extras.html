@@ -1,5 +1,5 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>27-Type-and-Emptiness-with-Extra-Parameter-Option-Objects</title>
+<title>27 - Type and Emptiness Together with Extra Parameter Option Objects</title>
 
 
 
@@ -45,17 +45,13 @@
 
 
 
+
   
 <!--            --------------TYPE 1----------------------------       -->
-
 <script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/consolelog.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/TypeCzech.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/type-czech.css">
-
 <!--            ---------------TYPE 1s---------------------------       -->
-
-
-
 <div id='js-fiddles'>
   <a title="Example-Contents" href="https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Contents" target="_blank">Contents</a>
 
@@ -157,6 +153,8 @@
   <a title="41-Lens-Example.html" href="https://jsfiddle.net/steen_hansen/fxt8ag56/?41-Lens-Example" target="_blank">41</a>
 
 
+  <a title="42 - Extended Objects.html" href="https://jsfiddle.net/steen_hansen/rvau7yes/?42-Extended-Objects" target="_blank">42</a>
+
     &nbsp;&nbsp;
 
     <a title="101-Extending-Classes-Inline.html" href="https://jsfiddle.net/steen_hansen/cnLrm6ad/?101-Extending-Classes-Inline" target="_blank">101</a>
@@ -229,6 +227,8 @@
 
 
 
+
+
   
 </div>
 
@@ -258,15 +258,15 @@
 /**/  PRE_check_personExtra = (typeof PRE_check_personExtra === 'undefined') 
 /**/                          ? undefined : PRE_check_personExtra
 /**/
-/**/  PERSON_TYPE_SIGNATURE = {salu:'string', f_name:'string', l_name:'string'}
+/**/  PERSON_SIGNATURE = {salu:'string', f_name:'string', l_name:'string'}
 /**/
 /**/  PERSON_EMPTIES = {f_name:'EMPTY-ERROR', l_name:'EMPTY-ERROR'}
 /**/
 /**/  function PRE_check_personExtra(person_object) {
-/**/    type_error=type_czech.checkParam_typeExtra(person_object,PERSON_TYPE_SIGNATURE)
+/**/    type_error=type_czech.checkParam_typeExtra(person_object,PERSON_SIGNATURE)
 /**/    if (type_error) return type_error
 /**/
-/**/    empty_error = type_czech.checkParam_emptyExtra(person_object, PERSON_EMPTIES)
+/**/    empty_error=type_czech.checkParam_emptyExtra(person_object,PERSON_EMPTIES)
 /**/    if (empty_error) return empty_error
 /**/  }
 /**/
@@ -321,18 +321,19 @@ personExtra(ted)
 
 
 
+
 <script>
   
 
   jsToDiv('js-code', "check-code")       
 
-  fromToBoldText(458, 477, 'code', 1)  //  l_name:'EMPTY-ERROR'
-  fromToBoldText(1570, 1578, 'code', 1)  // l_name:''
+  fromToBoldText(453, 472, 'code', 1)  //  l_name:'EMPTY-ERROR'
+  fromToBoldText(1567, 1575, 'code', 1)  // l_name:''
 
 
-  fromToBoldText(343, 351, 'log', 1)    // l_name:""
+  fromToBoldText(351, 359, 'log', 1)    // l_name:""
 
-  fromToBoldText(401, 420, 'log', 1)   //  l_name:"EMPTY-ERROR"
+  fromToBoldText(411, 433, 'log', 1)   //  l_name:"EMPTY-ERROR"
 
 
 
@@ -345,6 +346,10 @@ personExtra(ted)
 
 </script>
 
+
 <link rel="stylesheet"
   href="https://fonts.googleapis.com/css?family=Inconsolata">
 
+
+
+  

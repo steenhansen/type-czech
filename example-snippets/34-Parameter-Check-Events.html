@@ -73,13 +73,10 @@ The example to the left changes the <b>tab title</b> on running checks.
 
 
 <!--            -------------TYPE 1-----------------------------       -->
-
 <script src="../web-resources/consolelog.js"></script>
 <script src="../TypeCzech.js"></script>
 <link rel="stylesheet" href="../web-resources/type-czech.css">
-
 <!--            -------------TYPE 1-----------------------------       -->
-
 <div id='js-fiddles'>
   <a title="Example-Contents" href="../example-snippets/example-contents.html">Contents</a>
   
@@ -208,7 +205,6 @@ The example to the left changes the <b>tab title</b> on running checks.
 
     &copy; 2021 Steen Hansen
   </div>
-
 <!--            -------------TYPE 1-----------------------------       -->
 
 
@@ -315,17 +311,16 @@ window.setTimeout( ()=> Person('Alan', 'Turing'), 3000)
 
    jsToDiv('js-code', "check-code");
 
-    fromToBoldText(7, 22, 'code', 1)  // TYPE_CZECH_TITLE = {
+   fromToBoldText(7, 22, 'code', 1)  // TYPE_CZECH_TITLE = {
    fromToBoldText(544, 559, 'code', 1)  //TypeCzech(TYPE_CZECH_TITLE,
 
-
-   fromToBoldText(84, 117, 'code', 2)  // document.title = check_error_count
-
-
+   fromToBoldText(84, 117, 'code', 3)  // document.title = check_error_count
 
   window.setTimeout(function (){
-
-}, 2100);
+    fromToBoldText(868, 874, 'code', 2)  //l_name === 'Badgers'
+    fromToBoldText(1141, 1147, 'code', 2)  //'The', 'Badgers')
+    fromToBoldText(170, 176, 'log', 2)  //Badgers
+  }, 2100);
 
 </script>
 

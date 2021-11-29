@@ -57,14 +57,10 @@ a reference error is generated stating
 
 
 <!--            ----------------TYPE 1--------------------------       -->
-
 <script src="../web-resources/consolelog.js"></script>
 <script src="../TypeCzech.js"></script>
 <link rel="stylesheet" href="../web-resources/type-czech.css">
-
 <!--            -------------TYPE 1s-----------------------------       -->
-
-
 <div id='js-fiddles'>
   <a title="Example-Contents" href="../example-snippets/example-contents.html">Contents</a>
   
@@ -193,7 +189,6 @@ a reference error is generated stating
 
     &copy; 2021 Steen Hansen
   </div>
-
 <!--            -------------TYPE 1s-----------------------------       -->
 
 
@@ -274,7 +269,7 @@ linesConsole(2)
 
 interface_error = type_czech.check_interface(a_person, PERSON_INTERFACE)
 if (interface_error){
-  log('Interface Error : ', interface_error[1])
+  log('Interface Error : ', interface_error)
 }
 
 linesConsole(2)
@@ -305,13 +300,13 @@ linesConsole(2)
 
 
 
-   fromToBoldText(1018, 1047, 'code', 3)  //  a_person is still a 'Person' 
+   fromToBoldText(1021, 1055, 'code', 3)  //  a_person is still a 'Person' 
 
 fromToBoldText(42, 77, 'log', 3)    //a_person is still a 'Person'
 
 
 
-fromToBoldText(951, 984, 'code', 2)  //  delete person_proto.showPerson
+fromToBoldText(954, 988, 'code', 2)  //  delete person_proto.showPerson
 
 fromToBoldText(97, 148, 'log', 2)    //Interface missing key 'showPerson' in checked objec
 
@@ -320,7 +315,7 @@ fromToBoldText(97, 148, 'log', 2)    //Interface missing key 'showPerson' in che
 
 
 
-  fromToBoldText(1346, 1366, 'code', 1)  //  a_person.showPerson()
+  fromToBoldText(1351, 1371, 'code', 1)  //  a_person.showPerson()
 
   fromToBoldText(180, 216, 'log', 1)    //"a_person.showPerson is not a function"
 
