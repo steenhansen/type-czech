@@ -278,11 +278,11 @@ log = captureConsole("log-text")
 /**/  PersonArray  = type_czech.linkUp(PersonArray, PRE_check_Person, POST_check_Person) 
 
 function PersonArray(name_array){
-let [f_name, l_name] =name_array
-if (!l_name){
-  name_array.push('array-last-name')
-}
-return `${f_name} ${l_name}`
+  let [f_name, l_name] =name_array
+  if (!l_name){
+    name_array.push('array-last-name')
+  }
+  return `${f_name} ${l_name}`
 }
 
 cleopatra = PersonArray(['Cleopatra', 'VII'])
@@ -298,11 +298,11 @@ linesConsole(2)
 /**/  PersonObject =type_czech.linkUp(PersonObject, PRE_check_Person, POST_check_Person) 
 
 function PersonObject(name_object){
-let {f_name, l_name} =name_object
-if (!l_name){
-  name_object.l_name = 'object-last-name'
-}
-return `${f_name} ${l_name}`
+  let {f_name, l_name} =name_object
+  if (!l_name){
+    name_object.l_name = 'object-last-name'
+  }
+  return `${f_name} ${l_name}`
 }
 
 atahualpa = PersonObject({f_name:'Atahualpa'})
