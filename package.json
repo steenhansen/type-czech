@@ -1,6 +1,6 @@
 {
   "_from": "type-czech",
-  "_id": "type-czech@0.0.3",
+  "_id": "type-czech@1.0.0",
   "_inBundle": false,
   "_integrity": "sha512-+ZORM9FIbKoAutlrB+NdgsYgzLTWUfjujto9LltHIkS2UYQkcTi83EsutBcZN1luqfWHkadzYXbWUzQPPoySIg==",
   "_location": "/type-czech",
@@ -36,7 +36,7 @@
   "description": "TypeCzech is a run-time type checking JavaScript library that can be toggled on and off",
   "devDependencies": {},
   "engines": {
-    "node": ">=6.10.2"
+    "node": ">=15.14.0"
   },
   "files": [
     "TypeCzech.js"

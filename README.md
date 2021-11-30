@@ -234,7 +234,7 @@ type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
 ### [Type Signatures](./read-mes/type-signatures.md)
 
 
-### [65 Page Live Editable Tutorial on JSFiddle](https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Contents)
+### [67 Page Live Editable Tutorial on JSFiddle](https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Contents)
 
 ### [16 Simple How To Snippets](./read-mes/simple-howto.md)
 
@@ -242,7 +242,7 @@ type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
 
 
 
-### [65 Page Local Browsable Tutorial](./example-snippets/example-contents.html)
+### [67 Page Local Browsable Tutorial](./example-snippets/example-contents.html)
 
 
 ### [Node.js and PHP Examples](./read-mes/run-examples.md)
