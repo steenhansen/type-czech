@@ -231,6 +231,29 @@ When TypeCzech.js is not loaded, then the below construct renders all linkUp() c
 type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
 ```  
 
+
+
+### The Recommendation
+  For sanity's sake, I advise keeping TypeCzech code in separate files. This is highlighed in the examples of
+[204-Extending-Closures-Single](https://jsfiddle.net/steen_hansen/8kbtyfz1/?204-Extending-Closures-Single),
+[304-Extending-IIFEs-Single](https://jsfiddle.net/steen_hansen/ktbczhs8/?304-Extending-IIFEs-Single),
+[404-Extending-ClassFree-Single](https://jsfiddle.net/steen_hansen/asjwhbd8/?404-Extending-ClassFree-Single),
+[504-Extending-Prototypes-Single](https://jsfiddle.net/steen_hansen/0fabr5g3/?504-Extending-Prototypes-Single),
+[604-Extending-OLOO-Single](https://jsfiddle.net/steen_hansen/74Lvbj5x/?604-Extending-OLOO-Single).
+
+Thus detaching of TypeCzech can be done as below, without loading any checking code in the browser.
+```
+// <script src="../TypeCzech.js">
+// <script src="./204-all-checks-external.js">
+if (typeof linkUp_typeCzech === 'function') {
+  linkUp_typeCzech();
+}
+```
+
+Because JavaScript does not completely hoist classes there is no example #104. 
+
+
+
 ### [Type Signatures](./read-mes/type-signatures.md)
 
 

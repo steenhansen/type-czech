@@ -318,38 +318,30 @@
   
   
 
+  <h3>The Recommendation</h3>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <p> For sanity's sake, I advise keeping TypeCzech code in separate files. This is highlighed in the examples of:</p>
+  <ul>
+    <li><a title="204-Extending-Closures-Single.html" href="https://jsfiddle.net/steen_hansen/8kbtyfz1/?204-Extending-Closures-Single" target="_blank">204-Extending-Closures-Single</a></li>
+    <li><a title="304-Extending-IIFEs-Single.html" href="https://jsfiddle.net/steen_hansen/ktbczhs8/?304-Extending-IIFEs-Single" target="_blank">304-Extending-IIFEs-Single</a></li>
+    <li><a title="404-Extending-ClassFree-Single.html" href="https://jsfiddle.net/steen_hansen/asjwhbd8/?404-Extending-ClassFree-Single" target="_blank">404-Extending-ClassFree-Single</a></li>
+    <li><a title="504-Extending-Prototypes-Single.html" href="https://jsfiddle.net/steen_hansen/0fabr5g3/?504-Extending-Prototypes-Single" target="_blank">504-Extending-Prototypes-Single</a></li>
+    <li><a title="604-Extending-OLOO-Single.html" href="https://jsfiddle.net/steen_hansen/74Lvbj5x/?604-Extending-OLOO-Single" target="_blank">604-Extending-OLOO-Single</a></li>
+  </ul>
+  
+  Thus detaching of TypeCzech can be done as below, without loading any checking code in the browser.
+  <pre>
+  // &lt;script src="../TypeCzech.js"&gt;&lt;/script&gt;
+  // &lt;script src="./204-all-checks-external.js"&gt;&lt;/script&gt;
+  
+  if (typeof linkUp_typeCzech === 'function') {
+    linkUp_typeCzech();
+  }
+  </pre>
+  
+  Because JavaScript does not completely hoist classes there is no example #104.
+  
+  
 
 
 
