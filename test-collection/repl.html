@@ -8,11 +8,15 @@
 
 This exists to cut and paste tests and examples into the console to execute them.
 <br><br>
+You must supply your own TypeCzech variable for exceptions or console logging
+<br><br>
 For Example: 
-type_czech.checkParam_type('a-string', 'number');
+<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp; type_czech = TypeCzech('LOG-ERRORS', 'DEBUG-ERROR-TAGS');
+<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp; type_czech.checkParam_type('a-string', 'number');
 
 
 
-<script>
-  var type_czech = TypeCzech('LOG-ERRORS', 'DEBUG-ERROR-TAGS');
-</script>

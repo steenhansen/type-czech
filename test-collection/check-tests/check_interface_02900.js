@@ -61,7 +61,7 @@ test_pre_check_interface(variable, signature, 2901, error_mess);
 
 variable  = { show: (x) => x };
 signature = { no_match: 'function' };
-error_mess = `PRE_test_02900() PRE-FUNC: IE@501 - Interface missing key 'no_match' in checked object
+error_mess = `PRE_test_02900() PRE-FUNC: IE@501 - Interface, {no_match:"function"}, has extra key 'no_match' that is in not in checked object of {show:(x) => x ***}
 CHECKER check_interface()
 ACTUAL TYPE 'object'
  VALUES {show:(x) => x ***}

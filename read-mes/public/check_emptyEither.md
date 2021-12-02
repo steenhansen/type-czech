@@ -16,7 +16,7 @@ function PRE_check_firstOrSecond(first_str, second_str){
   return type_czech.checkParam_emptyEither([first_str, second_str], [ empty_err_ok, empty_ok_err])
 }
 
-type_czech = TypeCzech('LOG-ERRORS')
+type_czech = TypeCzech('THROW-EXCEPTIONS')
 firstOrSecond = type_czech.linkUp(firstOrSecond, PRE_check_firstOrSecond) 
 
 function firstOrSecond(first, second){ }
@@ -38,7 +38,7 @@ function POST_check_firstOrSecond(results_array){
   return type_czech.checkParam_emptyEither(results_array, [ empty_err_ok, empty_ok_err]) 
 }
 
-type_czech = TypeCzech('LOG-ERRORS')
+type_czech = TypeCzech('THROW-EXCEPTIONS')
 firstOrSecond = type_czech.linkUp(firstOrSecond, undefined, POST_check_firstOrSecond) 
 
 function firstOrSecond(first, second){

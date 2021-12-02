@@ -12,7 +12,7 @@ function PRE_check_arrayOrObject(arr_or_obj){
   return type_czech.checkParam_typeEither(arr_or_obj, ['array', 'object'])
 }
 
-type_czech = TypeCzech('LOG-ERRORS')
+type_czech = TypeCzech('THROW-EXCEPTIONS')
 arrayOrObject = type_czech.linkUp(arrayOrObject, PRE_check_arrayOrObject) 
 
 function arrayOrObject(array_or_object){ }
@@ -22,7 +22,7 @@ arrayOrObject([1, 'two', new Date('1999-12-12'), []]) // pass
 arrayOrObject({})                                     // pass
 arrayOrObject({x:12, y:4, z:19.1})                    // pass 
 
-arrayOrObject(12) // PRE fail - number is not array or object
+arrayOrObject(12) // fail - number is not array or object
 ```
 
 ## 2 Either Result Type Check<a name="either-result-type-check"></a>
@@ -32,7 +32,7 @@ function POST_check_arrayOrObject(return_result){
   return type_czech.checkParam_typeEither(return_result, ['array', 'object'])
 }
 
-type_czech = TypeCzech('LOG-ERRORS')
+type_czech = TypeCzech('THROW-EXCEPTIONS')
 arrayOrObject = type_czech.linkUp(arrayOrObject, undefined, POST_check_arrayOrObject) 
 
 function arrayOrObject(array_or_object){
@@ -44,7 +44,7 @@ arrayOrObject([1, 'two', new Date('1999-12-12'), []]) // pass
 arrayOrObject({})                                     // pass
 arrayOrObject({x:12, y:4, z:19.1})                    // pass
 
-arrayOrObject(12) // PRE fail - 12 is not an object
+arrayOrObject(12) // fail - 12 is not an object
 ```
 
 

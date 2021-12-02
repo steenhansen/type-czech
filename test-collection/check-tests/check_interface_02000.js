@@ -116,7 +116,7 @@ function check_interface_02002(){
   var TYPE_CZECH_current_test_number = '02002';       
   var check_param = {show: (x) => x};
   var check_shape =   {noShow:'function'};          
-  var expect_error = "IE@501 - Interface missing key 'noShow' in checked object";
+  var expect_error = `IE@501 - Interface, {noShow:"function"}, has extra key 'noShow' that is in not in checked object of {show:(x) => x ***}`;
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.check_interface(check_param, check_shape);

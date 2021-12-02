@@ -1273,7 +1273,9 @@ type_czech.check_interface(variable, interface);
                 const introspect_value = interface_object[test_key];
                 const introspect_type = _aTypeOf(introspect_value);
                 if (typeof introspect_value === 'undefined') {
-                  const error_501 = `Interface missing key '${test_key}' in checked object`;
+                  const intro_object_str = _toStr(introspect_object);
+                  const interface_str = _toStr(expected_interface);
+                  const error_501 = `Interface, ${interface_str}, has extra key '${test_key}' that is in not in checked object of ${intro_object_str}`;
                   error_mess = _consoleError(error_501, 'IE@501');
                 } else if (expected_type !== introspect_type) {
                   const str_intro_value = _toStr(introspect_value);
@@ -3482,6 +3484,7 @@ type_czech._eitherChecks([   ['a-str', new Date('june 4, 1999')],   [  ['string'
       }
 
       function _unsafeArgs(method_name, parameters_obj) {
+        
         if (_isArgumentsObject(parameters_obj)) {
           const arg_error = `Used arguments object as first parameter to ${method_name}, this is unsafe, use parameters.`;
           return arg_error;
@@ -3490,9 +3493,14 @@ type_czech._eitherChecks([   ['a-str', new Date('june 4, 1999')],   [  ['string'
       }
 
       function _onlyArgs(method_name, parameters_obj) {
+        
         if (!_isArgumentsObject(parameters_obj)) {
           const arg_error = `Used parameters as first parameter to ${method_name}, this is wrong, for variadics use arguments.`;
           return arg_error;
+        }
+        if (parameters_obj.length === 0) {
+          const no_param_error = 'There are no parameters.';
+          return no_param_error;
         }
         return '';
       }
@@ -3533,11 +3541,8 @@ type_czech.checkParam_empty(null, 'EMPTY-ERROR');
       function checkParam_empty(parameters_obj, shape_list) {
         if (t_param_check_func.p_call_traps) {
           
-          const argument_error = _unsafeArgs(MESS_EMPTY_VERIFY, parameters_obj);
-          let error_str_3arr;
-          if (argument_error !== '') {
-            error_str_3arr = argument_error;
-          } else {
+          let error_str_3arr = _unsafeArgs(MESS_EMPTY_VERIFY, parameters_obj);
+          if (error_str_3arr === '') {
             const [parameters_array, no_parameters, one_param] = _getParameters(parameters_obj);
             const parameters_str = _toStr(parameters_array);
             const shape_str = _toStr(shape_list);
@@ -3590,11 +3595,8 @@ type_czech.checkArgs_emptyVariadic(['a', 'b','c'], ['EMPTY-ERROR']);
       function checkArgs_emptyVariadic(parameters_obj, shape_list) {
         if (t_param_check_func.p_call_traps) {
           
-          const argument_error = _onlyArgs(MESS_EMPTY_VARIADIC, parameters_obj);
-          let error_str_3arr;
-          if (argument_error !== '') {
-            error_str_3arr = argument_error;
-          } else {
+          let error_str_3arr = _onlyArgs(MESS_EMPTY_VARIADIC, parameters_obj);
+          if (error_str_3arr === '') {
             // eslint-disable-next-line no-unused-vars, prefer-const
             let [parameters_array, no_parameters, one_param] = _getParameters(parameters_obj);
             const parameters_str = _toStr(parameters_array);
@@ -3682,11 +3684,8 @@ type_czech.checkParam_type('a', 'string');
       function checkParam_type(parameters_obj, shape_list) {
         if (t_param_check_func.p_call_traps) {
           
-          const argument_error = _unsafeArgs(MESS_TYPE_VERIFY, parameters_obj);
-          let error_str_3arr;
-          if (argument_error !== '') {
-            error_str_3arr = argument_error;
-          } else {
+          let error_str_3arr = _unsafeArgs(MESS_TYPE_VERIFY, parameters_obj);
+          if (error_str_3arr === '') {
             const [parameters_array, no_parameters, one_param] = _getParameters(parameters_obj);
             const parameters_str = _toStr(parameters_array);
             const shape_str = _toStr(shape_list);
@@ -3730,11 +3729,8 @@ type_czech.checkArgs_typeVariadic(['a', 99], ['string', 'number']);
       function checkArgs_typeVariadic(parameters_obj, shape_list) {
         if (t_param_check_func.p_call_traps) {
           
-          const argument_error = _onlyArgs(MESS_TYPE_VARIADIC, parameters_obj);
-          let error_str_3arr;
-          if (argument_error !== '') {
-            error_str_3arr = argument_error;
-          } else {
+          let error_str_3arr = _onlyArgs(MESS_TYPE_VARIADIC, parameters_obj);
+          if (error_str_3arr === '') {
             // eslint-disable-next-line no-unused-vars, prefer-const
             let [parameters_array, no_parameters, one_param] = _getParameters(parameters_obj);
             const parameters_str = _toStr(parameters_array);
@@ -3803,11 +3799,8 @@ type_czech.checkParam_emptyExtra([17, 'abc', true], ['EMPTY-ERROR', 'EMPTY-ERROR
       function checkParam_emptyExtra(parameters_obj, shape_list) {
         if (t_param_check_func.p_call_traps) {
           
-          const argument_error = _unsafeArgs(MESS_EMPTY_EXTRAS, parameters_obj);
-          let error_str_3arr = '';
-          if (argument_error !== '') {
-            error_str_3arr = argument_error;
-          } else {
+          let error_str_3arr = _unsafeArgs(MESS_EMPTY_EXTRAS, parameters_obj);
+          if (error_str_3arr === '') {
             const params_collection = _isCollection(parameters_obj);
             const shape_collection = _isCollection(shape_list);
             const shape_str = _toStr(shape_list);
@@ -3817,7 +3810,8 @@ type_czech.checkParam_emptyExtra([17, 'abc', true], ['EMPTY-ERROR', 'EMPTY-ERROR
             if (Array.isArray(shape_list) && shape_list.length === 1) {
               const single_shape = _toStr(shape_list[0]);
               const try_instead = `try checkParam_emptyExtra(${parameters_str}, '${single_shape}')`;
-              let error_235 = `checkParam_emptyExtra(${parameters_str}, ${shape_str}) ${try_instead} as ${shape_str} is prohibited.`;
+              let error_235 = `checkParam_emptyExtra(${parameters_str}, ${shape_str}) ${try_instead} as `
+                            + `${shape_str} is a single array type and is prohibited with checkParam_emptyExtra()`;
               error_235 = _consoleError(error_235, 'TE@235');
               error_str_3arr = error_235;
             } else if (params_collection && shape_collection) {
@@ -3945,11 +3939,8 @@ type_czech.checkParam_typeExtra(17, 'number');
       function checkParam_typeExtra(parameters_obj, shape_list) {
         if (t_param_check_func.p_call_traps) {
           
-          const argument_error = _unsafeArgs(MESS_TYPE_EXTRAS, parameters_obj);
-          let error_str_3arr = '';
-          if (argument_error !== '') {
-            error_str_3arr = argument_error;
-          } else {
+          let error_str_3arr = _unsafeArgs(MESS_TYPE_EXTRAS, parameters_obj);
+          if (error_str_3arr === '') {
             const params_collection = _isCollection(parameters_obj);
             const shape_collection = _isCollection(shape_list);
             const shape_str = _toStr(shape_list);
@@ -3959,7 +3950,8 @@ type_czech.checkParam_typeExtra(17, 'number');
             if (Array.isArray(shape_list) && shape_list.length === 1) {
               const single_shape = _toStr(shape_list[0]);
               const try_instead = `try checkParam_typeExtra(${parameters_str}, '${single_shape}')`;
-              const error_234 = `checkParam_typeExtra(${parameters_str}, ${shape_str}) ${try_instead} as ${shape_str} is illegal.`;
+              const error_234 = `checkParam_typeExtra(${parameters_str}, ${shape_str}) ${try_instead} as`
+                              + ` ${shape_str} is a single array type is illegal with checkParam_typeExtra()`;
               error_str_3arr = _consoleError(error_234, 'TE@234');
             } else if (params_collection && shape_collection) {
               

@@ -21,7 +21,7 @@ function PRE_check_filledVariable(a_variable){
   return type_czech.checkParam_empty(a_variable, 'EMPTY-ERROR')
 }
 
-type_czech = TypeCzech('LOG-ERRORS')
+type_czech = TypeCzech('THROW-EXCEPTIONS')
 filledVariable = type_czech.linkUp(filledVariable, PRE_check_filledVariable) 
 
 function filledVariable(a_variable){ }
@@ -40,7 +40,7 @@ function PRE_check_noEmptyArray(an_array){
   return type_czech.checkParam_empty(an_array, ['EMPTY-ERROR'])
 }
 
-type_czech = TypeCzech('LOG-ERRORS')
+type_czech = TypeCzech('THROW-EXCEPTIONS')
 noEmptyArray = type_czech.linkUp(noEmptyArray, PRE_check_noEmptyArray) 
 
 function noEmptyArray(an_array){ }
@@ -60,7 +60,7 @@ function PRE_check_firstFilled(an_array){
   return type_czech.checkParam_empty(an_array, ['EMPTY-ERROR', 'EMPTY-OK', 'EMPTY-OK'])
 }
 
-type_czech = TypeCzech('LOG-ERRORS')
+type_czech = TypeCzech('THROW-EXCEPTIONS')
 firstFilled = type_czech.linkUp(firstFilled, PRE_check_firstFilled) 
 
 function firstFilled(an_array){ }
@@ -79,7 +79,7 @@ function PRE_check_filledObject(oneObject){
   return type_czech.checkParam_empty(oneObject, {a:'EMPTY-ERROR', b:'EMPTY-OK'})
 }
 
-type_czech = TypeCzech('LOG-ERRORS')
+type_czech = TypeCzech('THROW-EXCEPTIONS')
 filledObject = type_czech.linkUp(filledObject, PRE_check_filledObject) 
 
 function filledObject(an_object){ }
@@ -99,7 +99,7 @@ function POST_check_filledReturn(a_variable){
   return type_czech.checkParam_empty(a_variable, 'EMPTY-ERROR')
 }
 
-type_czech = TypeCzech('LOG-ERRORS')
+type_czech = TypeCzech('THROW-EXCEPTIONS')
 filledReturn = type_czech.linkUp(filledReturn, undefined, POST_check_filledReturn) 
 
 function filledReturn(a_variable){
@@ -121,7 +121,7 @@ function POST_check_arrayReturn(an_array){
   return type_czech.checkParam_empty(an_array, ['EMPTY-ERROR'])
 }
 
-type_czech = TypeCzech('LOG-ERRORS')
+type_czech = TypeCzech('THROW-EXCEPTIONS')
 arrayReturn = type_czech.linkUp(arrayReturn, undefined, POST_check_arrayReturn) 
 
 function arrayReturn(an_array){
@@ -142,7 +142,7 @@ function POST_check_objectReturn(an_object){
   return type_czech.checkParam_empty(an_object, {a:'EMPTY-ERROR'})
 }
 
-type_czech = TypeCzech('LOG-ERRORS')
+type_czech = TypeCzech('THROW-EXCEPTIONS')
 objectReturn = type_czech.linkUp(objectReturn, undefined, POST_check_objectReturn) 
 
 function objectReturn(an_object){

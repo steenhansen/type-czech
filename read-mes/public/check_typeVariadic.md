@@ -13,15 +13,15 @@ function PRE_check_someNumbers(){
   return type_czech.checkArgs_typeVariadic(arguments, ['number'])
 }
 
-type_czech = TypeCzech('LOG-ERRORS')
+type_czech = TypeCzech('THROW-EXCEPTIONS')
 someNumbers = type_czech.linkUp(someNumbers, PRE_check_someNumbers) 
 
 function someNumbers(){ }
 
 someNumbers(1,2,3,4,5) // pass
 
-someNumbers() // PRE fail - no parameters
-someNumbers('a-string') // PRE fail - not a number
+someNumbers() // fail - no parameters
+someNumbers('a-string') // fail - not a number
 ```
 
 ## 1 Limited Variadic Parameter Type Check<a name="limited-variadic-parameter-type-check"></a>
@@ -33,17 +33,17 @@ function PRE_check_someNumbers(){
   return type_czech.checkArgs_typeVariadic(arguments, ['number'])
 }
 
-type_czech = TypeCzech('LOG-ERRORS')
+type_czech = TypeCzech('THROW-EXCEPTIONS')
 someNumbers = type_czech.linkUp(someNumbers, PRE_check_someNumbers) 
 
 function someNumbers(){ }
 
-someNumbers(1,2,3)  // PRE fail - 3 parameters
+someNumbers(1,2,3)  // fail - 3 parameters
 
 someNumbers(1,2,3,4) // pass
 someNumbers(1,2,3,4,5) // pass
 
-someNumbers(1,2,3,4,5,6)  // PRE fail - 6 parameters
+someNumbers(1,2,3,4,5,6)  // fail - 6 parameters
 
 ```
 

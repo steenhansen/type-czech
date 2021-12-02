@@ -11,7 +11,7 @@
 ## 1 Object Check Interface<a name="object-check-interface"></a>
 
 ```
-type_czech = TypeCzech('LOG-ERRORS')
+type_czech = TypeCzech('THROW-EXCEPTIONS')
 
 function First(f_name) {
   firstMethod = () => { }
@@ -41,13 +41,16 @@ OBJECT_FAIL = Object.assign({A_Object: 'string'}, OBJECT_INTERFACE)
 
 type_czech.check_interface(michel_faber, OBJECT_INTERFACE) // pass
 
-type_czech.check_interface(michel_faber, OBJECT_FAIL)  // fail
+type_err = type_czech.check_interface(michel_faber, OBJECT_FAIL)  // fail
+type_czech.check_assert(type_err, 'Object Check Interface', '-')
+
+
 ```
 
 ## 2 Class Check Interface<a name="class-check-interface"></a>
 
 ```
-type_czech = TypeCzech('LOG-ERRORS')
+type_czech = TypeCzech('THROW-EXCEPTIONS')
 
 class FirstName { 
   constructor(f_name) { 
@@ -78,13 +81,14 @@ CLASS_FAIL = Object.assign({B_Class: 'string'}, CLASS_INTERFACE)
 
 type_czech.check_interface(ted_chiang, CLASS_INTERFACE) // pass
 
-type_czech.check_interface(ted_chiang, CLASS_FAIL)  // fail
+type_err = type_czech.check_interface(ted_chiang, CLASS_FAIL)  // fail
+type_czech.check_assert(type_err, 'Class Check Interface', '-')
 ```
 
 ## 3 ClassFree Check Interface<a name="class-free-check-interface"></a>
 
 ```
-type_czech = TypeCzech('LOG-ERRORS')
+type_czech = TypeCzech('THROW-EXCEPTIONS')
 
 First = function (spec) {
   let {f_name} = spec
@@ -117,14 +121,15 @@ CLASSFREE_FAIL = Object.assign({C_ClassFree: 'string'}, CLASSFREE_INTERFACE)
 
 type_czech.check_interface(frank_herbert, CLASSFREE_INTERFACE) // pass
 
-type_czech.check_interface(frank_herbert, CLASSFREE_FAIL)  // fail
+type_err = type_czech.check_interface(frank_herbert, CLASSFREE_FAIL)  // fail
+type_czech.check_assert(type_err, 'ClassFree Check Interface', '-')
 
 ```
 
 ## 4 Prototype Check Interface<a name="prototype-check-interface"></a>
 
 ```
-type_czech = TypeCzech('LOG-ERRORS')
+type_czech = TypeCzech('THROW-EXCEPTIONS')
 
 function First(f_name) {
   this.f_name = f_name
@@ -155,13 +160,14 @@ PROTOTYPE_FAIL = Object.assign({D_Prototype: 'string'}, PROTOTYPE_INTERFACE)
 
 type_czech.check_interface(ms_mary_shelley, PROTOTYPE_INTERFACE) // pass
 
-type_czech.check_interface(ms_mary_shelley, PROTOTYPE_FAIL)  // fail
+type_err = type_czech.check_interface(ms_mary_shelley, PROTOTYPE_FAIL)  // fail
+type_czech.check_assert(type_err, 'Prototype Check Interface', '-')
 ```
 
 ## 5 OLOO Check Interface<a name="oloo-check-interface"></a>
 
 ```
-type_czech = TypeCzech('LOG-ERRORS')
+type_czech = TypeCzech('THROW-EXCEPTIONS')
 
 function First(f_name) {
   FIRST_TEMPLATE = { firstMethod(){ } }
@@ -197,6 +203,7 @@ OLOO_FAIL = Object.assign({E_OLOO: 'string'}, OLOO_INTERFACE)
 
 type_czech.check_interface(margaret_atwood, OLOO_INTERFACE) // pass
 
-type_czech.check_interface(margaret_atwood, OLOO_FAIL) // fail
+type_err = type_czech.check_interface(margaret_atwood, OLOO_FAIL) // fail
+type_czech.check_assert(type_err, 'OLOO Check Interface', '-')
 ```
 

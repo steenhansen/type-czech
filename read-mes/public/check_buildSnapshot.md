@@ -8,7 +8,7 @@
 ## 1 Mutation Check an Array<a name="mutation-check-an-array"></a>
   
 ```
-type_czech = TypeCzech('LOG-ERRORS')
+type_czech = TypeCzech('THROW-EXCEPTIONS')
 
 function PRE_check_anArray(an_array){
   return type_czech.check_buildSnapshot('PRE_check_anArray', 'an_array', an_array)
@@ -33,7 +33,7 @@ anArray([1,2,3]) // POST fail - changed to ["An-Error",2,3]
 ## 2 Mutation Check an Object<a name="mutation-check-an-object"></a>
   
 ```
-type_czech = TypeCzech('LOG-ERRORS')
+type_czech = TypeCzech('THROW-EXCEPTIONS')
 
 function PRE_check_anObject(an_object){
   return type_czech.check_buildSnapshot('PRE_check_anObject', 'an_object', an_object)

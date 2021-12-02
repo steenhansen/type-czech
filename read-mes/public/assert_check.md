@@ -13,7 +13,7 @@
 
   
 ```
-type_czech = TypeCzech('LOG-ERRORS')
+type_czech = TypeCzech('THROW-EXCEPTIONS')
 
 GeoJS_SIGNATURE = [ {country:'string', country_3:'string', ip:'string', name:'string'} ]
 
@@ -33,7 +33,7 @@ function getIpCountryInfo(ip_numbers){
 
 getIpCountryInfo('8.8.8.8') // pass
 
-getIpCountryInfo('error-no-country')  // check_assert fail - wrong object
+getIpCountryInfo('error-no-country-ip')  // check_assert fail - country key missing
 
 ```
    
