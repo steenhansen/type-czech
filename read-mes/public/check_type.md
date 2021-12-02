@@ -22,15 +22,10 @@
 #### All examples below can be executed in the console of [repl.html](../../test-collection/repl.html)
 
 ## 1 Single Scalar Parameter Type Check<a name="single-scalar-parameter-type-check"></a>
-  
-```
-function PRE_check_oneNumber(){
-  return type_czech.checkParam_type(arguments, 'number')  // arguments version
-}
-```
+
 ```
 function PRE_check_oneNumber(a_number){
-  return type_czech.checkParam_type(a_number, 'number')  // or parameter version
+  return type_czech.checkParam_type(a_number, 'number')
 }
 
 type_czech = TypeCzech('LOG-ERRORS')
@@ -46,13 +41,8 @@ oneNumber('a-string') // PRE fail 'a-string' is not a number
 ## 2 Single Array Parameter Type Check<a name="single-array-parameter-type-check"></a>
     
 ```
-function PRE_check_oneArray(){
-  return type_czech.checkParam_type(arguments, 'array')  // arguments version
-}
-```
-```
 function PRE_check_oneArray(an_array){
-  return type_czech.checkParam_type(an_array, 'array')  // or parameter version
+  return type_czech.checkParam_type(an_array, 'array')
 }
 
 type_czech = TypeCzech('LOG-ERRORS')
@@ -67,13 +57,8 @@ oneArray({a:1}) // PRE fail - object not an array
 ## 3 Single Typed Array Parameter Type Check<a name="single-typed-array-parameter-type-check"></a>
     
 ```
-function PRE_check_oneArray(){
-  return type_czech.checkParam_type(arguments, ['number'])  // arguments version
-}
-```
-```
 function PRE_check_oneArray(an_array){
-  return type_czech.checkParam_type(an_array, ['number'])  // or parameter version
+  return type_czech.checkParam_type(an_array, ['number'])
 }
 
 type_czech = TypeCzech('LOG-ERRORS')
@@ -87,14 +72,10 @@ oneArray([false]) // PRE fail - boolean not number
 ```
 
 ## 4 Single Object Parameter Type Check<a name="single-object-parameter-type-check"></a>
-```
-function PRE_check_oneObject(){
-  return type_czech.checkParam_type(arguments, 'object')  // arguments version
-}
-```
+
 ```
 function PRE_check_oneObject(an_object){
-  return type_czech.checkParam_type(an_object, 'object')  // or parameter version
+  return type_czech.checkParam_type(an_object, 'object')
 }
 
 type_czech = TypeCzech('LOG-ERRORS')
@@ -113,13 +94,8 @@ oneObject([]) // PRE fail - array not object
 ## 5 Single Typed Object Parameter Type Check<a name="single-typed-object-parameter-type-check"></a>
 
 ```
-function PRE_check_oneObject(){
-  return type_czech.checkParam_type(arguments, {a:'string'})  // arguments version
-}
-```
-```
 function PRE_check_oneObject(oneObject){
-  return type_czech.checkParam_type(oneObject, {a:'string'})  // or parameter version
+  return type_czech.checkParam_type(oneObject, {a:'string'})
 }
 
 type_czech = TypeCzech('LOG-ERRORS')
@@ -141,9 +117,9 @@ oneObject({b:'capybara'}) // PRE fail missing key 'a'
 ## 6 Multiple Parameter Type Check<a name="multiple-parameter-type-check"></a>
 
 ```
-function PRE_check_multiParams(){
+function PRE_check_multiParams(an_array){
   the_signature = [ 'number', 'string', 'boolean' ]
-  return type_czech.checkParam_type(arguments, the_signature)
+  return type_czech.checkParam_type(an_array, the_signature)
 }
 
 type_czech = TypeCzech('LOG-ERRORS')
@@ -159,12 +135,7 @@ multiParams([1999, 'Sharknado', {} ]) // PRE fail - object not boolean
 ## 7 HTML Type Check<a name="html-type-check"></a>
 
 ```
-function PRE_check_htmlButton(){  // arguments version
-  return type_czech.checkParam_type(arguments, 'HTMLButtonElement')  
-}
-```
-```
-function PRE_check_htmlButton(html_element){   // or parameter version
+function PRE_check_htmlButton(html_element){ 
   return type_czech.checkParam_type(html_element, 'HTMLButtonElement')
 }
 
@@ -181,13 +152,9 @@ htmlButton(document.createElement('div')) // PRE fail - div not button
 
 ## 8 Class Type Check<a name="class-type-check"></a>
 Applies to closures, IIFEs, ClassFrees, Prototypess, and OLLOs.
+
 ```
-function PRE_check_classOperate(){  // arguments version
-  return type_czech.checkParam_type(arguments, 'Last')  
-}
-```
-```
-function PRE_check_classOperate(a_last){   // or parameter version
+function PRE_check_classOperate(a_last){
   return type_czech.checkParam_type(a_last, 'Last')
 }
 
@@ -218,22 +185,22 @@ class Person {
     return [this.the_name, born_year] }
 }
 
-function PRE_check_Person(){
-  return type_czech.checkParam_type(arguments, 'string')  
+function PRE_check_Person(a_string){
+  return type_czech.checkParam_type(a_string, 'string')  
 }
 
-function PRE_check_showInfo(){
-  return type_czech.checkParam_type(arguments, 'number')  
+function PRE_check_showInfo(a_year){
+  return type_czech.checkParam_type(a_year, 'number')  
 }
 
 function POST_check_Person(the_result){
   if (the_result.the_name === 'Pol Pot')
     return 'Not Good Enough'
-  return type_czech.checkParam_type(arguments, 'Person')
+  return type_czech.checkParam_type(the_result, 'Person')
 }
 
-function POST_check_showInfo(){
-  return type_czech.checkParam_type(arguments, 'array') 
+function POST_check_showInfo(an_array){
+  return type_czech.checkParam_type(an_array, 'array') 
 }
 
 PRE_CLASS_Person = {Person:PRE_check_Person, showInfo:PRE_check_showInfo}
@@ -261,12 +228,7 @@ person_5 = new Person('Pol Pot')  // POST fail - matched 'Pol Pot'
 ## 10 Scalar Result Type Check<a name="scalar-result-type-check"></a>
 
 ```
-function POST_check_returnString(){  // arguments version
-  return type_czech.checkParam_type(arguments, 'string')  
-}
-```
-```
-function POST_check_returnString(return_result){   // or parameter version
+function POST_check_returnString(return_result){
   return type_czech.checkParam_type(return_result, 'string')
 }
 
@@ -285,13 +247,8 @@ returnString(false) // POST fail - not a string
 ## 11 Array Result Type Check<a name="array-result-type-check"></a>
 
 ```
-function POST_check_anArray(){
-  return type_czech.checkParam_type(arguments, 'array')  // arguments version
-}
-```
-```
 function POST_check_anArray(an_array){
-  return type_czech.checkParam_type(an_array, 'array')  // or parameter version
+  return type_czech.checkParam_type(an_array, 'array')
 }
 
 type_czech = TypeCzech('LOG-ERRORS')
@@ -309,13 +266,8 @@ anArray({a:1}) // PRE fail - object not array
 ## 12 Typed Array Result Type Check<a name="typed-array-result-type-check"></a>
 
 ```
-function POST_check_booleanArray(){
-  return type_czech.checkParam_type(arguments, ['boolean'])  // arguments version
-}
-```
-```
 function POST_check_booleanArray(an_array){
-  return type_czech.checkParam_type(an_array, ['boolean'])  // or parameter version
+  return type_czech.checkParam_type(an_array, ['boolean'])
 }
 
 type_czech = TypeCzech('LOG-ERRORS')
@@ -333,13 +285,8 @@ booleanArray([1, 0, 1]) // PRE fail - array of numbers not booleans
 ## 13 Multi Typed Array Result Type Check<a name="multi-typed-array-result-type-check"></a>
 
 ```
-function POST_check_numBoolStr(){
-  return type_czech.checkParam_type(arguments, ['number', 'boolean', 'string'])  // arguments version
-}
-```
-```
 function POST_check_numBoolStr(an_array){
-  return type_czech.checkParam_type(an_array, ['number', 'boolean', 'string'])  // or parameter version
+  return type_czech.checkParam_type(an_array, ['number', 'boolean', 'string'])
 }
 
 type_czech = TypeCzech('LOG-ERRORS')
@@ -357,13 +304,8 @@ numBoolStr({}) // PRE fail - object not an array of number,boolean,string
 ## 14 Typed Object Result Type Check<a name="typed-object-result-type-check"></a>
 
 ```
-function POST_check_objectAbc(){
-  return type_czech.checkParam_type(arguments, {a:'number', b:'boolean', c:'string'})  // arguments version
-}
-```
-```
 function POST_check_objectAbc(an_array){
-  return type_czech.checkParam_type(an_array, {a:'number', b:'boolean', c:'string'})  // or parameter version
+  return type_czech.checkParam_type(an_array, {a:'number', b:'boolean', c:'string'})
 }
 
 type_czech = TypeCzech('LOG-ERRORS')

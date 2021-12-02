@@ -13,13 +13,7 @@
 ## 1 Check For a Null Parameter<a name="check-for-a-null-parameter"></a>
 
 ```
-function PRE_check_notNull(){  // arguments version
-  if (arguments[0] === null) 
-    return `ERROR, null parameter`
-}
-```
-```
-function PRE_check_notNull(a_parameter){  // or parameter version
+function PRE_check_notNull(a_parameter){
   if (a_parameter === null) 
     return `ERROR, null parameter`
 }
@@ -40,18 +34,7 @@ notNull(null) // PRE fail - found a null
 ## 2 Check For a Null Parameter or Result<a name="check-for-a-null-result"></a>
 
 ```
-function PRE_check_notNull(){  // arguments version
-  if (arguments[0] === null) 
-    return `ERROR, null parameter`
-}
-
-function POST_check_notNull(){
-  if (arguments[0] === null) 
-    return `ERROR, null result`
-}
-```
-```
-function PRE_check_notNull(a_parameter){  // or parameter version
+function PRE_check_notNull(a_parameter){
   if (a_parameter === null) 
     return `ERROR, null parameter`
 }
@@ -76,14 +59,9 @@ notNull(null)  // PRE and POST fail - null parameter and result
 ```
 
 ## 3 Check For a Null Result<a name="check-for-a-null-parameter-or-result"></a>
+
 ```
-function POST_check_notNull(){  // arguments version
-  if (arguments[0] === null) 
-    return `ERROR, null result`
-}
-```
-```
-function POST_check_notNull(a_result){  // or parameter version
+function POST_check_notNull(a_result){
   if (a_result === null) 
     return `ERROR, null result`
 }
@@ -106,19 +84,9 @@ notNull(null) // POST fail - null parameter and result
 
 ## 4 Check a Parameter by Value<a name="check-a-parameter-by-value"></a>
 Check that a date parameter is in the month of February.
+
 ```
-function PRE_check_mustBeFebruary(){  // arguments version
-  date_issue = type_czech.checkParam_type(arguments, 'date') 
-  if (date_issue) return date_issue
-  try {
-    if (arguments[0].getMonth()===1) 
-      return ''
-  } catch (e) { }
-  return `ERROR, '${arguments[0]}' is not in February`
-}
-```
-```
-function PRE_check_mustBeFebruary(a_date){  // or parameter version
+function PRE_check_mustBeFebruary(a_date){
   date_issue = type_czech.checkParam_type(a_date, 'date') 
   if (date_issue) return date_issue
   try {
@@ -144,15 +112,7 @@ mustBeFebruary(new Date('1999-02-31')) // PRE fail - no such date
 Check if a string parameter has its first character capitalized.
   
 ```
-function PRE_check_firstCapital(){  // arguments version
-  string_issue = type_czech.checkParam_type(arguments, 'string')
-  if (string_issue) return string_issue
-  if (!arguments[0].match(/^[A-Z]/))
-    return 'ERROR, word does not start with a capital letter'
-}
-```
-```
-function PRE_check_firstCapital(a_word){  // or parameter version
+function PRE_check_firstCapital(a_word){
   string_issue = type_czech.checkParam_type(a_word, 'string')
   if (string_issue) return string_issue
   if (!a_word.match(/^[A-Z]/))
@@ -175,14 +135,7 @@ firstCapital('')      // PRE fail - no uppercase letter
 Check if a parameter is in the small prime set.
   
 ```
-function PRE_check_smallPrimes(){  // arguments version
-  small_primes = [2,3,5,7,11,13,17,19,23]
-  if (!small_primes.includes(arguments[0])) 
-    return `ERROR, '${arguments[0]}' is not a small prime`
-}
-```
-```
-function PRE_check_smallPrimes(a_number){  // or parameter version
+function PRE_check_smallPrimes(a_number){
   small_primes = [2,3,5,7,11,13,17,19,23]
   if (!small_primes.includes(a_number)) 
     return `ERROR, '${a_number}' is not a small prime`

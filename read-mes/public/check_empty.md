@@ -17,13 +17,8 @@
 ## 1 Single Empty Parameter Check<a name="single-empty-parameter-check"></a>
   
 ```
-function PRE_check_filledVariable(){
-  return type_czech.checkParam_empty(arguments, 'EMPTY-ERROR')  // arguments version
-}
-```
-```
 function PRE_check_filledVariable(a_variable){
-  return type_czech.checkParam_empty(a_variable, 'EMPTY-ERROR')  // or parameter version
+  return type_czech.checkParam_empty(a_variable, 'EMPTY-ERROR')
 }
 
 type_czech = TypeCzech('LOG-ERRORS')
@@ -41,13 +36,8 @@ filledVariable({}) // PRE fail - {} is empty
 ## 2 Single Array Empty Parameter Check<a name="single-array-empty-parameter-check"></a>
     
 ```
-function PRE_check_noEmptyArray(){
-  return type_czech.checkParam_empty(arguments, ['EMPTY-ERROR'])  // arguments version
-}
-```
-```
 function PRE_check_noEmptyArray(an_array){
-  return type_czech.checkParam_empty(an_array, ['EMPTY-ERROR'])  // or parameter version
+  return type_czech.checkParam_empty(an_array, ['EMPTY-ERROR'])
 }
 
 type_czech = TypeCzech('LOG-ERRORS')
@@ -64,14 +54,10 @@ noEmptyArray([ [1,2,3], 'a', {} ])      // PRE fail - third {} empty
 
 
 ## 3 Array Empty Parameter Check<a name="array-empty-parameter-check"></a>
-```
-function PRE_check_firstFilled(){
-  return type_czech.checkParam_empty(arguments, ['EMPTY-ERROR', 'EMPTY-OK', 'EMPTY-OK']) // arguments version
-}
-```
+
 ```
 function PRE_check_firstFilled(an_array){
-  return type_czech.checkParam_empty(an_array, ['EMPTY-ERROR', 'EMPTY-OK', 'EMPTY-OK']) // or parameter version
+  return type_czech.checkParam_empty(an_array, ['EMPTY-ERROR', 'EMPTY-OK', 'EMPTY-OK'])
 }
 
 type_czech = TypeCzech('LOG-ERRORS')
@@ -89,13 +75,8 @@ firstFilled(['', 'Steely', 'Dan']) // PRE fail - first element is empty
 ## 4 Object Empty Parameter Check<a name="object-empty-parameter-check"></a>
 
 ```
-function PRE_check_filledObject(){
-  return type_czech.checkParam_empty(arguments, {a:'EMPTY-ERROR', b:'EMPTY-OK'})  // arguments version
-}
-```
-```
 function PRE_check_filledObject(oneObject){
-  return type_czech.checkParam_empty(oneObject, {a:'EMPTY-ERROR', b:'EMPTY-OK'})  // or parameter version
+  return type_czech.checkParam_empty(oneObject, {a:'EMPTY-ERROR', b:'EMPTY-OK'})
 }
 
 type_czech = TypeCzech('LOG-ERRORS')
@@ -114,13 +95,8 @@ filledObject({a:'', b:'bison'})  // PRE fail - 'a' property is empty
 
 ## 5 Empty Result Check<a name="empty-result-check"></a>
 ```
-function POST_check_filledReturn(){
-  return type_czech.checkParam_empty(arguments, 'EMPTY-ERROR') // arguments version 
-}
-```
-```
 function POST_check_filledReturn(a_variable){
-  return type_czech.checkParam_empty(a_variable, 'EMPTY-ERROR') // or parameter version
+  return type_czech.checkParam_empty(a_variable, 'EMPTY-ERROR')
 }
 
 type_czech = TypeCzech('LOG-ERRORS')
@@ -139,14 +115,10 @@ filledReturn('') // PRE error
 
 
 ## 6 Empty Array Result Check<a name="empty-array-result-check"></a> 
-```
-function POST_check_arrayReturn(){
-  return type_czech.checkParam_empty(arguments, ['EMPTY-ERROR'])  // arguments version 
-}
-```
+
 ```
 function POST_check_arrayReturn(an_array){
-  return type_czech.checkParam_empty(an_array, ['EMPTY-ERROR'])  // or parameter version
+  return type_czech.checkParam_empty(an_array, ['EMPTY-ERROR'])
 }
 
 type_czech = TypeCzech('LOG-ERRORS')
@@ -166,13 +138,8 @@ arrayReturn(['']) // PRE error
 
 ## 7 Empty Object Result Check<a name="empty-object-result-check"></a> 
 ```
-function POST_check_objectReturn(){
-  return type_czech.checkParam_empty(arguments, {a:'EMPTY-ERROR'})  // arguments version 
-}
-```
-```
 function POST_check_objectReturn(an_object){
-  return type_czech.checkParam_empty(an_object, {a:'EMPTY-ERROR'})  // or parameter version
+  return type_czech.checkParam_empty(an_object, {a:'EMPTY-ERROR'})
 }
 
 type_czech = TypeCzech('LOG-ERRORS')

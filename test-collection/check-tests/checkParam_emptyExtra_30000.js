@@ -10,7 +10,7 @@ checkParam_emptyExtra_30001();
 checkParam_emptyExtra_30002();
 checkParam_emptyExtra_30003();
 checkParam_emptyExtra_30004();
-
+checkParam_emptyExtra_30005();
 
 TEST_total_fails += failed_checkParam_emptyExtra;
 TEST_total_checks += tested_checkParam_emptyExtra;
@@ -243,4 +243,27 @@ function checkParam_emptyExtra_30004(){
         }
         if (typeof tested_checkParam_emptyExtra !=='undefined') tested_checkParam_emptyExtra ++;
 }
+
+//  type_czech.checkParam_emptyExtra([17], ['EMPTY-ERROR', 'EMPTY-ERROR']);
+function checkParam_emptyExtra_30005(){
+  var TYPE_CZECH_current_test_number = '30005';       
+  var check_param =   [17];
+  var check_shape =   ['EMPTY-ERROR', 'EMPTY-ERROR'];          
+  var expect_error =`EE@318 - checkParam_emptyExtra([17], [\"EMPTY-ERROR\",\"EMPTY-ERROR\"]) is missing empty types`;
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
+        var actual_error = type_czech.checkParam_emptyExtra(check_param, check_shape);
+        if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
+        if (Array.isArray(actual_error)) actual_error = actual_error.reduce((accum, curr) => `${accum}\n${curr}`);
+        if (Array.isArray(expect_error)) expect_error = expect_error.reduce((accum, curr) => `${accum}\n${curr}`);
+        if (actual_error !== expect_error) {
+          console.log(TYPE_CZECH_current_test_number);
+          console.log('actual =', actual_error);
+          console.log('expect =', expect_error);
+          if (typeof failed_checkParam_emptyExtra !=='undefined') failed_checkParam_emptyExtra ++;
+        }
+        if (typeof tested_checkParam_emptyExtra !=='undefined') tested_checkParam_emptyExtra ++;
+}
+
+
 TEST_total_checks += 4;

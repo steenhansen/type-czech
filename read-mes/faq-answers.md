@@ -40,7 +40,7 @@ Having easily controllable type checking at runtime in both the browser and Node
 
         function PRE_check_yourFunction(param_1, param_2){ 
           /* TypeCzech functions always appear here */
-          return type_check.checkParam_type(arguments, ['string', 'string'])
+          return type_check.checkParam_type([param_1, param_2], ['string', 'string'])
         }
 
         function POST_check_yourFunction(results){ 

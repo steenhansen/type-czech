@@ -70,8 +70,8 @@ Empty Errors:
   EE@314 Internal, Empty Array type has an empty array
   EE@315 Extra key in checked object
   EE@316 Empty Array type has an empty array
-    EE@317 checkParam_emptyExtra(array_param_a, array_param_a) needs two arrays to work
-    EE@318 checkParam_emptyExtra(array_2_elems_a, array_2_elems_b) needs each array to have at least two types to work
+    changed NOT USED EE@317 checkParam_emptyExtra(array_param_a, array_param_a) needs two arrays to work
+    changed EE@318 checkParam_emptyExtra(array_2_elems_a, array_2_elems_b) needs each array to have at least two types to work
   EE@319 checkParam_emptyExtra has first parameter empty
   EE@320 checkParam_typeExtra has first parameter wrong type
 

@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 /* eslint-disable block-scoped-var */
-const VERS_NUM = 'v1.0.0 2021-11-28';
+const VERS_NUM = 'version 1.0.0 2021-12-02';
 
 /*
     TypeCzech contains:
@@ -3777,6 +3777,15 @@ type_czech.checkArgs_typeVariadic(['a', 99], ['string', 'number']);
       }
 
       /*
+type_czech.checkParam_emptyExtra([17], ['EMPTY-ERROR', 'EMPTY-ERROR']);
+//EE@318 - checkParam_emptyExtra([17], [\"EMPTY-ERROR\",\"EMPTY-ERROR\"]) is missing empty types
+
+type_czech.checkParam_emptyExtra([17, 'c'], ['EMPTY-ERROR']);
+//TE@235 - checkParam_emptyExtra([17,\"c\"], [\"EMPTY-ERROR\"]) try checkParam_emptyExtra([17,\"c\"], 'EMPTY-ERROR') as [\"EMPTY-ERROR\"] is prohibited.
+
+type_czech.checkParam_emptyExtra([17, 'c'], 'EMPTY-ERROR');
+//
+
 type_czech.checkParam_emptyExtra('a-string', 'EMPTY-ERROR');
 ""
 type_czech.checkParam_emptyExtra([17, 'c'], 'EMPTY-ERROR');
@@ -3789,10 +3798,6 @@ type_czech.checkParam_emptyExtra({a:17}, {a:'EMPTY-ERROR'});
 //''
 type_czech.checkParam_emptyExtra([17, 'abc', true], ['EMPTY-ERROR', 'EMPTY-ERROR']);
 //''
-type_czech.checkParam_emptyExtra([17, 'c'], ['EMPTY-ERROR']);
-//checkParam_emptyExtra()
-//TE@235 - checkParam_emptyExtra([17,"c"], ["EMPTY-ERROR"]) try checkParam_emptyExtra([17,"c"], "EMPTY-ERROR") as ["EMPTY-ERROR"] is prohibited.
-//['EMPTY-ERROR']
 */
       // eslint-disable-next-line consistent-return
       function checkParam_emptyExtra(parameters_obj, shape_list) {
@@ -3821,9 +3826,12 @@ type_czech.checkParam_emptyExtra([17, 'c'], ['EMPTY-ERROR']);
                 error_str_3arr = extraEmptys(parameters_obj[0], shape_list);
               } else if (typeFinal(shape_list) === 'object') {
                 error_str_3arr = extraEmptys(parameters_obj, shape_list);
-              } else if (_aTypeOf(parameters_array) !== 'array' || _aTypeOf(shape_list) !== 'array') {
-                const error_317 = `checkParam_emptyExtra(${parameters_str}, ${shape_str}) needs 2 arrays to work`;
-                error_str_3arr = _consoleError(error_317, 'EE@317');
+              // } else if (_aTypeOf(parameters_array) !== 'array' || _aTypeOf(shape_list) !== 'array') {
+              //   const error_317 = `checkParam_emptyExtra(${parameters_str}, ${shape_str}) needs 2 arrays to work`;             // q*bert wrong !!!!!!!!!!! delete???
+              //   error_str_3arr = _consoleError(error_317, 'EE@317');
+              } else if (parameters_obj.length < shape_list.length) {
+                const error_318 = `checkParam_emptyExtra(${parameters_str}, ${shape_str}) is missing empty types`;
+                error_str_3arr = _consoleError(error_318, 'EE@318');
               } else {
                 error_str_3arr = extraEmptys(parameters_obj, shape_list);
               }

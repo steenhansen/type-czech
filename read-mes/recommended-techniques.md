@@ -33,10 +33,11 @@ parameters only when actually individually testing them as below.
     /**/  type_czech = TypeCzech('LOG-ERRORS')
     /**/
     /**/  function PRE_check_yourFunc(first_name, last_name){
-    /**/    type_issue = type_czech.checkParam_type(arguments, ['string', 'string'])
+    /**/    the_parameters = [first_name, last_name]
+    /**/    type_issue = type_czech.checkParam_type(the_parameters, ['string', 'string'])
     /**/    if (type_issue) return type_issue
     /**/
-    /**/    empty_issue = type_czech.checkParam_empty(arguments, ['EMPTY-ERROR', 'EMPTY-ERROR'])
+    /**/    empty_issue = type_czech.checkParam_empty(the_parameters, ['EMPTY-ERROR', 'EMPTY-ERROR'])
     /**/    if (empty_issue) return empty_issue
     /**/
     /**/    if (first_name.length===1) return 'Error, first_name is 1 character'

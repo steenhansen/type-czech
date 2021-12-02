@@ -46,13 +46,13 @@ if (type_czech.isActive()) {
   type_czech.check_assert(check_error, error_location, tested_value, expected_outcome)
 }
 
->>Uncaught Error:  Assert Location: the-test-location : The value '1999-10-10T00:00:00.000Z', 
->>which is a 'date', is not a 'number', The value >>'1999-10-10T00:00:00.000Z', which is a 'date', is not a 'string'
->>checkParam_typeEither()
->>    ACTUAL TYPES 'date'
->>    ACTUAL VALUE 1999-10-10T00:00:00.000Z
->>   EXPECTED TYPE ["number","string"]
->>CALLING FUNCTION check_assert()
+>>Uncaught Error: 
+>>         MESSAGE The value '1999-10-10T00:00:00.000Z', which is a 'date', is not a 'number', The value '1999-10-10T00:00:00.000Z', which is a 'date', is not a 'string' 
+>>         CHECKER check_assert()
+>>     ACTUAL TYPE 'date'
+>>          VALUES 1999-10-10T00:00:00.000Z
+>>       EXPECTED expected tested_value to be a number or a string
+>>          ORIGIN not-used
 ```
 
 Here an check_assert() is placed inside a then clause of a promise because linkUp() does not work with
@@ -70,13 +70,12 @@ fetch(your_ip)
   }
 })
 
->>Uncaught (in promise) Error:  Assert Location: Error - some url :
->>    Key 'country', which has a type of 'number', is missing in the checked object
->>checkParam_typeExtra()
->>    ACTUAL TYPES 'object'
->>    ACTUAL VALUE {country:"CA",country_3:"CAN",ip:"123.123.123.123",name:"Canada"}
->>   EXPECTED TYPE {country:"number"}
->>CALLING FUNCTION check_assert()
+>>Uncaught (in promise) Error: 
+>>         MESSAGE Property 'country' is indicated to be a 'number', but is inaccurately a 'string' : CA 
+>>         CHECKER check_assert()
+>>     ACTUAL TYPE 'object'
+>>          VALUES {country:"CA",country_3:"CAN",ip:"69.172.166.89",name:"Canada"}
+>>          ORIGIN Error - some url
 ```
 
   [check_assert() examples](./public/check_assert.md)
@@ -85,13 +84,9 @@ fetch(your_ip)
 
   Generally used inside both PRE_check() and POST_check() functions that have been linked to 
   a function to be tested. The idea is to build a snapshot of a mutable array or object parameter before the tested function gets called, as in PRE_check_aCollection() below. And then, verify that the array or object has not been mutated after the tested function returns, as in POST_check_aCollection() below.
-```  
-function PRE_check_aCollection(){ // arguments version
-  return type_czech.check_buildSnapshot('PRE_check_aCollection', 'a_collection', arguments)
-}
+
 ```
-```
-function PRE_check_aCollection(a_collection){ // parameter version
+function PRE_check_aCollection(a_collection){
   return type_czech.check_buildSnapshot('PRE_check_aCollection', 'a_collection', a_collection)
 }
 
@@ -126,20 +121,11 @@ aCollection([1,2,3,4]) // POST fail, a_collection changed value in aCollection()
   invalid date, or a blank regular expression are all considered empty.
 ```
 function PRE_check_notEmpty(a_variable){
-  return type_czech.checkParam_empty(a_variable, 'EMPTY-ERROR') // parameter version
+  return type_czech.checkParam_empty(a_variable, 'EMPTY-ERROR')
 }
 
 function POST_check_notEmpty(the_result){
   return type_czech.checkParam_empty(the_result, 'EMPTY-ERROR')
-}
-```
-```
-function PRE_check_notEmpty(){
-  return type_czech.checkParam_empty(arguments, 'EMPTY-ERROR') // or arguments version
-}
-
-function POST_check_notEmpty(){
-  return type_czech.checkParam_empty(arguments, 'EMPTY-ERROR')
 }
 
 type_czech = TypeCzech('LOG-ERRORS')
@@ -169,17 +155,9 @@ notEmpty([1]) // POST fail - empty result
 ```
 function PRE_check_someElements(first_array, second_array){
   first_not_empty = [ 'EMPTY-ERROR', 'EMPTY-OK' ]
-  second_not_empty = [ 'EMPTY-OK', 'EMPTY-ERROR' ] // parameter version
-  empty_choices = [first_not_empty, second_not_empty]
-  return type_czech.checkParam_emptyEither([first_array, second_array], empty_choices)
-}
-```
-```
-function PRE_check_someElements(){
-  first_not_empty = [ 'EMPTY-ERROR', 'EMPTY-OK' ] // or arguments version
   second_not_empty = [ 'EMPTY-OK', 'EMPTY-ERROR' ]
   empty_choices = [first_not_empty, second_not_empty]
-  return type_czech.checkParam_emptyEither(arguments, empty_choices)
+  return type_czech.checkParam_emptyEither([first_array, second_array], empty_choices)
 }
 
 type_czech = TypeCzech('THROW-EXCEPTIONS')
@@ -208,13 +186,8 @@ someElements([], []) // PRE fail - matches neither signature
   Specified elements or properties are checked for being empty, un-specified
   elements and properites are ignored whether they are empty or not.
 ```
-function PRE_check_extraElements(an_object){ // parameter version 
+function PRE_check_extraElements(an_object){
   return type_czech.checkParam_emptyExtra(an_object, ['EMPTY-ERROR', 'EMPTY-ERROR'])
-}
-```  
-```  
-function PRE_check_extraElements(){ // or arguments version 
-  return type_czech.checkParam_emptyExtra(arguments, ['EMPTY-ERROR', 'EMPTY-ERROR'])
 }
 
 type_czech = TypeCzech('LOG-ERRORS')
@@ -262,13 +235,8 @@ haveValues('', [], {}) // PRE fail - emtpy values
   a function to be tested. Checks a class or object for wanted properties. Not a Java style interface of only functions.
 
 ```
-function PRE_check_wantedProperties(an_object){ // parameter version 
+function PRE_check_wantedProperties(an_object){
   return type_czech.check_interface(an_object, {my_func: 'function', my_number: 'number'})
-}
-```  
-```  
-function PRE_check_wantedProperties(){ // or arguments version
-  return type_czech.check_interface(arguments, {my_func: 'function', my_number: 'number'})
 }
 
 type_czech = TypeCzech('THROW-EXCEPTIONS')
@@ -286,18 +254,14 @@ wantedProperties({my_func: x=>x, my_number: 'not-a-number'})  // PRE fail - my_n
 
   [check_interface() examples](./public/check_interface.md)
 
-### 8 checkParam_type(a_variable, type_signature) <a name="check-type"></a>
+### 8 checkParam_type(a_parameter, type_signature) <a name="check-type"></a>
   Used inside both PRE_check() and POST_check() functions that have been linked to 
-  a function to be tested. Outputs an error message if a tested function's arguments, or a variable, does not match the type signature.
-  An empty string signifies type compliance.
-```
-function PRE_check_oneString(){
-  return type_czech.checkParam_type(arguments, {a_string: 'string'})   // arguments version 
-}
-```
+  a function to be tested. Outputs an error message if a tested function's parameters do not match the type signature.
+  Returning an empty string or undefined signifies type compliance.
+
 ```
 function PRE_check_oneString(an_object){
-  return type_czech.checkParam_type(an_object, {a_string: 'string'}) // or parameter version
+  return type_czech.checkParam_type(an_object, {a_string: 'string'})
 }
 
 type_czech = TypeCzech('LOG-ERRORS')
@@ -332,21 +296,12 @@ oneString(12)  // PRE POST fail - number not an object, object not an array
 
   Checks multiple type signatures and outputs an error message if no signatures match.
 ```
-function PRE_check_eitherObject(somebody){ // parameter version
+function PRE_check_eitherObject(somebody){
   first_last_sig = {first: 'string', last: 'string'}
   first_age_sig = {first: 'string',  age: 'number'}
   first_birth_sig = {first: 'string', birth: 'date'}
   possible_signatures = [first_last_sig, first_age_sig, first_birth_sig]
   return type_czech.checkParam_typeEither(somebody, possible_signatures)
-}
-```
-```
-function PRE_check_eitherObject(){ // or arguments version
-  first_last_sig = {first: 'string', last: 'string'}
-  first_age_sig = {first: 'string',  age: 'number'}
-  first_birth_sig = {first: 'string', birth: 'date'}
-  possible_signatures = [first_last_sig, first_age_sig, first_birth_sig]
-  return type_czech.checkParam_typeEither(arguments, possible_signatures)
 }
 
 type_czech = TypeCzech('LOG-ERRORS')
@@ -375,13 +330,8 @@ eitherObject( {first: 'Bob', middle: 'Bob'}) // PRE fail - has unknown middle
   Specified elements or properties are checked for type, un-specified
   elements and properites are ignored.
 ```  
-function PRE_check_extraParams(car_object){ // or parameter version
+function PRE_check_extraParams(car_object){
   return type_czech.checkParam_typeExtra(car_object, {make: 'string', model: 'string'})
-}
-```
-```  
-function PRE_check_extraParams(){ // or arguments version
-  return type_czech.checkParam_typeExtra(arguments, {make: 'string', model: 'string'})
 }
 
 type_czech = TypeCzech('THROW-EXCEPTIONS')
@@ -429,8 +379,8 @@ someNumbers(1, 'two', 3) // PRE fail - 'two' is not a number
 ```
 type_czech = TypeCzech('LOG-ERRORS')
 
-function PRE_check_anArray(){
-  return type_czech.checkParam_type(arguments, 'array')
+function PRE_check_anArray(an_array){
+  return type_czech.checkParam_type(an_array, 'array')
 }
 
 anArray = type_czech.linkUp(anArray, PRE_check_anArray) 
@@ -453,8 +403,8 @@ type_czech.countFails() // 2
 ```
 type_czech = TypeCzech('LOG-ERRORS')
 
-function PRE_check_anObject(){
-  return type_czech.checkParam_type(arguments, 'object')
+function PRE_check_anObject(an_object){
+  return type_czech.checkParam_type(an_object, 'object')
 }
 
 anObject = type_czech.linkUp(anObject, PRE_check_anObject) 
@@ -553,8 +503,8 @@ type_czech.isActive() // true
 ```
 type_czech = TypeCzech('LOG-ERRORS')
 
-function PRE_check_oneString(){
-  return type_czech.checkParam_type(arguments, 'string')
+function PRE_check_oneString(a_string){
+  return type_czech.checkParam_type(a_string, 'string')
 }
 
 function POST_check_oneString(result){

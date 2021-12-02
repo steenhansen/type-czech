@@ -10,10 +10,10 @@
 ## 1 Either Parameter Type Check<a name="either-empty-parameter-check"></a>
   
 ```
-function PRE_check_firstOrSecond(){
+function PRE_check_firstOrSecond(first_str, second_str){
   empty_err_ok = ['EMPTY-ERROR', 'EMPTY-OK']
   empty_ok_err = ['EMPTY-OK', 'EMPTY-ERROR']
-  return type_czech.checkParam_emptyEither(arguments, [ empty_err_ok, empty_ok_err])
+  return type_czech.checkParam_emptyEither([first_str, second_str], [ empty_err_ok, empty_ok_err])
 }
 
 type_czech = TypeCzech('LOG-ERRORS')
@@ -32,17 +32,10 @@ firstOrSecond('', '') // PRE fail - both empty
 ## 2 Either Empty Result Check<a name="either-empty-result-check"></a>
   
 ```
-function POST_check_firstOrSecond(){
-  empty_err_ok = ['EMPTY-ERROR', 'EMPTY-OK']
-  empty_ok_err = ['EMPTY-OK', 'EMPTY-ERROR']
-  return type_czech.checkParam_emptyEither(arguments, [ empty_err_ok, empty_ok_err])  // arguments version
-}
-```
-```
 function POST_check_firstOrSecond(results_array){
   empty_err_ok = ['EMPTY-ERROR', 'EMPTY-OK']
   empty_ok_err = ['EMPTY-OK', 'EMPTY-ERROR']
-  return type_czech.checkParam_emptyEither(results_array, [ empty_err_ok, empty_ok_err])  // or parameter version
+  return type_czech.checkParam_emptyEither(results_array, [ empty_err_ok, empty_ok_err]) 
 }
 
 type_czech = TypeCzech('LOG-ERRORS')

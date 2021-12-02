@@ -12,13 +12,13 @@
 
 ## 0 Illegal Extra Array Parameter Empty Check<a name="illigal-extra-single-array-parameter-empty-check"></a>
 
-##### &nbsp;&nbsp;&nbsp; checkParam_emptyExtra(arguments, <b>['EMPTY-ERROR']</b>) // does not work
+##### &nbsp;&nbsp;&nbsp; checkParam_emptyExtra(a_parameter, <b>['EMPTY-ERROR']</b>) // does not work
 
 Because the below example has a one dimensional signature of ['EMPTY-ERROR'] it does not
 work. The signature ['EMPTY-ERROR'] means an array of any size that has no empty elements.
 ```
-function PRE_check_illegal_EmptyExtra(){
-  return type_czech.checkParam_emptyExtra(arguments, ['EMPTY-ERROR']) // does not work
+function PRE_check_illegal_EmptyExtra(a_parameter){
+  return type_czech.checkParam_emptyExtra(a_parameter, ['EMPTY-ERROR']) // does not work
 }
 
 type_czech = TypeCzech('LOG-ERRORS')
@@ -26,16 +26,16 @@ illegal_EmptyExtra = type_czech.linkUp(illegal_EmptyExtra, PRE_check_illegal_Emp
 
 function illegal_EmptyExtra(){ }
 
-illegal_EmptyExtra('not-empty', 'extra')  // PRE error - try checkParam_emptyExtra(['not-empty', "extra"], 'EMPTY-ERROR')
+illegal_EmptyExtra('not-empty', 'extra')  
 ```
 
-### One Parameter Empty Check With Extra Empties
-##### &nbsp;&nbsp;&nbsp; checkParam_emptyExtra(arguments, <b>'EMPTY-ERROR'</b>)
+### One Parameter Empty Check With Possible Extra Empties
+##### &nbsp;&nbsp;&nbsp; checkParam_emptyExtra(first_param, <b>'EMPTY-ERROR'</b>)
 
 The below example has followed the suggestion of the above error message, and makes sure there that the first parameter is not empty, and there may be extra empty parameters following. So the 'EMPTY-ERROR' refers to the first parameter.
 ```
-function PRE_check_legal_EmptyExtra(){
-  return type_czech.checkParam_emptyExtra(arguments, 'EMPTY-ERROR')
+function PRE_check_legal_EmptyExtra(a_parameter){
+  return type_czech.checkParam_emptyExtra(a_parameter, 'EMPTY-ERROR')
 }
 
 type_czech = TypeCzech('LOG-ERRORS')
@@ -53,19 +53,19 @@ legal_EmptyExtra([])          // PRE fail - first parameter is empty
 legal_EmptyExtra('', 'extra') // PRE fail - first parameter is empty
 ```
 ### Two Parameter Empty Check With Extra Empties
-##### &nbsp;&nbsp;&nbsp; checkParam_emptyExtra(arguments, <b>['EMPTY-ERROR', 'EMPTY-ERROR']</b>)
+##### &nbsp;&nbsp;&nbsp; checkParam_emptyExtra(first_param, second_param, <b>['EMPTY-ERROR', 'EMPTY-ERROR']</b>)
 
 
 This example requires the first two elements of one parameter to be non-empty, while empty elements may follow.
 ```
-function PRE_check_arrayExtraOk(){
-  return type_czech.checkParam_emptyExtra(arguments, ['EMPTY-ERROR', 'EMPTY-ERROR'])
+function PRE_check_arrayExtraOk(array_2_elems){
+  return type_czech.checkParam_emptyExtra(array_2_elems, ['EMPTY-ERROR', 'EMPTY-ERROR'])
 }
 
 type_czech = TypeCzech('LOG-ERRORS')
 arrayExtraOk = type_czech.linkUp(arrayExtraOk, PRE_check_arrayExtraOk) 
 
-function arrayExtraOk(single_array_with_extra){ }
+function arrayExtraOk(array_2_elems){ }
 
 arrayExtraOk([1, 2, '']) // pass
 
@@ -74,13 +74,13 @@ arrayExtraOk([1, '']) // PRE fail - second parameter is an empty string ''
 ```
 
 
-
+////////////////////////////////////////////////////
 
 ## 1 Extra Multi Array Parameter Empty Check<a name="extra-multi-array-parameter-empty-check"></a>
 
 ```
-function PRE_check_arrayExtra(){
-  return type_czech.checkParam_emptyExtra(arguments, ['EMPTY-ERROR', 'EMPTY-ERROR'])
+function PRE_check_arrayExtra(single_array_with_extra){
+  return type_czech.checkParam_emptyExtra(single_array_with_extra, 'EMPTY-ERROR')
 }
 
 type_czech = TypeCzech('LOG-ERRORS')
@@ -92,15 +92,27 @@ arrayExtra([1, 'Abba']) // pass
 
 arrayExtra([1984, 'Blondie', false, [], {}]) // pass
 
-arrayExtra([0])  // PRE fail - missing second parameter
+arrayExtra([0])  // pass, as an array that is not empty
+
+
+
+
+arrayExtra([])  // PRE fail - empty array
+arrayExtra({})  // PRE fail - empty object
+arrayExtra('')  // PRE fail - empty string
+
+
 ```
+
+
+/////////////////////////////////////////
 
 
 ## 2 Extra Object Parameter Empty Check<a name="extra-object-parameter-empty-check"></a>
 
 ```
-function PRE_check_objectExtra(){
-  return type_czech.checkParam_emptyExtra(arguments, {song: 'EMPTY-ERROR'})
+function PRE_check_objectExtra(an_object){
+  return type_czech.checkParam_emptyExtra(an_object, {song: 'EMPTY-ERROR'})
 }
 
 type_czech = TypeCzech('LOG-ERRORS')
@@ -123,8 +135,11 @@ objectExtra({album:'Gaucho' })  // PRE fail - no song
 
 ## 3 Extra Multi Array Result Empty Check<a name="extra-multi-array-result-empty-check"></a>
 
+SEEMS THAT [45] <=> [ER, ER]    DOES NOT NOTICE THAT THE SECOND ONE IS EMPTY !!!
+
 ```
 function POST_check_arrayExtra(return_result){
+    console.log('check return = ', return_result)
   return type_czech.checkParam_emptyExtra(return_result, ['EMPTY-ERROR', 'EMPTY-ERROR'])
 }
 
@@ -132,14 +147,26 @@ type_czech = TypeCzech('LOG-ERRORS')
 arrayExtra = type_czech.linkUp(arrayExtra, undefined, POST_check_arrayExtra) 
 
 function arrayExtra(single_array_with_extra){
+  console.log('return = ', single_array_with_extra)
   return single_array_with_extra
 }
+
+arrayExtra([43])  // PRE fail - no second parameter  ???????????????????????? not fail?
+
+
+
+
+
+
 
 arrayExtra([1991, 'Nirvana']) // pass
 
 arrayExtra([1991, 'Nevermind', false, [], {}]) // pass
 
-arrayExtra([43])  // PRE fail - no second parameter
+
+
+
+arrayExtra([43, '']) // this is a justrified error
 ```
 
 
