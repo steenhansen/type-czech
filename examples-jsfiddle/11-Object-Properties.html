@@ -218,7 +218,7 @@
      properties of funcOne and funcTwo are both
     functions. And the property a_number must be a Number type. Missing or 
     extra properties will cause errors.
-<pre title='Copy and paste the green code below into the console to run' class='console-runnable'>
+<pre>
 FUNC_NUM_FUNC = { func1: 'function', a_num: 'number', an_str: 'string' }
 pass_func_num_func = {func1: x=>x, a_num:12, an_str: 'passes-test'}
 type_czech.checkParam_type(pass_func_num_func, FUNC_NUM_FUNC)
@@ -230,7 +230,7 @@ type_czech.checkParam_type(fail_func_num_func, FUNC_NUM_FUNC)
 The below example shows how to ignore some properties, while still type checking
 at least one property. Here we only ensure that the property funcOne is a 
 Function, the extra property my_string is ignored.
-<pre title='Copy and paste the green code below into the console to run' class='console-runnable'>
+<pre>
 FUNC_ONE_ONLY = { funcOne: 'function'}
 func_num_func_obj = {funcOne: x=>x, my_string:'passes-test'}
 type_czech.checkParam_typeExtra(func_num_func_obj, FUNC_ONE_ONLY)

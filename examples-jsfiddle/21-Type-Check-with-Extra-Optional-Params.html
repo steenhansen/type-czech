@@ -216,7 +216,7 @@
 Thus checkParam_typeExtra(an_object, <b>{a:'string'}</b>) means extra properties
  inside the parameter_object are allowed after the string property of 'a'.
 
-<pre title='Copy and paste the green code below into the console to run' class='console-runnable'>
+<pre>
 func0 = (an_object) => an_object
 PRE_check_func0 = (an_object) => { 
   return type_czech.checkParam_typeExtra(an_object, {a:'string'})
@@ -229,7 +229,7 @@ func0({fail:17})
 
 And checkParam_typeExtra(an_array, <b>'number'</b>) refers to <b>one</b>
 number and something extra possibly.
-<pre title='Copy and paste the green code below into the console to run' class='console-runnable'>
+<pre>
 func1 = (an_array) => an_array
 PRE_check_func1 = (an_array) => { 
   return type_czech.checkParam_typeExtra(an_array, 'number')
@@ -241,7 +241,7 @@ func1(['all-bad', 'fail', 'fail', 'fail'])
 
 Whereas checkParam_typeExtra(an_array, <b>['number', 'boolean']</b>) refers to <b>two</b>
 things, a number and a boolean possibly followed by something extra.
-<pre title='Copy and paste the green code below into the console to run' class='console-runnable'>
+<pre>
 func2 = (an_array) => an_array
 PRE_check_func2 = (an_array) => { 
   the_signature = ['number', 'boolean']

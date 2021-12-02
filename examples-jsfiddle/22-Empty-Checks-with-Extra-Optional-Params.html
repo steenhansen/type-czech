@@ -227,7 +227,7 @@
   Thus checkParam_emptyExtra(an_object, <b>{a:'EMPTY-ERROR'}</b>) means extra properties
    inside the parameter_object are ignored after the number property of 'a'.
   
-<pre title='Copy and paste the green code below into the console to run' class='console-runnable'>
+<pre>
 func0 = (an_object) => an_object
 PRE_check_func0 = (an_object) => { 
   return type_czech.checkParam_emptyExtra(an_object, {a:'EMPTY-ERROR'})
@@ -241,7 +241,7 @@ func0({b:'bad-key'}) //fail - not 'a' key
 
 And checkParam_emptyExtra(an_array, <b>'EMPTY-ERROR'</b>) refers to <b>one</b>
 number and something extra possibly.
-<pre title='Copy and paste the green code below into the console to run' class='console-runnable'>
+<pre>
 func1 = (an_array) => an_array
 PRE_check_func1 = (an_array) => { 
   return type_czech.checkParam_emptyExtra(an_array, 'EMPTY-ERROR')
@@ -253,7 +253,7 @@ func1(['', 'fail', 'fail', 'fail'])
 
 Whereas checkParam_emptyExtra(an_array, <b>['EMPTY-ERROR', 'EMPTY-ERROR']</b>) refers to <b>two</b>
 entities that should not be empty, possibly followed by something extra.
-<pre title='Copy and paste the green code below into the console to run' class='console-runnable'>
+<pre>
 func2 = (an_array) => an_array
 PRE_check_func2 = (an_array) => { 
   the_signature = ['EMPTY-ERROR', 'EMPTY-ERROR']
