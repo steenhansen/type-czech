@@ -883,5 +883,20 @@ EXPECTED TYPE ["string","string","boolean"]
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5988, error_mess);
 
-TEST_total_checks += 88;
+
+
+
+single_variable  = [];
+single_signature = ['number'];
+error_mess = `PRE_test_05900() PRE-FUNC: TE@236 - Empty array has no types
+CHECKER checkParam_type()
+ACTUAL TYPE 'array'
+ VALUES []
+EXPECTED TYPE ["number"]
+ ORIGIN pre_checkParam_type_05900(a_var)`;
+test_pre_checkParam_type_single(single_variable, single_signature, 5989, error_mess);
+
+
+
+TEST_total_checks += 89;
 

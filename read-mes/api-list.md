@@ -94,7 +94,7 @@ function POST_check_aCollection(){
   return type_czech.check_mutatedSnapshot('PRE_check_aCollection', 'a_collection')
 }
 
-type_czech = TypeCzech('LOG-ERRORS')
+type_czech = TypeCzech('THROW-EXCEPTIONS')
 
 aCollection = type_czech.linkUp(aCollection, PRE_check_aCollection, POST_check_aCollection) 
 
@@ -128,7 +128,7 @@ function POST_check_notEmpty(the_result){
   return type_czech.checkParam_empty(the_result, 'EMPTY-ERROR')
 }
 
-type_czech = TypeCzech('LOG-ERRORS')
+type_czech = TypeCzech('THROW-EXCEPTIONS')
 
 notEmpty = type_czech.linkUp(notEmpty, PRE_check_notEmpty, POST_check_notEmpty) 
 
@@ -170,7 +170,7 @@ someElements([1], [2]) // pass
 someElements([], [2])  // pass
 someElements([1], [])  // pass
 
-someElements([], []) // PRE fail - matches neither signature
+someElements([], []) // fail - matches neither signature
 ```
 
   [checkParam_emptyEither() examples](./public/checkParam_emptyEither.md)
@@ -190,7 +190,7 @@ function PRE_check_extraElements(an_object){
   return type_czech.checkParam_emptyExtra(an_object, ['EMPTY-ERROR', 'EMPTY-ERROR'])
 }
 
-type_czech = TypeCzech('LOG-ERRORS')
+type_czech = TypeCzech('THROW-EXCEPTIONS')
 
 extraElements = type_czech.linkUp(extraElements, PRE_check_extraElements) 
 
@@ -200,7 +200,7 @@ extraElements([11, 'parka'])         // pass
 extraElements([22, 'snow', false])   // pass
 extraElements([33, 'santa', {}, []]) // pass
 
-extraElements([44, '']) // PRE fail - 2nd parameter is empty
+extraElements([44, '']) // fail - 2nd parameter is empty
 ```
 
   [checkParam_emptyExtra() examples](./public/checkParam_emptyExtra.md)
@@ -215,7 +215,7 @@ function PRE_check_haveValues(){
   return type_czech.checkArgs_emptyVariadic(arguments, ['EMPTY-ERROR'])
 }
 
-type_czech = TypeCzech('LOG-ERRORS')
+type_czech = TypeCzech('THROW-EXCEPTIONS')
 
 haveValues = type_czech.linkUp(haveValues, PRE_check_haveValues) 
 
@@ -224,7 +224,7 @@ function haveValues(){ }
 haveValues(1)                                      // pass
 haveValues(1, true, 'red', new Date('1999-12-12')) // pass
 
-haveValues('', [], {}) // PRE fail - emtpy values
+haveValues('', [], {}) // fail - emtpy values
 ```
   [checkArgs_emptyVariadic() examples](./public/checkArgs_emptyVariadic.md)
 
@@ -247,8 +247,8 @@ function wantedProperties(an_object){ }
 
 wantedProperties({my_func: x=>x, my_number: 987}) // pass
 
-wantedProperties({my_func: 'not-a-function', my_number: 987}) // PRE fail - my_func is a string
-wantedProperties({my_func: x=>x, my_number: 'not-a-number'})  // PRE fail - my_number is a string
+wantedProperties({my_func: 'not-a-function', my_number: 987}) // fail - my_func is a string
+wantedProperties({my_func: x=>x, my_number: 'not-a-number'})  // fail - my_number is a string
 ```
 
 
@@ -304,7 +304,7 @@ function PRE_check_eitherObject(somebody){
   return type_czech.checkParam_typeEither(somebody, possible_signatures)
 }
 
-type_czech = TypeCzech('LOG-ERRORS')
+type_czech = TypeCzech('THROW-EXCEPTIONS')
 
 eitherObject = type_czech.linkUp(eitherObject, PRE_check_eitherObject) 
 
@@ -314,7 +314,7 @@ eitherObject( {first: 'Kanye', last: 'West'})                         // pass - 
 eitherObject( {first: 'Albert', age: 105})                            // pass - first_age_sig
 eitherObject( {first: 'King George', birth: new Date('1893-12-12') }) // pass - first_birth_sig
 
-eitherObject( {first: 'Bob', middle: 'Bob'}) // PRE fail - has unknown middle
+eitherObject( {first: 'Bob', middle: 'Bob'}) // fail - has unknown middle
 ```
   [checkParam_typeEither() examples](./public/checkParam_typeEither.md)
 
@@ -343,7 +343,7 @@ function extraParams(car_object){ }
 extraParams({make: 'Toyota', model: 'Camry'})                           // pass
 extraParams({make: 'Toyota', model: 'Camry', color: 'red', year: 2014}) // pass
 
-extraParams({make: 'Toyota'}) // PRE fail - no model 
+extraParams({make: 'Ford'}) // fail - no model 
 ```
   [checkParam_typeExtra() examples](./public/checkParam_typeExtra.md)
 
@@ -369,7 +369,7 @@ function someNumbers(){ }
 someNumbers(1)             // pass
 someNumbers(1, 2, 3, 4, 5) // pass
 
-someNumbers(1, 'two', 3) // PRE fail - 'two' is not a number
+someNumbers(1, 'two', 3) // fail - 'two' is not a number
 ```
   [checkArgs_typeVariadic() examples](./public/checkArgs_typeVariadic.md)
 
@@ -391,8 +391,8 @@ anArray([])             // pass 3
 anArray([1,2,3])        // pass 1
 anArray([ [], [], [] ]) //pass 2
 
-anArray('a-string')     // PRE fail 1 - string not array
-anArray({an_object:[]}) // PRE fail 2 - object not array
+anArray('a-string')     // fail 1 - string not array
+anArray({an_object:[]}) // fail 2 - object not array
 
 type_czech.countFails() // 2
 ```
@@ -415,8 +415,8 @@ anObject({ first_obj:{}, second_obj:{}, third_obj:{} }) // pass 1
 anObject({a_number:14})                                 // pass 2
 anObject({})                                            // pass 3
 
-anObject([99])  // PRE fail 1 - array not object
-anObject(false) // PRE fail 2 - boolean not object
+anObject([99])  // fail 1 - array not object
+anObject(false) // fail 2 - boolean not object
 
 type_czech.countTally()  // 5
 ```
@@ -452,7 +452,7 @@ oneUppercase('green eggs and ham') // not checked as currently disabled
 
 type_czech.enableTests()
 
-oneUppercase('push me pull you') // PRE fail - no uppercase character
+oneUppercase('push me pull you') // fail - no uppercase character
 ```
 
 ### 15 disableTests()<a name="disable-checks"></a>
@@ -471,9 +471,9 @@ isRoman = type_czech.linkUp(isRoman, PRE_check_isRoman)
 
 function isRoman(){}
 
-isRoman('IX') // pass
+isRoman('IX') // 1. pass
 
-isRoman('IIII') // PRE fail - not in array
+isRoman('IIII') // 2. fail - not in array
 
 type_czech.disableTests()
 

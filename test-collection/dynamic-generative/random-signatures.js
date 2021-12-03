@@ -10,15 +10,16 @@ let  { treeAsArguments, noMergetreeType, mergeTreeType,
 
 function reflectTree(tree_str, show_data) {
   const the_arguments = treeAsArguments(tree_str);
+//  console.log('dddddddd', tree_str)
   const no_merge_type = noMergetreeType(tree_str);
-  if (show_data) {
+ if (show_data) {
     console.log('Random Generated Tree:', tree_str);
     console.log();
     console.log('Values:', JSON.stringify(the_arguments));
     console.log();
     console.log('       Types:', JSON.stringify(no_merge_type));
     console.log();
-  }
+}
   //const test_no_merge = type_czech_test.checkParam_type(the_arguments, no_merge_type);
   var [test_no_merge, _, _] = type_czech_test.checkParam_type(the_arguments, no_merge_type);
 

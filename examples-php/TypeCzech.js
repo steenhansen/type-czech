@@ -678,7 +678,7 @@ type_czech.typeProtos(new Object());
 { class First { constructor() { } }
   class Last extends First { constructor() { super() } }
   type_czech.typeProtos(new Last()); }
-//[ "Last", "First", "object" ]
+//[ "Last", "First", "Object" ]
 */
       function typeProtos(a_var) {
         consolelog('^^^ typeProtos ENTER', a_var, TYPE_CZECH_current_test_number);
@@ -1003,9 +1003,9 @@ type_czech._consoleError("errorText", 'TheTAG');
 
       /*
 type_czech._looksLikeType("ARRAY");
-//TE@205 - The type 'ARRAY' is not a typeof() type, but it looks just like 'array'
+//TE@205 - Type 'ARRAY' is not a typeof(), but looks like 'array'
 type_czech._looksLikeType("Object");
-//TE@205 - The type 'Object' is not a typeof() type, but it looks just like 'object'
+//TE@205 - Type 'Object' is not a typeof(), but looks like 'object'
 type_czech._looksLikeType("date");
 //''
 */
@@ -1028,7 +1028,7 @@ type_czech._looksLikeType("date");
 
       /*
 type_czech._missingKey({z:"symbol"});
-//TE@216 - The key 'z', which has a type of 'symbol', is missing in the checked object
+//TE@216 -  Key 'z', which has a type of 'symbol', is missing in the checked object
 */
       function _missingKey(extra_keys) {
         consolelog('^^^ _missingKey ENTER', extra_keys, TYPE_CZECH_current_test_number);
@@ -1247,6 +1247,16 @@ variable={bob:{a:12}, show:_=>_};
 interface={bob:'object', show:'f'};
 type_czech.check_interface(variable, interface);
 //''
+
+variable={ Matryoshka: {Russia:  'doll'} };
+interface={ Matryoshka: {Russia:'string'} };
+type_czech.check_interface(variable, interface);
+//IE@506 - Try checkParam_type('{Matryoshka:{Russia:\"doll\"}}', '{Matryoshka:{Russia:\"string\"}}') as has nested objects
+
+variable={ Matryoshka: {Russia:  'doll'} };
+interface={ Matryoshka: {Russia:'string'} };
+type_czech.checkParam_type(variable, interface);
+//''
 */
       // eslint-disable-next-line consistent-return
       function check_interface(introspect_object, expected_interface) { // Not like Java methods only, can be anything
@@ -1265,6 +1275,8 @@ type_czech.check_interface(variable, interface);
           } else if (Object.keys(expected_interface).length === 0) {
             error_mess = _consoleError('Signature is empty object.', 'IE@503');
           } else {
+            const intro_object_str = _toStr(introspect_object);
+            const interface_str = _toStr(expected_interface);
             // eslint-disable-next-line guard-for-in, no-restricted-syntax
             for (const test_key in expected_interface) {
               if (!error_mess) {
@@ -1273,10 +1285,11 @@ type_czech.check_interface(variable, interface);
                 const introspect_value = interface_object[test_key];
                 const introspect_type = _aTypeOf(introspect_value);
                 if (typeof introspect_value === 'undefined') {
-                  const intro_object_str = _toStr(introspect_object);
-                  const interface_str = _toStr(expected_interface);
                   const error_501 = `Interface, ${interface_str}, has extra key '${test_key}' that is in not in checked object of ${intro_object_str}`;
                   error_mess = _consoleError(error_501, 'IE@501');
+                } else if (introspect_type === 'object') {
+                  const error_506 = `Try checkParam_type('${intro_object_str}', '${interface_str}') for nested objects`;
+                  error_mess = _consoleError(error_506, 'IE@506');
                 } else if (expected_type !== introspect_type) {
                   const str_intro_value = _toStr(introspect_value);
                   const str_expt_type = _toStr(expected_type);
@@ -1458,6 +1471,7 @@ type_czech._ParametersCheck(type_czech.TYPE_CZECH_EVENTS);
           if (shape_check === MESS_TYPE_VERIFY
                 || shape_check === MESS_TYPE_VARIADIC
                 || shape_check === MESS_TYPE_EXTRAS
+                || shape_check === MESS_OBJ_INTERFACE
                 || shape_check === MESS_TYPE_ONE_OF) {
             expected_text = '   EXPECTED TYPE';
           } else if (shape_check === MESS_MUTATED) {
@@ -2499,6 +2513,10 @@ type_czech._shapeArrayTypes([], ['number'], 'TYPE-VERIFY');
       function _shapeArrayTypes(check_array, array_shape, the_type) {
         consolelog('^^^ _shapeArrayTypes ENTER', check_array, array_shape, the_type, TYPE_CZECH_current_test_number);
         let error_string = '';
+        if (check_array.length === 0) {
+          const error_236 = 'Empty array has no types';
+          error_string = _consoleError(error_236, 'TE@236');
+        }
         if (array_shape.length === 1 && check_array.length > 1) {
           const single_type = array_shape[0];
           error_string = _arrayOfOneType(check_array, single_type, the_type);
@@ -2623,7 +2641,9 @@ type_czech._shapeCollectionTypes({ X: 33 }, { r: "n" }, 'TYPE-EXTRAS');
             }
           }
         });
-        error_string += _missingKey(checkParam_type_shallow);
+        if (error_string === '') {
+          error_string = _missingKey(checkParam_type_shallow);
+        }
         consolelog('^^^ _shapeCollectionTypes EXIT', error_string);
         return error_string;
       }

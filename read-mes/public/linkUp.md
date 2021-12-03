@@ -18,16 +18,16 @@ function PRE_check_notNull(a_parameter){
     return `ERROR, null parameter`
 }
 
-type_czech = TypeCzech('LOG-ERRORS')
+type_czech = TypeCzech('THROW-EXCEPTIONS')
 notNull = type_czech.linkUp(notNull, PRE_check_notNull) 
 
 function notNull(a_parameter){ }
 
-notNull(1) // pass
+notNull(1)         // pass
 notNull(undefined) // pass  
-notNull() // pass
+notNull()          // pass
 
-notNull(null) // PRE fail - found a null         
+notNull(null) // fail - found a null         
 ```
 
 
@@ -51,9 +51,9 @@ function notNull(a_parameter){
   return a_parameter
 }
 
-notNull(1) // pass
+notNull(1)         // pass
 notNull(undefined) // pass  
-notNull() // pass
+notNull()          // pass
 
 notNull(null)  // PRE and POST fail - null parameter and result         
 ```
@@ -66,18 +66,18 @@ function POST_check_notNull(a_result){
     return `ERROR, null result`
 }
 
-type_czech = TypeCzech('LOG-ERRORS')
+type_czech = TypeCzech('THROW-EXCEPTIONS')
 notNull = type_czech.linkUp(notNull, undefined, POST_check_notNull) 
 
 function notNull(a_parameter){
   return a_parameter
 }
 
-notNull(1) // pass
+notNull(1)         // pass
 notNull(undefined) // pass  
-notNull() // pass
+notNull()          // pass
 
-notNull(null) // POST fail - null parameter and result  
+notNull(null) // fail - null parameter and result  
 ```
 
 
@@ -96,16 +96,16 @@ function PRE_check_mustBeFebruary(a_date){
   return `ERROR, '${a_date}' is not in February`
 }
 
-type_czech = TypeCzech('LOG-ERRORS')
+type_czech = TypeCzech('THROW-EXCEPTIONS')
 mustBeFebruary = type_czech.linkUp(mustBeFebruary, PRE_check_mustBeFebruary) 
 
 function mustBeFebruary(a_date){ }
 
 mustBeFebruary(new Date('1999-02-02')) // pass  
 
-mustBeFebruary(2)                      // PRE fail - 2 is not a date         
-mustBeFebruary(new Date('1999-01-10')) // PRE fail - January        
-mustBeFebruary(new Date('1999-02-31')) // PRE fail - no such date 
+mustBeFebruary(2)                      // fail - 2 is not a date         
+mustBeFebruary(new Date('1999-01-10')) // fail - January        
+mustBeFebruary(new Date('1999-02-31')) // fail - no such date 
 ```
 
 ## 5 Check a Parameter by RegExp<a name="check-a-parameter-by-regexp"></a>
@@ -119,16 +119,16 @@ function PRE_check_firstCapital(a_word){
     return 'ERROR, word does not start with a capital letter'
 }
 
-type_czech = TypeCzech('LOG-ERRORS')
+type_czech = TypeCzech('THROW-EXCEPTIONS')
 firstCapital = type_czech.linkUp(firstCapital, PRE_check_firstCapital) 
 
 function firstCapital(a_date){ }
 
 firstCapital('Bob') // pass  
 
-firstCapital(2)       // PRE fail - 2 is not a string
-firstCapital('alice') // PRE fail - first character is lowercase
-firstCapital('')      // PRE fail - no uppercase letter          
+firstCapital(2)       // fail - 2 is not a string
+firstCapital('alice') // fail - first character is lowercase
+firstCapital('')      // fail - no uppercase letter          
 ```
 
 ## 6 Check a Parameter by Includes<a name="check-a-parameter-by-includes"></a>
@@ -141,16 +141,16 @@ function PRE_check_smallPrimes(a_number){
     return `ERROR, '${a_number}' is not a small prime`
 }
 
-type_czech = TypeCzech('LOG-ERRORS')
+type_czech = TypeCzech('THROW-EXCEPTIONS')
 smallPrimes = type_czech.linkUp(smallPrimes, PRE_check_smallPrimes) 
 
 function smallPrimes(a_number){ }
 
 smallPrimes(19) // pass  
 
-smallPrimes(1)           // PRE fail - not in set
-smallPrimes('imaginary') // PRE fail - not in set
-smallPrimes(-7)          // PRE fail - not in set           
+smallPrimes(1)           // fail - not in set
+smallPrimes('imaginary') // fail - not in set
+smallPrimes(-7)          // fail - not in set           
 ```
 
 

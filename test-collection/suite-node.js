@@ -93,6 +93,6 @@ require('./public-tests/oloo_check_56000.js');
 console.log('total fails = ', global.TEST_total_fails);
 console.log('total checks = ', global.TEST_total_checks);
 
-if (global.TEST_total_checks !== 1724 || global.TEST_total_fails !== 0) {
+if (global.TEST_total_checks !== 1725 || global.TEST_total_fails !== 0) {
   console.log("Houston we have an error problem!")
 } 

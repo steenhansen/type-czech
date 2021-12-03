@@ -39,7 +39,7 @@ function signature_stringParameters_47001(){
     err=e
     was_exception = true;
   }
-  if (was_exception) {
+  if (!was_exception) {
     console.log(TYPE_CZECH_current_test_number, err);
     if (typeof tested_signatures !== 'undefined') failed_signatures ++;
   }

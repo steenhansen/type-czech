@@ -67,9 +67,8 @@ function A_yourFunc(){ }
 
 A_yourFunc(9)        // pass 1 F number
 A_yourFunc(NaN)      // pass 2 M empty number
-A_yourFunc()         // pass 3 S empty nothing
 A_yourFunc(14,15,16) // pass 4 U multi args
-TEST_total_checks += expectedAndFailedTests(4, 0, 'A-Pass', '_checkArgs_typeVariadic().md');
+TEST_total_checks += expectedAndFailedTests(3, 0, 'A-Pass', '_checkArgs_typeVariadic().md');
 
 
 A_yourFunc([1])                      // fail 1 A array
@@ -88,19 +87,20 @@ A_yourFunc(/(?:)/)                   // fail 13 O empty regex
 A_yourFunc('')                       // fail 14 P empty string
 A_yourFunc(null)                     // fail 15 Q empty null
 A_yourFunc(undefined)                // fail 16 R empty undefined
-A_yourFunc([11,12,13])               // fail 17 T multi array
-A_yourFunc([[17,18,19]])             // fail 18 V multi in single
-A_yourFunc([20], [21])               // fail 19 W two singles
-A_yourFunc([22,23,24], [25,26,27])   // fail 20 X two multis
-A_yourFunc({d:{}})                   // fail 21 Y empty in object
-A_yourFunc([{e:[28,{f:[29]}]}])      // fail 22 Z empty in object
-A_yourFunc(['',''] )                 // fail 23 0 empty - [str str]
-A_yourFunc([[],[]] )                 // fail 24 1 empty - [arr arr]
-A_yourFunc([{},{}] )                 // fail 25 2 empty - [obj obj]
-A_yourFunc({g:[]},{h:[]})            // fail 26 3 empty - {arr arr}
-A_yourFunc({i:''},{j:''})            // fail 27 4 empty - {str str}
-A_yourFunc({k:{}},{l:{}})            // fail 28 5 empty - {obj obj}
-TEST_total_checks += expectedAndFailedTests(28, 28, 'A-Fail', '_checkArgs_typeVariadic().md');
+A_yourFunc()                         // fail 17 S empty nothing
+A_yourFunc([11,12,13])               // fail 18 T multi array
+A_yourFunc([[17,18,19]])             // fail 19 V multi in single
+A_yourFunc([20], [21])               // fail 20 W two singles
+A_yourFunc([22,23,24], [25,26,27])   // fail 21 X two multis
+A_yourFunc({d:{}})                   // fail 22 Y empty in object
+A_yourFunc([{e:[28,{f:[29]}]}])      // fail 23 Z empty in object
+A_yourFunc(['',''] )                 // fail 24 0 empty - [str str]
+A_yourFunc([[],[]] )                 // fail 25 1 empty - [arr arr]
+A_yourFunc([{},{}] )                 // fail 26 2 empty - [obj obj]
+A_yourFunc({g:[]},{h:[]})            // fail 27 3 empty - {arr arr}
+A_yourFunc({i:''},{j:''})            // fail 28 4 empty - {str str}
+A_yourFunc({k:{}},{l:{}})            // fail 29 5 empty - {obj obj}
+TEST_total_checks += expectedAndFailedTests(29, 29, 'A-Fail', '_checkArgs_typeVariadic().md');
 
 // /////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -136,7 +136,12 @@ test_pre_checkArgs_typeVariadic(parameters, signature, 32904, error_mess);
 
 parameters  = [];
 signature = ['number'];
-error_mess =  ``;
+error_mess =  `PRE_test_32900() PRE-FUNC: There are no parameters.
+CHECKER checkArgs_typeVariadic()
+ACTUAL TYPE 
+ VALUES 
+EXPECTED TYPE ["number"]
+ ORIGIN pre_checkArgs_typeVariadic_32900()`;
 test_pre_checkArgs_typeVariadic(parameters, signature, 32905, error_mess);
 
 

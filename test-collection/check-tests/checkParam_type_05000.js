@@ -149,11 +149,10 @@ function checkParam_type_05000(){
     }
             E_yourFunc = type_czech.linkUp(E_yourFunc, E_PRE_check_yourFunc) 
             function E_yourFunc(){ }
-    E_yourFunc([])                  // pass 1
-    E_yourFunc([1])                 // pass 2
-    E_yourFunc([1,2,3,4,5,6,7,8,9]) // pass 3
-    E_yourFunc([1,2,3])             // pass 4
-    TEST_total_checks += expectedAndFailedTests(4, 0, 'E-Pass', 'checkParam_type().md');
+    E_yourFunc([1])                 // pass 1
+    E_yourFunc([1,2,3,4,5,6,7,8,9]) // pass 2
+    E_yourFunc([1,2,3])             // pass 3
+    TEST_total_checks += expectedAndFailedTests(3, 0, 'E-Pass', 'checkParam_type().md');
 
     E_yourFunc({})        // fail 1
     E_yourFunc([[1,2,3]]) // fail 2
@@ -162,7 +161,8 @@ function checkParam_type_05000(){
     E_yourFunc('an-str')  // fail 5
     E_yourFunc(1)         // fail 6
     E_yourFunc(12,23,44)  // fail 7
-    TEST_total_checks += expectedAndFailedTests(7, 7, 'E-Pass', 'checkParam_type().md');
+    E_yourFunc([])        // fail 8
+    TEST_total_checks += expectedAndFailedTests(8, 8, 'E-Fail', 'checkParam_type().md');
 
 /*
 ###F. Two arrays of Numbers with exactly two elements each. 

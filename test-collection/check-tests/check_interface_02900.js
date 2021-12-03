@@ -65,7 +65,7 @@ error_mess = `PRE_test_02900() PRE-FUNC: IE@501 - Interface, {no_match:"function
 CHECKER check_interface()
 ACTUAL TYPE 'object'
  VALUES {show:(x) => x ***}
-EMPTY ASSERTION {"no_match":"function"}
+ EXPECTED TYPE {"no_match":"function"}
  ORIGIN pre_check_interface_02900(a_var)`;
 test_pre_check_interface(variable, signature, 2902, error_mess);
 
@@ -75,7 +75,7 @@ error_mess = `PRE_test_02900() PRE-FUNC: IE@502 - Actual type of 'show' is 'func
 CHECKER check_interface()
 ACTUAL TYPE 'object'
  VALUES {show:(x) => x ***}
-EMPTY ASSERTION {"show":"number"}
+ EXPECTED TYPE {"show":"number"}
  ORIGIN pre_check_interface_02900(a_var)`;
 test_pre_check_interface(variable, signature, 2903, error_mess);
 
@@ -85,7 +85,7 @@ error_mess = `PRE_test_02900() PRE-FUNC: IE@502 - Actual type of 'show' is 'numb
 CHECKER check_interface()
 ACTUAL TYPE 'object'
  VALUES {show:12}
-EMPTY ASSERTION {"show":"function"}
+ EXPECTED TYPE {"show":"function"}
  ORIGIN pre_check_interface_02900(a_var)`;
 test_pre_check_interface(variable, signature, 2904, error_mess);
 
@@ -105,7 +105,7 @@ error_mess = `PRE_test_02900() PRE-FUNC: IE@505 - Function argument is not an ob
 CHECKER check_interface()
 ACTUAL TYPE 'array'
  VALUES [98]
-EMPTY ASSERTION {"show":"number"}
+ EXPECTED TYPE {"show":"number"}
  ORIGIN pre_check_interface_02900(a_var)`;
 test_pre_check_interface(variable, signature, 2907, error_mess);
 
@@ -115,7 +115,7 @@ error_mess = `PRE_test_02900() PRE-FUNC: IE@504 - Signature is not an object.
 CHECKER check_interface()
 ACTUAL TYPE 'object'
  VALUES {show:95}
-EMPTY ASSERTION [45]
+ EXPECTED TYPE [45]
  ORIGIN pre_check_interface_02900(a_var)`;
 test_pre_check_interface(variable, signature, 2908, error_mess);
 
@@ -125,9 +125,32 @@ error_mess = `PRE_test_02900() PRE-FUNC: IE@503 - Signature is empty object.
 CHECKER check_interface()
 ACTUAL TYPE 'object'
  VALUES {show:(x) => x ***}
-EMPTY ASSERTION {}
+ EXPECTED TYPE {}
  ORIGIN pre_check_interface_02900(a_var)`;
 test_pre_check_interface(variable, signature, 2909, error_mess);
+
+
+
+
+
+
+variable  = { Matryoshka: 'doll'} ;
+signature = { Matryoshka: 'string' };
+error_mess = '';
+test_pre_check_interface(variable, signature, 2910, error_mess);
+
+variable  = { Matryoshka: {Russia:  'doll'} };
+signature = { Matryoshka: {Russia:'string'} };
+error_mess = `PRE_test_02900() PRE-FUNC: IE@506 - Try checkParam_type('{Matryoshka:{Russia:"doll"}}', '{Matryoshka:{Russia:"string"}}') for nested objects
+CHECKER check_interface()
+ACTUAL TYPE 'object'
+ VALUES {Matryoshka:{Russia:"doll"}}
+EXPECTED TYPE {"Matryoshka":{"Russia":"string"}}
+ ORIGIN pre_check_interface_02900(a_var)`;
+test_pre_check_interface(variable, signature, 2911, error_mess);
+
+
+
 
 
 TEST_total_checks += 9;

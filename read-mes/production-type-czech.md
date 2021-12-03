@@ -4,11 +4,13 @@
 
 ## Production TypeCzech
 
-### Use the Minified File
+### Use your own version of the Minified File
 
-The TypeCzech.js file is 195KB, while the minified file on jsDelivr is only 31KB. The jsDelivr CDN serves files from GitHub.    
+The TypeCzech.js file is 195KB, while the minified file on jsDelivr is only 33KB. The jsDelivr CDN serves files from GitHub for the jsFiddle.net examples.    
 
     <script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech/web-resources/TypeCzech.min.js"></script>
+
+Do not used the jsDeliver.net version, it may change at any time, and may also go down.
 
 ### Not Loading Library
 By not loading TypeCzech.js the linkUp() function turns into a nop with no effects. The function PRE_check_notNegNum() is still parsed, but never executed.
@@ -56,8 +58,8 @@ The checking function PRE_check_notNegNum() is called before every execution of 
 
     function notNegNum(a_number){  }
 
-    notNegNum(-321)  // PRE fail
-    notNegNum('-55')  // PRE fail
+    notNegNum(-321)  // fail
+    notNegNum('-55')  // fail
 
     notNegNum(19)             // pass
     notNegNum('not-negative') // pass

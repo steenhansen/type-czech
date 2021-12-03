@@ -811,5 +811,17 @@ EMPTY ASSERTION ["EMPTY-ERROR",[],"EMPTY-OK"]
 test_pre_checkParam_empty_single(single_variable, single_signature, 3997, error_mess);
 
 
-TEST_total_checks += 97;
+
+single_variable  = [];
+single_signature =  ['EMPTY-ERROR'];
+error_mess = `PRE_test_3900() PRE-FUNC: ME@403 - Param array [] is empty
+CHECKER checkParam_empty()
+ACTUAL TYPE 'array'
+ VALUES []
+EMPTY ASSERTION ["EMPTY-ERROR"]
+ ORIGIN pre_checkParam_empty_3900(a_var)`;
+test_pre_checkParam_empty_single(single_variable, single_signature, 3998, error_mess);
+
+
+TEST_total_checks += 98;
 

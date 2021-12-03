@@ -51,7 +51,8 @@ Type Errors:
   TE@231 TypeCzech.checkParam_emptyExtra(collection_a, collection_b) needs two collections to work
   TE@232 Element type invalid
   TE@234 checkParam_typeExtra(params, ['number']) is illegal
-  TE@234 checkParam_emptyExtra(params, ['EMPTY-ERROR']) is prohibited
+    TE@234 checkParam_emptyExtra(params, ['EMPTY-ERROR']) is prohibited
+  TE@236 Empty Parameter array
 
 Empty Errors:
   EE@301 an empty variable that is an error
@@ -93,6 +94,8 @@ Interface Errors:
   IE@503 Interface signature is an empty object
   IE@504 Interface signature is not an object
   IE@505 Interface argument is not an object
+  IE@506 Interface - try checkParam_type() instead as nested objects
+  
 
 Variadic Errors:
   VE@601 Use checkArgs_typeVariadic(num_params, ['number']) instead of checkArgs_typeVariadic(num_params, 'number')

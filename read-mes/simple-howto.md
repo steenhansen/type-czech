@@ -379,7 +379,7 @@ And then the object is checked for any mutations, after isElvis() returns, in th
 
     yourFunc(1, 'a-string', false, new Date('1999-12-31')) // pass
     
-    yourFunc(1, 'a-string', false, '1999-12-31') // fail - string not date
+    yourFunc(1, 'a-string', false, '2021-12-02') // fail - string not date
 
 
 ### 15 Object of Many Types<a name="mixed-object"></a>
@@ -425,7 +425,7 @@ And then the object is checked for any mutations, after isElvis() returns, in th
     
     yourFunc('Bob Marley')  // pass
 
-    yourFunc('king philip') // fail - all lower case
+    yourFunc('metacomet') // fail - all lower case
     
 
 

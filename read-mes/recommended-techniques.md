@@ -49,11 +49,11 @@ parameters only when actually individually testing them as below.
     
     yourFunc('Mr', 'Early')
 
-    yourFunc('Mr', 99)  // PRE fail - number not string
+    yourFunc('Mr', 99)  // fail - number not string
 
-    yourFunc('Mr', '')  // PRE fail - empty last name
+    yourFunc('Mr', '')  // fail - empty last name
     
-    yourFunc('A', 'Short')  // PRE fail - first name is 1 char
+    yourFunc('A', 'Short')  // fail - first name is 1 char
 
 ## Recommended Structure
 Keep TypeCzech code sparate from ordinary files as these local examples do [204](../examples-web/204-Extending-Closures-Single/204-Extending-Closures-Single.html),
@@ -62,7 +62,8 @@ Keep TypeCzech code sparate from ordinary files as these local examples do [204]
 [504](../examples-web/504-Extending-Prototypes-Single/504-Extending-Prototypes-Single.html), and
 [604](../examples-web/604-Extending-OLOO-Single/604-Extending-OLOO-Single.html).
 
-Easy detaching of TypeCzech can be done as below, without loading any checking code in the browser.
+Easy detaching of TypeCzech can be done as below, without loading any checking code in the browser. When the two javaScript files below are not loaded
+then check_linkUp_first_last_full() is not run and no functions are linked up to checking functions.
 
     // <script src="../../TypeCzech.js"></script>
     // <script src="./604-oloo-external-checks.js"></script>

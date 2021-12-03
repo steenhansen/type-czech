@@ -1,5 +1,5 @@
 
-## typeIsA() 
+## typeFinal() 
   -  [1 Class typeFinal](#class-type-final)
   -  [2 HTML typeFinal](#html-type-final)
 
@@ -8,7 +8,7 @@
 ## 1 Class typeFinal<a name="class-type-final"></a>
 
 ```
-type_czech = TypeCzech('LOG-ERRORS')
+type_czech = TypeCzech('THROW-EXCEPTIONS')
 
 class FirstName { 
   constructor(f_name) { 

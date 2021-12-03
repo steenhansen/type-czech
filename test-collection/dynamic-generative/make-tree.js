@@ -19,7 +19,7 @@ if (typeof exports === 'undefined') {
 (function (the_exports) {
   the_exports.makeTree =  function makeTree(stop_index) {
     /*  0 > 1
-        1 > []
+        1 > []           // this is now illegal
         2 > {}
         3 > [2]
         4 > {km:3}
@@ -177,7 +177,7 @@ if (typeof exports === 'undefined') {
     };
 
     const arrayBranch = () => {
-      const num_leaves = getRandomInt(10);
+      const num_leaves = getRandomInt(10) + 1;   // NO EMPTY ARRAYS ALLOWED ANYMORE
       const an_array = [];
       for (let i = 0; i < num_leaves; i += 1) {
         const random_leaf = randomLeaves();
@@ -208,8 +208,8 @@ if (typeof exports === 'undefined') {
       let a_leaf;
       if (current_index > stop_index || container_type === 0) { // 0 > 1
         a_leaf = currentNumElem();
-      } else if (container_type === 1) { // 1 > []
-        a_leaf = arrayEmpty();
+  //    } else if (container_type === 1) { // 1 > []     // NO EMPTY ARRAYS ALLOWED ANYMORE
+  //      a_leaf = arrayEmpty();
       } else if (container_type === 2) { // 2 > {}
         a_leaf = objectEmpty();
       } else if (container_type === 3) { // 3 > [2]
@@ -237,6 +237,7 @@ if (typeof exports === 'undefined') {
 
     const random_tree = randomLeaves();
     const the_tree_str = JSON.stringify(random_tree);
+//    console.log(random_tree)
     return [the_tree_str, the_keys, the_values];
   }
 

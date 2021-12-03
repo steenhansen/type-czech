@@ -256,6 +256,8 @@ Because JavaScript does not completely hoist classes there is no example #104.
 
 ### [Type Signatures](./read-mes/type-signatures.md)
 
+### [Arrays of Arrays](./read-mes/arrays-of-arrays.md)
+
 
 ### [67 Page Live Editable Tutorial on JSFiddle](https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Contents)
 
