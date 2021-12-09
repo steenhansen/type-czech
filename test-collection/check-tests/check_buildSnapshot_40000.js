@@ -10,7 +10,7 @@
 /* eslint-disable max-len */
 
 function test_pre_check_buildSnapshot(parameters_array, signature_of_parameters, error_id, expected_error) {
-  const type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  const type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   tested_checkArgs_typeVariadic_40000 += 1;
 
   function PRE_test_40000(a_var) {
@@ -54,7 +54,7 @@ tested_checkArgs_typeVariadic_40000 = 0;
 failed_checkArgs_typeVariadic_40000 = 0;
 
 //////////////////////////////////////////
-type_czech = TypeCzech('NO-ERROR-MESSAGES');
+type_czech = TypeCzech('NO-ERROR-MESSAGES', 'HIDE-INIT-MESSAGE');
 
 function A_PRE_check_yourFunc(a_collection) {
   try {
@@ -118,7 +118,7 @@ TEST_total_checks += expectedAndFailedTests(16, 16, 'A-Fail', 'check_buildSnapsh
 */
 
 stack_str = ''
-type_czech = TypeCzech('NO-ERROR-MESSAGES')
+type_czech = TypeCzech('NO-ERROR-MESSAGES', 'HIDE-INIT-MESSAGE')
 function B_PRE_check_recurseArr(growing_array){
   build_snapshot = type_czech.check_buildSnapshot('B_PRE_check_recurseArr', 'growing_array', growing_array)
   stack_str = type_czech._mutateStacks()
@@ -179,7 +179,7 @@ if (B_expected_second_stack === stack_str){
 ### C. check_buildSnapshot() fail from non-string function name
 */
 
-type_czech = TypeCzech('NO-ERROR-MESSAGES')
+type_czech = TypeCzech('NO-ERROR-MESSAGES', 'HIDE-INIT-MESSAGE')
 function C_PRE_check_yourFunc(c_collection) {
   return type_czech.check_buildSnapshot({a:12}, 'var-name', c_collection)
 }
@@ -207,7 +207,7 @@ if (is_correct){
 ### D. check_buildSnapshot() fail from non-string variable name
 */
 
-type_czech = TypeCzech('NO-ERROR-MESSAGES')
+type_czech = TypeCzech('NO-ERROR-MESSAGES', 'HIDE-INIT-MESSAGE')
 function D_PRE_check_yourFunc(d_collection) {
   return type_czech.check_buildSnapshot('func-name', {b:13}, d_collection)
 }
@@ -232,7 +232,7 @@ if (is_correct){
 ### E. check_buildSnapshot() fail from scalar variable
 */
 
-type_czech = TypeCzech('NO-ERROR-MESSAGES')
+type_czech = TypeCzech('NO-ERROR-MESSAGES', 'HIDE-INIT-MESSAGE')
 function E_PRE_check_yourFunc(e_scalar) {
   return type_czech.check_buildSnapshot('func-name', 'var-name', 'not a collection')
 }
@@ -258,7 +258,7 @@ if (is_correct){
 ### F. check_buildSnapshot() fail from not enough parameters
 */
 
-type_czech = TypeCzech('NO-ERROR-MESSAGES')
+type_czech = TypeCzech('NO-ERROR-MESSAGES', 'HIDE-INIT-MESSAGE')
 function F_PRE_check_yourFunc(f_variable) {
   return type_czech.check_buildSnapshot('func-name', 'var-name')
 }
@@ -285,7 +285,7 @@ if (is_correct){
 ### G. check_buildSnapshot() is ok with cyclic array
 */
 
-type_czech = TypeCzech('NO-ERROR-MESSAGES')
+type_czech = TypeCzech('NO-ERROR-MESSAGES', 'HIDE-INIT-MESSAGE')
 function G_PRE_check_yourFunc(cyclic_array) {
   return type_czech.check_buildSnapshot('func-name', 'var-name', cyclic_array)
 }
@@ -314,7 +314,7 @@ if (is_correct){
 ### H. check_buildSnapshot() is ok with cyclic object
 */
 
-type_czech = TypeCzech('NO-ERROR-MESSAGES')
+type_czech = TypeCzech('NO-ERROR-MESSAGES', 'HIDE-INIT-MESSAGE')
 function H_PRE_check_yourFunc(cyclic_object) {
   return type_czech.check_buildSnapshot('func-name', 'var-name', cyclic_object)
 }

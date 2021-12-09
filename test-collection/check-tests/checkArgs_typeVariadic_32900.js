@@ -10,7 +10,7 @@
 /* eslint-disable max-len */
 
 function test_pre_checkArgs_typeVariadic(parameters_array, signature_of_parameters, error_id, expected_error) {
-  const type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  const type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   tested_checkArgs_typeVariadic_32900 += 1;
 
   function PRE_test_32900() {
@@ -57,9 +57,9 @@ tested_checkArgs_typeVariadic_32900 = 0;
 failed_checkArgs_typeVariadic_32900 = 0;
 
 //////////////////////////////////////////
-type_czech = TypeCzech('NO-ERROR-MESSAGES');
+type_czech = TypeCzech('NO-ERROR-MESSAGES', 'HIDE-INIT-MESSAGE');
 function A_PRE_check_yourFunc() {
-   return type_czech.checkArgs_typeVariadic(arguments, ['number']);
+   return type_czech.checkArgs_typeVariadic(arguments, ['number-array']);
 }
 
 A_yourFunc = type_czech.linkUp(A_yourFunc, A_PRE_check_yourFunc);
@@ -105,17 +105,17 @@ TEST_total_checks += expectedAndFailedTests(29, 29, 'A-Fail', '_checkArgs_typeVa
 // /////////////////////////////////////////////////////////////////////////////////////////////
 
 parameters  = ['a', 'b', 'c'];
-signature = ['string'];
+signature = ['string-array'];
 error_mess = '';
 test_pre_checkArgs_typeVariadic(parameters, signature, 32901, error_mess);
 
 parameters  = ['a', 2, 'c'];
-signature = ['string'];
-error_mess = `PRE_test_32900() PRE-FUNC: TE@215 - ELEMENT '1' is asserted to be a 'string', but is fallaciously a 'number' : 2
+signature = ['string-array'];
+error_mess = `PRE_test_32900() PRE-FUNC: TE@214 -  ELEMENT '1' is assumed to be a 'string', but is mistakenly a 'number' with a value of 2
 CHECKER checkArgs_typeVariadic()
 ACTUAL TYPE 'string','number','string'
  VALUES "a",2,"c"
-EXPECTED TYPE ["string"]
+EXPECTED TYPE ["string-array"]
  ORIGIN pre_checkArgs_typeVariadic_32900()`;
 test_pre_checkArgs_typeVariadic(parameters, signature, 32902, error_mess);
 

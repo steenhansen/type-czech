@@ -22,24 +22,18 @@
       <li><b>Full</b> deals with an author's salutation, first, and last name</li>    
       <li>Safely removable supporting TypeCzech test code begins with /**/</li>    
     </ul>
-     <br>
     Extended classes are used for inheritance:
         <ul>
           <li>All JavaScript is in one file, no code imports</li>
           <li>Production class declarations <b>must</b> interleave with TypeCzech calls
               to have the PRE and POST checking functions be correctly linked to before use </li>
           </ul>
-    <br>
-
-
-
   </div>
 
 
   <div id="console-log"  >
     <div class='a-title'>Console Output</div>
     <div id='log-text'></div>
-    <br>
   </div>
 
   <br><br>
@@ -278,7 +272,7 @@ class First {
 /**/    type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
 
 /**/  function PRE_check_First(f_name){
-/**/    log(NL2+'PRE -First') 
+/**/    log(NL1+'PRE -First') 
 /**/    type_issue = type_czech.checkParam_type(f_name, 'string')
 /**/    if (type_issue) return type_issue;
 /**/    return type_czech.checkParam_empty(f_name, 'EMPTY-ERROR');
@@ -304,7 +298,7 @@ class Last extends First{
   constructor(f_name, l_name) {
     super(f_name);
     this.l_name = l_name
-    log(NL+LEVEL_1+`CONS-Last :${f_name} ${l_name}`)  
+    log(LEVEL_1+`CONS-Last :${f_name} ${l_name}`)  
   }
   lastMethod(a_year){ 
     const last_mess = `RUN -lastMethod :${a_year} ${this.f_name} ${this.l_name}`
@@ -341,7 +335,7 @@ class Full extends Last {
   constructor(salu, f_name, l_name) { 
     super(f_name, l_name);
     this.salu = salu
-    log(NL+LEVEL_2+`CONS-Full :${salu} ${f_name} ${l_name}`) 
+    log(LEVEL_2+`CONS-Full :${salu} ${f_name} ${l_name}`) 
   }
   fullMethod(a_book){
     const full_mess = `RUN -fullMethod :${a_book} ${this.salu} ${this.l_name}`
@@ -382,8 +376,19 @@ linesConsole(1)
 ted_chiang.lastMethod(2009)
 linesConsole(1)
 ted_chiang.fullMethod('Exhalation')
+
 linesConsole(2)
-log( ted_chiang.showName() )
+
+/**/  function PRE_check_printFullFunc(a_person){
+/**/    return type_czech.checkParam_type(a_person, 'Full')
+/**/  }
+/**/  printFullFunc = type_czech.linkUp(printFullFunc, PRE_check_printFullFunc)
+
+function printFullFunc(a_person) {
+  log('From Checked Function : ', a_person.showName())
+}
+
+printFullFunc(ted_chiang)
 </script>
   
   

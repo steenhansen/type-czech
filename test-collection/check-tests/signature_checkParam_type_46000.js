@@ -52,7 +52,7 @@ if (TEST_show_random) {
 
 function signature_oneString_46001(){
   TYPE_CZECH_current_test_number = '46001';
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   PRE_check_oneString= (one_string) => {
     return type_czech.checkParam_type(one_string, 'string')
   }
@@ -74,7 +74,7 @@ function signature_oneString_46001(){
 
 function signature_oneString_46002(){
   TYPE_CZECH_current_test_number = '46002';
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   PRE_check_oneString= (one_string) => {
     return type_czech.checkParam_type(one_string, 'string')
   }
@@ -96,7 +96,7 @@ function signature_oneString_46002(){
 
 function signature_oneString_46003(){
   TYPE_CZECH_current_test_number = '46003';
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   PRE_check_oneString= (one_string) => {
     return type_czech.checkParam_type(one_string, 'string')
   }
@@ -110,7 +110,7 @@ function signature_oneString_46003(){
     was_exception = true;
   }
   if (!was_exception) {
-    console.log(TYPE_CZECH_current_test_number);
+    console.log(TYPE_CZECH_current_test_number, ' test failed');
     if (typeof tested_signatures !== 'undefined') failed_signatures ++;
   }
   if (typeof tested_signatures !== 'undefined') tested_signatures ++;
@@ -118,7 +118,7 @@ function signature_oneString_46003(){
 
 function signature_oneString_46004(){
   TYPE_CZECH_current_test_number = '46004';
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   PRE_check_oneString= (one_string) => {
     return type_czech.checkParam_type(one_string, 'string')
   }
@@ -140,7 +140,7 @@ function signature_oneString_46004(){
 
 function signature_oneString_46005(){
   TYPE_CZECH_current_test_number = '46005';
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   PRE_check_oneString= (one_string) => {
     return type_czech.checkParam_type(one_string, 'string')
   }
@@ -162,7 +162,7 @@ function signature_oneString_46005(){
 
 function signature_oneString_46006(){
   TYPE_CZECH_current_test_number = '46006';
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   PRE_check_oneString= (one_string) => {
     return type_czech.checkParam_type(one_string, 'string')
   }
@@ -186,7 +186,7 @@ function signature_oneString_46006(){
 
 function signature_twoStringArray_46101(){
   TYPE_CZECH_current_test_number = '46101';
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   twoStringArray = (two_string_array) => { }
   PRE_check_twoStringArray = (two_string_array) => {
     return type_czech.checkParam_type(two_string_array, ['string', 'string'])
@@ -209,7 +209,7 @@ function signature_twoStringArray_46101(){
 
 function signature_twoStringArray_46102(){
   TYPE_CZECH_current_test_number = '46102';
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   twoStringArray = (two_string_array) => { }
   PRE_check_twoStringArray = (two_string_array) => {
     return type_czech.checkParam_type(two_string_array, ['string', 'string'])
@@ -232,7 +232,7 @@ function signature_twoStringArray_46102(){
 
 function signature_twoStringArray_46103(){
   TYPE_CZECH_current_test_number = '46103';
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   twoStringArray = (two_string_array) => { }
   PRE_check_twoStringArray = (two_string_array) => {
     return type_czech.checkParam_type(two_string_array, ['string', 'string'])
@@ -254,7 +254,7 @@ function signature_twoStringArray_46103(){
 
 function signature_twoStringArray_46104(){
   TYPE_CZECH_current_test_number = '46104';
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   twoStringArray = (two_string_array) => { }
   PRE_check_twoStringArray = (two_string_array) => {
     return type_czech.checkParam_type(two_string_array, ['string', 'string'])
@@ -276,7 +276,7 @@ function signature_twoStringArray_46104(){
 
 function signature_twoStringArray_46105(){
   TYPE_CZECH_current_test_number = '46105';
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   twoStringArray = (two_string_array) => { }
   PRE_check_twoStringArray = (two_string_array) => {
     return type_czech.checkParam_type(two_string_array, ['string', 'string'])
@@ -298,7 +298,7 @@ function signature_twoStringArray_46105(){
 
 function signature_twoStringArray_46106(){
   TYPE_CZECH_current_test_number = '46106';
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   twoStringArray = (two_string_array) => { }
   PRE_check_twoStringArray = (two_string_array) => {
     return type_czech.checkParam_type(two_string_array, ['string', 'string'])
@@ -320,7 +320,7 @@ function signature_twoStringArray_46106(){
 
 function signature_twoStringArray_46107(){
   TYPE_CZECH_current_test_number = '46107';
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   twoStringArray = (two_string_array) => { }
   PRE_check_twoStringArray = (two_string_array) => {
     return type_czech.checkParam_type(two_string_array, ['string', 'string'])
@@ -342,7 +342,7 @@ function signature_twoStringArray_46107(){
 
 function signature_twoStringArray_46108(){
   TYPE_CZECH_current_test_number = '46108';
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   twoStringArray = (two_string_array) => { }
   PRE_check_twoStringArray = (two_string_array) => {
     return type_czech.checkParam_type(two_string_array, ['string', 'string'])
@@ -367,7 +367,7 @@ function signature_twoStringArray_46108(){
 function signature_twoStrings_46201(){
   TYPE_CZECH_current_test_number = '46201';
   twoStrings = (one_string, two_string) => { }
-  type_czech = TypeCzech('THROW-EXCEPTIONS')
+  type_czech = TypeCzech('THROW-EXCEPTIONS', 'HIDE-INIT-MESSAGE')
   PRE_check_twoStrings = (one_string, two_string) => {
     return type_czech.checkParam_type([one_string, two_string], ['string', 'string'])
   }
@@ -390,7 +390,7 @@ function signature_twoStrings_46201(){
 function signature_twoStrings_46202(){
   TYPE_CZECH_current_test_number = '46202';
   twoStrings = (one_string, two_string) => { }
-  type_czech = TypeCzech('THROW-EXCEPTIONS')
+  type_czech = TypeCzech('THROW-EXCEPTIONS', 'HIDE-INIT-MESSAGE')
   PRE_check_twoStrings = (one_string, two_string) => {
     return type_czech.checkParam_type([one_string, two_string], ['string', 'string'])
   }
@@ -413,7 +413,7 @@ function signature_twoStrings_46202(){
 function signature_twoStrings_46203(){
   TYPE_CZECH_current_test_number = '46203';
   twoStrings = (one_string, two_string) => { }
-  type_czech = TypeCzech('THROW-EXCEPTIONS')
+  type_czech = TypeCzech('THROW-EXCEPTIONS', 'HIDE-INIT-MESSAGE')
   PRE_check_twoStrings = (one_string, two_string) => {
     return type_czech.checkParam_type([one_string, two_string], ['string', 'string'])
   }
@@ -435,7 +435,7 @@ function signature_twoStrings_46203(){
 function signature_twoStrings_46204(){
   TYPE_CZECH_current_test_number = '46204';
   twoStrings = (one_string, two_string) => { }
-  type_czech = TypeCzech('THROW-EXCEPTIONS')
+  type_czech = TypeCzech('THROW-EXCEPTIONS', 'HIDE-INIT-MESSAGE')
   PRE_check_twoStrings = (one_string, two_string) => {
     return type_czech.checkParam_type([one_string, two_string], ['string', 'string'])
   }
@@ -458,7 +458,7 @@ function signature_twoStrings_46204(){
 
 function signature_oneStringArray_46301(){
   TYPE_CZECH_current_test_number = '46301';
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   oneStringArray = (string_array) => { }
   PRE_check_oneStringArray = (string_array) => {
     return type_czech.checkParam_type(string_array, ['string'])
@@ -480,7 +480,7 @@ function signature_oneStringArray_46301(){
 
 function signature_oneStringArray_46302(){
   TYPE_CZECH_current_test_number = '46302';
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   oneStringArray = (string_array) => { }
   PRE_check_oneStringArray = (string_array) => {
     return type_czech.checkParam_type(string_array, ['string'])
@@ -502,10 +502,10 @@ function signature_oneStringArray_46302(){
 
 function signature_oneStringArray_46303(){
   TYPE_CZECH_current_test_number = '46303';
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   oneStringArray = (string_array) => { }
   PRE_check_oneStringArray = (string_array) => {
-    return type_czech.checkParam_type(string_array, ['string'])
+    return type_czech.checkParam_type(string_array, ['string-array'])
   }
   oneStringArray = type_czech.linkUp(oneStringArray, PRE_check_oneStringArray) 
   try {  
@@ -516,7 +516,7 @@ function signature_oneStringArray_46303(){
     was_exception = true;
   }
   if (was_exception) {
-    console.log(TYPE_CZECH_current_test_number);
+    console.log(TYPE_CZECH_current_test_number, ' test failed');
     if (typeof tested_signatures !== 'undefined') failed_signatures ++;
   }
   if (typeof tested_signatures !== 'undefined') tested_signatures ++;
@@ -524,10 +524,10 @@ function signature_oneStringArray_46303(){
 
 function signature_oneStringArray_46304(){
   TYPE_CZECH_current_test_number = '46304';
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   oneStringArray = (string_array) => { }
   PRE_check_oneStringArray = (string_array) => {
-    return type_czech.checkParam_type(string_array, ['string'])
+    return type_czech.checkParam_type(string_array, ['string-array'])
   }
   oneStringArray = type_czech.linkUp(oneStringArray, PRE_check_oneStringArray) 
   try {  
@@ -546,10 +546,10 @@ function signature_oneStringArray_46304(){
 
 function signature_oneStringArray_46305(){
   TYPE_CZECH_current_test_number = '46305';
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   oneStringArray = (string_array) => { }
   PRE_check_oneStringArray = (string_array) => {
-    return type_czech.checkParam_type(string_array, ['string'])
+    return type_czech.checkParam_type(string_array, ['string-array'])
   }
   oneStringArray = type_czech.linkUp(oneStringArray, PRE_check_oneStringArray) 
   try {  
@@ -568,7 +568,7 @@ function signature_oneStringArray_46305(){
 
 function signature_oneStringArray_46306(){
   TYPE_CZECH_current_test_number = '46306';
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   oneStringArray = (string_array) => { }
   PRE_check_oneStringArray = (string_array) => {
     return type_czech.checkParam_type(string_array, ['string'])
@@ -590,7 +590,7 @@ function signature_oneStringArray_46306(){
 
 function signature_oneStringArray_46307(){
   TYPE_CZECH_current_test_number = '46307';
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   oneStringArray = (string_array) => { }
   PRE_check_oneStringArray = (string_array) => {
     return type_czech.checkParam_type(string_array, ['string'])
@@ -612,7 +612,7 @@ function signature_oneStringArray_46307(){
 
 function signature_oneStringArray_46308(){
   TYPE_CZECH_current_test_number = '46308';
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   oneStringArray = (string_array) => { }
   PRE_check_oneStringArray = (string_array) => {
     return type_czech.checkParam_type(string_array, ['string'])
@@ -634,7 +634,7 @@ function signature_oneStringArray_46308(){
 
 function signature_oneStringArray_46309(){
   TYPE_CZECH_current_test_number = '46309';
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   oneStringArray = (string_array) => { }
   PRE_check_oneStringArray = (string_array) => {
     return type_czech.checkParam_type(string_array, ['string'])
@@ -658,7 +658,7 @@ function signature_oneStringArray_46309(){
 
 function signature_oneFilledStringArray_46401(){
   TYPE_CZECH_current_test_number = '46401';
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   oneFilledStringArray = (string_array) => { }
   PRE_check_oneFilledStringArray = (string_array) => {
     empty_string = type_czech.checkParam_empty(string_array, 'EMPTY-ERROR')
@@ -682,7 +682,7 @@ function signature_oneFilledStringArray_46401(){
 
 function signature_oneFilledStringArray_46402(){
   TYPE_CZECH_current_test_number = '46402';
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   oneFilledStringArray = (string_array) => { }
   PRE_check_oneFilledStringArray = (string_array) => {
     empty_string = type_czech.checkParam_empty(string_array, 'EMPTY-ERROR')
@@ -706,7 +706,7 @@ function signature_oneFilledStringArray_46402(){
 
 function signature_oneFilledStringArray_46403(){
   TYPE_CZECH_current_test_number = '46403';
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   oneFilledStringArray = (string_array) => { }
   PRE_check_oneFilledStringArray = (string_array) => {
     empty_string = type_czech.checkParam_empty(string_array, 'EMPTY-ERROR')

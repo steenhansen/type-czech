@@ -18,7 +18,7 @@ if (TEST_show_random) {
 
 
 function _isEmpty_10000(){
-  type_czech_test=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  type_czech_test=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   TYPE_CZECH_current_test_number = 10000;
 
   function test_isEmpty(an_arg, expected_isEmpty) {

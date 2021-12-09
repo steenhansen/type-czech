@@ -82,12 +82,12 @@ aLottery('El Gordo', [1,2,3,4,5,0], new Date('jun 14 1999'))
 El Gordo ::: 1,2,3,4,5,0 ::: Date Mon Jun 14 1999 00:00:00 GMT-0700 (Pacific Daylight Time)
 
 aLottery('Powerball', [], new Date('jun 14 1999'))
->>PRE_check_aLottery() PRE-FUNC: ELEMENT '1' is asserted to be a 'EMPTY-ERROR', but is really 'EMPTY' : []
->>                       CHECKER checkArgs_emptyVariadic()
->>                  ACTUAL TYPES ['string','array','date']
->>                        VALUES ["Powerball",[],1999-06-14T07:00:00.000Z]
->>               EMPTY ASSERTION ['EMPTY-ERROR']
->>                      ORIGIN aLottery(lottery_name, lucky_numbers, draw_date)
+>>PRE_check_aLottery() PRE-FUNC: Empty array has no types
+>>         CHECKER checkParam_type()
+>>     ACTUAL TYPE ['string','array','date']
+>>          VALUES ["Powerball",[],1999-06-14T07:00:00.000Z]
+>>   EXPECTED TYPE ["string",["number"],"date"]
+>>          ORIGIN aLottery(lottery_name, lucky_numbers, draw_date)
 Powerball ::: ::: Date Mon Jun 14 1999 00:00:00 GMT-0700 (Pacific Daylight Time)
 
 aLottery('', [1,2,3,4,5,26], new Date('Dec 31 1999'))
@@ -180,13 +180,17 @@ yourFunction(1, 'two')
 <b>So basically linkUp() and isActive() are the only two TypeCzech functions that are always safe to call.</b>
 As long as the below construct is used, regardless of whether or not TypeCzech.js has been loaded. Thus enveloping all TypeCzech calls with linkUp() and isActive() will ensure no reference errors are caused when TypeCzech is turned on or off by not loading the TypeCzech.js file.
 ```
- if (typeof TypeCzech === 'function')
-   type_czech = TypeCzech('THROW-EXCEPTIONS')
- else
-   type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
+function aFunction(){ }
+function before_aFunction(){ }
+function after_aFunction(){ }
 
- type_czech.linkUp(aFunction, PRE_check_aFunction, POST_check_aFunction)
- type_czech.isActive()
+if (typeof TypeCzech === 'function')
+  type_czech = TypeCzech('THROW-EXCEPTIONS')
+else
+  type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
+
+type_czech.linkUp(aFunction, before_aFunction, after_aFunction)
+type_czech.isActive()
 ```
 
 ### The Recipe
@@ -211,12 +215,12 @@ function yourFunc(param_1, param_2, param_3){
   return function_result
 }
 
-fetch(some_url)
+fetch('https://get.geojs.io')
 .then(response_value => {
   if (type_czech.isActive()) {
     /* C. TypeCzech functions rarely show up here, but check_assert() is used to deliver errors */
     type_err = type_czech.checkParam_type(response_value, 'array')
-    type_czech.check_assert(type_err, 'ERROR IS HERE', response_value, expected_error) // report type error if any
+    type_czech.check_assert(type_err, 'ERROR IS HERE', response_value, 'expected-error') // report type error if any
   }
 })
 ```
@@ -253,24 +257,29 @@ if (typeof linkUp_typeCzech === 'function') {
 Because JavaScript does not completely hoist classes there is no example #104. 
 
 
+### [Type Signatures](./read-mes/signatures-type.md)
+Checking function parameters for correct types such as numbers and arrays.
 
-### [Type Signatures](./read-mes/type-signatures.md)
+  
+### [Empty Signatures](./read-mes/signatures-empty.md)
+Testing function parameters for valuelessness errors.
 
-### [Arrays of Arrays](./read-mes/arrays-of-arrays.md)
-
-
-### [67 Page Live Editable Tutorial on JSFiddle](https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Contents)
+### [67 Page Live Online Editable Tutorial](https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Contents)
+All the examples run on JsFiddle.
 
 ### [16 Simple How To Snippets](./read-mes/simple-howto.md)
+Getting started examples.
 
 ### [TypeCzech API](./read-mes/api-list.md)
+The public functions that check function parameter types.
 
 
-
-### [67 Page Local Browsable Tutorial](./example-snippets/example-contents.html)
+### [67 Page Local Editable Tutorial](./example-snippets/example-contents.html)
+All the examples on local browser.
 
 
 ### [Node.js and PHP Examples](./read-mes/run-examples.md)
+
 
 
 ### [Browser and Node.js Tests](./read-mes/test-suites.md)

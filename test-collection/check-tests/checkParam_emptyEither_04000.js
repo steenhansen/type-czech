@@ -17,7 +17,7 @@ if (TEST_show_random) {
 
 /////////////////////
 function checkParam_emptyEither_04000(){
-  type_czech = TypeCzech('NO-ERROR-MESSAGES');   ///'LOG-ERRORS'
+  type_czech = TypeCzech('NO-ERROR-MESSAGES', 'HIDE-INIT-MESSAGE');   ///'LOG-ERRORS'
   function A_PRE_check_yourFunc(a_var) {
     var actual_error = type_czech.checkParam_emptyEither(a_var, ['EMPTY-ERROR', 'EMPTY-OK']);
     return actual_error;
@@ -76,7 +76,7 @@ function checkParam_emptyEither_04001(){
   var type_b = {x:"EMPTY-OK", y:{z:"EMPTY-ERROR"}};
   var check_shape =  [type_a, type_b];         
   var expect_error =  '';
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.checkParam_emptyEither(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);

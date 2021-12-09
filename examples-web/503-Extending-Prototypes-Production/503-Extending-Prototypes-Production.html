@@ -3,13 +3,13 @@
 
 
   
-<div id='js-div' style="width:51%; " class='code-scroll'>
+<div id='js-div' style="width:53%; " class='code-scroll'>
   <a href='https://github.com/steenhansen/type-czech' class='git-hub'>GitHub Package</a>
   <div id='js-code'>the javascript</div>
 </div>
 
 
-<div id="the-explanation" style="width:49%" >
+<div id="the-explanation" style="width:47%" >
   <div class='an-explantion'>503 - Inherited Prototypes Production</div>
   <div id='explanation-text'>
    
@@ -47,7 +47,6 @@
   <div id="console-log"  >
     <div class='a-title'>Console Output</div>
     <div id='log-text'></div>
-    <br>
 
 
   </div>
@@ -61,6 +60,16 @@
 <script src="../../web-resources/consolelog.js"></script>
 <script src="../../web-resources/ordered-import.js"></script>
 <link rel="stylesheet" href="../../web-resources/type-czech.css">
+
+<script>
+  const TYPE_CZECH_JS =  '../../TypeCzech.js';
+  const TC_FIRST_JS = './TypeCzech_First.js';
+  const TC_LAST_JS = './TypeCzech_Last.js';
+  const TC_FULL_JS =   './TypeCzech_Full.js';
+  const TC_PERSON_JS =   './TypeCzech_Person.js';
+  </script>
+
+
 <!--            -------------TYPE 2-----------------------------       -->
 <div id='js-fiddles'>
   <a title="Example-Contents" href="../../example-snippets/example-contents.html">Contents</a>
@@ -290,18 +299,17 @@ function Full(salu) {
     return a_book
   }
   this.showName = function() {
-      const the_name = `${this.salu} ${this.f_name} ${this.l_name}`
-      console.log('Name: ', the_name)
+      return `${this.salu} ${this.f_name} ${this.l_name}`
     };
 }
 
 function Person(salu, f_name, l_name){
   log(LEVEL_3+`CONS-Person :${salu} ${f_name} ${l_name}`)
+  Last.prototype = new First(f_name)
+  Last.prototype.constructor = Last;
+  Full.prototype = new Last(l_name)
+  Full.prototype.constructor = Full;
   person_full = new Full(salu)
-  person_last = new Last(l_name)
-  person_first = new First(f_name)
-  Object.setPrototypeOf(person_full, person_last)
-  Object.setPrototypeOf(person_last, person_first)
   return person_full
 }
 
@@ -317,8 +325,19 @@ onLoaded = ([_loaded_files, _import_errors]) => {
   mary_shelley.lastMethod(1931)
   linesConsole(1)
   mary_shelley.fullMethod('Frankenstein')
-  linesConsole(1)
-  mary_shelley.showName()
+
+  linesConsole(2)
+
+/**/  function PRE_check_printFullFunc(a_person){
+/**/    return type_czech.checkParam_type(a_person, 'Full')
+/**/  }
+/**/  printFullFunc = type_czech.linkUp(printFullFunc, PRE_check_printFullFunc)
+
+  function printFullFunc(a_person) {
+    log('From Checked Function : ', a_person.showName())
+  }
+
+  printFullFunc(mary_shelley)
   copyAndColor()
 }
 
@@ -327,11 +346,12 @@ onLoaded = ([_loaded_files, _import_errors]) => {
 /**/
 /**/  if (typeof orderedImport === 'function' && TYPE_CZECH_START) {
 /**/    TYPE_CZECH_COMMANDS = ['LOG-ERRORS']
-/**/    const CHECKING_CLASS_FILES = ['../../TypeCzech.js',
-/**/                                  './TypeCzech_First.js',
-/**/                                  './TypeCzech_Last.js',
-/**/                                  './TypeCzech_Full.js', 
-/**/                                  './TypeCzech_Person.js' ]
+/**/    const CHECKING_CLASS_FILES = [
+/**/          TYPE_CZECH_JS,
+/**/          TC_FIRST_JS,
+/**/          TC_LAST_JS,
+/**/          TC_FULL_JS,
+/**/          TC_PERSON_JS  ]
 /**/    orderedImport(CHECKING_CLASS_FILES, onLoaded)
 /**/  } else {
   onLoaded([], [])

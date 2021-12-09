@@ -5,7 +5,9 @@
 <script src="../TypeCzech.js">
 </script>
 
-
+<script>
+       type_czech = TypeCzech('LOG-ERRORS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE'); 
+</script>
 This exists to cut and paste tests and examples into the console to execute them.
 <br><br>
 You must supply your own TypeCzech variable for exceptions or console logging
@@ -13,7 +15,7 @@ You must supply your own TypeCzech variable for exceptions or console logging
 For Example: 
 <br><br>
 
-&nbsp;&nbsp;&nbsp;&nbsp; type_czech = TypeCzech('LOG-ERRORS', 'DEBUG-ERROR-TAGS');
+&nbsp;&nbsp;&nbsp;&nbsp; type_czech = TypeCzech('LOG-ERRORS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
 <br><br>
 
 &nbsp;&nbsp;&nbsp;&nbsp; type_czech.checkParam_type('a-string', 'number');

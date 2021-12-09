@@ -15,7 +15,7 @@ if (TEST_show_random) {
 }
 
 function _eitherChecks_31001(){
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS'
+  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE'
   //, 'DEBUG-CONSOLE-TRACE'
   );
   check_object =  [1, [2]];  

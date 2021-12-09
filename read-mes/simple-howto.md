@@ -179,11 +179,10 @@ else
     function arrOfNumArr(arr_num_arrs){
     }
 
-    arr_0 = []
     arr_1 = [1]
     arr_2 = [2,2]
     arr_3 = [3,3,3]
-    array_array =[ arr_0, arr_1, arr_2, arr_3]
+    array_array =[ arr_1, arr_2, arr_3 ]
 
     arrOfNumArr(array_array) // pass
 

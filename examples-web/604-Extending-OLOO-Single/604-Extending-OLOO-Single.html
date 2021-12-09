@@ -4,7 +4,7 @@
 
 
   
-<div id='js-div' style="width:59%;">
+<div id='js-div' style="width:59%;"  class='code-scroll'>
   <a href='https://github.com/steenhansen/type-czech' class='git-hub'>GitHub Package</a>
   <div id='js-code'>the javascript</div>
   <br>
@@ -334,8 +334,20 @@ margaret_atwood = Full('Ms.', 'Margaret', 'Atwood')
 margaret_atwood.firstMethod( new Date(1985,1,1))
 margaret_atwood.lastMethod(1987)
 margaret_atwood.fullMethod("The Handmaid's Tale")
+
 linesConsole(2)
-console.log( margaret_atwood.showName() )
+
+/**/  function PRE_check_printFullFunc(a_person){
+/**/    the_interface = {showName:'f', fullMethod:'f', firstMethod:'f', lastMethod:'f'}
+/**/    return type_czech.check_interface(a_person, the_interface)
+/**/  }
+/**/  printFullFunc = type_czech.linkUp(printFullFunc, PRE_check_printFullFunc)
+
+function printFullFunc(a_person) {
+  log('From Checked Function : ', a_person.showName())
+}
+
+printFullFunc(margaret_atwood)
 </script>
 
 

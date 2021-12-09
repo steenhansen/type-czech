@@ -23,7 +23,7 @@ if (TEST_show_random) {
 
 
 function _isCollection_10000(){
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   TYPE_CZECH_current_test_number = 10000;
 
   function test_isCollection(an_arg, expected_json) {

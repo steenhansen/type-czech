@@ -89,6 +89,18 @@
 <script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/consolelog.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/ordered-import.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/type-czech.css">
+
+<script>
+const TYPE_CZECH_JS =  'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/TypeCzech.min.js';
+const FIRST_JS = 'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/examples-web/102-Extending-Classes-Imports/First.js';
+const LAST_JS = 'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/examples-web/102-Extending-Classes-Imports/Last.js';
+const FULL_JS =   'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/examples-web/102-Extending-Classes-Imports/Full.js';
+
+const TC_FIRST_JS = 'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/examples-web/102-Extending-Classes-Imports/TypeCzech_First.js';
+const TC_LAST_JS = 'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/examples-web/102-Extending-Classes-Imports/TypeCzech_Last.js';
+const TC_FULL_JS =   'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/examples-web/102-Extending-Classes-Imports/TypeCzech_Full.js';
+</script>
+
 <!--            --------------TYPE 2----------------------------       -->
 <div id='js-fiddles'>
   <a title="Example-Contents" href="https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Contents" target="_blank">Contents</a>
@@ -294,25 +306,22 @@ function copyAndColor(){
 
 <script>
   log = captureConsole("log-text");
-  
-  const TYPE_CZECH_JS =  'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/TypeCzech.min.js';
-  const FIRST_JS = 'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/examples-web/102-Extending-Classes-Imports/First.js';
-  const LAST_JS = 'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/examples-web/102-Extending-Classes-Imports/Last.js';
-  const FULL_JS =   'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/examples-web/102-Extending-Classes-Imports/Full.js';
-
-  const TC_FIRST_JS = 'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/examples-web/102-Extending-Classes-Imports/TypeCzech_First.js';
-  const TC_LAST_JS = 'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/examples-web/102-Extending-Classes-Imports/TypeCzech_Last.js';
-  const TC_FULL_JS =   'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/examples-web/102-Extending-Classes-Imports/TypeCzech_Full.js';
 </script>
 
 <script  id="check-code">
 /**/  const CHECKING_CLASS_FILES = [
-/**/    TYPE_CZECH_JS, FIRST_JS, TC_FIRST_JS,
-/**/                   LAST_JS, TC_LAST_JS,
-/**/                   FULL_JS, TC_FULL_JS ]
+/**/    TYPE_CZECH_JS, 
+/**/    FIRST_JS,
+/**/    TC_FIRST_JS,
+/**/    LAST_JS,
+/**/    TC_LAST_JS,
+/**/    FULL_JS,
+/**/    TC_FULL_JS ]
 
 const NOT_CHECKING_CLASS_FILES = [
-  FIRST_JS, LAST_JS, FULL_JS ]
+  FIRST_JS, 
+  LAST_JS, 
+  FULL_JS ]
 
 /**/  TYPE_CZECH_START = true
 /**/  //TYPE_CZECH_START = false

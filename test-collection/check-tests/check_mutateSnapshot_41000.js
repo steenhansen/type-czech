@@ -10,7 +10,7 @@
 /* eslint-disable max-len */
 
 function test_pre_check_mutateSnapshot(parameters_array, signature_of_parameters, error_id, expected_error) {
-  const type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  const type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   tested_checkArgs_typeVariadic_41000 += 1;
 
   function PRE_test_41000(a_var) {
@@ -54,7 +54,7 @@ tested_checkArgs_typeVariadic_41000 = 0;
 failed_checkArgs_typeVariadic_41000 = 0;
 
 //////////////////////////////////////////
-type_czech = TypeCzech('LOG-ERRORS')   // 'NO-ERROR-MESSAGES')               /// NOT SURE ....
+type_czech = TypeCzech('LOG-ERRORS', 'HIDE-INIT-MESSAGE')   // 'NO-ERROR-MESSAGES')               /// NOT SURE ....
 fail_count = 0
 function A_PRE_check_yourFunc(the_arg) {
   try {
@@ -112,7 +112,7 @@ TEST_total_checks += expectedAndFailedTests(32, 32, 'A-Fail', '_check_mutatedSna
 ### B. check_mutatedSnapshot() fail from extra element in array or object
 */
 
-type_czech = TypeCzech('NO-ERROR-MESSAGES');                 // 'LOG-ERRORS'
+type_czech = TypeCzech('NO-ERROR-MESSAGES', 'HIDE-INIT-MESSAGE');                 // 'LOG-ERRORS'
 function B_PRE_check_yourFunc(b_collection) {
    type_czech.check_buildSnapshot('B_PRE_check_yourFunc', 'b_collection', b_collection);
   }
@@ -146,7 +146,7 @@ function B_yourFunc(b_collection, change_function){
 ### C. check_mutatedSnapshot() fail from recursive calls
 */
 
-type_czech = TypeCzech('NO-ERROR-MESSAGES')
+type_czech = TypeCzech('NO-ERROR-MESSAGES', 'HIDE-INIT-MESSAGE')
 function C_PRE_check_recurseArr(growing_array){
   return type_czech.check_buildSnapshot('C_PRE_check_recurseArr', 'growing_array', growing_array)
 }
@@ -192,7 +192,7 @@ else
 ### D. check_mutatedSnapshot() fail from extra error-param
 */
 
-type_czech = TypeCzech('LOG-ERRORS')
+type_czech = TypeCzech('LOG-ERRORS', 'HIDE-INIT-MESSAGE')
 function D_PRE_check_yourFunc(b_collection) {
   return type_czech.check_buildSnapshot('D_PRE_check_yourFunc', 'b_collection', b_collection)
 }

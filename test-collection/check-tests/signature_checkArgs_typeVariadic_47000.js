@@ -4,9 +4,9 @@ tested_signatures = 0;
 failed_signatures = 0;
 
 
-signature_stringParameters_47001();
-signature_stringParameters_47002();
-signature_stringParameters_47003();
+ signature_stringParameters_47001();
+ signature_stringParameters_47002();
+ signature_stringParameters_47003();
 signature_stringParameters_47004();
 signature_stringParameters_47005();
 
@@ -26,7 +26,7 @@ if (TEST_show_random) {
 
 function signature_stringParameters_47001(){
   TYPE_CZECH_current_test_number = '47001';
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   stringParameters= () => { }
   function PRE_check_stringParameters(){
     return type_czech.checkArgs_typeVariadic(arguments, ['string'])
@@ -49,7 +49,7 @@ function signature_stringParameters_47001(){
 
 function signature_stringParameters_47002(){
   TYPE_CZECH_current_test_number = '47002';
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   stringParameters= () => { }
   function PRE_check_stringParameters(){
     return type_czech.checkArgs_typeVariadic(arguments, ['string'])
@@ -72,10 +72,10 @@ function signature_stringParameters_47002(){
 
 function signature_stringParameters_47003(){
   TYPE_CZECH_current_test_number = '47003';
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   stringParameters= () => { }
   function PRE_check_stringParameters(){
-    return type_czech.checkArgs_typeVariadic(arguments, ['string'])
+    return type_czech.checkArgs_typeVariadic(arguments, ['string-array'])
   }
   stringParameters = type_czech.linkUp(stringParameters, PRE_check_stringParameters) 
   try {  
@@ -94,10 +94,10 @@ function signature_stringParameters_47003(){
 
 function signature_stringParameters_47004(){
   TYPE_CZECH_current_test_number = '47004';
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   stringParameters= () => { }
   function PRE_check_stringParameters(){
-    return type_czech.checkArgs_typeVariadic(arguments, ['string'])
+    return type_czech.checkArgs_typeVariadic(arguments, ['string-array'])
   }
   stringParameters = type_czech.linkUp(stringParameters, PRE_check_stringParameters) 
   try {  
@@ -116,10 +116,10 @@ function signature_stringParameters_47004(){
 
 function signature_stringParameters_47005(){
   TYPE_CZECH_current_test_number = '47005';
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   stringParameters= () => { }
   function PRE_check_stringParameters(){
-    return type_czech.checkArgs_typeVariadic(arguments, ['string'])
+    return type_czech.checkArgs_typeVariadic(arguments, ['string-array'])
   }
   stringParameters = type_czech.linkUp(stringParameters, PRE_check_stringParameters) 
   try {  

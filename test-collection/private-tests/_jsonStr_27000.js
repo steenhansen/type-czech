@@ -16,7 +16,7 @@ if (TEST_show_random) {
 }
 
 function _jsonStr_27000(){
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   TYPE_CZECH_current_test_number = 27000;
 
   function test_jsonStr(an_arg, expected_json) {

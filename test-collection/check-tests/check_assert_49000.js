@@ -18,7 +18,7 @@ if (TEST_show_random) {
 
 function signature_check_assert_49001(){
   TYPE_CZECH_current_test_number = '49001';
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   error_mess= "a-clarifying-error-message"
   err_call =  "myBadFunction()"
   actual_value = {"the-causal":"error-value"}
@@ -57,7 +57,7 @@ ACTUAL TYPE 'object'
 
 function signature_check_assert_49002(){
   TYPE_CZECH_current_test_number = '49002';
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   error_mess=type_czech.checkParam_typeEither(false,['number','string'])
   err_call = 'thirdParty call'
   actual_value = false

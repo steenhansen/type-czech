@@ -270,7 +270,7 @@ func2([8, 'fail', 'fail', 'fail', 'fail'])
 /**/  }
 /**/  
 /**/  function POST_check_Person(person_arr){
-/**/    return type_czech.checkParam_typeExtra(person_arr, ['string','string'])
+/**/    return type_czech.checkParam_typeExtra(person_arr,['string','string'])
 /**/  }
 /**/  
 /**/  Person = type_czech.linkUp(Person, PRE_check_Person, POST_check_Person)
@@ -310,7 +310,7 @@ linesConsole(1)
 
 
 mc_enroe = Person({f_name:'John', l_name:'McEnroe',
-                  extra_1: 'Angry', extra_2: 1959, extra_3: 'vs. Bjorn Borg'})
+            extra_1: 'Angry', extra_2: 1959, extra_3: 'vs. Bjorn Borg'})
 log(mc_enroe)
 </script>
 

@@ -16,7 +16,7 @@ if (TEST_show_random) {
 ///////////////
 
 function _aTypeOf_09000(){
-  type_czech_test=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  type_czech_test=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   TYPE_CZECH_current_test_number = 9000;
 
   function test_aTypeOf(an_arg, expected_aTypeOf) {

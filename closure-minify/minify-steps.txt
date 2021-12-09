@@ -9,7 +9,7 @@
 minify:
   1. change version date
 
-  1  remove debugging code 194 instances        consolelog[^;]*;   ==> ''
+  1  remove debugging code 226 instances        consolelog[^;]*;   ==> ''
 
   2  save as TypeCzech.no-debug.js
 

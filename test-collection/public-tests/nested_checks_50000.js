@@ -23,7 +23,7 @@ if (TEST_show_random) {
 
 function nested_checks_50001(NO_ERROR){
   TYPE_CZECH_current_test_number = 50001;
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
                 function level_333(param_c){ }
                 function PRE_check_level_333(param_c) {
                   return type_czech.checkParam_type(param_c, 'date')
@@ -59,7 +59,7 @@ function nested_checks_50001(NO_ERROR){
 
 function nested_checks_50002(LEVEL_111_ERROR__123n){
   TYPE_CZECH_current_test_number = 50002;
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
                     function level_333(param_c){ }
                     function PRE_check_level_333(param_c) {
                       return type_czech.checkParam_typeExtra(param_c, 'date')
@@ -109,7 +109,7 @@ EXPECTED TYPE number
 
 function nested_checks_50003(LEVEL_222_ERROR__123n){
   TYPE_CZECH_current_test_number = 50003;
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS' );
+  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE' );
                     function level_333(param_c){ }
                     function PRE_check_level_333(param_c) {
                       return type_czech.checkParam_typeExtra(param_c, 'date')
@@ -163,7 +163,7 @@ EXPECTED TYPE ["boolean","symbol"]
 
 function nested_checks_50004(LEVEL_333_ERROR__123n){
   TYPE_CZECH_current_test_number = 50004;
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS' );
+  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
                     function level_333(param_c){ }
                     function PRE_check_level_333(param_c) {
                       return type_czech.checkParam_typeExtra(param_c, 'date')    // 123n ERROR 

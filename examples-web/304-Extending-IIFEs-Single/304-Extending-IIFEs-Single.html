@@ -4,7 +4,7 @@
 
 
   
-<div id='js-div' style="width:45%; ">
+<div id='js-div' style="width:56%; " class='code-scroll'>
   <a href='https://github.com/steenhansen/type-czech' class='git-hub'>GitHub Package</a>
   <div id='js-code'>the javascript</div>
   <br>
@@ -16,7 +16,7 @@
 </div>
 
 
-<div id="the-explanation" style="width:55%">
+<div id="the-explanation" style="width:44%">
   <div class='an-explantion'>304 - Extending IIFEs Single</div>
   <div id='explanation-text'>
     <br>
@@ -346,7 +346,19 @@ pkd.lastMethod(1985)
 linesConsole(1)
 pkd.fullMethod('The Man in the High Castle')
 linesConsole(2)
-log( pkd.showName() )
+
+/**/  function PRE_check_printFullFunc(a_person){
+/**/    the_interface = {showName:'f', fullMethod:'f', 
+/**/                     firstMethod:'f', lastMethod:'f'}
+/**/    return type_czech.check_interface(a_person, the_interface)
+/**/  }
+/**/  printFullFunc = type_czech.linkUp(printFullFunc, PRE_check_printFullFunc)
+
+  function printFullFunc(a_person) {
+    log('From Checked Function : ', a_person.showName())
+  }
+
+  printFullFunc(pkd)
 </script>
 
 

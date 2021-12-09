@@ -22,7 +22,7 @@ function _ParametersCheck_13001(){
   get_out_of_scope_err = _ => {
     function type_czech_function(){}
     try{
-      var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+      var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
       var your_function = type_czech_test.linkUp(your_function, type_czech_function);
     }catch(out_of_scope_exception){ 
       return out_of_scope_exception;

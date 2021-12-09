@@ -1,5 +1,35 @@
 
-## Arrays of Arrays:
+## Array Type Signatures:
+
+Scalar Arrays
+    simple, one,two,three,four
+    Array of Mixed Types ['string', 'number', 'boolean']
+
+Arrays of One Type
+  Array of One Type : ['string-array']
+
+
+
+Arrays of Arrays
+  Array of Arrays : ['array-array']
+
+multi-level Arrays : [ ['number-array'], 'array', 'array-array']
+signature_1/signature_2/signature_3
+
+Variadic
+  variadic type scalars + arrays
+  variadic empty scalers + arrays
+
+
+
+
+
+
+
+
+
+
+
 
 Note that for brevity's sake these examples do not have the on/off construct of:
 ```
@@ -69,7 +99,7 @@ else
     /**/  type_czech = TypeCzech('THROW-EXCEPTIONS')
     /**/  
     /**/  function PRE_check_oneNumArray(num_array){
-    /**/    return type_czech.checkParam_type(num_array, ['number'])
+    /**/    return type_czech.checkParam_type(num_array, ['number-array'])
     /**/  }
     /**/  
     /**/  oneNumArray = type_czech.linkUp(oneNumArray, PRE_check_oneNumArray) 
@@ -91,7 +121,7 @@ else
     /**/  type_czech = TypeCzech('THROW-EXCEPTIONS')
     /**/  
     /**/  function PRE_check_varyNumArray(){
-    /**/    return type_czech.checkArgs_typeVariadic(arguments, ['array'])
+    /**/    return type_czech.checkArgs_typeVariadic(arguments, ['array-array'])
     /**/  }
     /**/  
     /**/  varyNumArray = type_czech.linkUp(varyNumArray, PRE_check_varyNumArray) 
@@ -115,15 +145,15 @@ else
     /**/  type_czech = TypeCzech('THROW-EXCEPTIONS')
     /**/  
     /**/  function PRE_check_varyArrayArray(){
-    /**/    return type_czech.checkArgs_typeVariadic(arguments, [['number']])
+    /**/    return type_czech.checkArgs_typeVariadic(arguments, ['number-array'])
     /**/  }
     /**/  
     /**/  varyArrayArray = type_czech.linkUp(varyArrayArray, PRE_check_varyArrayArray) 
 
     function varyArrayArray(){ }
 
-    varyArrayArray([1])        // pass
-    varyArrayArray([2], [345]) // pass
+    varyArrayArray(1,2,3)        // pass  this works
+    varyArrayArray([2], [345]) // fail, 
 
     varyArrayArray([9], [8], [true]) // fail - true is not a number
     varyArrayArray('a-string')       // fail - not an array

@@ -9,7 +9,7 @@
 /* eslint-disable max-len */
 
 function test_pre_checkParam_typeEither_multi(parameters_array, signature_of_parameters, error_id, expected_error) {
-  const type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  const type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   tested_checkParam_typeEither_07800 += 1;
 
   function PRE_test_07800(a_var) {
@@ -61,7 +61,8 @@ test_pre_checkParam_typeEither_multi(multi_variable, multi_signature, 7801, erro
 
 multi_variable  = [ 12, [] ];
 multi_signature = [ [ 'number', 'boolean'], [ 'symbol', 'string'] ];
-error_mess = `PRE_test_07800() PRE-FUNC: TE@214 -  ELEMENT '1' is assumed to be a 'boolean', but is mistakenly a 'array', TE@214 -  ELEMENT '0' is assumed to be a 'symbol', but is mistakenly a 'number'
+error_mess = `PRE_test_07800() PRE-FUNC: TE@214 -  ELEMENT '1' is assumed to be a 'boolean', but is mistakenly a 'array' with a value of [], 
+                                         TE@214 -  ELEMENT '0' is assumed to be a 'symbol', but is mistakenly a 'number' with a value of 12
 CHECKER checkParam_typeEither()
 ACTUAL TYPE 'array'
  VALUES [12,[]]
@@ -106,7 +107,9 @@ test_pre_checkParam_typeEither_multi(multi_variable, multi_signature, 7807, erro
 
 multi_variable  = [false, false];
 multi_signature = [ [ 'number', 'string'], [ 'string', 'number'] ];
-error_mess = `PRE_test_07800() PRE-FUNC: TE@214 -  ELEMENT '0' is assumed to be a 'number', but is mistakenly a 'boolean', TE@214 -  ELEMENT '0' is assumed to be a 'string', but is mistakenly a 'boolean'
+
+error_mess = `PRE_test_07800() PRE-FUNC: TE@214 -  ELEMENT '0' is assumed to be a 'number', but is mistakenly a 'boolean' with a value of false, 
+                                         TE@214 -  ELEMENT '0' is assumed to be a 'string', but is mistakenly a 'boolean' with a value of false
 CHECKER checkParam_typeEither()
 ACTUAL TYPE 'array'
  VALUES [false,false]
@@ -116,7 +119,8 @@ test_pre_checkParam_typeEither_multi(multi_variable, multi_signature, 7808, erro
 
 multi_variable  = ['a-string', null];
 multi_signature = [ ['string', 'string'], ['number', 'number'] ];
-error_mess = `PRE_test_07800() PRE-FUNC: TE@214 -  ELEMENT '1' is assumed to be a 'string', but is mistakenly a 'null', TE@214 -  ELEMENT '0' is assumed to be a 'number', but is mistakenly a 'string'
+error_mess = `PRE_test_07800() PRE-FUNC: TE@237 -  ELEMENT '1' is assumed to be a 'string', but is mistakenly a 'null', 
+                                         TE@214 -  ELEMENT '0' is assumed to be a 'number', but is mistakenly a 'string' with a value of a-string
 CHECKER checkParam_typeEither()
 ACTUAL TYPE 'array'
  VALUES ["a-string",null]
@@ -180,12 +184,12 @@ error_mess = '';
 test_pre_checkParam_typeEither_multi(multi_variable, multi_signature, 7814, error_mess);
 
 multi_variable  = [1, 2, 3, 4];
-multi_signature = [ ['number'], ['string'] ];
+multi_signature = [ ['number-array'], ['string'] ];
 error_mess = '';
 test_pre_checkParam_typeEither_multi(multi_variable, multi_signature, 7815, error_mess);
 
 multi_variable  = ['a', 'b', 'c'];
-multi_signature = [ ['number'], ['string'] ];
+multi_signature = [ ['number'], ['string-array'] ];
 error_mess = '';
 test_pre_checkParam_typeEither_multi(multi_variable, multi_signature, 7816, error_mess);
 

@@ -11,8 +11,7 @@ function Full() {
         return 'Full'
       },
       showName() {
-        const the_name = `${salu} ${f_name} ${l_name}`
-        console.log('Name: ', the_name)
+        return `${salu} ${f_name} ${l_name}`
       },
     }
     last = Last(f_name, l_name) 

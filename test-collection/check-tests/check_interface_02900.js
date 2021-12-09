@@ -9,7 +9,7 @@
 /* eslint-disable max-len */
 
 function test_pre_check_interface(actual_variable, variable_signature, error_id, expected_error) {
-  const type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  const type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   tested_check_interface_02900 += 1;
 
   function PRE_test_02900(a_var) {

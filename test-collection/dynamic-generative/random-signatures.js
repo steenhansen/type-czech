@@ -2,7 +2,7 @@
 
 //  node --trace-uncaught test-signatures-node.js
 
-const type_czech_test = TypeCzech('THROW-EXCEPTIONS');
+const type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'HIDE-INIT-MESSAGE');
 const change_tree = changeTree();
 
 let  { treeAsArguments, noMergetreeType, mergeTreeType, 

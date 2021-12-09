@@ -58,7 +58,7 @@ oneArray({a:1}) // fail - object not an array
     
 ```
 function PRE_check_oneArray(an_array){
-  return type_czech.checkParam_type(an_array, ['number'])
+  return type_czech.checkParam_type(an_array, ['number-array'])
 }
 
 type_czech = TypeCzech('THROW-EXCEPTIONS')

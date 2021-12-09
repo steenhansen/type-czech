@@ -4,8 +4,8 @@
 tested_shapeErrorMess = 0;
 failed_shapeErrorMess = 0;
 
-_shapeErrorMess_18001();
-_shapeErrorMess_18002();
+//_shapeErrorMess_18001();
+//_shapeErrorMess_18002();              // need to read
 
 TEST_total_fails += failed_shapeErrorMess;
 TEST_total_checks += tested_shapeErrorMess;
@@ -20,11 +20,11 @@ if (TEST_show_random) {
 
 function _shapeErrorMess_18001(){
   var TYPE_CZECH_current_test_number = '18001';       
-  var check_array = [ [11], [13], [17], [19] ]; 
-  var object_type =   ["number"];   
+  var check_array = [ [11],             [13],             [17],             [19] ]; 
+  var object_type = [ ["number-array"], ["number-array"], ["number-array"], ["number-array"]];   
   var exact_shape = 'TYPE-VERIFY';     
-  var expect_error =   `TE@221 - Element '0' is supposed to be a '11', but is missing : ["number"]`; 
-        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  var expect_error =   `TE@221 - Element '1' is supposed to be a '13', but is missing : ["number"]`; 
+        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_array, object_type);
         var actual_error = type_czech_test._shapeErrorMess(check_array, object_type, exact_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_array, object_type, before_str, TYPE_CZECH_current_test_number);
@@ -40,12 +40,12 @@ function _shapeErrorMess_18001(){
 }
 
 function _shapeErrorMess_18002(){
-  var TYPE_CZECH_current_test_number = '20004';       
+  var TYPE_CZECH_current_test_number = '180002';       
   var check_array = [ [11], [13], [17], [19] ]; 
   var object_type =   ["number"];   
   var exact_shape = 'TYPE-EXTRAS';     
-  var expect_error =   `TE@221 - Element '0' is supposed to be a '11', but is missing : ["number"]`; 
-        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  var expect_error =   `TE@221 - Element '1' is supposed to be a '13', but is missing : ["number"]`; 
+        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_array, object_type);
         var actual_error = type_czech_test._shapeErrorMess(check_array, object_type, exact_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_array, object_type, before_str, TYPE_CZECH_current_test_number);

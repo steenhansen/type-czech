@@ -16,7 +16,7 @@ if (TEST_show_random) {
 }
 
 function _toStr_27001(){
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   TYPE_CZECH_current_test_number = '27001';
 
   function test_toStr(an_arg, expected_str) {

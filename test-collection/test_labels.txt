@@ -53,6 +53,9 @@ Type Errors:
   TE@234 checkParam_typeExtra(params, ['number']) is illegal
     TE@234 checkParam_emptyExtra(params, ['EMPTY-ERROR']) is prohibited
   TE@236 Empty Parameter array
+  TE@237 wrong type is null or undefined
+
+
 
 Empty Errors:
   EE@301 an empty variable that is an error

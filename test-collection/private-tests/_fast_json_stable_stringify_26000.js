@@ -17,7 +17,7 @@ if (TEST_show_random) {
 }
 
 function _fast_json_stable_stringify_26001(){
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS'
+  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE'
   //, 'DEBUG-CONSOLE-TRACE'
   );
   TYPE_CZECH_current_test_number = '26001';
@@ -72,7 +72,7 @@ function _fast_json_stable_stringify_26001(){
 
 
 function _fast_json_stable_stringify_26002(){
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS'
+  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE'
   //, 'DEBUG-CONSOLE-TRACE'
   );
   TYPE_CZECH_current_test_number = '26002';

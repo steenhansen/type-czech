@@ -4,7 +4,7 @@ function TypeCzech_First() {
   if (type_czech.isActive()) {
 
     function PRE_check_First(f_name){
-      log(NL2+'PRE -First') 
+      log(NL1+'PRE -First') 
       type_issue = type_czech.checkParam_type(f_name, 'string')
       if (type_issue) return type_issue;
       return type_czech.checkParam_empty(f_name, 'EMPTY-ERROR');

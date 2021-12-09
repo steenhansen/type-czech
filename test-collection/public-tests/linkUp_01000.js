@@ -22,7 +22,7 @@ if (TEST_show_random) {
 
 function link_01000(){
 
-  type_czech = TypeCzech('NO-ERROR-MESSAGES')
+  type_czech = TypeCzech('NO-ERROR-MESSAGES', 'HIDE-INIT-MESSAGE')
 
   function A_PRE_check_yourFunc() {
     if (steps !== 'start') throw 'A._linkUp()_1'
@@ -48,7 +48,7 @@ function link_01000(){
 /*
 ### B. PRE_check_yourFunc() warns about parameter issues, while POST_check_yourFunc() informs about result problems.
 */  
-  type_czech = TypeCzech('NO-ERROR-MESSAGES')
+  type_czech = TypeCzech('NO-ERROR-MESSAGES', 'HIDE-INIT-MESSAGE')
     
   function B_PRE_check_yourFunc() {
     if (steps !== 'start') throw 'B._linkUp()_1'
@@ -79,7 +79,7 @@ function link_01000(){
 /*
 ### C. Parameters are not addressed, only function results.
 */  
-  type_czech = TypeCzech('NO-ERROR-MESSAGES')
+  type_czech = TypeCzech('NO-ERROR-MESSAGES', 'HIDE-INIT-MESSAGE')
 
   function C_POST_check_yourFunc(return_value) { 
     if (steps !== 'in-func') throw 'C._linkUp()_2'
@@ -107,7 +107,7 @@ function link_01000(){
 ### D. Check that a string matches regular expression.
 */
 
-  type_czech = TypeCzech('NO-ERROR-MESSAGES')
+  type_czech = TypeCzech('NO-ERROR-MESSAGES', 'HIDE-INIT-MESSAGE')
 
   function D_PRE_check_yourFunc(a_word) {
     if (!a_word.match(/^.*[Yy].*$/))
@@ -139,7 +139,7 @@ function link_01000(){
 /*
 ## E. Check a parameter belongs to a set.
 */  
-  type_czech = TypeCzech('NO-ERROR-MESSAGES')
+  type_czech = TypeCzech('NO-ERROR-MESSAGES', 'HIDE-INIT-MESSAGE')
 
   function E_PRE_check_yourFunc(a_number) {
     if (![2,3,5,7,11,13,17,19,23].includes(a_number)) 
@@ -170,7 +170,7 @@ function link_01000(){
 /*
 ### F. Check that date is in the month of February.
 */  
-  type_czech = TypeCzech('NO-ERROR-MESSAGES')
+  type_czech = TypeCzech('NO-ERROR-MESSAGES', 'HIDE-INIT-MESSAGE')
 
   function F_PRE_check_yourFunc(a_date) {
     try {
@@ -206,7 +206,7 @@ function link_01000(){
 }
 
 function link_01001(){
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS'
+  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE'
   //, 'DEBUG-CONSOLE-TRACE'
   );
   function your_function(){}
@@ -240,7 +240,7 @@ function link_01001(){
 
 function link_01002(){
 
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS'
+  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE'
   //, 'DEBUG-CONSOLE-TRACE'
   );
   TYPE_CZECH_current_test_number = '01002';
@@ -270,7 +270,7 @@ function link_01002(){
 
 function link_01003(){
 
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS'
+  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE'
   //, 'DEBUG-CONSOLE-TRACE'
   );
   TYPE_CZECH_current_test_number = '01003';
@@ -297,7 +297,7 @@ function link_01003(){
 }
 
 function link_01004(){
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS'
+  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE'
   //, 'DEBUG-CONSOLE-TRACE'
   );
   TYPE_CZECH_current_test_number = '01004';

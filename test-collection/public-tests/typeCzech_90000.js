@@ -16,24 +16,24 @@ if (TEST_show_random) {
 function _typeCzechConstructor_90001() {
   TYPE_CZECH_current_test_number = '90001';
 
-  type_czech_one_param = TypeCzech('LOG-ERRORS');
+  type_czech_one_param = TypeCzech('LOG-ERRORS', 'HIDE-INIT-MESSAGE');
   if (!type_czech_one_param.isActive()) {
     failed_typeCzechConstructor += 1;
-    console.log(`${TYPE_CZECH_current_test_number} TypeCzech('LOG-ERRORS')`);
+    console.log(`${TYPE_CZECH_current_test_number} TypeCzech('LOG-ERRORS', 'HIDE-INIT-MESSAGE')`);
   }
   tested_typeCzechConstructor += 1;
 
-  type_czech_two_param = TypeCzech('LOG-ERRORS', 'CONSOLE-COUNT');
+  type_czech_two_param = TypeCzech('LOG-ERRORS', 'CONSOLE-COUNT', 'HIDE-INIT-MESSAGE');
   if (!type_czech_two_param.isActive()) {
     failed_typeCzechConstructor += 1;
-    console.log(`${TYPE_CZECH_current_test_number} TypeCzech('LOG-ERRORS', 'CONSOLE-COUNT')`);
+    console.log(`${TYPE_CZECH_current_test_number} TypeCzech('LOG-ERRORS', 'CONSOLE-COUNT', 'HIDE-INIT-MESSAGE')`);
   }
   tested_typeCzechConstructor += 1;
 
-  type_czech_array_param = TypeCzech(['LOG-ERRORS', 'CONSOLE-COUNT']);
+  type_czech_array_param = TypeCzech(['LOG-ERRORS', 'CONSOLE-COUNT', 'HIDE-INIT-MESSAGE']);
   if (!type_czech_array_param.isActive()) {
     failed_typeCzechConstructor += 1;
-    console.log(`${TYPE_CZECH_current_test_number} TypeCzech(['LOG-ERRORS', 'CONSOLE-COUNT'])`);
+    console.log(`${TYPE_CZECH_current_test_number} TypeCzech(['LOG-ERRORS', 'CONSOLE-COUNT', 'HIDE-INIT-MESSAGE'])`);
   }
   tested_typeCzechConstructor += 1;
 

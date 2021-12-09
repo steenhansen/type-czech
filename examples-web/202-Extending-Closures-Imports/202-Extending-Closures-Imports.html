@@ -3,13 +3,13 @@
 
 
   
-<div id='js-div' style="width:50%; " >
+<div id='js-div' style="width:57%; " >
   <a href='https://github.com/steenhansen/type-czech' class='git-hub'>GitHub Package</a>
   <div id='js-code'>the javascript</div>
 </div>
 
 
-<div id="the-explanation" style="width:50%" >
+<div id="the-explanation" style="width:43%" >
   <div class='an-explantion'>202 - Closure Modules Imported</div>
   <div id='explanation-text'>
 
@@ -56,7 +56,7 @@
     <br>
   </div>
 
-  <br><br>
+  
 
 
 
@@ -73,6 +73,20 @@
 <script src="../../web-resources/consolelog.js"></script>
 <script src="../../web-resources/ordered-import.js"></script>
 <link rel="stylesheet" href="../../web-resources/type-czech.css">
+
+
+<script>
+  const TYPE_CZECH_JS =  '../../TypeCzech.js';
+  const FIRST_JS = './First.js';
+  const LAST_JS = './Last.js';
+  const FULL_JS =   './Full.js';
+  
+  const TC_FIRST_JS = './TypeCzech_First.js';
+  const TC_LAST_JS = './TypeCzech_Last.js';
+  const TC_FULL_JS =   './TypeCzech_Full.js';
+  </script>
+
+
 <!--            ----------------TYPE 2--------------------------       -->
 <div id='js-fiddles'>
   <a title="Example-Contents" href="../../example-snippets/example-contents.html">Contents</a>
@@ -281,20 +295,18 @@ function copyAndColor(){
 
 <script  id="check-code">
 /**/  const CHECKING_CLASS_FILES = [
-/**/  '../../TypeCzech.js',
-/**/    './First.js',
-/**/    './TypeCzech_First.js',
-/**/    './Last.js',
-/**/    './TypeCzech_Last.js',
-/**/    './Full.js',
-/**/    './TypeCzech_Full.js'
-/**/  ]
+/**/    TYPE_CZECH_JS, 
+/**/    FIRST_JS,
+/**/    TC_FIRST_JS,
+/**/    LAST_JS,
+/**/    TC_LAST_JS,
+/**/    FULL_JS,
+/**/    TC_FULL_JS ]
 
 const NOT_CHECKING_CLASS_FILES = [
-  './First.js',
-  './Last.js',
-  './Full.js' 
-]
+  FIRST_JS, 
+  LAST_JS, 
+  FULL_JS ]
 
 /**/  TYPE_CZECH_START = true
 /**/  //TYPE_CZECH_START = false
@@ -316,14 +328,24 @@ onLoaded = ([_loaded_files, _import_errors]) => {
   william_gibson.firstMethod(new Date(1984,6,1))
   william_gibson.lastMethod(1985)
   william_gibson.fullMethod('Neuromancer')
-  linesConsole(1)
-  william_gibson.showName()
+
+  linesConsole(2)
+
+/**/  function PRE_check_printFullFunc(a_person){
+/**/    the_interface = {showName:'f', fullMethod:'f', firstMethod:'f', lastMethod:'f'}
+/**/    return type_czech.check_interface(a_person, the_interface)
+/**/  }
+/**/  printFullFunc = type_czech.linkUp(printFullFunc, PRE_check_printFullFunc)
+
+  function printFullFunc(a_person) {
+    log('From Checked Function : ', a_person.showName())
+  }
+
+  printFullFunc(william_gibson)
   copyAndColor()
 }
 
 orderedImport(class_files, onLoaded)
-
-
 </script>
   
 

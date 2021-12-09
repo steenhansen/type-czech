@@ -45,7 +45,6 @@
   <div id="console-log"  >
     <div class='a-title'>Console Output</div>
     <div id='log-text'></div>
-    <br>
   </div>
 
   <br><br>
@@ -386,8 +385,7 @@ function Full(salu, f_name, l_name){
     return a_book
   }
   function showName() {
-    const the_name = `${salu} ${f_name} ${l_name}`
-    console.log('Name: ', the_name)
+    return `${salu} ${f_name} ${l_name}`
   }
   return {showName, fullMethod, firstMethod:last.firstMethod, lastMethod:last.lastMethod}
 }
@@ -399,8 +397,25 @@ linesConsole(1)
 william_gibson.lastMethod(1985)
 linesConsole(1)
 william_gibson.fullMethod('Neuromancer')
-linesConsole(1)
-william_gibson.showName()
+
+
+
+linesConsole(3)
+
+
+
+/**/  function PRE_check_printFullFunc(a_person){
+/**/    the_interface = {showName:'f', fullMethod:'f', firstMethod:'f', lastMethod:'f'}
+/**/    return type_czech.check_interface(a_person, the_interface)
+/**/  }
+/**/  printFullFunc = type_czech.linkUp(printFullFunc, PRE_check_printFullFunc)
+
+function printFullFunc(a_person) {
+  log('From Checked Function : ', a_person.showName())
+}
+
+printFullFunc(william_gibson)
+
 
 </script>
 

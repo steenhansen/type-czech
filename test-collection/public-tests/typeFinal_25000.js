@@ -24,7 +24,7 @@ if (TEST_show_random) {
 
 
 function _typeFinal_25000(){
-  type_czech_test=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  type_czech_test=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   TYPE_CZECH_current_test_number = 25000;
 
   function test_typeFinal(an_arg, expected_typeFinal) {
@@ -70,7 +70,7 @@ function _typeFinal_25000(){
 }
 
 function _typeFinal_25001() {
-  type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   TYPE_CZECH_current_test_number = '25001';
   actual_type = type_czech_test.typeFinal(new Date('1999-12-31'));
   if (actual_type !== 'date') {
@@ -82,7 +82,7 @@ function _typeFinal_25001() {
 
 function _typeFinal_25002() {
   if (typeof document !== 'undefined') {
-    type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+    type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
     TYPE_CZECH_current_test_number = '25002';
 
     actual_type = type_czech_test.typeFinal(document.createElement('div'));
@@ -97,7 +97,7 @@ function _typeFinal_25002() {
 
 function _typeFinal_25003() {
   if (typeof document !== 'undefined') {
-    type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+    type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
     TYPE_CZECH_current_test_number = '25003';
     
     class First { constructor() { } }

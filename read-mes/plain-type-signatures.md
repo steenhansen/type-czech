@@ -1,6 +1,6 @@
 
 
-# Type Signatures
+# Plain Type Signatures
 
 
 
@@ -87,13 +87,12 @@ oneStringArray = (string_array) => { }
 /**/  }
 /**/  oneStringArray = type_czech.linkUp(oneStringArray, PRE_check_oneStringArray) 
 
-oneStringArray([]) // pass, have to check for non-empty
-
 oneStringArray(['one-string'])                                              //pass
 oneStringArray(['one-string', 'two-string'])                                //pass
 oneStringArray(['one-string', 'two-string', 'three-string'])                //pass
 oneStringArray(['one-string', 'two-string', 'three-string', 'four-string']) //pass
 
+oneStringArray([])                             // fail - empty has no types
 oneStringArray('a-string')                     // fail - not 1 array of strings
 oneStringArray([17])                           // fail - number
 oneStringArray()                               // fail - nothing

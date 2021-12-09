@@ -14,8 +14,7 @@ function Full() {
     }
     
     showName() {
-      const the_name = `${this.salu} ${this.f_name} ${this.l_name}`
-      console.log('Name: ', the_name)
+      return `${this.salu} ${this.f_name} ${this.l_name}`
     }
   }
   return Full

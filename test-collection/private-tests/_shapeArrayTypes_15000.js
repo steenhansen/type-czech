@@ -24,8 +24,8 @@ function _shapeArrayTypes_15001(){
   var check_array =  [ 13, 14, 15 ];
   var object_type =  [ "number" ];    
   var exact_shape = 'TYPE-VERIFY';     
-  var expect_error =   ''; 
-        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  var expect_error =   'TE@236b - Array has more elements than types [13,14,15] !== ["number"]'; 
+        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_array, object_type);
         var actual_error = type_czech_test._shapeArrayTypes(check_array, object_type, exact_shape, type_czech._NOT_VARIAD_ARR_L_179);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_array, object_type, before_str, TYPE_CZECH_current_test_number);
@@ -46,8 +46,8 @@ function _shapeArrayTypes_15002(){
   var check_array =  [ 13, 14, 15 ];
   var object_type =  [ "string" ];    
   var exact_shape = 'TYPE-EXTRAS';     
-  var expect_error =   `TE@215 - ELEMENT '0' is asserted to be a 'string', but is fallaciously a 'number' : 13`; 
-        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  var expect_error =   `TE@214 -  ELEMENT '0' is assumed to be a 'string', but is mistakenly a 'number' with a value of 13`; 
+        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_array, object_type);
         var actual_error = type_czech_test._shapeArrayTypes(check_array, object_type, exact_shape, type_czech._NOT_VARIAD_ARR_L_179);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_array, object_type, before_str, TYPE_CZECH_current_test_number);

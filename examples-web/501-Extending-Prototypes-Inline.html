@@ -348,8 +348,7 @@ function Full(salu) {
     return a_book
   }
   this.showName = function() {
-    const the_name = `${this.salu} ${this.f_name} ${this.l_name}`
-    console.log('Name: ', the_name)
+    return `${this.salu} ${this.f_name} ${this.l_name}`
   };
 }
 
@@ -359,11 +358,11 @@ function Full(salu) {
 
 function Person(salu, f_name, l_name){
   log(LEVEL_3+`CONS-Person :${salu} ${f_name} ${l_name}`)
+  Last.prototype = new First(f_name)
+  Last.prototype.constructor = Last;
+  Full.prototype = new Last(l_name)
+  Full.prototype.constructor = Full;
   person_full = new Full(salu)
-  person_last = new Last(l_name)
-  person_first = new First(f_name)
-  Object.setPrototypeOf(person_full, person_last)
-  Object.setPrototypeOf(person_last, person_first)
   return person_full
 }
 
@@ -374,8 +373,19 @@ linesConsole(1)
 mary_shelley.lastMethod(1931)
 linesConsole(1)
 mary_shelley.fullMethod('Frankenstein')
+
 linesConsole(2)
-mary_shelley.showName()
+
+/**/  function PRE_check_printFullFunc(a_person){
+/**/    return type_czech.checkParam_type(a_person, 'Full')
+/**/  }
+/**/  printFullFunc = type_czech.linkUp(printFullFunc, PRE_check_printFullFunc)
+
+function printFullFunc(a_person) {
+  log('From Checked Function : ', a_person.showName())
+}
+
+printFullFunc(mary_shelley)
 </script>
 
 

@@ -27,7 +27,7 @@ function _shapePropertyType_20001(){
   var property_key ="jxy";   
   var check_variable = 987;        
   var expect_error =  ''; 
-        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(property_type, property_key);
         var actual_error = type_czech_test._shapePropertyType(property_type, property_key, check_variable);
         if (typeof beforeCheck !== 'undefined') afterCheck(property_type, property_key, before_str, TYPE_CZECH_current_test_number);
@@ -50,7 +50,7 @@ function _shapePropertyType_20002(){
   var property_key ="jxy";   
   var check_variable = undefined;        
   var expect_error =   `TE@211 - Key 'jxy' was given to be a 'number' but is 'undefined'`; 
-        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(property_type, property_key);
         var actual_error = type_czech_test._shapePropertyType(property_type, property_key, check_variable);
         if (typeof beforeCheck !== 'undefined') afterCheck(property_type, property_key, before_str, TYPE_CZECH_current_test_number);
@@ -74,7 +74,7 @@ function _shapePropertyType_20003(){
   var property_key ="jxy";   
   var check_variable = null;        
   var expect_error =   `TE@212 - Key 'jxy' was determined to be a 'number' but is 'null'`; 
-        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(property_type, property_key);
         var actual_error = type_czech_test._shapePropertyType(property_type, property_key, check_variable);
         if (typeof beforeCheck !== 'undefined') afterCheck(property_type, property_key, before_str, TYPE_CZECH_current_test_number);
@@ -97,7 +97,7 @@ function _shapePropertyType_20004(){
   var property_key ="jxy";   
   var check_variable = 567;        
   var expect_error =   `TE@213 - Property 'jxy' is indicated to be a 'string', but is inaccurately a 'number' : 567`; 
-        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(property_type, property_key);
         var actual_error = type_czech_test._shapePropertyType(property_type, property_key, check_variable);
         if (typeof beforeCheck !== 'undefined') afterCheck(property_type, property_key, before_str, TYPE_CZECH_current_test_number);

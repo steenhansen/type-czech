@@ -76,4 +76,5 @@ classfree_check_54000.js
 prototype_check_55000.js
 oloo_check_56000.js
 
-
+scalar_arrays_57000.js
+array_arrays_58000.js

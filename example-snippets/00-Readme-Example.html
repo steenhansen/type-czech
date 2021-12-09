@@ -216,7 +216,7 @@ function aLottery(lottery_name, lucky_numbers, draw_date){
 /**/
 /**/  type_czech = TypeCzech('LOG-ERRORS')
 /**/
-/**/  LOTTERY_SIGNATURE = ['string', ['number'], 'date']
+/**/  LOTTERY_SIGNATURE = ['string', ['number-array'], 'date']
 /**/
 /**/  function PRE_check_aLottery(lottery_name, lucky_numbers, draw_date) {
 /**/    the_parameters = [lottery_name, lucky_numbers, draw_date]
@@ -269,7 +269,7 @@ aLottery('Oz Lotto', ['fourty-two'], new Date('jun 14 1999'))
 
    fromToBoldText(914, 915, 'code', 1)  // []
 
-   fromToBoldText(286, 287, 'log', 1)    // []
+   fromToBoldText(229, 230, 'log', 1)    // []
    fromToBoldText(326, 340, 'log', 1)    // ["EMPTY-ERROR"]
 
 

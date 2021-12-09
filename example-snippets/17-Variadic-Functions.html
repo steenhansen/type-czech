@@ -3,7 +3,7 @@
 
 
   
-<div id='js-div' style="width:48%;">
+<div id='js-div' style="width:52%;">
   <a href='https://github.com/steenhansen/type-czech' class='git-hub'>GitHub Package</a>
   <div id='js-code'>the javascript</div>
 
@@ -156,7 +156,7 @@
 </div>
 
 
-<div id="the-explanation" style="width:52%" class='code-scroll'>
+<div id="the-explanation" style="width:48%" class='code-scroll'>
   <div class='an-explantion'>17 - Variadic Functions</div>
   <div id='explanation-text'>
     <br>
@@ -233,7 +233,7 @@ function variadicFunc () {
 /**/  //type_czech = TypeCzech('NO-CHECKING')
 /**/
 /**/  function PRE_check_variadicFunc() {
-/**/    return type_czech.checkArgs_typeVariadic(arguments, ['number'])
+/**/    return type_czech.checkArgs_typeVariadic(arguments, ['number-array'])
 /**/  }
 /**/
 /**/  variadicFunc=type_czech.linkUp(variadicFunc,PRE_check_variadicFunc)
@@ -259,21 +259,17 @@ function variadicArrs () {
 }
 
 /**/  function PRE_check_variadicArrs() {
-/**/    return type_czech.checkArgs_typeVariadic(arguments, [['number']])
+/**/    return type_czech.checkArgs_typeVariadic(arguments, [['number-array']])
 /**/  }
 /**/
 /**/  variadicArrs=type_czech.linkUp(variadicArrs,PRE_check_variadicArrs)
 
-variadicArrs()
 
 linesConsole(3)
 
 variadicArrs( [1], [1,2], [1,2,3], [1,2,3,4] )
 
-linesConsole(3)
-
-
-
+linesConsole(2)
 
 variadicArrs( [1], [1,2], [1,'two',3], [1,2,3,4] )
 </script>
@@ -293,24 +289,24 @@ jsToDiv('js-code', "check-code")
 
 fromToBoldText(519, 525, 'code', 1)  //  variadicFunc(0,1,2,'Three',4,5,6)o
 
-fromToBoldText(300, 306, 'log', 1)    // [0,1,2,"Three",4,5,6]
-fromToBoldText(340, 347, 'log', 1)    //["number"]
+fromToBoldText(548, 552, 'log', 1)    // [0,1,2,"Three",4,5,6]
+fromToBoldText(588, 593, 'log', 1)    //["number"]
 
 
 
 ///////////////////////
 
 
-fromToBoldText(860, 889, 'code', 3)  // variadicArrs( [1], [1,2], [1,2,3], [1,2,3,4])
+fromToBoldText(844, 873, 'code', 3)  // variadicArrs( [1], [1,2], [1,2,3], [1,2,3,4])
 
-fromToBoldText(427, 456, 'log', 3)    // [1] [1,2] [1,2,3] [1,2,3,4]
+fromToBoldText(669, 698, 'log', 3)    // [1] [1,2] [1,2,3] [1,2,3,4]
 
 ///////////////////////
 
-fromToBoldText(926, 930, 'code', 2)  // [1,'two',3]
+fromToBoldText(908, 910, 'code', 2)  // [1,'two',3]
 
-fromToBoldText(717, 721, 'log', 2)    // [1,"two",3] 
-fromToBoldText(763, 770, 'log', 2)    // [["number"]]
+fromToBoldText(960, 962, 'log', 2)    // [1,"two",3] 
+fromToBoldText(1006, 1011, 'log', 2)    // [["number"]]
  
 
 

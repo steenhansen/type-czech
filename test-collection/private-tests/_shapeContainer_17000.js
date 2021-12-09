@@ -39,7 +39,7 @@ function _shapeContainer_17001(){
   var container_shape = { r: "number" };  
   var exact_shape = 'TYPE-EXTRAS';     
   var expect_error =  '';
-        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_container, container_shape);
         var actual_error = type_czech_test._shapeContainer(check_container, container_shape, exact_shape, type_czech._NOT_VARIAD_ARR_L_179);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_container, container_shape, before_str, TYPE_CZECH_current_test_number);
@@ -62,7 +62,7 @@ function _shapeContainer_17002(){
   var container_shape =[ "number" ]; 
   var exact_shape = 'TYPE-EXTRAS';     
   var expect_error =  '';
-        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_container, container_shape);
         var actual_error = type_czech_test._shapeContainer(check_container, container_shape, exact_shape, type_czech._NOT_VARIAD_ARR_L_179);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_container, container_shape, before_str, TYPE_CZECH_current_test_number);
@@ -85,7 +85,7 @@ function _shapeContainer_17003(){
   var container_shape ={ r: "number" };  
   var exact_shape = 'TYPE-EXTRAS';     
   var expect_error =  `TE@207 - Param is meant to be 'object' but is of the wrong type of 'array':[13,14,15]`; 
-        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_container, container_shape);
         var actual_error = type_czech_test._shapeContainer(check_container, container_shape, exact_shape, type_czech._NOT_VARIAD_ARR_L_179);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_container, container_shape, before_str, TYPE_CZECH_current_test_number);
@@ -105,8 +105,8 @@ function _shapeContainer_17004(){
   var check_container = [  [[1, 2], [3, 4]], [[5, false], [7, false]] ];                                                             
   var container_shape =[  [["n", "n"]],     [['n', "b"]] ];  
   var exact_shape = 'TYPE-EXTRAS';     
-  var expect_error =   ""; 
-        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  var expect_error =   ``; 
+        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_container, container_shape);
         var actual_error = type_czech_test._shapeContainer(check_container, container_shape, exact_shape, type_czech._NOT_VARIAD_ARR_L_179);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_container, container_shape, before_str, TYPE_CZECH_current_test_number);
@@ -125,11 +125,11 @@ function _shapeContainer_17004(){
 
 function _shapeContainer_17005(){
   var TYPE_CZECH_current_test_number = '17005';       
-  var check_container = [  [[1, 2], [3, 4]], [[5, false], ['a', false]] ];                                                                
-  var container_shape = [  [["n", "n"]],     [['n', "b"]] ];   
+  var check_container = [  [[1, 2],     [3, 4]],         [[5, false], ['a', false]] ];                                                                
+  var container_shape = [  [["n", "n"], ["n", "n"]],     [['n', "b"], ['n', "b"]] ];   
   var exact_shape = 'TYPE-EXTRAS';     
-  var expect_error =   "TE@214 -  ELEMENT '0' is assumed to be a 'number', but is mistakenly a 'string'"; 
-        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  var expect_error =   "TE@214 -  ELEMENT '0' is assumed to be a 'number', but is mistakenly a 'string' with a value of a"; 
+        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_container, container_shape);
         var actual_error = type_czech_test._shapeContainer(check_container, container_shape, exact_shape, type_czech._NOT_VARIAD_ARR_L_179);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_container, container_shape, before_str, TYPE_CZECH_current_test_number);
@@ -154,8 +154,8 @@ function _shapeContainer_17006(){
   var check_container = [  {a:[[1, 2], [3, 4]]}, {b:[[5, false], [7, false]]} ];                                                                
   var container_shape = [  {a:[["n", "n"]]},     {b:[['n', "b"]]} ];      
   var exact_shape = 'TYPE-EXTRAS';     
-  var expect_error =   "";
-        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  var expect_error =   ``;
+        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_container, container_shape);
         var actual_error = type_czech_test._shapeContainer(check_container, container_shape, exact_shape, type_czech._NOT_VARIAD_ARR_L_179);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_container, container_shape, before_str, TYPE_CZECH_current_test_number);
@@ -180,7 +180,7 @@ function _shapeContainer_17007(){
   var container_shape =   [  {a:[["n", "n"], ["n", "n"]]},     {b:[['n', "b"], ['n', "b"]]} ];       
   var exact_shape = 'TYPE-EXTRAS';     
   var expect_error =   "";
-        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_container, container_shape);
         var actual_error = type_czech_test._shapeContainer(check_container, container_shape, exact_shape, type_czech._NOT_VARIAD_ARR_L_179);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_container, container_shape, before_str, TYPE_CZECH_current_test_number);
@@ -202,8 +202,8 @@ function _shapeContainer_17008(){
   var check_container = [  {a:[[1, 2],     [3, 4]]},         {b:[[5, 1], [7, false]]} ];                                                      
   var container_shape =   [  {a:[["n", "n"], ["n", "n"]]},     {b:[['n', "b"], ['n', "b"]]} ];      
   var exact_shape = 'TYPE-EXTRAS';     
-  var expect_error =   "TE@214 -  ELEMENT '1' is assumed to be a 'boolean', but is mistakenly a 'number'";
-        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  var expect_error =   "TE@214 -  ELEMENT '1' is assumed to be a 'boolean', but is mistakenly a 'number' with a value of 1";
+        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_container, container_shape);
         var actual_error = type_czech_test._shapeContainer(check_container, container_shape, exact_shape, type_czech._NOT_VARIAD_ARR_L_179);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_container, container_shape, before_str, TYPE_CZECH_current_test_number);
@@ -224,11 +224,11 @@ function _shapeContainer_17008(){
 
 function _shapeContainer_17009(){
   var TYPE_CZECH_current_test_number = '17009';       
-  var check_container = [  {a:[[1, 2],     [3, 4]]},         {b:[['a', false], [7, false]]} ];                                              
-  var container_shape =   [  {a:[["n", "n"], ["n", "n"]]},     {b:[['n', "b"], ['n', "b"]]} ];     
+  var check_container = [  {a:[[1, 2],     [3, 4]]},         {b:[['Xy', false], [7, false]]} ];                                              
+  var container_shape = [  {a:[["n", "n"], ["n", "n"]]},     {b:[['n', "b"],   ['n', "b"]]} ];     
   var exact_shape = 'TYPE-EXTRAS';     
-  var expect_error =   "TE@214 -  ELEMENT '0' is assumed to be a 'number', but is mistakenly a 'string'"; 
-        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  var expect_error =   "TE@214 -  ELEMENT '0' is assumed to be a 'number', but is mistakenly a 'string' with a value of Xy"; 
+        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_container, container_shape);
         var actual_error = type_czech_test._shapeContainer(check_container, container_shape, exact_shape, type_czech._NOT_VARIAD_ARR_L_179);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_container, container_shape, before_str, TYPE_CZECH_current_test_number);
@@ -256,7 +256,7 @@ function _shapeContainer_17101(){
   var container_shape =   [  {A:{B:[["n", "n"], ["n", "n"]]}},     {C:{D:[['n', "b"], ['n', "b"]]}} ];     
   var exact_shape = 'TYPE-EXTRAS';     
   var expect_error =  ''; 
-        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_container, container_shape);
         var actual_error = type_czech_test._shapeContainer(check_container, container_shape, exact_shape, type_czech._NOT_VARIAD_ARR_L_179);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_container, container_shape, before_str, TYPE_CZECH_current_test_number);
@@ -283,7 +283,7 @@ function _shapeContainer_17102(){
   var container_shape =  [  {A:{B:[["n", "n"], ["n", "n"]]}},     {C:{D:[['n', "b"], ['n', "b"]]}} ];       
   var exact_shape = 'TYPE-EXTRAS';     
   var expect_error =   `TE@216 -  Key 'A', which has a type of '{B:[["n","n"],["n","n"]]}', is missing in the checked object`; 
-        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS' ); //           ,  'DEBUG-CONSOLE-TRACE'              );
+        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE' ); //           ,  'DEBUG-CONSOLE-TRACE'              );
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_container, container_shape);
         var actual_error = type_czech_test._shapeContainer(check_container, container_shape, exact_shape, type_czech._NOT_VARIAD_ARR_L_179);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_container, container_shape, before_str, TYPE_CZECH_current_test_number);
@@ -308,7 +308,7 @@ function _shapeContainer_17103(){
   var container_shape = [  {A:{B:[["n", "n"], ["n", "n"]]}},     {C:{D:[['n', "b"], ['n', "b"]]}} ];     
   var exact_shape = 'TYPE-EXTRAS';     
   var expect_error =   `TE@216 -  Key 'B', which has a type of '[["n","n"],["n","n"]]', is missing in the checked object`; 
-        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_container, container_shape);
         var actual_error = type_czech_test._shapeContainer(check_container, container_shape, exact_shape, type_czech._NOT_VARIAD_ARR_L_179);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_container, container_shape, before_str, TYPE_CZECH_current_test_number);

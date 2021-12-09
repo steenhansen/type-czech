@@ -9,7 +9,7 @@
 /* eslint-disable max-len */
 
 function test_pre_checkParam_empty_multi(parameters_array, signature_of_parameters, error_id, expected_error) {
-  const type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  const type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   tested_checkParam_empty_03800 += 1;
 
   function PRE_test_3800(an_array) {

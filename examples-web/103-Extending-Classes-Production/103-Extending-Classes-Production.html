@@ -69,6 +69,12 @@
 <script src="../../web-resources/consolelog.js"></script>
 <script src="../../web-resources/ordered-import.js"></script>
 <link rel="stylesheet" href="../../web-resources/type-czech.css">
+<script>
+  const TYPE_CZECH_JS =  '../../TypeCzech.js';
+  const TC_FIRST_JS = './TypeCzech_First.js';
+  const TC_LAST_JS = './TypeCzech_Last.js';
+  const TC_FULL_JS =   './TypeCzech_Full.js';
+  </script>
 <!--            ------------------TYPE 2------------------------       -->
 <div id='js-fiddles'>
   <a title="Example-Contents" href="../../example-snippets/example-contents.html">Contents</a>
@@ -320,8 +326,7 @@ function init_Full(Last){
       return a_book
     }
     showName() {
-      const the_name = `${this.salu} ${this.f_name} ${this.l_name}`
-      console.log('Name: ', the_name)
+      return `${this.salu} ${this.f_name} ${this.l_name}`
     }
   }
   return Full
@@ -336,9 +341,23 @@ onLoaded = ([_loaded_files, _import_errors]) => {
   ted_chiang.firstMethod(new Date(2008,10,15))
   ted_chiang.lastMethod(2009)
   ted_chiang.fullMethod('Exhalation')
-  linesConsole(2)
-  ted_chiang.showName()
+
   copyAndColor()
+
+  linesConsole(2)
+
+/**/  function PRE_check_printFullFunc(a_person){
+/**/    return type_czech.checkParam_type(a_person, 'Full')
+/**/  }
+/**/  printFullFunc = type_czech.linkUp(printFullFunc, PRE_check_printFullFunc)
+
+function printFullFunc(a_person) {
+  log('From Checked Function : ', a_person.showName())
+}
+
+printFullFunc(ted_chiang)
+copyAndColor()
+
 }
 
 /**/  TYPE_CZECH_START = true
@@ -346,10 +365,11 @@ onLoaded = ([_loaded_files, _import_errors]) => {
 /**/
 /**/  if (typeof orderedImport === 'function' && TYPE_CZECH_START) {
 /**/    TYPE_CZECH_COMMANDS = ['LOG-ERRORS']
-/**/    const CHECKING_CLASS_FILES = ['../../TypeCzech.js',
-/**/                                  './TypeCzech_First.js',
-/**/                                  './TypeCzech_Last.js',
-/**/                                  './TypeCzech_Full.js'  ]
+/**/    const CHECKING_CLASS_FILES = [
+/**/          TYPE_CZECH_JS,
+/**/          TC_FIRST_JS,
+/**/          TC_LAST_JS,
+/**/          TC_FULL_JS  ]
 /**/    orderedImport(CHECKING_CLASS_FILES, onLoaded)
 /**/  } else {
         First = init_First()
@@ -357,6 +377,10 @@ onLoaded = ([_loaded_files, _import_errors]) => {
         Full = init_Full(Last)
         onLoaded([])
 /**/  }
+
+
+
+
 </script>
 
 

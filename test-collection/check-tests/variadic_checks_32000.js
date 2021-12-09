@@ -25,9 +25,9 @@ if (TEST_show_random) {
 function variadic_32001(){
   TYPE_CZECH_current_test_number = '32001';
 
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
 
-  function PRE_yourFunc() { return type_czech.checkArgs_typeVariadic(arguments, ['number']) }
+  function PRE_yourFunc() { return type_czech.checkArgs_typeVariadic(arguments, ['number-array']) }
   yourFunc = type_czech.linkUp(yourFunc, PRE_yourFunc) 
   function yourFunc(){}
 
@@ -38,7 +38,7 @@ function variadic_32001(){
     was_exception = true;
   }
   if (was_exception) {
-    console.log(TYPE_CZECH_current_test_number);
+    console.log(TYPE_CZECH_current_test_number, 'test failed');
     if (typeof tested_signatures !== 'undefined') failed_signatures ++;
     }
     if (typeof tested_signatures !== 'undefined') tested_signatures ++;
@@ -52,9 +52,9 @@ function variadic_32002(){
 
   TYPE_CZECH_current_test_number = '32002';
 
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
 
-  function PRE_yourFunc() { return type_czech.checkArgs_typeVariadic(arguments, ['number']) }
+  function PRE_yourFunc() { return type_czech.checkArgs_typeVariadic(arguments, ['number-array']) }
   yourFunc = type_czech.linkUp(yourFunc, PRE_yourFunc) 
   function yourFunc(){}
 
@@ -67,7 +67,7 @@ function variadic_32002(){
     was_exception = true;
   }
   if (was_exception) {
-    console.log(TYPE_CZECH_current_test_number);
+    console.log(TYPE_CZECH_current_test_number, 'test failed');
     if (typeof tested_signatures !== 'undefined') failed_signatures ++;
     }
     if (typeof tested_signatures !== 'undefined') tested_signatures ++;
@@ -76,7 +76,7 @@ function variadic_32002(){
 function variadic_32003(){
 
   TYPE_CZECH_current_test_number = '32003';
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
 
   function PRE_yourFunc() { return type_czech.checkParam_type(arguments, 'array') }
   yourFunc = type_czech.linkUp(yourFunc, PRE_yourFunc) 
@@ -102,9 +102,9 @@ function variadic_32101(){
   TYPE_CZECH_current_test_number = '32101';
 
  // type_czech=TypeCzech('LOG-ERRORS')           /// works correctly
-  type_czech=TypeCzech('THROW-EXCEPTIONS');
+  type_czech=TypeCzech('THROW-EXCEPTIONS', 'HIDE-INIT-MESSAGE', 'HIDE-INIT-MESSAGE');
 
-  function PRE_yourFunc(a_var) { return type_czech.checkParam_type(a_var, ['number']) }
+  function PRE_yourFunc(a_var) { return type_czech.checkParam_type(a_var, ['number-array']) }
   yourFunc = type_czech.linkUp(yourFunc, PRE_yourFunc) 
   function yourFunc(){}
 
@@ -117,7 +117,7 @@ function variadic_32101(){
     was_exception = true;
   }
   if (!was_exception) {
-    console.log(TYPE_CZECH_current_test_number);
+    console.log(TYPE_CZECH_current_test_number, 'test failed');
     if (typeof tested_signatures !== 'undefined') failed_signatures ++;
     }
     if (typeof tested_signatures !== 'undefined') tested_signatures ++;
@@ -125,9 +125,9 @@ function variadic_32101(){
 
 function variadic_32102(){
   TYPE_CZECH_current_test_number = '32102';
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
 
-  function PRE_yourFunc() { return type_czech.checkArgs_typeVariadic(arguments, ['number']) }
+  function PRE_yourFunc() { return type_czech.checkArgs_typeVariadic(arguments, ['number-array']) }
   yourFunc = type_czech.linkUp(yourFunc, PRE_yourFunc) 
   function yourFunc(){}
 
@@ -140,7 +140,7 @@ function variadic_32102(){
     was_exception = true;
   }
   if (was_exception) {
-    console.log(TYPE_CZECH_current_test_number);
+    console.log(TYPE_CZECH_current_test_number, 'test failed');
     if (typeof tested_signatures !== 'undefined') failed_signatures ++;
     }
     if (typeof tested_signatures !== 'undefined') tested_signatures ++;
@@ -155,7 +155,7 @@ function variadic_32201(){
   var TYPE_CZECH_current_test_number = '32201';       
   var mutate_14001 = [1,2,3];    
   var expect_error = `ME@405 - Variable 'mutate_14001' changed from [1,2,3] to [1,2,3,4] START-SAME ~ [1,2,3 PRE-DIFF ~ ] POST-DIFF ~ ,4]`;
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         var actual_error;
         try {
           type_czech.check_buildSnapshot('_mutatedVariables_14001', 'mutate_14001', mutate_14001);

@@ -25,7 +25,7 @@ if (TEST_show_random) {
 ///////////////////////////////////////////
 
 function checkParam_typeEither_07000(){
-  type_czech = TypeCzech('NO-ERROR-MESSAGES')
+  type_czech = TypeCzech('NO-ERROR-MESSAGES', 'HIDE-INIT-MESSAGE')
     function A_PRE_check_yourFunc(a_var) {
       type_issue = type_czech.checkParam_typeEither(a_var, [ "string", "number" ]);
       //if (!type_issue) console.log(a_var, type_issue)
@@ -78,7 +78,7 @@ function checkParam_typeEither_07001(){
   var check_param =  {};
   var check_shape =   {a:1};           
   var expect_error =  `ME@402 - checkParam_typeEither() called with a 2nd parameter as a non-array shape of {"a":1}`;  
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error= type_czech.checkParam_typeEither(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -99,7 +99,7 @@ function checkParam_typeEither_07002(){
   var check_param =  177;
   var check_shape =  ["string"];            
   var expect_error =   `UE@701 - checkParam_typeEither()  needs at least 2 choices for an Either, not 1 of ["string"]`;
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error= type_czech.checkParam_typeEither(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -122,7 +122,7 @@ function checkParam_typeEither_07003(){
   var type_b       = {a:"number",  b:{c:"string"}};
   var check_shape = [type_a, type_b];            
   var expect_error =  '';
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error= type_czech.checkParam_typeEither(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -144,7 +144,7 @@ function checkParam_typeEither_07004(){
   var type_b       = {a:"number",  b:{c:"string"}};
   var check_shape = [type_a, type_b];            
   var expect_error =  '';
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error= type_czech.checkParam_typeEither(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -166,7 +166,7 @@ function checkParam_typeEither_07005(){
   var type_b       = {a:"number",  b:{c:"string"}};
   var check_shape = [type_a, type_b];            
   var expect_error =  `TE@213 - Property 'c' is indicated to be a 'number', but is inaccurately a 'boolean' : false, TE@213 - Property 'c' is indicated to be a 'string', but is inaccurately a 'boolean' : false`;
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error= type_czech.checkParam_typeEither(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -188,7 +188,7 @@ function checkParam_typeEither_07006(){
   var type_b       = {v_1:"string",  v_2:"number"};
   var check_shape = [type_a, type_b];            
   var expect_error = `TE@209 - Extra key in checked object - (v_extra:'more than this'), TE@213 - Property 'v_2' is indicated to be a 'number', but is inaccurately a 'boolean' : false`;
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error= type_czech.checkParam_typeEither(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -212,7 +212,7 @@ function checkParam_typeEither_07007(){
   var type_c       = {inner_1:[{g:"date"}]}; 
   var check_shape = [type_a, type_b, type_c];            
   var expect_error = '';
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error= type_czech.checkParam_typeEither(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);

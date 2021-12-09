@@ -5,7 +5,7 @@
 //  file:///C:/Users/16043/Desktop/_js/proxy/type-czech/examples-web/101-Extending-Classes-Inline.html
 
 try{
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   current_version = 0;
 
   ////////////////////////////////////////////////////////////////////////////////

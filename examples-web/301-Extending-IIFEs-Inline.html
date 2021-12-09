@@ -4,13 +4,13 @@
 
 
   
-<div id='js-div' style="width:56%; " class='code-scroll'>
+<div id='js-div' style="width:60%; " class='code-scroll'>
   <a href='https://github.com/steenhansen/type-czech' class='git-hub'>GitHub Package</a>
   <div id='js-code'>the javascript</div>
 </div>
 
 
-<div id="the-explanation" style="width:44%" >
+<div id="the-explanation" style="width:40%" >
   <div class='an-explantion'>301 - IIFE Modules Inline</div>
   <div id='explanation-text'>
  
@@ -26,14 +26,12 @@
       <li><b>Full</b> deals with an author's salutation, first, and last name</li>    
       <li>Safely removable supporting TypeCzech test code begins with /**/</li>    
     </ul>
-     <br>
     IIFEs are used for inheritance:
         <ul>
           <li>All JavaScript is in one file, no code imports</li>
           <li>Production class declarations <b>must</b> interleave with TypeCzech calls
               to have the PRE and POST checking functions be correctly linked to before use </li>
           </ul>
-    <br>
 
 
 
@@ -300,8 +298,7 @@ Full = (salu, f_name, l_name) => (
       return a_book
     }
     function showName() {
-      const the_name = `${salu} ${f_name} ${l_name}`
-      console.log('Name: ', the_name)
+      return `${salu} ${f_name} ${l_name}`
     }
     return {showName, fullMethod, firstMethod:last.firstMethod, 
             lastMethod:last.lastMethod}
@@ -390,8 +387,29 @@ linesConsole(1)
 pkd.lastMethod(1985)
 linesConsole(1)
 pkd.fullMethod('The Man in the High Castle')
+
+
+
+
+
+
+
+
 linesConsole(2)
-pkd.showName()
+
+
+
+/**/  function PRE_check_printFullFunc(a_person){
+/**/    the_interface = {showName:'f', fullMethod:'f', firstMethod:'f', lastMethod:'f'}
+/**/    return type_czech.check_interface(a_person, the_interface)
+/**/  }
+/**/  printFullFunc = type_czech.linkUp(printFullFunc, PRE_check_printFullFunc)
+
+function printFullFunc(a_person) {
+  log('From Checked Function : ', a_person.showName())
+}
+
+printFullFunc(pkd)
 </script>
 
 

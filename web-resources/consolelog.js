@@ -42,8 +42,6 @@ const LEVEL_1 = NL + '________';
 const LEVEL_2 = NL + '................';
 const LEVEL_3 = NL + ',,,,,,,,,,,,,,,,,,,,,,,,';
 
-
-
 // eslint-disable-next-line no-self-compare
 const isNaN = (maybeNaN) => maybeNaN !== maybeNaN;
 

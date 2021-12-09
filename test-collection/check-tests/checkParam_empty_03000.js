@@ -73,7 +73,7 @@ if (TEST_show_random) {
 ///////////////////////////////////////
 function checkParam_empty_03000(){
 
-  type_czech = TypeCzech('NO-ERROR-MESSAGES')
+  type_czech = TypeCzech('NO-ERROR-MESSAGES', 'HIDE-INIT-MESSAGE')
   function PRE_check_yourFunc(a_variable) {
     empty_issue = type_czech.checkParam_empty(a_variable, 'EMPTY-ERROR');
     //if (empty_issue) console.log('checkParam_empty_03000', empty_issue)
@@ -124,7 +124,7 @@ function checkParam_empty_03000(){
 ### B. Test checkParam_empty() with single 'EMPTY-ERROR'
 */
 
-  type_czech = TypeCzech('NO-ERROR-MESSAGES')
+  type_czech = TypeCzech('NO-ERROR-MESSAGES', 'HIDE-INIT-MESSAGE')
   function B_PRE_check_yourFunc(a_variable) {
     return type_czech.checkParam_empty(a_variable, 'EMPTY-ERROR')
   }
@@ -165,7 +165,7 @@ function checkParam_empty_03000(){
 ### C. Test checkParam_empty() with arrays of one type ['EMPTY-ERROR']
 */
 
-  type_czech = TypeCzech('NO-ERROR-MESSAGES')
+  type_czech = TypeCzech('NO-ERROR-MESSAGES', 'HIDE-INIT-MESSAGE')
   function C_PRE_check_yourFunc(a_variable) {
     return type_czech.checkParam_empty(a_variable, ['EMPTY-ERROR'])
   }
@@ -217,7 +217,7 @@ function checkParam_empty_03000(){
 ### D. Test checkParam_empty() with single {a:'EMPTY-ERROR'}   NOT DONE
 */
 
-  type_czech = TypeCzech('NO-ERROR-MESSAGES')
+  type_czech = TypeCzech('NO-ERROR-MESSAGES', 'HIDE-INIT-MESSAGE')
   function D_PRE_check_yourFunc(a_variable) {
     return type_czech.checkParam_empty(a_variable, {a:'EMPTY-ERROR'})
   }
@@ -252,7 +252,7 @@ function checkParam_empty_03000(){
 ### E. Test checkParam_empty() with arrays of one type ['EMPTY-OK', 'EMPTY-ERROR']
 */
 
-  type_czech = TypeCzech('NO-ERROR-MESSAGES')
+  type_czech = TypeCzech('NO-ERROR-MESSAGES', 'HIDE-INIT-MESSAGE')
   function E_PRE_check_yourFunc(a_var, b_var) {
     return type_czech.checkParam_empty([a_var, b_var],  ['EMPTY-OK', 'EMPTY-ERROR'])
   }
@@ -282,7 +282,7 @@ function checkParam_empty_03001(){
   var check_param =  "gasoline";
   var check_shape= "EMPTY-ERROR"; 
   var expect_error ='';
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.checkParam_empty(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -304,7 +304,7 @@ function checkParam_empty_03002(){
   var check_param =   '';
   var check_shape= "EMPTY-ERROR"; 
   var expect_error = `EE@307 - EMPTY-ERROR states 'string' must not be empty for the value ''`;
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.checkParam_empty(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -326,7 +326,7 @@ function checkParam_empty_03003(){
   var check_param =   17;
   var check_shape= "EMPTY-ERROR"; 
   var expect_error = '';
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.checkParam_empty(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -346,7 +346,7 @@ function checkParam_empty_03004(){
   var check_param =   NaN;
   var check_shape= "EMPTY-ERROR"; 
   var expect_error = `EE@307 - EMPTY-ERROR states 'number' must not be empty for the value NaN`;
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.checkParam_empty(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -366,7 +366,7 @@ function checkParam_empty_03005(){
   var check_param =   18;
   var check_shape= "EMPTY-OK"; 
   var expect_error =  '';
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.checkParam_empty(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -386,7 +386,7 @@ function checkParam_empty_03006(){
   var check_param =   18;
   var check_shape= "MT-WRONG-b"; 
   var expect_error = `EE@304 - Must 'EMPTY-OK' or 'EMPTY-ERROR' not 'MT-WRONG-b'`;
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.checkParam_empty(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -407,7 +407,7 @@ function checkParam_empty_03007(){
   var check_param =   10;
   var check_shape= "EMPTY-ERROR"; 
   var expect_error = '';
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.checkParam_empty(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -429,7 +429,7 @@ function checkParam_empty_03008(){
   var check_param =   "gasoline";
   var check_shape= "EMPTY-ERROR"; 
   var expect_error = '';
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.checkParam_empty(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -450,7 +450,7 @@ function checkParam_empty_03009(){
   var check_param =   "";
   var check_shape= "EMPTY-ERROR"; 
   var expect_error = `EE@307 - EMPTY-ERROR states 'string' must not be empty for the value ''`;
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.checkParam_empty(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -470,7 +470,7 @@ function checkParam_empty_03010(){
   var check_param =  17;
   var check_shape= "EMPTY-ERROR"; 
   var expect_error =  "";     
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.checkParam_empty(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -491,7 +491,7 @@ function checkParam_empty_03011(){
   var check_param = 0;
   var check_shape= "EMPTY-ERROR"; 
   var expect_error = '';
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.checkParam_empty(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -513,7 +513,7 @@ function checkParam_empty_03012(){
   var check_param = 18;
   var check_shape= ["EMPTY-OK"];   
   var expect_error =`TE@217 - Comparing 'number' parameter, with a value of 18, to expected shape of ["EMPTY-OK"].`;
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.checkParam_empty(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -537,7 +537,7 @@ function checkParam_empty_03013(){
   var check_param = 18;
   var check_shape =  "MT-WRONG-c";     
   var expect_error =  `EE@304 - Must 'EMPTY-OK' or 'EMPTY-ERROR' not 'MT-WRONG-c'`;
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.checkParam_empty(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -558,7 +558,7 @@ function checkParam_empty_03014(){
   var check_param = {str:"a-string"};
   var check_shape = {str:"EMPTY-ERROR"};     
   var expect_error = '';
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.checkParam_empty(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -579,7 +579,7 @@ function checkParam_empty_03015(){
   var check_param = {str:""};
   var check_shape = {str:"EMPTY-ERROR"};     
   var expect_error = `EE@301 -  key 'str' is a 'string' which is reputed to be 'EMPTY-ERROR' but has a value of ''`;
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.checkParam_empty(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -601,7 +601,7 @@ function checkParam_empty_03016(){
   var check_param =  {numx:17};
   var check_shape =  {numx:"EMPTY-ERROR"}; 
   var expect_error =  '';
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.checkParam_empty(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -623,7 +623,7 @@ function checkParam_empty_03017(){
   var check_param =  {numx:0};
   var check_shape =  {numx:"EMPTY-ERROR"}; 
   var expect_error =  '';
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.checkParam_empty(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -645,7 +645,7 @@ function checkParam_empty_03018(){
   var check_param = {numx:NaN};
   var check_shape =  {numx:"EMPTY-ERROR"}; 
   var expect_error = `EE@301 -  key 'numx' is a 'number' which is reputed to be 'EMPTY-ERROR' but has a value of NaN`;
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.checkParam_empty(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -666,7 +666,7 @@ function checkParam_empty_03019(){
   var check_param = {num_y:18};
   var check_shape =   {num_y:"EMPTY-OK"};  
   var expect_error =   '';
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.checkParam_empty(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -687,7 +687,7 @@ function checkParam_empty_03020(){
   var check_param ={num_q: 18};
   var check_shape =     {num_q:"MT-WRONG-d"};
   var expect_error =  `EE@303 - Bad empty type key, 'MT-WRONG-d', must be either 'EMPTY-OK','EMPTY-ER','EMPTY-IG','OK','ER','IG'`;
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.checkParam_empty(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -708,7 +708,7 @@ function checkParam_empty_03021(){
   var check_param = {num_JJ:18};
   var check_shape =    {num_y:"EMPTY-OK"};  
   var expect_error =   `EE@315 - Extra key in checked object - (num_JJ:18)TE@216 -  Key 'num_y', which has a type of 'EMPTY-OK', is missing in the checked object`;
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.checkParam_empty(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -731,7 +731,7 @@ function checkParam_empty_03022(){
   var check_param =  {str:["gasoline"]};
   var check_shape =  {str:["EMPTY-ERROR"]};    
   var expect_error =  '';
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.checkParam_empty(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -752,7 +752,7 @@ function checkParam_empty_03023(){
   var check_param =  {str:[""]};
   var check_shape =  {str:["EMPTY-ERROR"]};    
   var expect_error = `EE@311 - ELEMENT '0' is erroneously empty :`;
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.checkParam_empty(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -773,7 +773,7 @@ function checkParam_empty_03024(){
   var check_param =  {str:[17]};
   var check_shape =  {str:["EMPTY-ERROR"]};    
   var expect_error =  '';
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.checkParam_empty(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -793,7 +793,7 @@ function checkParam_empty_03025(){
   var check_param ={str:[0]};
   var check_shape =  {str:["EMPTY-ERROR"]};    
   var expect_error =  '';
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.checkParam_empty(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -814,7 +814,7 @@ function checkParam_empty_03026(){
   var check_param = {str:[NaN]};
   var check_shape =  {str:["EMPTY-ERROR"]};    
   var expect_error =  `EE@311 - ELEMENT '0' is erroneously empty :`;
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.checkParam_empty(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -836,7 +836,7 @@ function checkParam_empty_03027(){
   var check_param =  {str:[18]};
   var check_shape =  {str:["EMPTY-OK"]};   
   var expect_error =  '';
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.checkParam_empty(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -858,7 +858,7 @@ function checkParam_empty_03028(){
   var check_param =  {str:[18]};
   var check_shape =  {str:["MT-WRONG-e"]};   
   var expect_error = `EE@312 - ELEMENT '0' is incorrect type, 'MT-WRONG-e', only [ER,EMPTY-ERROR,EMPTY-OK,OK,EMPTY-IGNORE,IG] allowed : [18]`;
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.checkParam_empty(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -879,7 +879,7 @@ function checkParam_empty_03029(){
   var check_param =  {str:"a-string"};
   var check_shape =  {str:"EMPTY-ERROR"};  
   var expect_error = '';
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.checkParam_empty(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -900,7 +900,7 @@ function checkParam_empty_03030(){
   var check_param =   {str:""};
   var check_shape =  {str:"EMPTY-ERROR"};  
   var expect_error = `EE@301 -  key 'str' is a 'string' which is reputed to be 'EMPTY-ERROR' but has a value of ''`;
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.checkParam_empty(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -920,7 +920,7 @@ function checkParam_empty_03031(){
   var check_param =   {numx:17};
   var check_shape =   {numx:"EMPTY-ERROR"};   
   var expect_error = '';
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.checkParam_empty(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -940,7 +940,7 @@ function checkParam_empty_03032(){
   var check_param =    {numx:0};
   var check_shape =   {numx:"EMPTY-ERROR"};   
   var expect_error = '';
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.checkParam_empty(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -961,7 +961,7 @@ function checkParam_empty_03033(){
   var check_param =    {num_y:18};
   var check_shape =    {num_y:"EMPTY-OK"};   
   var expect_error = '';
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.checkParam_empty(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -982,7 +982,7 @@ function checkParam_empty_03034(){
   var check_param =   {num_q: 18};
   var check_shape =   {num_q:"MT-WRONG-a"};  
   var expect_error =  `EE@303 - Bad empty type key, 'MT-WRONG-a', must be either 'EMPTY-OK','EMPTY-ER','EMPTY-IG','OK','ER','IG'`;
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.checkParam_empty(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -1003,7 +1003,7 @@ function checkParam_empty_03035(){
   var check_param = {num_JJ:18};
   var check_shape =  {num_y:"EMPTY-OK"};
   var expect_error =  `EE@315 - Extra key in checked object - (num_JJ:18)TE@216 -  Key 'num_y', which has a type of 'EMPTY-OK', is missing in the checked object`;
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.checkParam_empty(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -1026,7 +1026,7 @@ function checkParam_empty_03036(){
   var check_param = {0: [{num_TTTTTTT:18}], length:1};
   var check_shape =  [{num_iiiii:"EMPTY-OK"}];
   var expect_error = `EE@315 - Extra key in checked object - (num_TTTTTTT:18)TE@216 -  Key 'num_iiiii', which has a type of 'EMPTY-OK', is missing in the checked object`;
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.checkParam_empty(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -1048,7 +1048,7 @@ function checkParam_empty_03037(){
   var check_param = [{str:"a-string", num:17}, {str:"a-string", num:17}];
   var check_shape =  [{str:"EMPTY-ERROR", num:"EMPTY-OK"}, {str:"EMPTY-ERROR", num:"EMPTY-OK"}];
   var expect_error = '';
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.checkParam_empty(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -1069,7 +1069,7 @@ function checkParam_empty_03038(){
   var check_param = [["a-string", 17],          ["a-string", 17]];
   var check_shape =  [["EMPTY-ERROR", "EMPTY-OK"], ["EMPTY-ERROR", "EMPTY-OK"]]; 
   var expect_error = '';
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.checkParam_empty(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -1090,7 +1090,7 @@ function checkParam_empty_03039(){
   var check_param =  {one:{str:"a-string", num:17}, two:{str:"a-string", num:17}};
   var check_shape =  {one:{str:"EMPTY-ERROR", num:"EMPTY-OK"}, two:{str:"EMPTY-ERROR", num:"EMPTY-OK"}};   
   var expect_error = '';
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.checkParam_empty(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -1112,7 +1112,7 @@ function checkParam_empty_03040(){
   var check_param =  {three:["a-string", 17],          four:["a-string", 17]};
   var check_shape =  {three:["EMPTY-ERROR", "EMPTY-OK"], four:["EMPTY-ERROR", "EMPTY-OK"]}; 
   var expect_error = '';
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.checkParam_empty(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -1133,7 +1133,7 @@ function checkParam_empty_03041(){
   var check_param =  [["a-string", "b-string", "c-string"], ["a-string", "b-string", "c-string"]];
   var check_shape =  [["EMPTY-ERROR"], ["EMPTY-OK"]]; 
   var expect_error = '';
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.checkParam_empty(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -1153,7 +1153,7 @@ function checkParam_empty_03042(){
   var check_param =  [["a-string", "b-string", "c-string"], ["x-string",  "y-string", "z-string"]];
   var check_shape =  [["EMPTY-ERROR"],                         ["EMPTY-OK", "EMPTY-ERROR", "EMPTY-ERROR"]];  
   var expect_error = '';
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.checkParam_empty(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -1173,7 +1173,7 @@ function checkParam_empty_03043(){
   var check_param =  [[1,2,3,4], ['a', 'b', 'c', 'd']]; 
   var check_shape =  [ ["EMPTY-ERROR"], ["EMPTY-ERROR"]]; 
   var expect_error = '';
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.checkParam_empty(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -1193,7 +1193,7 @@ function checkParam_empty_03044(){
   var check_param =  ['a', 1]; 
   var check_shape =  [ "EMPTY-ERROR", "EMPTY-ERROR"];      
   var expect_error = '';
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.checkParam_empty(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -1213,7 +1213,7 @@ function checkParam_empty_03045(){
   var check_param =   {0:['a', 'b', 'c'], length:1};
   var check_shape =  [ "EMPTY-ERROR"];      
   var expect_error = '';
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.checkParam_empty(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -1233,7 +1233,7 @@ function checkParam_empty_03046(){
   var check_param =  'a-string'; 
   var check_shape = "EMPTY-ERROR";       
   var expect_error = '';
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.checkParam_empty(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -1254,7 +1254,7 @@ function checkParam_empty_03047(){
   var check_param =  [];
   var check_shape = "EMPTY-ERROR";       
   var expect_error = `EE@307 - EMPTY-ERROR states 'array' must not be empty for the value []`;
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.checkParam_empty(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -1274,7 +1274,7 @@ function checkParam_empty_03048(){
   var check_param = [[]];
   var check_shape = "EMPTY-ERROR";       
   var expect_error = '';
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.checkParam_empty(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -1294,7 +1294,7 @@ function checkParam_empty_03049(){
   var check_param = {0:[{}], length:1} ;
   var check_shape = "EMPTY-ERROR";       
   var expect_error = '';
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.checkParam_empty(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -1316,7 +1316,7 @@ function checkParam_empty_03050(){
   var check_param = [['a', 'b', 'c']];
   var check_shape = ["EMPTY-ERROR"];       
   var expect_error = '';
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.checkParam_empty(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -1336,7 +1336,7 @@ function checkParam_empty_03051(){
   var check_param =  [{a:99}];
   var check_shape = "EMPTY-ERROR";          
   var expect_error = '';
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.checkParam_empty(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);

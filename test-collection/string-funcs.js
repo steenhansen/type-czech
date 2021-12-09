@@ -4,7 +4,7 @@
 /* eslint-disable no-console */
 
 
-type_czech_helper = TypeCzech('NO-ERROR-MESSAGES');
+type_czech_helper = TypeCzech('NO-ERROR-MESSAGES', 'HIDE-INIT-MESSAGE');
 
 
 function testError(test_exception) {

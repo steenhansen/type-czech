@@ -20,7 +20,7 @@ if (TEST_show_random) {
 /////////////////////////////////////////////////////////////
 function check_interface_02000(){
 
-  type_czech = TypeCzech('NO-ERROR-MESSAGES')
+  type_czech = TypeCzech('NO-ERROR-MESSAGES', 'HIDE-INIT-MESSAGE')
   function A_PRE_check_yourFunc(a_var) {
     return type_czech.check_interface(a_var, {show:'function'})
   }
@@ -66,7 +66,7 @@ function check_interface_02000(){
 ### B. check_interface() 
 */
 
-  type_czech = TypeCzech('NO-ERROR-MESSAGES')
+  type_czech = TypeCzech('NO-ERROR-MESSAGES', 'HIDE-INIT-MESSAGE')
   function B_PRE_check_yourFunc(a_var) {
     return type_czech.check_interface(a_var, {show:'function'})
   }
@@ -95,7 +95,7 @@ function check_interface_02001(){
   var check_param = {show: (x) => x};
   var check_shape =   {show:'function'};          
   var expect_error =  '';
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.check_interface(check_param, check_shape);
             if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -117,7 +117,7 @@ function check_interface_02002(){
   var check_param = {show: (x) => x};
   var check_shape =   {noShow:'function'};          
   var expect_error = `IE@501 - Interface, {noShow:"function"}, has extra key 'noShow' that is in not in checked object of {show:(x) => x ***}`;
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.check_interface(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -138,7 +138,7 @@ function check_interface_02003(){
   var check_param =  {show: 17};
   var check_shape =   {show:'function'};           
   var expect_error =  "IE@502 - Actual type of 'show' is 'number', with a value of '17', not the expected 'function' type";
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.check_interface(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);

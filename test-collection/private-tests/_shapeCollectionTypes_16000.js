@@ -25,7 +25,7 @@ function _shapeCollectionTypes_16001(){
   var  object_shape =  { r: "number" }  
   var exact_shape = 'TYPE-EXTRAS';     
   var expect_error = '';  
-        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_object, object_shape);
         var actual_error = type_czech_test._shapeContainer(check_object, object_shape, exact_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_object, object_shape, before_str, TYPE_CZECH_current_test_number);
@@ -46,7 +46,7 @@ function _shapeCollectionTypes_16002(){
   var  object_shape =  { r: "number" }  
   var exact_shape = 'TYPE-VERIFY';     
   var expect_error = `TE@209 - Extra key in checked object - (u:'illegal')`;  
-        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_object, object_shape);
         var actual_error = type_czech_test._shapeContainer(check_object, object_shape, exact_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_object, object_shape, before_str, TYPE_CZECH_current_test_number);
@@ -68,7 +68,7 @@ function _shapeCollectionTypes_16003(){
   var  object_shape =  { r: "number", qwe:"object" } 
   var exact_shape = 'TYPE-VERIFY';     
   var expect_error =  `TE@212 - Key 'qwe' was determined to be a 'object' but is 'null'`; 
-        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_object, object_shape);
         var actual_error = type_czech_test._shapeContainer(check_object, object_shape, exact_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_object, object_shape, before_str, TYPE_CZECH_current_test_number);

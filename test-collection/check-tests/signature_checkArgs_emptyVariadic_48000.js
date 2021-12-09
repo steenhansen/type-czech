@@ -25,7 +25,7 @@ function signature_filledStrParams_48001(){
   TYPE_CZECH_current_test_number = '48001';
   filledStrParams= (filled_string) => { }
 
-  type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   
   function PRE_check_filledStrParams(){
     empty_string = type_czech.checkArgs_emptyVariadic(arguments, ['EMPTY-ERROR'])
@@ -51,7 +51,7 @@ function signature_filledStrParams_48002(){
   TYPE_CZECH_current_test_number = '48002';
   filledStrParams= () => { }
 
-  type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   
   function PRE_check_filledStrParams(){
     empty_string = type_czech.checkArgs_emptyVariadic(arguments, ['EMPTY-ERROR'])
@@ -77,7 +77,7 @@ function signature_filledStrParams_48003(){
   TYPE_CZECH_current_test_number = '48003';
   filledStrParams= (filled_string) => { }
 
-  type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   
   function PRE_check_filledStrParams(){
     empty_string = type_czech.checkArgs_emptyVariadic(arguments, ['EMPTY-ERROR'])

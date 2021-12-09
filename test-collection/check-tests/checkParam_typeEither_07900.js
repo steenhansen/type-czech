@@ -9,7 +9,7 @@
 /* eslint-disable max-len */
 
 function test_pre_checkParam_typeEither_single(single_parameter, signature_of_parameter, error_id, expected_error) {
-  const type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  const type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
 
   tested_checkParam_typeEither_07900 += 1;
 
@@ -126,12 +126,12 @@ error_mess = '';
 test_pre_checkParam_typeEither_single(single_variable, single_signature, 7910, error_mess);
 
 single_variable  = [1, 2, 3, 4];
-single_signature = [ ['number'], ['string'] ];
+single_signature = [ ['number-array'], ['string'] ];
 error_mess = '';
 test_pre_checkParam_typeEither_single(single_variable, single_signature, 7911, error_mess);
 
 single_variable  = ['a', 'b', 'c'];
-single_signature = [ ['number'], ['string'] ];
+single_signature = [ ['number'], ['string-array'] ];
 error_mess = '';
 test_pre_checkParam_typeEither_single(single_variable, single_signature, 7912, error_mess);
 

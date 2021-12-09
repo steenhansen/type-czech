@@ -36,7 +36,7 @@ console.log('checkParam_type passed tests 05000', tested_checkParam_type);
 //////////////////////////////////////////////////////////
 
 function checkParam_type_05000(){
-  type_czech = TypeCzech('NO-ERROR-MESSAGES')
+  type_czech = TypeCzech('NO-ERROR-MESSAGES', 'HIDE-INIT-MESSAGE')
   function A_PRE_check_yourFunc(a_var) {
     type_issue = type_czech.checkParam_type(a_var, 'number')
    //console.log(a_var, 'type_issue', type_issue)
@@ -83,7 +83,7 @@ function checkParam_type_05000(){
 
 
 
-    type_czech = TypeCzech('NO-ERROR-MESSAGES')
+    type_czech = TypeCzech('NO-ERROR-MESSAGES', 'HIDE-INIT-MESSAGE')
     function B_PRE_check_yourFunc(a_num, a_bool, a_date) {
       return type_czech.checkParam_type([a_num, a_bool, a_date], ['number', 'boolean', 'date'])
     }
@@ -104,7 +104,7 @@ function checkParam_type_05000(){
 ### C. A single Number. 
 */
 
-    type_czech = TypeCzech('NO-ERROR-MESSAGES')
+    type_czech = TypeCzech('NO-ERROR-MESSAGES', 'HIDE-INIT-MESSAGE')
     function C_PRE_check_yourFunc(a_var) {
       return type_czech.checkParam_type(a_var, 'number')
     }
@@ -124,7 +124,7 @@ function checkParam_type_05000(){
 ### D. Exactly two Numbers as arguments. 
 */
 
-    type_czech = TypeCzech('NO-ERROR-MESSAGES')
+    type_czech = TypeCzech('NO-ERROR-MESSAGES', 'HIDE-INIT-MESSAGE')
     function D_PRE_check_yourFunc(a_var, b_var) {
       return type_czech.checkParam_type([a_var, b_var], ['number', 'number'])
     }
@@ -143,9 +143,9 @@ function checkParam_type_05000(){
 ##E. One array of Numbers, with any number of elements; from 0 ... x elements.  
 */                                                       
 
-    type_czech = TypeCzech('NO-ERROR-MESSAGES')
+    type_czech = TypeCzech('NO-ERROR-MESSAGES', 'HIDE-INIT-MESSAGE')
     function E_PRE_check_yourFunc(a_num) {
-      return type_czech.checkParam_type(a_num, ['number'])
+      return type_czech.checkParam_type(a_num, ['number-array'])
     }
             E_yourFunc = type_czech.linkUp(E_yourFunc, E_PRE_check_yourFunc) 
             function E_yourFunc(){ }
@@ -168,7 +168,7 @@ function checkParam_type_05000(){
 ###F. Two arrays of Numbers with exactly two elements each. 
 */
 
-    type_czech = TypeCzech('NO-ERROR-MESSAGES')
+    type_czech = TypeCzech('NO-ERROR-MESSAGES', 'HIDE-INIT-MESSAGE')
     function F_PRE_check_yourFunc(a_array, b_array) {
       return type_czech.checkParam_type([a_array, b_array], [ ['number', 'number'], ['number', 'number'] ])
     }
@@ -178,37 +178,40 @@ function checkParam_type_05000(){
     F_yourFunc([NaN,NaN], [NaN,NaN])   // pass 2
     TEST_total_checks += expectedAndFailedTests(2, 0, 'F-Pass', 'checkParam_type().md');
 
-    F_yourFunc([1], [3,4,4])        // fail 1
-    F_yourFunc([1,2], [3,4], [5,6]) // fail 2
-    F_yourFunc()                    // fail 3
+   
+   F_yourFunc([1,2], [3,4], [5,6])  // fail 1
+    F_yourFunc()                    // fail 2
+    F_yourFunc([1], [3,4,4])        // fail 3
     TEST_total_checks += expectedAndFailedTests(3, 3, 'F-Fail', 'checkParam_type().md');
 
 /*
 G. One array of arrays of two Numbers.
 */
 
-    type_czech = TypeCzech('NO-ERROR-MESSAGES')
-    function G_PRE_check_yourFunc(an_array) {
-      return type_czech.checkParam_type(an_array, [ ['number', 'number'] ])
+    type_czech = TypeCzech('NO-ERROR-MESSAGES', 'HIDE-INIT-MESSAGE')
+    function G_PRE_check_yourFunc_05000(an_array) {
+      return type_czech.checkParam_type(an_array, ['number-array', 'number-array'] )
     }
-            G_yourFunc = type_czech.linkUp(G_yourFunc, G_PRE_check_yourFunc) 
-            function G_yourFunc(){ }
-    G_yourFunc([ [1,2] ])                      // pass 1
-    G_yourFunc([ [1,2], [3,4] ])               // pass 2
-    G_yourFunc([ [1,2], [3,4], [5,6], [7,8] ]) // pass 3
-    TEST_total_checks += expectedAndFailedTests(3, 0, 'G-Pass', 'checkParam_type().md');
+    G_yourFunc_05000 = type_czech.linkUp(G_yourFunc_05000, G_PRE_check_yourFunc_05000) 
+            function G_yourFunc_05000(){ }
 
-    G_yourFunc([ [1,2,3] ])                          // fail 1
-    G_yourFunc([ [1] ])                              // fail 2
-    G_yourFunc([ [1,2], [3,4], [5,6], [7,'X'] ])     // fail 3
-    G_yourFunc()                                     // fail 4
-    TEST_total_checks += expectedAndFailedTests(4, 4, 'G-Fail', 'checkParam_type().md');
+    G_yourFunc_05000([ [1,2], [3,49] ])               // pass 2
+
+    TEST_total_checks += expectedAndFailedTests(1, 0, 'G-Pass', 'checkParam_type().md');
+
+    G_yourFunc_05000([ [1,2,3] ])                          // fail 1
+    G_yourFunc_05000([ [1] ])                              // fail 2
+    G_yourFunc_05000([ [1,2], [3,4], [5,6], [7,'X'] ])     // fail 3 passed wrongly
+    G_yourFunc_05000()                                     // fail 4
+    G_yourFunc_05000([ [1,2] ])                      // pass 1     recursion blowout ????
+    G_yourFunc_05000([ [1,2], [3,4], [5,6], [7,8] ]) // pass 3  passed wrongly
+    TEST_total_checks += expectedAndFailedTests(6, 6, 'G-Fail', 'checkParam_type().md');
 
 /*
 ### H. One Array with any type of contents.
 */
 
-    type_czech = TypeCzech('NO-ERROR-MESSAGES')
+    type_czech = TypeCzech('NO-ERROR-MESSAGES', 'HIDE-INIT-MESSAGE')
     function H_PRE_check_yourFunc(an_array) {
       return type_czech.checkParam_type(an_array, 'array')
     }
@@ -228,7 +231,7 @@ G. One array of arrays of two Numbers.
 ### I. One Object with any type of contents.
 */
 
-    type_czech = TypeCzech('NO-ERROR-MESSAGES')
+    type_czech = TypeCzech('NO-ERROR-MESSAGES', 'HIDE-INIT-MESSAGE')
     function I_PRE_check_yourFunc(an_object) {
       return type_czech.checkParam_type(an_object, 'object')
     }
@@ -248,7 +251,7 @@ G. One array of arrays of two Numbers.
 /*
 ### J. One Objects with x and y keys that are Numbers. 
 */
-    type_czech = TypeCzech('NO-ERROR-MESSAGES')
+    type_czech = TypeCzech('NO-ERROR-MESSAGES', 'HIDE-INIT-MESSAGE')
     function J_PRE_check_yourFunc(an_object) {
       return type_czech.checkParam_type(an_object, {x:'number', y:'number'})
     }
@@ -270,18 +273,18 @@ G. One array of arrays of two Numbers.
 ### K. One Array with any number of Objects with x and y keys that are Numbers.
 */
 
-    type_czech = TypeCzech('NO-ERROR-MESSAGES')
+    type_czech = TypeCzech('NO-ERROR-MESSAGES', 'HIDE-INIT-MESSAGE')
     function K_PRE_check_yourFunc(an_array) {
       return type_czech.checkParam_type(an_array, [{x:'number', y:'number'}])
     }
               K_yourFunc = type_czech.linkUp(K_yourFunc, K_PRE_check_yourFunc) 
               function K_yourFunc(){ }
     K_yourFunc([{x:0, y:1}])                         // pass 1
-    K_yourFunc([{x:0, y:1}, {x:0, y:1}, {x:0, y:1}]) // pass 2
-    TEST_total_checks += expectedAndFailedTests(2, 0, 'K-Pass', 'checkParam_type().md');
+    TEST_total_checks += expectedAndFailedTests(1, 0, 'K-Pass', 'checkParam_type().md');
 
-    K_yourFunc()                        // fail 1
-    TEST_total_checks += expectedAndFailedTests(1, 1, 'K-Fail', 'checkParam_type().md');
+    K_yourFunc()                                     // fail 1
+    K_yourFunc([{x:0, y:1}, {x:0, y:1}, {x:0, y:1}]) // fail 2
+    TEST_total_checks += expectedAndFailedTests(2, 2, 'K-Fail', 'checkParam_type().md');
 
 
 /*
@@ -290,7 +293,7 @@ G. One array of arrays of two Numbers.
 
 // Problem is that we have to use checkParam_typeExtra here
 
-    type_czech = TypeCzech('NO-ERROR-MESSAGES')
+    type_czech = TypeCzech('NO-ERROR-MESSAGES', 'HIDE-INIT-MESSAGE')
     function L_PRE_check_yourFunc(param_1, param_2, param_3) {
       extra_issue = type_czech.checkParam_typeExtra(param_1, 'number')
       return extra_issue
@@ -312,7 +315,7 @@ G. One array of arrays of two Numbers.
 ### M. Check two parameter types of many, not using arguments object. 
 */
 
-    type_czech = TypeCzech('NO-ERROR-MESSAGES')
+    type_czech = TypeCzech('NO-ERROR-MESSAGES', 'HIDE-INIT-MESSAGE')
     function M_PRE_check_yourFunc(param_1, param_2, param_3) {
 //      return type_czech.checkParam_type([param_1, param_3], ['number'])
       return type_czech.checkParam_typeExtra([param_1, param_2], ['number', 'number'])
@@ -336,19 +339,19 @@ G. One array of arrays of two Numbers.
 ### N. Check two parameter types of many
 */
 
-    type_czech = TypeCzech('NO-ERROR-MESSAGES')
-    function N_PRE_check_yourFunc(param_1, param_2, param_3) {
-      return type_czech.checkParam_type([param_1, param_2, param_3], ['number'])
+    type_czech = TypeCzech('NO-ERROR-MESSAGES', 'HIDE-INIT-MESSAGE')
+    function N_PRE_check_yourFunc_05000(param_1, param_2, param_3) {
+      return type_czech.checkParam_type([param_1, param_2, param_3], ['number-array'])
     }
-            N_yourFunc = type_czech.linkUp(N_yourFunc, N_PRE_check_yourFunc) 
-            function N_yourFunc(){ }
-    N_yourFunc(1,2,3)               // pass 1
+            N_yourFunc_05000 = type_czech.linkUp(N_yourFunc_05000, N_PRE_check_yourFunc_05000) 
+            function N_yourFunc_05000(){ }
+    N_yourFunc_05000(1,2,3)               // pass 1
     TEST_total_checks += expectedAndFailedTests(1, 0, 'N-Pass', 'checkParam_type().md');
 
-    N_yourFunc(1, true, 3)               // fail 2
-    N_yourFunc(1, true, 3, false, true)  // fail 3
-    N_yourFunc()                         // fail 4
-    N_yourFunc(false,false,3)            // fail 5
+    N_yourFunc_05000(1, true, 3)               // fail 2
+    N_yourFunc_05000(1, true, 3, false, true)  // fail 3
+    N_yourFunc_05000()                         // fail 4
+    N_yourFunc_05000(false,false,3)            // fail 5
     TEST_total_checks += expectedAndFailedTests(4, 4, 'N-Fail', 'checkParam_type().md');
 
 
@@ -374,7 +377,7 @@ function checkParam_type_05001(){
   var check_param =  {cylinders:4, fuel:"gasoline", sneak:"extra"} ;
   var check_shape = {cylinders:"number", fuel:"string"};           
   var expect_error =`TE@209 - Extra key in checked object - (sneak:'extra')`;
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.checkParam_type(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -394,7 +397,7 @@ function checkParam_type_05002(){
   var check_param =  {};
   var check_shape = 'object';          
   var expect_error = '';
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error= type_czech.checkParam_type(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -415,7 +418,7 @@ function checkParam_type_05003(){
   var check_param = [[]];
   var check_shape = 'array';          
   var expect_error = '';
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error= type_czech.checkParam_type(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -437,7 +440,7 @@ function checkParam_type_05004(){
   var check_param = {0:[{}], length:1};
   var check_shape = 'array';          
   var expect_error = '';
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error= type_czech.checkParam_type(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -458,7 +461,7 @@ function checkParam_type_05005(){
   var check_param = {0:[{}], length:1};
   var check_shape = 'object';          
   var expect_error = `TE@225 - The value [], an 'array', is not a 'object'`;
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error= type_czech.checkParam_type(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -480,7 +483,7 @@ function checkParam_type_05006(){
   var check_param = {x:[{y:'z'}]};
   var check_shape = {x:[{y:'string'}]};           //   SAME AS TEST 5007 wat?
   var expect_error = '';
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error= type_czech.checkParam_type(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -502,7 +505,7 @@ function checkParam_type_05007(){
   var check_param = {x:[{y:'z'}]};
   var check_shape = {x:[{y:'string'}]}; 
   var expect_error = '';
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error= type_czech.checkParam_type(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -525,7 +528,7 @@ function checkParam_type_05008(){
   var check_param = {cylinders:4, fuel:"gasoline", sneak:"extra"};
   var check_shape = {cylinders:"number", fuel:"string"};
   var expect_error = `TE@209 - Extra key in checked object - (sneak:'extra')`;
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error= type_czech.checkParam_type(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -548,7 +551,7 @@ function checkParam_type_05009(){
   var check_param = null;
   var check_shape = 'null'; 
   var expect_error = `TE@203 - The type 'null' is not a valid checkParam_type(), checkParam_typeEither(), or checkParam_typeExtra() 2nd parameter type`;
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error= type_czech.checkParam_type(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -569,7 +572,7 @@ function checkParam_type_05010(){
   var check_param = null;
   var check_shape = 'null'; 
   var expect_error = `TE@203 - The type 'null' is not a valid checkParam_type(), checkParam_typeEither(), or checkParam_typeExtra() 2nd parameter type`;
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error= type_czech.checkParam_type(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -589,7 +592,7 @@ function checkParam_type_05011(){
   var check_param = { a: [ { b:[ {c:'abcdef'} ] } ],  z:null};
   var check_shape = { a: [ { b:[ {c:'string'} ] } ], z: 'null'};   
   var expect_error = `TE@210 - Type 'null' is not a real type`;
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error= type_czech.checkParam_type(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -609,7 +612,7 @@ function checkParam_type_05012(){
   var check_param = {0:['a-string'], length:1};
   var check_shape = 'string';  
   var expect_error = "TE@225 - The value [], an 'array', is not a 'string'";
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error= type_czech.checkParam_type(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -631,7 +634,7 @@ function checkParam_type_05013(){
   var check_param = [['a-string']];
   var check_shape = 'string';  
   var expect_error = `TE@225 - The value [], an 'array', is not a 'string'`;
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error= type_czech.checkParam_type(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -653,7 +656,7 @@ function checkParam_type_05014(){
   var check_param = 'a-string';
   var check_shape = ['string'];  
   var expect_error =`TE@217 - Comparing 'string' parameter, with a value of a-string, to expected shape of ["string"].`;
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error= type_czech.checkParam_type(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -675,7 +678,7 @@ function checkParam_type_05015(){
   var check_param = 'a-string';
   var check_shape = 'string';  
   var expect_error =  ''; 
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error= type_czech.checkParam_type(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -694,9 +697,9 @@ function checkParam_type_05015(){
 function checkParam_type_05016(){
   var TYPE_CZECH_current_test_number = '05016';
   var check_param = [1,2,3]; 
-  var check_shape = ['number'];  
+  var check_shape = ['number-array'];  
   var expect_error = '';
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error= type_czech.checkParam_type(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -719,7 +722,7 @@ function checkParam_type_05017(){
   var check_param = ['a', 1]; 
   var check_shape = ['string', 'number'];
   var expect_error = '';
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error= type_czech.checkParam_type(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);
@@ -739,9 +742,9 @@ function checkParam_type_05017(){
 function checkParam_type_05018(){
   var TYPE_CZECH_current_test_number = '05018';
   var check_param = [[1,2,3,4], ['a', 'b', 'c', 'd']];
-  var check_shape = [ ['number'], ['string'] ]; 
+  var check_shape = [ ['number-array'], ['string-array'] ]; 
   var expect_error = '';
-        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error= type_czech.checkParam_type(check_param, check_shape);
         if (typeof beforeCheck !== 'undefined') afterCheck(check_param, check_shape, before_str, TYPE_CZECH_current_test_number);

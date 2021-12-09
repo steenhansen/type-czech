@@ -4,7 +4,7 @@
 
 
   
-<div id='js-div' style="width:46%; " >
+<div id='js-div' style="width:52%; " >
   <a href='https://github.com/steenhansen/type-czech' class='git-hub'>GitHub Package</a>
   <div id='js-code'>the javascript</div>
 
@@ -13,11 +13,84 @@
 
 
 
+
+
+
+
+
+</div>
+
+
+<div id="the-explanation" style="width:48%" >
+  <div class='an-explantion'>502 - Inherited Prototypes Imported</div>
+  <div id='explanation-text'>
+    <br>
+ 
+    TypeCzech's general example of an author where:
+    <ul> 
+      <li class='floating_li'><b>First</b> controls an author's first name</li> 
+      <li class='floating_li'>Safely removable supporting TypeCzech test code begins with /**/</li>
+      <li class='floating_li'><b>Last</b> handles an author's first and last name</li> 
+      <li class='floating_li'><b>Full</b> deals with an author's salutation, first, and last name</li>
+      <br>  <br><br>
+  </ul>
+  <br><br><br>
+    Prototypes are used for inheritance:
+    <ul>
+      <li>When TypeCzech is turned off, only production code is imported:
+                  <ul> 
+                    <li class='floating_li'>First.js</li> 
+                    <li class='floating_li'>Last.js</li> 
+                    <li class='floating_li'>Full.js</li>
+                  </ul>
+                  <br><br>
+      </li>
+      <li>With TypeCzech turned on, the supporting test code is imported:
+        <ul> 
+          <li class='floating_li'>TypeCzech.js</li> 
+          <li class='floating_li'>TypeCzech_First.js</li> 
+          <li class='floating_li'>TypeCzech_Last</li>
+          <li class='floating_li'>TypeCzech_Full.js</li>
+          <li class='floating_li'>TypeCzech_Person.js</li>
+          <br>  <br>
+      </ul>
+      </li>
+      <br>
+      <li>Production prototype declarations <b>must</b> interleave with TypeCzech calls
+        to have the PRE and POST checking functions be correctly linked before use </li>
+      </ul>
+
+
+
+      
+  </div>
+
+
+  <div id="console-log"  >
+    <div class='a-title'>Console Output</div>
+    <div id='log-text'></div>
+
+  </div>
+
+
   
 <!--            -------------------TYPE 2-----------------------       -->
 <script src="../../web-resources/consolelog.js"></script>
 <script src="../../web-resources/ordered-import.js"></script>
 <link rel="stylesheet" href="../../web-resources/type-czech.css">
+<script>
+  const TYPE_CZECH_JS =  '../../TypeCzech.js';
+  const FIRST_JS = './First.js';
+  const LAST_JS = './Last.js';
+  const FULL_JS =   './Full.js';
+  const PERSON_JS =   './Person.js';
+  
+  const TC_FIRST_JS = './TypeCzech_First.js';
+  const TC_LAST_JS = './TypeCzech_Last.js';
+  const TC_FULL_JS =   './TypeCzech_Full.js';
+  const TC_PERSON_JS =   './TypeCzech_Person.js';
+  </script>
+
 <!--            ---------------------TYPE 2---------------------       -->
 <div id='js-fiddles'>
   <a title="Example-Contents" href="../../example-snippets/example-contents.html">Contents</a>
@@ -192,66 +265,6 @@
 
 
 
-
-
-
-
-</div>
-
-
-<div id="the-explanation" style="width:54%" >
-  <div class='an-explantion'>502 - Inherited Prototypes Imported</div>
-  <div id='explanation-text'>
-    <br>
- 
-    TypeCzech's general example of an author where:
-    <ul> 
-      <li class='floating_li'><b>First</b> controls an author's first name</li> 
-      <li class='floating_li'>Safely removable supporting TypeCzech test code begins with /**/</li>
-      <li class='floating_li'><b>Last</b> handles an author's first and last name</li> 
-      <li class='floating_li'><b>Full</b> deals with an author's salutation, first, and last name</li>
-      <br>  <br><br>
-  </ul>
-  <br><br><br>
-    Prototypes are used for inheritance:
-    <ul>
-      <li>When TypeCzech is turned off, only production code is imported:
-                  <ul> 
-                    <li class='floating_li'>First.js</li> 
-                    <li class='floating_li'>Last.js</li> 
-                    <li class='floating_li'>Full.js</li>
-                  </ul>
-                  <br><br>
-      </li>
-      <li>With TypeCzech turned on, the supporting test code is imported:
-        <ul> 
-          <li class='floating_li'>TypeCzech.js</li> 
-          <li class='floating_li'>TypeCzech_First.js</li> 
-          <li class='floating_li'>TypeCzech_Last</li>
-          <li class='floating_li'>TypeCzech_Full.js</li>
-          <li class='floating_li'>TypeCzech_Person.js</li>
-          <br>  <br>
-      </ul>
-      </li>
-      <br>
-      <li>Production prototype declarations <b>must</b> interleave with TypeCzech calls
-        to have the PRE and POST checking functions be correctly linked before use </li>
-      </ul>
-
-
-
-      
-  </div>
-
-
-  <div id="console-log"  >
-    <div class='a-title'>Console Output</div>
-    <div id='log-text'></div>
-
-  </div>
-
-
-
 </div>
 
 
@@ -282,24 +295,19 @@ function copyAndColor(){
 
 <script  id="check-code">
 /**/  const CHECKING_CLASS_FILES = [
-/**/  '../../TypeCzech.js',
-/**/    './First.js',
-/**/    './TypeCzech_First.js',
-/**/    './Last.js',
-/**/    './TypeCzech_Last.js',
-/**/    './Full.js',
-/**/    './TypeCzech_Full.js',
-/**/    './Person.js',
-/**/    './TypeCzech_Person.js'
-/**/  ]
+/**/    TYPE_CZECH_JS, 
+/**/    FIRST_JS,
+/**/    TC_FIRST_JS,
+/**/    LAST_JS,
+/**/    TC_LAST_JS,
+/**/    FULL_JS,
+/**/    TC_FULL_JS,
+/**/    PERSON_JS,
+/**/    TC_PERSON_JS  ]
 
-const NOT_CHECKING_CLASS_FILES = [
-  './First.js',
-  './Last.js',
-  './Full.js',
-  './Person.js'
-]
-
+const NOT_CHECKING_CLASS_FILES = [ FIRST_JS, 
+                                   LAST_JS, 
+                                   FULL_JS ]
 /**/  TYPE_CZECH_START = true
 /**/  //TYPE_CZECH_START = false
 /**/  
@@ -322,13 +330,23 @@ onLoaded = ([_loaded_files, _import_errors]) => {
   mary_shelley.lastMethod(1931)
   linesConsole(1)
   mary_shelley.fullMethod('Frankenstein')
+
   linesConsole(2)
-  mary_shelley.showName()
+
+/**/  function PRE_check_printFullFunc(a_person){
+/**/    return type_czech.checkParam_type(a_person, 'Full')
+/**/  }
+/**/  printFullFunc = type_czech.linkUp(printFullFunc, PRE_check_printFullFunc)
+
+  function printFullFunc(a_person) {
+    log('From Checked Function : ', a_person.showName())
+  }
+
+  printFullFunc(mary_shelley)
   copyAndColor()
 }
 
 orderedImport(class_files, onLoaded)
-
 </script>
   
 <link rel="stylesheet"

@@ -4,7 +4,7 @@
 
 
 ## API
-  -  [1 check_assert()](#assert-check)
+  -  [1 check_assert()](#check-assert)
   -  [2 check_buildSnapshot() & check_mutatedSnapshot()](#check-build-snapshot)
   -  [3 checkParam_empty()](#check-empty)
   -  [4 checkParam_emptyEither()](#check-empty-either)
@@ -29,7 +29,7 @@
 
 Note that function calls that have names that start with check_ are usually placed within PRE and POST checking functions as their error messages are automatically logged in the console or thrown as exceptions.
 
-### 1 check_assert(the_error, err_location, err_variable, err_explanation)<a name="assert-check"></a>
+### 1 check_assert(the_error, err_location, err_variable, err_explanation)<a name="check-assert"></a>
 
   This function is nearly always placed inside a promise chain, without PRE_check() and POST_check() functions being present.
   Below, if check_error is an empty string then nothing happens. Otherwise the error 
@@ -247,8 +247,9 @@ function wantedProperties(an_object){ }
 
 wantedProperties({my_func: x=>x, my_number: 987}) // pass
 
-wantedProperties({my_func: 'not-a-function', my_number: 987}) // fail - my_func is a string
-wantedProperties({my_func: x=>x, my_number: 'not-a-number'})  // fail - my_number is a string
+wantedProperties({my_func: 'not-a-function', my_number: 987})               // fail - my_func is a string
+wantedProperties({my_func: x=>x, my_number: 'not-a-number'})                // fail - my_number is a string
+wantedProperties({my_func: x=>x, my_number:{recursive:{wrapped:'nested'}}}) // fail - try checkParam_type()
 ```
 
 
@@ -389,7 +390,7 @@ function anArray(){ }
 
 anArray([])             // pass 3
 anArray([1,2,3])        // pass 1
-anArray([ [], [], [] ]) //pass 2
+anArray([ [], [], [] ]) // pass 2
 
 anArray('a-string')     // fail 1 - string not array
 anArray({an_object:[]}) // fail 2 - object not array
@@ -485,7 +486,7 @@ isRoman('1177 BC') // not checked and not counted as currently disabled
   Returns true if TypeCzech is checking errors. This returns false if TypeCzech was not loaded in Node.js or the browser. Can turn off with disableTests().
 
 ```
-type_czech = TypeCzech('THROW-EXCEPTIONS')
+type_czech = TypeCzech('LOG-ERRORS')
 
 type_czech.isActive() // true
 

@@ -5,7 +5,7 @@
 ### A. Test disableTests() stops.
 */
 
-type_czech = TypeCzech('NO-ERROR-MESSAGES')
+type_czech = TypeCzech('NO-ERROR-MESSAGES', 'HIDE-INIT-MESSAGE')
 function A_PRE_check_yourFunc() { }
 A_yourFunc = type_czech.linkUp(A_yourFunc, A_PRE_check_yourFunc) 
 function A_yourFunc() { }

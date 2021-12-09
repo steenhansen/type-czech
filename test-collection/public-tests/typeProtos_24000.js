@@ -18,7 +18,7 @@ if (TEST_show_random) {
 }
 
 function _typeProtos_24101() {
-  type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   TYPE_CZECH_current_test_number = '24101';
   actual_prototypes = type_czech_test.typeProtos(new Date('1999-12-31'));
   expected_prototypes = ["Date"]
@@ -33,7 +33,7 @@ function _typeProtos_24101() {
 
 function _typeProtos_24102() {
   if (typeof document !== 'undefined') {
-    type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+    type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
     TYPE_CZECH_current_test_number = '24102';
     actual_prototypes = type_czech_test.typeProtos(document.createElement('div'));
     expected_prototypes =[ "HTMLDivElement", "HTMLElement", "Element", "Node", "EventTarget", "Object" ];
@@ -50,7 +50,7 @@ function _typeProtos_24102() {
 
 function _typeProtos_24103() {
   if (typeof document !== 'undefined') {
-    type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+    type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
     TYPE_CZECH_current_test_number = '24103';
      
     class First { constructor() { } }
@@ -72,7 +72,7 @@ function _typeProtos_24103() {
 
 
 function _typeProtos_24000() {
-  type_czech = TypeCzech('NO-ERROR-MESSAGES');
+  type_czech = TypeCzech('NO-ERROR-MESSAGES', 'HIDE-INIT-MESSAGE');
   TYPE_CZECH_current_test_number = 24000;
 
   function A_yourFunc(an_arg, the_answer){

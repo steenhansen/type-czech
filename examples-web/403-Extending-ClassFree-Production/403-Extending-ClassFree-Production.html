@@ -3,13 +3,13 @@
 
 
   
-<div id='js-div' style="width:47%; " class='code-scroll'>
+<div id='js-div' style="width:60%; " class='code-scroll'>
   <a href='https://github.com/steenhansen/type-czech' class='git-hub'>GitHub Package</a>
   <div id='js-code'>the javascript</div>
 </div>
 
 
-<div id="the-explanation" style="width:53%" >
+<div id="the-explanation" style="width:40%" >
   <div class='an-explantion'>403 - ClassFree Constructors Production</div>
   <div id='explanation-text'>
  
@@ -31,7 +31,6 @@
               <li class='floating_li'>TypeCzech_First.js</li> 
               <li class='floating_li'>TypeCzech_Last</li>
               <li class='floating_li'>TypeCzech_Full.js</li>
-              <li class='floating_li'>TypeCzech_Person.js</li>
               <br>  <br><br>
           </ul>
           </li>
@@ -59,6 +58,13 @@
 <script src="../../web-resources/consolelog.js"></script>
 <script src="../../web-resources/ordered-import.js"></script>
 <link rel="stylesheet" href="../../web-resources/type-czech.css">
+<script>
+  const TYPE_CZECH_JS =  '../../TypeCzech.js';
+  const TC_FIRST_JS = './TypeCzech_First.js';
+  const TC_LAST_JS = './TypeCzech_Last.js';
+  const TC_FULL_JS =   './TypeCzech_Full.js';
+  </script>
+
 <!--            -----------TYPE 2-------------------------------       -->
 <div id='js-fiddles'>
   <a title="Example-Contents" href="../../example-snippets/example-contents.html">Contents</a>
@@ -306,8 +312,7 @@ function Full(spec) {
     return a_book
   }
   function showName() {
-    const the_name = `${salu} ${f_name} ${l_name}`
-    console.log('Name: ', the_name)
+    return `${salu} ${f_name} ${l_name}`
   }
   full_object = {showName, firstMethod, lastMethod, fullMethod}
   return Object.freeze(full_object)
@@ -326,8 +331,20 @@ onLoaded = ([_loaded_files, _import_errors]) => {
   frank_herbert.lastMethod(1966)
   linesConsole(1)
   frank_herbert.fullMethod('Dune')
-  linesConsole(1)
-  frank_herbert.showName()
+
+  linesConsole(2)
+
+/**/  function PRE_check_printFullFunc(a_person){
+/**/    the_interface = {showName:'f', fullMethod:'f', firstMethod:'f', lastMethod:'f'}
+/**/    return type_czech.check_interface(a_person, the_interface)
+/**/  }
+/**/  printFullFunc = type_czech.linkUp(printFullFunc, PRE_check_printFullFunc)
+
+  function printFullFunc(a_person) {
+    log('From Checked Function : ', a_person.showName())
+  }
+
+  printFullFunc(frank_herbert)
   copyAndColor()
 }
 
@@ -336,10 +353,11 @@ onLoaded = ([_loaded_files, _import_errors]) => {
 /**/
 /**/  if (typeof orderedImport === 'function' && TYPE_CZECH_START) {
 /**/    TYPE_CZECH_COMMANDS = ['LOG-ERRORS']
-/**/    const CHECKING_CLASS_FILES = ['../../TypeCzech.js',
-/**/                                  './TypeCzech_First.js',
-/**/                                  './TypeCzech_Last.js',
-/**/                                  './TypeCzech_Full.js'  ]
+/**/    const CHECKING_CLASS_FILES = [
+/**/          TYPE_CZECH_JS,
+/**/          TC_FIRST_JS,
+/**/          TC_LAST_JS,
+/**/          TC_FULL_JS  ]
 /**/    orderedImport(CHECKING_CLASS_FILES, onLoaded)
 /**/  } else {
   onLoaded([], [])

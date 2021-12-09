@@ -24,7 +24,7 @@ function _refDiff_19001(){
   var diff_was = "{'B':'B'}";
   var diff_is  = "{'B':'B','3':3}"; 
   var expect_error = `START-SAME ~ {'B':'B' PRE-DIFF ~ } POST-DIFF ~ ,'3':3}`; 
-        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         var check_shape =  'none-sentinel';    
         var actual_error;
         try {
@@ -50,7 +50,7 @@ function _refDiff_19002(){
   var diff_was = '123456789012345678901234567890123456789012345678901234567890';
   var diff_is  = '1234567890123456789012345678901234567_89012345678901234567890'; 
   var expect_error = `START-SAME ~ 1234567890123456789012345678901234567 PRE-DIFF ~ 89012345678901234567890 POST-DIFF ~ _89012345678901234567890`; 
-        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         var check_shape =  'none-sentinel';    
         var actual_error;
         try {
@@ -73,7 +73,7 @@ function _refDiff_19003(){
   var diff_was = '123456789012345678901234567890';
   var diff_is  = '123456789012345678901234567890'; 
   var expect_error = ""; 
-        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         var check_shape =  'none-sentinel';    
         var actual_error;
         try {
@@ -97,7 +97,7 @@ function _refDiff_19004(){
   var diff_was = ``;
   var diff_is = '1'; 
   var expect_error = `START-SAME ~ '' PRE-DIFF ~ '' POST-DIFF ~ 1`; 
-        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+        var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         var check_shape =  'none-sentinel';    
         var actual_error;
         try {

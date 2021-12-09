@@ -16,7 +16,7 @@ if (TEST_show_random) {
 }
 
 function _cycle_loops_08001(){
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS');
+  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   TYPE_CZECH_current_test_number = '08001';
 
   try {
