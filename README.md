@@ -15,11 +15,16 @@ Enjoy some TypeScript benefits without the drawbacks of
 
 With TypeCzech you can
 
-  -  Check function parameter types, including arrays, and extended objects
-  -  Ensure strings, arrays, and objects are not empty at run-time
-  -  Catch malformed data from a fetch() call at run-time
-  -  Specify run-time input validation constraints
-  -  Detect run-time mutations in array and object function parameters
+  -  Check function parameter [types](https://jsfiddle.net/steen_hansen/jxrdom62/?06-Validate-Parameters-and-Results), 
+  including [arrays](https://jsfiddle.net/steen_hansen/1ref2ot7/?14-Parameter-and-Results-Multi-Types),
+   and [extended objects](https://jsfiddle.net/steen_hansen/r8L3mp40/?09-Closure-Parameters-Results-and-Methods)
+  -  Ensure strings, arrays, and objects are [not empty](https://jsfiddle.net/steen_hansen/x8h6dvj5/?19-Lone-Empty-Param-and-Result) at run-time
+  -  [Catch malformed data](https://jsfiddle.net/steen_hansen/ta7fdnrw/?39-Assert-Checks) from a fetch() call at run-time
+  -  Specify [run-time input validation constraints](https://jsfiddle.net/steen_hansen/6zy89om1/?02-Validate-Parameters-by-Value)
+  -  [Detect run-time mutations](https://jsfiddle.net/steen_hansen/abh0jkL1/?07-Mutated-Function-Parameters) in array and object function parameters
+
+
+
 
 Missing from TypeCzech
 

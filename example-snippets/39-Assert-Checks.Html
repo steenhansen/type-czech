@@ -307,8 +307,8 @@ fetch('https://api.github.com/users/steenhansen')
 .then( _ => {
     fetch('https://api.github.com/users/steenhansen')
     .then(response => response.json())
-    .then(github_data => {
-      if (type_czech.isActive()) {           // array type causes error
+    .then(github_data => {                    // array type check
+      if (type_czech.isActive()) {            // causes error on purpose
         log('|||')
         type_err = type_czech.checkParam_type(github_data, 'array')
         type_czech.check_assert(type_err, 'FETCH ERROR', github_data)
@@ -340,7 +340,7 @@ fetch('https://api.github.com/users/steenhansen')
 // ///////////////////////
 
 fromToBoldText(1339, 1361, 'code', 4)  // array type causes error
-fromToBoldText(1554, 1606, 'code', 3)  // // The GitHub API is rate limited so it may stop working
+fromToBoldText(1594, 1646, 'code', 3)  // // The GitHub API is rate limited so it may stop working
 
 
 
