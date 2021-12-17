@@ -14,10 +14,11 @@ Enjoy some TypeScript benefits without the drawbacks of
   -  Compile time only checks
 
 With TypeCzech you can
-
-  -  Check function parameter [types](https://jsfiddle.net/steen_hansen/jxrdom62/?06-Validate-Parameters-and-Results), 
-  including [arrays](https://jsfiddle.net/steen_hansen/1ref2ot7/?14-Parameter-and-Results-Multi-Types),
-   and [extended objects](https://jsfiddle.net/steen_hansen/r8L3mp40/?09-Closure-Parameters-Results-and-Methods)
+  -  Check function [parameter types](https://jsfiddle.net/steen_hansen/0xtpLwsc/?00-Readme-Example), 
+     [results](https://jsfiddle.net/steen_hansen/wrkvscqg/?05-Verify-Return-Results-by-Value),
+     [arrays](https://jsfiddle.net/steen_hansen/bsw3yp5c/?16-Arrays-with-One-Type),
+     [closures](https://jsfiddle.net/steen_hansen/r8L3mp40/?09-Closure-Parameters-Results-and-Methods),
+     and [classes](https://jsfiddle.net/steen_hansen/Lhwov8y9/?10-Class-Parameters-Results-and-Methods)
   -  Ensure strings, arrays, and objects are [not empty](https://jsfiddle.net/steen_hansen/x8h6dvj5/?19-Lone-Empty-Param-and-Result) at run-time
   -  [Catch malformed data](https://jsfiddle.net/steen_hansen/ta7fdnrw/?39-Assert-Checks) from a fetch() call at run-time
   -  Specify [run-time input validation constraints](https://jsfiddle.net/steen_hansen/6zy89om1/?02-Validate-Parameters-by-Value)
