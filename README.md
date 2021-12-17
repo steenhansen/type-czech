@@ -303,7 +303,7 @@ Checking parameter empty signtures.
 
   
 ### [67 Page Live Online Editable Tutorial](https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Contents)
-All the examples run on JsFiddle.
+All the examples run on JsFiddle. Note that the JsFiddle console will not run small embedded "copy and paste green code examples".
 
 ### [67 Page Local Editable Tutorial](./example-snippets/example-contents.html)
 All the examples on local browser.
