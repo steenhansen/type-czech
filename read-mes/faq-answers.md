@@ -16,13 +16,14 @@ Having easily controllable type checking at runtime in both the browser and Node
   turned off and not existing in the source code of the program.
 
   However, with a loop of 100,000 [lottery](../example-snippets/00-Readme-Example.html) checks there is a 
-  visible slowdown of 4.4 seconds with Type-Czech actively
-  checking parameters versus 0.4 seconds with Type-Czech
+  visible slowdown of 10 seconds with Type-Czech actively
+  checking parameters versus 0.04 seconds with Type-Czech
   turned off or not existing at all.
 
 ### Will TypeCzech change the value of variables?
 
-  No. Approximently 500 of the unit tests specifically verify that there are no mutations with parameter and result checks.
+  No. Over 500 of the unit tests specifically verify that there are no mutations with parameter and result checks. The functions beforeCheck(), and afterCheck() check
+  on parameter coherence via JSON strings.
 
 ### Be Careful With
   -  Checking for mutations with the global window variable can blow up if a lot 

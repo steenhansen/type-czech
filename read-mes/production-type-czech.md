@@ -6,7 +6,7 @@
 
 ### Use your own version of the Minified File
 
-The TypeCzech.js file is 195KB, while the minified file on jsDelivr is only 33KB. The jsDelivr CDN serves files from GitHub for the jsFiddle.net examples.    
+The TypeCzech.js file is 199KB, while the minified file on jsDelivr is only 35KB. The jsDelivr CDN serves files from GitHub for the jsFiddle.net examples.    
 ```
 <script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech/web-resources/TypeCzech.min.js"></script>
 ```

@@ -1,5 +1,5 @@
 
-# Node and Web Tests
+# Browser and Node Tests
 
 ### [Call All Tests in Node.js](../test-collection/test-all-node.js)
 
@@ -15,7 +15,9 @@
 Shows the time penalties for using TypeCzech on a function many times. For a complicated check, like the READ.ME's aLottery(), a loop of 100,000 calls will add a noticable 10 seconds to execution time. There is virtually no difference in test runs between TypeCzech
 code that is turned off and TypeCzech code that has been removed.
 
-### [Browser REPL](../test-collection/repl.html)
+### [Browser REPL](../test-collection/repl.html) 
+../test-collection/repl.html
+
 Load TypeCzech in a browser so can easily execute functions, in the console, that appear in the comments of TypeCzech.js, like: 
 <pre>
 type_czech.checkParam_type('not-a-number', 'number');
