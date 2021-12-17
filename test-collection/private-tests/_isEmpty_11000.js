@@ -1,18 +1,12 @@
 /* eslint-disable */
 
 
-tested_isEmpty = 0;
-failed_isEmpty = 0;
+pass_count = 0;
+fail_count = 0;
+
 
 _isEmpty_10000();
 
-TEST_total_fails += failed_isEmpty;
-TEST_total_checks += tested_isEmpty;
-
-if (TEST_show_random) {
-  console.log('_missingKey failed tests 11000', failed_isEmpty)
-  console.log('_missingKey passed tests 11000', tested_isEmpty)
-}
 
 /////////////////////////////////////////////////////////////////
 
@@ -26,9 +20,9 @@ function _isEmpty_10000(){
     actual_isEmpty = type_czech_test._isEmpty(an_arg);
     if (actual_isEmpty !== expected_isEmpty) {
       console.log('_isEmpty error : ', TYPE_CZECH_current_test_number, actual_isEmpty, an_arg, expected_isEmpty);
-      failed_isEmpty += 1;
+      fail_count += 1;
     }
-    tested_isEmpty += 1;
+    pass_count += 1;
   }
     
   test_isEmpty([1], false)                    // pass 1 A array
@@ -64,3 +58,14 @@ function _isEmpty_10000(){
   test_isEmpty({k:{}}, false)                 // pass 31 5 empty - {obj obj}
 
 }
+
+
+if (fail_count>0) {
+  the_problem = `private-tests/_isEmpty_10000.js - fails = ${fail_count}`;  
+  console.log(the_problem)
+  throw the_problem
+}
+TEST_total_checks += pass_count;
+
+
+

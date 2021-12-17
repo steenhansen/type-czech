@@ -1,5 +1,5 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>21 - Type Check with Extra Optional Parameters</title>
+<title>21 Type Check with Extra Optional Parameters</title>
 
 
 <div id='js-div' style="width:52%">
@@ -79,7 +79,7 @@
     
     <a title="25-Default-Parameters.html" href="../example-snippets/25-Default-Parameters.html">25</a>
     
-    <a title="26-Type-and-Empty-Abbreviations.html" href="../example-snippets/26-Type-and-Empty-Abbreviations.html">26</a>
+    <a title="26-Empty-Abbreviations.html" href="../example-snippets/26-Empty-Abbreviations.html">26</a>
     
     <a title="27-Type-and-Empty-Object-Extras.html" href="../example-snippets/27-Type-and-Empty-Object-Extras.html">27</a>
     
@@ -168,7 +168,7 @@
     
   Extra optional parameter values are not checked for correct type, they are just ignored. 
   As long as the correct declared type shape is not violated, any additional elective 
-  parameters will be overlooked .
+  parameters will be overlooked.
     
   <br><br>
   Objects specify their mandatory keys and types, whilst arrays just check the
@@ -184,21 +184,21 @@ PRE_check_func0 = (an_object) => {
   return type_czech.checkParam_typeExtra(an_object, {a:'string'})
 }
 func0 = type_czech.linkUp(func0, PRE_check_func0)
-func0({a:'pass'})
-func0({a:'pass', b:'string', c:'boolean'})
-func0({fail:17})
+func0({a:'pass'})                          // pass 
+func0({a:'pass', b:'string', c:'boolean'}) // pass
+func0({fail:17})                           // fail
 </pre>
 
 And checkParam_typeExtra(an_array, <b>'number'</b>) refers to <b>one</b>
-number and something extra possibly.
+number and something extra possibly. Only the first element is checked.
 <pre title='Copy and paste the green code below into the console to run' class='console-runnable'>
 func1 = (an_array) => an_array
 PRE_check_func1 = (an_array) => { 
   return type_czech.checkParam_typeExtra(an_array, 'number')
 }
 func1 = type_czech.linkUp(func1, PRE_check_func1)
-func1([1, 'pass', 'pass', 'pass'])
-func1(['all-bad', 'fail', 'fail', 'fail'])
+func1([1, 'pass', 'pass', 'pass'])         // pass
+func1(['all-bad', 'fail', 'fail', 'fail']) // fail
 </pre>
 
 Whereas checkParam_typeExtra(an_array, <b>['number', 'boolean']</b>) refers to <b>two</b>
@@ -210,8 +210,8 @@ PRE_check_func2 = (an_array) => {
   return type_czech.checkParam_typeExtra(an_array, the_signature)
 }
 func2 = type_czech.linkUp(func2, PRE_check_func2)
-func2([7, true, 'pass', 'pass', 'pass'])
-func2([8, 'fail', 'fail', 'fail', 'fail'])
+func2([7, true, 'pass', 'pass', 'pass'])   // pass
+func2([8, 'fail', 'fail', 'fail', 'fail']) // fail
 </pre>
 </div>
 
@@ -327,15 +327,15 @@ log(mc_enroe)
   
   fromToBoldText(538, 554, 'code', 1)  //{f_name:'string'}
 
-  fromToBoldText(1349, 1366, 'code', 1)  //l_name:'Dan Fouts'
+  fromToBoldText(1348, 1365, 'code', 1)  //l_name:'Dan Fouts'
 
-  fromToBoldText(257, 262, 'log', 1)    // {l_name:"Dan Fouts"
+  fromToBoldText(257, 274, 'log', 1)    // {l_name:"Dan Fouts"
 
-  fromToBoldText(326, 331, 'log', 1)    //  {f_name:"string"}
+  fromToBoldText(325, 341, 'log', 1)    //  {f_name:"string"}
 
 
 
-  fromToBoldText(677, 696, 'code', 2)  // ['string', 'string']
+  fromToBoldText(676, 695, 'code', 2)  // ['string', 'string']
 
   fromToBoldText(609, 617, 'log', 2)    // [undefined,"Dan Fouts"
   fromToBoldText(674, 681, 'log', 2)    // ["string","string"]
@@ -343,7 +343,7 @@ log(mc_enroe)
 
 
 
-  fromToBoldText(1549, 1607, 'code', 3)  // extra_1: 'Angry', extra_2: 1959, extra_3: 'vs. Bjorn Borg'}
+  fromToBoldText(1542, 1599, 'code', 3)  // extra_1: 'Angry', extra_2: 1959, extra_3: 'vs. Bjorn Borg'}
 
   fromToBoldText(859, 907, 'log', 3)    //  [ "Angry", 1959, "vs. Bjorn Borg" ]
 

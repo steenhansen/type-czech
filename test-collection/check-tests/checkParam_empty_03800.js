@@ -8,9 +8,17 @@
 /* eslint-disable array-bracket-spacing */
 /* eslint-disable max-len */
 
+
+pass_count = 0;
+fail_count = 0;
+
+
+
+
+
 function test_pre_checkParam_empty_multi(parameters_array, signature_of_parameters, error_id, expected_error) {
   const type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
-  tested_checkParam_empty_03800 += 1;
+  pass_count += 1;
 
   function PRE_test_3800(an_array) {
     return type_czech.checkParam_empty(an_array, signature_of_parameters);
@@ -26,20 +34,20 @@ function test_pre_checkParam_empty_multi(parameters_array, signature_of_paramete
       // expected route with no error message
     } catch (e) {
       // failing path
-      failed_checkParam_empty_03800 += 1;
+      fail_count += 1;
       console.log('FAIL, should be no error but got ', e, error_id);
     }
   } else {
     try {
       pre_checkParam_empty_3800(parameters_array);
       // failing path, should have been an exception
-      failed_checkParam_empty_03800 += 1;
+      fail_count += 1;
       consoleExpectedActual(expected_error, 'MISSING-EXCEPTION', error_id);
     } catch (e) {
       const error_not_match_exception = errorNotMatchException(expected_error, e);
       if (error_not_match_exception) {
         // failing path, the error was wrong
-        failed_checkParam_empty_03800 += 1;
+        fail_count += 1;
         consoleExpectedActual(expected_error, e, error_id);
       } else {
         // expected route with an error message
@@ -49,8 +57,7 @@ function test_pre_checkParam_empty_multi(parameters_array, signature_of_paramete
   afterCheck(parameters_array, signature_of_parameters, before_var_value, error_id);
 }
 
-tested_checkParam_empty_03800 = 0;
-failed_checkParam_empty_03800 = 0;
+
 
 // /////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -69,18 +76,18 @@ EMPTY ASSERTION [{"x":[{"y":"EMPTY-ERROR"}]},{"x":[{"y":"EMPTY-ERROR"}]}]
  ORIGIN pre_checkParam_empty_3800(an_array)`;
 test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3802, error_mess);
 
-multi_variable  = [ { a: [1, 2, 3] },       { b: [1, 2, 3] } ];
-multi_signature = [ { a: ['EMPTY-ERROR'] }, { b: ['EMPTY-ERROR'] }];
+multi_variable  = [ { a: [1, 2, 3] },                                   { b: [1, 2, 3] } ];
+multi_signature = [ { a: ['EMPTY-ERROR','EMPTY-ERROR','EMPTY-ERROR'] }, { b: ['EMPTY-ERROR','EMPTY-ERROR','EMPTY-ERROR'] }];
 error_mess = '';
 test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3803, error_mess);
 
 multi_variable  = [ { a: [1, 2, 3] },       { c: [1, NaN, 3] } ];
-multi_signature = [ { a: ['EMPTY-ERROR'] }, { c: ['EMPTY-ERROR'] } ];
-error_mess = `PRE_test_3800() PRE-FUNC: EE@306 - ELEMENT '1' is asserted to be a 'EMPTY-ERROR', but is really 'EMPTY' : NaN
+multi_signature = [ { a: ['EMPTY-ERROR','EMPTY-ERROR','EMPTY-ERROR'] }, { c: ['EMPTY-ERROR','EMPTY-ERROR','EMPTY-ERROR'] } ];
+error_mess = `PRE_test_3800() PRE-FUNC: EE@311 - ELEMENT '1' is erroneously empty :
 CHECKER checkParam_empty()
 ACTUAL TYPE 'array'
  VALUES [{a:[1,2,3]},{c:[1,NaN,3]}]
-EMPTY ASSERTION [{"a":["EMPTY-ERROR"]},{"c":["EMPTY-ERROR"]}]
+EMPTY ASSERTION [{"a":["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]},{"c":["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]
  ORIGIN pre_checkParam_empty_3800(an_array)`;
 test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3804, error_mess);
 
@@ -98,93 +105,102 @@ test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3805, error_mes
 
 multi_variable  = [ { a: [{ r: [ [123],         [1, 2, 3],       987n,          false,          new Date('1999-12-12'), (x) => x,      12,            { a: 3 },      { b: 4 },             /d/,           'abc',         Symbol('sym') ] }] },
                     { a: [{ r: [ [123],         [1, 2, 3],       987n,          false,          new Date('1999-12-12'), (x) => x,      12,            { a: 3 },      { b: 4 },             /d/,           'abc',         Symbol('sym') ] }] } ];
-multi_signature = [ { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',           'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] },
-                    { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',           'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] } ];
+multi_signature = [ { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR','EMPTY-ERROR','EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',           'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] },
+                    { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR','EMPTY-ERROR','EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',           'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] } ];
 error_mess = '';
 test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3806, error_mess);
 
 multi_variable  = [ { a: [{ r: [ [123],         [1, 2, 3],       987n,          false,         new Date('1999-12-12'), (x) => x,      12,            { a: 3 },      { b: 4 },             /d/,          'abc',          Symbol('sym') ] }] }, { a: [{ r: [ [],            [1, 2, 3],       987n,          false,         new Date('1999-12-12'), (x) => x,      12,            { a: 3 },      { b: 4 },             /d/,          'abc',          Symbol('sym') ] }] } ];
-multi_signature = [ { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] }, { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] } ];
+multi_signature = [ { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR','EMPTY-ERROR','EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] }, { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] } ];
 error_mess = `PRE_test_3800() PRE-FUNC: EE@311 - ELEMENT '0' is erroneously empty :
 CHECKER checkParam_empty()
 ACTUAL TYPE 'array'
- VALUES [{a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ***,12,{a:3},{b:4},/d/ +++,"abc",Symbol('sym')]}]},{a:[{r:[[],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ***,12,{a:3},{b:4},/d/ +++,"abc",Symbol('sym')]}]}]
-EMPTY ASSERTION [{"a":[{"r":["EMPTY-ERROR",["EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{"b":"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]},{"a":[{"r":["EMPTY-ERROR",["EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{"b":"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]}]
+ VALUES [{a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ~~~function~~~,12,{a:3},{b:4},/d/ ~~~regex~~~,"abc",Symbol('sym')]}]},{a:[{r:[[],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ~~~function~~~,12,{a:3},{b:4},/d/ ~~~regex~~~,"abc",Symbol('sym')]}]}]
+EMPTY ASSERTION [{"a":[{"r":["EMPTY-ERROR",["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{"b":"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]},{"a":[{"r":["EMPTY-ERROR",["EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{"b":"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]}]
  ORIGIN pre_checkParam_empty_3800(an_array)`;
 test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3807, error_mess);
 
+
+
+
+
+
+
 multi_variable  = [ { a: [{ r: [ [123],         [1, 2, 3],       987n,          false,         new Date('1999-12-12'), (x) => x,      12,            { a: 3 },      { b: 4 },             /d/,           'abc',         Symbol('sym') ] }] }, { a: [{ r: [ [123],         [],              987n,          false,         new Date('1999-12-12'), (x) => x,      12,            { a: 3 },      { b: 4 },             /d/,           'abc',         Symbol('sym') ] }] } ];
-multi_signature = [ { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] }, { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] } ];
-error_mess = `PRE_test_3800() PRE-FUNC: ME@403 - Param array [] is empty
+multi_signature = [ { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR','EMPTY-ERROR','EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] }, { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] } ];
+error_mess = `PRE_test_3800() PRE-FUNC: EE@321 - Empty array has no types
 CHECKER checkParam_empty()
 ACTUAL TYPE 'array'
- VALUES [{a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ***,12,{a:3},{b:4},/d/ +++,"abc",Symbol('sym')]}]},{a:[{r:[[123],[],987n,false,1999-12-12T00:00:00.000Z,(x) => x ***,12,{a:3},{b:4},/d/ +++,"abc",Symbol('sym')]}]}]
-EMPTY ASSERTION [{"a":[{"r":["EMPTY-ERROR",["EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{"b":"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]},{"a":[{"r":["EMPTY-ERROR",["EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{"b":"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]}]
+ VALUES [{a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ~~~function~~~,12,{a:3},{b:4},/d/ ~~~regex~~~,"abc",Symbol('sym')]}]},{a:[{r:[[123],[],987n,false,1999-12-12T00:00:00.000Z,(x) => x ~~~function~~~,12,{a:3},{b:4},/d/ ~~~regex~~~,"abc",Symbol('sym')]}]}]
+EMPTY ASSERTION [{"a":[{"r":["EMPTY-ERROR",["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{"b":"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]},{"a":[{"r":["EMPTY-ERROR",["EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{"b":"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]}]
  ORIGIN pre_checkParam_empty_3800(an_array)`;
 test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3808, error_mess);
 
+
+
+
 multi_variable  = [ { a: [{ r: [ [123],         [1, 2, 3],       987n,           false,         new Date('1999-12-12'), (x) => x,      12,            { a: 3 },      { b: 4 },             /d/,           'abc',         Symbol('sym') ] }] }, { a: [{ r: [ [123],         [1, 2, 3],       987n,           false,         new Date('1999-12-12'), (x) => x,      12,            { a: 3 },      { b: 4 },             /d/,           'abc',         Symbol('sym') ] }] } ];
-multi_signature = [ { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] }, { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR'], 'EMPTY-IGNORE', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] } ];
+multi_signature = [ { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR','EMPTY-ERROR','EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] }, { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR','EMPTY-ERROR','EMPTY-ERROR'], 'EMPTY-IGNORE', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] } ];
 error_mess = ``;
 test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3809, error_mess);
 
 multi_variable  = [ { a: [{ r: [ [123],         [1, 2, 3],       987n,          false,          new Date('1999-12-12'), (x) => x,      12,            { a: 3 },      { b: 4 },             /d/,          'abc',          Symbol('sym') ] }] }, { a: [{ r: [ [123],         [1, 2, 3],       987n,          false,          new Date('1999-12-12'), (x) => x,      12,            { a: 3 },      { b: 4 },             /d/,          'abc',          Symbol('sym') ] }] } ];
-multi_signature = [ { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] }, { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-IGNORE', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] } ];
+multi_signature = [ { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR','EMPTY-ERROR','EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] }, { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR','EMPTY-ERROR','EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-IGNORE', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] } ];
 error_mess = ``;
 test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3810, error_mess);
 
 multi_variable  = [ { a: [{ r: [ [123],         [1, 2, 3],       987n,          false,         new Date('1999-12-12'),  (x) => x,   12,       { a: 3 }, { b: 4 },         /d/,      'abc',    Symbol('sym')   ] }] }, { a: [{ r: [ [123],         [1, 2, 3],       987n,          false,         new Date(''),            (x) => x,   12,       { a: 3 }, { b: 4 },         /d/,      'abc',    Symbol('sym')   ] }] } ];
-multi_signature = [ { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',           'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] }, { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',           'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] } ];
+multi_signature = [ { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR','EMPTY-ERROR','EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',           'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] }, { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR','EMPTY-ERROR','EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',           'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] } ];
 error_mess = `PRE_test_3800() PRE-FUNC: EE@311 - ELEMENT '4' is erroneously empty :
 CHECKER checkParam_empty()
 ACTUAL TYPE 'array'
- VALUES [{a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ***,12,{a:3},{b:4},/d/ +++,"abc",Symbol('sym')]}]},{a:[{r:[[123],[1,2,3],987n,false,null,(x) => x ***,12,{a:3},{b:4},/d/ +++,"abc",Symbol('sym')]}]}]
-EMPTY ASSERTION [{"a":[{"r":["EMPTY-ERROR",["EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{"b":"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]},{"a":[{"r":["EMPTY-ERROR",["EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{"b":"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]}]
+ VALUES [{a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ~~~function~~~,12,{a:3},{b:4},/d/ ~~~regex~~~,"abc",Symbol('sym')]}]},{a:[{r:[[123],[1,2,3],987n,false,null,(x) => x ~~~function~~~,12,{a:3},{b:4},/d/ ~~~regex~~~,"abc",Symbol('sym')]}]}]
+EMPTY ASSERTION [{"a":[{"r":["EMPTY-ERROR",["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{"b":"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]},{"a":[{"r":["EMPTY-ERROR",["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{"b":"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]}]
  ORIGIN pre_checkParam_empty_3800(an_array)`;
 test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3811, error_mess);
 
 multi_variable  = [ { a: [{ r: [ [123],         [1, 2, 3],       987n,          false,         new Date('1999-12-12'), (x) => x,       12,            { a: 3 },      { b: 4 },             /d/,           'abc',         Symbol('sym') ] }] }, { a: [{ r: [ [123],         [1, 2, 3],       987n,          false,         new Date('1999-12-12'), (x) => x,       12,            { a: 3 },      { b: 4 },             /d/,           'abc',         Symbol('sym') ] }] } ];
-multi_signature = [ { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] }, { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-IGNORE', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] } ];
+multi_signature = [ { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR','EMPTY-ERROR','EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] }, { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR','EMPTY-ERROR','EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-IGNORE', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] } ];
 error_mess = '';
 test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3812, error_mess);
 
 multi_variable  = [ { a: [{ r: [ [123],         [1, 2, 3],       987n,          false,         new Date('1999-12-12'), (x) => x,      12,           { a: 3 },      { b: 4 },             /d/,          'abc',          Symbol('sym') ] }] }, { a: [{ r: [ [123],         [1, 2, 3],       987n,          false,         new Date('1999-12-12'), (x) => x,      NaN,           { a: 3 },      { b: 4 },             /d/,          'abc',          Symbol('sym') ] }] } ];
-multi_signature = [ { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] }, { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] } ];
+multi_signature = [ { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR','EMPTY-ERROR','EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] }, { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR','EMPTY-ERROR','EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] } ];
 error_mess = `PRE_test_3800() PRE-FUNC: EE@311 - ELEMENT '6' is erroneously empty :
 CHECKER checkParam_empty()
 ACTUAL TYPE 'array'
- VALUES [{a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ***,12,{a:3},{b:4},/d/ +++,"abc",Symbol('sym')]}]},{a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ***,NaN,{a:3},{b:4},/d/ +++,"abc",Symbol('sym')]}]}]
-EMPTY ASSERTION [{"a":[{"r":["EMPTY-ERROR",["EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{"b":"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]},{"a":[{"r":["EMPTY-ERROR",["EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{"b":"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]}]
+ VALUES [{a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ~~~function~~~,12,{a:3},{b:4},/d/ ~~~regex~~~,"abc",Symbol('sym')]}]},{a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ~~~function~~~,NaN,{a:3},{b:4},/d/ ~~~regex~~~,"abc",Symbol('sym')]}]}]
+EMPTY ASSERTION [{"a":[{"r":["EMPTY-ERROR",["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{"b":"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]},{"a":[{"r":["EMPTY-ERROR",["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{"b":"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]}]
  ORIGIN pre_checkParam_empty_3800(an_array)`;
 test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3813, error_mess);
 
 multi_variable  = [ { a: [{ r: [ [123],         [1, 2, 3],       987n,          false,         new Date('1999-12-12'), (x) => x,      12,            { a: '' },     { b: 4 },             /d/,           'abc',         Symbol('sym') ] }] }, { a: [{ r: [ [123],         [1, 2, 3],       987n,          false,         new Date('1999-12-12'), (x) => x,      12,            { a: '' },     { b: 4 },             /d/,           'abc',         Symbol('sym') ] }] } ];
-multi_signature = [ { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] }, { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] } ];
+multi_signature = [ { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR','EMPTY-ERROR','EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] }, { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR','EMPTY-ERROR','EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] } ];
 error_mess = '';
 test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3814, error_mess);
 
 multi_variable  = [ { a: [{ r: [ [123],         [1, 2, 3],       987n,          false,         new Date('1999-12-12'), (x) => x,      12,            { a: 3 },      { b: 4 },            /d/,           'abc',         Symbol('sym') ] }] }, { a: [{ r: [ [123],         [1, 2, 3],       987n,          false,         new Date('1999-12-12'), (x) => x,      12,            { a: 3 },      { b: '' },            /d/,           'abc',         Symbol('sym') ] }] } ];
-multi_signature = [ { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] }, { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] } ];
+multi_signature = [ { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR','EMPTY-ERROR','EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] }, { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR','EMPTY-ERROR','EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] } ];
 error_mess = `PRE_test_3800() PRE-FUNC: EE@301 -  key 'b' is a 'string' which is reputed to be 'EMPTY-ERROR' but has a value of ''
 CHECKER checkParam_empty()
 ACTUAL TYPE 'array'
- VALUES [{a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ***,12,{a:3},{b:4},/d/ +++,"abc",Symbol('sym')]}]},{a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ***,12,{a:3},{b:""},/d/ +++,"abc",Symbol('sym')]}]}]
-EMPTY ASSERTION [{"a":[{"r":["EMPTY-ERROR",["EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{"b":"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]},{"a":[{"r":["EMPTY-ERROR",["EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{"b":"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]}]
+ VALUES [{a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ~~~function~~~,12,{a:3},{b:4},/d/ ~~~regex~~~,"abc",Symbol('sym')]}]},{a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ~~~function~~~,12,{a:3},{b:""},/d/ ~~~regex~~~,"abc",Symbol('sym')]}]}]
+EMPTY ASSERTION [{"a":[{"r":["EMPTY-ERROR",["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{"b":"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]},{"a":[{"r":["EMPTY-ERROR",["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{"b":"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]}]
  ORIGIN pre_checkParam_empty_3800(an_array)`;
 test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3815, error_mess);
 
 multi_variable  = [ { a: [{ r: [ [123],         [1, 2, 3],       987n,          false,         new Date('1999-12-12'), (x) => x,      12,            { a: 3 },      { b: 4 },             /d/,           'abc',         Symbol('sym') ] }] }, { a: [{ r: [ [123],         [1, 2, 3],       987n,          false,         new Date('1999-12-12'), (x) => x,      12,            { a: 3 },      { b: 4 },             /(?:)/,        'abc',         Symbol('sym') ] }] } ];
-multi_signature = [ { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] }, { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] } ];
+multi_signature = [ { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR','EMPTY-ERROR','EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] }, { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR','EMPTY-ERROR','EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] } ];
 error_mess = `PRE_test_3800() PRE-FUNC: EE@311 - ELEMENT '9' is erroneously empty :
 CHECKER checkParam_empty()
 ACTUAL TYPE 'array'
- VALUES [{a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ***,12,{a:3},{b:4},/d/ +++,"abc",Symbol('sym')]}]},{a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ***,12,{a:3},{b:4},/(?:)/ +++,"abc",Symbol('sym')]}]}]
-EMPTY ASSERTION [{"a":[{"r":["EMPTY-ERROR",["EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{"b":"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]},{"a":[{"r":["EMPTY-ERROR",["EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{"b":"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]}]
+ VALUES [{a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ~~~function~~~,12,{a:3},{b:4},/d/ ~~~regex~~~,"abc",Symbol('sym')]}]},{a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ~~~function~~~,12,{a:3},{b:4},/(?:)/ ~~~regex~~~,"abc",Symbol('sym')]}]}]
+EMPTY ASSERTION [{"a":[{"r":["EMPTY-ERROR",["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{"b":"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]},{"a":[{"r":["EMPTY-ERROR",["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{"b":"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]}]
  ORIGIN pre_checkParam_empty_3800(an_array)`;
 test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3816, error_mess);
 
 multi_variable  = [ { a: [{ r: [ [123],         [1, 2, 3],       987n,          false,         new Date('1999-12-12'), (x) => x,      12,            { a: 3 },      { b: 4 },             /d/,           'abc',         Symbol('sym') ] }] }, { a: [{ r: [ [123],         [1, 2, 3],       987n,          false,         new Date('1999-12-12'), (x) => x,      12,            { a: 3 },      { b: 4 },             /d/,           'abc',         Symbol('sym') ] }] } ];
-multi_signature = [ { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-IGNORE' ] }] }, { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-IGNORE' ] }] } ];
+multi_signature = [ { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR','EMPTY-ERROR','EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-IGNORE' ] }] }, { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR','EMPTY-ERROR','EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-IGNORE' ] }] } ];
 error_mess = '';
 test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3817, error_mess);
 
@@ -201,7 +217,7 @@ EMPTY ASSERTION ["EMPTY-ERROR","EMPTY-ERROR"]
 test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3818, error_mess);
 
 multi_variable  = [ [1, 2, 3],        [1, 2, 3] ];
-multi_signature = [ 'EMPTY-ERROR', ['EMPTY-ERROR']];  // Odd one here but correct
+multi_signature = [ ['EMPTY-ERROR','EMPTY-ERROR','EMPTY-ERROR'], ['EMPTY-ERROR','EMPTY-ERROR','EMPTY-ERROR']];  // Odd one here but correct
 error_mess = '';
 test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3819, error_mess);
 
@@ -250,7 +266,7 @@ multi_signature = ['EMPTY-OK', 'EMPTY-ERROR'];
 error_mess = `PRE_test_3800() PRE-FUNC: EE@311 - ELEMENT '1' is erroneously empty :
 CHECKER checkParam_empty()
 ACTUAL TYPE 'array'
- VALUES [/d/ +++,/(?:)/ +++]
+ VALUES [/d/ ~~~regex~~~,/(?:)/ ~~~regex~~~]
 EMPTY ASSERTION ["EMPTY-OK","EMPTY-ERROR"]
  ORIGIN pre_checkParam_empty_3800(an_array)`;
 test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3826, error_mess);
@@ -517,7 +533,7 @@ test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3856, error_mes
 
 multi_variable  = [  [], [] ];
 multi_signature = [  'EMPTY-OK',  ['EMPTY-OK']  ];
-error_mess = `PRE_test_3800() PRE-FUNC: ME@403 - Param array [] is empty
+error_mess = `PRE_test_3800() PRE-FUNC: EE@321 - Empty array has no types
 CHECKER checkParam_empty()
 ACTUAL TYPE 'array'
  VALUES [[],[]]
@@ -595,44 +611,44 @@ error_mess = '';
 test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3869, error_mess);
 
 multi_variable  = [  [1, 2],  [1, 2]  ];
-multi_signature = [  ['EMPTY-OK'], ['EMPTY-ERROR'] ];
+multi_signature = [  ['EMPTY-OK','EMPTY-OK'], ['EMPTY-ERROR','EMPTY-ERROR'] ];
 error_mess = '';
 test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3870, error_mess);
 
 multi_variable  = [  [{}, NaN, ''],  [1, 2, 'three']  ];
-multi_signature = [ ['EMPTY-IGNORE'],  ['EMPTY-ERROR'] ];
+multi_signature = [ ['EMPTY-IGNORE','EMPTY-IGNORE','EMPTY-IGNORE'],  ['EMPTY-ERROR','EMPTY-ERROR','EMPTY-ERROR'] ];
 error_mess = '';
 test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3871, error_mess);
 
-multi_variable  = [  [ [{}, [], ''], [[]], [NaN, /(?:)/, new Date('')] ],  [ [1, 2, 3], [1, 2, 3], [1, 2, 3] ]  ];
-multi_signature = [  [  ['EMPTY-OK']                                   ],  [     ['EMPTY-ERROR']             ]  ];
+multi_variable  = [  [ [{}, [], ''],                       [[]],       [NaN, /(?:)/, new Date('')       ] ],  [ [1, 2, 3], [1, 2, 3], [1, 2, 3] ]  ];
+multi_signature = [  [ ['EMPTY-OK','EMPTY-OK','EMPTY-OK'], 'EMPTY-OK', ['EMPTY-OK','EMPTY-OK','EMPTY-OK'] ],  [ 'EMPTY-ERROR','EMPTY-ERROR','EMPTY-ERROR'             ]  ];
 error_mess = '';
 test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3872, error_mess);
 
-multi_variable  = [   [   [ [1, 2, 3], [1, 2, 3], [1, 2, 3] ],
-                          [ [1, 2, 3], [1, 2, 3], [1, 2, 3] ],
-                          [ [1, 2, 3], [1, 2, 3], [1, 2, 3] ]    ],
-                      [   [ [1, 2, 3], [1, 2, 3], [1, 2, 3] ],
-                          [ [1, 2, 3], [1, 2, 3], [1, 2, 3] ],
-                          [ [1, 2, 3], [1, 2, 3], [1, 2, 3] ]    ]         ];
-multi_signature = [   [[['EMPTY-IGNORE']]],   [[['EMPTY-ERROR']]]   ];
-error_mess = '';
-test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3873, error_mess);
+// multi_variable  = [   [   [ [1, 2, 3], [1, 2, 3], [1, 2, 3] ],
+//                           [ [1, 2, 3], [1, 2, 3], [1, 2, 3] ],
+//                           [ [1, 2, 3], [1, 2, 3], [1, 2, 3] ]    ],
+//                       [   [ [1, 2, 3], [1, 2, 3], [1, 2, 3] ],
+//                           [ [1, 2, 3], [1, 2, 3], [1, 2, 3] ],
+//                           [ [1, 2, 3], [1, 2, 3], [1, 2, 3] ]    ]         ];
+// multi_signature = [   [[['EMPTY-IGNORE']]],   [[['EMPTY-ERROR']]]   ];
+// error_mess = '';
+// test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3873, error_mess);
 
-multi_variable  = [   [   [ [1, 2, 3], [1, 2, 3], [1,  2,  3] ],
-                          [ [1, 2, 3], [1, 2, 3], [1,  2,  3] ],
-                          [ [1, 2, 3], [1, 2, 3], [1, '',  3] ]   ],
-                      [   [ [1, 2, 3], [1, 2, 3], [1,  2,  3] ],
-                          [ [1, 2, 3], [1, 2, 3], [1,  2,  3] ],
-                          [ [1, 2, 3], [1, 2, 3], [1, '', 3] ]    ]  ];
-multi_signature = [   [[['EMPTY-OK']]],   [[['EMPTY-ERROR']]]   ];
-error_mess = `PRE_test_3800() PRE-FUNC: EE@306 - ELEMENT '1' is asserted to be a 'EMPTY-ERROR', but is really 'EMPTY' : ''
-CHECKER checkParam_empty()
-ACTUAL TYPE 'array'
- VALUES [[[[1,2,3],[1,2,3],[1,2,3]],[[1,2,3],[1,2,3],[1,2,3]],[[1,2,3],[1,2,3],[1,"",3]]],[[[1,2,3],[1,2,3],[1,2,3]],[[1,2,3],[1,2,3],[1,2,3]],[[1,2,3],[1,2,3],[1,"",3]]]]
-EMPTY ASSERTION [[[["EMPTY-OK"]]],[[["EMPTY-ERROR"]]]]
- ORIGIN pre_checkParam_empty_3800(an_array)`;
-test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3874, error_mess);
+// multi_variable  = [   [   [ [1, 2, 3], [1, 2, 3], [1,  2,  3] ],
+//                           [ [1, 2, 3], [1, 2, 3], [1,  2,  3] ],
+//                           [ [1, 2, 3], [1, 2, 3], [1, '',  3] ]   ],
+//                       [   [ [1, 2, 3], [1, 2, 3], [1,  2,  3] ],
+//                           [ [1, 2, 3], [1, 2, 3], [1,  2,  3] ],
+//                           [ [1, 2, 3], [1, 2, 3], [1, '', 3] ]    ]  ];
+// multi_signature = [   [[['EMPTY-OK']]],   [[['EMPTY-ERROR']]]   ];
+// error_mess = `PRE_test_3800() PRE-FUNC: EE@306 - ELEMENT '1' is asserted to be a 'EMPTY-ERROR', but is really 'EMPTY' : ''
+// CHECKER checkParam_empty()
+// ACTUAL TYPE 'array'
+//  VALUES [[[[1,2,3],[1,2,3],[1,2,3]],[[1,2,3],[1,2,3],[1,2,3]],[[1,2,3],[1,2,3],[1,"",3]]],[[[1,2,3],[1,2,3],[1,2,3]],[[1,2,3],[1,2,3],[1,2,3]],[[1,2,3],[1,2,3],[1,"",3]]]]
+// EMPTY ASSERTION [[[["EMPTY-OK"]]],[[["EMPTY-ERROR"]]]]
+//  ORIGIN pre_checkParam_empty_3800(an_array)`;
+// test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3874, error_mess);
 
 // // ////////////////////////////////////////
 
@@ -783,7 +799,7 @@ multi_signature = ['EMPTY-OK', 'EMPTY-ERROR'];
 error_mess = `PRE_test_3800() PRE-FUNC: EE@311 - ELEMENT '1' is erroneously empty :
 CHECKER checkParam_empty()
 ACTUAL TYPE 'array'
- VALUES [/d/ +++,/(?:)/ +++]
+ VALUES [/d/ ~~~regex~~~,/(?:)/ ~~~regex~~~]
 EMPTY ASSERTION ["EMPTY-OK","EMPTY-ERROR"]
  ORIGIN pre_checkParam_empty_3800(an_array)`;
 test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3891, error_mess);
@@ -816,7 +832,7 @@ EMPTY ASSERTION ["EMPTY-IGNORE","invalid-empty"]
 test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3894, error_mess);
 
 multi_variable  = [ [12, false, 'a string'], [12, false, 'a string'] ];
-multi_signature = [ ['EMPTY-OK'], ['EMPTY-ERROR'] ];
+multi_signature = [ ['EMPTY-OK','EMPTY-OK','EMPTY-OK'], ['EMPTY-ERROR','EMPTY-ERROR','EMPTY-ERROR'] ];
 error_mess = '';
 test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3895, error_mess);
 
@@ -850,5 +866,12 @@ EMPTY ASSERTION [["EMPTY-ERROR"]]
  ORIGIN pre_checkParam_empty_3800(an_array)`;
 test_pre_checkParam_empty_multi(multi_variable, multi_signature, 3898, error_mess);
 
-TEST_total_checks += 98;
 
+
+
+if (fail_count>0) {
+  the_problem = `check-tests/checkParam_empty_03800.js - fails = ${fail_count}`;  
+  console.log(the_problem)
+  throw the_problem
+}
+TEST_total_checks += pass_count;

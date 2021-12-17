@@ -1,5 +1,5 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>101 - Extended Classes Inline</title>
+<title>101 Extended Classes Inline</title>
 
 
   
@@ -109,7 +109,7 @@
     
     <a title="25-Default-Parameters.html" href="../example-snippets/25-Default-Parameters.html">25</a>
     
-    <a title="26-Type-and-Empty-Abbreviations.html" href="../example-snippets/26-Type-and-Empty-Abbreviations.html">26</a>
+    <a title="26-Empty-Abbreviations.html" href="../example-snippets/26-Empty-Abbreviations.html">26</a>
     
     <a title="27-Type-and-Empty-Object-Extras.html" href="../example-snippets/27-Type-and-Empty-Object-Extras.html">27</a>
     
@@ -309,7 +309,8 @@ class Last extends First{
 
 /**/  function PRE_check_Last(f_name, l_name){
 /**/    log(LEVEL_1+'PRE-Last') 
-/**/    type_issue = type_czech.checkParam_type([f_name, l_name], ['s', 's'])
+/**/    two_strs = ['string', 'string']
+/**/    type_issue = type_czech.checkParam_type([f_name, l_name], two_strs)
 /**/    if (type_issue) return type_issue;
 /**/    return type_czech.checkParam_empty([f_name, l_name], ['ER', 'ER']);
 /**/  }
@@ -349,7 +350,8 @@ class Full extends Last {
 
 /**/  function PRE_check_Full(salu, f_name, l_name){
 /**/    log(LEVEL_2+'PRE-Full') 
-/**/    return type_czech.checkParam_type([salu, f_name, l_name], ['s', 's', 's']);
+/**/    three_strs = ['string', 'string', 'string']
+/**/    return type_czech.checkParam_type([salu, f_name, l_name], three_strs);
 /**/  }
 /**/  function POST_check_Full(Full){
 /**/    log(LEVEL_2+"POST-Full") 
@@ -402,13 +404,13 @@ printFullFunc(ted_chiang)
   jsToDiv('js-code', "check-code");      
 
   fromToBoldText(145, 160, 'code', 1)  //RUN -firstMethod
-    fromToBoldText(1598, 1612, 'code', 2)  // RUN -lastMethod
-    fromToBoldText(3026, 3040, 'code', 3)  // RUN -fullMethod
+    fromToBoldText(1595, 1609, 'code', 2)  // RUN -lastMethod
+    fromToBoldText(3058, 3072, 'code', 3)  // RUN -fullMethod
 
    
-  fromToBoldText(216, 231, 'log', 1)    //RUN -firstMethod
-  fromToBoldText(297, 311, 'log', 2)    //RUN -lastMethod
-  fromToBoldText(402, 416, 'log', 3)    //RUN -fullMethod
+  fromToBoldText(213, 228, 'log', 1)    //RUN -firstMethod
+  fromToBoldText(294, 308, 'log', 2)    //RUN -lastMethod
+  fromToBoldText(399, 413, 'log', 3)    //RUN -fullMethod
 
 
 

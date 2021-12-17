@@ -1,5 +1,5 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>13 - Parameter and Result Multi Scalar Types</title>
+<title>13 Parameter and Result Multi Scalar Types</title>
 
 
 
@@ -66,9 +66,9 @@
     <br><br>  <br><br>
     The Person() function's signatures.
     <ul>
-      <li>Input : [ 'string', 'string', 'date' ]</li>
+      <li>Input : [ 'string', 'string', 'date' ] - three distinct parameters things <b>conveyed</b> by an array </li>
       
-      <li>Output : [ 'number', 'string', 'string' ]</li>
+      <li>Output : [ 'number', 'string', 'string' ] - an actual result array</li>
       </ul>
       
 
@@ -93,6 +93,7 @@ return result to not match the correct signature.
 </div>
 
 <br><br>
+
 
 
 
@@ -171,7 +172,7 @@ return result to not match the correct signature.
     
     <a title="25-Default-Parameters.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Default-Parameters" target="_blank">25</a>
     
-    <a title="26-Type-and-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Type-and-Empty-Abbreviations" target="_blank">26</a>
+    <a title="26-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Empty-Abbreviations" target="_blank">26</a>
     
     <a title="27-Type-and-Empty-Object-Extras.html" href="https://jsfiddle.net/steen_hansen/tdL7hwgc/?27-Typed-and-Empty-Either-Checks-with-Optionals" target="_blank">27</a>
     
@@ -323,6 +324,7 @@ return result to not match the correct signature.
 /**/  
 /**/  PRE_check_Person = (typeof PRE_check_Person === 'undefined')
 /**/                     ? undefined : PRE_check_Person
+/**/
 /**/  POST_check_Person = (typeof POST_check_Person === 'undefined')
 /**/                      ? undefined : POST_check_Person
 /**/  
@@ -379,22 +381,22 @@ try {
 
   jsToDiv('js-code', "check-code")
 
-  fromToBoldText(1248, 1289, 'code', 3)  // 'Charles', 'Windsor', new Date(1948,11,14)
+  fromToBoldText(1253, 1294, 'code', 3)  // 'Charles', 'Windsor', new Date(1948,11,14)
   fromToBoldText(1, 36, 'log', 3)    //[ 1948, "Charles", "Windsor" ]
 
 
 
   
-  fromToBoldText(1351, 1354, 'code', 1)  // 1912
-  fromToBoldText(257, 260, 'log', 1)    //1912
-  fromToBoldText(302, 305, 'log', 1)    //"date"]
+  fromToBoldText(1356, 1359, 'code', 1)  // 1912
+  fromToBoldText(278, 281, 'log', 1)    //1912
+  fromToBoldText(322, 327, 'log', 1)    //"date"]
 
 
 
 
-  fromToBoldText(1439, 1440, 'code', 2)  // ''
-  fromToBoldText(565, 573, 'log', 2)    //undefined
-  fromToBoldText(615, 620, 'log', 2)    //"string"]
+  fromToBoldText(1444, 1445, 'code', 2)  // ''
+  fromToBoldText(586, 594, 'log', 2)    //undefined
+  fromToBoldText(635, 642, 'log', 2)    //"string"]
 
 
 

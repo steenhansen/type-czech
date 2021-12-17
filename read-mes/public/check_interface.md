@@ -1,14 +1,14 @@
 
 ## check_interface() 
-  -  [1 Object Check Interface](#object-check-interface)
-  -  [2 Class Check Interface](#class-check-interface)
-  -  [3 ClassFree Check Interface](#class-free-check-interface)
-  -  [4 Prototype Check Interface](#prototype-check-interface)
-  -  [5 OLOO Check Interface](#oloo-check-interface)
+  -  [A Object Check Interface](#A)
+  -  [B Class Check Interface](#B)
+  -  [C ClassFree Check Interface](#C)
+  -  [D Prototype Check Interface](#D)
+  -  [E OLOO Check Interface](#E)
 
 #### All examples below can be executed in the console of [repl.html](../../test-collection/repl.html)
 
-## 1 Object Check Interface<a name="object-check-interface"></a>
+## A Object Check Interface<a name="A"></a>
 
 ```
 type_czech = TypeCzech('THROW-EXCEPTIONS')
@@ -33,21 +33,21 @@ function Full(salu, f_name, l_name) {
 }
 
 michel_faber = Full('Mr.', 'Michel', 'Faber')
+OBJECT_INTERFACE = { firstMethod: 'function', lastMethod:'function',
+                     fullMethod: 'function', f_name: 'string',
+                     l_name: 'string', salu: 'string'}
+OBJECT_FAIL = Object.assign({FAIL_Object: 'string'}, OBJECT_INTERFACE)
 
-OBJECT_INTERFACE = { firstMethod: 'function', lastMethod:'function', fullMethod: 'function',
-                     f_name: 'string', l_name: 'string', salu: 'string'}
-
-OBJECT_FAIL = Object.assign({A_Object: 'string'}, OBJECT_INTERFACE)
 
 type_czech.check_interface(michel_faber, OBJECT_INTERFACE) // pass
 
-type_err = type_czech.check_interface(michel_faber, OBJECT_FAIL)  // fail
-type_czech.check_assert(type_err, 'Object Check Interface', '-')
-
-
+{
+  type_err = type_czech.check_interface(michel_faber, OBJECT_FAIL)
+  type_czech.check_assert(type_err, 'Object Check Interface', '-') // fail
+}
 ```
 
-## 2 Class Check Interface<a name="class-check-interface"></a>
+## B Class Check Interface<a name="B"></a>
 
 ```
 type_czech = TypeCzech('THROW-EXCEPTIONS')
@@ -74,18 +74,22 @@ class FullName extends LastName {
 
 ted_chiang = new FullName('Mr', 'Ted', 'Chiang')
 
-CLASS_INTERFACE = { firstMethod: 'function', lastMethod:'function', fullMethod: 'function',
-                  f_name: 'string', l_name: 'string', salu: 'string'}
+CLASS_INTERFACE = { firstMethod: 'function', lastMethod:'function', 
+                    fullMethod: 'function', f_name: 'string', 
+                    l_name: 'string', salu: 'string'}
 
-CLASS_FAIL = Object.assign({B_Class: 'string'}, CLASS_INTERFACE)                  
+CLASS_FAIL = Object.assign({FAIL_Class: 'string'}, CLASS_INTERFACE)                  
+
 
 type_czech.check_interface(ted_chiang, CLASS_INTERFACE) // pass
 
-type_err = type_czech.check_interface(ted_chiang, CLASS_FAIL)  // fail
-type_czech.check_assert(type_err, 'Class Check Interface', '-')
+{
+  type_err = type_czech.check_interface(ted_chiang, CLASS_FAIL)
+  type_czech.check_assert(type_err, 'Class Check Interface', '-') // fail
+}
 ```
 
-## 3 ClassFree Check Interface<a name="class-free-check-interface"></a>
+## C ClassFree Check Interface<a name="C"></a>
 
 ```
 type_czech = TypeCzech('THROW-EXCEPTIONS')
@@ -116,17 +120,18 @@ Full = function (spec) {
 frank_herbert  = new Full('Mr', 'Frank', 'Herbert')
 
 CLASSFREE_INTERFACE = { firstMethod: 'function', lastMethod:'function', fullMethod: 'function'}
+CLASSFREE_FAIL = Object.assign({FAIL_ClassFree: 'string'}, CLASSFREE_INTERFACE)  
 
-CLASSFREE_FAIL = Object.assign({C_ClassFree: 'string'}, CLASSFREE_INTERFACE)  
 
 type_czech.check_interface(frank_herbert, CLASSFREE_INTERFACE) // pass
 
-type_err = type_czech.check_interface(frank_herbert, CLASSFREE_FAIL)  // fail
-type_czech.check_assert(type_err, 'ClassFree Check Interface', '-')
-
+{
+  type_err = type_czech.check_interface(frank_herbert, CLASSFREE_FAIL)
+  type_czech.check_assert(type_err, 'ClassFree Check Interface', '-') // fail
+}
 ```
 
-## 4 Prototype Check Interface<a name="prototype-check-interface"></a>
+## D Prototype Check Interface<a name="D"></a>
 
 ```
 type_czech = TypeCzech('THROW-EXCEPTIONS')
@@ -156,15 +161,18 @@ Object.setPrototypeOf(shelley, mary)
 PROTOTYPE_INTERFACE = { firstMethod: 'function', lastMethod:'function', fullMethod: 'function',
                   f_name: 'string', l_name: 'string', salu: 'string'}
 
-PROTOTYPE_FAIL = Object.assign({D_Prototype: 'string'}, PROTOTYPE_INTERFACE)  
+PROTOTYPE_FAIL = Object.assign({FAIL_Prototype: 'string'}, PROTOTYPE_INTERFACE)  
+
 
 type_czech.check_interface(ms_mary_shelley, PROTOTYPE_INTERFACE) // pass
 
-type_err = type_czech.check_interface(ms_mary_shelley, PROTOTYPE_FAIL)  // fail
-type_czech.check_assert(type_err, 'Prototype Check Interface', '-')
+{
+type_err = type_czech.check_interface(ms_mary_shelley, PROTOTYPE_FAIL) 
+type_czech.check_assert(type_err, 'Prototype Check Interface', '-') // fail
+}
 ```
 
-## 5 OLOO Check Interface<a name="oloo-check-interface"></a>
+## E OLOO Check Interface<a name="E"></a>
 
 ```
 type_czech = TypeCzech('THROW-EXCEPTIONS')
@@ -196,14 +204,20 @@ function Full(salu, f_name, l_name) {
 
 margaret_atwood = Full('Ms.', 'Margaret', 'Atwood')
 
-OLOO_INTERFACE = { firstMethod: 'function', lastMethod:'function', fullMethod: 'function',
-                  f_name: 'string', l_name: 'string', salu: 'string'}
+OLOO_INTERFACE = { firstMethod: 'function', lastMethod:'function',
+                   fullMethod: 'function', f_name: 'string',
+                   l_name: 'string', salu: 'string'}
 
-OLOO_FAIL = Object.assign({E_OLOO: 'string'}, OLOO_INTERFACE)  
+OLOO_FAIL = Object.assign({FAIL_OLOO: 'string'}, OLOO_INTERFACE)  
+
 
 type_czech.check_interface(margaret_atwood, OLOO_INTERFACE) // pass
 
-type_err = type_czech.check_interface(margaret_atwood, OLOO_FAIL) // fail
-type_czech.check_assert(type_err, 'OLOO Check Interface', '-')
+{
+  type_err = type_czech.check_interface(margaret_atwood, OLOO_FAIL)
+  type_czech.check_assert(type_err, 'OLOO Check Interface', '-') // fail
+}
 ```
 
+
+&copy; 2021 Steen Hansen 

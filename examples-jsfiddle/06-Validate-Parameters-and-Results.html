@@ -1,5 +1,5 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>06 - Validate Parameters And Results</title>
+<title>06 Validate Parameters And Results</title>
 
 
 
@@ -85,7 +85,7 @@
     
     <a title="25-Default-Parameters.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Default-Parameters" target="_blank">25</a>
     
-    <a title="26-Type-and-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Type-and-Empty-Abbreviations" target="_blank">26</a>
+    <a title="26-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Empty-Abbreviations" target="_blank">26</a>
     
     <a title="27-Type-and-Empty-Object-Extras.html" href="https://jsfiddle.net/steen_hansen/tdL7hwgc/?27-Typed-and-Empty-Either-Checks-with-Optionals" target="_blank">27</a>
     
@@ -197,6 +197,8 @@
 
 
 
+
+
 </div>
 
 
@@ -211,7 +213,7 @@ conditions of functions can be viewed without asserts actually littering the fun
 <br><br>
 Note that any function names can be used, not just PRE_check_function_name() and POST_check_function_name(),
 which are used to lessen confusion.
-<pre>
+<pre title='Copy and paste the green code below into the console to run' class='console-runnable'>
 function before_Person(first_name, last_name){
   console.log('before Person:', first_name, last_name)
   if (first_name.match(/^[a-z]/))
@@ -235,7 +237,8 @@ john_doe = Person('john', 'fail')
 <pre>
 >> ERROR, first name not capitalized: john
 </pre>
-
+Note that PRE_check_Person() and POST_check_Person functions do not need to return anything if no error has
+occured; undefined and '' both mean no errors found.
   </div>
 
   <div id="console-log"  >
@@ -286,6 +289,7 @@ john_doe = Person('john', 'fail')
 /**/
 /**/  PRE_check_Person = (typeof PRE_check_Person === 'undefined')
 /**/                     ? undefined : PRE_check_Person
+/**/
 /**/  POST_check_Person = (typeof POST_check_Person === 'undefined')
 /**/                      ? undefined : POST_check_Person
 /**/
@@ -296,16 +300,12 @@ john_doe = Person('john', 'fail')
 /**/    const regnal_numbers = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII']
 /**/    if (!regnal_numbers.includes(l_name))
 /**/      return `PRE: bad regnal number '${l_name}'`
-/**/
-/**/    return ''
 /**/  }
 /**/
 /**/  function POST_check_Person(first_last){
 /**/    royal_name_2_part = new RegExp(/^[A-Z][a-z]*\s[IVX]*$/)
 /**/    if (!first_last.match(royal_name_2_part))
 /**/      return NL+`POST: name is not formatted royally - ${first_last}`
-/**/
-/**/    return ''
 /**/  }
 /**/
 /**/  Person = type_czech.linkUp(Person, PRE_check_Person, POST_check_Person) 
@@ -332,7 +332,6 @@ linesConsole(3)
 
 louis = Person('Louis', 'XIV')
 log('out D : ', louis)
-
 </script>
 
 
@@ -351,23 +350,23 @@ log('out D : ', louis)
 
    jsToDiv('js-code', "check-code")
 
-   fromToBoldText(879, 884, 'code', 1)  //  ^[A-Z]
+   fromToBoldText(861, 866, 'code', 1)  //  ^[A-Z]
    
-   fromToBoldText(1383, 1383, 'code', 1)  //  ('c
+   fromToBoldText(1342, 1342, 'code', 1)  //  ('c
    fromToBoldText(681, 681, 'log', 1)    //c
 
 
 
 
-    fromToBoldText(491, 512, 'code', 2)  // arguments.length !== 2
-   fromToBoldText(1321, 1333, 'code', 2)  //  ('Atahualpa')
+    fromToBoldText(496, 517, 'code', 2)  // arguments.length !== 2
+   fromToBoldText(1281, 1291, 'code', 2)  //  ('Atahualpa')
    fromToBoldText(59, 77, 'log', 2)    // PRE: 1 parameters, not 2
 
 
 
 
 
-   fromToBoldText(1458, 1460, 'code', 3)  //  XIV
+   fromToBoldText(1417, 1419, 'code', 3)  //  XIV
    fromToBoldText(824, 826, 'log', 3)    // XIV
 
 
@@ -377,3 +376,5 @@ log('out D : ', louis)
 <link rel="stylesheet"
   href="https://fonts.googleapis.com/css?family=Inconsolata">
 
+
+  

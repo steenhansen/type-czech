@@ -1,24 +1,16 @@
 /* eslint-disable */
 
 
-tested_nested_check = 0;
-failed_nested_check = 0;
+pass_count = 0;
+fail_count = 0;
 
- nested_checks_50001();   // NO_ERROR         
- nested_checks_50002();   // LEVEL_111_ERROR__123n
- nested_checks_50003();   // LEVEL_222_ERROR__123n
+  nested_checks_50001();   // NO_ERROR         
+  nested_checks_50002();   // LEVEL_111_ERROR__123n
+  nested_checks_50003();   // LEVEL_222_ERROR__123n
 nested_checks_50004();   // LEVEL_333_ERROR__123n
 
 
-TEST_total_fails += failed_nested_check;
-TEST_total_checks += tested_nested_check;
-
-if (TEST_show_random) {
-  console.log('nested_check failed tests 50000', failed_nested_check)
-  console.log('nested_check passed tests 50000', tested_nested_check)
-}
-
-/////////////////////////////////////////////
+////////////////////////////////////////////
 
 
 function nested_checks_50001(NO_ERROR){
@@ -50,9 +42,9 @@ function nested_checks_50001(NO_ERROR){
   }
   if (was_exception) {
     console.log(TYPE_CZECH_current_test_number, err);
-    if (typeof tested_nested_check !== 'undefined') failed_nested_check ++;
+    if (typeof pass_count !== 'undefined') fail_count ++;
   }
-  if (typeof tested_nested_check !== 'undefined') tested_nested_check ++;
+  if (typeof pass_count !== 'undefined') pass_count ++;
 }
 
 
@@ -86,7 +78,7 @@ function nested_checks_50002(LEVEL_111_ERROR__123n){
   }
   if (!was_exception) {
     console.log(TYPE_CZECH_current_test_number, err);
-    if (typeof tested_nested_check !== 'undefined') failed_nested_check ++;
+    if (typeof pass_count !== 'undefined') fail_count ++;
   } else {
     expected_error =`PRE_check_level_111() PRE-FUNC: TE@226 - The value '123n', which is a 'bigint', is not a 'number'
     CHECKER checkParam_type()
@@ -97,13 +89,13 @@ EXPECTED TYPE number
     const error_not_match_exception = errorNotMatchException(expected_error, err);
     if (error_not_match_exception) {
       // failing path, the error was wrong
-      if (typeof tested_nested_check !== 'undefined') failed_nested_check ++;
+      if (typeof pass_count !== 'undefined') fail_count ++;
       consoleExpectedActual(expected_error, err, TYPE_CZECH_current_test_number);
     } else {
       // expected route with an error message
     }
   }
-  if (typeof tested_nested_check !== 'undefined') tested_nested_check ++;
+  if (typeof pass_count !== 'undefined') pass_count ++;
 }
 
 
@@ -136,7 +128,7 @@ function nested_checks_50003(LEVEL_222_ERROR__123n){
   }
   if (!was_exception) {
     console.log(TYPE_CZECH_current_test_number, err);
-    if (typeof tested_nested_check !== 'undefined') failed_nested_check ++;
+    if (typeof pass_count !== 'undefined') fail_count ++;
   } else {
     expected_error =`PRE_check_level_222() PRE-FUNC: TE@226 - The value '123n', which is a 'bigint', is not a 'boolean', TE@226 - The value '123n', which is a 'bigint', is not a 'symbol'
     CHECKER checkParam_typeEither()
@@ -147,13 +139,13 @@ EXPECTED TYPE ["boolean","symbol"]
     const error_not_match_exception = errorNotMatchException(expected_error, err);
     if (error_not_match_exception) {
       // failing path, the error was wrong
-      if (typeof tested_nested_check !== 'undefined') failed_nested_check ++;
+      if (typeof pass_count !== 'undefined') fail_count ++;
       consoleExpectedActual(expected_error, err, TYPE_CZECH_current_test_number);
     } else {
       // expected route with an error message
     }
   }
-  if (typeof tested_nested_check !== 'undefined') tested_nested_check ++;
+  if (typeof pass_count !== 'undefined') pass_count ++;
 
 
 }
@@ -190,7 +182,7 @@ function nested_checks_50004(LEVEL_333_ERROR__123n){
   }
   if (!was_exception) {
     console.log(TYPE_CZECH_current_test_number, err);
-    if (typeof tested_nested_check !== 'undefined') failed_nested_check ++;
+    if (typeof pass_count !== 'undefined') fail_count ++;
   } else {
     expected_error =`PRE_check_level_333() PRE-FUNC: EE@320 - checkParam_typeExtra(123n, 'date') has the first param wrong. TE@226 - The value '123n', which is a 'bigint', is not a 'date'
     CHECKER checkParam_typeExtra()
@@ -201,12 +193,22 @@ EXPECTED TYPE date
     const error_not_match_exception = errorNotMatchException(expected_error, err);
     if (error_not_match_exception) {
       // failing path, the error was wrong
-      if (typeof tested_nested_check !== 'undefined') failed_nested_check ++;
+      if (typeof pass_count !== 'undefined') fail_count ++;
       consoleExpectedActual(expected_error, err, TYPE_CZECH_current_test_number);
     } else {
       // expected route with an error message
     }
   }
-  if (typeof tested_nested_check !== 'undefined') tested_nested_check ++;
+  if (typeof pass_count !== 'undefined') pass_count ++;
 }
+
+
+if (fail_count>0) {
+  the_problem = `public-tests/prototype_check_55000.js - fails = ${fail_count}`;  
+  console.log(the_problem)
+  throw the_problem
+}
+TEST_total_checks += pass_count;
+
+
 

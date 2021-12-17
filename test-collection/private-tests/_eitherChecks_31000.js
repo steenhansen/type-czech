@@ -1,18 +1,13 @@
 /* eslint-disable */
 
-tested_eitherChecks = 0;
 
-failed_eitherChecks = 0;
+
+pass_count = 0;
+fail_count = 0;
+
 
 _eitherChecks_31001();
 
-TEST_total_fails += failed_eitherChecks;
-TEST_total_checks += tested_eitherChecks;
-
-if (TEST_show_random) {
-  console.log('checkParam_type failed tests 05000', failed_eitherChecks);
-  console.log('checkParam_type passed tests 05000', tested_eitherChecks);
-}
 
 function _eitherChecks_31001(){
   type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE'
@@ -32,7 +27,15 @@ function _eitherChecks_31001(){
   no_console_mess = '';
 
                       if (actual_str !== expected_str) {
-                        failed_eitherChecks ++;
+                        fail_count ++;
                       }
-                      tested_eitherChecks ++;
+                      pass_count ++;
 }
+
+
+if (fail_count>0) {
+  the_problem = `private-tests/_eitherChecks_31000.js - fails = ${fail_count}`;  
+  console.log(the_problem)
+  throw the_problem
+}
+TEST_total_checks += pass_count;

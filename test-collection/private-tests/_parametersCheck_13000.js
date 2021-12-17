@@ -1,17 +1,13 @@
 /* eslint-disable */
 
-tested_ParametersCheck = 0;
-failed_ParametersCheck = 0;
+
+pass_count = 0;
+fail_count = 0;
+
 
 _ParametersCheck_13001();
 
-TEST_total_fails += failed_ParametersCheck;
-TEST_total_checks += tested_ParametersCheck;
 
-if (TEST_show_random) {
-  console.log('_ParametersCheck failed tests 13000', failed_ParametersCheck)
-  console.log('_ParametersCheck passed tests 13000', tested_ParametersCheck)
-}
 
 ///////////////////////////////////////////////////////////////////////
 
@@ -37,7 +33,18 @@ function _ParametersCheck_13001(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_ParametersCheck !=='undefined') failed_ParametersCheck ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_ParametersCheck !=='undefined') tested_ParametersCheck ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
+
+
+
+
+
+if (fail_count>0) {
+  the_problem = `private-tests/_ParametersCheck_13000.js - fails = ${fail_count}`;  
+  console.log(the_problem)
+  throw the_problem
+}
+TEST_total_checks += pass_count;

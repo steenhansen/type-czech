@@ -45,8 +45,8 @@ checkParam_empty_03900.js
 checkParam_emptyExtra_30000.js
 _unionChecks-tests_31000.js
 variadic_checks_32000.js
-checkArgs_emptyVariadic_32800.js
-checkArgs_typeVariadic_32900.js
+checkArgs_emptyEach_32800.js
+checkArgs_typeEach_32900.js
 
 33000.js
 34000.js
@@ -64,8 +64,8 @@ disableTests_43000.js
 countFails_44000.js
 countTally_45000.js
 signature_checkParam_type_46000.js
-signature_checkArgs_typeVariadic_47000.js
-signature_checkArgs_emptyVariadic_48000.js
+signature_checkArgs_typeEach_47000.js
+signature_checkArgs_emptyEach_48000.js
 check_assert_49000.js
 
 nested_checks_50000.js
@@ -78,3 +78,15 @@ oloo_check_56000.js
 
 scalar_arrays_57000.js
 array_arrays_58000.js
+
+//////////////////
+
+
+signaure ---
+  values - 60000
+  empty  - 61000
+  type   - 62000
+
+
+  signature-checkParam_type_63000.js
+    signature-checkParam_typeEither_64000.js

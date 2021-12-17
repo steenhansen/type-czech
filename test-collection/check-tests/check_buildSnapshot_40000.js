@@ -9,9 +9,15 @@
 /* eslint-disable array-bracket-spacing */
 /* eslint-disable max-len */
 
+pass_count = 0;
+fail_count = 0;
+
+
+
+
 function test_pre_check_buildSnapshot(parameters_array, signature_of_parameters, error_id, expected_error) {
   const type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
-  tested_checkArgs_typeVariadic_40000 += 1;
+  pass_count += 1;
 
   function PRE_test_40000(a_var) {
     return type_czech.check_buildSnapshot(a_var, signature_of_parameters);
@@ -27,20 +33,20 @@ function test_pre_check_buildSnapshot(parameters_array, signature_of_parameters,
       // expected route with no error message
     } catch (e) {
       // failing path
-      failed_checkArgs_typeVariadic_40000 += 1;
+      fail_count += 1;
       console.log('FAIL, should be no error but got ', e, error_id);
     }
   } else {
     try {
       pre_check_buildSnapshot_40000(...parameters_array);
       // failing path, should have been an exception
-      failed_checkArgs_typeVariadic_40000 += 1;
+      fail_count += 1;
       consoleExpectedActual(expected_error, 'MISSING-EXCEPTION', error_id);
     } catch (e) {
       const error_not_match_exception = errorNotMatchException(expected_error, e);
       if (error_not_match_exception) {
         // failing path, the error was wrong
-        failed_checkArgs_typeVariadic_40000 += 1;
+        fail_count += 1;
         consoleExpectedActual(expected_error, e, error_id);
       } else {
         // expected route with an error message
@@ -50,8 +56,7 @@ function test_pre_check_buildSnapshot(parameters_array, signature_of_parameters,
   afterCheck(parameters_array, signature_of_parameters, before_var_value, error_id);
 }
 
-tested_checkArgs_typeVariadic_40000 = 0;
-failed_checkArgs_typeVariadic_40000 = 0;
+
 
 //////////////////////////////////////////
 type_czech = TypeCzech('NO-ERROR-MESSAGES', 'HIDE-INIT-MESSAGE');
@@ -89,7 +94,7 @@ A_yourFunc([{},{}] )               // pass 13 2 empty - [obj obj]
 A_yourFunc({g:[]},{h:[]})          // pass 14 3 empty - {arr arr}
 A_yourFunc({i:''},{j:''})          // pass 15 4 empty - {str str}
 A_yourFunc({k:{}},{l:{}})          // pass 16 5 empty - {obj obj}
-TEST_total_checks += expectedAndFailedTests(16, 0, 'A-Pass', 'check_buildSnapshot().md');
+pass_count += expectedAndFailedTests(16, 0, 'A-Pass', 'check_buildSnapshot().md');
 
 
 A_yourFunc(234n)                        // fail 1 B bigint
@@ -108,7 +113,7 @@ A_yourFunc(null)                        // fail 13 Q empty null
 A_yourFunc(undefined)                   // fail 14 R empty undefined
 A_yourFunc()                            // fail 15 S empty nothing
 A_yourFunc(14,15,16)                    // fail 16 U multi args
-TEST_total_checks += expectedAndFailedTests(16, 16, 'A-Fail', 'check_buildSnapshot().md');
+pass_count += expectedAndFailedTests(16, 16, 'A-Fail', 'check_buildSnapshot().md');
 
 // /////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -147,7 +152,7 @@ if (stack_str === B_expected_first_stack){
   if (typeof TEST_total_checks === 'undefined')
     console.log('no-issues: pass')
   else
-    TEST_total_checks += 1
+  pass_count += 1
 } else {
   throw `B. _check_buildSnapshot().md first had un-expected stack list values`
 }
@@ -160,7 +165,7 @@ if (B_expected_second_stack === stack_str){
   if (typeof TEST_total_checks === 'undefined')
     console.log('no-issues: pass')
   else
-    TEST_total_checks += 1
+  pass_count += 1
 } else {
   console.log(stack_str)
   throw `B. _check_buildSnapshot().md second had un-expected stack list values`
@@ -198,7 +203,7 @@ if (is_correct){
   if (typeof TEST_total_checks === 'undefined')
     console.log('no-issues: pass')
   else
-    TEST_total_checks += 1
+  pass_count += 1
 } else {
   throw `C. _check_buildSnapshot().md did not fail - VE@601`
 }
@@ -223,7 +228,7 @@ if (is_correct){
   if (typeof TEST_total_checks === 'undefined')
     console.log('no-issues: pass')
   else
-    TEST_total_checks += 1
+  pass_count += 1
 } else {
   throw `D. _check_buildSnapshot().md did not fail - VE@602`
 }
@@ -248,7 +253,7 @@ if (is_correct){
   if (typeof TEST_total_checks === 'undefined')
     console.log('no-issues: pass')
   else
-    TEST_total_checks += 1
+  pass_count += 1
 } else {
   throw `E. _check_buildSnapshot().md did not fail - TC@56`
 }
@@ -274,7 +279,7 @@ if (is_correct){
   if (typeof TEST_total_checks === 'undefined')
     console.log('no-issues: pass')
   else
-    TEST_total_checks += 1
+  pass_count += 1
 } else {
   throw `F. _check_buildSnapshot().md did not fail - TC@55`
 }
@@ -304,7 +309,7 @@ if (is_correct){
   if (typeof TEST_total_checks === 'undefined')
     console.log('no-issues: pass')
   else
-    TEST_total_checks += 1
+  pass_count += 1
 } else {
   throw `G. _check_buildSnapshot().md could not handle cyclic array`
 }
@@ -333,8 +338,14 @@ if (is_correct){
   if (typeof TEST_total_checks === 'undefined')
     console.log('no-issues: pass')
   else
-    TEST_total_checks += 1
+  pass_count += 1
 } else {
   throw `H. _check_buildSnapshot().md could not handle cyclic object`
 }
 
+if (fail_count>0) {
+  the_problem = `check-tests/check_buildSnapshot_40000.js - fails = ${fail_count}`;  
+  console.log(the_problem)
+  throw the_problem
+}
+TEST_total_checks += pass_count;

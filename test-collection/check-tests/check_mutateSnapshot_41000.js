@@ -1,57 +1,52 @@
-/* eslint-disable object-curly-newline */
-/* eslint-disable quotes */
-/* eslint-disable indent */
-/* eslint-disable no-undef */
-/* eslint-disable no-console */
-/* eslint-disable  no-func-assign */
-/* eslint-disable prefer-rest-params */
-/* eslint-disable no-multi-spaces */
-/* eslint-disable array-bracket-spacing */
-/* eslint-disable max-len */
+/* eslint-disable */
 
-function test_pre_check_mutateSnapshot(parameters_array, signature_of_parameters, error_id, expected_error) {
-  const type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
-  tested_checkArgs_typeVariadic_41000 += 1;
+pass_count = 0;
+fail_count = 0;
 
-  function PRE_test_41000(a_var) {
-    return type_czech.check_mutateSnapshot(a_var, signature_of_parameters);
-  }
 
-  function pre_check_mutateSnapshot_41000() {}
-  pre_check_mutateSnapshot_41000 = type_czech.linkUp(pre_check_mutateSnapshot_41000, PRE_test_41000);
 
-  const before_var_value = beforeCheck(parameters_array, signature_of_parameters);
-  if (expected_error === '') {
-    try {
-      pre_check_mutateSnapshot_41000(...parameters_array);
-      // expected route with no error message
-    } catch (e) {
-      // failing path
-      failed_checkArgs_typeVariadic_41000 += 1;
-      console.log('FAIL, should be no error but got ', e, error_id);
-    }
-  } else {
-    try {
-      pre_check_mutateSnapshot_41000(...parameters_array);
-      // failing path, should have been an exception
-      failed_checkArgs_typeVariadic_41000 += 1;
-      consoleExpectedActual(expected_error, 'MISSING-EXCEPTION', error_id);
-    } catch (e) {
-      const error_not_match_exception = errorNotMatchException(expected_error, e);
-      if (error_not_match_exception) {
-        // failing path, the error was wrong
-        failed_checkArgs_typeVariadic_41000 += 1;
-        consoleExpectedActual(expected_error, e, error_id);
-      } else {
-        // expected route with an error message
-      }
-    }
-  }
-  afterCheck(parameters_array, signature_of_parameters, before_var_value, error_id);
-}
+// function test_pre_check_mutateSnapshot(parameters_array, signature_of_parameters, error_id, expected_error) {
+//   const type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
+//   pass_count += 1;
 
-tested_checkArgs_typeVariadic_41000 = 0;
-failed_checkArgs_typeVariadic_41000 = 0;
+//   function PRE_test_41000(a_var) {
+//     return type_czech.check_mutateSnapshot(a_var, signature_of_parameters);
+//   }
+
+//   function pre_check_mutateSnapshot_41000() {}
+//   pre_check_mutateSnapshot_41000 = type_czech.linkUp(pre_check_mutateSnapshot_41000, PRE_test_41000);
+
+//   const before_var_value = beforeCheck(parameters_array, signature_of_parameters);
+//   if (expected_error === '') {
+//     try {
+//       pre_check_mutateSnapshot_41000(...parameters_array);
+//       // expected route with no error message
+//     } catch (e) {
+//       // failing path
+//       fail_count += 1;
+//       console.log('FAIL, should be no error but got ', e, error_id);
+//     }
+//   } else {
+//     try {
+//       pre_check_mutateSnapshot_41000(...parameters_array);
+//       // failing path, should have been an exception
+//       fail_count += 1;
+//       consoleExpectedActual(expected_error, 'MISSING-EXCEPTION', error_id);
+//     } catch (e) {
+//       const error_not_match_exception = errorNotMatchException(expected_error, e);
+//       if (error_not_match_exception) {
+//         // failing path, the error was wrong
+//         fail_count += 1;
+//         consoleExpectedActual(expected_error, e, error_id);
+//       } else {
+//         // expected route with an error message
+//       }
+//     }
+//   }
+//   afterCheck(parameters_array, signature_of_parameters, before_var_value, error_id);
+// }
+
+
 
 //////////////////////////////////////////
 type_czech = TypeCzech('LOG-ERRORS', 'HIDE-INIT-MESSAGE')   // 'NO-ERROR-MESSAGES')               /// NOT SURE ....
@@ -62,7 +57,7 @@ function A_PRE_check_yourFunc(the_arg) {
   } catch (e) {
     expected_start = 'No record of check_mutatedSnapshot('
     if (e.startsWith(expected_start)) {
-      fail_count++
+      //fail_count++
     } else {
       console.log('e', e)
     }
@@ -103,7 +98,7 @@ A_yourFunc([{},{}] )               // fail 29 2 empty - [obj obj]
 A_yourFunc({g:[]},{h:[]})          // fail 30 3 empty - {arr arr}
 A_yourFunc({i:''},{j:''})          // fail 31 4 empty - {str str}
 A_yourFunc({k:{}},{l:{}})          // fail 32 5 empty - {obj obj}
-TEST_total_checks += expectedAndFailedTests(32, 32, 'A-Fail', '_check_mutatedSnapshot().md');
+pass_count += expectedAndFailedTests(32, 32, 'A-Fail', '_check_mutatedSnapshot().md');
 
 
 
@@ -130,7 +125,7 @@ function B_yourFunc(b_collection, change_function){
   B_yourFunc([1,2,3], x=>x)                           // pass 3,4
   B_yourFunc({a:1}, x=> { x.a=2; x.a=1})              // pass 5,6
   B_yourFunc({a:1}, x=>x)                             // pass 7,8
-  TEST_total_checks += expectedAndFailedTests(8, 0, 'B-Pass', '_check_mutatedSnapshot().md');
+  pass_count += expectedAndFailedTests(8, 0, 'B-Pass', '_check_mutatedSnapshot().md');
 
 
   B_yourFunc([1,2,3], x=> x.pop())        // pre-pass-1, post-fail-1
@@ -140,7 +135,7 @@ function B_yourFunc(b_collection, change_function){
   B_yourFunc({a:1}, x=> x.b=2)            // pre-pass-9, post-fail-10
   B_yourFunc({a:1}, x=> x.a=2)            // pre-pass-11, post-fail-12
   // 12 tests, 6 fails
-  TEST_total_checks += expectedAndFailedTests(12, 6, 'B-Fail', '_check_mutatedSnapshot().md');
+  pass_count += expectedAndFailedTests(12, 6, 'B-Fail', '_check_mutatedSnapshot().md');
 
   /*
 ### C. check_mutatedSnapshot() fail from recursive calls
@@ -182,7 +177,7 @@ else if (expected_fails !== fail_tests)
 else if (typeof TEST_total_checks === 'undefined')
   console.log('no-issues: pass', expected_tests-expected_fails, ' fail', expected_fails)
 else
-  TEST_total_checks += expected_tests
+pass_count += expected_tests
 
 
 
@@ -214,7 +209,28 @@ if (is_correct){
   if (typeof TEST_total_checks === 'undefined')
     console.log('no-issues: pass')
   else
-    TEST_total_checks += 1
+  pass_count += 1
 } else {
-  throw `D. _check_buildSnapshot().md did not fail - VE@604`
+  throw `D. _check_buildSnapshot().md did not fail - VE@606`
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+if (fail_count>0) {
+  the_problem = `check-tests/check_mutateSnapshot_41000.js - fails = ${fail_count}`;  
+  console.log(the_problem)
+  throw the_problem
+}
+TEST_total_checks += pass_count;

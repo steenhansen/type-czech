@@ -1,8 +1,8 @@
 /* eslint-disable */
 
 
-let tested_typeIsA = 0;
-let failed_typeIsA = 0;
+let pass_count = 0;
+let fail_count = 0;
 
 
 _typeIsA_23000();
@@ -12,12 +12,6 @@ _typeIsA_23000();
 _typeIsA_23202();
 _typeIsA_23303();
 
-TEST_total_fails += failed_typeIsA;
-TEST_total_checks += tested_typeIsA;
-if (TEST_show_random) {
-  console.log('_typeIsA failed tests 23000', failed_typeIsA);
-  console.log('_typeIsA passed tests 23000', tested_typeIsA);
-}
 
 
 
@@ -36,9 +30,9 @@ function _typeIsA_23000(){
     actual_typeIsA = type_czech_test.typeIsA(an_arg, expected_typeIsA)
     if (!actual_typeIsA) {
       console.log('typeIsA error : ', TYPE_CZECH_current_test_number, actual_typeIsA, an_arg, expected_typeIsA);
-      failed_typeIsA += 1
+      fail_count += 1
     }
-    tested_typeIsA += 1
+    pass_count += 1
   }
     
   test_typeIsA([1], 'array')                   // pass 1 A array
@@ -106,22 +100,22 @@ function _typeIsA_23202() {
   a_full = new Full();
 
   if (!type_czech_test.typeIsA(a_first, 'First')) {
-    failed_typeIsA += 1;
+    fail_count += 1;
     console.log(`${TYPE_CZECH_current_test_number} type_czech.typeIsA(a_first, 'First')`);
   }
-  tested_typeIsA += 1;
+  pass_count += 1;
 
   if (!type_czech_test.typeIsA(a_last, 'Last')) {
-    failed_typeIsA += 1;
+    fail_count += 1;
     console.log(`${TYPE_CZECH_current_test_number} type_czech.typeIsA(a_last, 'Last')`);
   }
-  tested_typeIsA += 1;
+  pass_count += 1;
 
   if (!type_czech_test.typeIsA(a_full, 'Full')) {
-    failed_typeIsA += 1;
+    fail_count += 1;
     console.log(`${TYPE_CZECH_current_test_number} type_czech.typeIsA(a_full, 'Full')`);
   }
-  tested_typeIsA += 1;
+  pass_count += 1;
 }
 
 function _typeIsA_23303() {
@@ -131,31 +125,37 @@ function _typeIsA_23303() {
     a_div = document.createElement('div');
 
     if (!type_czech_test.typeIsA(a_div, 'HTMLDivElement')) {
-      failed_typeIsA += 1;
+      fail_count += 1;
       console.log(`${TYPE_CZECH_current_test_number} type_czech.typeIsA(a_div, 'HTMLDivElement')`);
     }
-    tested_typeIsA += 1;
+    pass_count += 1;
 
     if (type_czech_test.typeIsA(a_div, 'htmlDivElement')) {
-      failed_typeIsA += 1;
+      fail_count += 1;
       console.log(`${TYPE_CZECH_current_test_number} type_czech.typeIsA(a_div, 'htmlDivElement')`);
     }
-    tested_typeIsA += 1;
+    pass_count += 1;
 
     if (!type_czech_test.typeIsA(window, 'Window')) {
-      failed_typeIsA += 1;
+      fail_count += 1;
       console.log(`${TYPE_CZECH_current_test_number} type_czech.typeIsA(window, 'Window')`);
     }
-    tested_typeIsA += 1;
+    pass_count += 1;
   } else {
-    tested_typeIsA += 1;
-    tested_typeIsA += 1;
-    tested_typeIsA += 1;
+    pass_count += 1;
+    pass_count += 1;
+    pass_count += 1;
   }
 }
 
 
 
+if (fail_count>0) {
+  the_problem = `public-tests/typeIsA_23000.js - fails = ${fail_count}`;  
+  console.log(the_problem)
+  throw the_problem
+}
+TEST_total_checks += pass_count;
 
 
 

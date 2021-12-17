@@ -1,5 +1,5 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>42 - Extended Objects</title>
+<title>42 Extended Objects</title>
 
 
 
@@ -16,12 +16,14 @@
             
             
             The extended objects can be classes, closures, IIFEs, 
-            classFree objects, prototypes, or OLOOs.
+            classFree objects, prototypes, or OLOOs. The examples of 105,205,305,405,605 are 
+            in /examples-node.js/ as they can only be run in Node.js.
+            
             </p>
           
             <p>
               Checking functions can be toggled on and off with either the inclusion of 
-              TypeCzech.js or an boolean variable.
+              TypeCzech.js or a boolean variable.
             </p>
             
             <p>
@@ -37,6 +39,16 @@
 
 
         <div  style="width:15%; float:right">
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -112,7 +124,7 @@
                       
                       <a title="25-Default-Parameters.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Default-Parameters" target="_blank">25</a>
                       
-                      <a title="26-Type-and-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Type-and-Empty-Abbreviations" target="_blank">26</a>
+                      <a title="26-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Empty-Abbreviations" target="_blank">26</a>
                       
                       <a title="27-Type-and-Empty-Object-Extras.html" href="https://jsfiddle.net/steen_hansen/tdL7hwgc/?27-Typed-and-Empty-Either-Checks-with-Optionals" target="_blank">27</a>
                       
@@ -219,22 +231,23 @@
 
                   
         </div>
-
 </div>
-
-
-
-
-
-
-
-
 <div style='float:left'>
   
 
 
 
 
+
+
+
+
+
+
+
+
+
+  <!--            -----------------TYPE 6------------------------       -->
   <table style='width:61%; float:left'>
 
 
@@ -294,7 +307,7 @@
 
 
     <tr>
-      <td>Four Node.js files with extended objects packaged together with their corresponding TypeCzech functions.
+      <td>Six Node.js files with extended objects packaged together with their corresponding TypeCzech functions.
           Exampels are inside of <span style='white-space:nowrap'>/examples-nodejs/</span><br>&nbsp;</td>
         <td class='nice-middle'>105</td>
         <td class='nice-middle'>205</td>
@@ -306,9 +319,31 @@
 
 
   </table>
+  <!--            -----------------TYPE 6------------------------       -->
 
-<div>
-  <div style='text-align: center;'>The class version of extended objects</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div>
+    <div style='text-align: center;'>The class version of extended objects</div>
 <pre style='width:37%; float:right'>
 class First { 
   constructor(f_name) { 
@@ -340,7 +375,7 @@ class Full extends Last {
   showName() { }
 }
 </pre>
-<div style='text-align: center;'>LinkUp() of First class and firstMethod()</div>
+  <div style='text-align: center;'>LinkUp() of First class and firstMethod()</div>
 <pre style='width:37%; float:right'>
 
 First_PREs = { First: PRE_check_First, 
@@ -350,18 +385,18 @@ First_POSTs = { First: POST_check_First,
 
 First = type_czech.linkUp(First, First_PREs, First_POSTs)  
 </pre>
-</div>
-
-</div>
-
-
-
-
-
-
-
-
-<link rel="stylesheet"
-  href="https://fonts.googleapis.com/css?family=Inconsolata">
-
+  </div>
   
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Inconsolata">
+  
+    

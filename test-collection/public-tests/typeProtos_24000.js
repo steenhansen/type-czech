@@ -1,21 +1,13 @@
 /* eslint-disable */
 
-tested_typeProtos = 0;
-failed_typeProtos = 0;
+pass_count = 0;
+fail_count = 0;
 
 _typeProtos_24000();
 _typeProtos_24101();
 _typeProtos_24102();
 _typeProtos_24103();
 
-
-TEST_total_fails += failed_typeProtos;
-TEST_total_checks += tested_typeProtos;
-
-if (TEST_show_random) {
-  console.log('_typeProtos failed tests 24000', failed_typeProtos)
-  console.log('_typeProtos passed tests 24000', tested_typeProtos)
-}
 
 function _typeProtos_24101() {
   type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
@@ -25,10 +17,10 @@ function _typeProtos_24101() {
   actual_str = actual_prototypes.toString();
   expected_str = expected_prototypes.toString();
   if (actual_str !== expected_str) {
-    failed_typeProtos += 1;
+    fail_count += 1;
     console.log(`${TYPE_CZECH_current_test_number} type_czech.typeProtos(new Date('1999-12-31')`);
   }
-  tested_typeProtos += 1;
+  pass_count += 1;
 }
 
 function _typeProtos_24102() {
@@ -40,11 +32,11 @@ function _typeProtos_24102() {
     actual_str = actual_prototypes.toString();
     expected_str = expected_prototypes.toString();
     if (actual_str !== expected_str) {
-      failed_typeProtos += 1;
+      fail_count += 1;
       console.log(`${TYPE_CZECH_current_test_number} type_czech.typeProtos(document.createElement('div'))`);
     }
   }
-  tested_typeProtos += 1;
+  pass_count += 1;
 }
 
 
@@ -61,11 +53,11 @@ function _typeProtos_24103() {
     actual_str = actual_prototypes.toString();
     expected_str = expected_prototypes.toString();
     if (actual_str !== expected_str) {
-      failed_typeProtos += 1;
+      fail_count += 1;
       console.log(`${TYPE_CZECH_current_test_number} type_czech.typeProtos(document.createElement('div'))`);
     } 
   }
-  tested_typeProtos += 1;
+  pass_count += 1;
 }
 
 
@@ -81,9 +73,9 @@ function _typeProtos_24000() {
     first_prototype = the_prototypes[0]
     if (first_prototype !== the_answer) {
       console.log('typeIsA error : ', TYPE_CZECH_current_test_number, first_prototype, an_arg, the_answer);
-      failed_typeProtos += 1
+      fail_count += 1
     }
-    tested_typeProtos += 1
+    pass_count += 1
   }
 
   A_yourFunc([1], 'Array')                      // pass 1 A array
@@ -113,3 +105,11 @@ function _typeProtos_24000() {
   A_yourFunc([{},{}], 'Array')                  // pass 25 2 empty - [obj obj]
 
 }
+
+
+if (fail_count>0) {
+  the_problem = `public-tests/typeProtos_24000.js - fails = ${fail_count}`;  
+  console.log(the_problem)
+  throw the_problem
+}
+TEST_total_checks += pass_count;

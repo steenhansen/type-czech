@@ -1,11 +1,11 @@
 
 ## typeFinal() 
-  -  [1 Class typeFinal](#class-type-final)
-  -  [2 HTML typeFinal](#html-type-final)
+  -  [A Class typeFinal](#A)
+  -  [B HTML typeFinal](#B)
 
 #### All examples below can be executed in the console of [repl.html](../../test-collection/repl.html)
 
-## 1 Class typeFinal<a name="class-type-final"></a>
+## A Class typeFinal<a name="A"></a>
 
 ```
 type_czech = TypeCzech('THROW-EXCEPTIONS')
@@ -35,7 +35,7 @@ ted_chiang = new FullName('Mr', 'Ted', 'Chiang')
 type_czech.typeFinal(ted_chiang) // FullName
 ```
 
-## 2 HTML typeFinal<a name="html-type-final"></a>
+## B HTML typeFinal<a name="B"></a>
 
 ```
 type_czech = TypeCzech('LOG-ERRORS')

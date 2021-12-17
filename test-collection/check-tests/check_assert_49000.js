@@ -1,19 +1,12 @@
 /* eslint-disable */
 
-tested_signatures = 0;
-failed_signatures = 0;
+pass_count = 0;
+fail_count = 0;
+
 
 
 signature_check_assert_49001()
 signature_check_assert_49002()
-
-TEST_total_fails += failed_signatures;
-TEST_total_checks += tested_signatures;
-if (TEST_show_random) {
-  console.log('variadic failed tests 49000', failed_signatures)
-  console.log('variadic passed tests 49000', tested_signatures)
-}
-
 
 
 function signature_check_assert_49001(){
@@ -40,15 +33,15 @@ ACTUAL TYPE 'object'
     const error_not_match_exception = errorNotMatchException(expected_error, the_exception);
     if (error_not_match_exception) {
       console.log(TYPE_CZECH_current_test_number, 'FAIL EXPECTED', expected_error, ' BUT GOT', the_exception);
-      if (typeof tested_signatures !== 'undefined') failed_signatures ++;
+      if (typeof pass_count !== 'undefined') fail_count ++;
     } else {
         // expected route
     }
   } else {
     console.log(TYPE_CZECH_current_test_number, 'FAIL EXPECTED', expected_error);
-    if (typeof tested_signatures !== 'undefined') failed_signatures ++;
+    if (typeof pass_count !== 'undefined') fail_count ++;
   }
-  if (typeof tested_signatures !== 'undefined') tested_signatures ++;
+  if (typeof pass_count !== 'undefined') pass_count ++;
 }
 
 
@@ -83,14 +76,21 @@ try {
     const error_not_match_exception = errorNotMatchException(expected_error, the_exception);
     if (error_not_match_exception) {
       console.log(TYPE_CZECH_current_test_number, 'FAIL EXPECTED', expected_error, ' BUT GOT', the_exception);
-      if (typeof tested_signatures !== 'undefined') failed_signatures ++;
+      if (typeof pass_count !== 'undefined') fail_count ++;
     } else {
         // expected route
     }
   } else {
     console.log(TYPE_CZECH_current_test_number, 'FAIL EXPECTED', expected_error);
-    if (typeof tested_signatures !== 'undefined') failed_signatures ++;
+    if (typeof pass_count !== 'undefined') fail_count ++;
   }
-  if (typeof tested_signatures !== 'undefined') tested_signatures ++;
+  if (typeof pass_count !== 'undefined') pass_count ++;
 }
 
+
+if (fail_count>0) {
+  the_problem = `check-tests/check_assert_49000.js - fails = ${fail_count}`;  
+  console.log(the_problem)
+  throw the_problem
+}
+TEST_total_checks += pass_count;

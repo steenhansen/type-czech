@@ -1,11 +1,11 @@
 
 ## typeIsA() 
-  -  [1 Class typeIsA](#class-type-is-a)
-  -  [2 HTML typeIsA](#html-type-is-a)
+  -  [A Class typeIsA](#A)
+  -  [B HTML typeIsA](#B)
 
 #### All examples below can be executed in the console of [repl.html](../../test-collection/repl.html)
 
-## 1 Class typeIsA<a name="class-type-is-a"></a>
+## A Class typeIsA<a name="A"></a>
 
 ```
 type_czech = TypeCzech('LOG-ERRORS')
@@ -38,7 +38,7 @@ type_czech.typeIsA(ted_chiang, "FirstName") // true
 type_czech.typeIsA(ted_chiang, "Object")    // true
 ```
 
-## 2 HTML typeIsA<a name="html-type-is-a"></a>
+## B HTML typeIsA<a name="B"></a>
 
 ```
 type_czech = TypeCzech('LOG-ERRORS')

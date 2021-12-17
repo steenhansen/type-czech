@@ -1,5 +1,5 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>602 - Created OLOO Imported</title>
+<title>602 Created OLOO Imported</title>
 
 
 
@@ -83,7 +83,7 @@
     
     <a title="25-Default-Parameters.html" href="../../example-snippets/25-Default-Parameters.html">25</a>
     
-    <a title="26-Type-and-Empty-Abbreviations.html" href="../../example-snippets/26-Type-and-Empty-Abbreviations.html">26</a>
+    <a title="26-Empty-Abbreviations.html" href="../../example-snippets/26-Empty-Abbreviations.html">26</a>
     
     <a title="27-Type-and-Empty-Object-Extras.html" href="../../example-snippets/27-Type-and-Empty-Object-Extras.html">27</a>
     
@@ -266,9 +266,9 @@
 function copyAndColor(){
   jsToDiv('js-code', "check-code");      
 
-  fromToBoldText(898, 908, 'code', 1)  //firstMethod
-  fromToBoldText(949, 958, 'code', 2)  // lastMethod
-  fromToBoldText(984, 993, 'code', 3)  // fullMethod
+  fromToBoldText(812, 822, 'code', 1)  //firstMethod
+  fromToBoldText(863, 872, 'code', 2)  // lastMethod
+  fromToBoldText(898, 907, 'code', 3)  // fullMethod
   
   fromToBoldText(210, 225, 'log', 1)    //firstMethod
   fromToBoldText(296, 310, 'log', 2)    //lastMethod
@@ -323,7 +323,8 @@ onLoaded = ([_loaded_files, _import_errors]) => {
   linesConsole(2)
 
 /**/  function PRE_check_printFullFunc(a_person){
-/**/    the_interface = {showName:'f', fullMethod:'f', firstMethod:'f', lastMethod:'f'}
+/**/    the_interface = {showName:'function', fullMethod:'function', 
+/**/                     firstMethod:'function', lastMethod:'function'}
 /**/    return type_czech.check_interface(a_person, the_interface)
 /**/  }
 /**/  printFullFunc = type_czech.linkUp(printFullFunc, PRE_check_printFullFunc)

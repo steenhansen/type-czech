@@ -1,5 +1,5 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>22 - Empty Checks with Extra Optional Parameters</title>
+<title>22 Empty Checks with Extra Optional Parameters</title>
 
 
 
@@ -8,6 +8,7 @@
   <a href='https://github.com/steenhansen/type-czech' class='git-hub'>GitHub Package</a>
   <div id='js-code'>the javascript</div>
   <br>
+
 
 
 
@@ -93,7 +94,7 @@
     
     <a title="25-Default-Parameters.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Default-Parameters" target="_blank">25</a>
     
-    <a title="26-Type-and-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Type-and-Empty-Abbreviations" target="_blank">26</a>
+    <a title="26-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Empty-Abbreviations" target="_blank">26</a>
     
     <a title="27-Type-and-Empty-Object-Extras.html" href="https://jsfiddle.net/steen_hansen/tdL7hwgc/?27-Typed-and-Empty-Either-Checks-with-Optionals" target="_blank">27</a>
     
@@ -227,42 +228,44 @@
   Thus checkParam_emptyExtra(an_object, <b>{a:'EMPTY-ERROR'}</b>) means extra properties
    inside the parameter_object are ignored after the number property of 'a'.
   
-<pre>
+<pre title='Copy and paste the green code below into the console to run' class='console-runnable'>
 func0 = (an_object) => an_object
 PRE_check_func0 = (an_object) => { 
   return type_czech.checkParam_emptyExtra(an_object, {a:'EMPTY-ERROR'})
 }
 func0 = type_czech.linkUp(func0, PRE_check_func0)
-func0({a:11})        //pass
-func0({a:'pass'})    
-func0({b:''})        //fail - empty
-func0({b:'bad-key'}) //fail - not 'a' key
+func0({a:11, extra:'string'}) //pass
+func0({a:'pass'}, 'ok-also')  // pass
+func0({a:''})                 //fail - empty
+func0({b:'bad-key'})          //fail - not 'a' key
 </pre>
 
 And checkParam_emptyExtra(an_array, <b>'EMPTY-ERROR'</b>) refers to <b>one</b>
 number and something extra possibly.
-<pre>
+<pre title='Copy and paste the green code below into the console to run' class='console-runnable'>
 func1 = (an_array) => an_array
 PRE_check_func1 = (an_array) => { 
   return type_czech.checkParam_emptyExtra(an_array, 'EMPTY-ERROR')
 }
 func1 = type_czech.linkUp(func1, PRE_check_func1)
-func1([1, '', '', '', 'pass'])
-func1(['', 'fail', 'fail', 'fail'])
-func2(['fail-one-element'])
+func1([1, '', '', '', 'pass'])      // pass
+func1(1, '')                        // pass
+func1(['', 'fail', 'fail', 'fail']) // fail
+func1('', 'fail')                   // fail
 </pre>
 
 Whereas checkParam_emptyExtra(an_array, <b>['EMPTY-ERROR', 'EMPTY-ERROR']</b>) refers to <b>two</b>
 entities that should not be empty, possibly followed by something extra.
-<pre>
+<pre title='Copy and paste the green code below into the console to run' class='console-runnable'>
 func2 = (an_array) => an_array
 PRE_check_func2 = (an_array) => { 
   the_signature = ['EMPTY-ERROR', 'EMPTY-ERROR']
   return type_czech.checkParam_emptyExtra(an_array, the_signature)
 }
 func2 = type_czech.linkUp(func2, PRE_check_func2)
-func2([7, true, '', '', '', 'pass'])
-func2([{}, '', 'fail', 'fail', 'fail'])
+func2([7, true, '', '', '', 'pass'])    // pass
+func2([{}, '', 'fail', 'fail', 'fail']) // fail
+func2(['fail-one-element'])             // fail
 </pre>
 </div>
 

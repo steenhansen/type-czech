@@ -50,8 +50,9 @@ function mutliNumTypeToSingleNum(tree_str, show_data) {
     console.log('Multi Same, not merged');
     console.log();
   }
-  var [test_no_merge, _, _] = type_czech_test.checkParam_type(the_arguments, merge_type);
-  return test_no_merge;
+
+  the_error = type_czech_test.checkParam_type(the_arguments, merge_type);
+  return the_error;
 }
 
 function numberArgToString(tree_str, the_values, show_data) {
@@ -119,7 +120,7 @@ function keyRenameKtoXinTypes(tree_str, the_keys, show_data) {
 }
 
 function generativeTest(stop_index, show_data = false) {
-  TEST_total_checks += 1;
+  pass_count += 1;
   const [tree_str, the_keys, the_values] = makeTree(stop_index);
   if (show_data) {
     if (typeof process !== 'undefined') {

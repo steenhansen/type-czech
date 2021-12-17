@@ -8,38 +8,43 @@
 /* eslint-disable array-bracket-spacing */
 /* eslint-disable max-len */
 
-function test_pre_checkArgs_emptyVariadic(actual_variable, variable_signature, error_id, expected_error) {
+pass_count = 0;
+fail_count = 0;
+
+
+
+function test_pre_checkArgs_emptyEach(actual_variable, variable_signature, error_id, expected_error) {
   const type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
-  tested_checkArgs_emptyVariadic_32800 += 1;
+  pass_count += 1;
 
   function PRE_test_32800() {
-    return type_czech.checkArgs_emptyVariadic(arguments, variable_signature);
+    return type_czech.checkArgs_emptyEach(arguments, variable_signature);
   }
 
-  function pre_checkArgs_emptyVariadic_32800() {}
-  pre_checkArgs_emptyVariadic_32800 = type_czech.linkUp(pre_checkArgs_emptyVariadic_32800, PRE_test_32800);
+  function pre_checkArgs_emptyEach_32800() {}
+  pre_checkArgs_emptyEach_32800 = type_czech.linkUp(pre_checkArgs_emptyEach_32800, PRE_test_32800);
 
   const before_var_value = beforeCheck(actual_variable, variable_signature);
   if (expected_error === '') {
     try {
-      pre_checkArgs_emptyVariadic_32800(actual_variable);
+      pre_checkArgs_emptyEach_32800(actual_variable);
       // expected route with no error message
     } catch (e) {
       // failing path
-      failed_checkArgs_emptyVariadic_32800 += 1;
+      fail_count += 1;
       console.log('FAIL, should be no error but got ', e, error_id);
     }
   } else {
     try {
-      pre_checkArgs_emptyVariadic_32800(actual_variable);
+      pre_checkArgs_emptyEach_32800(actual_variable);
       // failing path, should have been an exception
-      failed_checkArgs_emptyVariadic_32800 += 1;
+      fail_count += 1;
       consoleExpectedActual(expected_error, 'MISSING-EXCEPTION', error_id);
     } catch (e) {
       const error_not_match_exception = errorNotMatchException(expected_error, e);
       if (error_not_match_exception) {
         // failing path, the error was wrong
-        failed_checkArgs_emptyVariadic_32800 += 1;
+        fail_count += 1;
         consoleExpectedActual(expected_error, e, error_id);
       } else {
         // expected route with an error message
@@ -49,14 +54,13 @@ function test_pre_checkArgs_emptyVariadic(actual_variable, variable_signature, e
   afterCheck(actual_variable, variable_signature, before_var_value, error_id);
 }
 
-tested_checkArgs_emptyVariadic_32800 = 0;
-failed_checkArgs_emptyVariadic_32800 = 0;
+
 
 // /////////////////////////////////////////////////////////////////////////////////////////////
 
 type_czech = TypeCzech('NO-ERROR-MESSAGES', 'HIDE-INIT-MESSAGE')
 function A_PRE_check_yourFunc() {
-  return type_czech.checkArgs_emptyVariadic(arguments, ['EMPTY-ERROR']);
+  return type_czech.checkArgs_emptyEach(arguments, 'EMPTY-ERROR');
 }
 
 function A_yourFunc() { }
@@ -86,18 +90,20 @@ A_yourFunc([{},{}] )                 // pass 20 2 empty - [obj obj]
 A_yourFunc({g:[]},{h:[]})            // pass 21 3 empty - {arr arr}
 A_yourFunc({i:''},{j:''})            // pass 22 4 empty - {str str}
 A_yourFunc({k:{}},{l:{}})            // pass 23 5 empty - {obj obj}
-TEST_total_checks += expectedAndFailedTests(23, 0, 'A-Pass', 'checkArgs_emptyVariadic().md');
+pass_count += expectedAndFailedTests(23, 0, 'A-Pass', 'checkArgs_emptyEach().md');
 
-A_yourFunc([])            // fail 1 K empty array
-A_yourFunc(new Date(''))  // fail 2 L empty date
-A_yourFunc(NaN)           // fail 3 M empty number
-A_yourFunc({})            // fail 4 N empty object
-A_yourFunc(/(?:)/)        // fail 5 O empty regex
-A_yourFunc('')            // fail 6 P empty string
-A_yourFunc(null)          // fail 7 Q empty null
-A_yourFunc(undefined)     // fail 8 R empty undefined
-A_yourFunc()              // fail 9 S empty nothing
-TEST_total_checks += expectedAndFailedTests(9, 9, 'A-Fail', 'checkArgs_emptyVariadic().md');
+A_yourFunc([])                     // fail 1 K empty array
+A_yourFunc(new Date(''))           // fail 2 L empty date
+A_yourFunc(NaN)                    // fail 3 M empty number
+A_yourFunc({})                     // fail 4 N empty object
+A_yourFunc(/(?:)/)                 // fail 5 O empty regex
+A_yourFunc('')                     // fail 6 P empty string
+A_yourFunc(null)                   // fail 7 Q empty null
+A_yourFunc(undefined)              // fail 8 R empty undefined
+A_yourFunc()                       // fail 9 S empty nothing
+
+
+pass_count += expectedAndFailedTests(9, 9, 'A-Fail', 'checkArgs_emptyEach().md');
 
 
 
@@ -105,40 +111,45 @@ TEST_total_checks += expectedAndFailedTests(9, 9, 'A-Fail', 'checkArgs_emptyVari
 
 
 parameters  = ['a', 'b', 'c'];
-signature = ['EMPTY-ERROR'];
+signature = 'EMPTY-ERROR';
 error_mess = '';
-test_pre_checkArgs_emptyVariadic(parameters, signature, 32801, error_mess);
+test_pre_checkArgs_emptyEach(parameters, signature, 32801, error_mess);
 
 parameters  = ['a', 2, 'c'];
-signature = ['EMPTY-ERROR'];
+signature = 'EMPTY-ERROR';
 error_mess = '';
-test_pre_checkArgs_emptyVariadic(parameters, signature, 32802, error_mess);
+test_pre_checkArgs_emptyEach(parameters, signature, 32802, error_mess);
 
 parameters  = ['a', 'b', 'c'];
-signature = 'EMPTY-ERROR';
-error_mess = `PRE_test_32800() PRE-FUNC: VE@605 - Use checkArgs_emptyVariadic(["a","b","c"], ['EMPTY-ERROR']') instead of checkArgs_emptyVariadic(["a","b","c"], 'EMPTY-ERROR')
-CHECKER checkArgs_emptyVariadic()
+signature = ['EMPTY-ERROR'];
+error_mess = `PRE_test_32800() PRE-FUNC: VE@607 - Not allowed, ["EMPTY-ERROR"], the only signature allowed with checkArgs_emptyEach() is 'EMPTY-ERROR' or 'ER'
+CHECKER checkArgs_emptyEach()
 ACTUAL TYPE 'array'
  VALUES ["a","b","c"]
-EMPTY ASSERTION EMPTY-ERROR
- ORIGIN pre_checkArgs_emptyVariadic_32800()`;
-test_pre_checkArgs_emptyVariadic(parameters, signature, 32803, error_mess);
+EMPTY ASSERTION ["EMPTY-ERROR"]
+ ORIGIN pre_checkArgs_emptyEach_32800()`;
+test_pre_checkArgs_emptyEach(parameters, signature, 32803, error_mess);
 
 parameters  = [2];
-signature = ['EMPTY-ERROR'];
+signature = 'EMPTY-ERROR';
 error_mess = '';
-test_pre_checkArgs_emptyVariadic(parameters, signature, 32804, error_mess);
+test_pre_checkArgs_emptyEach(parameters, signature, 32804, error_mess);
 
 parameters  = [];
-signature = ['EMPTY-ERROR'];
+signature = 'EMPTY-ERROR';
 error_mess = `PRE_test_32800() PRE-FUNC: EE@311 - ELEMENT '0' is erroneously empty :
-CHECKER checkArgs_emptyVariadic()
+CHECKER checkArgs_emptyEach()
 ACTUAL TYPE 'array'
  VALUES []
-EMPTY ASSERTION ["EMPTY-ERROR"]
- ORIGIN pre_checkArgs_emptyVariadic_32800()`;
-test_pre_checkArgs_emptyVariadic(parameters, signature, 32805, error_mess);
-
-TEST_total_checks += 5;
+EMPTY ASSERTION EMPTY-ERROR
+ ORIGIN pre_checkArgs_emptyEach_32800()`;
+test_pre_checkArgs_emptyEach(parameters, signature, 32805, error_mess);
 
 
+
+if (fail_count>0) {
+  the_problem = `check-tests/checkArgs_emptyEach_32800.js - fails = ${fail_count}`;  
+  console.log(the_problem)
+  throw the_problem
+}
+TEST_total_checks += pass_count;

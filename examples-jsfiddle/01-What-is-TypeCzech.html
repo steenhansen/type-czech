@@ -1,11 +1,15 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>01 - What is TypeCzech?</title>
+<title>01 What is TypeCzech?</title>
 
 
 <div id='js-div' style="width:45%;" >
   <a href='https://github.com/steenhansen/type-czech' class='git-hub'>GitHub Package</a>
   <div id='js-code'>the javascript</div>
   <br><br>
+
+
+
+
 
 
 
@@ -85,7 +89,7 @@
     
     <a title="25-Default-Parameters.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Default-Parameters" target="_blank">25</a>
     
-    <a title="26-Type-and-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Type-and-Empty-Abbreviations" target="_blank">26</a>
+    <a title="26-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Empty-Abbreviations" target="_blank">26</a>
     
     <a title="27-Type-and-Empty-Object-Extras.html" href="https://jsfiddle.net/steen_hansen/tdL7hwgc/?27-Typed-and-Empty-Either-Checks-with-Optionals" target="_blank">27</a>
     
@@ -189,6 +193,9 @@
 
 
 
+
+
+
 </div>
 
 
@@ -206,7 +213,7 @@
       for inspection.
       <br><br>
       The before &amp; after checking functions signal errors by returning an error message;
-      an empty string "" means no error as shown in with before_Person(). TypeCzech can be set to simply
+      an empty string "" or undefined means no error as shown with before_Person(). TypeCzech can be set to simply
       log error messages to the console, or to stop execution via an exception as below.
 
 <pre>
@@ -220,11 +227,12 @@ type_czech = TypeCzech()
 </pre>
 
 The before &amp; after checking functions are linked to the function to be tested via this function call.
+But parsing is still done.
 <pre>
 Person = type_czech.linkUp(Person, before_Person, after_Person)
 </pre>
 
-An example with no after checking function, just leave it off.
+An example with no after checking function, just leave the after checking function off.
 <pre>
 Person = type_czech.linkUp(Person, before_Person)
 </pre>

@@ -1,20 +1,19 @@
 ## checkParam_empty() 
 
 ### Input Parameter Empty Checks
-  -  [1 Single Empty Parameter Check](#single-empty-parameter-check)  
-  -  [2 Single Array Empty Parameter Check](#single-array-empty-parameter-check) 
-  -  [3 Array Empty Parameter Check](#array-empty-parameter-check)  
-  -  [4 Object Empty Parameter Check](#object-empty-parameter-check)  
+  -  [A Single Empty Parameter Check](#A)  
+  -  [B Array Empty Parameter Check](#B)  
+  -  [C Object Empty Parameter Check](#C)  
 
 
 ### Output Result Empty Checks
-  -  [5 Empty Result Check](#empty-result-check)
-  -  [6 Empty Array Result Check](#empty-array-result-check)     
-  -  [7 Empty Object Result Check](#empty-object-result-check)     
+  -  [D Empty Result Check](#D)
+  -  [E Empty Array Result Check](#E)     
+  -  [F Empty Object Result Check](#F)     
 
 #### All examples below can be executed in the console of [repl.html](../../test-collection/repl.html)
 
-## 1 Single Empty Parameter Check<a name="single-empty-parameter-check"></a>
+## A Single Empty Parameter Check<a name="A"></a>
   
 ```
 function PRE_check_filledVariable(a_variable){
@@ -28,32 +27,13 @@ function filledVariable(a_variable){ }
 
 filledVariable(17) // pass
 
-filledVariable('') // PRE fail - '' is empty
-filledVariable([]) // PRE fail - [] is empty
-filledVariable({}) // PRE fail - {} is empty
+filledVariable('')  // PRE fail - '' is empty
+filledVariable([])  // PRE fail - [] is empty
+filledVariable({})  // PRE fail - {} is empty
+filledVariable(NaN) // PRE fail - NaN is empty
 ```
 
-## 2 Single Array Empty Parameter Check<a name="single-array-empty-parameter-check"></a>
-    
-```
-function PRE_check_noEmptyArray(an_array){
-  return type_czech.checkParam_empty(an_array, ['EMPTY-ERROR'])
-}
-
-type_czech = TypeCzech('THROW-EXCEPTIONS')
-noEmptyArray = type_czech.linkUp(noEmptyArray, PRE_check_noEmptyArray) 
-
-function noEmptyArray(an_array){ }
-
-noEmptyArray([ [1,2,3], 'a', {b:'c'} ]) // pass 
-
-noEmptyArray([ [],      'a', {b:'c'} ]) // PRE fail - first [] empty  
-noEmptyArray([ [1,2,3], '',  {b:'c'} ]) // PRE fail - second '' empty
-noEmptyArray([ [1,2,3], 'a', {} ])      // PRE fail - third {} empty
-```
-
-
-## 3 Array Empty Parameter Check<a name="array-empty-parameter-check"></a>
+## B Array Empty Parameter Check<a name="B"></a>
 
 ```
 function PRE_check_firstFilled(an_array){
@@ -72,7 +52,7 @@ firstFilled(['Booker T.', 'And', "The M.G.'s"]) // pass
 firstFilled(['', 'Steely', 'Dan']) // PRE fail - first element is empty
 ```
 
-## 4 Object Empty Parameter Check<a name="object-empty-parameter-check"></a>
+## C Object Empty Parameter Check<a name="C"></a>
 
 ```
 function PRE_check_filledObject(oneObject){
@@ -84,7 +64,7 @@ filledObject = type_czech.linkUp(filledObject, PRE_check_filledObject)
 
 function filledObject(an_object){ }
 
-filledObject({a:'aardvark', b:'buffallo'}) // pass  
+filledObject({a:'aardvark', b:'buffalo'}) // pass  
 filledObject({a:'armadillo', b:''})        // pass  
 
 filledObject({a:'', b:'bison'})  // PRE fail - 'a' property is empty 
@@ -93,7 +73,7 @@ filledObject({a:'', b:'bison'})  // PRE fail - 'a' property is empty
 
 
 
-## 5 Empty Result Check<a name="empty-result-check"></a>
+## D Empty Result Check<a name="D"></a>
 ```
 function POST_check_filledReturn(a_variable){
   return type_czech.checkParam_empty(a_variable, 'EMPTY-ERROR')
@@ -114,29 +94,31 @@ filledReturn('') // PRE error
 ```
 
 
-## 6 Empty Array Result Check<a name="empty-array-result-check"></a> 
+## E Empty Array Result Check<a name="E"></a> 
 
 ```
 function POST_check_arrayReturn(an_array){
-  return type_czech.checkParam_empty(an_array, ['EMPTY-ERROR'])
+  return type_czech.checkParam_empty(an_array, ['EMPTY-ERROR', 'EMPTY-ERROR'])
 }
 
 type_czech = TypeCzech('THROW-EXCEPTIONS')
 arrayReturn = type_czech.linkUp(arrayReturn, undefined, POST_check_arrayReturn) 
 
 function arrayReturn(an_array){
+  console.log('asdf', an_array)
   return an_array
 }
 
-arrayReturn([1, 'two', {a:1}, [1,2,3] ]) // pass  
+arrayReturn([1, 'two']) // pass  
 
-arrayReturn(['']) // PRE error     
+arrayReturn([1])     // fail - not 2 things
+arrayReturn([1, {}]) // fail, empty object
 ```
 
 
 
 
-## 7 Empty Object Result Check<a name="empty-object-result-check"></a> 
+## F Empty Object Result Check<a name="F"></a> 
 ```
 function POST_check_objectReturn(an_object){
   return type_czech.checkParam_empty(an_object, {a:'EMPTY-ERROR'})
@@ -151,7 +133,7 @@ function objectReturn(an_object){
 
 objectReturn({a:'not-empty'}) // pass
 
-objectReturn({a:''}) // PRE error     
+objectReturn({a:''}) // fail - empty string
 ```
 
 

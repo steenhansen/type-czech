@@ -1,7 +1,12 @@
 /* eslint-disable */
 
-tested_signatures = 0;
-failed_signatures = 0;
+
+pass_count = 0;
+fail_count = 0;
+
+
+
+
 
 
  signature_stringParameters_47001();
@@ -11,12 +16,6 @@ signature_stringParameters_47004();
 signature_stringParameters_47005();
 
 
-TEST_total_fails += failed_signatures;
-TEST_total_checks += tested_signatures;
-if (TEST_show_random) {
-  console.log('variadic failed tests 47000', failed_signatures)
-  console.log('variadic passed tests 47000', tested_signatures)
-}
 
 
 
@@ -29,7 +28,7 @@ function signature_stringParameters_47001(){
   type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   stringParameters= () => { }
   function PRE_check_stringParameters(){
-    return type_czech.checkArgs_typeVariadic(arguments, ['string'])
+    return type_czech.checkArgs_typeEach(arguments, ['string'])
   }
   stringParameters = type_czech.linkUp(stringParameters, PRE_check_stringParameters) 
   try {  
@@ -41,9 +40,9 @@ function signature_stringParameters_47001(){
   }
   if (!was_exception) {
     console.log(TYPE_CZECH_current_test_number, err);
-    if (typeof tested_signatures !== 'undefined') failed_signatures ++;
+    if (typeof pass_count !== 'undefined') fail_count ++;
   }
-  if (typeof tested_signatures !== 'undefined') tested_signatures ++;
+  if (typeof pass_count !== 'undefined') pass_count ++;
 }
 
 
@@ -52,7 +51,7 @@ function signature_stringParameters_47002(){
   type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   stringParameters= () => { }
   function PRE_check_stringParameters(){
-    return type_czech.checkArgs_typeVariadic(arguments, ['string'])
+    return type_czech.checkArgs_typeEach(arguments, 'string')
   }
   stringParameters = type_czech.linkUp(stringParameters, PRE_check_stringParameters) 
   try {  
@@ -64,9 +63,9 @@ function signature_stringParameters_47002(){
   }
   if (was_exception) {
     console.log(TYPE_CZECH_current_test_number, err);
-    if (typeof tested_signatures !== 'undefined') failed_signatures ++;
+    if (typeof pass_count !== 'undefined') fail_count ++;
   }
-  if (typeof tested_signatures !== 'undefined') tested_signatures ++;
+  if (typeof pass_count !== 'undefined') pass_count ++;
 }
 
 
@@ -75,21 +74,21 @@ function signature_stringParameters_47003(){
   type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   stringParameters= () => { }
   function PRE_check_stringParameters(){
-    return type_czech.checkArgs_typeVariadic(arguments, ['string-array'])
+    return type_czech.checkArgs_typeEach(arguments, ['strings'])
   }
   stringParameters = type_czech.linkUp(stringParameters, PRE_check_stringParameters) 
   try {  
-    stringParameters('one-string', 'two-string')              // pass 
+    stringParameters('one-string', 'two-string')              // fail 
     was_exception = false;
   } catch (e) {
     err=e
     was_exception = true;
   }
-  if (was_exception) {
+  if (!was_exception) {
     console.log(TYPE_CZECH_current_test_number, err);
-    if (typeof tested_signatures !== 'undefined') failed_signatures ++;
+    if (typeof pass_count !== 'undefined') fail_count ++;
   }
-  if (typeof tested_signatures !== 'undefined') tested_signatures ++;
+  if (typeof pass_count !== 'undefined') pass_count ++;
 }
 
 function signature_stringParameters_47004(){
@@ -97,7 +96,7 @@ function signature_stringParameters_47004(){
   type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   stringParameters= () => { }
   function PRE_check_stringParameters(){
-    return type_czech.checkArgs_typeVariadic(arguments, ['string-array'])
+    return type_czech.checkArgs_typeEach(arguments, 'string')
   }
   stringParameters = type_czech.linkUp(stringParameters, PRE_check_stringParameters) 
   try {  
@@ -109,9 +108,9 @@ function signature_stringParameters_47004(){
   }
   if (was_exception) {
     console.log(TYPE_CZECH_current_test_number, err);
-    if (typeof tested_signatures !== 'undefined') failed_signatures ++;
+    if (typeof pass_count !== 'undefined') fail_count ++;
   }
-  if (typeof tested_signatures !== 'undefined') tested_signatures ++;
+  if (typeof pass_count !== 'undefined') pass_count ++;
 }
 
 function signature_stringParameters_47005(){
@@ -119,7 +118,7 @@ function signature_stringParameters_47005(){
   type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   stringParameters= () => { }
   function PRE_check_stringParameters(){
-    return type_czech.checkArgs_typeVariadic(arguments, ['string-array'])
+    return type_czech.checkArgs_typeEach(arguments, ['strings'])
   }
   stringParameters = type_czech.linkUp(stringParameters, PRE_check_stringParameters) 
   try {  
@@ -131,9 +130,16 @@ function signature_stringParameters_47005(){
   }
   if (!was_exception) {
     console.log(TYPE_CZECH_current_test_number, err);
-    if (typeof tested_signatures !== 'undefined') failed_signatures ++;
+    if (typeof pass_count !== 'undefined') fail_count ++;
   }
-  if (typeof tested_signatures !== 'undefined') tested_signatures ++;
+  if (typeof pass_count !== 'undefined') pass_count ++;
 }
 
 
+
+if (fail_count>0) {
+  the_problem = `check-tests/signature_checkArgs_typeEach_47000.js - fails = ${fail_count}`;  
+  console.log(the_problem)
+  throw the_problem
+}
+TEST_total_checks += pass_count;

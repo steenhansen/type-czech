@@ -1,16 +1,16 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>102 - Extended Classes Imported</title>
+<title>102 Extended Classes Imported</title>
 
 
 
   
-<div id='js-div' style="width:46%; ">
+<div id='js-div' style="width:52%; ">
   <a href='https://github.com/steenhansen/type-czech' class='git-hub'>GitHub Package</a>
   <div id='js-code'>the javascript</div>
 </div>
 
 
-<div id="the-explanation" style="width:54%" >
+<div id="the-explanation" style="width:48%" >
   <div class='an-explantion'>102 - Extended Classes Imported</div>
   <div id='explanation-text'>
 
@@ -48,6 +48,7 @@
           <br>  <br>
       </ul>
        </li>
+       <br>
       <li>Production class declarations <b>must</b> interleave with TypeCzech calls
         to have the PRE and POST checking functions be correctly linked before use </li>
       </ul>
@@ -75,7 +76,6 @@
   </div>
 
   <br><br>
-
 
 
 
@@ -169,7 +169,7 @@ const TC_FULL_JS =   'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/
     
     <a title="25-Default-Parameters.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Default-Parameters" target="_blank">25</a>
     
-    <a title="26-Type-and-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Type-and-Empty-Abbreviations" target="_blank">26</a>
+    <a title="26-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Empty-Abbreviations" target="_blank">26</a>
     
     <a title="27-Type-and-Empty-Object-Extras.html" href="https://jsfiddle.net/steen_hansen/tdL7hwgc/?27-Typed-and-Empty-Either-Checks-with-Optionals" target="_blank">27</a>
     
@@ -279,6 +279,7 @@ const TC_FULL_JS =   'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/
 
 
 
+
 </div>
 
 
@@ -292,9 +293,9 @@ const TC_FULL_JS =   'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/
 function copyAndColor(){
   jsToDiv('js-code', "check-code");      
 
-  fromToBoldText(789, 799, 'code', 1)  //firstMethod
-  fromToBoldText(836, 845, 'code', 2)  // lastMethod
-  fromToBoldText(866, 875, 'code', 3)  // fullMethod
+  fromToBoldText(798, 808, 'code', 1)  //firstMethod
+  fromToBoldText(845, 854, 'code', 2)  // lastMethod
+  fromToBoldText(875, 884, 'code', 3)  // fullMethod
   
   fromToBoldText(213, 228, 'log', 1)    //firstMethod
   fromToBoldText(294, 308, 'log', 2)    //lastMethod
@@ -343,9 +344,21 @@ onLoaded = ([_loaded_files, _import_errors]) => {
   ted_chiang.firstMethod(new Date(2008,10,15))
   ted_chiang.lastMethod(2009)
   ted_chiang.fullMethod('Exhalation')
+
   linesConsole(2)
-  ted_chiang.showName()
-  copyAndColor()
+
+/**/  function PRE_check_printFullFunc(a_person){
+/**/    return type_czech.checkParam_type(a_person, 'Full')
+/**/  }
+/**/  printFullFunc = type_czech.linkUp(printFullFunc, PRE_check_printFullFunc)
+
+function printFullFunc(a_person) {
+  log('From Checked Function : ', a_person.showName())
+}
+
+printFullFunc(ted_chiang)
+copyAndColor()
+
 }
 
 orderedImport(class_files, onLoaded)

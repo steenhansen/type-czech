@@ -1,8 +1,8 @@
 /* eslint-disable */
 
 
-tested_check = 0;
-failed_check = 0;
+pass_count = 0;
+fail_count = 0;
 
 link_01000();
 link_01001();
@@ -10,13 +10,6 @@ link_01002();
 link_01003();
 link_01004();
 
-TEST_total_fails += failed_check;
-TEST_total_checks += tested_check;
-
-if (TEST_show_random) {
-  console.log('check failed tests 01000', failed_check)
-  console.log('check passed tests 01000', tested_check)
-}
 
 /////////////////////////////////////////////
 
@@ -43,7 +36,7 @@ function link_01000(){
   if (typeof TEST_total_checks === 'undefined')
     console.log('no-issues: pass')
   else
-    TEST_total_checks += 1
+  pass_count += 1
 
 /*
 ### B. PRE_check_yourFunc() warns about parameter issues, while POST_check_yourFunc() informs about result problems.
@@ -71,10 +64,10 @@ function link_01000(){
   B_yourFunc()
   if (steps !== 'in-post') throw 'B._linkUp()_4'
 
-  if (typeof TEST_total_checks === 'undefined')
+  if (typeof pass_count === 'undefined')
     console.log('no-issues: pass')
   else
-    TEST_total_checks += 1
+  pass_count += 1
 
 /*
 ### C. Parameters are not addressed, only function results.
@@ -100,7 +93,7 @@ function link_01000(){
   if (typeof TEST_total_checks === 'undefined')
     console.log('no-issues: pass')
   else
-    TEST_total_checks += 1
+  pass_count += 1
 
 
 /*
@@ -133,7 +126,7 @@ function link_01000(){
   else if (typeof TEST_total_checks === 'undefined')
     console.log('no-issues: pass', expected_tests-expected_fails, ' fail', expected_fails)
   else
-    TEST_total_checks += expected_tests
+  pass_count += expected_tests
 
 
 /*
@@ -165,7 +158,7 @@ function link_01000(){
   else if (typeof TEST_total_checks === 'undefined')
     console.log('no-issues: pass', expected_tests-expected_fails, ' fail', expected_fails)
   else
-    TEST_total_checks += expected_tests
+  pass_count += expected_tests
 
 /*
 ### F. Check that date is in the month of February.
@@ -201,7 +194,7 @@ function link_01000(){
   else if (typeof TEST_total_checks === 'undefined')
     console.log('no-issues: pass', expected_tests-expected_fails, ' fail', expected_fails)
   else
-    TEST_total_checks += expected_tests
+  pass_count += expected_tests
 
 }
 
@@ -233,9 +226,9 @@ function link_01001(){
     no_console_mess = '';
   
                                               if (actual !== expected) {
-                                                failed_check ++;
+                                                fail_count ++;
                                               }
-                                              tested_check ++;
+                                              pass_count ++;
 }
 
 function link_01002(){
@@ -263,9 +256,9 @@ function link_01002(){
     no_console_mess = '';
   
                                               if (actual !== expected) {
-                                                failed_check ++;
+                                                fail_count ++;
                                               }
-                                              tested_check ++;
+                                              pass_count ++;
 }
 
 function link_01003(){
@@ -291,9 +284,9 @@ function link_01003(){
     no_console_mess = '';
   
                                               if (actual !== expected) {
-                                                failed_check ++;
+                                                fail_count ++;
                                               }
-                                              tested_check ++;
+                                              pass_count ++;
 }
 
 function link_01004(){
@@ -317,8 +310,21 @@ function link_01004(){
     no_console_mess = '';
 
                                               if (actual !== expected) {
-                                                failed_check ++;
+                                                fail_count ++;
                                               }
-                                              tested_check ++;
+                                              pass_count ++;
                                               
 }
+
+
+
+
+
+if (fail_count>0) {
+  the_problem = `public-tests/linkUp_01000.js - fails = ${fail_count}`;  
+  console.log(the_problem)
+  throw the_problem
+}
+TEST_total_checks += pass_count;
+
+

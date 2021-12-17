@@ -1,16 +1,16 @@
 
 
 ## linkUp()
-  -  [1 Check For a Null Parameter](#check-for-a-null-parameter) 
-  -  [2 Check For a Null Result](#check-for-a-null-result) 
-  -  [3 Check For a Null Parameter or Result](#check-for-a-null-parameter-or-result) 
-  -  [4 Check a Parameter by Value](#check-a-parameter-by-value) 
-  -  [5 Check a Parameter by RegExp](#check-a-parameter-by-regexp) 
-  -  [6 Check a Parameter by Includes](#check-a-parameter-by-includes) 
+  -  [A Check For a Null Parameter](#A) 
+  -  [B Check For a Null Result](#B) 
+  -  [C Check For a Null Parameter or Result](#C) 
+  -  [D Check a Parameter by Value](#D) 
+  -  [E Check a Parameter by RegExp](#E) 
+  -  [F Check a Parameter by Includes](#F) 
 
 #### All examples below can be executed in the console of [repl.html](../../test-collection/repl.html)
 
-## 1 Check For a Null Parameter<a name="check-for-a-null-parameter"></a>
+## A Check For a Null Parameter<a name="A"></a>
 
 ```
 function PRE_check_notNull(a_parameter){
@@ -31,7 +31,7 @@ notNull(null) // fail - found a null
 ```
 
 
-## 2 Check For a Null Parameter or Result<a name="check-for-a-null-result"></a>
+## B Check For a Null Parameter or Result<a name="B"></a>
 
 ```
 function PRE_check_notNull(a_parameter){
@@ -58,7 +58,7 @@ notNull()          // pass
 notNull(null)  // PRE and POST fail - null parameter and result         
 ```
 
-## 3 Check For a Null Result<a name="check-for-a-null-parameter-or-result"></a>
+## C Check For a Null Result<a name="C"></a>
 
 ```
 function POST_check_notNull(a_result){
@@ -82,7 +82,7 @@ notNull(null) // fail - null parameter and result
 
 
 
-## 4 Check a Parameter by Value<a name="check-a-parameter-by-value"></a>
+## D Check a Parameter by Value<a name="D"></a>
 Check that a date parameter is in the month of February.
 
 ```
@@ -108,7 +108,7 @@ mustBeFebruary(new Date('1999-01-10')) // fail - January
 mustBeFebruary(new Date('1999-02-31')) // fail - no such date 
 ```
 
-## 5 Check a Parameter by RegExp<a name="check-a-parameter-by-regexp"></a>
+## E Check a Parameter by RegExp<a name="E"></a>
 Check if a string parameter has its first character capitalized.
   
 ```
@@ -131,7 +131,7 @@ firstCapital('alice') // fail - first character is lowercase
 firstCapital('')      // fail - no uppercase letter          
 ```
 
-## 6 Check a Parameter by Includes<a name="check-a-parameter-by-includes"></a>
+## F Check a Parameter by Includes<a name="F"></a>
 Check if a parameter is in the small prime set.
   
 ```

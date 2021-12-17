@@ -1,25 +1,22 @@
 /* eslint-disable */
 
-tested_checkParam_emptyEither = 0;
 
-failed_checkParam_emptyEither = 0;
+pass_count = 0;
+fail_count = 0;
+
+
 
 checkParam_emptyEither_04000();
 checkParam_emptyEither_04001();
 
 
-TEST_total_fails += failed_checkParam_emptyEither;
-TEST_total_checks += tested_checkParam_emptyEither;
-if (TEST_show_random) {
-  console.log('checkParam_emptyEither failed tests 04000', failed_checkParam_emptyEither)
-  console.log('checkParam_emptyEither passed tests 04000', tested_checkParam_emptyEither)
-}
 
 /////////////////////
 function checkParam_emptyEither_04000(){
   type_czech = TypeCzech('NO-ERROR-MESSAGES', 'HIDE-INIT-MESSAGE');   ///'LOG-ERRORS'
   function A_PRE_check_yourFunc(a_var) {
     var actual_error = type_czech.checkParam_emptyEither(a_var, ['EMPTY-ERROR', 'EMPTY-OK']);
+   // console.log('checkParam_emptyEither_04000', a_var, actual_error)
     return actual_error;
   }
                   A_yourFunc = type_czech.linkUp(A_yourFunc, A_PRE_check_yourFunc) 
@@ -50,7 +47,7 @@ function checkParam_emptyEither_04000(){
   A_yourFunc([[],[]] )                 // pass 24 1 empty - [arr arr]
   A_yourFunc([{},{}] )                 // pass 25 2 empty - [obj obj]
 
-  TEST_total_checks += expectedAndFailedTests(25, 0, 'A-Fail', '_checkParam_emptyEither().md');
+  pass_count += expectedAndFailedTests(25, 0, 'A-Fail', '_checkParam_emptyEither().md');
 
 
 
@@ -61,7 +58,7 @@ A_yourFunc([22,23,24], [25,26,27])   // fail 4 X two multis   FAIL
 A_yourFunc({g:[]},{h:[]})            // fail 5 3 empty - {arr arr}   FAIL
 A_yourFunc({i:''},{j:''})            // fail 6 4 empty - {str str}   FAIL
 A_yourFunc({k:{}},{l:{}})            // fail 7 5 empty - {obj obj}  FAIL
-TEST_total_checks += expectedAndFailedTests(7, 7, 'A-Fail', '_checkParam_emptyEither().md');
+pass_count += expectedAndFailedTests(7, 7, 'A-Fail', '_checkParam_emptyEither().md');
 
 
 
@@ -86,13 +83,19 @@ function checkParam_emptyEither_04001(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_checkParam_emptyEither !=='undefined') failed_checkParam_emptyEither ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_checkParam_emptyEither !=='undefined') tested_checkParam_emptyEither ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
-TEST_total_checks += 1;
 
+
+if (fail_count>0) {
+  the_problem = `check-tests/checkParam_emptyEither_04000.js - fails = ${fail_count}`;  
+  console.log(the_problem)
+  throw the_problem
+}
+TEST_total_checks += pass_count;
 
 

@@ -32,9 +32,9 @@ pre {
 <h2>TypeCzech</h2>
 
 <p>
-  TypeCzech is a runtime type checking JavaScript library that can be toggled on and off.
+  TypeCzech is a detachable runtime type checking JavaScript library that can be toggled on and off.
   Include one file in your web page or in your Node.js file to allow you to type check function parameters
-  and results. Errors can be set to throw halting exceptions or just output to the Console.
+  and results. Errors can be set to throw exceptions or just output to the Console.
   The motivation is to verify function parameters before execution, and function results after completion with 
   PRE_check() and POST_check() funtions.
 </p>
@@ -95,7 +95,7 @@ TypeCzech the bad parts
     <ul>
       <li>type_czech = <b>TypeCzech('LOG-ERRORS')</b> logs errors to the console instead of throwing exceptions</li>
       <li>type_czech.<b>checkParam_type()</b> ensures that the parameters to aLottery() are a string, then an array of numbers, and finally a date</li>
-      <li>type_czech.<b>checkArgs_emptyVariadic()</b> complains when parameters are found to be empty strings, arrays, or objects</li>
+      <li>type_czech.<b>checkArgs_emptyEach()</b> complains when parameters are found to be empty strings, arrays, or objects</li>
       <li><b>PRE_check_aLottery()</b> is executed just before aLottery() runs via type_czech.<b>linkUp()</b></li>
       <li>/**/ highlights added TypeCzech test code that is safely removable or just turned off</li>
     </ul>
@@ -108,7 +108,7 @@ function aLottery(lottery_name, lucky_numbers, draw_date){
 
 /**/  type_czech = TypeCzech('LOG-ERRORS')
 /**/
-/**/  LOTTERY_SIGNATURE = ['string', ['number'], 'date']
+/**/  LOTTERY_SIGNATURE = ['string', ['numbers'], 'date']
 /**/
 /**/  function PRE_check_aLottery(lottery_name, lucky_numbers, draw_date){
 /**/    the_parameters = [lottery_name, lucky_numbers, draw_date]
@@ -116,7 +116,7 @@ function aLottery(lottery_name, lucky_numbers, draw_date){
 /**/    if (type_issue) 
 /**/      return type_issue
 /**/
-/**/    empty_issue = type_czech.checkArgs_emptyVariadic(arguments, ['EMPTY-ERROR'])
+/**/    empty_issue = type_czech.checkArgs_emptyEach(arguments, 'EMPTY-ERROR')
 /**/    if (empty_issue) 
 /**/      return empty_issue
 /**/
@@ -128,52 +128,57 @@ function aLottery(lottery_name, lucky_numbers, draw_date){
 aLottery('El Gordo', [1,2,3,4,5,0], new Date('jun 14 1999'))
 </pre>
 <pre>
-El Gordo ::: 1,2,3,4,5,0 ::: Date Mon Jun 14 1999 00:00:00 GMT-0700 (Pacific Daylight Time)
+>>El Gordo ::: 1,2,3,4,5,0 ::: Date Mon Jun 14 1999 00:00:00 GMT-0700 (Pacific Daylight Time)
 
 aLottery('Powerball', [], new Date('jun 14 1999'))
->>PRE_check_aLottery() PRE-FUNC: ELEMENT '1' is asserted to be a 'EMPTY-ERROR', but is really 'EMPTY' : []
->>                       CHECKER checkArgs_emptyVariadic()
+
+>>PRE_check_aLottery() PRE-FUNC: Empty array has no types
+>>                       CHECKER checkArgs_emptyEach()
 >>                  ACTUAL TYPES ['string','array','date']
 >>                        VALUES ["Powerball",[],1999-06-14T07:00:00.000Z]
 >>               EMPTY ASSERTION ['EMPTY-ERROR']
 >>                        ORIGIN aLottery(lottery_name, lucky_numbers, draw_date)
-Powerball ::: ::: Date Mon Jun 14 1999 00:00:00 GMT-0700 (Pacific Daylight Time)
+>>Powerball ::: ::: Date Mon Jun 14 1999 00:00:00 GMT-0700 (Pacific Daylight Time)
 
 aLottery('', [1,2,3,4,5,26], new Date('Dec 31 1999'))
->>PRE_check_aLottery() PRE-FUNC: ELEMENT '0' is asserted to be a 'EMPTY-ERROR', but is really 'EMPTY' : ''
->>                       CHECKER checkArgs_emptyVariadic()
+
+>>PRE_check_aLottery() PRE-FUNC: ELEMENT '0' is erroneously empty :
+>>                       CHECKER checkArgs_emptyEach()
 >>                  ACTUAL TYPES ['string','array','date']
 >>                        VALUES ["",[1,2,3,4,5,26],1999-12-31T08:00:00.000Z]
 >>               EMPTY ASSERTION ['EMPTY-ERROR']
 >>                        ORIGIN aLottery(lottery_name, lucky_numbers, draw_date)
-::: 1,2,3,4,5,26 ::: Date Fri Dec 31 1999 00:00:00 GMT-0800 (Pacific Standard Time)
+>>::: 1,2,3,4,5,26 ::: Date Fri Dec 31 1999 00:00:00 GMT-0800 (Pacific Standard Time)
 
 aLottery('Mega Millions', 17, new Date('jun 14 1999'))
+
 >>PRE_check_aLottery() PRE-FUNC: Param is meant to be 'array' but is of the wrong type of 'number':17
 >>                     CHECKER checkParam_type()
 >>                ACTUAL TYPES ['string','number','date']
 >>                      VALUES ["Mega Millions",17,1999-06-14T07:00:00.000Z]
 >>               EXPECTED TYPE ["string",["number"],"date"]
 >>                      ORIGIN aLottery(lottery_name, lucky_numbers, draw_date)
-Mega Millions ::: 17 ::: Date Mon Jun 14 1999 00:00:00 GMT-0700 (Pacific Daylight Time)
+>>Mega Millions ::: 17 ::: Date Mon Jun 14 1999 00:00:00 GMT-0700 (Pacific Daylight Time)
 
 aLottery('Lotto 649', [1,2,3,4,5,6])
+
 >>PRE_check_aLottery() PRE-FUNC:  ELEMENT '2' is assumed to be a 'date', but is mistakenly a 'undefined'
 >>                     CHECKER checkParam_type()
 >>                ACTUAL TYPES ['string','array']
 >>                      VALUES "Lotto 649",[1,2,3,4,5,6]
 >>               EXPECTED TYPE ["string",["number"],"date"]
 >>                      ORIGIN aLottery(lottery_name, lucky_numbers, draw_date)
-Lotto 649 ::: 1,2,3,4,5,6 ::: undefined
+>>Lotto 649 ::: 1,2,3,4,5,6 ::: undefined
 
 aLottery('Oz Lotto', ['fourty-two'], new Date('jun 14 1999'))
->>PRE_check_aLottery() PRE-FUNC:  ELEMENT '0' is assumed to be a 'number', but is mistakenly a 'string'
+
+>>PRE_check_aLottery() PRE-FUNC:  ELEMENT '0' is assumed to be a 'number', but is mistakenly a 'string' with a value of fourty-two
 >>                     CHECKER checkParam_type()
 >>                ACTUAL TYPES ['string','array','date']
 >>                      VALUES ["Oz Lotto",["fourty-two"],1999-06-14T07:00:00.000Z]
 >>               EXPECTED TYPE ["string",["number"],"date"]
 >>                      ORIGIN aLottery(lottery_name, lucky_numbers, draw_date)
-Oz Lotto ::: fourty-two ::: Date Mon Jun 14 1999 00:00:00 GMT-0700 (Pacific Daylight Time)
+>>Oz Lotto ::: fourty-two ::: Date Mon Jun 14 1999 00:00:00 GMT-0700 (Pacific Daylight Time)
 </pre>
 
 
@@ -256,12 +261,16 @@ yourFunction(1, 'two')
 </p>
 
 <pre>
+function aFunction(){ }
+function before_aFunction(){ }
+function after_aFunction(){ }
+
 if (typeof TypeCzech === 'function')
   type_czech = TypeCzech('THROW-EXCEPTIONS')
 else
   type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
 
-type_czech.linkUp(aFunction, PRE_check_aFunction, POST_check_aFunction)
+type_czech.linkUp(aFunction, before_aFunction, after_aFunction)
 type_czech.isActive()
 </pre>
 
@@ -273,8 +282,6 @@ type_czech.isActive()
 <ul>
   <li>A. encased by a linked up PRE_check() function</li>
   <li>B. wrapped by a linked up POST_check() function</li>
-  <li>C. or inside an isActive() if then statement inside of a promise. Then you have
-     to deliver the error message via an check_assert() call; it's not automatic.</li>
 </ul>
 
 <pre>
@@ -289,23 +296,61 @@ yourFunc = type_czech.linkUp(yourFunc, PRE_check_yourFunc, POST_check_yourFunc)
 
 function yourFunc(param_1, param_2, param_3){ 
   return function_result
-}
-
-fetch(some_url)
-.then(response_value => {
-  if (type_czech.isActive()) {
-    /* C. TypeCzech functions rarely show up here, but check_assert() is used to deliver errors */
-    type_err = type_czech.checkParam_type(response_value, 'array')
-    type_czech.check_assert(type_err, 'ERROR IS HERE', response_value, expected_error) // report type error if any
-  }
-}) 
+} 
 </pre>
 
+
+<ul>
+  <li>C. or inside an isActive() if then statement inside of a promise. Then you
+    have to deliver the error message via an check_assert() call; it's not automatic
+     when inside THEN blocks. Below is a passing example of '8.8.8.8', and a failing 
+     example. Note that the signature is built to match the number of returning 
+     countries in the variable geo_array_signature.</li>
+</ul>
+
+<pre>
+type_czech = TypeCzech('THROW-EXCEPTIONS')
+
+ONE_GeoJS_SIGNATURE = {country:'string', country_3:'string', ip:'string', name:'string'} 
+
+function getIpCountryInfo(ip_numbers){
+  country_url = 'https://get.geojs.io/v1/ip/country.json?ip=' + ip_numbers
+  fetch(country_url)
+  .then(response => response.json())
+  .then(geo_data => {
+    if (type_czech.isActive()) {
+      geo_array_signature = Array(geo_data.length).fill(ONE_GeoJS_SIGNATURE);
+      type_err = type_czech.checkParam_type(geo_data, geo_array_signature)
+      type_czech.check_assert(type_err, 'Error - GeoJs.io error', geo_data)
+    }
+    return geo_data
+  })
+  .then(geo_data => console.dir(geo_data))
+}
+
+getIpCountryInfo('8.8.8.8,' + '46.135.0.0,' + '104.200.151.94')
+
+>> Object { country: "US", country_3: "USA", ip: "8.8.8.8", ...}
+>> Object { country: "CZ", country_3: "CZE", ip: "46.135.0.0", … }
+>> Object { country: "CA", country_3: "CAN", ip: "199.175.213.12", ...}
+
+getIpCountryInfo('fail-no-country-ip')
+
+>>    MESSAGE  Key 'country', which has a type of 'string', is missing in the checked object 
+>>    CHECKER check_assert()
+>>ACTUAL TYPE 'array'
+>>      VALUES [{ip:"fail-no-country-ip"}]
+>>      ORIGIN Error - GeoJs.io error
+</pre>
+
+
+
+
+
 <p>
-  Above in the fetch() promise chain, if the variable 'response_value' is not an array 
-  then the variable 'type_err' will not be an empty string. If the 'type_err' is not 
-  an empty string, then type_czech.check_assert() will throw or console.log the error
-   message. So if the variable 'response_value' is an array then the fetch() code will run without incident.
+  Above in the fetch() promise chain, if the returned value of 'geo_data' does not 
+  match the {country:'string', country_3:'string', ip:'string', name:'string'}, then 
+  type_czech.check_assert() will throw or console.log the error message. 
 </p>
 
 <p>
@@ -354,7 +399,7 @@ Because JavaScript does not completely hoist classes there is no example #104.
 
 <div><a title="00-Readme-Example" href="00-Readme-Example.html">00-Readme-Example</a>
 - Realistic example of verifying types and checking emptiness
-  <div class="functions">TypeCzech() checkParam_type() checkArgs_emptyVariadic()</div>
+  <div class="functions">TypeCzech() checkParam_type() checkArgs_emptyEach()</div>
 </div>
 
 <div><a title="01-What-is-TypeCzech" href="01-What-is-TypeCzech.html">01-What-is-TypeCzech</a>
@@ -440,7 +485,7 @@ Because JavaScript does not completely hoist classes there is no example #104.
 
 <div><a title="17-Variadic-Functions.html" href="17-Variadic-Functions.html">17-Variadic-Functions</a>
   - Checking variadic functions with one type of parameter, but multiple parameters
-  <div class="functions">checkArgs_typeVariadic()</div>
+  <div class="functions">checkArgs_typeEach()</div>
 </div>
 
 <div><a title="18-Class-Type-Checks.html" href="18-Class-Type-Checks.html">18-Class-Type-Checks</a>
@@ -480,10 +525,10 @@ Because JavaScript does not completely hoist classes there is no example #104.
 
 <div><a title="25-Default-Parameters.html" href="25-Default-Parameters.html">25-Default-Parameters</a>
   - Parameters
-  <div class="functions">linkUp() checkParam_type() checkArgs_typeVariadic()</div>
+  <div class="functions">linkUp() checkParam_type() checkArgs_typeEach()</div>
 </div>
 
-<div><a title="26-Type-and-Empty-Abbreviations.html" href="26-Type-and-Empty-Abbreviations.html">26-Type-and-Empty-Abbreviations</a>
+<div><a title="26-Empty-Abbreviations.html" href="26-Empty-Abbreviations.html">26-Type-and-Empty-Abbreviations</a>
   - Emptiness and type abbreviations
   <div class="functions">checkParam_type() checkParam_empty()</div>
 </div>

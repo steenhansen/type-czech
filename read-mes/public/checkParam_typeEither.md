@@ -1,11 +1,11 @@
 
 ## checkParam_typeEither()
-  -  [1 Either Parameter Type Check](#either-parameter-type-check)
-  -  [2 Either Result Type Check](#either-result-type-check)
+  -  [A Either Parameter Type Check](#A)
+  -  [B Either Result Type Check](#B)
 
 #### All examples below can be executed in the console of [repl.html](../../test-collection/repl.html)
 
-## 1 Either Parameter Type Check<a name="either-parameter-type-check"></a>
+## A Either Parameter Type Check<a name="A"></a>
   
 ```
 function PRE_check_arrayOrObject(arr_or_obj){
@@ -25,7 +25,7 @@ arrayOrObject({x:12, y:4, z:19.1})                    // pass
 arrayOrObject(12) // fail - number is not array or object
 ```
 
-## 2 Either Result Type Check<a name="either-result-type-check"></a>
+## B Either Result Type Check<a name="B"></a>
   
 ```
 function POST_check_arrayOrObject(return_result){

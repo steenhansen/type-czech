@@ -1,5 +1,5 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>23 - Typed Either Checks</title>
+<title>23 Typed Either Checks</title>
 
 
 
@@ -78,7 +78,7 @@
     
     <a title="25-Default-Parameters.html" href="../example-snippets/25-Default-Parameters.html">25</a>
     
-    <a title="26-Type-and-Empty-Abbreviations.html" href="../example-snippets/26-Type-and-Empty-Abbreviations.html">26</a>
+    <a title="26-Empty-Abbreviations.html" href="../example-snippets/26-Empty-Abbreviations.html">26</a>
     
     <a title="27-Type-and-Empty-Object-Extras.html" href="../example-snippets/27-Type-and-Empty-Object-Extras.html">27</a>
     
@@ -164,7 +164,7 @@
 
   <br><br>
   In the example below, the function objNumArr() is only allowed to receive a 
-  single parameter of an object, a single number, or an array. Run by pasting into console.
+  single parameter of an object, a single number, or an array.
 <pre title='Copy and paste the green code below into the console to run' class='console-runnable'>
 function PRE_check_obj_num_arr(obj_num_arr){
   allowed_types = ['object', 'number', 'array']
@@ -175,12 +175,13 @@ objNumArr = type_czech.linkUp(objNumArr, PRE_check_obj_num_arr)
 
 function objNumArr(obj_num_arr){}
 
-objNumArr({})
-objNumArr([])
-objNumArr([1, 2, 3])
-objNumArr(9876543210)
+objNumArr({})            // pass
+objNumArr({key:'key'})   // pass
+objNumArr([])            // pass
+objNumArr([1, 2, 3])     // pass
+objNumArr(9876543210)    // pass
 
-objNumArr('Fails with really long error message')
+objNumArr('String-Fail') // fail
 </pre>
 
   </div>

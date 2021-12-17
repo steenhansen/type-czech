@@ -1,5 +1,5 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>40 - Prescribed Use</title>
+<title>40 Prescribed Use</title>
 
 
   
@@ -155,7 +155,7 @@ PRE_check_aLottery = (typeof PRE_check_aLottery === 'undefined')
     
     <a title="25-Default-Parameters.html" href="../example-snippets/25-Default-Parameters.html">25</a>
     
-    <a title="26-Type-and-Empty-Abbreviations.html" href="../example-snippets/26-Type-and-Empty-Abbreviations.html">26</a>
+    <a title="26-Empty-Abbreviations.html" href="../example-snippets/26-Empty-Abbreviations.html">26</a>
     
     <a title="27-Type-and-Empty-Object-Extras.html" href="../example-snippets/27-Type-and-Empty-Object-Extras.html">27</a>
     
@@ -268,8 +268,8 @@ function runEnvironment(TypeCzech, pre_check_exists) {
   if (pre_check_exists) {
     function PRE_check_aLottery (lottery_name, lucky_numbers, draw_date){
       the_parameters = [lottery_name, lucky_numbers, draw_date]
-      LOTTERY_SIGNATURE = ['string', ['number'], 'date']
-      LOTTERY_EMPTIES = ['EMPTY-ERROR']
+      LOTTERY_SIGNATURE = ['string', ['numbers'], 'date']
+      LOTTERY_EMPTIES = ['EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR']
       issue=type_czech.checkParam_type(the_parameters,LOTTERY_SIGNATURE)
       if (issue) return issue
   
@@ -321,11 +321,11 @@ fromToBoldText(233, 296, 'code', 2)  //  PRE_check_aLottery = (typeof PRE_check_
 fromToBoldText(325, 356, 'code', 2)  //  ? undefined : PRE_check_aLottery
 
 
-fromToBoldText(1267, 1281, 'code', 4)  //  TypeCzech, true
+fromToBoldText(1298, 1312, 'code', 4)  //  TypeCzech, true
 
-fromToBoldText(1306, 1307, 'code', 3)  //  []
-fromToBoldText(240, 241, 'log', 3)  //  []
-fromToBoldText(280, 294, 'log', 3)  // ["EMPTY-ERROR"]
+fromToBoldText(1337, 1338, 'code', 3)  //  []
+fromToBoldText(190, 191, 'log', 3)  //  []
+fromToBoldText(240, 250, 'log', 3)  // ["numbers"]
 
 
 </script>

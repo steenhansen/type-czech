@@ -1,5 +1,5 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>302 - IIFE Modules Imported</title>
+<title>302 IIFE Modules Imported</title>
 
 
 
@@ -157,7 +157,7 @@
     
     <a title="25-Default-Parameters.html" href="../../example-snippets/25-Default-Parameters.html">25</a>
     
-    <a title="26-Type-and-Empty-Abbreviations.html" href="../../example-snippets/26-Type-and-Empty-Abbreviations.html">26</a>
+    <a title="26-Empty-Abbreviations.html" href="../../example-snippets/26-Empty-Abbreviations.html">26</a>
     
     <a title="27-Type-and-Empty-Object-Extras.html" href="../../example-snippets/27-Type-and-Empty-Object-Extras.html">27</a>
     
@@ -299,13 +299,13 @@
 function copyAndColor(){
   jsToDiv('js-code', "check-code");      
 
-  fromToBoldText(862, 872, 'code', 1)  //firstMethod
-  fromToBoldText(900, 909, 'code', 2)  // lastMethod
-  fromToBoldText(923, 932, 'code', 3)  // fullMethod
+  fromToBoldText(860, 870, 'code', 1)  //firstMethod
+  fromToBoldText(898, 907, 'code', 2)  // lastMethod
+  fromToBoldText(921, 930, 'code', 3)  // fullMethod
   
-  fromToBoldText(227, 242, 'log', 1)    //firstMethod
-  fromToBoldText(313, 327, 'log', 2)    //lastMethod
-  fromToBoldText(421, 435, 'log', 3)    //fullMethod
+  fromToBoldText(224, 239, 'log', 1)    //firstMethod
+  fromToBoldText(310, 324, 'log', 2)    //lastMethod
+  fromToBoldText(418, 432, 'log', 3)    //fullMethod
 }
 
   log = captureConsole("log-text");
@@ -323,10 +323,9 @@ function copyAndColor(){
 /**/    FULL_JS,
 /**/    TC_FULL_JS ]
 
-const NOT_CHECKING_CLASS_FILES = [
-  FIRST_JS, 
-  LAST_JS, 
-  FULL_JS ]
+const NOT_CHECKING_CLASS_FILES = [ FIRST_JS, 
+                                   LAST_JS, 
+                                   FULL_JS ]
 
 /**/  TYPE_CZECH_START = true
 /**/  //TYPE_CZECH_START = false
@@ -354,7 +353,8 @@ onLoaded = ([_loaded_files, _import_errors]) => {
   linesConsole(2)
 
 /**/  function PRE_check_printFullFunc(a_person){
-/**/    the_interface = {showName:'f', fullMethod:'f', firstMethod:'f', lastMethod:'f'}
+/**/    the_interface = {showName:'function', fullMethod:'function', 
+/**/                     firstMethod:'function', lastMethod:'function'}
 /**/    return type_czech.check_interface(a_person, the_interface)
 /**/  }
 /**/  printFullFunc = type_czech.linkUp(printFullFunc, PRE_check_printFullFunc)

@@ -1,5 +1,5 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>16 - Arrays with One Type</title>
+<title>16 Arrays with One Type</title>
 
 
 
@@ -11,49 +11,51 @@
 </div>
 
 
-<div id="the-explanation" style="width:52%" class='code-scroll'>
+<div id="the-explanation" style="width:52%"  class='code-scroll'>
   <div class='an-explantion'>16 - Arrays with One Type</div>
   <div id='explanation-text'>
  
-<pre>
-        func1 = (string_array) => string_array           // array of strings
-        PRE_check_func1 = (string_array) => { 
-          return type_czech.checkParam_type(string_array, ['string'])
-        }
-        func1 = type_czech.linkUp(func1, PRE_check_func1)
-        func1([ 'pass', 'a-string'])
-        func1([ 'fail', 12])
-
-func2 = (string_array_2) => string_array_2             // array of 2 strings
+<pre title='Copy and paste the green code below into the console to run' class='console-runnable'>
+func1 = (string_array) => string_array                  // array of strings
+PRE_check_func1 = (string_array) => { 
+  return type_czech.checkParam_type(string_array, ['strings'])
+}
+func1 = type_czech.linkUp(func1, PRE_check_func1)
+func1(['pass', 'a-string'])                                    // pass
+func1(['fail', 12])                                            // fail - 12
+</pre>
+<pre title='Copy and paste the green code below into the console to run' class='console-runnable'>
+func2 = (string_array_2) => string_array_2            // array of 2 strings
 PRE_check_func2 = (string_array_2) => { 
-  type_issue = type_czech.checkParam_type(string_array_2, ['string'])
-  if (type_issue) return type_issue
-  if (string_array_2.length !==2 ) 
-    return 'Array is not a pair - ' + string_array_2
+  type_signature = ['string', 'string']
+  return type_czech.checkParam_type(string_array_2, type_signature)
 }
 func2 = type_czech.linkUp(func2, PRE_check_func2)
-func2([ 'pass', 'two'])
-func2([ 'fail', 'two', 'three'])
-
-        func3 = (array_of_arrays) => array_of_arrays     // arrays of arrays
-        PRE_check_func3 = (array_of_arrays) => {
-          return type_czech.checkParam_type(array_of_arrays, [ 'array' ])
-        }
-        func3 = type_czech.linkUp(func3, PRE_check_func3)
-        func3([  [],  ['a'], [2], ['pass', 3]  ])
-        func3([  [],  [], [], 'fail'  ])     
-
-func4 = (arr_str_num_arrs) => arr_str_num_arrs     //[string, number] arrays
-PRE_check_func4 = (arr_str_num_arrs) => { 
-  the_signature = [ ['string', 'number'] ]
+func2([ 'pass', 'two'])                                // pass
+func2([ 'fail', 'two', 'three'])                       // fail - 3 elements
+</pre>
+<pre title='Copy and paste the green code below into the console to run' class='console-runnable'>
+func3 = (arr_of_arr) => arr_of_arr                      // arrays of arrays
+PRE_check_func3 = (arr_of_arr) => {
+  return type_czech.checkParam_type(arr_of_arr, ['arrays'])
+}
+func3 = type_czech.linkUp(func3, PRE_check_func3)
+func3([  [],  ['a'], [2], ['pass', 3]  ])               // pass
+func3([  [],  [], [], 'fail'  ])                        // fail - not array
+</pre>
+<pre title='Copy and paste the green code below into the console to run' class='console-runnable'>
+func4 = (arr_str_num_arrs) => arr_str_num_arrs          //[str, num] arrays
+PRE_check_func4 = (arr_str_num_arrs) => {    
+  the_signature = [ ['string', 'number'],  ['string', 'number'] ]
   return type_czech.checkParam_type(arr_str_num_arrs, the_signature)
 }
-func4 = type_czech.linkUp(func4, PRE_check_func4)
-func4([  ['a', 1],  ['b', 2], ['c', 3], ['pass', 4]  ])
-func4([  ['a', 1],  ['b', 2], ['c', 3], ['fail', 'X']  ])
+func4 = type_czech.linkUp(func4, PRE_check_func4) 
+func4([  ['a', 1], ['pass', 4]  ])                              // pass
+func4([  ['a', 1], ['fail', 'X']  ])                            // fail - X
 </pre>
 
   </div>
+
 
 
 
@@ -131,7 +133,7 @@ func4([  ['a', 1],  ['b', 2], ['c', 3], ['fail', 'X']  ])
     
     <a title="25-Default-Parameters.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Default-Parameters" target="_blank">25</a>
     
-    <a title="26-Type-and-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Type-and-Empty-Abbreviations" target="_blank">26</a>
+    <a title="26-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Empty-Abbreviations" target="_blank">26</a>
     
     <a title="27-Type-and-Empty-Object-Extras.html" href="https://jsfiddle.net/steen_hansen/tdL7hwgc/?27-Typed-and-Empty-Either-Checks-with-Optionals" target="_blank">27</a>
     
@@ -244,13 +246,16 @@ func4([  ['a', 1],  ['b', 2], ['c', 3], ['fail', 'X']  ])
 
 
 
+
+
+
 <div id="console-log"  >
   <div class='a-title'>Console Output</div>
   <div id='log-text'></div>
   <br>
 </div>
 
-<br><br>
+<br>
 
 
 
@@ -292,12 +297,13 @@ log = captureConsole("log-text")
 /**/  PRE_check_arrArrNum = (typeof PRE_check_arrArrNum === 'undefined')
 /**/                       ? undefined : PRE_check_arrArrNum
 /**/
-/**/  function PRE_check_arrayOfStrings(an_array){
-/**/    return type_czech.checkParam_type(an_array, ['string'])
+/**/  function PRE_check_arrayOfStr(an_array){
+/**/    return type_czech.checkParam_type(an_array, ['strings'])
 /**/  }
 /**/ 
-/**/  function PRE_check_arrArrNum(an_array_of_array){
-/**/    return type_czech.checkParam_type(an_array_of_array, [['number']])
+/**/  function PRE_check_arrArrNum(an_array_of_3_array){
+/**/    signature = [ ['numbers'],['numbers'],['numbers'] ]
+/**/    return type_czech.checkParam_type(an_array_of_3_array, signature)
 /**/  }
 /**/  
 /**/  arrayOfStr = type_czech.linkUp(arrayOfStr, PRE_check_arrayOfStr)
@@ -309,8 +315,8 @@ function arrayOfStr(an_array) {
   return str_array
 }
 
-function arrArrNum(an_array_of_array) { 
-  num_array_of_array = [...an_array_of_array]
+function arrArrNum(an_array_of_3_array) { 
+  num_array_of_array = [...an_array_of_3_array]
   return num_array_of_array
 }
 
@@ -329,7 +335,7 @@ log('6 strings : ', array_6_strs)
 
 linesConsole(1)
 
-nums_3x3 = [ [1,2,3], [4,5,6], [7,8,9] ]
+nums_3x3 = [ [1,2,3], [4,5], [7] ]
 array_n_n_9 = arrArrNum(nums_3x3)
 log('9 nums_3x3 : ', array_n_n_9)
 
@@ -352,12 +358,12 @@ log('9 nums_3x3 Error : ', array_err_9)
 
 jsToDiv('js-code', "check-code")
 
- fromToBoldText(1438, 1443, 'code', 1)  // , 'Five', 6
+ fromToBoldText(1494, 1499, 'code', 1)  // , 'Five', 6
 
 
-fromToBoldText(419, 424, 'log', 1)    //"Five"
-fromToBoldText(465, 472, 'log', 1)    //""number""
-fromToBoldText(603, 608, 'log', 1)    //"Five"
+fromToBoldText(664, 669, 'log', 1)    //"Five"
+fromToBoldText(722, 730, 'log', 1)    //""number""
+fromToBoldText(875, 880, 'log', 1)    //"Five"
 
 
 

@@ -1,19 +1,12 @@
 /* eslint-disable */
 
 
-tested_a_type_of = 0;
-failed_a_type_of = 0;
+pass_count = 0;
+fail_count = 0;
+
 
 _aTypeOf_09000();
 
-TEST_total_fails += failed_a_type_of;
-TEST_total_checks += tested_a_type_of;
-if (TEST_show_random) {
-  console.log('_aTypeOf failed tests 09000', failed_a_type_of)
-  console.log('_aTypeOf passed tests 09000', tested_a_type_of)
-}
-
-///////////////
 
 function _aTypeOf_09000(){
   type_czech_test=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
@@ -24,9 +17,9 @@ function _aTypeOf_09000(){
     actual_aTypeOf = type_czech_test._aTypeOf(an_arg);
     if (actual_aTypeOf !== expected_aTypeOf) {
       console.log('_aTypeOf error : ', TYPE_CZECH_current_test_number, actual_aTypeOf, an_arg, expected_aTypeOf);
-      failed_a_type_of += 1;
+      fail_count += 1;
     }
-    tested_a_type_of += 1;
+    pass_count += 1;
   }
     
   test_aTypeOf([1], 'array')                   // pass 1 A array
@@ -62,3 +55,12 @@ function _aTypeOf_09000(){
   test_aTypeOf({k:{}}, 'object')                // pass 31 5 empty - {obj obj}
 
 }
+
+
+if (fail_count>0) {
+  the_problem = `private-tests/_aTypeOf_09000.js - fails = ${fail_count}`;  
+  console.log(the_problem)
+  throw the_problem
+}
+TEST_total_checks += pass_count;
+

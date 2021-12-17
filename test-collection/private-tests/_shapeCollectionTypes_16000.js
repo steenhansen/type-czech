@@ -1,21 +1,15 @@
 /* eslint-disable */
 
 
+pass_count = 0;
+fail_count = 0;
 
-tested_shapeCollectionTypes = 0;
-failed_shapeCollectionTypes = 0;
+
 
 _shapeCollectionTypes_16001();
 _shapeCollectionTypes_16002();
 _shapeCollectionTypes_16003();
 
-TEST_total_fails += failed_shapeCollectionTypes;
-TEST_total_checks += tested_shapeCollectionTypes;
-
-if (TEST_show_random) {
-  console.log('_shapeCollectionTypes failed tests 16000', failed_shapeCollectionTypes);
-  console.log('_shapeCollectionTypes passed tests 16000', tested_shapeCollectionTypes);
-}
 
 //////////////////////////////////////
 
@@ -35,9 +29,9 @@ function _shapeCollectionTypes_16001(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_shapeCollectionTypes !=='undefined') failed_shapeCollectionTypes ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_shapeCollectionTypes !=='undefined') tested_shapeCollectionTypes ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 function _shapeCollectionTypes_16002(){
@@ -56,9 +50,9 @@ function _shapeCollectionTypes_16002(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_shapeCollectionTypes !=='undefined') failed_shapeCollectionTypes ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_shapeCollectionTypes !=='undefined') tested_shapeCollectionTypes ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
@@ -78,7 +72,17 @@ function _shapeCollectionTypes_16003(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_shapeCollectionTypes !=='undefined') failed_shapeCollectionTypes ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_shapeCollectionTypes !=='undefined') tested_shapeCollectionTypes ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
+
+
+
+if (fail_count>0) {
+  the_problem = `private-tests/_shapeCollectionTypes_16000.js - fails = ${fail_count}`;  
+  console.log(the_problem)
+  throw the_problem
+}
+TEST_total_checks += pass_count;
+

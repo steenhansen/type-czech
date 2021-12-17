@@ -1,4 +1,7 @@
 
+
+WRONGS
+
 ## checkParam_typeExtra()
   -  [0 Illegal Extra Single Array Parameter Type Check](#illigal-extra-single-array-parameter-type-check)
 

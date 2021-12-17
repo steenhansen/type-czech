@@ -1,5 +1,5 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>09 - Closure Parameters, Results, and Methods</title>
+<title>09 Closure Parameters, Results, and Methods</title>
 
 
 
@@ -87,7 +87,7 @@
     
     <a title="25-Default-Parameters.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Default-Parameters" target="_blank">25</a>
     
-    <a title="26-Type-and-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Type-and-Empty-Abbreviations" target="_blank">26</a>
+    <a title="26-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Empty-Abbreviations" target="_blank">26</a>
     
     <a title="27-Type-and-Empty-Object-Extras.html" href="https://jsfiddle.net/steen_hansen/tdL7hwgc/?27-Typed-and-Empty-Either-Checks-with-Optionals" target="_blank">27</a>
     
@@ -202,6 +202,7 @@
 
 
 
+
 </div>
 
 
@@ -211,8 +212,9 @@
     <br>
 
 Closures with multiple PRE and POST checking functions must be wrapped up in 
-objects like below for everything to be linked up in an orderly fashion.
-<pre>
+objects like below for everything to be linked up in an orderly fashion. No 
+parameters are checked here, just logged to show the order of events.
+<pre title='Copy and paste the green code below into the console to run' class='console-runnable'>
 function PRE_check_yourClosure(init){console.log('PRE closure-', init)}
 
 function POST_check_yourClosure(result){console.log('POST closure-', result)}
@@ -375,5 +377,4 @@ issac_newton.show(1642)
 <link rel="stylesheet"
   href="https://fonts.googleapis.com/css?family=Inconsolata">
 
-  
   

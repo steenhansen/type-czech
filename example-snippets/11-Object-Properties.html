@@ -1,5 +1,5 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>11 - Object Properties</title>
+<title>11 Object Properties</title>
 
 
 
@@ -87,7 +87,7 @@
     
     <a title="25-Default-Parameters.html" href="../example-snippets/25-Default-Parameters.html">25</a>
     
-    <a title="26-Type-and-Empty-Abbreviations.html" href="../example-snippets/26-Type-and-Empty-Abbreviations.html">26</a>
+    <a title="26-Empty-Abbreviations.html" href="../example-snippets/26-Empty-Abbreviations.html">26</a>
     
     <a title="27-Type-and-Empty-Object-Extras.html" href="../example-snippets/27-Type-and-Empty-Object-Extras.html">27</a>
     
@@ -187,10 +187,10 @@
 <pre title='Copy and paste the green code below into the console to run' class='console-runnable'>
 FUNC_NUM_FUNC = { func1: 'function', a_num: 'number', an_str: 'string' }
 pass_func_num_func = {func1: x=>x, a_num:12, an_str: 'passes-test'}
-type_czech.checkParam_type(pass_func_num_func, FUNC_NUM_FUNC)
+type_czech.checkParam_type(pass_func_num_func, FUNC_NUM_FUNC) // pass
 
 fail_func_num_func = {a_string:'fails-test'}
-type_czech.checkParam_type(fail_func_num_func, FUNC_NUM_FUNC)
+type_czech.checkParam_type(fail_func_num_func, FUNC_NUM_FUNC) // fail
 </pre>
 
 The below example shows how to ignore some properties, while still type checking
@@ -199,14 +199,14 @@ Function, the extra property my_string is ignored.
 <pre title='Copy and paste the green code below into the console to run' class='console-runnable'>
 FUNC_ONE_ONLY = { funcOne: 'function'}
 func_num_func_obj = {funcOne: x=>x, my_string:'passes-test'}
-type_czech.checkParam_typeExtra(func_num_func_obj, FUNC_ONE_ONLY)
+type_czech.checkParam_typeExtra(func_num_func_obj, FUNC_ONE_ONLY) // pass
 
 fail_num_func_obj = {funcOne: 1, my_string:'fails-test'}
-type_czech.checkParam_typeExtra(fail_num_func_obj, FUNC_ONE_ONLY)
+type_czech.checkParam_typeExtra(fail_num_func_obj, FUNC_ONE_ONLY) // fail
 </pre>
 
 
-    In the examples to the left, the first person() function parameter is checked to 
+    In the examples to the left, the first callMethod() function parameter, an_object, is checked to 
     see if it implements the showPerson() function, if not it fails the checkParam_type() call.
 
   </div>
@@ -318,7 +318,7 @@ try{
 
   fromToBoldText(793, 816, 'code', 3)  //  {a_key:'not-a-function'}
 
-    fromToBoldText(335, 358, 'log', 3)    // ACTUAL VALUE {'a_key':'not-a-function'}
+    fromToBoldText(252, 275, 'log', 3)    // ACTUAL VALUE {'a_key':'not-a-function'}
 
 
 
@@ -326,7 +326,7 @@ try{
 
   fromToBoldText(972, 994, 'code', 4)  // wrong_showPerson = {showPerson:'a-string'}
 
-  fromToBoldText(712, 734, 'log', 4)    // ACTUAL VALUE {'showPerson':'a-string'}
+  fromToBoldText(629, 651, 'log', 4)    // ACTUAL VALUE {'showPerson':'a-string'}
 
 
 

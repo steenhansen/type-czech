@@ -1,20 +1,13 @@
 /* eslint-disable */
 
 
+pass_count = 0;
+fail_count = 0;
 
-tested_shapeArrayTypes = 0;
-failed_shapeArrayTypes = 0;
 
 _shapeArrayTypes_15001();
 _shapeArrayTypes_15002();
 
-TEST_total_fails += failed_shapeArrayTypes;
-TEST_total_checks += tested_shapeArrayTypes;
-
-if (TEST_show_random) {
-  console.log('_shapeArrayTypes failed tests 15000', failed_shapeArrayTypes);
-  console.log('_shapeArrayTypes passed tests 15000', tested_shapeArrayTypes);
-}
 
 /////////////////////////////////////////////////////
 
@@ -24,7 +17,7 @@ function _shapeArrayTypes_15001(){
   var check_array =  [ 13, 14, 15 ];
   var object_type =  [ "number" ];    
   var exact_shape = 'TYPE-VERIFY';     
-  var expect_error =   'TE@236b - Array has more elements than types [13,14,15] !== ["number"]'; 
+  var expect_error =   'TE@239 - 3 !== 1, array has more elements than types, [13,14,15] !== ["number"]'; 
         var type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_array, object_type);
         var actual_error = type_czech_test._shapeArrayTypes(check_array, object_type, exact_shape, type_czech._NOT_VARIAD_ARR_L_179);
@@ -35,9 +28,9 @@ function _shapeArrayTypes_15001(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_shapeArrayTypes !=='undefined') failed_shapeArrayTypes ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_shapeArrayTypes !=='undefined') tested_shapeArrayTypes ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
@@ -57,7 +50,16 @@ function _shapeArrayTypes_15002(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_shapeArrayTypes !=='undefined') failed_shapeArrayTypes ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_shapeArrayTypes !=='undefined') tested_shapeArrayTypes ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
+
+
+if (fail_count>0) {
+  the_problem = `private-tests/_shapeArrayTypes_15000.js - fails = ${fail_count}`;  
+  console.log(the_problem)
+  throw the_problem
+}
+TEST_total_checks += pass_count;
+

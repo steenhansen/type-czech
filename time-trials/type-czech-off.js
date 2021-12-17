@@ -36,11 +36,11 @@ if (use_type_czech) {
   type_czech = { linkUp: (_) => _, isActive: (x) => false };
 }
 
-const LOTTERY_SIGNATURE = ['string', ['number'], 'date'];
+const LOTTERY_SIGNATURE = ['string', ['numbers'], 'date'];
 function PRE_aLottery(lottery_name, lucky_numbers, draw_date) {
   type_issue = type_czech.checkParam_type(arguments, LOTTERY_SIGNATURE);
   if (type_issue) return type_issue;
-  return type_czech.checkArgs_emptyVariadic(arguments, ['EMPTY-ERROR']);
+  return type_czech.checkArgs_emptyEach(arguments, 'EMPTY-ERROR');
 }
 
 aLottery = type_czech.linkUp(aLottery, PRE_aLottery);

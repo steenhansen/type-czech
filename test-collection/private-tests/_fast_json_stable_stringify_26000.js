@@ -1,20 +1,16 @@
 /* eslint-disable */
 
 
+pass_count = 0;
+fail_count = 0;
 
-tested_fast_json_stable_stringify = 0;
-failed_fast_json_stable_stringify = 0;
+
 
 _fast_json_stable_stringify_26001();
 _fast_json_stable_stringify_26002();
 
 
-TEST_total_fails += failed_fast_json_stable_stringify;
-TEST_total_checks += tested_fast_json_stable_stringify;
-if (TEST_show_random) {
-  console.log('_aTypeOf failed tests 26000', failed_fast_json_stable_stringify)
-  console.log('_aTypeOf passed tests 26000', tested_fast_json_stable_stringify)
-}
+
 
 function _fast_json_stable_stringify_26001(){
   type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE'
@@ -28,9 +24,9 @@ function _fast_json_stable_stringify_26001(){
       console.log('_fast_json_stable_stringify an_arg : ', an_arg)
       console.log('_fast_json_stable_stringify expected_json : ', expected_json)
       console.log('_fast_json_stable_stringify actual_json : ',  actual_json)
-      failed_fast_json_stable_stringify += 1
+      fail_count += 1
     }
-    tested_fast_json_stable_stringify += 1
+    pass_count += 1
   }
     
     test_fast_json_stable([1], '[1]')                                           // pass 1 A array
@@ -113,15 +109,21 @@ function _fast_json_stable_stringify_26002(){
     no_console_mess = '';
   
                                               if (a_json !== b_json) {
-                                                failed_fast_json_stable_stringify ++;
+                                                fail_count ++;
                                               }
-                                              tested_fast_json_stable_stringify ++;
+                                              pass_count ++;
 }
 
 
 
 
 
+if (fail_count>0) {
+  the_problem = `private-tests/_fast_json_stable_stringify_26000.js - fails = ${fail_count}`;  
+  console.log(the_problem)
+  throw the_problem
+}
+TEST_total_checks += pass_count;
 
 
 

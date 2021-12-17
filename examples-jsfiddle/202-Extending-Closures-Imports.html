@@ -1,15 +1,15 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>202 - Closure Modules Imported</title>
+<title>202 Closure Modules Imported</title>
 
 
   
-<div id='js-div' style="width:50%; " >
+<div id='js-div' style="width:57%; " >
   <a href='https://github.com/steenhansen/type-czech' class='git-hub'>GitHub Package</a>
   <div id='js-code'>the javascript</div>
 </div>
 
 
-<div id="the-explanation" style="width:50%" >
+<div id="the-explanation" style="width:43%" >
   <div class='an-explantion'>202 - Closure Modules Imported</div>
   <div id='explanation-text'>
 
@@ -55,9 +55,6 @@
     <div id='log-text'></div>
     <br>
   </div>
-
-  <br><br>
-
 
 
 
@@ -151,7 +148,7 @@
     
     <a title="25-Default-Parameters.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Default-Parameters" target="_blank">25</a>
     
-    <a title="26-Type-and-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Type-and-Empty-Abbreviations" target="_blank">26</a>
+    <a title="26-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Empty-Abbreviations" target="_blank">26</a>
     
     <a title="27-Type-and-Empty-Object-Extras.html" href="https://jsfiddle.net/steen_hansen/tdL7hwgc/?27-Typed-and-Empty-Either-Checks-with-Optionals" target="_blank">27</a>
     
@@ -261,7 +258,6 @@
 
 
 
-
 </div>
 
 
@@ -272,9 +268,9 @@
 function copyAndColor(){
   jsToDiv('js-code', "check-code");      
 
-  fromToBoldText(801, 811, 'code', 1)  //firstMethod
-  fromToBoldText(850, 859, 'code', 2)  // lastMethod
-  fromToBoldText(884, 893, 'code', 3)  // fullMethod
+  fromToBoldText(812, 822, 'code', 1)  //firstMethod
+  fromToBoldText(861, 870, 'code', 2)  // lastMethod
+  fromToBoldText(895, 904, 'code', 3)  // fullMethod
   
   fromToBoldText(229, 244, 'log', 1)    //firstMethod
   fromToBoldText(314, 328, 'log', 2)    //lastMethod
@@ -283,21 +279,24 @@ function copyAndColor(){
 
 
   log = captureConsole("log-text");
-
-
-
 </script>
 
 
 
 <script  id="check-code">
 /**/  const CHECKING_CLASS_FILES = [
-/**/    TYPE_CZECH_JS, FIRST_JS, TC_FIRST_JS,
-/**/                   LAST_JS, TC_LAST_JS,
-/**/                   FULL_JS, TC_FULL_JS ]
+/**/    TYPE_CZECH_JS, 
+/**/    FIRST_JS,
+/**/    TC_FIRST_JS,
+/**/    LAST_JS,
+/**/    TC_LAST_JS,
+/**/    FULL_JS,
+/**/    TC_FULL_JS ]
 
 const NOT_CHECKING_CLASS_FILES = [
-FIRST_JS, LAST_JS, FULL_JS ]
+  FIRST_JS, 
+  LAST_JS, 
+  FULL_JS ]
 
 /**/  TYPE_CZECH_START = true
 /**/  //TYPE_CZECH_START = false
@@ -319,14 +318,25 @@ onLoaded = ([_loaded_files, _import_errors]) => {
   william_gibson.firstMethod(new Date(1984,6,1))
   william_gibson.lastMethod(1985)
   william_gibson.fullMethod('Neuromancer')
-  linesConsole(1)
-  william_gibson.showName()
+
+  linesConsole(2)
+
+/**/  function PRE_check_printFullFunc(a_person){
+/**/    the_interface = {showName:'function', fullMethod:'function', 
+/**/                     firstMethod:'function', lastMethod:'function'}
+/**/    return type_czech.check_interface(a_person, the_interface)
+/**/  }
+/**/  printFullFunc = type_czech.linkUp(printFullFunc, PRE_check_printFullFunc)
+
+  function printFullFunc(a_person) {
+    log('From Checked Function : ', a_person.showName())
+  }
+
+  printFullFunc(william_gibson)
   copyAndColor()
 }
 
 orderedImport(class_files, onLoaded)
-
-
 </script>
   
 

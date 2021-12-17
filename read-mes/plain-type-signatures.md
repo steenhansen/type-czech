@@ -77,13 +77,13 @@ twoStrings('one-string')                               // fail - one string
 twoStrings('one-string', 'two-string', 'three-string') // fail - three strings
 ```
 
-#### oneStringArray(['string']) - one array of strings 
+#### oneStringArray(['strings']) - one array of strings 
 ```
 oneStringArray = (string_array) => { }
 
 /**/  type_czech = TypeCzech('LOG-ERRORS')
 /**/  PRE_check_oneStringArray = (string_array) => {
-/**/    return type_czech.checkParam_type(string_array, ['string'])
+/**/    return type_czech.checkParam_type(string_array, ['strings'])
 /**/  }
 /**/  oneStringArray = type_czech.linkUp(oneStringArray, PRE_check_oneStringArray) 
 
@@ -127,7 +127,7 @@ stringParameters= () => { }
 
 /**/  type_czech = TypeCzech('LOG-ERRORS')     
 /**/  function PRE_check_stringParameters(){
-/**/    return type_czech.checkArgs_typeVariadic(arguments, ['string'])
+/**/    return type_czech.checkArgs_typeEach(arguments, 'string')
 /**/  }
 /**/  stringParameters = type_czech.linkUp(stringParameters, PRE_check_stringParameters) 
 
@@ -146,9 +146,9 @@ filledStrParams= (filled_string) => { }
 /**/  type_czech = TypeCzech('LOG-ERRORS')
 /**/
 /**/  function PRE_check_filledStrParams(){
-/**/    empty_string = type_czech.checkArgs_emptyVariadic(arguments, ['EMPTY-ERROR'])
+/**/    empty_string = type_czech.checkArgs_emptyEach(arguments, 'EMPTY-ERROR')
 /**/    if (empty_string) return empty_string
-/**/    return type_czech.checkArgs_typeVariadic(arguments, ['string'])
+/**/    return type_czech.checkArgs_typeEach(arguments, 'string')
 /**/  }
 /**/  filledStrParams = type_czech.linkUp(filledStrParams, PRE_check_filledStrParams) 
 

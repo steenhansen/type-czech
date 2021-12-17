@@ -3,31 +3,26 @@
 
 ///           empty????
 
-tested_variadic_types = 0;
-failed_variadic_types = 0;
+pass_count = 0;
+fail_count = 0;
+
 
 variadic_32001();
 variadic_32002();
-variadic_32003();
+variadic_32003();             // 3744
 
 variadic_32101();
 variadic_32102();
 
 variadic_32201();
 
-TEST_total_fails += failed_variadic_types;
-TEST_total_checks += tested_variadic_types;
-if (TEST_show_random) {
-  console.log('variadic failed tests 32000', failed_variadic_types)
-  console.log('variadic passed tests 32000', tested_variadic_types)
-}
 
 function variadic_32001(){
   TYPE_CZECH_current_test_number = '32001';
 
   type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
 
-  function PRE_yourFunc() { return type_czech.checkArgs_typeVariadic(arguments, ['number-array']) }
+  function PRE_yourFunc() { return type_czech.checkArgs_typeEach(arguments, 'number') }
   yourFunc = type_czech.linkUp(yourFunc, PRE_yourFunc) 
   function yourFunc(){}
 
@@ -54,7 +49,7 @@ function variadic_32002(){
 
   type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
 
-  function PRE_yourFunc() { return type_czech.checkArgs_typeVariadic(arguments, ['number-array']) }
+  function PRE_yourFunc() { return type_czech.checkArgs_typeEach(arguments, ['numbers']) }
   yourFunc = type_czech.linkUp(yourFunc, PRE_yourFunc) 
   function yourFunc(){}
 
@@ -66,7 +61,7 @@ function variadic_32002(){
     actual_error = actual_e
     was_exception = true;
   }
-  if (was_exception) {
+  if (!was_exception) {
     console.log(TYPE_CZECH_current_test_number, 'test failed');
     if (typeof tested_signatures !== 'undefined') failed_signatures ++;
     }
@@ -104,7 +99,7 @@ function variadic_32101(){
  // type_czech=TypeCzech('LOG-ERRORS')           /// works correctly
   type_czech=TypeCzech('THROW-EXCEPTIONS', 'HIDE-INIT-MESSAGE', 'HIDE-INIT-MESSAGE');
 
-  function PRE_yourFunc(a_var) { return type_czech.checkParam_type(a_var, ['number-array']) }
+  function PRE_yourFunc(a_var) { return type_czech.checkParam_type(a_var, ['numbers']) }
   yourFunc = type_czech.linkUp(yourFunc, PRE_yourFunc) 
   function yourFunc(){}
 
@@ -127,7 +122,7 @@ function variadic_32102(){
   TYPE_CZECH_current_test_number = '32102';
   type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
 
-  function PRE_yourFunc() { return type_czech.checkArgs_typeVariadic(arguments, ['number-array']) }
+  function PRE_yourFunc() { return type_czech.checkArgs_typeEach(arguments, ['numbers']) }
   yourFunc = type_czech.linkUp(yourFunc, PRE_yourFunc) 
   function yourFunc(){}
 
@@ -139,7 +134,7 @@ function variadic_32102(){
     actual_error = actual_e
     was_exception = true;
   }
-  if (was_exception) {
+  if (!was_exception) {
     console.log(TYPE_CZECH_current_test_number, 'test failed');
     if (typeof tested_signatures !== 'undefined') failed_signatures ++;
     }
@@ -170,3 +165,12 @@ function variadic_32201(){
         }
         if (typeof tested_mutatedVariables !=='undefined') tested_mutatedVariables ++;
 }
+
+
+
+if (fail_count>0) {
+  the_problem = `check-tests/variadic_checks_32000.js - fails = ${fail_count}`;  
+  console.log(the_problem)
+  throw the_problem
+}
+TEST_total_checks += pass_count;

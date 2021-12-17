@@ -1,19 +1,12 @@
 /* eslint-disable */
 
 
+pass_count = 0;
+fail_count = 0;
 
-tested_missingKey = 0;
-failed_missingKey = 0;
 
 _missingKey_12001();
 
-TEST_total_fails += failed_missingKey;
-TEST_total_checks += tested_missingKey;
-
-if (TEST_show_random) {
-  console.log('_ParametersCheck failed tests 12000', failed_missingKey)
-  console.log('_missingKey passed tests 12000', tested_missingKey)
-}
 
 function _missingKey_12001(){
   var TYPE_CZECH_current_test_number = '12001';       
@@ -27,7 +20,17 @@ function _missingKey_12001(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_missingKey !=='undefined') failed_missingKey ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_missingKey !=='undefined') tested_missingKey ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
+
+
+
+if (fail_count>0) {
+  the_problem = `private-tests/_missingKey_12000.js - fails = ${fail_count}`;  
+  console.log(the_problem)
+  throw the_problem
+}
+TEST_total_checks += pass_count;
+

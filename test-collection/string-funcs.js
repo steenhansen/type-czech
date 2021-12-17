@@ -69,9 +69,9 @@ function errorNotMatchException(expected_error, e) {
 }
 
 function consoleExpectedActual(expected_error, e, error_id) {
-  console.log('FAIL, wrong error message: ', error_id);
-  console.log('           EXPECTED ERROR:', expected_error);
-  console.log('             ACTUAL ERROR:', e);
+  console.log('FAIL, wrong error message :::: ', error_id);
+  console.log('           EXPECTED ERROR :::: ', expected_error);
+  console.log('             ACTUAL ERROR :::: ', e);
 }
 
 function expectedAndFailedTests(expected_tests, expected_fails, which_letter, the_file) {

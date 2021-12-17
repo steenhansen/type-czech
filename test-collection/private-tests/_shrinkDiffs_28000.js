@@ -1,19 +1,13 @@
 /* eslint-disable */
 
 
+pass_count = 0;
+fail_count = 0;
 
-tested_shrinkDiffs = 0;
-failed_shrinkDiffs = 0;
+
 
 _shrinkDiffs_28001();
 
-TEST_total_fails += failed_shrinkDiffs;
-TEST_total_checks += tested_shrinkDiffs;
-
-if (TEST_show_random) {
-  console.log('_shrinkDiffs failed tests 28000', failed_shrinkDiffs)
-  console.log('_shrinkDiffs passed tests 28000', tested_shrinkDiffs)
-}
 
 /////////////////////////////////////////////////////////
 
@@ -34,7 +28,14 @@ function _shrinkDiffs_28001(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', after_form);
-          if (typeof failed_shrinkDiffs !=='undefined') failed_shrinkDiffs ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_shrinkDiffs !=='undefined') tested_shrinkDiffs ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
+
+if (fail_count>0) {
+  the_problem = `private-tests/_shrinkDiffs_28000.js - fails = ${fail_count}`;  
+  console.log(the_problem)
+  throw the_problem
+}
+TEST_total_checks += pass_count;

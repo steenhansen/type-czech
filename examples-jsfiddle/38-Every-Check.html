@@ -1,5 +1,5 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>38 - Every Check</title>
+<title>38 Every Check</title>
 
 
 <div id='js-div' style="width:54%;" >
@@ -18,7 +18,7 @@
 This page exists to highlight each possible checking function that executes within a PRE or POST test routine.
 Each of the allTypes() checking function calls, from A to K are called at least once.
 
-Short cuts as, 's' for 'string', and 'ER' for 'EMPTY-ERROR', save space.
+Short cut 'ER' for 'EMPTY-ERROR' to save space. It of course makes no actual sense.
 <br><br>
 
 <pre>
@@ -56,7 +56,7 @@ allTypes('Pete', 'Best', {})
 allTypes('Stuart', 'Sutcliffe', {city:5})
 </pre>
 
-<span class='red-explanation'>G</span>. <span class='blue-explanation'>checkArgs_emptyVariadic</span>()
+<span class='red-explanation'>G</span>. <span class='blue-explanation'>checkArgs_emptyEach</span>()
 <pre>
 allTypes('Billy', 'Preston', '')
 </pre>
@@ -79,7 +79,7 @@ allTypes('James', 'Paul', 'McCartney')
 
 
 
-<span class='red-explanation'>J</span>. <span class='blue-explanation'>checkArgs_typeVariadic</span>()
+<span class='red-explanation'>J</span>. <span class='blue-explanation'>checkArgs_typeEach</span>()
 <pre>
 allTypes('Brian', 'Epstein', {city:'Liverpool'})
 </pre>
@@ -96,7 +96,6 @@ check_assert(mess, origin, actual_value, expected)
 
 
 </div>
-
 
 
 
@@ -178,7 +177,7 @@ check_assert(mess, origin, actual_value, expected)
     
     <a title="25-Default-Parameters.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Default-Parameters" target="_blank">25</a>
     
-    <a title="26-Type-and-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Type-and-Empty-Abbreviations" target="_blank">26</a>
+    <a title="26-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Empty-Abbreviations" target="_blank">26</a>
     
     <a title="27-Type-and-Empty-Object-Extras.html" href="https://jsfiddle.net/steen_hansen/tdL7hwgc/?27-Typed-and-Empty-Either-Checks-with-Optionals" target="_blank">27</a>
     
@@ -291,8 +290,6 @@ check_assert(mess, origin, actual_value, expected)
 
 
 
-
-
 <div id="console-log"  >
   <div class='a-title'>Console Output</div>
   <div id='log-text'></div>
@@ -333,14 +330,15 @@ check_assert(mess, origin, actual_value, expected)
 /**/    A_emptyExtra=type_czech.checkParam_emptyExtra(the_parameters,['ER','OK'])
 /**/    if (A_emptyExtra) return whichError('A. ', A_emptyExtra)
 /**/
-/**/    B_typeExtra = type_czech.checkParam_typeExtra(the_parameters, ['s', 's'])
+/**/    str_str_sig = ['string', 'string']
+/**/    B_typeExtra = type_czech.checkParam_typeExtra(the_parameters, str_str_sig)
 /**/    if (B_typeExtra) return whichError('B. ', B_typeExtra)
 /**/
 /**/    sig_c = [ ['ER','OK','ER'], ['ER','ER','OK'] ]
 /**/    C_emptyEither=type_czech.checkParam_emptyEither(the_parameters, sig_c)
 /**/    if (C_emptyEither) return whichError('C. ', C_emptyEither)
 /**/
-/**/    sig_d = [ ['s','s','s'], ['s','s','o'] ]
+/**/    sig_d = [ ['string','string','string'], ['string','string','object'] ]
 /**/    D_typeEither=type_czech.checkParam_typeEither(the_parameters, sig_d)
 /**/    if (D_typeEither) return whichError('D. ', D_typeEither)
 /**/
@@ -348,11 +346,11 @@ check_assert(mess, origin, actual_value, expected)
 /**/      E_empty = type_czech.checkParam_empty(the_parameters, ['ER','ER','ER'])
 /**/      if (E_empty) return whichError('E. ', E_empty)
 /**/
-/**/      F_interface = type_czech.check_interface(the_parameters, {city:'s'})
+/**/      F_interface = type_czech.check_interface(the_parameters, {city:'string'})
 /**/      if (F_interface) return whichError('F. ', F_interface)
 /**/
 /**/    } else {
-/**/      G_emptyVariadic = type_czech.checkArgs_emptyVariadic(arguments, ['ER'])
+/**/      G_emptyVariadic = type_czech.checkArgs_emptyEach(arguments, 'ER')
 /**/      if (G_emptyVariadic) return whichError('G. ', G_emptyVariadic)
 /**/    }
 /**/  }
@@ -360,10 +358,10 @@ check_assert(mess, origin, actual_value, expected)
 /**/    H_mutated = type_czech.check_mutatedSnapshot('check_allTypes', 'b_place')
 /**/    if (H_mutated) return whichError('H. ', H_mutated)
 /**/
-/**/    I_type = type_czech.checkParam_type(return_value[0], 's')
+/**/    I_type = type_czech.checkParam_type(return_value[0], 'string')
 /**/    if (I_type) return whichError('I. ', I_type)
 /**/
-/**/    J_typeVariadic = type_czech.checkArgs_typeVariadic(arguments, [['s']])
+/**/    J_typeVariadic = type_czech.checkArgs_typeEach(arguments, ['string'])
 /**/    if (J_typeVariadic) return whichError('J. ', J_typeVariadic)
 /**/  }
 /**/  
@@ -387,10 +385,10 @@ allTypes('Ringo', '', '')                        // C checkParam_emptyEither()
 allTypes('Lennon', '', 17)                       // D checkParam_typeEither()
 allTypes('Pete', 'Best', {})                     // E checkParam_empty()
 allTypes('Stuart', 'Sutcliffe', {city:5})        // F check_interface()
-allTypes('Billy', 'Preston', '')                 // G checkArgs_emptyVariadic()
+allTypes('Billy', 'Preston', '')                 // G checkArgs_emptyEach()
 allTypes('George', 'Harrison', {city:'Bath'})    // H check_mutatedSnapshot()
 allTypes('James', 'Paul', 'McCartney')           // I checkParam_type()
-allTypes('Brian', 'Epstein', {city:'Liverpool'}) // J checkArgs_typeVariadic()
+allTypes('Brian', 'Epstein', {city:'Liverpool'}) // J checkArgs_typeEach()
 
 console.log('K.')
 mess= "a-clarifying-error-message"
@@ -409,51 +407,39 @@ K_check_assert = type_czech.check_assert(mess, origin, actual_value, expected)
 
 
 fromToBoldText(259, 259, 'code', 1)    // A_
-fromToBoldText(411, 411, 'code', 1)    // B_
-fromToBoldText(616, 616, 'code', 1)    // C_
-fromToBoldText(816, 816, 'code', 1)    // D_
-fromToBoldText(1018, 1018, 'code', 1)    // E_
-fromToBoldText(1162, 1162, 'code', 1)  // F_
-fromToBoldText(1328, 1328, 'code', 1)  // G_
-fromToBoldText(1549, 1549, 'code', 1)  // H_
-fromToBoldText(1695, 1695, 'code', 1)  // I_
-fromToBoldText(1819, 1819, 'code', 1)  // J_
-fromToBoldText(3373, 3373, 'code', 1)  // K_
+fromToBoldText(454, 454, 'code', 1)    // B_
+fromToBoldText(660, 660, 'code', 1)    // C_
+fromToBoldText(890, 890, 'code', 1)    // D_
+fromToBoldText(1092, 1092, 'code', 1)    // E_
+fromToBoldText(1236, 1236, 'code', 1)  // F_
+fromToBoldText(1407, 1407, 'code', 1)  // G_
+fromToBoldText(1622, 1622, 'code', 1)  // H_
+fromToBoldText(1768, 1768, 'code', 1)  // I_
+fromToBoldText(1897, 1897, 'code', 1)  // J_
+fromToBoldText(3442, 3442, 'code', 1)  // K_
 
 
 
 
 
-fromToBoldText(132, 150, 'code', 4)  // X check_buildSnapshot
+fromToBoldText(131, 149, 'code', 4)  // X check_buildSnapshot
 
 fromToBoldText(283, 303, 'code', 2)  // A checkParam_emptyExtra
-fromToBoldText(436, 455, 'code', 2)  // B checkParam_typeExtra
-fromToBoldText(641, 662, 'code', 2)  // C  checkParam_emptyEither
-fromToBoldText(840, 860, 'code', 2)  // D  checkParam_typeEither
-fromToBoldText(1039, 1054, 'code', 2)  // E  checkParam_empty
-fromToBoldText(1187, 1201, 'code', 2)  // F  check_interface
-fromToBoldText(1357, 1379, 'code', 2)  // G  checkArgs_emptyVariadic
-fromToBoldText(1572, 1592, 'code', 2)  // H  check_mutatedSnapshot
-fromToBoldText(1715, 1729, 'code', 2)  // I  checkParam_type
-fromToBoldText(1847, 1868, 'code', 2)  // J  checkArgs_typeVariadic
-fromToBoldText(3401, 3412, 'code', 2)  // K  check_assert
+fromToBoldText(479, 498, 'code', 2)  // B checkParam_typeExtra
+fromToBoldText(685, 706, 'code', 2)  // C  checkParam_emptyEither
+fromToBoldText(914, 934, 'code', 2)  // D  checkParam_typeEither
+fromToBoldText(1113, 1128, 'code', 2)  // E  checkParam_empty
+fromToBoldText(1261, 1275, 'code', 2)  // F  check_interface
+fromToBoldText(1436, 1454, 'code', 2)  // G  checkArgs_emptyEach
+fromToBoldText(1645, 1665, 'code', 2)  // H  check_mutatedSnapshot
+fromToBoldText(1788, 1802, 'code', 2)  // I  checkParam_type
+fromToBoldText(1925, 1942, 'code', 2)  // J  checkArgs_typeEach
+fromToBoldText(3470, 3481, 'code', 2)  // K  check_assert
 
 
 
 
 
-
-fromToBoldText(1, 1, 'log', 1)    // A_
-fromToBoldText(315, 315, 'log', 1)    // B_
-fromToBoldText(939, 939, 'log', 1)    // C_
-fromToBoldText(1283, 1283, 'log', 1)    // D_
-fromToBoldText(2058, 2058, 'log', 1)    // E_
-fromToBoldText(2829, 2829, 'log', 1)  // F_
-fromToBoldText(3625, 3625, 'log', 1)  // G_
-fromToBoldText(4322, 4322, 'log', 1)  // H_
-fromToBoldText(4794, 4794, 'log', 1)  // I_
-fromToBoldText(5432, 5432, 'log', 1)  // J_
-fromToBoldText(5799, 5799, 'log', 1)  // K_
 
 </script>
 

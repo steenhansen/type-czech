@@ -4,32 +4,32 @@
 
 
 ## API
-  -  [1 check_assert()](#check-assert)
-  -  [2 check_buildSnapshot() & check_mutatedSnapshot()](#check-build-snapshot)
-  -  [3 checkParam_empty()](#check-empty)
-  -  [4 checkParam_emptyEither()](#check-empty-either)
-  -  [5 checkParam_emptyExtra()](#check-empty-extra)
-  -  [6 checkArgs_emptyVariadic()](#check-empty-variadic)
-  -  [7 check_interface()](#check-interface)
-  -  [8 checkParam_type()](#check-type)
-  -  [9 checkParam_typeEither()](#check-type-either)
-  -  [10 checkParam_typeExtra()](#check-type-extra)
-  -  [11 checkArgs_typeVariadic()](#check-type-variadic)
-  -  [12 countFails()](#count-fails) 
-  -  [13 countTally()](#count-tally) 
-  -  [14 enableTests()](#enable-checks) 
-  -  [15 disableTests()](#disable-checks) 
-  -  [16 isActive()](#is-active) 
-  -  [17 linkUp()](#link-up)
-  -  [18 typeFinal()](#type-final)
-  -  [19 typeIsA()](#type-is-a) 
-  -  [20 typeProtos()](#type-protos)
+  -  [A check_assert()](#A)
+  -  [B check_buildSnapshot() & check_mutatedSnapshot()](#B)
+  -  [C checkParam_empty()](#C)
+  -  [D checkParam_emptyEither()](#D)
+  -  [E checkParam_emptyExtra()](#E)
+  -  [F checkArgs_emptyEach()](#F)
+  -  [G check_interface()](#G)
+  -  [H checkParam_type()](#H)
+  -  [I checkParam_typeEither()](#I)
+  -  [J checkParam_typeExtra()](#J)
+  -  [K checkArgs_typeEach()](#K)
+  -  [L countFails()](#L) 
+  -  [M countTally()](#M) 
+  -  [N enableTests()](#N) 
+  -  [O disableTests()](#O) 
+  -  [P isActive()](#P) 
+  -  [Q linkUp()](#Q)
+  -  [R typeFinal()](#R)
+  -  [S typeIsA()](#S) 
+  -  [T typeProtos()](#T)
 
 #### All examples below can be executed in the console of [repl.html](../test-collection/repl.html)
 
 Note that function calls that have names that start with check_ are usually placed within PRE and POST checking functions as their error messages are automatically logged in the console or thrown as exceptions.
 
-### 1 check_assert(the_error, err_location, err_variable, err_explanation)<a name="check-assert"></a>
+### A check_assert(the_error, err_location, err_variable, err_explanation)<a name="A"></a>
 
   This function is nearly always placed inside a promise chain, without PRE_check() and POST_check() functions being present.
   Below, if check_error is an empty string then nothing happens. Otherwise the error 
@@ -80,7 +80,7 @@ fetch(your_ip)
 
   [check_assert() examples](./public/check_assert.md)
 
-### 2 check_buildSnapshot(function_name, variable_name, the_variable) & &nbsp;&nbsp;&nbsp;check_mutatedSnapshot(function_name, variable_name)<a name="check-build-snapshot"></a>
+### B check_buildSnapshot(function_name, variable_name, the_variable) & &nbsp;&nbsp;&nbsp;check_mutatedSnapshot(function_name, variable_name)<a name="B"></a>
 
   Generally used inside both PRE_check() and POST_check() functions that have been linked to 
   a function to be tested. The idea is to build a snapshot of a mutable array or object parameter before the tested function gets called, as in PRE_check_aCollection() below. And then, verify that the array or object has not been mutated after the tested function returns, as in POST_check_aCollection() below.
@@ -94,7 +94,7 @@ function POST_check_aCollection(){
   return type_czech.check_mutatedSnapshot('PRE_check_aCollection', 'a_collection')
 }
 
-type_czech = TypeCzech('THROW-EXCEPTIONS')
+type_czech = TypeCzech('LOG-ERRORS')
 
 aCollection = type_czech.linkUp(aCollection, PRE_check_aCollection, POST_check_aCollection) 
 
@@ -111,7 +111,7 @@ aCollection([1,2,3,4]) // POST fail, a_collection changed value in aCollection()
   [check_buildSnapshot() & check_mutatedSnapshot() examples](./public/check_buildSnapshot.md)
 
 
-### 3 checkParam_empty(a_variable, empty_signature) <a name="check-empty"></a>
+### C checkParam_empty(a_variable, empty_signature) <a name="C"></a>
 
   Generally used inside both PRE_check() and POST_check() functions that have been linked to 
   a function to be tested.
@@ -128,7 +128,7 @@ function POST_check_notEmpty(the_result){
   return type_czech.checkParam_empty(the_result, 'EMPTY-ERROR')
 }
 
-type_czech = TypeCzech('THROW-EXCEPTIONS')
+type_czech = TypeCzech('LOG-ERRORS')
 
 notEmpty = type_czech.linkUp(notEmpty, PRE_check_notEmpty, POST_check_notEmpty) 
 
@@ -146,7 +146,7 @@ notEmpty([1]) // POST fail - empty result
   [checkParam_empty() examples](./public/checkParam_empty.md)
 
 
-### 4 checkParam_emptyEither(a_variable, empty_signatures) <a name="check-empty-either"></a>
+### D checkParam_emptyEither(a_variable, empty_signatures) <a name="D"></a>
 
   Generally used inside both PRE_check() and POST_check() functions that have been linked to 
   a function to be tested.
@@ -160,7 +160,7 @@ function PRE_check_someElements(first_array, second_array){
   return type_czech.checkParam_emptyEither([first_array, second_array], empty_choices)
 }
 
-type_czech = TypeCzech('THROW-EXCEPTIONS')
+type_czech = TypeCzech('LOG-ERRORS')
 
 someElements = type_czech.linkUp(someElements, PRE_check_someElements) 
 
@@ -177,7 +177,7 @@ someElements([], []) // fail - matches neither signature
 
 
 
-### 5 checkParam_emptyExtra(a_variable, empty_signature) <a name="check-empty-extra"></a>
+### E checkParam_emptyExtra(a_variable, empty_signature) <a name="E"></a>
 
   Generally used inside both PRE_check() and POST_check() functions that have been linked to 
   a function to be tested.
@@ -190,7 +190,7 @@ function PRE_check_extraElements(an_object){
   return type_czech.checkParam_emptyExtra(an_object, ['EMPTY-ERROR', 'EMPTY-ERROR'])
 }
 
-type_czech = TypeCzech('THROW-EXCEPTIONS')
+type_czech = TypeCzech('LOG-ERRORS')
 
 extraElements = type_czech.linkUp(extraElements, PRE_check_extraElements) 
 
@@ -206,16 +206,16 @@ extraElements([44, '']) // fail - 2nd parameter is empty
   [checkParam_emptyExtra() examples](./public/checkParam_emptyExtra.md)
 
 
-### 6 checkArgs_emptyVariadic(arguments, empty_signature)<a name="check-empty-variadic"></a>
+### F checkArgs_emptyEach(arguments, empty_signature)<a name="F"></a>
   Generally used inside PRE_check() functions that have been linked to 
   a function to be tested. Outputs an error message if any function parameter is empty.
 
 ```
 function PRE_check_haveValues(){
-  return type_czech.checkArgs_emptyVariadic(arguments, ['EMPTY-ERROR'])
+  return type_czech.checkArgs_emptyEach(arguments, 'EMPTY-ERROR')
 }
 
-type_czech = TypeCzech('THROW-EXCEPTIONS')
+type_czech = TypeCzech('LOG-ERRORS')
 
 haveValues = type_czech.linkUp(haveValues, PRE_check_haveValues) 
 
@@ -224,13 +224,13 @@ function haveValues(){ }
 haveValues(1)                                      // pass
 haveValues(1, true, 'red', new Date('1999-12-12')) // pass
 
-haveValues('', [], {}) // fail - emtpy values
+haveValues('', [], {}) // fail - empty values
 ```
-  [checkArgs_emptyVariadic() examples](./public/checkArgs_emptyVariadic.md)
+  [checkArgs_emptyEach() examples](./public/checkArgs_emptyEach.md)
 
 
 
-### 7 check_interface(a_variable)<a name="check-interface"></a>
+### G check_interface(a_variable)<a name="G"></a>
   Generally used inside both PRE_check() and POST_check() functions that have been linked to 
   a function to be tested. Checks a class or object for wanted properties. Not a Java style interface of only functions.
 
@@ -239,7 +239,7 @@ function PRE_check_wantedProperties(an_object){
   return type_czech.check_interface(an_object, {my_func: 'function', my_number: 'number'})
 }
 
-type_czech = TypeCzech('THROW-EXCEPTIONS')
+type_czech = TypeCzech('LOG-ERRORS')
 
 wantedProperties = type_czech.linkUp(wantedProperties, PRE_check_wantedProperties) 
 
@@ -255,7 +255,7 @@ wantedProperties({my_func: x=>x, my_number:{recursive:{wrapped:'nested'}}}) // f
 
   [check_interface() examples](./public/check_interface.md)
 
-### 8 checkParam_type(a_parameter, type_signature) <a name="check-type"></a>
+### H checkParam_type(a_parameter, type_signature) <a name="H"></a>
   Used inside both PRE_check() and POST_check() functions that have been linked to 
   a function to be tested. Outputs an error message if a tested function's parameters do not match the type signature.
   Returning an empty string or undefined signifies type compliance.
@@ -291,7 +291,7 @@ oneString(12)  // PRE POST fail - number not an object, object not an array
 
 
 
-### 9 checkParam_typeEither(a_variable, type_signatures)<a name="check-type-either"></a>
+### I checkParam_typeEither(a_variable, type_signatures)<a name="I"></a>
   Used inside both PRE_check() and POST_check() functions that have been linked to 
   a function to be tested.
 
@@ -305,7 +305,7 @@ function PRE_check_eitherObject(somebody){
   return type_czech.checkParam_typeEither(somebody, possible_signatures)
 }
 
-type_czech = TypeCzech('THROW-EXCEPTIONS')
+type_czech = TypeCzech('LOG-ERRORS')
 
 eitherObject = type_czech.linkUp(eitherObject, PRE_check_eitherObject) 
 
@@ -323,7 +323,7 @@ eitherObject( {first: 'Bob', middle: 'Bob'}) // fail - has unknown middle
 
 
 
-### 10 checkParam_typeExtra(a_variable, type_signature)<a name="check-type-extra"></a>
+### J checkParam_typeExtra(a_variable, type_signature)<a name="J"></a>
   Generally used inside both PRE_check() and POST_check() functions that have been linked to 
   a function to be tested.
   
@@ -335,7 +335,7 @@ function PRE_check_extraParams(car_object){
   return type_czech.checkParam_typeExtra(car_object, {make: 'string', model: 'string'})
 }
 
-type_czech = TypeCzech('THROW-EXCEPTIONS')
+type_czech = TypeCzech('LOG-ERRORS')
 
 extraParams = type_czech.linkUp(extraParams, PRE_check_extraParams) 
 
@@ -353,14 +353,14 @@ extraParams({make: 'Ford'}) // fail - no model
 
 
 
-### 11 checkArgs_typeVariadic(arguments, type_signature)<a name="check-type-variadic"></a>
+### K checkArgs_typeEach(arguments, type_signature)<a name="K"></a>
   Generally used inside PRE_check() functions that have been linked to 
   a function to be tested. Outputs an error message if any function parameter does not match the type.
 ```
-type_czech = TypeCzech('THROW-EXCEPTIONS')
+type_czech = TypeCzech('LOG-ERRORS')
 
 function PRE_check_someNumbers(){
-  return type_czech.checkArgs_typeVariadic(arguments, ['number'])
+  return type_czech.checkArgs_typeEach(arguments, 'number')
 }
 
 someNumbers = type_czech.linkUp(someNumbers, PRE_check_someNumbers) 
@@ -372,9 +372,9 @@ someNumbers(1, 2, 3, 4, 5) // pass
 
 someNumbers(1, 'two', 3) // fail - 'two' is not a number
 ```
-  [checkArgs_typeVariadic() examples](./public/checkArgs_typeVariadic.md)
+  [checkArgs_typeEach() examples](./public/checkArgs_typeEach.md)
 
-### 12 countFails()<a name="count-fails"></a>
+### L countFails()<a name="L"></a>
  
   Get number of failed check function calls, both PRE_check() and POST_check().
 ```
@@ -398,7 +398,7 @@ anArray({an_object:[]}) // fail 2 - object not array
 type_czech.countFails() // 2
 ```
  
-### 13 countTally()<a name="count-tally"></a>
+### M countTally()<a name="M"></a>
 
   Get number of total check function calls, both PRE_check() and POST_check().
 ```
@@ -428,7 +428,7 @@ type_czech.countTally()  // 5
 
 
 
-### 14 enableTests()<a name="enable-checks"></a>
+### N enableTests()<a name="N"></a>
  
   Start checking of functions after disabling them. Cannot enable checking
   from a non-active TypeCzech instance, started from TypeCzech() or TypeCzech('NO-ERROR-MESSAGES')
@@ -447,8 +447,7 @@ function oneUppercase(){ }
 
 type_czech.disableTests()
 
-oneUppercase('Cat In the Hat') // not checked as currently disabled
-
+oneUppercase('Cat In the Hat')     // not checked as currently disabled
 oneUppercase('green eggs and ham') // not checked as currently disabled
 
 type_czech.enableTests()
@@ -456,7 +455,7 @@ type_czech.enableTests()
 oneUppercase('push me pull you') // fail - no uppercase character
 ```
 
-### 15 disableTests()<a name="disable-checks"></a>
+### O disableTests()<a name="O"></a>
  
   Stop checking of functions.
 ```
@@ -481,7 +480,7 @@ type_czech.disableTests()
 isRoman('1177 BC') // not checked and not counted as currently disabled
 ```
 
-### 16 isActive()<a name="is-active"></a>
+### P isActive()<a name="P"></a>
 
   Returns true if TypeCzech is checking errors. This returns false if TypeCzech was not loaded in Node.js or the browser. Can turn off with disableTests().
 
@@ -499,7 +498,7 @@ type_czech.enableTests()
 type_czech.isActive() // true
 ```
 
-### 17 linkUp(tested_func, before_checking_func, after_checking_func)<a name="link-up"></a>
+### Q linkUp(tested_func, before_checking_func, after_checking_func)<a name="Q"></a>
   Link functions, classes, closures, IIFEs, and Prototypes to parameter and result checking functions.
 ```
 type_czech = TypeCzech('LOG-ERRORS')
@@ -527,12 +526,12 @@ oneString(12)  // PRE and POST fail - not strings but numbers
 
 
 
-### 18 typeFinal(a_variable)<a name="type-final"></a>
+### R typeFinal(a_variable)<a name="R"></a>
 
 
   Returns the last inherited prototype or classname of its lineage.
 ```
-type_czech = TypeCzech('THROW-EXCEPTIONS')
+type_czech = TypeCzech('LOG-ERRORS')
 
 class First { constructor() { } }
 class Last extends First { constructor() { super() } }
@@ -543,18 +542,18 @@ type_czech.typeFinal(a_last)  // Last
   
   [typeFinal() examples](./public/typeFinal.md)   
 
-### 19 typeIsA(a_variable, variable_type)<a name="type-is-a"></a>
+### S typeIsA(a_variable, variable_type)<a name="S"></a>
 
   Returns true if first parameter variable is of the second type.
 ```
-type_czech = TypeCzech('THROW-EXCEPTIONS')
+type_czech = TypeCzech('LOG-ERRORS')
 
 type_czech.typeIsA(document, "HTMLDocument") // true
 type_czech.typeIsA(document, "Object")       // true
 ```
   [typeIsA() examples](./public/typeIsA.md)  
 
-### 20 typeProtos(a_variable)<a name="type-protos"></a>
+### T typeProtos(a_variable)<a name="T"></a>
 
   Returns the prototype lineage an objects or class.
 

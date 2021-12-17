@@ -1,11 +1,11 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>25 - Default Parameters</title>
+<title>25 Default Parameters</title>
 
 
 
 
 
-<div id='js-div' style="width:61%">
+<div id='js-div' style="width:60%">
   <a href='https://github.com/steenhansen/type-czech' class='git-hub'>GitHub Package</a>
   <div id='js-code'>the javascript</div>
   <br>
@@ -38,16 +38,17 @@
 </div>
 
 
-<div id="the-explanation" style="width:39%">
+<div id="the-explanation" style="width:40%">
   <div class='an-explantion'>25 - Default Parameters</div>
   <div id='explanation-text'> 
     <br>
-     TypeCzech cannot see default parameters, but it can see how many parameters there are
+     TypeCzech cannot see default parameters, as it runs before the actual function does, 
+     but it can see how many parameters there are
      in a function call. So the trick is to verify different signatures according to the 
      number of parameters. In the upper example to the left, a ['string', 'number'] is
      checked for when there are two parameters. If there is only one parameter then it 
      must be a 'string'. Otherwise no type checks, which results in both defaults of
-      'Denzel Washington 66' being used.
+      'Denzel Washington 66' being used. So defaults are assumed correct.
      <br><br>
      The lower example to the left, always expects the first parameter to be a 'string'.
      The second parameter is ignored as an extra parameter.
@@ -60,8 +61,6 @@
     <div id='log-text'></div>
     <br>
   </div>
-
-
 
 
 
@@ -140,7 +139,7 @@
     
     <a title="25-Default-Parameters.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Default-Parameters" target="_blank">25</a>
     
-    <a title="26-Type-and-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Type-and-Empty-Abbreviations" target="_blank">26</a>
+    <a title="26-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Empty-Abbreviations" target="_blank">26</a>
     
     <a title="27-Type-and-Empty-Object-Extras.html" href="https://jsfiddle.net/steen_hansen/tdL7hwgc/?27-Typed-and-Empty-Either-Checks-with-Optionals" target="_blank">27</a>
     
@@ -244,6 +243,20 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </div>
 
 
@@ -272,10 +285,10 @@
 /**/  type_czech = TypeCzech('LOG-ERRORS')
 /**/
 /**/  function PRE_check_nameAge(persons_name, persons_age){
-/**/    if (persons_name !== undefined && persons_age !== undefined)
+/**/    if (persons_name !== undefined && persons_age !== undefined)     // both params used
 /**/      return type_czech.checkParam_type([persons_name,persons_age],['string','number'])
 /**/    if (persons_name !== undefined)
-/**/      return type_czech.checkParam_typeExtra([persons_name, persons_age], 'string')
+/**/      return type_czech.checkParam_typeExtra(persons_name, 'string') // first param used
 /**/  }
 /**/  
 /**/  nameAge = type_czech.linkUp(nameAge, PRE_check_nameAge) 
@@ -298,12 +311,12 @@ linesConsole(2)
 
 nameAge('Bad-Age', false)
 
-linesConsole(3)
+linesConsole(2)
 
-/**/  function PRE_check_petType(a_name, fav_collection){
+/**/  function PRE_check_personCollection(a_name, fav_collection){
 /**/    return type_czech.checkParam_typeExtra([a_name, fav_collection], 'string')
 /**/  }
-/**/  petType = type_czech.linkUp(petType, PRE_check_petType) 
+/**/  personCollection = type_czech.linkUp(personCollection, PRE_check_personCollection) 
 
 function keyValueReduce(accum, key_value) {
   accum.push(key_value[0] + ':' + key_value[1])
@@ -318,19 +331,19 @@ function collectionAsStr(fav_collection){
   return fav_as_array.join(', ')
 }
 
-function petType(a_name, fav_collection = [1,2,3]){
+function personCollection(a_name, fav_collection = [1,2,3]){
   console.log(a_name + ' : ' + collectionAsStr(fav_collection) )
 }
 
-petType('Bob', {movie:'Matchstick Men', sport:'Jai Alai', island:'Viequez'})
+personCollection('Bob', {movie:'Matchstick Men', sport:'Jai Alai', island:'Viequez'})
 
 linesConsole(2)
 
-petType('Bill')
+personCollection('Bill')
 
 linesConsole(2)
 
-petType(['Bart'], ['Red', 'White', 'Blue'])
+personCollection(['Bart'], ['Red', 'White', 'Blue'])
 </script>
 
 
@@ -347,29 +360,29 @@ petType(['Bart'], ['Red', 'White', 'Blue'])
 
   jsToDiv('js-code', "check-code")
 
-  fromToBoldText(237, 247, 'code', 1)  //  persons_age], 'st
-  fromToBoldText(261, 266, 'code', 1)  // ring',"number"]
-  fromToBoldText(684, 688, 'code', 1)  //  , false)
+  fromToBoldText(261, 271, 'code', 1)  //  persons_age], 'st
+  fromToBoldText(284, 291, 'code', 1)  // ring',"number"]
+  fromToBoldText(713, 717, 'code', 1)  //  , false)
 
 
 
-   fromToBoldText(278, 282, 'log', 1)    //  ,false]
+   fromToBoldText(300, 304, 'log', 1)    //  ,false]
 
-   fromToBoldText(320, 327, 'log', 1)    //  g","number"]
+   fromToBoldText(342, 349, 'log', 1)    //  g","number"]
 
 ////////////////////////
-fromToBoldText(798, 803, 'code', 2)  // [a_name
-fromToBoldText(823, 830, 'code', 2)  // on], 'string')
+fromToBoldText(836, 841, 'code', 2)  // [a_name
+fromToBoldText(861, 868, 'code', 2)  // on], 'string')
 
-fromToBoldText(1508, 1515, 'code', 2)  //  ['Bart']
-
-
+fromToBoldText(1609, 1616, 'code', 2)  //  ['Bart']
 
 
 
-fromToBoldText(725, 731, 'log', 2)    //CTUAL TYPE ['array'
-fromToBoldText(768, 775, 'log', 2)    // VALUES [["Bart"] 
-fromToBoldText(826, 831, 'log', 2)    //PECTED TYPE string
+
+
+fromToBoldText(764, 770, 'log', 2)    //CTUAL TYPE ['array'
+fromToBoldText(799, 806, 'log', 2)    // VALUES [["Bart"] 
+fromToBoldText(857, 862, 'log', 2)    //PECTED TYPE string
 
 
 

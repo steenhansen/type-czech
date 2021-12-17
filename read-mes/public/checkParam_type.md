@@ -1,27 +1,27 @@
 ## checkParam_type() 
 
 ### Input Parameter Type Checks
-  -  [1 Single Scalar Parameter Type Check](#single-scalar-parameter-type-check)
-  -  [2 Single Array Parameter Type Check](#single-array-parameter-type-check)
-  -  [3 Single Typed Array Parameter Type Check](#single-typed-array-parameter-type-check)
-  -  [4 Single Object Parameter Type Check](#single-object-parameter-type-check)
-  -  [5 Single Typed Object Parameter Type Check](#single-typed-object-parameter-type-check)
-  -  [6 Multiple Parameter Type Check](#multiple-parameter-type-check)
-  -  [7 HTML Type Parameter Check](#html-type-check)
-  -  [8 Class Type Parameter Check](#class-type-check)
-  -  [9 Class and Methods Type Parameter Type Check](#class-and-methtods-type-check) 
+  -  [A Single Scalar Parameter Type Check](#A)
+  -  [S Single Array Parameter Type Check](#B)
+  -  [C Single Typed Array Parameter Type Check](#C)
+  -  [D Single Object Parameter Type Check](#D)
+  -  [E Single Typed Object Parameter Type Check](#E)
+  -  [F Multiple Parameter Type Check](#F)
+  -  [G HTML Type Parameter Check](#G)
+  -  [H Class Type Parameter Check](#H)
+  -  [I Class and Methods Type Parameter Type Check](#I) 
 
 ### Output Result Type Checks
-  -  [10 Scalar Result Type Check](#scalar-result-type-check)
-  -  [11 Array Result Type Check](#array-result-type-check)
-  -  [12 Typed Array Result Type Check](#typed-array-result-type-check)
-  -  [13 Multi Typed Array Result Type Check](#multi-typed-array-result-type-check)
-  -  [14 Typed Object Result Type Check](#typed-object-result-type-check)
+  -  [J Scalar Result Type Check](#J)
+  -  [K Array Result Type Check](#K)
+  -  [L Typed Array Result Type Check](#L)
+  -  [M Multi Typed Array Result Type Check](#M)
+  -  [N Typed Object Result Type Check](#N)
 
 
 #### All examples below can be executed in the console of [repl.html](../../test-collection/repl.html)
 
-## 1 Single Scalar Parameter Type Check<a name="single-scalar-parameter-type-check"></a>
+## A Single Scalar Parameter Type Check<a name="A"></a>
 
 ```
 function PRE_check_oneNumber(a_number){
@@ -33,12 +33,12 @@ oneNumber = type_czech.linkUp(oneNumber, PRE_check_oneNumber)
 
 function oneNumber(a_number){ }
 
-oneNumber(12) // pass
+oneNumber(12)       // pass
 
 oneNumber('a-string') // fail 'a-string' is not a number         
 ```
 
-## 2 Single Array Parameter Type Check<a name="single-array-parameter-type-check"></a>
+## B Single Array Parameter Type Check<a name="B"></a>
     
 ```
 function PRE_check_oneArray(an_array){
@@ -54,11 +54,11 @@ oneArray([1, 'two', {c:3}, [] ]) // pass
 
 oneArray({a:1}) // fail - object not an array
 ```
-## 3 Single Typed Array Parameter Type Check<a name="single-typed-array-parameter-type-check"></a>
+## C Single Typed Array Parameter Type Check<a name="C"></a>
     
 ```
 function PRE_check_oneArray(an_array){
-  return type_czech.checkParam_type(an_array, ['number-array'])
+  return type_czech.checkParam_type(an_array, ['numbers'])
 }
 
 type_czech = TypeCzech('THROW-EXCEPTIONS')
@@ -71,7 +71,7 @@ oneArray([1, 2, 3, 4]) // pass
 oneArray([false]) // fail - boolean not number     
 ```
 
-## 4 Single Object Parameter Type Check<a name="single-object-parameter-type-check"></a>
+## D Single Object Parameter Type Check<a name="D"></a>
 
 ```
 function PRE_check_oneObject(an_object){
@@ -91,7 +91,7 @@ oneObject([]) // fail - array not object
 
 
 
-## 5 Single Typed Object Parameter Type Check<a name="single-typed-object-parameter-type-check"></a>
+## E Single Typed Object Parameter Type Check<a name="E"></a>
 
 ```
 function PRE_check_oneObject(oneObject){
@@ -114,7 +114,7 @@ oneObject({b:'capybara'}) // fail missing key 'a'
 
 
 
-## 6 Multiple Parameter Type Check<a name="multiple-parameter-type-check"></a>
+## F Multiple Parameter Type Check<a name="F"></a>
 
 ```
 function PRE_check_multiParams(an_array){
@@ -132,7 +132,7 @@ multiParams([1, 'one', false]) // pass
 multiParams([1999, 'Sharknado', {} ]) // fail - object not boolean
 ```
 
-## 7 HTML Type Check<a name="html-type-check"></a>
+## G HTML Type Check<a name="G"></a>
 
 ```
 function PRE_check_htmlButton(html_element){ 
@@ -150,7 +150,7 @@ htmlButton('hi there')                    // fail - string not button
 htmlButton(document.createElement('div')) // fail - div not button
 ```
 
-## 8 Class Type Check<a name="class-type-check"></a>
+## H Class Type Check<a name="H"></a>
 Applies to closures, IIFEs, ClassFrees, Prototypess, and OLLOs.
 
 ```
@@ -175,7 +175,7 @@ classOperate(a_last)  // pass
 classOperate(a_first)  // fail - is a 'First' not a 'Last'
 ```
 
-## 9 Class and Methods Type Check<a name="class-and-methtods-type-check"></a>
+## I Class and Methods Type Check<a name="I"></a>
 
 ```
 class Person {
@@ -225,7 +225,7 @@ person_5 = new Person('Pol Pot')  // POST fail - matched 'Pol Pot'
 ```
 
 
-## 10 Scalar Result Type Check<a name="scalar-result-type-check"></a>
+## J Scalar Result Type Check<a name="J"></a>
 
 ```
 function POST_check_returnString(return_result){
@@ -244,7 +244,7 @@ returnString('two') // pass
 returnString(false) // fail - not a string         
 ```
 
-## 11 Array Result Type Check<a name="array-result-type-check"></a>
+## K Array Result Type Check<a name="K"></a>
 
 ```
 function POST_check_anArray(an_array){
@@ -263,7 +263,7 @@ anArray([1, 'two', {c:3}, [] ]) // pass
 anArray({a:1}) // fail - object not array
 ```
 
-## 12 Typed Array Result Type Check<a name="typed-array-result-type-check"></a>
+## L Typed Array Result Type Check<a name="L"></a>
 
 ```
 function POST_check_booleanArray(an_array){
@@ -282,7 +282,7 @@ booleanArray([true, false, true]) // pass
 booleanArray([1, 0, 1]) // fail - array of numbers not booleans
 ```
 
-## 13 Multi Typed Array Result Type Check<a name="multi-typed-array-result-type-check"></a>
+## M Multi Typed Array Result Type Check<a name="M"></a>
 
 ```
 function POST_check_numBoolStr(an_array){
@@ -301,7 +301,7 @@ numBoolStr([1, false, 'three']) // pass
 numBoolStr({}) // fail - object not an array of number,boolean,string
 ```
 
-## 14 Typed Object Result Type Check<a name="typed-object-result-type-check"></a>
+## N Typed Object Result Type Check<a name="N"></a>
 
 ```
 function POST_check_objectAbc(an_array){

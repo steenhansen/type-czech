@@ -2,8 +2,9 @@
 
 
 
-tested_shapeVariable = 0;
-failed_shapeVariable = 0;
+pass_count = 0;
+fail_count = 0;
+
 
 _shapeVariable_22001();
 _shapeVariable_22002();
@@ -14,13 +15,6 @@ _shapeVariable_22004();
 _shapeVariable_22007();
 _shapeVariable_22008();
 
- TEST_total_fails += failed_shapeVariable;
- TEST_total_checks += tested_shapeVariable;
-
- if (TEST_show_random) {
-  console.log('_shapeVariable failed tests 22000', failed_shapeVariable);
-  console.log('_shapeVariable passed tests 22000', tested_shapeVariable);
-}
 
 
 
@@ -50,9 +44,9 @@ function _shapeVariable_22001(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_shapeVariable !=='undefined') failed_shapeVariable ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_shapeVariable !=='undefined') tested_shapeVariable ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
@@ -74,9 +68,9 @@ function _shapeVariable_22002(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_shapeVariable !=='undefined') failed_shapeVariable ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_shapeVariable !=='undefined') tested_shapeVariable ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
@@ -101,9 +95,9 @@ function _shapeVariable_22004(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_shapeVariable !=='undefined') failed_shapeVariable ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_shapeVariable !=='undefined') tested_shapeVariable ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
@@ -123,9 +117,9 @@ function _shapeVariable_22005(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_shapeVariable !=='undefined') failed_shapeVariable ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_shapeVariable !=='undefined') tested_shapeVariable ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
@@ -151,9 +145,9 @@ function _shapeVariable_22006(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_shapeVariable !=='undefined') failed_shapeVariable ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_shapeVariable !=='undefined') tested_shapeVariable ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
@@ -178,9 +172,9 @@ function _shapeVariable_22007(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_shapeVariable !=='undefined') failed_shapeVariable ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_shapeVariable !=='undefined') tested_shapeVariable ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
@@ -216,9 +210,16 @@ function _shapeVariable_22008(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_shapeVariable !=='undefined') failed_shapeVariable ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_shapeVariable !=='undefined') tested_shapeVariable ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
+
+if (fail_count>0) {
+  the_problem = `private-tests/_shapeVariable_22000.js - fails = ${fail_count}`;  
+  console.log(the_problem)
+  throw the_problem
+}
+TEST_total_checks += pass_count;

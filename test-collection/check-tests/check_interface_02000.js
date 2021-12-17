@@ -1,21 +1,15 @@
 /* eslint-disable */
 
-tested_check_interface = 0;
-failed_check_interface = 0;
+pass_count = 0;
+fail_count = 0;
+
+
 
 check_interface_02000();
 check_interface_02001();   // fine
 check_interface_02002();   // missing function in interface
 check_interface_02003();   // wrong type in interface
 
-
-TEST_total_fails += failed_check_interface;
-TEST_total_checks += tested_check_interface;
-
-if (TEST_show_random) {
-  console.log('_check_interface failed tests 02000', failed_check_interface)
-  console.log('_check_interface passed tests 02000', tested_check_interface)
-}
 
 /////////////////////////////////////////////////////////////
 function check_interface_02000(){
@@ -58,7 +52,7 @@ function check_interface_02000(){
   A_yourFunc({g:[]},{h:[]})          // fail 30 3 empty - {arr arr}
   A_yourFunc({i:''},{j:''})          // fail 31 4 empty - {str str}
   A_yourFunc({k:{}},{l:{}})          // fail 32 5 empty - {obj obj}
-  TEST_total_checks += expectedAndFailedTests(32, 32, 'A-Fail', '_check_interface().md');
+  pass_count += expectedAndFailedTests(32, 32, 'A-Fail', '_check_interface().md');
 
 
     
@@ -87,7 +81,7 @@ function check_interface_02000(){
   else if  (typeof TEST_total_checks === 'undefined')
     console.log('no-issues: pass', expected_tests-expected_fails, ' fail', expected_fails)
   else
-    TEST_total_checks += expected_tests
+  pass_count += expected_tests
 }
 
 function check_interface_02001(){
@@ -105,9 +99,9 @@ function check_interface_02001(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_check_interface !=='undefined') failed_check_interface ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_check_interface !=='undefined') tested_check_interface ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
@@ -116,7 +110,7 @@ function check_interface_02002(){
   var TYPE_CZECH_current_test_number = '02002';       
   var check_param = {show: (x) => x};
   var check_shape =   {noShow:'function'};          
-  var expect_error = `IE@501 - Interface, {noShow:"function"}, has extra key 'noShow' that is in not in checked object of {show:(x) => x ***}`;
+  var expect_error = `IE@501 - Interface, {noShow:"function"}, has extra key 'noShow' that is in not in checked object of {show:(x) => x ~~~function~~~}`;
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
         var actual_error = type_czech.check_interface(check_param, check_shape);
@@ -127,9 +121,9 @@ function check_interface_02002(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_check_interface !=='undefined') failed_check_interface ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_check_interface !=='undefined') tested_check_interface ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
@@ -148,9 +142,17 @@ function check_interface_02003(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_check_interface !=='undefined') failed_check_interface ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_check_interface !=='undefined') tested_check_interface ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
-TEST_total_checks += 3;
+
+
+
+if (fail_count>0) {
+  the_problem = `check-tests/check_interface_02000.js - fails = ${fail_count}`;  
+  console.log(the_problem)
+  throw the_problem
+}
+TEST_total_checks += pass_count;

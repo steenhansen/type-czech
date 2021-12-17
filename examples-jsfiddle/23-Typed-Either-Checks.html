@@ -1,134 +1,14 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>26 - Type and Empty Abbreviations</title>
+<title>23 - Typed Either Checks</title>
 
 
-<div id='js-div' style="width:50%;">
+
+
+<div id='js-div' style="width:52%">
   <a href='https://github.com/steenhansen/type-czech' class='git-hub'>GitHub Package</a>
   <div id='js-code'>the javascript</div>
-</div>
-
-<div id="the-explanation" style="width:50%">
-
-
-
-
-
-
-  
-
-
-
-
-
-    
-
-  <div class='an-explantion'>26 - Type and Empty Abbreviations</div>
-  <div id='explanation-text'>
-    <br>
-
-     Abbreviations can be used to make type and empty assertions shorter.
-
-    <div>
-      <div style="float:left; width:20%; margin-left:10px">
-        <li style="list-style: none;"><b>Type Shortcuts</b></li>
-          </div>
-    
-      <div style="float:left; width:16%">
-        <ul>
-          <li><b>b</b> - boolean</li>
-          <li><b>r</b> - regexp</li>
-    
-        </ul>
-      </div>
-     
-      <div style="float:left; width:13%">
-        <ul>
-          <li><b>d</b> - date</li>
-          <li><b>s</b> - string</li>
-        </ul>
-      </div>
-     
-      <div style="float:left; width:16%">
-        <ul>
-          <li><b>f</b> - function</li>
-          <li><b>y</b> - symbol</li>
-        </ul>
-      </div>
-
-      <div style="float:left; width:16%">
-        <ul>
-          <li><b>n</b> - number</li>
-          <li><b>i</b> - bigint</li>
-        </ul>
-      </div>
-
-      <div style="float:left; width:16%">
-        <ul>
-          <li><b>a</b> - array</li>
-          <li><b>o</b> - object</li>
-        </ul>
-      </div>
-    
-    </div>
-
-    <div>
-      <div style="float:left; width:25%">
-        <li style="list-style: none;"><b>Empty Shortcuts</b></li>
-      </div>
-    
-      <div style="float:left; width:25%">
-        <ul>
-          <li>'<b>OK</b>' <br> 'EMPTY-OK'</li>
-        </ul>
-      </div>
-     
-      <div style="float:left; width:25%">
-        <ul>
-          <li>'<b>ER</b>' <br> 'EMPTY-ERROR'</li>
-        </ul>
-      </div>
-
-      <div style="float:left; width:25%">
-        <ul>
-          <li>'<b>IG</b>' <br> 'EMPTY-IGNORE'</li>
-        </ul>
-      </div>
-    
-    </div>
 
 <br>
-    The PRE_check_Person() function first verifies that an object is the construction parameter,
-    then that object is tested for the correct keys and types, finally
-    all keys are checked for being checkParam_empty.
-    
-    <br><br>
-    After which the POST_check_Person() function first certifies that the constructor
-    returns an array result, then the two elements are established to be the 
-    correctly ordered types, lastly the last name is checked for not being empty.
-    A valueless birth date returned is allowed.
-    <br><br>
-    The errors:
-     <ul>
-      <li>Queen Boudica does not have a valid birth date for PRE check, but this is OK on POST check</li>
-      <li>Madonna has no last name which causes two error messages in both PRE and POST</li>
-    </ul>
-
-
-
-
-
-
-
-
-
- </div>
-
-
- <div id="console-log"  >
-  <div class='a-title'>Console Output</div>
-  <div id='log-text'></div>
-  <br>
-
 
 
 
@@ -136,11 +16,11 @@
   
 
 
-<!--            ------------TYPE 1------------------------------       -->
+<!--            ------------------TYPE 1------------------------       -->
 <script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/consolelog.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/TypeCzech.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/type-czech.css">
-<!--            --------------TYPE 1----------------------------       -->
+<!--            ---------------TYPE 1---------------------------       -->
 <div id='js-fiddles'>
   <a title="Example-Contents" href="https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Contents" target="_blank">Contents</a>
 
@@ -208,7 +88,7 @@
     
     <a title="25-Default-Parameters.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Default-Parameters" target="_blank">25</a>
     
-    <a title="26-Type-and-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Type-and-Empty-Abbreviations" target="_blank">26</a>
+    <a title="26-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Empty-Abbreviations" target="_blank">26</a>
     
     <a title="27-Type-and-Empty-Object-Extras.html" href="https://jsfiddle.net/steen_hansen/tdL7hwgc/?27-Typed-and-Empty-Either-Checks-with-Optionals" target="_blank">27</a>
     
@@ -240,7 +120,6 @@
   <a title="40-Prescribed-Use.html" href="https://jsfiddle.net/steen_hansen/m1atu7qj/?40-Prescribed-Use" target="_blank">40</a>
 
   <a title="41-Lens-Example.html" href="https://jsfiddle.net/steen_hansen/fxt8ag56/?41-Lens-Example" target="_blank">41</a>
-
 
   <a title="42 - Extended Objects.html" href="https://jsfiddle.net/steen_hansen/rvau7yes/?42-Extended-Objects" target="_blank">42</a>
 
@@ -307,16 +186,7 @@
     &copy; 2021 Steen Hansen
 
   </div>
-<!--            --------------TYPE 1----------------------------       -->
-
-
-
-
-
-
-
-
-
+<!--            ---------------TYPE 1---------------------------       -->
 
 
 
@@ -326,11 +196,46 @@
 
 </div>
 
+<div id="the-explanation" style="width:48%">
+  <div class='an-explantion'>23 - Typed Either Checks</div>
+  <div id='explanation-text'>
+    <br>
+
+  If a function can take parameters with multiple different type shapes then conformity 
+  can be checked with a checkParam_typeEither() call.
+
+  <br><br>
+  In the example below, the function objNumArr() is only allowed to receive a 
+  single parameter of an object, a single number, or an array. Run by pasting into console.
+<pre>
+function PRE_check_obj_num_arr(obj_num_arr){
+  allowed_types = ['object', 'number', 'array']
+  return type_czech.checkParam_typeEither(obj_num_arr, allowed_types)
+}  
+
+objNumArr = type_czech.linkUp(objNumArr, PRE_check_obj_num_arr)
+
+function objNumArr(obj_num_arr){}
+
+objNumArr({})
+objNumArr([])
+objNumArr([1, 2, 3])
+objNumArr(9876543210)
+
+objNumArr('Fails with really long error message')
+</pre>
+
+  </div>
+
+
+  <div id="console-log"  >
+    <div class='a-title'>Console Output</div>
+    <div id='log-text'></div>
+    <br>
+  </div> 
 
 
 </div>
-
-
 
 
 
@@ -360,63 +265,64 @@
 
 
 
+
 <script id="check-code">
 /**/  if (typeof TypeCzech === 'function')
 /**/    type_czech = TypeCzech('LOG-ERRORS')
 /**/  else
 /**/    type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
-/**/
-/**/  PRE_check_Person = (typeof PRE_check_Person === 'undefined') 
+/**/  
+/**/  PRE_check_Person = (typeof PRE_check_Person === 'undefined')
 /**/                     ? undefined : PRE_check_Person
-/**/  POST_check_Person = (typeof POST_check_Person==='undefined') 
+/**/
+/**/  POST_check_Person = (typeof POST_check_Person === 'undefined')
 /**/                      ? undefined : POST_check_Person
 /**/
-/**/  function PRE_check_Person(a_person){
-/**/    redundant_object_test =  type_czech.checkParam_type(a_person, 'o')
-/**/    if (redundant_object_test) return redundant_object_test
-/**/
-/**/    person_types = {f_name:'s', l_name:'s', b_date:'d'}
-/**/    type_issue = type_czech.checkParam_type(a_person, person_types)
-/**/    if (type_issue) return type_issue
-/**/
-/**/    person_empties = {f_name:'ER', l_name:'OK', b_date:'ER'}
-/**/    return type_czech.checkParam_empty(a_person, person_empties)
-/**/  }
-/**/
-/**/  function POST_check_Person(person_array){
-/**/    array_issue = type_czech.checkParam_type(person_array, 'a')
-/**/    if (array_issue) return array_issue
-/**/
-/**/    type_issue = type_czech.checkParam_type(person_array, ['s', 'd'])
-/**/    if (type_issue) return type_issue
-/**/
-/**/    return type_czech.checkParam_empty(person_array, ['ER', 'OK'])
+/**/  function PRE_check_Person(f_name, l_name, b_date){
+/**/    the_parameters = [f_name, l_name, b_date]
+/**/    PRE_check_date = [ 'string', 'string', 'date' ]
+/**/    PRE_check_year = [ 'string', 'string', 'number' ]
+/**/    PRE_signatures = [PRE_check_date, PRE_check_year]
+/**/    return type_czech.checkParam_typeEither(the_parameters, PRE_signatures)
 /**/  }
 /**/  
-/**/  Person=type_czech.linkUp(Person, PRE_check_Person, POST_check_Person)
+/**/  function POST_check_Person(result_object){
+/**/    POST_check_date = { f_name:'string', l_name:'string', b_date:'date' }
+/**/    POST_check_year = { f_name:'string', l_name:'string', b_year:'number' }
+/**/    POST_signatures = [POST_check_date, POST_check_year]
+/**/    return type_czech.checkParam_typeEither(result_object, POST_signatures)
+/**/  }
+/**/  
+/**/  Person = type_czech.linkUp(Person, PRE_check_Person, POST_check_Person)
 
-function Person(a_person){
-  let {f_name, l_name, b_date} = a_person
-  person_array = [l_name, b_date]
-  return person_array
+function Person(f_name, l_name, b_date){
+  result_object = { f_name: f_name, l_name: l_name}
+  if (typeof b_date === 'number')
+    result_object['b_year'] = b_date
+  else if (type_czech._aTypeOf(b_date) === 'date')
+    result_object['b_date'] = b_date
+  return result_object
 }
 
-al_data = {f_name:'Al', l_name:'Jones', b_date: new Date(1948,0,14)}
-al_person = Person(al_data)
-log(al_person)
 
-linesConsole(2)
+dracula = Person('Count', 'Dracula')
+log(dracula)
 
-boudica_data = {f_name:'Queen', l_name:'Boudica', b_date:new Date('')}
-boudica_person = Person(boudica_data)
-log(boudica_person)
+linesConsole(1)
 
-linesConsole(2)
+chuck = Person('Charles', 'Windsor', new Date(1948,11,14))
+log(chuck)
 
-string_data = {f_name:'Madonna', l_name:'', b_date: new Date(1912,6,23)} 
-string_person = Person(string_data)
-log(string_person)
+linesConsole(1)
+
+alan_turing = Person('Alan', 'Turing', 1912)
+log(alan_turing)
 </script>
+
+
+
+
+
 
 
 
@@ -433,29 +339,28 @@ log(string_person)
 
 <script>
   
-
   jsToDiv('js-code', "check-code");
 
-  fromToBoldText(848, 858, 'code', 1)  // b_date:'ER'}
+  fromToBoldText(569, 598, 'code', 1)  //  [ 'string', 'string', 'date' ]
+  fromToBoldText(625, 656, 'code', 1)  //  [ 'string', 'string', 'number' ]
 
-  fromToBoldText(1683, 1701, 'code', 1)  // b_date:new Date('')
-
-  fromToBoldText(283, 293, 'log', 1)    //b_date:null
-  fromToBoldText(350, 362, 'log', 1)    //b_date:"ER
+  fromToBoldText(1549, 1566, 'code', 1)  // 'Count', 'Dracula'
 
 
+  fromToBoldText(252, 270, 'log', 1)    //ACTUAL TYPES ['string','string']
+  fromToBoldText(297, 313, 'log', 1)    // ACTUAL VALUE ["Count","Dracula"]
+
+  /////////////////////////
+
+  fromToBoldText(886, 936, 'code', 2)  // { f_name:'string', l_name:'string', b_date:'date' }
+  fromToBoldText(964, 1016, 'code', 2)  // {f_name:"Count",l_name:"Dracula"}
 
 
 
-  fromToBoldText(1287, 1290, 'code', 2)   // heck_empty(arguments, ['ER',
-
-  fromToBoldText(1479, 1484, 'code', 2)  // person_array = [l_name,
-
-  fromToBoldText(1796, 1804, 'code', 2)  // l_name:''
+  fromToBoldText(1573, 1579, 'code', 2)  // log(dracula)
 
 
-  fromToBoldText(608, 609, 'log', 2)    //ACTUAL VALUE [""
-  fromToBoldText(649, 652, 'log', 2)    // EMPTY ASSERTION ["ER"
+  fromToBoldText(757, 789, 'log', 2)    //{f_name:"Count",l_name:"Dracula"}
 
 
 </script>
@@ -463,6 +368,5 @@ log(string_person)
 
 <link rel="stylesheet"
   href="https://fonts.googleapis.com/css?family=Inconsolata">
-  
 
   

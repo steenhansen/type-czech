@@ -1,5 +1,5 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>10 - Class Parameters, Results, and Methods</title>
+<title>10 Class Parameters, Results, and Methods</title>
 
 
 
@@ -20,7 +20,7 @@
 
     Classes with multiple PRE and POST checking functions must be wrapped up in 
     objects like below for everything to be linked up.
-<pre>
+<pre title='Copy and paste the green code below into the console to run' class='console-runnable'>
 function PRE_check_yourClass(init){console.log('PRE class-', init)}
 function POST_check_yourClass(result){console.log('POST class-', result)}
 function PRE_check_yourMethod(input){console.log('PRE method-', input)}
@@ -50,7 +50,7 @@ a_class.yourMethod('again')
 >> "hello again"
 </pre> 
 Note that the type_czech.linkUp() call must come after the class declaration, otherwise
-you get the below ReferenceError.
+you get the below ReferenceError, because classes do not hoist functions.
 <pre>
 can't access lexical declaration 'yourClass' before initialization
 </pre>
@@ -64,7 +64,6 @@ can't access lexical declaration 'yourClass' before initialization
     <div id='log-text'></div>
     <br>
   </div>
-
 
 
 
@@ -145,7 +144,7 @@ can't access lexical declaration 'yourClass' before initialization
     
     <a title="25-Default-Parameters.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Default-Parameters" target="_blank">25</a>
     
-    <a title="26-Type-and-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Type-and-Empty-Abbreviations" target="_blank">26</a>
+    <a title="26-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Empty-Abbreviations" target="_blank">26</a>
     
     <a title="27-Type-and-Empty-Object-Extras.html" href="https://jsfiddle.net/steen_hansen/tdL7hwgc/?27-Typed-and-Empty-Either-Checks-with-Optionals" target="_blank">27</a>
     
@@ -245,6 +244,8 @@ can't access lexical declaration 'yourClass' before initialization
 
   </div>
 <!--            -------------------TYPE 1-----------------------       -->
+
+
 
 
 

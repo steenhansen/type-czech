@@ -1,14 +1,14 @@
 
 # Node and Web Tests
 
-### [Call All Tests in Node.js](../test-collection/suite-node.js)
+### [Call All Tests in Node.js](../test-collection/test-all-node.js)
 
 
-### [Call All Tests in Browser](../test-collection/suite-web.html)
+### [Call All Tests in Browser](../test-collection/test-all-web.html)
 
-### [Node Signature Tests](../test-collection/suite-node-generative.js)
+### [Node Signature Tests](../test-collection/test-node-generative.js)
 
-### [Browser Signature Tests](../test-collection/suite-web-generative.html)
+### [Browser Signature Tests](../test-collection/test-web-generative.html)
 
 
 ### [Browser REPL](../test-collection/repl.html)

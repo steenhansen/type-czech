@@ -1,15 +1,15 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>503 - Inherited Prototypes Production</title>
+<title>503 Inherited Prototypes Production</title>
 
 
   
-<div id='js-div' style="width:51%; " class='code-scroll'>
+<div id='js-div' style="width:53%; " class='code-scroll'>
   <a href='https://github.com/steenhansen/type-czech' class='git-hub'>GitHub Package</a>
   <div id='js-code'>the javascript</div>
 </div>
 
 
-<div id="the-explanation" style="width:49%" >
+<div id="the-explanation" style="width:47%" >
   <div class='an-explantion'>503 - Inherited Prototypes Production</div>
   <div id='explanation-text'>
    
@@ -47,7 +47,6 @@
   <div id="console-log"  >
     <div class='a-title'>Console Output</div>
     <div id='log-text'></div>
-    <br>
 
 
   </div>
@@ -135,7 +134,7 @@
     
     <a title="25-Default-Parameters.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Default-Parameters" target="_blank">25</a>
     
-    <a title="26-Type-and-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Type-and-Empty-Abbreviations" target="_blank">26</a>
+    <a title="26-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Empty-Abbreviations" target="_blank">26</a>
     
     <a title="27-Type-and-Empty-Object-Extras.html" href="https://jsfiddle.net/steen_hansen/tdL7hwgc/?27-Typed-and-Empty-Either-Checks-with-Optionals" target="_blank">27</a>
     
@@ -240,6 +239,20 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </div>
 
 
@@ -256,15 +269,12 @@ function copyAndColor(){
   fromToBoldText(351, 365, 'code', 2)  // lastMethod
   fromToBoldText(572, 586, 'code', 3)  // fullMethod
   
-  fromToBoldText(327, 342, 'log', 1)    //firstMethod
-  fromToBoldText(409, 423, 'log', 2)    //lastMethod
-  fromToBoldText(516, 530, 'log', 3)    //fullMethod
+  fromToBoldText(326, 341, 'log', 1)    //firstMethod
+  fromToBoldText(408, 422, 'log', 2)    //lastMethod
+  fromToBoldText(515, 529, 'log', 3)    //fullMethod
 }
 
   log = captureConsole("log-text");
-
-
-
 </script>
 
 
@@ -298,18 +308,17 @@ function Full(salu) {
     return a_book
   }
   this.showName = function() {
-      const the_name = `${this.salu} ${this.f_name} ${this.l_name}`
-      console.log('Name: ', the_name)
+      return `${this.salu} ${this.f_name} ${this.l_name}`
     };
 }
 
 function Person(salu, f_name, l_name){
   log(LEVEL_3+`CONS-Person :${salu} ${f_name} ${l_name}`)
+  Last.prototype = new First(f_name)
+  Last.prototype.constructor = Last;
+  Full.prototype = new Last(l_name)
+  Full.prototype.constructor = Full;
   person_full = new Full(salu)
-  person_last = new Last(l_name)
-  person_first = new First(f_name)
-  Object.setPrototypeOf(person_full, person_last)
-  Object.setPrototypeOf(person_last, person_first)
   return person_full
 }
 
@@ -325,8 +334,19 @@ onLoaded = ([_loaded_files, _import_errors]) => {
   mary_shelley.lastMethod(1931)
   linesConsole(1)
   mary_shelley.fullMethod('Frankenstein')
-  linesConsole(1)
-  mary_shelley.showName()
+
+  linesConsole(2)
+
+/**/  function PRE_check_printFullFunc(a_person){
+/**/    return type_czech.checkParam_type(a_person, 'Full')
+/**/  }
+/**/  printFullFunc = type_czech.linkUp(printFullFunc, PRE_check_printFullFunc)
+
+  function printFullFunc(a_person) {
+    log('From Checked Function : ', a_person.showName())
+  }
+
+  printFullFunc(mary_shelley)
   copyAndColor()
 }
 

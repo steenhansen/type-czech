@@ -1,11 +1,11 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>19 - Lone Empty Parameter and Result</title>
+<title>19 Lone Empty Parameter and Result</title>
 
 
 
 
 
-<div id='js-div' style="width:32%">
+<div id='js-div' style="width:33%">
   <a href='https://github.com/steenhansen/type-czech' class='git-hub'>GitHub Package</a>
   <br><br>
         <div id='js-code'>the javascript</div>
@@ -81,7 +81,7 @@
     
     <a title="25-Default-Parameters.html" href="../example-snippets/25-Default-Parameters.html">25</a>
     
-    <a title="26-Type-and-Empty-Abbreviations.html" href="../example-snippets/26-Type-and-Empty-Abbreviations.html">26</a>
+    <a title="26-Empty-Abbreviations.html" href="../example-snippets/26-Empty-Abbreviations.html">26</a>
     
     <a title="27-Type-and-Empty-Object-Extras.html" href="../example-snippets/27-Type-and-Empty-Object-Extras.html">27</a>
     
@@ -163,7 +163,7 @@
 
 
 
-<div id="the-explanation" style="width:68%;">
+<div id="the-explanation" style="width:67%;">
   <div class='an-explantion'>19 - Lone Empty Parameter and Result</div>
 
   <div id='explanation-text'>
@@ -229,8 +229,8 @@
 <br>
 
 
-
-
+Generally only 'EMPTY-ER' is very useful.
+<br><br>
 
 
 
@@ -270,8 +270,7 @@
 /**/    type_czech = { linkUp: (nop) => nop, 
 /**/                   isActive: (x) => false }
 /**/
-/**/  UnDefined = 'undefined'
-/**/  if (typeof PRE_check_hasValue===UnDefined)
+/**/  if (typeof PRE_check_hasValue==='undefined')
 /**/    PRE_check_hasValue = undefined
 /**/  else
 /**/    PRE_check_hasValue = PRE_check_hasValue
@@ -326,18 +325,18 @@ hasValue([])
 
 
 
-  fromToBoldText(725, 726, 'code', 1)    //hasValue('')
+  fromToBoldText(697, 698, 'code', 1)    //hasValue('')
   fromToBoldText(212, 213, 'log', 1)    // ACTUAL VALUE ""
   fromToBoldText(240, 250, 'log', 1)    //  EMPTY ASSERTION EMPTY-ERROR
 
 
 
-  fromToBoldText(765, 766, 'code', 2)    //hasValue({})
+  fromToBoldText(737, 738, 'code', 2)    //hasValue({})
   fromToBoldText(797, 798, 'log', 2)    // ACTUAL VALUE {}
   fromToBoldText(825, 835, 'log', 2)    //EMPTY ASSERTION EMPTY-ERROR
 
 
-  fromToBoldText(796, 797, 'code', 3)  // hasValue([])
+  fromToBoldText(768, 769, 'code', 3)  // hasValue([])
   fromToBoldText(1381, 1382, 'log', 3)  // ACTUAL VALUE []
   fromToBoldText(1409, 1419, 'log', 3)  // EMPTY ASSERTION EMPTY-ERROR
 

@@ -1,15 +1,13 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>28 - Accept Null and Undefined Values</title>
+<title>28 Accept Null and Undefined Values</title>
 
 
 
   
-<div id='js-div' style="width:50%">
+<div id='js-div' style="width:44%">
   <a href='https://github.com/steenhansen/type-czech' class='git-hub'>GitHub Package</a>
   <div id='js-code'>the javascript</div>
   <br>
-
-
 
 
   
@@ -88,7 +86,7 @@
     
     <a title="25-Default-Parameters.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Default-Parameters" target="_blank">25</a>
     
-    <a title="26-Type-and-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Type-and-Empty-Abbreviations" target="_blank">26</a>
+    <a title="26-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Empty-Abbreviations" target="_blank">26</a>
     
     <a title="27-Type-and-Empty-Object-Extras.html" href="https://jsfiddle.net/steen_hansen/tdL7hwgc/?27-Typed-and-Empty-Either-Checks-with-Optionals" target="_blank">27</a>
     
@@ -193,10 +191,25 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </div>
 
 
-<div id="the-explanation" style="width:50%">
+<div id="the-explanation" style="width:56%">
   <div class='an-explantion'>28 - Accept Null and Undefined Values</div>
   <div id='explanation-text'>
     <br>
@@ -211,16 +224,41 @@
 
 
 The 'UNDEF-OK' option is only useful with type shapes, and thus these functions:
-<ul>
-  <li><b>checkParam_type</b>(actual_arguments, expected_shape)</li>
-  <li><b>checkParam_typeExtra</b>(actual_arguments, expected_shape)</li>
-  <li><b>checkParam_typeEither</b>(actual_arguments, possible_shapes)</li>
-</ul>
 
 
+
+<div style="float:left; width:45%">
+  <ul>
+    <li>checkParam_type()</li>
+    <li>checkParam_typeExtra()</li>
+
+  </ul>
+</div>
+
+<div style="float:left; width:45%;">
+  <ul>
+    <li>checkParam_typeEither()</li>
+    <li>checkArgs_typeEach()</li>
+  </ul>
+</div>
+<br><br><br><br><br>
+
+
+<pre title='Copy and paste the green code below into the console to run' class='console-runnable'>
+type_czech = TypeCzech('UNDEF-OK','LOG-ERRORS')
+
+function PRE_check_variadicStrs() {
+  return type_czech.checkArgs_typeEach(arguments, 'string')
+}
+variadicStrs=type_czech.linkUp(variadicStrs, PRE_check_variadicStrs)
+function variadicStrs () { console.log(arguments)}
+
+variadicStrs('pass', null, undefined, 'the', 'check') // pass
+</pre>  
 
 In this page's example, null and undefined do not cause any errors with checkParam_type().
-But otherwise, real values are still checked for type, such as 12 not being a string.
+But otherwise, real values are still checked for type, such as 12 not being a string
+which causes a PRE_check_Person() and POST_check_Person() error.
 <br><br>
  </div>
 
@@ -267,6 +305,7 @@ But otherwise, real values are still checked for type, such as 12 not being a st
 
 
 <script id="check-code">
+
 /**/  if (typeof TypeCzech === 'function')
 /**/    type_czech = TypeCzech('UNDEF-OK','LOG-ERRORS')
 /**/  else
@@ -291,7 +330,8 @@ But otherwise, real values are still checked for type, such as 12 not being a st
 /**/    return type_czech.checkParam_type(person_array, person_type)
 /**/  }
 /**/  
-/**/  Person=type_czech.linkUp(Person,PRE_check_Person,POST_check_Person)
+/**/  Person=type_czech.linkUp(Person,PRE_check_Person
+/**/                                 ,POST_check_Person)
 
 function Person(person_obj){
   let {f_name, l_name} = person_obj
@@ -311,13 +351,7 @@ linesConsole(1)
 alan = Person({f_name: 'Alan', l_name:'Turing'})
 log(alan)
 
-
-
-
-linesConsole(4)
-
-
-
+linesConsole(1)
 
 marvin = Person({f_name: 'Marvin', l_name:12})
 log(marvin)
@@ -337,7 +371,7 @@ log(marvin)
    jsToDiv('js-code', "check-code")
 
    fromToBoldText(602, 617, 'code', 1)  //', l_name:'string'}
-   fromToBoldText(1318, 1326, 'code', 1)  //l_name:12
+   fromToBoldText(1354, 1362, 'code', 1)  //l_name:12
 
   fromToBoldText(310, 318, 'log', 1)  //  l_name:12
   fromToBoldText(365, 381, 'log', 1)   // l_name:"string"
@@ -346,8 +380,8 @@ log(marvin)
 
   fromToBoldText(815, 834, 'code', 2)  //['string', 'string']
 
-fromToBoldText(650, 651, 'log', 2)  //  12
-fromToBoldText(689, 696, 'log', 2)   // ,"string"
+fromToBoldText(669, 670, 'log', 2)  //  12
+fromToBoldText(708, 715, 'log', 2)   // ,"string"
 
 
 

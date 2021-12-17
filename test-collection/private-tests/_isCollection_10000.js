@@ -2,18 +2,11 @@
 
 
 
-tested_is_collection = 0;
-failed_is_collection = 0;
+pass_count = 0;
+fail_count = 0;
+
 
 _isCollection_10000();
-
-TEST_total_fails += failed_is_collection;
-TEST_total_checks += tested_is_collection;
-
-if (TEST_show_random) {
-  console.log('_isCollection failed tests 10000', failed_is_collection)
-  console.log('_isCollection passed tests 10000', tested_is_collection)
-}
 
 
 //////////////////////////////////////////
@@ -31,9 +24,9 @@ function _isCollection_10000(){
     actual_json = type_czech._isCollection(an_arg)
     if (actual_json !== expected_json) {
       console.log('_isCollection error : ', TYPE_CZECH_current_test_number, actual_json, an_arg, expected_json);
-      failed_is_collection += 1
+      fail_count += 1
     }
-    tested_is_collection += 1
+    pass_count += 1
   }
     
   test_isCollection([1], true)                    // pass 1 A array
@@ -69,3 +62,10 @@ function _isCollection_10000(){
   test_isCollection({k:{}}, true)                 // pass 31 5 empty - {obj obj}
 
 }
+if (fail_count>0) {
+  the_problem = `private-tests/_isCollection_10000.js - fails = ${fail_count}`;  
+  console.log(the_problem)
+  throw the_problem
+}
+TEST_total_checks += pass_count;
+

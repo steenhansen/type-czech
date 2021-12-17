@@ -8,10 +8,18 @@
 /* eslint-disable array-bracket-spacing */
 /* eslint-disable max-len */
 
+pass_count = 0;
+fail_count = 0;
+
+
+
+
+
+
 function test_pre_checkParam_typeEither_single(single_parameter, signature_of_parameter, error_id, expected_error) {
   const type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
 
-  tested_checkParam_typeEither_07900 += 1;
+  pass_count += 1;
 
   function PRE_test_07900(a_var) {
     return type_czech.checkParam_typeEither(a_var, signature_of_parameter);
@@ -27,20 +35,20 @@ function test_pre_checkParam_typeEither_single(single_parameter, signature_of_pa
       // expected route with no error message
     } catch (e) {
       // failing path
-      failed_checkParam_typeEither_07900 += 1;
+      fail_count += 1;
       console.log('FAIL, should be no error but got ', e, error_id);
     }
   } else {
     try {
       pre_checkParam_typeEither_07900(single_parameter);
       // failing path, should have been an exception
-      failed_checkParam_typeEither_07900 += 1;
+      fail_count += 1;
       consoleExpectedActual(expected_error, 'MISSING-EXCEPTION', error_id);
     } catch (e) {
       const error_not_match_exception = errorNotMatchException(expected_error, e);
       if (error_not_match_exception) {
         // failing path, the error was wrong
-        failed_checkParam_typeEither_07900 += 1;
+        fail_count += 1;
         consoleExpectedActual(expected_error, e, error_id);
       } else {
         // expected route with an error message
@@ -50,8 +58,7 @@ function test_pre_checkParam_typeEither_single(single_parameter, signature_of_pa
   afterCheck(single_parameter, signature_of_parameter, before_var_value, error_id);
 }
 
-tested_checkParam_typeEither_07900 = 0;
-failed_checkParam_typeEither_07900 = 0;
+
 
 // /////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -87,7 +94,7 @@ test_pre_checkParam_typeEither_single(single_variable, single_signature, 7904, e
 
 single_variable  = 'a-string';
 single_signature = 'string';
-error_mess = `PRE_test_07900() PRE-FUNC: ME@402 - checkParam_typeEither() called with a 2nd parameter as a non-array shape of string
+error_mess = `PRE_test_07900() PRE-FUNC: ME@402 - checkParam_typeEither() called with a 2nd parameter as a non - array shape of string
 CHECKER checkParam_typeEither()
 ACTUAL TYPE 'string'
  VALUES "a-string"
@@ -126,12 +133,12 @@ error_mess = '';
 test_pre_checkParam_typeEither_single(single_variable, single_signature, 7910, error_mess);
 
 single_variable  = [1, 2, 3, 4];
-single_signature = [ ['number-array'], ['string'] ];
+single_signature = [ ['numbers'], ['string'] ];
 error_mess = '';
 test_pre_checkParam_typeEither_single(single_variable, single_signature, 7911, error_mess);
 
 single_variable  = ['a', 'b', 'c'];
-single_signature = [ ['number'], ['string-array'] ];
+single_signature = [ ['number'], ['strings'] ];
 error_mess = '';
 test_pre_checkParam_typeEither_single(single_variable, single_signature, 7912, error_mess);
 
@@ -145,5 +152,10 @@ EXPECTED TYPE [12,false]
  ORIGIN pre_checkParam_typeEither_07900(a_var)`;
 test_pre_checkParam_typeEither_single(single_variable, single_signature, 7913, error_mess);
 
-TEST_total_checks += 13;
 
+if (fail_count>0) {
+  the_problem = `check-tests/checkParam_typeEither_07900.js - fails = ${fail_count}`;  
+  console.log(the_problem)
+  throw the_problem
+}
+TEST_total_checks += pass_count;

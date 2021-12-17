@@ -4,6 +4,9 @@
 
 //  file:///C:/Users/16043/Desktop/_js/proxy/type-czech/examples-web/101-Extending-Classes-Inline.html
 
+pass_count = 0;
+fail_count = 0;
+
 try{
   type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   current_version = 0;
@@ -161,12 +164,18 @@ try{
   full_3.firstMethod()
   full_3.lastMethod()
   full_3.fullMethod()
+  pass_count +=1;
 
 }catch(e){ 
   console.log('class_check_51000 - FAIL', e)
-  TEST_total_fails += 1;
+  fail_count += 1;
 }
 
 
-TEST_total_checks += 1;
+if (fail_count>0) {
+  the_problem = `public-tests/class_check_52000.js - fails = ${fail_count}`;  
+  console.log(the_problem)
+  throw the_problem
+}
+TEST_total_checks += pass_count;
 

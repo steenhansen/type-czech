@@ -1,22 +1,16 @@
 /* eslint-disable */
 
 
+pass_count = 0;
+fail_count = 0;
 
-tested_shapePropertyType = 0;
-failed_shapePropertyType = 0;
+
 
 _shapePropertyType_20001();
 _shapePropertyType_20002();
 _shapePropertyType_20003();
 _shapePropertyType_20004();
 
-TEST_total_fails += failed_shapePropertyType;
-TEST_total_checks += tested_shapePropertyType;
-
-if (TEST_show_random) {
-  console.log('_shapePropertyType failed tests 20000', failed_shapePropertyType);
-  console.log('_shapePropertyType passed tests 20000', tested_shapePropertyType);
-}
 
 //////////////////////////////////////////
 
@@ -37,9 +31,9 @@ function _shapePropertyType_20001(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_shapePropertyType !=='undefined') failed_shapePropertyType ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_shapePropertyType !=='undefined') tested_shapePropertyType ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
@@ -60,9 +54,9 @@ function _shapePropertyType_20002(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_shapePropertyType !=='undefined') failed_shapePropertyType ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_shapePropertyType !=='undefined') tested_shapePropertyType ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
@@ -84,9 +78,9 @@ function _shapePropertyType_20003(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_shapePropertyType !=='undefined') failed_shapePropertyType ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_shapePropertyType !=='undefined') tested_shapePropertyType ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
@@ -107,7 +101,14 @@ function _shapePropertyType_20004(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_shapePropertyType !=='undefined') failed_shapePropertyType ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_shapePropertyType !=='undefined') tested_shapePropertyType ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
+
+if (fail_count>0) {
+  the_problem = `private-tests/_shapePropertyType_20000.js - fails = ${fail_count}`;  
+  console.log(the_problem)
+  throw the_problem
+}
+TEST_total_checks += pass_count;

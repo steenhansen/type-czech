@@ -1,20 +1,16 @@
 /* eslint-disable */
 
 
-tested_mutatedVariables = 0;
-failed_mutatedVariables = 0;
+pass_count = 0;
+fail_count = 0;
+
 
  _mutatedVariables_14001();
   _mutatedVariables_14002();        // we need to test 2n !!!!!!!!!
    _mutatedVariables_14003();
   _mutatedVariables_14004();
 
- TEST_total_fails += failed_mutatedVariables;
- TEST_total_checks += tested_mutatedVariables;
- if (TEST_show_random) {
-  console.log('_mutatedVariables failed tests 14000', failed_mutatedVariables)
-  console.log('_mutatedVariables passed tests 14000', tested_mutatedVariables)
-}
+
 
 ///////////////////////////////////////////////////////////////////
 
@@ -33,9 +29,9 @@ function _mutatedVariables_14001(){
         if (actual_error !== expect_error) {
           console.log(TYPE_CZECH_current_test_number, 'actual=', actual_error);
           console.log(                          '    expected=', expect_error);
-          if (typeof failed_mutatedVariables !=='undefined') failed_mutatedVariables ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_mutatedVariables !=='undefined') tested_mutatedVariables ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
@@ -59,9 +55,9 @@ function _mutatedVariables_14002(){
         if (actual_error !== expect_error) {
           console.log(TYPE_CZECH_current_test_number, 'actual=', actual_error);
           console.log(                          '    expected=', expect_error);
-          if (typeof failed_mutatedVariables !=='undefined') failed_mutatedVariables ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_mutatedVariables !=='undefined') tested_mutatedVariables ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
@@ -81,9 +77,9 @@ function _mutatedVariables_14003(){
         if (actual_error !== expect_error) {
           console.log(TYPE_CZECH_current_test_number, 'actual=', actual_error);
           console.log(                          '    expected=', expect_error);
-          if (typeof failed_mutatedVariables !=='undefined') failed_mutatedVariables ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_mutatedVariables !=='undefined') tested_mutatedVariables ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
@@ -128,13 +124,20 @@ function _mutatedVariables_14004(){
   if (actual_error !== expect_error) {
     console.log(TYPE_CZECH_current_test_number, 'actual=', actual_error);
     console.log(                          '    expected=', expect_error);
-    if (typeof failed_mutatedVariables !=='undefined') failed_mutatedVariables ++;
+    if (typeof fail_count !=='undefined') fail_count ++;
   }
-  if (typeof tested_mutatedVariables !=='undefined') tested_mutatedVariables ++;
+  if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
 
+
+if (fail_count>0) {
+  the_problem = `private-tests/_mutatedVariables_14000.js - fails = ${fail_count}`;  
+  console.log(the_problem)
+  throw the_problem
+}
+TEST_total_checks += pass_count;
 
 
 

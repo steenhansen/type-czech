@@ -1,5 +1,5 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>04 - Turn off TypeCzech by Not Loading Checking Functions</title>
+<title>04 Turn off TypeCzech by Not Loading Checking Functions</title>
 
 
 <div id='js-div' style="width:47%">
@@ -25,10 +25,10 @@ PRE_check_Person = (typeof PRE_check_Person==='undefined')
 
 Furthermore, the TypeCzech library can also be turned off by not choosing
  'LOG-ERRORS' or 'THROW-EXCEPTIONS' in the constructor, and instead having
- no arguments, as below.
+ no arguments, or 'NO-CHECKING', as below.
 <pre>
 type_czech = TypeCzech()
-
+  OR
 type_czech = TypeCzech('NO-CHECKING')
 </pre>
 
@@ -39,6 +39,7 @@ and the PRE  checking function will be ignored.
 // Person = type_czech.linkUp(Person, PRE_check_Person) )
 </pre>
 
+TypeCzech is loaded and parsed in this page, but does no checking.
 <br><br>
 
   </div>
@@ -50,6 +51,7 @@ and the PRE  checking function will be ignored.
   </div>
 
   <br><br>
+
 
 
 
@@ -129,7 +131,7 @@ and the PRE  checking function will be ignored.
     
     <a title="25-Default-Parameters.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Default-Parameters" target="_blank">25</a>
     
-    <a title="26-Type-and-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Type-and-Empty-Abbreviations" target="_blank">26</a>
+    <a title="26-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Empty-Abbreviations" target="_blank">26</a>
     
     <a title="27-Type-and-Empty-Object-Extras.html" href="https://jsfiddle.net/steen_hansen/tdL7hwgc/?27-Typed-and-Empty-Either-Checks-with-Optionals" target="_blank">27</a>
     
@@ -242,6 +244,10 @@ and the PRE  checking function will be ignored.
 
 
 
+
+
+
+
 </div>
 
 
@@ -333,3 +339,5 @@ linesConsole(2)
 <link rel="stylesheet"
   href="https://fonts.googleapis.com/css?family=Inconsolata">
 
+
+  

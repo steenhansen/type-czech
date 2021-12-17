@@ -17,18 +17,20 @@ $js_always_second = <<<'EOD'
     else
       type_czech = { linkUp: (nop) => nop, isActive: (x) => false };
     
-    function PRE_check_aLottery (){
-      LOTTERY_SIGNATURE = ['string', ['number'], 'date'];
-      type_issue = type_czech.checkParam_type(arguments, LOTTERY_SIGNATURE);
-      if (type_issue)
-        return type_issue;
+      LOTTERY_SIGNATURE = ['string', ['numbers'], 'date'];
+
+      function PRE_check_aLottery (lottery_name, lucky_numbers, draw_date){
+        the_parameters = [lottery_name, lucky_numbers, draw_date]
+        type_issue = type_czech.checkParam_type(the_parameters, LOTTERY_SIGNATURE);
+        if (type_issue) 
+          return type_issue;
     
-      empty_err=type_czech.checkArgs_emptyVariadic(arguments,['EMPTY-ERROR']);
-      if (empty_err)
-        return empty_err;
+        empty_err=type_czech.checkArgs_emptyEach(arguments,'EMPTY-ERROR');
+        if (empty_err)
+          return empty_err;
   
-      return '';
-    }
+        return '';
+      }
   
     aLottery = type_czech.linkUp(aLottery, PRE_check_aLottery);
 

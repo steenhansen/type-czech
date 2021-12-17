@@ -16,14 +16,14 @@ if (typeof exports === 'undefined') {
   const END_ELEMENT = /XYZ"/g;
   const ABC_XYZ_TO_N = /"abc\d+XYZ"/g;
 
-  const ARRAY_OF_2_NUMBERS = /\["n","n"\]/g;
-  const ARRAY_OF_3_NUMBERS = /\["n","n","n"\]/g;
-  const ARRAY_OF_4_NUMBERS = /\["n","n","n","n"\]/g;
-  const ARRAY_OF_5_NUMBERS = /\["n","n","n","n","n"\]/g;
-  const ARRAY_OF_6_NUMBERS = /\["n","n","n","n","n","n"\]/g;
-  const ARRAY_OF_7_NUMBERS = /\["n","n","n","n","n","n","n"\]/g;
+  const ARRAY_OF_2_NUMBERS = /\["number","number"\]/g;
+  const ARRAY_OF_3_NUMBERS = /\["number","number","number"\]/g;
+  const ARRAY_OF_4_NUMBERS = /\["number","number","number","number"\]/g;
+  const ARRAY_OF_5_NUMBERS = /\["number","number","number","number","number"\]/g;
+  const ARRAY_OF_6_NUMBERS = /\["number","number","number","number","number","number"\]/g;
+  const ARRAY_OF_7_NUMBERS = /\["number","number","number","number","number","number","number"\]/g;
 
-  // changeNumberToString('*** :1}  [2]  :3,  ,4,  ,5], [6, ***', 3);
+  // changeNumberToString('~~~function~~~ :1}  [2]  :3,  ,4,  ,5], [6, ~~~function~~~', 3);
   function changeNumberToString(tree_str, a_value) {
     let changed_tree;
     const colon_bracket = new RegExp(`:${a_value}}`);
@@ -57,19 +57,19 @@ if (typeof exports === 'undefined') {
   }
 
   function noMergetreeType(tree_str) {
-    const array_numbers = tree_str.replace(ABC_XYZ_TO_N, '"n"');
+    const array_numbers = tree_str.replace(ABC_XYZ_TO_N, '"number"');
     const the_type = JSON.parse(array_numbers);
     return the_type;
   }
 
   function mergeTreeType(tree_str) {
-    const array_numbers = tree_str.replace(ABC_XYZ_TO_N, '"n"');
-    const single_7_arrs = array_numbers.replace(ARRAY_OF_7_NUMBERS, '["n"]');
-    const single_6_arrs = single_7_arrs.replace(ARRAY_OF_6_NUMBERS, '["n"]');
-    const single_5_arrs = single_6_arrs.replace(ARRAY_OF_5_NUMBERS, '["n"]');
-    const single_4_arrs = single_5_arrs.replace(ARRAY_OF_4_NUMBERS, '["n"]');
-    const single_3_arrs = single_4_arrs.replace(ARRAY_OF_3_NUMBERS, '["n"]');
-    const single_2_arrs = single_3_arrs.replace(ARRAY_OF_2_NUMBERS, '["n"]');
+    const array_numbers = tree_str.replace(ABC_XYZ_TO_N, '"number"');
+    const single_7_arrs = array_numbers.replace(ARRAY_OF_7_NUMBERS, '["numbers"]');
+    const single_6_arrs = single_7_arrs.replace(ARRAY_OF_6_NUMBERS, '["numbers"]');
+    const single_5_arrs = single_6_arrs.replace(ARRAY_OF_5_NUMBERS, '["numbers"]');
+    const single_4_arrs = single_5_arrs.replace(ARRAY_OF_4_NUMBERS, '["numbers"]');
+    const single_3_arrs = single_4_arrs.replace(ARRAY_OF_3_NUMBERS, '["numbers"]');
+    const single_2_arrs = single_3_arrs.replace(ARRAY_OF_2_NUMBERS, '["numbers"]');
     const the_type = JSON.parse(single_2_arrs);
     return the_type;
   }
@@ -131,8 +131,8 @@ if (typeof exports === 'undefined') {
       const rand_index = getRandomInt(num_values);
       const rand_value = the_values[rand_index];
       const long_number = `"abc${rand_value}XYZ"`;
-      const tree_str_one_s = tree_str.replace(long_number, '"s"');
-      const tree_types = tree_str_one_s.replace(ABC_XYZ_TO_N, '"n"');
+      const tree_str_one_s = tree_str.replace(long_number, '"string"');
+      const tree_types = tree_str_one_s.replace(ABC_XYZ_TO_N, '"number"');
       const the_type = JSON.parse(tree_types);
       return the_type;
     }
@@ -146,9 +146,10 @@ if (typeof exports === 'undefined') {
       const rand_key = the_keys[rand_index];
       const fail_str = changeKeytoX(tree_str, rand_key);
 
-      const fail_str_22 = fail_str.replace(ABC_XYZ_TO_N, '"n"');
+      const fail_str_22 = fail_str.replace(ABC_XYZ_TO_N, '"number"');
 
       const the_arguments = JSON.parse(fail_str_22);
+
       const errored_args = [the_arguments];
       return errored_args;
     }

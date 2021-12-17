@@ -1,5 +1,5 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>24 - Empty Either Checks</title>
+<title>24 Empty Either Checks</title>
 
 
 
@@ -8,6 +8,11 @@
   <div id='js-code'>the javascript</div>
 
   <br>
+
+
+
+
+
 
 
 <!--            ------------TYPE 1------------------------------       -->
@@ -74,7 +79,7 @@
     
     <a title="25-Default-Parameters.html" href="../example-snippets/25-Default-Parameters.html">25</a>
     
-    <a title="26-Type-and-Empty-Abbreviations.html" href="../example-snippets/26-Type-and-Empty-Abbreviations.html">26</a>
+    <a title="26-Empty-Abbreviations.html" href="../example-snippets/26-Empty-Abbreviations.html">26</a>
     
     <a title="27-Type-and-Empty-Object-Extras.html" href="../example-snippets/27-Type-and-Empty-Object-Extras.html">27</a>
     
@@ -149,6 +154,9 @@
 
 
 
+
+
+
 </div>
 
 <div id="the-explanation" style="width:47%">
@@ -178,8 +186,8 @@ function firstMidLast(first, middle, last){
 firstMidLast('pass_a', 'middle-a', 'last-a') // pass first_middle_last
 firstMidLast('pass_b', '', '')               // pass first_only
 
-firstMidLast('', 'fail_c', '')
-firstMidLast('', 'fail_d', 'last-d')
+firstMidLast('', 'fail_c', '')       // fail
+firstMidLast('', 'fail_d', 'last-d') // fail
 </pre>
     
     
@@ -302,7 +310,7 @@ log(alan_turing)
   fromToBoldText(921, 969, 'code', 2)  // {f_name:'EMPTY-ERROR',l_name:'ER',   b_date:   'ER' }
   fromToBoldText(995, 1043, 'code', 2)  // {f_name:'EMPTY-ERROR',l_name:'ER',   b_year:   'ER' }
   fromToBoldText(1583, 1590, 'code', 2)  // log(jim)
-  fromToBoldText(661, 684, 'log', 2)  //  {f_name:"Jim",l_name:""}
+  fromToBoldText(589, 610, 'log', 2)  //  {f_name:"Jim",l_name:""}
 
 
 

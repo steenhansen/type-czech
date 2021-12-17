@@ -1,5 +1,5 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>39 - Check Asserts</title>
+<title>39 Check Asserts</title>
 
 
   
@@ -79,7 +79,7 @@
     
     <a title="25-Default-Parameters.html" href="../example-snippets/25-Default-Parameters.html">25</a>
     
-    <a title="26-Type-and-Empty-Abbreviations.html" href="../example-snippets/26-Type-and-Empty-Abbreviations.html">26</a>
+    <a title="26-Empty-Abbreviations.html" href="../example-snippets/26-Empty-Abbreviations.html">26</a>
     
     <a title="27-Type-and-Empty-Object-Extras.html" href="../example-snippets/27-Type-and-Empty-Object-Extras.html">27</a>
     
@@ -172,7 +172,7 @@
     <br>
 
     When working with promise based functions we don't have full control of the lifecycle.
-    So we can instead use an assert instead to check variables.
+    So we can instead use an assert construct instead to check variables.
 
     <br><br>
     
@@ -181,7 +181,7 @@
 <pre title='Copy and paste the green code below into the console to run' class='console-runnable'>
 if (type_czech.isActive()) {
   check_error= "check-error"
-  error_loc = "error-location-TEST-ZXC-47"
+  error_loc = "error-location-TEST-F-104"
   var_value = "variable-value"
   expected_mess = "expected-message"
   type_czech.check_assert(check_error, error_loc, var_value, expected_mess)
@@ -209,7 +209,7 @@ immediately without doing any work.
                 <li>checkParam_type()</li>
                 <li>checkParam_typeEither()</li>
                 <li>checkParam_typeExtra()</li>
-                <li>checkArgs_typeVariadic()</li>
+                <li>checkArgs_typeEach()</li>
               </ul>
             </div>
           
@@ -218,7 +218,7 @@ immediately without doing any work.
                 <li>checkParam_empty()</li>
                 <li>checkParam_emptyEither()</li>
                 <li>checkParam_emptyExtra()</li>
-                <li>checkArgs_emptyVariadic()</li>
+                <li>checkArgs_emptyEach()</li>
               </ul>
             </div>
           
@@ -308,7 +308,7 @@ fetch('https://api.github.com/users/steenhansen')
     fetch('https://api.github.com/users/steenhansen')
     .then(response => response.json())
     .then(github_data => {
-      if (type_czech.isActive()) {    // object not array is correct type
+      if (type_czech.isActive()) {           // array type causes error
         log('|||')
         type_err = type_czech.checkParam_type(github_data, 'array')
         type_czech.check_assert(type_err, 'FETCH ERROR', github_data)
@@ -339,8 +339,8 @@ fetch('https://api.github.com/users/steenhansen')
 
 // ///////////////////////
 
-fromToBoldText(1332, 1347, 'code', 4)  // object
-fromToBoldText(1556, 1608, 'code', 3)  // // The GitHub API is rate limited so it may stop working
+fromToBoldText(1339, 1361, 'code', 4)  // array type causes error
+fromToBoldText(1554, 1606, 'code', 3)  // // The GitHub API is rate limited so it may stop working
 
 
 

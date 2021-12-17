@@ -1,19 +1,13 @@
 /* eslint-disable */
 
+pass_count = 0;
+fail_count = 0;
 
-
-tested_cycle_loops = 0;
-failed_cycle_loops = 0;
 
 _cycle_loops_08001();
 
 
-TEST_total_fails += failed_cycle_loops;
-TEST_total_checks += tested_cycle_loops;
-if (TEST_show_random) {
-  console.log('_aTypeOf failed tests 08000', failed_cycle_loops)
-  console.log('_aTypeOf passed tests 08000', tested_cycle_loops)
-}
+
 
 function _cycle_loops_08001(){
   type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
@@ -52,11 +46,19 @@ function _cycle_loops_08001(){
     type_czech._cycle_loops.decycle({g:[]})                 // pass 30 3 empty - {arr arr}
     type_czech._cycle_loops.decycle({i:''})                 // pass 31 4 empty - {str str}
     type_czech._cycle_loops.decycle({k:{}})                 // pass 32 5 empty - {obj obj}
-    tested_cycle_loops ++;
+    pass_count ++;
   } catch (e) {
     console.log(e)
     console.log('_cycle_loops_08001 failed with decycle()')
-    failed_cycle_loops ++;
+    fail_count ++;
   }
 
 }
+
+
+if (fail_count>0) {
+  the_problem = `private-tests/_cycle_loops_08000.js - fails = ${fail_count}`;  
+  console.log(the_problem)
+  throw the_problem
+}
+TEST_total_checks += pass_count;

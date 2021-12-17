@@ -1,5 +1,5 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title id='title-id'>30 - HTML Element Type Checks</title>
+<title id='title-id'>30 HTML Element Type Checks</title>
 
 
 
@@ -124,6 +124,11 @@ in green text.
 
 
 
+
+  
+
+
+
   
 
 <!--            -------------TYPE 1-----------------------------       -->
@@ -190,7 +195,7 @@ in green text.
     
     <a title="25-Default-Parameters.html" href="../example-snippets/25-Default-Parameters.html">25</a>
     
-    <a title="26-Type-and-Empty-Abbreviations.html" href="../example-snippets/26-Type-and-Empty-Abbreviations.html">26</a>
+    <a title="26-Empty-Abbreviations.html" href="../example-snippets/26-Empty-Abbreviations.html">26</a>
     
     <a title="27-Type-and-Empty-Object-Extras.html" href="../example-snippets/27-Type-and-Empty-Object-Extras.html">27</a>
     
@@ -346,8 +351,8 @@ function changeToSubmit(html_id){
   html_element.disabled = false
 }
 
-changeToSubmit('submit-button')
-changeToSubmit('a-table')
+changeToSubmit('submit-button') // passes in first row in upper right table
+changeToSubmit('a-table')       // fails in second row in upper right table
 
 
 
@@ -378,10 +383,10 @@ function alterImgHref(image_href_id, source_addr) {
     html_element.src = source_addr
 }
 
-alterImgHref('a-link', 'http://www.xe.com')
-alterImgHref('an-image', AFTER_PLACEHOLDER_COM_IMAGE)
-alterImgHref('a-div', 'http://www.abc.com')
-alterImgHref('a-picture', '#local-anchor-error')
+alterImgHref('a-link', 'http://www.xe.com')            // passes first row
+alterImgHref('an-image', AFTER_PLACEHOLDER_COM_IMAGE)  // passes second row
+alterImgHref('a-div', 'http://www.abc.com')            // fails third row
+alterImgHref('a-picture', '#local-anchor-error')       // fails fourth row
 </script>
 
 
@@ -403,7 +408,7 @@ alterImgHref('a-picture', '#local-anchor-error')
   jsToDiv('js-code', "check-code");
 
   fromToBoldText(317, 337, 'code', 1)  //not HTMLButtonElement
-  fromToBoldText(758, 764, 'code', 1)  //('a-table
+  fromToBoldText(801, 809, 'code', 1)  //('a-table
 
   fromToBoldText(39, 47, 'log', 1)  // 'a-table'
   fromToBoldText(69, 89, 'log', 1)  // not HTMLButtonElement
@@ -411,8 +416,8 @@ alterImgHref('a-picture', '#local-anchor-error')
 
   /////////////////////////////////////////////////
 
-  fromToBoldText(924, 963, 'code', 2)  //['HTMLAnchorElement','HTMLImageElement']
-  fromToBoldText(1914, 1918, 'code', 2)  //('a-div',
+  fromToBoldText(1018, 1057, 'code', 2)  //['HTMLAnchorElement','HTMLImageElement']
+  fromToBoldText(2060, 2066, 'code', 2)  //('a-div',
 
 
   fromToBoldText(539, 543, 'log', 2)  // ["a-div"
@@ -421,7 +426,7 @@ alterImgHref('a-picture', '#local-anchor-error')
 
   /////////////////////////////////////////////////
 
-  fromToBoldText(1971, 1989, 'code', 3)  //#local-anchor-error
+  fromToBoldText(2148, 2166, 'code', 3)  //#local-anchor-error
 
 
   fromToBoldText(934, 952, 'log', 3)  // #local-anchor-error

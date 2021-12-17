@@ -1,5 +1,5 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>37 - Readme Example Arrow Functions</title>
+<title>37 Readme Example Arrow Functions</title>
 
 
   
@@ -86,7 +86,7 @@
     
     <a title="25-Default-Parameters.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Default-Parameters" target="_blank">25</a>
     
-    <a title="26-Type-and-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Type-and-Empty-Abbreviations" target="_blank">26</a>
+    <a title="26-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Empty-Abbreviations" target="_blank">26</a>
     
     <a title="27-Type-and-Empty-Object-Extras.html" href="https://jsfiddle.net/steen_hansen/tdL7hwgc/?27-Typed-and-Empty-Either-Checks-with-Optionals" target="_blank">27</a>
     
@@ -191,7 +191,6 @@
 
 
 
-
 </div>
 
 
@@ -211,7 +210,7 @@ aLottery = type_czech.linkUp(aLottery, PRE_check_aLottery)
 </pre>
 Otherwise a function not defined error will occur.
     <br><br>
-Note that checkArgs_emptyVariadic() and checkArgs_typeVariadic cannot be used with arrow
+Note that checkArgs_emptyEach() and checkArgs_typeEach() cannot be used with arrow
 functions as there is no arguments object.
 
 <br><br>
@@ -253,14 +252,15 @@ aLottery = (lottery_name, lucky_numbers, draw_date) => {
 /**/  type_czech = TypeCzech('LOG-ERRORS')
 /**/  //type_czech = TypeCzech('NO-CHECKING')
 /**/
-/**/  LOTTERY_SIGNATURE = ['string', ['number'], 'date']
+/**/  LOTTERY_SIGNATURE = ['string', ['numbers'], 'date']
+/**/  LOTTERY_EMPTIES = ['EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR']
 /**/
 /**/  PRE_check_aLottery = (lottery_name, lucky_numbers, draw_date) =>{
 /**/    the_parameters = [lottery_name, lucky_numbers, draw_date]
 /**/    issue=type_czech.checkParam_type(the_parameters,LOTTERY_SIGNATURE)
 /**/    if (issue) return issue
 /**/
-/**/    error=type_czech.checkParam_empty(the_parameters,['EMPTY-ERROR'])
+/**/    error=type_czech.checkParam_empty(the_parameters,LOTTERY_EMPTIES)
 /**/    return error
 /**/  }
 /**/
@@ -306,25 +306,25 @@ aLottery('Oz Lotto', ['fourty-two'], new Date('jun 14 1999'))
    jsToDiv('js-code', "check-code");
 
 
-  fromToBoldText(1000, 1001, 'code', 1)  // 'Powerball', []
+  fromToBoldText(1071, 1072, 'code', 1)  // 'Powerball', []
 
-  fromToBoldText(278, 279, 'log', 1)    // 'Powerball', []
-  fromToBoldText(318, 332, 'log', 1)    // ,['EMPTY-ERROR']
+  fromToBoldText(228, 229, 'log', 1)    // 'Powerball', []
+  fromToBoldText(278, 288, 'log', 1)    // ,['EMPTY-ERROR']
 
 
 ///////////////////////
 
-  fromToBoldText(1039, 1040, 'code', 3)  // '', [1,2
+  fromToBoldText(1110, 1111, 'code', 3)  // '', [1,2
 
-  fromToBoldText(671, 672, 'log', 3)    //""
-  fromToBoldText(726, 740, 'log', 3)    //['EMPTY-ERROR']
+  fromToBoldText(596, 597, 'log', 3)    //""
+  fromToBoldText(652, 664, 'log', 3)    //['EMPTY-ERROR']
 ////////////
 
 
-  fromToBoldText(1201, 1212, 'code', 2)  // ['fourty-two']
+  fromToBoldText(1271, 1284, 'code', 2)  // ['fourty-two']
 
-  fromToBoldText(1920, 1931, 'log', 2)    //['fourty-two']
-  fromToBoldText(1981, 1990, 'log', 2)    //["number"]
+  fromToBoldText(1901, 1914, 'log', 2)    //['fourty-two']
+  fromToBoldText(1963, 1973, 'log', 2)    //["number"]
 
 
 </script>
@@ -333,3 +333,5 @@ aLottery('Oz Lotto', ['fourty-two'], new Date('jun 14 1999'))
 <link rel="stylesheet"
   href="https://fonts.googleapis.com/css?family=Inconsolata">
 
+
+  

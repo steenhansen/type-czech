@@ -1,59 +1,16 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>14 - Array and Object Types with Parameter and Results</title>
+<title>14 Array and Object Types with Parameter and Results</title>
 
 
 <div id='js-div' style="width:45%">
   <a href='https://github.com/steenhansen/type-czech' class='git-hub'>GitHub Package</a>
   <div id='js-code'>the javascript</div>
-</div>
 
- 
-
-<div id="the-explanation" style="width:55%">
-  <div class='an-explantion'>14 - Array and Object Types with Parameter and Results</div>
-  <div id='explanation-text'>
-    <br>
-
-    Typeless arrays can be checked for without giving any dimensionality,
-    if [ ]s are used then an array must define at least one type.
-
-    <ul>
-      <li>Valid Type:  'array'</li>
-      
-      <li>Not Valid Type : '[ ]'</li>
-      <li>Valid Type : [ 'string' ]</li>
-    </ul>
-
-    And, 'object' can also be a type without specifying any properties.
-    But if { }s are used then an object must define at least one key and value.
-    
+  
 
 
-<ul>
-  <li>Valid Type : 'object'</li>
-  <li>Not Valid Type : '{ }'</li>
-  <li>Valid Type : { a_key: 'string' }</li>
-</ul>
 
 
-Alan Turing is used to show the error messages that occur when an object is checkParam_type()ed against the 
-'array' type in the PRE_check_Person() checking function. 
-
-
-The reverse, testing an array against the 'object' type gives a lengthy error message from 
-the POST_check_Person() function.
-
-<br><br>
-</div>
-
-
-<div id="console-log"  >
-  <div class='a-title'>Console Output</div>
-  <div id='log-text'></div>
-  <br>
-</div>
-
-<br><br>
 
 
 
@@ -134,7 +91,7 @@ the POST_check_Person() function.
     
     <a title="25-Default-Parameters.html" href="../example-snippets/25-Default-Parameters.html">25</a>
     
-    <a title="26-Type-and-Empty-Abbreviations.html" href="../example-snippets/26-Type-and-Empty-Abbreviations.html">26</a>
+    <a title="26-Empty-Abbreviations.html" href="../example-snippets/26-Empty-Abbreviations.html">26</a>
     
     <a title="27-Type-and-Empty-Object-Extras.html" href="../example-snippets/27-Type-and-Empty-Object-Extras.html">27</a>
     
@@ -213,6 +170,90 @@ the POST_check_Person() function.
 
 
 
+
+
+
+
+
+
+</div>
+
+ 
+
+<div id="the-explanation" style="width:55%">
+  <div class='an-explantion'>14 - Array and Object Types with Parameter and Results</div>
+  <div id='explanation-text'>
+    <br>
+
+    Typeless arrays can be checked for without giving any dimensionality,
+    if [ ]s are used then an array must define at least one type.
+
+    <ul>
+      <li>Valid Type:  'array' - an array of anything</li>
+      <li>Valid Type : [ 'string' ] - an array containing one string element</li>
+      <li>Valid Type : [ 'strings' ] - an array of 1 or more strings</li>
+      <li>Not Valid Type : '[ ]'</li>
+    </ul>
+
+    And, 'object' can also be a type without specifying any properties.
+    But if { }s are used then an object must define at least one key and value.
+    
+
+
+<ul>
+  <li>Valid Type : 'object' - a single object</li>
+  <li>Valid Type : { a_key: 'string' } - a single object with a_key property</li>
+  <li>Valid Type : ['objects'] - an array of objects</li>
+  <li>Not Valid Type : '{ }'</li>
+</ul>
+
+<pre title='Copy and paste the green code below into the console to run' class='console-runnable'>
+airplanes = [{manu:'Lockheed', name:'Starfighter'}, {manu:'Avro', name:'Vulcan'}]
+type_czech.checkParam_type(airplanes, ['objects']) // pass
+
+movie_array = ["Red Rock West", "Breakfast at Tiffany's", "Blue Velvet"]
+type_czech.checkParam_type(movie_array, ['objects']) // fail
+</pre>
+
+Alan Turing is used to show the error messages that occur when an object is checkParam_type()ed against the 
+'array' type in the PRE_check_Person() checking function. 
+
+The reverse, testing an array against the 'object' type is then shown in the POST_check_Person() function.
+
+<br><br>
+</div>
+
+
+<div id="console-log"  >
+  <div class='a-title'>Console Output</div>
+  <div id='log-text'></div>
+  <br>
+</div>
+
+<br><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </div>
 
 
@@ -280,17 +321,12 @@ chuck_array = ['Charles', new Date(1948,11,14), true, 17]
 chuck_object = Person(chuck_array)
 log(chuck_object)
 
-linesConsole(2)
-
-
-
+linesConsole(1)
 
 alan_object = {f_name:'Alan', l_name:'Turing'}
 alan_turing = Person(alan_object)
-linesConsole(2)
+linesConsole(1)
 log(alan_turing)
-
-
 
 </script>
 
@@ -316,7 +352,7 @@ log(alan_turing)
 
 
 
-  fromToBoldText(1339, 1370, 'code', 1)  //  {f_name:'Alan', l_name:'Turing'}
+  fromToBoldText(1336, 1367, 'code', 1)  //  {f_name:'Alan', l_name:'Turing'}
 
   fromToBoldText(258, 288, 'log', 1)    //{f_name:'Alan', l_name:'Turing'}
   fromToBoldText(315, 319, 'log', 1)    //Array

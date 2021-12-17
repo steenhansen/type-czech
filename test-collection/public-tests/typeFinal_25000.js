@@ -1,20 +1,12 @@
 /* eslint-disable */
 
-tested_typeFinal = 0;
-failed_typeFinal = 0;
+pass_count = 0;
+fail_count = 0;
 
 _typeFinal_25000()
 _typeFinal_25001();
 _typeFinal_25002();
 _typeFinal_25003();
-
-TEST_total_fails += failed_typeFinal;
-TEST_total_checks += tested_typeFinal;
-
-if (TEST_show_random) {
-  console.log('_typeFinal failed tests 25000', failed_typeFinal)
-  console.log('_typeFinal passed tests 25000', tested_typeFinal)
-}
 
 
 
@@ -32,9 +24,9 @@ function _typeFinal_25000(){
     actual_typeFinal = type_czech_test.typeFinal(an_arg)
     if (actual_typeFinal !== expected_typeFinal) {
       console.log('typeIsA error : ', TYPE_CZECH_current_test_number, actual_typeFinal, an_arg, expected_typeFinal);
-      failed_typeFinal += 1
+      fail_count += 1
     }
-    tested_typeFinal += 1
+    pass_count += 1
   }
   test_typeFinal([1], 'array')                   // pass 1 A array
   test_typeFinal(234n, 'bigint')                 // pass 2 B bigint
@@ -74,10 +66,10 @@ function _typeFinal_25001() {
   TYPE_CZECH_current_test_number = '25001';
   actual_type = type_czech_test.typeFinal(new Date('1999-12-31'));
   if (actual_type !== 'date') {
-    failed_typeFinal += 1;
+    fail_count += 1;
     console.log(`${TYPE_CZECH_current_test_number} type_czech.typeFinal(new Date('1999-12-31')`);
   }
-  tested_typeFinal += 1;
+  pass_count += 1;
 }
 
 function _typeFinal_25002() {
@@ -87,11 +79,11 @@ function _typeFinal_25002() {
 
     actual_type = type_czech_test.typeFinal(document.createElement('div'));
     if (actual_type !== 'HTMLDivElement') {
-      failed_typeFinal += 1;
+      fail_count += 1;
       console.log(`${TYPE_CZECH_current_test_number} type_czech.typeFinal(document.createElement('div'))`);
     }
   }
-  tested_typeFinal += 1;
+  pass_count += 1;
 }
 
 
@@ -105,9 +97,20 @@ function _typeFinal_25003() {
 
     actual_type = type_czech_test.typeFinal(new Last());
     if (actual_type !== "Last") {
-      failed_typeFinal += 1;
+      fail_count += 1;
       console.log(`${TYPE_CZECH_current_test_number} type_czech.typeFinal(document.createElement('div'))`);
     }
   }
-  tested_typeFinal += 1;
+  pass_count += 1;
 }
+
+
+
+
+if (fail_count>0) {
+  the_problem = `public-tests/typeFinal_25000.js - fails = ${fail_count}`;  
+  console.log(the_problem)
+  throw the_problem
+}
+TEST_total_checks += pass_count;
+

@@ -1,5 +1,5 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>26 - Type and Empty Abbreviations</title>
+<title>26 Type and Empty Abbreviations</title>
 
 
 <div id='js-div' style="width:50%;">
@@ -22,54 +22,12 @@
 
     
 
-  <div class='an-explantion'>26 - Type and Empty Abbreviations</div>
+  <div class='an-explantion'>26 - Empty Abbreviations</div>
   <div id='explanation-text'>
     <br>
 
-     Abbreviations can be used to make type and empty assertions shorter.
+     Abbreviations can be used to make empty assertions shorter.
 
-    <div>
-      <div style="float:left; width:20%; margin-left:10px">
-        <li style="list-style: none;"><b>Type Shortcuts</b></li>
-          </div>
-    
-      <div style="float:left; width:16%">
-        <ul>
-          <li><b>b</b> - boolean</li>
-          <li><b>r</b> - regexp</li>
-    
-        </ul>
-      </div>
-     
-      <div style="float:left; width:13%">
-        <ul>
-          <li><b>d</b> - date</li>
-          <li><b>s</b> - string</li>
-        </ul>
-      </div>
-     
-      <div style="float:left; width:16%">
-        <ul>
-          <li><b>f</b> - function</li>
-          <li><b>y</b> - symbol</li>
-        </ul>
-      </div>
-
-      <div style="float:left; width:16%">
-        <ul>
-          <li><b>n</b> - number</li>
-          <li><b>i</b> - bigint</li>
-        </ul>
-      </div>
-
-      <div style="float:left; width:16%">
-        <ul>
-          <li><b>a</b> - array</li>
-          <li><b>o</b> - object</li>
-        </ul>
-      </div>
-    
-    </div>
 
     <div>
       <div style="float:left; width:25%">
@@ -97,20 +55,20 @@
     </div>
 
 <br>
-    The PRE_check_Person() function first verifies that an object is the construction parameter,
-    then that object is tested for the correct keys and types, finally
-    all keys are checked for being checkParam_empty.
+    The PRE_check_Person() function ensures that f_name and b_date object fields 
+    must not be empty; a string and date. The key l_name can be blank without problem
+    as its empty designation is 'OK'.
     
+   
     <br><br>
-    After which the POST_check_Person() function first certifies that the constructor
-    returns an array result, then the two elements are established to be the 
-    correctly ordered types, lastly the last name is checked for not being empty.
-    A valueless birth date returned is allowed.
+    After which the POST_check_Person() function certifies that the Person result 
+    array has a non-blank string as the first element, followed by a non-checked value.
+    A valueless birth date is allowed.
     <br><br>
     The errors:
      <ul>
       <li>Queen Boudica does not have a valid birth date for PRE check, but this is OK on POST check</li>
-      <li>Madonna has no last name which causes two error messages in both PRE and POST</li>
+      <li>Madonna has no last name which causes an error in POST_check_Person()</li>
     </ul>
 
 
@@ -131,6 +89,17 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+  
   
 
 <!--            ------------TYPE 1------------------------------       -->
@@ -197,7 +166,7 @@
     
     <a title="25-Default-Parameters.html" href="../example-snippets/25-Default-Parameters.html">25</a>
     
-    <a title="26-Type-and-Empty-Abbreviations.html" href="../example-snippets/26-Type-and-Empty-Abbreviations.html">26</a>
+    <a title="26-Empty-Abbreviations.html" href="../example-snippets/26-Empty-Abbreviations.html">26</a>
     
     <a title="27-Type-and-Empty-Object-Extras.html" href="../example-snippets/27-Type-and-Empty-Object-Extras.html">27</a>
     
@@ -330,28 +299,16 @@
 /**/
 /**/  PRE_check_Person = (typeof PRE_check_Person === 'undefined') 
 /**/                     ? undefined : PRE_check_Person
+/**/
 /**/  POST_check_Person = (typeof POST_check_Person==='undefined') 
 /**/                      ? undefined : POST_check_Person
 /**/
 /**/  function PRE_check_Person(a_person){
-/**/    redundant_object_test =  type_czech.checkParam_type(a_person, 'o')
-/**/    if (redundant_object_test) return redundant_object_test
-/**/
-/**/    person_types = {f_name:'s', l_name:'s', b_date:'d'}
-/**/    type_issue = type_czech.checkParam_type(a_person, person_types)
-/**/    if (type_issue) return type_issue
-/**/
 /**/    person_empties = {f_name:'ER', l_name:'OK', b_date:'ER'}
 /**/    return type_czech.checkParam_empty(a_person, person_empties)
 /**/  }
 /**/
 /**/  function POST_check_Person(person_array){
-/**/    array_issue = type_czech.checkParam_type(person_array, 'a')
-/**/    if (array_issue) return array_issue
-/**/
-/**/    type_issue = type_czech.checkParam_type(person_array, ['s', 'd'])
-/**/    if (type_issue) return type_issue
-/**/
 /**/    return type_czech.checkParam_empty(person_array, ['ER', 'OK'])
 /**/  }
 /**/  
@@ -398,9 +355,9 @@ log(string_person)
 
   jsToDiv('js-code', "check-code");
 
-  fromToBoldText(848, 858, 'code', 1)  // b_date:'ER'}
+  fromToBoldText(530, 540, 'code', 1)  // b_date:'ER'}
 
-  fromToBoldText(1683, 1701, 'code', 1)  // b_date:new Date('')
+  fromToBoldText(1127, 1145, 'code', 1)  // b_date:new Date('')
 
   fromToBoldText(283, 293, 'log', 1)    //b_date:null
   fromToBoldText(350, 362, 'log', 1)    //b_date:"ER
@@ -409,11 +366,11 @@ log(string_person)
 
 
 
-  fromToBoldText(1287, 1290, 'code', 2)   // heck_empty(arguments, ['ER',
+  fromToBoldText(731, 734, 'code', 2)   // heck_empty(arguments, ['ER',
 
-  fromToBoldText(1479, 1484, 'code', 2)  // person_array = [l_name,
+  fromToBoldText(923, 928, 'code', 2)  // person_array = [l_name,
 
-  fromToBoldText(1796, 1804, 'code', 2)  // l_name:''
+  fromToBoldText(1240, 1248, 'code', 2)  // l_name:''
 
 
   fromToBoldText(608, 609, 'log', 2)    //ACTUAL VALUE [""

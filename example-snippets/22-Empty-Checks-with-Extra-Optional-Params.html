@@ -1,5 +1,5 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>22 - Empty Checks with Extra Optional Parameters</title>
+<title>22 Empty Checks with Extra Optional Parameters</title>
 
 
 
@@ -83,7 +83,7 @@
     
     <a title="25-Default-Parameters.html" href="../example-snippets/25-Default-Parameters.html">25</a>
     
-    <a title="26-Type-and-Empty-Abbreviations.html" href="../example-snippets/26-Type-and-Empty-Abbreviations.html">26</a>
+    <a title="26-Empty-Abbreviations.html" href="../example-snippets/26-Empty-Abbreviations.html">26</a>
     
     <a title="27-Type-and-Empty-Object-Extras.html" href="../example-snippets/27-Type-and-Empty-Object-Extras.html">27</a>
     
@@ -191,10 +191,10 @@ PRE_check_func0 = (an_object) => {
   return type_czech.checkParam_emptyExtra(an_object, {a:'EMPTY-ERROR'})
 }
 func0 = type_czech.linkUp(func0, PRE_check_func0)
-func0({a:11})        //pass
-func0({a:'pass'})    
-func0({b:''})        //fail - empty
-func0({b:'bad-key'}) //fail - not 'a' key
+func0({a:11, extra:'string'}) //pass
+func0({a:'pass'}, 'ok-also')  // pass
+func0({a:''})                 //fail - empty
+func0({b:'bad-key'})          //fail - not 'a' key
 </pre>
 
 And checkParam_emptyExtra(an_array, <b>'EMPTY-ERROR'</b>) refers to <b>one</b>
@@ -205,8 +205,10 @@ PRE_check_func1 = (an_array) => {
   return type_czech.checkParam_emptyExtra(an_array, 'EMPTY-ERROR')
 }
 func1 = type_czech.linkUp(func1, PRE_check_func1)
-func1([1, '', '', '', 'pass'])
-func1(['', 'fail', 'fail', 'fail'])
+func1([1, '', '', '', 'pass'])      // pass
+func1(1, '')                        // pass
+func1(['', 'fail', 'fail', 'fail']) // fail
+func1('', 'fail')                   // fail
 </pre>
 
 Whereas checkParam_emptyExtra(an_array, <b>['EMPTY-ERROR', 'EMPTY-ERROR']</b>) refers to <b>two</b>
@@ -218,9 +220,9 @@ PRE_check_func2 = (an_array) => {
   return type_czech.checkParam_emptyExtra(an_array, the_signature)
 }
 func2 = type_czech.linkUp(func2, PRE_check_func2)
-func2([7, true, '', '', '', 'pass'])
-func2([{}, '', 'fail', 'fail', 'fail'])
-func2(['fail-one-element'])
+func2([7, true, '', '', '', 'pass'])    // pass
+func2([{}, '', 'fail', 'fail', 'fail']) // fail
+func2(['fail-one-element'])             // fail
 </pre>
 </div>
 

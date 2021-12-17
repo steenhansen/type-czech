@@ -1,9 +1,9 @@
 /* eslint-disable */
 
 
+pass_count = 0;
+fail_count = 0;
 
-tested_checkParam_typeExtra = 0;
-failed_checkParam_typeExtra = 0;
 
 
 //checkParam_typeExtra_06000()
@@ -56,13 +56,6 @@ checkParam_typeExtra_06036();
 
 checkParam_typeExtra_06000()
 
-TEST_total_fails += failed_checkParam_typeExtra;
-TEST_total_checks += tested_checkParam_typeExtra;
-
-if (TEST_show_random) {
-console.log('checkParam_typeExtra failed tests 06000', failed_checkParam_typeExtra)
-console.log('checkParam_typeExtra passed tests 06000', tested_checkParam_typeExtra)
-}
 
 
 ///////////////////////////////////////////////////////////
@@ -81,7 +74,7 @@ function checkParam_typeExtra_06000(){
   A_yourFunc(14,15,16)    // pass 5 U multi args
   A_yourFunc([20])        // pass 6 W two singles
   A_yourFunc([22,23,24])  // pass 7 X two multis
-  TEST_total_checks += expectedAndFailedTests(7, 0, 'A-Pass', '_checkParam_typeExtra().md');
+  pass_count += expectedAndFailedTests(7, 0, 'A-Pass', '_checkParam_typeExtra().md');
 
   A_yourFunc(234n)                    // fail 1 B bigint
   A_yourFunc(false)                   // fail 2 C boolean
@@ -108,7 +101,7 @@ function checkParam_typeExtra_06000(){
   A_yourFunc({g:[]})                  // fail 23 3 empty - {arr arr}
   A_yourFunc({i:''})                  // fail 24 4 empty - {str str}
   A_yourFunc({k:{}})                  // fail 25 5 empty - {obj obj}
-  TEST_total_checks += expectedAndFailedTests(25, 25, 'A-Pass', '_checkParam_typeExtra().md');
+  pass_count += expectedAndFailedTests(25, 25, 'A-Pass', '_checkParam_typeExtra().md');
 
 
 
@@ -122,7 +115,7 @@ function checkParam_typeExtra_06000(){
       B_yourFunc(17)
       B_yourFunc(17, 'extra')
       B_yourFunc(17, 'extra', false)
-      TEST_total_checks += expectedAndFailedTests(3, 0, 'B-Pass', '_checkParam_typeExtra().md');
+      pass_count += expectedAndFailedTests(3, 0, 'B-Pass', '_checkParam_typeExtra().md');
 
                           
 
@@ -140,9 +133,9 @@ function checkParam_typeExtra_06000(){
                       function C_yourFunc(){ } 
       C_yourFunc({a:17})
       C_yourFunc({a:17, b:13})
-      TEST_total_checks += expectedAndFailedTests(2, 0, 'C-Pass', '_checkParam_typeExtra().md');
+      pass_count += expectedAndFailedTests(2, 0, 'C-Pass', '_checkParam_typeExtra().md');
       C_yourFunc({jj:17, b:13}) //fail
-      TEST_total_checks += expectedAndFailedTests(1, 1, 'C-Fail', '_checkParam_typeExtra().md');
+      pass_count += expectedAndFailedTests(1, 1, 'C-Fail', '_checkParam_typeExtra().md');
   
   
   /*
@@ -157,10 +150,10 @@ function checkParam_typeExtra_06000(){
                       function D_yourFunc(){ } 
       D_yourFunc(17, 'abc')
       D_yourFunc(17, 'abc', true)
-      TEST_total_checks += expectedAndFailedTests(2, 0, 'D-Pass', '_checkParam_typeExtra().md');
+      pass_count += expectedAndFailedTests(2, 0, 'D-Pass', '_checkParam_typeExtra().md');
 
       D_yourFunc('abc', 17) //fail
-      TEST_total_checks += expectedAndFailedTests(1, 1, 'D-Pass', '_checkParam_typeExtra().md');
+      pass_count += expectedAndFailedTests(1, 1, 'D-Pass', '_checkParam_typeExtra().md');
 
 
 }
@@ -183,9 +176,9 @@ function checkParam_typeExtra_06001(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_checkParam_typeExtra !=='undefined') failed_checkParam_typeExtra ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_checkParam_typeExtra !=='undefined') tested_checkParam_typeExtra ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
@@ -204,9 +197,9 @@ function checkParam_typeExtra_06002(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_checkParam_typeExtra !=='undefined') failed_checkParam_typeExtra ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_checkParam_typeExtra !=='undefined') tested_checkParam_typeExtra ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
@@ -226,9 +219,9 @@ function checkParam_typeExtra_06003(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_checkParam_typeExtra !=='undefined') failed_checkParam_typeExtra ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_checkParam_typeExtra !=='undefined') tested_checkParam_typeExtra ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
@@ -247,9 +240,9 @@ function checkParam_typeExtra_06004(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_checkParam_typeExtra !=='undefined') failed_checkParam_typeExtra ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_checkParam_typeExtra !=='undefined') tested_checkParam_typeExtra ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
@@ -270,9 +263,9 @@ function checkParam_typeExtra_06005(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_checkParam_typeExtra !=='undefined') failed_checkParam_typeExtra ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_checkParam_typeExtra !=='undefined') tested_checkParam_typeExtra ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
@@ -292,9 +285,9 @@ function checkParam_typeExtra_06006(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_checkParam_typeExtra !=='undefined') failed_checkParam_typeExtra ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_checkParam_typeExtra !=='undefined') tested_checkParam_typeExtra ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
@@ -302,7 +295,7 @@ function checkParam_typeExtra_06006(){
 function checkParam_typeExtra_06007(){
   var TYPE_CZECH_current_test_number = '06007';
   var check_param =[123, 'abc', [456, "def"]];
-  var check_shape = ["number", "string", ["number-array"]];
+  var check_shape = ["number", "string", ["numbers"]];
   var expect_error = `TE@214 -  ELEMENT '1' is assumed to be a 'number', but is mistakenly a 'string' with a value of def`;
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
@@ -314,9 +307,9 @@ function checkParam_typeExtra_06007(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_checkParam_typeExtra !=='undefined') failed_checkParam_typeExtra ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_checkParam_typeExtra !=='undefined') tested_checkParam_typeExtra ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
@@ -335,9 +328,9 @@ function checkParam_typeExtra_06008(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_checkParam_typeExtra !=='undefined') failed_checkParam_typeExtra ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_checkParam_typeExtra !=='undefined') tested_checkParam_typeExtra ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
@@ -357,9 +350,9 @@ function checkParam_typeExtra_06009(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_checkParam_typeExtra !=='undefined') failed_checkParam_typeExtra ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_checkParam_typeExtra !=='undefined') tested_checkParam_typeExtra ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
@@ -380,9 +373,9 @@ function checkParam_typeExtra_06010(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_checkParam_typeExtra !=='undefined') failed_checkParam_typeExtra ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_checkParam_typeExtra !=='undefined') tested_checkParam_typeExtra ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
@@ -406,9 +399,9 @@ function checkParam_typeExtra_06011(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_checkParam_typeExtra !=='undefined') failed_checkParam_typeExtra ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_checkParam_typeExtra !=='undefined') tested_checkParam_typeExtra ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
@@ -429,15 +422,15 @@ function checkParam_typeExtra_06012(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_checkParam_typeExtra !=='undefined') failed_checkParam_typeExtra ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_checkParam_typeExtra !=='undefined') tested_checkParam_typeExtra ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 function checkParam_typeExtra_06012b(){
   var TYPE_CZECH_current_test_number = '06012b';
   var check_param = [[11, 13, 17, 19], "abc", 'extra-string'];
-  var check_shape = [["number-array"], "string"]  ;
+  var check_shape = [["numbers"], "string"]  ;
   var expect_error = ``;
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
@@ -449,9 +442,9 @@ function checkParam_typeExtra_06012b(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_checkParam_typeExtra !=='undefined') failed_checkParam_typeExtra ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_checkParam_typeExtra !=='undefined') tested_checkParam_typeExtra ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
@@ -472,9 +465,9 @@ function checkParam_typeExtra_06013(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_checkParam_typeExtra !=='undefined') failed_checkParam_typeExtra ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_checkParam_typeExtra !=='undefined') tested_checkParam_typeExtra ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
@@ -512,9 +505,9 @@ function checkParam_typeExtra_06014(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_checkParam_typeExtra !=='undefined') failed_checkParam_typeExtra ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_checkParam_typeExtra !=='undefined') tested_checkParam_typeExtra ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
@@ -537,9 +530,9 @@ function checkParam_typeExtra_06015(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_checkParam_typeExtra !=='undefined') failed_checkParam_typeExtra ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_checkParam_typeExtra !=='undefined') tested_checkParam_typeExtra ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 //type_czech.checkParam_typeExtra([[2],[3]], '[]');
@@ -561,9 +554,9 @@ function checkParam_typeExtra_06016(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_checkParam_typeExtra !=='undefined') failed_checkParam_typeExtra ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_checkParam_typeExtra !=='undefined') tested_checkParam_typeExtra ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
@@ -586,9 +579,9 @@ function checkParam_typeExtra_06017(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_checkParam_typeExtra !=='undefined') failed_checkParam_typeExtra ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_checkParam_typeExtra !=='undefined') tested_checkParam_typeExtra ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 //type_czech.checkParam_typeExtra([[1,2],[3,4]], 'array');
@@ -610,9 +603,9 @@ function checkParam_typeExtra_06018(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_checkParam_typeExtra !=='undefined') failed_checkParam_typeExtra ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_checkParam_typeExtra !=='undefined') tested_checkParam_typeExtra ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 //type_czech.checkParam_typeExtra([[1,2],[3,4]], '[]');
@@ -634,9 +627,9 @@ function checkParam_typeExtra_06019(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_checkParam_typeExtra !=='undefined') failed_checkParam_typeExtra ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_checkParam_typeExtra !=='undefined') tested_checkParam_typeExtra ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
@@ -657,9 +650,9 @@ function checkParam_typeExtra_06020(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_checkParam_typeExtra !=='undefined') failed_checkParam_typeExtra ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_checkParam_typeExtra !=='undefined') tested_checkParam_typeExtra ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 function checkParam_typeExtra_06021(){
@@ -677,9 +670,9 @@ function checkParam_typeExtra_06021(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_checkParam_typeExtra !=='undefined') failed_checkParam_typeExtra ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_checkParam_typeExtra !=='undefined') tested_checkParam_typeExtra ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
@@ -702,9 +695,9 @@ function checkParam_typeExtra_06022(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_checkParam_typeExtra !=='undefined') failed_checkParam_typeExtra ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_checkParam_typeExtra !=='undefined') tested_checkParam_typeExtra ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
@@ -723,9 +716,9 @@ function checkParam_typeExtra_06023(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_checkParam_typeExtra !=='undefined') failed_checkParam_typeExtra ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_checkParam_typeExtra !=='undefined') tested_checkParam_typeExtra ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
@@ -748,9 +741,9 @@ function checkParam_typeExtra_06024(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_checkParam_typeExtra !=='undefined') failed_checkParam_typeExtra ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_checkParam_typeExtra !=='undefined') tested_checkParam_typeExtra ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
@@ -765,7 +758,7 @@ function checkParam_typeExtra_06025(){
   {"cyl":2,"stroke":4}, 
    [2000, "red"],
   {"percent":75,"max":500} ];
-  var check_shape = [  ["s"],  {cyl:"n", stroke:"n"},  ["n", "s"],  {percent:"n", max:"n"} ]; 
+  var check_shape = [  ["string"],  {cyl:"number", stroke:"number"},  ["number", "string"],  {percent:"number", max:"number"} ]; 
   var expect_error = '';
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
@@ -777,9 +770,9 @@ function checkParam_typeExtra_06025(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_checkParam_typeExtra !=='undefined') failed_checkParam_typeExtra ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_checkParam_typeExtra !=='undefined') tested_checkParam_typeExtra ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
@@ -795,7 +788,7 @@ function checkParam_typeExtra_06026(){
   {"cyl":2,"stroke":4}, 
     [2000, "red"],
    {"percent":75,"max":500}, 'bike'];
-  var check_shape = [  ["s"],  {cyl:"n", stroke:"n"},  ["n", "s"],  {percent:"n", max:"n"}, "s" ];
+  var check_shape = [  ["string"],  {cyl:"number", stroke:"number"},  ["number", "string"],  {percent:"number", max:"number"}, "string" ];
   var expect_error = '';
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
@@ -807,9 +800,9 @@ function checkParam_typeExtra_06026(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_checkParam_typeExtra !=='undefined') failed_checkParam_typeExtra ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_checkParam_typeExtra !=='undefined') tested_checkParam_typeExtra ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
@@ -834,7 +827,7 @@ function checkParam_typeExtra_06026(){
 function checkParam_typeExtra_06027(){
   var TYPE_CZECH_current_test_number = '06027';
   var check_param = [ {x: 5},  {y: 1} ];
-  var check_shape = [ {x:"n"}, {y:"n"} ];
+  var check_shape = [ {x:"number"}, {y:"number"} ];
   var expect_error = '';
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
@@ -846,9 +839,9 @@ function checkParam_typeExtra_06027(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_checkParam_typeExtra !=='undefined') failed_checkParam_typeExtra ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_checkParam_typeExtra !=='undefined') tested_checkParam_typeExtra ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
@@ -859,7 +852,7 @@ function checkParam_typeExtra_06027(){
 function checkParam_typeExtra_06028(){
   var TYPE_CZECH_current_test_number = '06028';
   var check_param = [{"manu":"Harley-Davidson","model":"Electra-Glide"},{"cyl":2,"stroke":4},{"year":2000,"color":"red"},{"percent":75,"max":500},"bike"];
-  var check_shape = [  {manu:"s", model:"s"},  {cyl:"n", stroke:"n"},  {year:"n", color:"s"},  {percent:"n", max:"n"}, "s"];
+  var check_shape = [  {manu:"string", model:"string"},  {cyl:"number", stroke:"number"},  {year:"number", color:"string"},  {percent:"number", max:"number"}, "string"];
   var expect_error = '';
         var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(check_param, check_shape);
@@ -871,9 +864,9 @@ function checkParam_typeExtra_06028(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_checkParam_typeExtra !=='undefined') failed_checkParam_typeExtra ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_checkParam_typeExtra !=='undefined') tested_checkParam_typeExtra ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
@@ -904,9 +897,9 @@ function checkParam_typeExtra_06029(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_checkParam_typeExtra !=='undefined') failed_checkParam_typeExtra ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_checkParam_typeExtra !=='undefined') tested_checkParam_typeExtra ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
@@ -936,9 +929,9 @@ function checkParam_typeExtra_06030_undef_ok(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_checkParam_typeExtra !=='undefined') failed_checkParam_typeExtra ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_checkParam_typeExtra !=='undefined') tested_checkParam_typeExtra ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
@@ -960,9 +953,9 @@ function checkParam_typeExtra_06031_undef_ok(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_checkParam_typeExtra !=='undefined') failed_checkParam_typeExtra ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_checkParam_typeExtra !=='undefined') tested_checkParam_typeExtra ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
@@ -989,9 +982,9 @@ function checkParam_typeExtra_06032(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_checkParam_typeExtra !=='undefined') failed_checkParam_typeExtra ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_checkParam_typeExtra !=='undefined') tested_checkParam_typeExtra ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
@@ -1016,9 +1009,9 @@ function checkParam_typeExtra_06033(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_checkParam_typeExtra !=='undefined') failed_checkParam_typeExtra ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_checkParam_typeExtra !=='undefined') tested_checkParam_typeExtra ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
@@ -1046,9 +1039,9 @@ function checkParam_typeExtra_06034(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_checkParam_typeExtra !=='undefined') failed_checkParam_typeExtra ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_checkParam_typeExtra !=='undefined') tested_checkParam_typeExtra ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 function checkParam_typeExtra_06035(){
@@ -1066,9 +1059,9 @@ function checkParam_typeExtra_06035(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_checkParam_typeExtra !=='undefined') failed_checkParam_typeExtra ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_checkParam_typeExtra !=='undefined') tested_checkParam_typeExtra ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 //type_czech.checkParam_typeExtra([{r:11,e:"for extra"}], '{r:"number"}');
@@ -1089,7 +1082,16 @@ function checkParam_typeExtra_06036(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_checkParam_typeExtra !=='undefined') failed_checkParam_typeExtra ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_checkParam_typeExtra !=='undefined') tested_checkParam_typeExtra ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
+
+
+
+if (fail_count>0) {
+  the_problem = `check-tests/checkParam_typeExtra_06000.js - fails = ${fail_count}`;  
+  console.log(the_problem)
+  throw the_problem
+}
+TEST_total_checks += pass_count;

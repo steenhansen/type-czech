@@ -1,8 +1,8 @@
 /* eslint-disable */
 
-tested_arr_arr_complex_58000 = 0;
+pass_count = 0;
+fail_count = 0;
 
-failed_arr_arr_complex_58000 = 0;
 
 arr_arr_complex_58101();
 arr_arr_complex_58102();
@@ -17,13 +17,6 @@ arr_arr_complex_58110();
 
 arr_arr_complex_58111();
 
-TEST_total_fails += failed_arr_arr_complex_58000;
-TEST_total_checks += tested_arr_arr_complex_58000;
-
-if (TEST_show_random) {
-console.log('arr_arr_complex_58000 failed tests 05000', failed_arr_arr_complex_58000);
-console.log('arr_arr_complex_58000 passed tests 05000', tested_arr_arr_complex_58000);
-}
 
 //////////////////////////////////////////////////////////
 
@@ -31,7 +24,7 @@ function PRE_check_complexArray(num_array_1, mixed_array_2, str_arr_num_arr_3){
   var type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
 
   start_parameters = [num_array_1, mixed_array_2, str_arr_num_arr_3]
-  start_signatures = [ ['number-array'], 'array', 'array-array']
+  start_signatures = [ ['numbers'], 'array', 'arrays']
   start_issue = type_czech.checkParam_type(start_parameters, start_signatures)
   if (start_issue) return `START_ISSUE : ${start_issue}`
 
@@ -43,7 +36,7 @@ function PRE_check_complexArray(num_array_1, mixed_array_2, str_arr_num_arr_3){
   mixed_array_2_issue = type_czech.checkParam_type(mixed_array_2, signature_2)
   if (mixed_array_2_issue) return `MIXED_ARRAY_2_ISSUE  : ${mixed_array_2_issue}`
 
-  signature_3 = [['string-array'], ['number-array']]
+  signature_3 = [['strings'], ['numbers']]
   str_arr_num_arr_3_issue = type_czech.checkParam_type(str_arr_num_arr_3, signature_3)
   if (str_arr_num_arr_3_issue) return `STR_ARR_NUM_ARR_3_ISSUE : ${str_arr_num_arr_3_issue}`
 
@@ -69,9 +62,9 @@ function arr_arr_complex_58101(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_arr_arr_complex_58000 !=='undefined') failed_arr_arr_complex_58000 ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_arr_arr_complex_58000 !=='undefined') tested_arr_arr_complex_58000 ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
@@ -93,9 +86,9 @@ function arr_arr_complex_58102(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_arr_arr_complex_58000 !=='undefined') failed_arr_arr_complex_58000 ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_arr_arr_complex_58000 !=='undefined') tested_arr_arr_complex_58000 ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 function arr_arr_complex_58103(){
@@ -116,9 +109,9 @@ function arr_arr_complex_58103(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_arr_arr_complex_58000 !=='undefined') failed_arr_arr_complex_58000 ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_arr_arr_complex_58000 !=='undefined') tested_arr_arr_complex_58000 ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 function arr_arr_complex_58104(){
@@ -139,9 +132,9 @@ function arr_arr_complex_58104(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_arr_arr_complex_58000 !=='undefined') failed_arr_arr_complex_58000 ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_arr_arr_complex_58000 !=='undefined') tested_arr_arr_complex_58000 ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
@@ -164,9 +157,9 @@ function arr_arr_complex_58105(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_arr_arr_complex_58000 !=='undefined') failed_arr_arr_complex_58000 ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_arr_arr_complex_58000 !=='undefined') tested_arr_arr_complex_58000 ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 function arr_arr_complex_58106(){
@@ -187,9 +180,9 @@ function arr_arr_complex_58106(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_arr_arr_complex_58000 !=='undefined') failed_arr_arr_complex_58000 ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_arr_arr_complex_58000 !=='undefined') tested_arr_arr_complex_58000 ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
@@ -211,9 +204,9 @@ function arr_arr_complex_58107(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_arr_arr_complex_58000 !=='undefined') failed_arr_arr_complex_58000 ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_arr_arr_complex_58000 !=='undefined') tested_arr_arr_complex_58000 ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 function arr_arr_complex_58108(){
@@ -234,9 +227,9 @@ function arr_arr_complex_58108(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_arr_arr_complex_58000 !=='undefined') failed_arr_arr_complex_58000 ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_arr_arr_complex_58000 !=='undefined') tested_arr_arr_complex_58000 ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 function arr_arr_complex_58109(){
@@ -257,9 +250,9 @@ function arr_arr_complex_58109(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_arr_arr_complex_58000 !=='undefined') failed_arr_arr_complex_58000 ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_arr_arr_complex_58000 !=='undefined') tested_arr_arr_complex_58000 ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 function arr_arr_complex_58110(){
@@ -268,7 +261,7 @@ function arr_arr_complex_58110(){
   var mixed_array_2 = ['yvr', false, 92]; 
   var str_arr_num_arr_3 = [ ['shale'], [] ]
   var mutate_check = [ num_array_1, mixed_array_2, str_arr_num_arr_3]
-  var expect_error = `STR_ARR_NUM_ARR_3_ISSUE : TE@236a - Empty array has no types`;
+  var expect_error = `STR_ARR_NUM_ARR_3_ISSUE : TE@238 - Empty array has no types`;
         if (typeof beforeCheck !== 'undefined') before_str = beforeCheck(mutate_check, '');
 
         var actual_error= PRE_check_complexArray(num_array_1, mixed_array_2, str_arr_num_arr_3);
@@ -280,9 +273,9 @@ function arr_arr_complex_58110(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_arr_arr_complex_58000 !=='undefined') failed_arr_arr_complex_58000 ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_arr_arr_complex_58000 !=='undefined') tested_arr_arr_complex_58000 ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 //////////////////////////////////////////////////////////
@@ -294,7 +287,7 @@ function PRE_check_complexArray_short(num_array_1, mixed_array_2, str_arr_num_ar
   start_signatures = [
      ['number', 'number', 'number', 'number', 'number'],
      ['string', 'boolean', 'number'], 
-     [['string-array'], ['number-array']]     
+     [['strings'], ['numbers']]     
   ]
   start_issue = type_czech.checkParam_type(start_parameters, start_signatures)
   if (start_issue) return `START_ISSUE : ${start_issue}`
@@ -319,7 +312,14 @@ function arr_arr_complex_58111(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_arr_arr_complex_58000 !=='undefined') failed_arr_arr_complex_58000 ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_arr_arr_complex_58000 !=='undefined') tested_arr_arr_complex_58000 ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
+
+if (fail_count>0) {
+  the_problem = `check-tests/arr_arr_complex_58100.js - fails = ${fail_count}`;  
+  console.log(the_problem)
+  throw the_problem
+}
+TEST_total_checks += pass_count;

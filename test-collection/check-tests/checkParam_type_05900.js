@@ -7,11 +7,15 @@
 /* eslint-disable no-multi-spaces */
 /* eslint-disable array-bracket-spacing */
 /* eslint-disable max-len */
+pass_count = 0;
+fail_count = 0;
+
+
 
 function test_pre_checkParam_type_single(single_parameter, signature_of_parameter, error_id, expected_error) {
   const type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
 
-  tested_checkParam_type_05900 += 1;
+  pass_count += 1;
 
   function PRE_test_05900(a_var) {
     return type_czech.checkParam_type(a_var, signature_of_parameter);
@@ -27,20 +31,20 @@ function test_pre_checkParam_type_single(single_parameter, signature_of_paramete
       // expected route with no error message
     } catch (e) {
       // failing path
-      failed_checkParam_type_05900 += 1;
+      fail_count += 1;
       console.log('FAIL, should be no error but got ', e, error_id);
     }
   } else {
     try {
       pre_checkParam_type_05900(single_parameter);
       // failing path, should have been an exception
-      failed_checkParam_type_05900 += 1;
+      fail_count += 1;
       consoleExpectedActual(expected_error, 'MISSING-EXCEPTION', error_id);
     } catch (e) {
       const error_not_match_exception = errorNotMatchException(expected_error, e);
       if (error_not_match_exception) {
         // failing path, the error was wrong
-        failed_checkParam_type_05900 += 1;
+        fail_count += 1;
         consoleExpectedActual(expected_error, e, error_id);
       } else {
         // expected route with an error message
@@ -50,8 +54,6 @@ function test_pre_checkParam_type_single(single_parameter, signature_of_paramete
   afterCheck(single_parameter, signature_of_parameter, before_var_value, error_id);
 }
 
-tested_checkParam_type_05900 = 0;
-failed_checkParam_type_05900 = 0;
 
 // /////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -103,7 +105,7 @@ test_pre_checkParam_type_single(single_variable, single_signature, 5905, error_m
 // /////////////////////////////////////////////////////////////////////////////////////////////
 
 single_variable  = { a: [{ r: [ [123],   [1, 2, 3],         987n,     false,     new Date('1999-12-12'), (x) => x,   12,       { a: 3 }, { b: 4 },         /d/,      'abc',    Symbol('sym')   ] }] };
-single_signature = { a: [{ r: [ 'array', ['number-array'], 'bigint', 'boolean', 'date',                 'function', 'number', 'object', { b: 'number' }, 'regexp', 'string', 'symbol'        ] }] };
+single_signature = { a: [{ r: [ 'array', ['numbers'], 'bigint', 'boolean', 'date',                 'function', 'number', 'object', { b: 'number' }, 'regexp', 'string', 'symbol'        ] }] };
 error_mess = '';
 test_pre_checkParam_type_single(single_variable, single_signature, 5906, error_mess);
 
@@ -112,7 +114,7 @@ single_signature = { a: [{ r: [ 'array',          ['number'], 'bigint', 'boolean
 error_mess = `PRE_test_05900() PRE-FUNC: TE@214 -  ELEMENT '0' is assumed to be a 'array', but is mistakenly a 'string' with a value of A-STRING ! ! !
 CHECKER checkParam_type()
 ACTUAL TYPE 'object'
- VALUES {a:[{r:["A-STRING ! ! !",[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ***,12,{a:3},{b:4},/d/ +++,"abc",Symbol('sym')]}]}
+ VALUES {a:[{r:["A-STRING ! ! !",[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ~~~function~~~,12,{a:3},{b:4},/d/ ~~~regex~~~,"abc",Symbol('sym')]}]}
 EXPECTED TYPE {"a":[{"r":["array",["number"],"bigint","boolean","date","function","number","object",{"b":"number"},"regexp","string","symbol"]}]}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5907, error_mess);
@@ -122,98 +124,98 @@ single_signature = { a: [{ r: [ 'array', ['number'],        'bigint', 'boolean',
 error_mess = `PRE_test_05900() PRE-FUNC: TE@207 - Param is meant to be 'array' but is of the wrong type of 'string':A-STRING ! ! !
 CHECKER checkParam_type()
 ACTUAL TYPE 'object'
- VALUES {a:[{r:[[123],"A-STRING ! ! !",987n,false,1999-12-12T00:00:00.000Z,(x) => x ***,12,{a:3},{b:4},/d/ +++,"abc",Symbol('sym')]}]}
+ VALUES {a:[{r:[[123],"A-STRING ! ! !",987n,false,1999-12-12T00:00:00.000Z,(x) => x ~~~function~~~,12,{a:3},{b:4},/d/ ~~~regex~~~,"abc",Symbol('sym')]}]}
 EXPECTED TYPE {"a":[{"r":["array",["number"],"bigint","boolean","date","function","number","object",{"b":"number"},"regexp","string","symbol"]}]}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5908, error_mess);
 
 single_variable  = { a: [{ r: [ [123],   [1, 2, 3],  'A-STRING ! ! !', false,     new Date('1999-12-12'), (x) => x,   12,       { a: 3 }, { b: 4 },         /d/,      'abc',    Symbol('sym')   ] }] };
-single_signature = { a: [{ r: [ 'array', ['number-array'], 'bigint',         'boolean', 'date',                 'function', 'number', 'object', { b: 'number' }, 'regexp', 'string', 'symbol'        ] }] };
+single_signature = { a: [{ r: [ 'array', ['numbers'], 'bigint',         'boolean', 'date',                 'function', 'number', 'object', { b: 'number' }, 'regexp', 'string', 'symbol'        ] }] };
 error_mess = `PRE_test_05900() PRE-FUNC: TE@214 -  ELEMENT '2' is assumed to be a 'bigint', but is mistakenly a 'string' with a value of A-STRING ! ! !
 CHECKER checkParam_type()
 ACTUAL TYPE 'object'
- VALUES {a:[{r:[[123],[1,2,3],"A-STRING ! ! !",false,1999-12-12T00:00:00.000Z,(x) => x ***,12,{a:3},{b:4},/d/ +++,"abc",Symbol('sym')]}]}
-EXPECTED TYPE {"a":[{"r":["array",["number-array"],"bigint","boolean","date","function","number","object",{"b":"number"},"regexp","string","symbol"]}]}
+ VALUES {a:[{r:[[123],[1,2,3],"A-STRING ! ! !",false,1999-12-12T00:00:00.000Z,(x) => x ~~~function~~~,12,{a:3},{b:4},/d/ ~~~regex~~~,"abc",Symbol('sym')]}]}
+EXPECTED TYPE {"a":[{"r":["array",["numbers"],"bigint","boolean","date","function","number","object",{"b":"number"},"regexp","string","symbol"]}]}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5909, error_mess);
 
 single_variable  = { a: [{ r: [ [123],   [1, 2, 3],  987n,     'A-STRING ! ! !', new Date('1999-12-12'), (x) => x,   12,       { a: 3 }, { b: 4 },         /d/,      'abc',    Symbol('sym')   ] }] };
-single_signature = { a: [{ r: [ 'array', ['number-array'], 'bigint', 'boolean',        'date',                 'function', 'number', 'object', { b: 'number' }, 'regexp', 'string', 'symbol'        ] }] };
+single_signature = { a: [{ r: [ 'array', ['numbers'], 'bigint', 'boolean',        'date',                 'function', 'number', 'object', { b: 'number' }, 'regexp', 'string', 'symbol'        ] }] };
 error_mess = `PRE_test_05900() PRE-FUNC: TE@214 -  ELEMENT '3' is assumed to be a 'boolean', but is mistakenly a 'string' with a value of A-STRING ! ! !
 CHECKER checkParam_type()
 ACTUAL TYPE 'object'
- VALUES {a:[{r:[[123],[1,2,3],987n,"A-STRING ! ! !",1999-12-12T00:00:00.000Z,(x) => x ***,12,{a:3},{b:4},/d/ +++,"abc",Symbol('sym')]}]}
-EXPECTED TYPE {"a":[{"r":["array",["number-array"],"bigint","boolean","date","function","number","object",{"b":"number"},"regexp","string","symbol"]}]}
+ VALUES {a:[{r:[[123],[1,2,3],987n,"A-STRING ! ! !",1999-12-12T00:00:00.000Z,(x) => x ~~~function~~~,12,{a:3},{b:4},/d/ ~~~regex~~~,"abc",Symbol('sym')]}]}
+EXPECTED TYPE {"a":[{"r":["array",["numbers"],"bigint","boolean","date","function","number","object",{"b":"number"},"regexp","string","symbol"]}]}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5910, error_mess);
 
 single_variable  = { a: [{ r: [ [123],   [1, 2, 3],  987n,     false,     'A-STRING ! ! !', (x) => x,   12,       { a: 3 }, { b: 4 },         /d/,      'abc',    Symbol('sym')   ] }] };
-single_signature = { a: [{ r: [ 'array', ['number-array'], 'bigint', 'boolean', 'date',           'function', 'number', 'object', { b: 'number' }, 'regexp', 'string', 'symbol'        ] }] };
+single_signature = { a: [{ r: [ 'array', ['numbers'], 'bigint', 'boolean', 'date',           'function', 'number', 'object', { b: 'number' }, 'regexp', 'string', 'symbol'        ] }] };
 error_mess = `PRE_test_05900() PRE-FUNC: TE@214 -  ELEMENT '4' is assumed to be a 'date', but is mistakenly a 'string' with a value of A-STRING ! ! !
 CHECKER checkParam_type()
 ACTUAL TYPE 'object'
- VALUES {a:[{r:[[123],[1,2,3],987n,false,"A-STRING ! ! !",(x) => x ***,12,{a:3},{b:4},/d/ +++,"abc",Symbol('sym')]}]}
-EXPECTED TYPE {"a":[{"r":["array",["number-array"],"bigint","boolean","date","function","number","object",{"b":"number"},"regexp","string","symbol"]}]}
+ VALUES {a:[{r:[[123],[1,2,3],987n,false,"A-STRING ! ! !",(x) => x ~~~function~~~,12,{a:3},{b:4},/d/ ~~~regex~~~,"abc",Symbol('sym')]}]}
+EXPECTED TYPE {"a":[{"r":["array",["numbers"],"bigint","boolean","date","function","number","object",{"b":"number"},"regexp","string","symbol"]}]}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5911, error_mess);
 
 single_variable  = { a: [{ r: [ [123],   [1, 2, 3],  987n,     false,     new Date('1999-12-12'), 'A-STRING ! ! !',  12,       { a: 3 }, { b: 4 },         /d/,      'abc',    Symbol('sym')   ] }] };
-single_signature = { a: [{ r: [ 'array', ['number-array'], 'bigint', 'boolean', 'date',                 'function',       'number', 'object', { b: 'number' }, 'regexp', 'string', 'symbol'        ] }] };
+single_signature = { a: [{ r: [ 'array', ['numbers'], 'bigint', 'boolean', 'date',                 'function',       'number', 'object', { b: 'number' }, 'regexp', 'string', 'symbol'        ] }] };
 error_mess = `PRE_test_05900() PRE-FUNC: TE@214 -  ELEMENT '5' is assumed to be a 'function', but is mistakenly a 'string' with a value of A-STRING ! ! !
 CHECKER checkParam_type()
 ACTUAL TYPE 'object'
- VALUES {a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,"A-STRING ! ! !",12,{a:3},{b:4},/d/ +++,"abc",Symbol('sym')]}]}
-EXPECTED TYPE {"a":[{"r":["array",["number-array"],"bigint","boolean","date","function","number","object",{"b":"number"},"regexp","string","symbol"]}]}
+ VALUES {a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,"A-STRING ! ! !",12,{a:3},{b:4},/d/ ~~~regex~~~,"abc",Symbol('sym')]}]}
+EXPECTED TYPE {"a":[{"r":["array",["numbers"],"bigint","boolean","date","function","number","object",{"b":"number"},"regexp","string","symbol"]}]}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5912, error_mess);
 
 single_variable  = { a: [{ r: [ [123],   [1, 2, 3],  987n,     false,     new Date('1999-12-12'), (x) => x,   'A-STRING ! ! !', { a: 3 }, { b: 4 },         /d/,      'abc',    Symbol('sym')   ] }] };
-single_signature = { a: [{ r: [ 'array', ['number-array'], 'bigint', 'boolean', 'date',                 'function', 'number',         'object', { b: 'number' }, 'regexp', 'string', 'symbol'        ] }] };
+single_signature = { a: [{ r: [ 'array', ['numbers'], 'bigint', 'boolean', 'date',                 'function', 'number',         'object', { b: 'number' }, 'regexp', 'string', 'symbol'        ] }] };
 error_mess = `PRE_test_05900() PRE-FUNC: TE@214 -  ELEMENT '6' is assumed to be a 'number', but is mistakenly a 'string' with a value of A-STRING ! ! !
 CHECKER checkParam_type()
 ACTUAL TYPE 'object'
- VALUES {a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ***,"A-STRING ! ! !",{a:3},{b:4},/d/ +++,"abc",Symbol('sym')]}]}
-EXPECTED TYPE {"a":[{"r":["array",["number-array"],"bigint","boolean","date","function","number","object",{"b":"number"},"regexp","string","symbol"]}]}
+ VALUES {a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ~~~function~~~,"A-STRING ! ! !",{a:3},{b:4},/d/ ~~~regex~~~,"abc",Symbol('sym')]}]}
+EXPECTED TYPE {"a":[{"r":["array",["numbers"],"bigint","boolean","date","function","number","object",{"b":"number"},"regexp","string","symbol"]}]}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5913, error_mess);
 
 single_variable  = { a: [{ r: [ [123],   [1, 2, 3],  987n,     false,     new Date('1999-12-12'), (x) => x,   12,       'A-STRING ! ! !', { b: 4 },         /d/,      'abc',    Symbol('sym')   ] }] };
-single_signature = { a: [{ r: [ 'array', ['number-array'], 'bigint', 'boolean', 'date',                 'function', 'number', 'object',         { b: 'number' }, 'regexp', 'string', 'symbol'        ] }] };
+single_signature = { a: [{ r: [ 'array', ['numbers'], 'bigint', 'boolean', 'date',                 'function', 'number', 'object',         { b: 'number' }, 'regexp', 'string', 'symbol'        ] }] };
 error_mess = `PRE_test_05900() PRE-FUNC: TE@214 -  ELEMENT '7' is assumed to be a 'object', but is mistakenly a 'string' with a value of A-STRING ! ! !
 CHECKER checkParam_type()
 ACTUAL TYPE 'object'
- VALUES {a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ***,12,"A-STRING ! ! !",{b:4},/d/ +++,"abc",Symbol('sym')]}]}
-EXPECTED TYPE {"a":[{"r":["array",["number-array"],"bigint","boolean","date","function","number","object",{"b":"number"},"regexp","string","symbol"]}]}
+ VALUES {a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ~~~function~~~,12,"A-STRING ! ! !",{b:4},/d/ ~~~regex~~~,"abc",Symbol('sym')]}]}
+EXPECTED TYPE {"a":[{"r":["array",["numbers"],"bigint","boolean","date","function","number","object",{"b":"number"},"regexp","string","symbol"]}]}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5914, error_mess);
 
 single_variable  = { a: [{ r: [ [123],   [1, 2, 3],  987n,     false,     new Date('1999-12-12'), (x) => x,   12,       { a: 3 }, 'A-STRING ! ! !', /d/,      'abc',    Symbol('sym')   ] }] };
-single_signature = { a: [{ r: [ 'array', ['number-array'], 'bigint', 'boolean', 'date',                 'function', 'number', 'object', { b: 'number' },  'regexp', 'string', 'symbol'        ] }] };
+single_signature = { a: [{ r: [ 'array', ['numbers'], 'bigint', 'boolean', 'date',                 'function', 'number', 'object', { b: 'number' },  'regexp', 'string', 'symbol'        ] }] };
 error_mess = `PRE_test_05900() PRE-FUNC: TE@207 - Param is meant to be 'object' but is of the wrong type of 'string':A-STRING ! ! !
 CHECKER checkParam_type()
 ACTUAL TYPE 'object'
- VALUES {a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ***,12,{a:3},"A-STRING ! ! !",/d/ +++,"abc",Symbol('sym')]}]}
-EXPECTED TYPE {"a":[{"r":["array",["number-array"],"bigint","boolean","date","function","number","object",{"b":"number"},"regexp","string","symbol"]}]}
+ VALUES {a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ~~~function~~~,12,{a:3},"A-STRING ! ! !",/d/ ~~~regex~~~,"abc",Symbol('sym')]}]}
+EXPECTED TYPE {"a":[{"r":["array",["numbers"],"bigint","boolean","date","function","number","object",{"b":"number"},"regexp","string","symbol"]}]}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5915, error_mess);
 
 single_variable  = { a: [{ r: [ [123],   [1, 2, 3],  987n,     false,     new Date('1999-12-12'), (x) => x,   12,       { a: 3 }, { b: 4 },        'A-STRING ! ! !', 'abc',    Symbol('sym')   ] }] };
-single_signature = { a: [{ r: [ 'array', ['number-array'], 'bigint', 'boolean', 'date',                 'function', 'number', 'object', { b: 'number' }, 'regexp',         'string', 'symbol'        ] }] };
+single_signature = { a: [{ r: [ 'array', ['numbers'], 'bigint', 'boolean', 'date',                 'function', 'number', 'object', { b: 'number' }, 'regexp',         'string', 'symbol'        ] }] };
 error_mess = `PRE_test_05900() PRE-FUNC: TE@214 -  ELEMENT '9' is assumed to be a 'regexp', but is mistakenly a 'string' with a value of A-STRING ! ! !
 CHECKER checkParam_type()
 ACTUAL TYPE 'object'
- VALUES {a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ***,12,{a:3},{b:4},"A-STRING ! ! !","abc",Symbol('sym')]}]}
-EXPECTED TYPE {"a":[{"r":["array",["number-array"],"bigint","boolean","date","function","number","object",{"b":"number"},"regexp","string","symbol"]}]}
+ VALUES {a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ~~~function~~~,12,{a:3},{b:4},"A-STRING ! ! !","abc",Symbol('sym')]}]}
+EXPECTED TYPE {"a":[{"r":["array",["numbers"],"bigint","boolean","date","function","number","object",{"b":"number"},"regexp","string","symbol"]}]}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5916, error_mess);
 
 single_variable  = { a: [{ r: [ [123],   [1, 2, 3],  987n,     false,     new Date('1999-12-12'), (x) => x,   12,       { a: 3 }, { b: 4 },         /d/,     'abc',    'A-STRING ! ! !' ] }] };
-single_signature = { a: [{ r: [ 'array', ['number-array'], 'bigint', 'boolean', 'date',                 'function', 'number', 'object', { b: 'number' }, 'regexp', 'string', 'symbol'         ] }] };
+single_signature = { a: [{ r: [ 'array', ['numbers'], 'bigint', 'boolean', 'date',                 'function', 'number', 'object', { b: 'number' }, 'regexp', 'string', 'symbol'         ] }] };
 error_mess = `PRE_test_05900() PRE-FUNC: TE@214 -  ELEMENT '11' is assumed to be a 'symbol', but is mistakenly a 'string' with a value of A-STRING ! ! !
 CHECKER checkParam_type()
 ACTUAL TYPE 'object'
- VALUES {a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ***,12,{a:3},{b:4},/d/ +++,"abc","A-STRING ! ! !"]}]}
-EXPECTED TYPE {"a":[{"r":["array",["number-array"],"bigint","boolean","date","function","number","object",{"b":"number"},"regexp","string","symbol"]}]}
+ VALUES {a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ~~~function~~~,12,{a:3},{b:4},/d/ ~~~regex~~~,"abc","A-STRING ! ! !"]}]}
+EXPECTED TYPE {"a":[{"r":["array",["numbers"],"bigint","boolean","date","function","number","object",{"b":"number"},"regexp","string","symbol"]}]}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5917, error_mess);
 
@@ -266,10 +268,10 @@ test_pre_checkParam_type_single(single_variable, single_signature, 5922, error_m
 
 single_variable  = (x) => x;
 single_signature = 'date';
-error_mess = `PRE_test_05900() PRE-FUNC: TE@226 - The value '(x) => x ***', which is a 'function', is not a 'date'
+error_mess = `PRE_test_05900() PRE-FUNC: TE@226 - The value '(x) => x ~~~function~~~', which is a 'function', is not a 'date'
 CHECKER checkParam_type()
 ACTUAL TYPE 'function'
- VALUES (x) => x ***
+ VALUES (x) => x ~~~function~~~
 EXPECTED TYPE date
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5923, error_mess);
@@ -296,10 +298,10 @@ test_pre_checkParam_type_single(single_variable, single_signature, 5925, error_m
 
 single_variable  = /d/;
 single_signature = 'date';
-error_mess = `PRE_test_05900() PRE-FUNC: TE@226 - The value '/d/ +++', which is a 'regexp', is not a 'date'
+error_mess = `PRE_test_05900() PRE-FUNC: TE@226 - The value '/d/ ~~~regex~~~', which is a 'regexp', is not a 'date'
 CHECKER checkParam_type()
 ACTUAL TYPE 'regexp'
- VALUES /d/ +++
+ VALUES /d/ ~~~regex~~~
 EXPECTED TYPE date
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5926, error_mess);
@@ -644,7 +646,7 @@ single_signature = 'Function';
 error_mess = `PRE_test_05900() PRE-FUNC: TE@205 - Type 'Function' is not a typeof(), but looks like 'function'
 CHECKER checkParam_type()
 ACTUAL TYPE 'function'
- VALUES (x) => x ***
+ VALUES (x) => x ~~~function~~~
 EXPECTED TYPE Function
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5963, error_mess);
@@ -674,7 +676,7 @@ single_signature = 'Regexp';
 error_mess = `PRE_test_05900() PRE-FUNC: TE@205 - Type 'Regexp' is not a typeof(), but looks like 'regexp'
 CHECKER checkParam_type()
 ACTUAL TYPE 'regexp'
- VALUES /d/ +++
+ VALUES /d/ ~~~regex~~~
 EXPECTED TYPE Regexp
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5966, error_mess);
@@ -707,51 +709,51 @@ error_mess = '';
 test_pre_checkParam_type_single(single_variable, single_signature, 5969, error_mess);
 
 single_variable  = [1, 2];
-single_signature = ['number-array'];
+single_signature = ['numbers'];
 error_mess = '';
 test_pre_checkParam_type_single(single_variable, single_signature, 5970, error_mess);
 
 single_variable  = [1, 2, 'three'];
-single_signature = ['number-array'];
+single_signature = ['numbers'];
 error_mess = `PRE_test_05900() PRE-FUNC: TE@214 -  ELEMENT '2' is assumed to be a 'number', but is mistakenly a 'string' with a value of three
 CHECKER checkParam_type()
 ACTUAL TYPE 'array'
  VALUES [1,2,"three"]
-EXPECTED TYPE ["number-array"]
+EXPECTED TYPE ["numbers"]
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5971, error_mess);
 
 single_variable  = [ [1, 2, 3], [1, 2, 3], [1, 2, 3] ];
-single_signature = [['number-array']];
-error_mess = `PRE_test_05900() PRE-FUNC: TE@296 - Collection sizes do not match 3 !== 1 with [[1,2,3],[1,2,3],[1,2,3]] and [["number-array"]]
+single_signature = [['numbers']];
+error_mess = `PRE_test_05900() PRE-FUNC: TE@296 - Collection sizes do not match 3 !== 1 with [[1,2,3],[1,2,3],[1,2,3]] and [["numbers"]]
 CHECKER checkParam_type()
 ACTUAL TYPE 'array'
  VALUES [[1,2,3],[1,2,3],[1,2,3]]
-EXPECTED TYPE [["number-array"]]
+EXPECTED TYPE [["numbers"]]
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5972, error_mess);
 
 single_variable  = [   [ [1, 2, 3], [1, 2, 3], [1, 2, 3] ],
                 [ [1, 2, 3], [1, 2, 3], [1, 2, 3] ],
                 [ [1, 2, 3], [1, 2, 3], [1, 2, 3] ]    ];
-single_signature = [[['number-array']]];
-error_mess = ` PRE_test_05900() PRE-FUNC: TE@296 - Collection sizes do not match 3 !== 1 with [[1,2,3],[1,2,3],[1,2,3]] and [["number-array"]]
+single_signature = [[['numbers']]];
+error_mess = ` PRE_test_05900() PRE-FUNC: TE@296 - Collection sizes do not match 3 !== 1 with [[1,2,3],[1,2,3],[1,2,3]] and [["numbers"]]
 CHECKER checkParam_type()
 ACTUAL TYPE 'array'
  VALUES [[[1,2,3],[1,2,3],[1,2,3]],[[1,2,3],[1,2,3],[1,2,3]],[[1,2,3],[1,2,3],[1,2,3]]]
-EXPECTED TYPE [[["number-array"]]]
+EXPECTED TYPE [[["numbers"]]]
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5973, error_mess);
 
 // single_variable  = [   [ [1, 2, 3], [1, 2, 3], [1,  2,  3] ],
 //                 [ [1, 2, 3], [1, 2, 3], [1,  2,  3] ],                                      /// does not work???
 //                 [ [1, 2, 3], [1, 2, 3], [1, '2', 3] ]    ];
-// single_signature = [[['number-array']]];  
+// single_signature = [[['numbers']]];  
 // error_mess = `PRE_test_05900() PRE-FUNC: TE@221 - Supposed to have 1 element(s), but has '3' elements. An extra element of : 1,2,3
 // CHECKER checkParam_type()
 // ACTUAL TYPE 'array'
 //  VALUES [[[1,2,3],[1,2,3],[1,2,3]],[[1,2,3],[1,2,3],[1,2,3]],[[1,2,3],[1,2,3],[1,"2",3]]]
-// EXPECTED TYPE [[["number-array"]]]
+// EXPECTED TYPE [[["numbers"]]]
 //  ORIGIN pre_checkParam_type_05900(a_var)`;
 // test_pre_checkParam_type_single(single_variable, single_signature, 5974, error_mess);
 
@@ -848,7 +850,7 @@ single_signature = 'bad-classname';
 error_mess = `PRE_test_05900() PRE-FUNC: TE@202 - Type 'bad-classname' is unknown classname and not a scalar
 CHECKER checkParam_type()
 ACTUAL TYPE 'function'
- VALUES function Date() { [native code ***
+ VALUES function Date() { [native code ~~~function~~~
 EXPECTED TYPE bad-classname
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5984, error_mess);
@@ -898,7 +900,7 @@ test_pre_checkParam_type_single(single_variable, single_signature, 5988, error_m
 
 single_variable  = [];
 single_signature = ['number'];
-error_mess = `PRE_test_05900() PRE-FUNC: TE@236a - Empty array has no types
+error_mess = `PRE_test_05900() PRE-FUNC: TE@238 - Empty array has no types
 CHECKER checkParam_type()
 ACTUAL TYPE 'array'
  VALUES []
@@ -908,5 +910,12 @@ test_pre_checkParam_type_single(single_variable, single_signature, 5989, error_m
 
 
 
-TEST_total_checks += 89;
 
+
+
+if (fail_count>0) {
+  the_problem = `check-tests/checkParam_type_05900.js - fails = ${fail_count}`;  
+  console.log(the_problem)
+  throw the_problem
+}
+TEST_total_checks += pass_count;

@@ -38,9 +38,9 @@
   <h2>TypeCzech</h2>
   
   <p>
-    TypeCzech is a run-time type checking JavaScript library that can be toggled on and off.
+    TypeCzech is a detachable run-time type checking JavaScript library that can be toggled on and off.
     Include one file in your web page or in your Node.js file to allow you to type check function parameters
-    and results. Errors can be set to throw halting exceptions or just output to the Console.
+    and results. Errors can be set to throw exceptions or just output to the Console.
     The motivation is to verify function parameters before execution, and function results after completion with 
     PRE_check() and POST_check() funtions.
   </p>
@@ -91,7 +91,7 @@
       <ul>
         <li>type_czech = <b>TypeCzech('LOG-ERRORS')</b> logs errors to the console instead of throwing exceptions</li>
         <li>type_czech.<b>checkParam_type()</b> ensures that the parameters to aLottery() are a string, then an array of numbers, and finally a date</li>
-        <li>type_czech.<b>checkArgs_emptyVariadic()</b> complains when parameters are found to be empty strings, arrays, or objects</li>
+        <li>type_czech.<b>checkArgs_emptyEach()</b> complains when parameters are found to be empty strings, arrays, or objects</li>
         <li><b>PRE_check_aLottery()</b> is executed just before aLottery() runs via type_czech.<b>linkUp()</b></li>
         <li>/**/ highlights added TypeCzech test code that is safely removable or just turned off</li>
       </ul>
@@ -104,7 +104,7 @@
   
   /**/  type_czech = TypeCzech('LOG-ERRORS')
   /**/
-  /**/  LOTTERY_SIGNATURE = ['string', ['number'], 'date']
+  /**/  LOTTERY_SIGNATURE = ['string', ['numbers'], 'date']
   /**/
   /**/  function PRE_check_aLottery(lottery_name, lucky_numbers, draw_date){
   /**/    the_parameters = [lottery_name, lucky_numbers, draw_date]
@@ -112,7 +112,7 @@
   /**/    if (type_issue) 
   /**/      return type_issue
   /**/
-  /**/    empty_issue = type_czech.checkArgs_emptyVariadic(arguments, ['EMPTY-ERROR'])
+  /**/    empty_issue = type_czech.checkArgs_emptyEach(arguments, 'EMPTY-ERROR')
   /**/    if (empty_issue) 
   /**/      return empty_issue
   /**/
@@ -128,7 +128,7 @@
   
   aLottery('Powerball', [], new Date('jun 14 1999'))
   >>PRE_check_aLottery() PRE-FUNC: ELEMENT '1' is asserted to be a 'EMPTY-ERROR', but is really 'EMPTY' : []
-  >>                       CHECKER checkArgs_emptyVariadic()
+  >>                       CHECKER checkArgs_emptyEach()
   >>                  ACTUAL TYPES ['string','array','date']
   >>                        VALUES ["Powerball",[],1999-06-14T07:00:00.000Z]
   >>               EMPTY ASSERTION ['EMPTY-ERROR']
@@ -137,7 +137,7 @@
   
   aLottery('', [1,2,3,4,5,26], new Date('Dec 31 1999'))
   >>PRE_check_aLottery() PRE-FUNC: ELEMENT '0' is asserted to be a 'EMPTY-ERROR', but is really 'EMPTY' : ''
-  >>                       CHECKER checkArgs_emptyVariadic()
+  >>                       CHECKER checkArgs_emptyEach()
   >>                  ACTUAL TYPES ['string','array','date']
   >>                        VALUES ["",[1,2,3,4,5,26],1999-12-31T08:00:00.000Z]
   >>               EMPTY ASSERTION ['EMPTY-ERROR']
@@ -363,7 +363,7 @@
 
 <div><a title="00-Readme-Example" href="https://jsfiddle.net/steen_hansen/0xtpLwsc/?00-Readme-Example" target="_blank">00-Readme-Example</a>
 - Realistic example of verifying types and checking emptiness
-  <div class="functions">TypeCzech() checkParam_type() checkArgs_emptyVariadic()</div>
+  <div class="functions">TypeCzech() checkParam_type() checkArgs_emptyEach()</div>
 </div>
 
 <div><a title="01-What-is-TypeCzech" href="https://jsfiddle.net/steen_hansen/9u54vsd2/?01-What-is-TypeCzech" target="_blank">01-What-is-TypeCzech</a>
@@ -449,7 +449,7 @@
 
 <div><a title="17-Variadic-Functions.html" href="https://jsfiddle.net/steen_hansen/hrvucjzm/?17-Variadic-Functions.html" target="_blank">17-Variadic-Functions</a>
   - Checking variadic functions with one type of parameter, but multiple parameters
-  <div class="functions">checkArgs_typeVariadic()</div>
+  <div class="functions">checkArgs_typeEach()</div>
 </div>
 
 <div><a title="18-Class-Type-Checks.html" href="https://jsfiddle.net/steen_hansen/063wLqfs/?18-Class-Type-Checks" target="_blank">18-Class-Type-Checks</a>
@@ -489,10 +489,10 @@
 
 <div><a title="25-Default-Parameters.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Default-Parameters" target="_blank">25-Default-Parameters</a>
   - Parameters
-  <div class="functions">linkUp() checkParam_type() checkArgs_typeVariadic()</div>
+  <div class="functions">linkUp() checkParam_type() checkArgs_typeEach()</div>
 </div>
 
-<div><a title="26-Type-and-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Type-and-Empty-Abbreviations" target="_blank">26-Type-and-Empty-Abbreviations</a>
+<div><a title="26-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Empty-Abbreviations" target="_blank">26-Empty-Abbreviations</a>
   - Emptiness and type abbreviations
   <div class="functions">checkParam_type() checkParam_empty()</div>
 </div>

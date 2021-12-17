@@ -1,11 +1,11 @@
 
 ## check_buildSnapshot() & check_mutatedSnapshot()
-  -  [1 Mutation Check an Array](#mutation-check-an-array) 
-  -  [2 Mutation Check an Object](#mutation-check-an-object) 
+  -  [A Mutation Check an Array](#A) 
+  -  [B Mutation Check an Object](#B) 
 
 #### All examples below can be executed in the console of [repl.html](../../test-collection/repl.html)
 
-## 1 Mutation Check an Array<a name="mutation-check-an-array"></a>
+## A Mutation Check an Array<a name="A"></a>
   
 ```
 type_czech = TypeCzech('THROW-EXCEPTIONS')
@@ -30,7 +30,7 @@ anArray([9,8,7]) // pass
 anArray([1,2,3]) // POST fail - changed to ["An-Error",2,3] 
 ```
    
-## 2 Mutation Check an Object<a name="mutation-check-an-object"></a>
+## B Mutation Check an Object<a name="B"></a>
   
 ```
 type_czech = TypeCzech('THROW-EXCEPTIONS')

@@ -6,12 +6,12 @@
 /**/
 /**/  const type_czech = TypeCzech('LOG-ERRORS');
 /**/
-/**/  const LOTTERY_SIGNATURE = ['string', ['number'], 'date'];
+/**/  const LOTTERY_SIGNATURE = ['string', ['numbers'], 'date'];
 /**/
 /**/  function PRE_aLottery(lottery_name, lucky_numbers, draw_date) {
 /**/    const type_issue = type_czech.checkParam_type([lottery_name, lucky_numbers, draw_date], LOTTERY_SIGNATURE);
 /**/    if (type_issue) return type_issue;
-/**/    return type_czech.checkArgs_emptyVariadic(arguments, ['EMPTY-ERROR']);
+/**/    return type_czech.checkArgs_emptyEach(arguments, 'EMPTY-ERROR');
 /**/  }
 /**/
 /**/  aLottery = type_czech.linkUp(aLottery, PRE_aLottery);

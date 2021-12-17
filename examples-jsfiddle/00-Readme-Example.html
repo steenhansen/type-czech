@@ -1,5 +1,5 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>00 - Readme Example</title>
+<title>00 Readme Example</title>
 
   
 <div id='js-div' style="width:54%;" >
@@ -8,8 +8,6 @@
   <br><br>
 
   
-
-
 
 
   
@@ -89,7 +87,7 @@
     
     <a title="25-Default-Parameters.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Default-Parameters" target="_blank">25</a>
     
-    <a title="26-Type-and-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Type-and-Empty-Abbreviations" target="_blank">26</a>
+    <a title="26-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Empty-Abbreviations" target="_blank">26</a>
     
     <a title="27-Type-and-Empty-Object-Extras.html" href="https://jsfiddle.net/steen_hansen/tdL7hwgc/?27-Typed-and-Empty-Either-Checks-with-Optionals" target="_blank">27</a>
     
@@ -198,6 +196,8 @@
 
 
 
+
+
 </div>
 
 
@@ -258,7 +258,7 @@ function aLottery(lottery_name, lucky_numbers, draw_date){
 /**/
 /**/  type_czech = TypeCzech('LOG-ERRORS')
 /**/
-/**/  LOTTERY_SIGNATURE = ['string', ['number'], 'date']
+/**/  LOTTERY_SIGNATURE = ['string', ['numbers'], 'date']
 /**/
 /**/  function PRE_check_aLottery(lottery_name, lucky_numbers, draw_date) {
 /**/    the_parameters = [lottery_name, lucky_numbers, draw_date]
@@ -266,7 +266,7 @@ function aLottery(lottery_name, lucky_numbers, draw_date){
 /**/    if (type_issue) 
 /**/      return type_issue
 /**/
-/**/    empty_issue = type_czech.checkArgs_emptyVariadic(arguments, ['EMPTY-ERROR'])
+/**/    empty_issue = type_czech.checkArgs_emptyEach(arguments, 'EMPTY-ERROR')
 /**/    if (empty_issue)
 /**/      return empty_issue
 /**/
@@ -283,11 +283,11 @@ aLottery('Powerball', [], new Date('jun 14 1999'))
 
 linesConsole(2)
 
- aLottery('', [1,2,3,4,5,26], new Date('Dec 31 1999'))
+aLottery('', [1,2,3,4,5,26], new Date('Dec 31 1999'))
 
 linesConsole(2)
 
- aLottery('Mega Millions', 17, new Date('jun 14 1999'))
+aLottery('Mega Millions', 17, new Date('jun 14 1999'))
 
 linesConsole(2)
 
@@ -309,23 +309,23 @@ aLottery('Oz Lotto', ['fourty-two'], new Date('jun 14 1999'))
 
    jsToDiv('js-code', "check-code")
 
-   fromToBoldText(914, 915, 'code', 1)  // []
+   fromToBoldText(909, 910, 'code', 1)  // []
 
-   fromToBoldText(286, 287, 'log', 1)    // []
-   fromToBoldText(326, 340, 'log', 1)    // ["EMPTY-ERROR"]
-
-
-   fromToBoldText(1027, 1028, 'code', 2)  // 17
-
-   fromToBoldText(1110, 1111, 'log', 2)    // 17
-   fromToBoldText(1160, 1169, 'log', 2)    // ['number']
+   fromToBoldText(229, 230, 'log', 1)    // []
+   fromToBoldText(279, 289, 'log', 1)    // ["numbers"]
 
 
+   fromToBoldText(1020, 1021, 'code', 2)  // 17
 
-   fromToBoldText(1116, 1129, 'code', 3)  // ['fourty-two']
+   fromToBoldText(1020, 1021, 'log', 2)    // 17
+   fromToBoldText(1070, 1080, 'log', 2)    // ['number']
 
-   fromToBoldText(1938, 1951, 'log', 3)    //"fourty-two"
-   fromToBoldText(2000, 2009, 'log', 3)    //  "number"
+
+
+   fromToBoldText(1109, 1122, 'code', 3)  // ['fourty-two']
+
+   fromToBoldText(1877, 1890, 'log', 3)    //"fourty-two"
+   fromToBoldText(1939, 1949, 'log', 3)    //  "number"
 
 
 

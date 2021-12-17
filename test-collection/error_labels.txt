@@ -14,7 +14,7 @@ EXceptions:
   EX@112 check_mutatedSnapshot() needs 2 parameters
   EX@113 check_mutatedSnapshot() no record of an entry for wanted 
   EX@114 check_mutatedSnapshot() has no current matching entry for check_buildSnapshot()
-  EX@115 linkUp() 3rd parametermust be function or object
+  EX@115 linkUp() 3rd parameter must be function or object
 
 Type Errors:
   TE@201 a_checking_function() called with '{}' value against '!{}' signature
@@ -43,19 +43,21 @@ Type Errors:
   TE@224 Signature type is not a string
   TE@225 Type should be Array
   TE@226 Variable does not match expected type
-  TE@227 TypeCzech.checkParam_typeExtra(collection_a, collection_b) needs two collections to work
-  TE@228 checkParam_typeExtra(array_2_elems_a, array_2_elems_b) needs each array to have at least two types to work
+  TE@227
+  TE@228 
   TE@229 undefined is not a valid type
   TE@229 Only a string can be a valid type
   TE@230 Incorrect type
-  TE@231 TypeCzech.checkParam_emptyExtra(collection_a, collection_b) needs two collections to work
+  TE@231
   TE@232 Element type invalid
-  TE@234 checkParam_typeExtra(params, ['number']) is illegal
-    TE@234 checkParam_emptyExtra(params, ['EMPTY-ERROR']) is prohibited
-  TE@236 Empty Parameter array
+  TE@233
+  TE@234
+  TE@235
+  TE@236
   TE@237 wrong type is null or undefined
-
-
+  TE@238 Empty array has no types
+  TE@239 array has more elements than types
+  TE@240 ['arrays'] is already 1 or more. ['arrays', 'arrays'] makes no sense
 
 Empty Errors:
   EE@301 an empty variable that is an error
@@ -74,16 +76,18 @@ Empty Errors:
   EE@314 Internal, Empty Array type has an empty array
   EE@315 Extra key in checked object
   EE@316 Empty Array type has an empty array
-    changed NOT USED EE@317 checkParam_emptyExtra(array_param_a, array_param_a) needs two arrays to work
-    changed EE@318 checkParam_emptyExtra(array_2_elems_a, array_2_elems_b) needs each array to have at least two types to work
-  EE@319 checkParam_emptyExtra has first parameter empty
-  EE@320 checkParam_typeExtra has first parameter wrong type
-
+  EE@317 a_var compared to ['EMPTY-ERROR], scalar to array
+  EE@318 checkParam_emptyExtra() is missing empty types
+  EE@319 checkParam_emptyExtra() has first parameter empty
+  EE@320 checkParam_typeExtra() has first parameter wrong type
+  EE@321 Empty array has no types
+  EE@322 Array has more elements than types
+  EE@323 arrays must be the single type ['arrays']
 
 Misc Errors:
   ME@401 a_checking_function() not called with required 2 parameters
   ME@402 an_either_checking_function() not called with required array as second choices parameter
-  ME@403 Parameter array is un-expectedly empty
+  ME@403
   ME@404 Parameter length is different from signature length
   ME@405 Value mutated
   ME@406 Either needs 2 parameters, values and signature
@@ -99,14 +103,19 @@ Interface Errors:
   IE@505 Interface argument is not an object
   IE@506 Interface - try checkParam_type() instead as nested objects
   
-
 Variadic Errors:
-  VE@601 Use checkArgs_typeVariadic(num_params, ['number']) instead of checkArgs_typeVariadic(num_params, 'number')
-  VE@602 Use checkParam_type() instead of checkArgs_typeVariadic()
-  VE@603 Use checkArgs_typeVariadic() instead of checkParam_type()
-  VE@604 Use checkArgs_emptyVariadic() instead of checkParam_empty()
-  VE@605 Use checkArgs_emptyVariadic(X,Y) instead of checkArgs_emptyVariadic(A,B)
-  VE@606 Use checkParam_empty() instead of checkArgs_emptyVariadic()
+  VE@601 Should be checkArgs_typeEach(arguments, 'strings'), plural for ["a"]
+  VE@602 Should be checkArgs_typeEach(arguments, 'string'), singular for a
+  VE@603 Should be checkArgs_typeEach(arguments, 'strings'), multiple for [["a"],["b"],["c"]]
+  VE@604  Should be checkArgs_typeEach(arguments, 'string'), not plural for ["a","b","c"]
+
+  VE@605 Use checkArgs_typeEach() instead of checkParam_type()
+  VE@606 Use checkArgs_typeEach() instead of checkParam_empty()
+
+  VE@607 only 'EMPTY-ERROR' allowed with checkArgs_emptyEach(var, signature)
+
+  VE@608 Too complicated for checkArgs_typeEach()
+
 
 Either Errors:
-  UE@701 Need at least 2 choices for either type  ****
+  UE@701 Need at least 2 choices for either type

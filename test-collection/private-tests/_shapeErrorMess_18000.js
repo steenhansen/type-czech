@@ -1,19 +1,13 @@
 /* eslint-disable */
 
 
-tested_shapeErrorMess = 0;
-failed_shapeErrorMess = 0;
+pass_count = 0;
+fail_count = 0;
+
 
 //_shapeErrorMess_18001();
 //_shapeErrorMess_18002();              // need to read
 
-TEST_total_fails += failed_shapeErrorMess;
-TEST_total_checks += tested_shapeErrorMess;
-
-if (TEST_show_random) {
-  console.log('_shapeErrorMess failed tests 18000', failed_shapeErrorMess)
-  console.log('_shapeErrorMess passed tests 18000', tested_shapeErrorMess)
-}
 
 ///////////////////////////////////////////
 
@@ -34,9 +28,9 @@ function _shapeErrorMess_18001(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_shapeErrorMess !=='undefined') failed_shapeErrorMess ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_shapeErrorMess !=='undefined') tested_shapeErrorMess ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 function _shapeErrorMess_18002(){
@@ -55,7 +49,16 @@ function _shapeErrorMess_18002(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_shapeErrorMess !=='undefined') failed_shapeErrorMess ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_shapeErrorMess !=='undefined') tested_shapeErrorMess ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
+
+
+
+if (fail_count>0) {
+  the_problem = `private-tests/_shapeErrorMess_18000.js - fails = ${fail_count}`;  
+  console.log(the_problem)
+  throw the_problem
+}
+TEST_total_checks += pass_count;

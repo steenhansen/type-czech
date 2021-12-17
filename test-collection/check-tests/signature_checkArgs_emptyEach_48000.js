@@ -1,19 +1,17 @@
 /* eslint-disable */
 
-tested_signatures = 0;
-failed_signatures = 0;
+
+pass_count = 0;
+fail_count = 0;
+
+
 
 
 signature_filledStrParams_48001();
 signature_filledStrParams_48002();
 signature_filledStrParams_48003();
 
-TEST_total_fails += failed_signatures;
-TEST_total_checks += tested_signatures;
-if (TEST_show_random) {
-  console.log('variadic failed tests 48000', failed_signatures)
-  console.log('variadic passed tests 48000', tested_signatures)
-}
+
 
 
 
@@ -28,9 +26,9 @@ function signature_filledStrParams_48001(){
   type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   
   function PRE_check_filledStrParams(){
-    empty_string = type_czech.checkArgs_emptyVariadic(arguments, ['EMPTY-ERROR'])
+    empty_string = type_czech.checkArgs_emptyEach(arguments, 'EMPTY-ERROR')
     if (empty_string) return empty_string
-    return type_czech.checkArgs_typeVariadic(arguments, ['string'])
+    return type_czech.checkArgs_typeEach(arguments, 'string')
   }
   filledStrParams = type_czech.linkUp(filledStrParams, PRE_check_filledStrParams) 
   try {  
@@ -42,9 +40,9 @@ function signature_filledStrParams_48001(){
   }
   if (was_exception) {
     console.log(TYPE_CZECH_current_test_number, err);
-    if (typeof tested_signatures !== 'undefined') failed_signatures ++;
+    if (typeof pass_count !== 'undefined') fail_count ++;
   }
-  if (typeof tested_signatures !== 'undefined') tested_signatures ++;
+  if (typeof pass_count !== 'undefined') pass_count ++;
 }
 
 function signature_filledStrParams_48002(){
@@ -54,9 +52,9 @@ function signature_filledStrParams_48002(){
   type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   
   function PRE_check_filledStrParams(){
-    empty_string = type_czech.checkArgs_emptyVariadic(arguments, ['EMPTY-ERROR'])
+    empty_string = type_czech.checkArgs_emptyEach(arguments, 'EMPTY-ERROR')
     if (empty_string) return empty_string
-    return type_czech.checkArgs_typeVariadic(arguments, ['string'])
+    return type_czech.checkArgs_typeEach(arguments, ['string'])
   }
   filledStrParams = type_czech.linkUp(filledStrParams, PRE_check_filledStrParams) 
   try {  
@@ -68,9 +66,9 @@ function signature_filledStrParams_48002(){
   }
   if (!was_exception) {
     console.log(TYPE_CZECH_current_test_number, err);
-    if (typeof tested_signatures !== 'undefined') failed_signatures ++;
+    if (typeof pass_count !== 'undefined') fail_count ++;
   }
-  if (typeof tested_signatures !== 'undefined') tested_signatures ++;
+  if (typeof pass_count !== 'undefined') pass_count ++;
 }
 
 function signature_filledStrParams_48003(){
@@ -80,9 +78,9 @@ function signature_filledStrParams_48003(){
   type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   
   function PRE_check_filledStrParams(){
-    empty_string = type_czech.checkArgs_emptyVariadic(arguments, ['EMPTY-ERROR'])
+    empty_string = type_czech.checkArgs_emptyEach(arguments, 'EMPTY-ERROR')
     if (empty_string) return empty_string
-    return type_czech.checkArgs_typeVariadic(arguments, ['string'])
+    return type_czech.checkArgs_typeEach(arguments, ['string'])
   }
   filledStrParams = type_czech.linkUp(filledStrParams, PRE_check_filledStrParams) 
   try {  
@@ -94,7 +92,15 @@ function signature_filledStrParams_48003(){
   }
   if (!was_exception) {
     console.log(TYPE_CZECH_current_test_number, err);
-    if (typeof tested_signatures !== 'undefined') failed_signatures ++;
+    if (typeof pass_count !== 'undefined') fail_count ++;
   }
-  if (typeof tested_signatures !== 'undefined') tested_signatures ++;
+  if (typeof pass_count !== 'undefined') pass_count ++;
 }
+
+
+if (fail_count>0) {
+  the_problem = `check-tests/signature_checkArgs_emptyEach_48000.js - fails = ${fail_count}`;  
+  console.log(the_problem)
+  throw the_problem
+}
+TEST_total_checks += pass_count;

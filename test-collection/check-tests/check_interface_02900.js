@@ -8,9 +8,17 @@
 /* eslint-disable array-bracket-spacing */
 /* eslint-disable max-len */
 
+
+pass_count = 0;
+fail_count = 0;
+
+
+
+
+
 function test_pre_check_interface(actual_variable, variable_signature, error_id, expected_error) {
   const type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
-  tested_check_interface_02900 += 1;
+  pass_count += 1;
 
   function PRE_test_02900(a_var) {
     return type_czech.check_interface(a_var, variable_signature);
@@ -26,20 +34,20 @@ function test_pre_check_interface(actual_variable, variable_signature, error_id,
       // expected route with no error message
     } catch (e) {
       // failing path
-      failed_check_interface_02900 += 1;
+      fail_count += 1;
       console.log('FAIL, should be no error but got ', e, error_id);
     }
   } else {
     try {
       pre_check_interface_02900(actual_variable);
       // failing path, should have been an exception
-      failed_check_interface_02900 += 1;
+      fail_count += 1;
       consoleExpectedActual(expected_error, 'MISSING-EXCEPTION', error_id);
     } catch (e) {
       const error_not_match_exception = errorNotMatchException(expected_error, e);
       if (error_not_match_exception) {
         // failing path, the error was wrong
-        failed_check_interface_02900 += 1;
+        fail_count += 1;
         consoleExpectedActual(expected_error, e, error_id);
       } else {
         // expected route with an error message
@@ -49,8 +57,6 @@ function test_pre_check_interface(actual_variable, variable_signature, error_id,
   afterCheck(actual_variable, variable_signature, before_var_value, error_id);
 }
 
-tested_check_interface_02900 = 0;
-failed_check_interface_02900 = 0;
 
 // /////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -61,20 +67,20 @@ test_pre_check_interface(variable, signature, 2901, error_mess);
 
 variable  = { show: (x) => x };
 signature = { no_match: 'function' };
-error_mess = `PRE_test_02900() PRE-FUNC: IE@501 - Interface, {no_match:"function"}, has extra key 'no_match' that is in not in checked object of {show:(x) => x ***}
+error_mess = `PRE_test_02900() PRE-FUNC: IE@501 - Interface, {no_match:"function"}, has extra key 'no_match' that is in not in checked object of {show:(x) => x ~~~function~~~}
 CHECKER check_interface()
 ACTUAL TYPE 'object'
- VALUES {show:(x) => x ***}
+ VALUES {show:(x) => x ~~~function~~~}
  EXPECTED TYPE {"no_match":"function"}
  ORIGIN pre_check_interface_02900(a_var)`;
 test_pre_check_interface(variable, signature, 2902, error_mess);
 
 variable  = { show: (x) => x };
 signature = { show: 'number' };
-error_mess = `PRE_test_02900() PRE-FUNC: IE@502 - Actual type of 'show' is 'function', with a value of '(x) => x ***', not the expected 'number' type
+error_mess = `PRE_test_02900() PRE-FUNC: IE@502 - Actual type of 'show' is 'function', with a value of '(x) => x ~~~function~~~', not the expected 'number' type
 CHECKER check_interface()
 ACTUAL TYPE 'object'
- VALUES {show:(x) => x ***}
+ VALUES {show:(x) => x ~~~function~~~}
  EXPECTED TYPE {"show":"number"}
  ORIGIN pre_check_interface_02900(a_var)`;
 test_pre_check_interface(variable, signature, 2903, error_mess);
@@ -124,7 +130,7 @@ signature = { };
 error_mess = `PRE_test_02900() PRE-FUNC: IE@503 - Signature is empty object.
 CHECKER check_interface()
 ACTUAL TYPE 'object'
- VALUES {show:(x) => x ***}
+ VALUES {show:(x) => x ~~~function~~~}
  EXPECTED TYPE {}
  ORIGIN pre_check_interface_02900(a_var)`;
 test_pre_check_interface(variable, signature, 2909, error_mess);
@@ -153,5 +159,11 @@ test_pre_check_interface(variable, signature, 2911, error_mess);
 
 
 
-TEST_total_checks += 9;
 
+
+if (fail_count>0) {
+  the_problem = `check-tests/check_interface_02900.js - fails = ${fail_count}`;  
+  console.log(the_problem)
+  throw the_problem
+}
+TEST_total_checks += pass_count;

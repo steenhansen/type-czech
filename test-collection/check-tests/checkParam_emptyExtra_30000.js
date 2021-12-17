@@ -1,29 +1,24 @@
 /* eslint-disable */
 
+pass_count = 0;
+fail_count = 0;
 
-tested_checkParam_emptyExtra = 0;
-failed_checkParam_emptyExtra = 0;
+
+
 
 checkParam_emptyExtra_30000();
 
-checkParam_emptyExtra_30001();
-checkParam_emptyExtra_30002();
-checkParam_emptyExtra_30003();
 checkParam_emptyExtra_30004();
 checkParam_emptyExtra_30005();
-
-TEST_total_fails += failed_checkParam_emptyExtra;
-TEST_total_checks += tested_checkParam_emptyExtra;
-
-if (TEST_show_random) {
-  console.log('checkParam_emptyExtra failed tests 30000', failed_checkParam_emptyExtra)
-  console.log('checkParam_emptyExtra passed tests 30000', tested_checkParam_emptyExtra)
-}
+checkParam_emptyExtra_30006();
+checkParam_emptyExtra_30007();
+checkParam_emptyExtra_30008();
 
 ///////////////////////////////
 function checkParam_emptyExtra_30000(){
 
   type_czech = TypeCzech('NO-ERROR-MESSAGES', 'HIDE-INIT-MESSAGE')
+  TYPE_CZECH_current_test_number = '30000';
   function A_PRE_check_yourFunc(a_var, b_var) {
     return type_czech.checkParam_emptyExtra([a_var, b_var], ['EMPTY-ERROR', 'EMPTY-ERROR']);
   }
@@ -52,7 +47,7 @@ function checkParam_emptyExtra_30000(){
   A_yourFunc({g:[]}, {h:[]})                                 // pass 21 3 empty - {arr arr}
   A_yourFunc({i:''}, {j:''})                                 // pass 22 4 empty - {str str}
   A_yourFunc({k:{}}, {l:{}})                                 // pass 23 5 empty - {obj obj}
-  TEST_total_checks += expectedAndFailedTests(23, 0, 'A-Fail', '_checkParam_emptyExtra().md');
+  pass_count += expectedAndFailedTests(23, 0, 'A-Fail', '_checkParam_emptyExtra().md');
 
 
   A_yourFunc([], [])                     // fail 1 K empty array
@@ -64,7 +59,7 @@ function checkParam_emptyExtra_30000(){
   A_yourFunc(null, null)                 // fail 7 Q empty null
   A_yourFunc(undefined, undefined)       // fail 8 R empty undefined
   A_yourFunc()                           // fail 9 S empty nothing
-  TEST_total_checks += expectedAndFailedTests(9, 9, 'A-Fail', '_checkParam_emptyExtra().md');
+  pass_count += expectedAndFailedTests(9, 9, 'A-Fail', '_checkParam_emptyExtra().md');
 
 
 
@@ -78,6 +73,7 @@ B. Test single type with extra parameters
 */
 
   type_czech = TypeCzech('LOG-ERRORS', 'HIDE-INIT-MESSAGE'); //'NO-ERROR-MESSAGES')
+  TYPE_CZECH_current_test_number = '30101';
   function B_PRE_check_yourFunc(a_num) {
     return type_czech.checkParam_emptyExtra(a_num, 'EMPTY-ERROR');
   }
@@ -97,7 +93,7 @@ B. Test single type with extra parameters
   else if  (typeof TEST_total_checks === 'undefined')
     console.log('no-issues: pass', expected_tests-expected_fails, ' fail', expected_fails)
   else
-    TEST_total_checks += expected_tests
+  pass_count += expected_tests
 
 
 
@@ -109,6 +105,7 @@ C. Test single object with extra parameters
 */
 
   type_czech = TypeCzech('NO-ERROR-MESSAGES', 'HIDE-INIT-MESSAGE')
+  TYPE_CZECH_current_test_number = '30102';
   function C_PRE_check_yourFunc(a_var) {
     return type_czech.checkParam_emptyExtra(a_var, {a:'EMPTY-ERROR'});
   }
@@ -130,7 +127,7 @@ C. Test single object with extra parameters
   else if  (typeof TEST_total_checks === 'undefined')
     console.log('no-issues: pass', expected_tests-expected_fails, ' fail', expected_fails)
   else
-    TEST_total_checks += expected_tests
+  pass_count += expected_tests
 
 
 /*
@@ -138,6 +135,8 @@ D. Test array with extra parameters
 */
 
   type_czech = TypeCzech('NO-ERROR-MESSAGES', 'HIDE-INIT-MESSAGE')
+  TYPE_CZECH_current_test_number = '30103';
+
   function D_PRE_check_yourFunc(a_var, b_var) {
     return type_czech.checkParam_emptyExtra([a_var, b_var], ['EMPTY-ERROR', 'EMPTY-ERROR']);
   }
@@ -157,12 +156,12 @@ D. Test array with extra parameters
   else if  (typeof TEST_total_checks === 'undefined')
     console.log('no-issues: pass', expected_tests-expected_fails, ' fail', expected_fails)
   else
-    TEST_total_checks += expected_tests
+  pass_count += expected_tests
 }
 
 
-function checkParam_emptyExtra_30001(){
-  var TYPE_CZECH_current_test_number = '30001';       
+function checkParam_emptyExtra_30004(){
+  var TYPE_CZECH_current_test_number = '30004';       
   var check_param = [12, 'a-string', false]; 
   var check_shape =   ['EMPTY-ERROR', 'EMPTY-ERROR'];          
   var expect_error = '';
@@ -176,13 +175,13 @@ function checkParam_emptyExtra_30001(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_checkParam_emptyExtra !=='undefined') failed_checkParam_emptyExtra ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_checkParam_emptyExtra !=='undefined') tested_checkParam_emptyExtra ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
-function checkParam_emptyExtra_30002(){
-  var TYPE_CZECH_current_test_number = '30002';       
+function checkParam_emptyExtra_30005(){
+  var TYPE_CZECH_current_test_number = '30005';       
   var check_param =  [  1234, 'not-empty', ['not-empty'], {a:''}  ]; 
   var check_shape =   ['EMPTY-ERROR', 'EMPTY-ERROR'];          
   var expect_error = '';
@@ -196,14 +195,14 @@ function checkParam_emptyExtra_30002(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_checkParam_emptyExtra !=='undefined') failed_checkParam_emptyExtra ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_checkParam_emptyExtra !=='undefined') tested_checkParam_emptyExtra ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
-function checkParam_emptyExtra_30003(){
-  var TYPE_CZECH_current_test_number = '30003';       
+function checkParam_emptyExtra_30006(){
+  var TYPE_CZECH_current_test_number = '30006';       
   var check_param =   [12, '', 'extra-1', 'extra-2'];
   var check_shape =   ['EMPTY-ERROR', 'EMPTY-ERROR'];          
   var expect_error = "EE@311 - ELEMENT '1' is erroneously empty :";
@@ -217,15 +216,15 @@ function checkParam_emptyExtra_30003(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_checkParam_emptyExtra !=='undefined') failed_checkParam_emptyExtra ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_checkParam_emptyExtra !=='undefined') tested_checkParam_emptyExtra ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
 
-function checkParam_emptyExtra_30004(){
-  var TYPE_CZECH_current_test_number = '30004';       
+function checkParam_emptyExtra_30007(){
+  var TYPE_CZECH_current_test_number = '30007';       
   var check_param =   [  1234, '', ['not-empty'], {}  ];
   var check_shape =   ['EMPTY-ERROR', 'EMPTY-ERROR'];          
   var expect_error ="EE@311 - ELEMENT '1' is erroneously empty :";
@@ -239,14 +238,14 @@ function checkParam_emptyExtra_30004(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_checkParam_emptyExtra !=='undefined') failed_checkParam_emptyExtra ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_checkParam_emptyExtra !=='undefined') tested_checkParam_emptyExtra ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 //  type_czech.checkParam_emptyExtra([17], ['EMPTY-ERROR', 'EMPTY-ERROR']);
-function checkParam_emptyExtra_30005(){
-  var TYPE_CZECH_current_test_number = '30005';       
+function checkParam_emptyExtra_30008(){
+  var TYPE_CZECH_current_test_number = '30008';       
   var check_param =   [17];
   var check_shape =   ['EMPTY-ERROR', 'EMPTY-ERROR'];          
   var expect_error =`EE@318 - checkParam_emptyExtra([17], [\"EMPTY-ERROR\",\"EMPTY-ERROR\"]) is missing empty types`;
@@ -260,10 +259,17 @@ function checkParam_emptyExtra_30005(){
           console.log(TYPE_CZECH_current_test_number);
           console.log('actual =', actual_error);
           console.log('expect =', expect_error);
-          if (typeof failed_checkParam_emptyExtra !=='undefined') failed_checkParam_emptyExtra ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_checkParam_emptyExtra !=='undefined') tested_checkParam_emptyExtra ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
-TEST_total_checks += 4;
+
+
+if (fail_count>0) {
+  the_problem = `check-tests/checkParam_emptyExtra_30000.js - fails = ${fail_count}`;  
+  console.log(the_problem)
+  throw the_problem
+}
+TEST_total_checks += pass_count;

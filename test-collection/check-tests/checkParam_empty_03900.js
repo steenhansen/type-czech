@@ -8,9 +8,16 @@
 /* eslint-disable array-bracket-spacing */
 /* eslint-disable max-len */
 
+pass_count = 0;
+fail_count = 0;
+
+
+
+
+
 function test_pre_checkParam_empty_single(single_parameter, signature_of_parameter, error_id, expected_error) {
   const type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
-  tested_checkParam_empty_03900 += 1;
+  pass_count += 1;
 
   function PRE_test_3900(a_var) {
     return type_czech.checkParam_empty(a_var, signature_of_parameter);
@@ -26,20 +33,23 @@ function test_pre_checkParam_empty_single(single_parameter, signature_of_paramet
       // expected route with no error message
     } catch (e) {
       // failing path
-      failed_checkParam_empty_03900 += 1;
+      fail_count += 1;
       console.log('FAIL, should be no error but got ', e, error_id);
     }
   } else {
     try {
       pre_checkParam_empty_3900(single_parameter);
       // failing path, should have been an exception
-      failed_checkParam_empty_03900 += 1;
+      fail_count += 1;
       consoleExpectedActual(expected_error, 'MISSING-EXCEPTION', error_id);
     } catch (e) {
       const error_not_match_exception = errorNotMatchException(expected_error, e);
       if (error_not_match_exception) {
         // failing path, the error was wrong
-        failed_checkParam_empty_03900 += 1;
+        fail_count += 1;
+
+
+
         consoleExpectedActual(expected_error, e, error_id);
       } else {
         // expected route with an error message
@@ -49,10 +59,108 @@ function test_pre_checkParam_empty_single(single_parameter, signature_of_paramet
   afterCheck(single_parameter, signature_of_parameter, before_var_value, error_id);
 }
 
-tested_checkParam_empty_03900 = 0;
-failed_checkParam_empty_03900 = 0;
 
 // /////////////////////////////////////////////////////////////////////////////////////////////
+
+single_variable  = { x: 'c' };
+single_signature = { x: 'EMPTY-ERROR' };
+error_mess = ``;
+test_pre_checkParam_empty_single(single_variable, single_signature, 99001, error_mess);
+
+single_variable  = { x: '' };
+single_signature = { x: 'EMPTY-ERROR' };
+error_mess = `PRE_test_3900() PRE-FUNC: EE@301 -  key 'x' is a 'string' which is reputed to be 'EMPTY-ERROR' but has a value of ''
+CHECKER checkParam_empty()
+ACTUAL TYPE 'object'
+ VALUES {x:""}
+EMPTY ASSERTION {"x":"EMPTY-ERROR"}
+ ORIGIN pre_checkParam_empty_3900(a_var)`;
+test_pre_checkParam_empty_single(single_variable, single_signature, 99002, error_mess);
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+single_variable  = [''];
+single_signature = ['EMPTY-ERROR'];
+error_mess = `PRE_test_3900() PRE-FUNC: EE@311 - ELEMENT '0' is erroneously empty :
+CHECKER checkParam_empty()
+ACTUAL TYPE 'array'
+ VALUES [""]
+EMPTY ASSERTION ["EMPTY-ERROR"]
+ ORIGIN pre_checkParam_empty_3900(a_var)`;
+test_pre_checkParam_empty_single(single_variable, single_signature, 99003, error_mess);
+
+single_variable  = ['c'];
+single_signature = ['EMPTY-ERROR'];
+error_mess = '';
+test_pre_checkParam_empty_single(single_variable, single_signature, 99004, error_mess);
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+single_variable  = [ ['not-empty']             ];
+single_signature = [ ['EMPTY-ERROR'] ];
+error_mess = '';
+test_pre_checkParam_empty_single(single_variable, single_signature, 99005, error_mess);
+
+single_variable  = [ ['']             ];
+single_signature = [ ['EMPTY-ERROR'] ];
+error_mess = `PRE_test_3900() PRE-FUNC: EE@311 - ELEMENT '0' is erroneously empty :
+CHECKER checkParam_empty()
+ACTUAL TYPE 'array'
+ VALUES [[""]]
+EMPTY ASSERTION [["EMPTY-ERROR"]]
+ ORIGIN pre_checkParam_empty_3900(a_var)`;
+test_pre_checkParam_empty_single(single_variable, single_signature, 99006, error_mess);
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+single_variable  = [ ['a',           'b']           ];
+single_signature = [ ['EMPTY-ERROR', 'EMPTY-ERROR'] ];
+error_mess = ``;
+test_pre_checkParam_empty_single(single_variable, single_signature, 99007, error_mess);
+
+single_variable  = [ ['a',           '']            ];
+single_signature = [ ['EMPTY-ERROR', 'EMPTY-ERROR'] ];
+error_mess = `PRE_test_3900() PRE-FUNC: EE@311 - ELEMENT '1' is erroneously empty :
+CHECKER checkParam_empty()
+ACTUAL TYPE 'array'
+ VALUES [["a",""]]
+EMPTY ASSERTION [["EMPTY-ERROR","EMPTY-ERROR"]]
+ ORIGIN pre_checkParam_empty_3900(a_var)`;
+test_pre_checkParam_empty_single(single_variable, single_signature, 99008, error_mess);
+
+single_variable  = [ ['',            'b']            ];
+single_signature = [ ['EMPTY-ERROR', 'EMPTY-ERROR'] ];
+error_mess = `PRE_test_3900() PRE-FUNC: EE@311 - ELEMENT '0' is erroneously empty :
+CHECKER checkParam_empty()
+ACTUAL TYPE 'array'
+ VALUES [["","b"]]
+EMPTY ASSERTION [["EMPTY-ERROR","EMPTY-ERROR"]]
+ ORIGIN pre_checkParam_empty_3900(a_var)`;
+test_pre_checkParam_empty_single(single_variable, single_signature, 99009, error_mess);
+
+////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 single_variable  = { x: [{ y: 'z'           }] };
 single_signature = { x: [{ y: 'EMPTY-ERROR' }] };
@@ -70,17 +178,17 @@ EMPTY ASSERTION {"x":[{"y":"EMPTY-ERROR"}]}
 test_pre_checkParam_empty_single(single_variable, single_signature, 3902, error_mess);
 
 single_variable  = { a: [1, 2, 3] };
-single_signature = { a: ['EMPTY-ERROR'] };
+single_signature = { a: ['EMPTY-ERROR','EMPTY-ERROR','EMPTY-ERROR'] };
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3903, error_mess);
 
 single_variable  = { a: [1, NaN, 3] };
-single_signature = { a: ['EMPTY-ERROR'] };
-error_mess = `PRE_test_3900() PRE-FUNC: EE@306 - ELEMENT '1' is asserted to be a 'EMPTY-ERROR', but is really 'EMPTY' : NaN
+single_signature = { a: ['EMPTY-ERROR','EMPTY-ERROR','EMPTY-ERROR'] };
+error_mess = `PRE_test_3900() PRE-FUNC: EE@311 - ELEMENT '1' is erroneously empty :
 CHECKER checkParam_empty()
 ACTUAL TYPE 'object'
  VALUES {a:[1,NaN,3]}
-EMPTY ASSERTION {"a":["EMPTY-ERROR"]}
+EMPTY ASSERTION {"a":["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3904, error_mess);
 
@@ -97,7 +205,7 @@ test_pre_checkParam_empty_single(single_variable, single_signature, 3905, error_
 // // /////////////////////////////////////////////////////////////////////////////////////////////
 
 single_variable  = { a: [{ r: [ [123],         [1, 2, 3],       987n,          false,          new Date('1999-12-12'), (x) => x,      12,            { a: 3 },      { b: 4 },             /d/,           'abc',         Symbol('sym') ] }] };
-single_signature = { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',           'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] };
+single_signature = { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR','EMPTY-ERROR','EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',           'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] };
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3906, error_mess);
 
@@ -106,85 +214,125 @@ single_signature = { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR'], 'EMPTY-ERROR', '
 error_mess = `PRE_test_3900() PRE-FUNC: EE@311 - ELEMENT '0' is erroneously empty :
 CHECKER checkParam_empty()
 ACTUAL TYPE 'object'
- VALUES {a:[{r:[[],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ***,12,{a:3},{b:4},/d/ +++,"abc",Symbol('sym')]}]}
+ VALUES {a:[{r:[[],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ~~~function~~~,12,{a:3},{b:4},/d/ ~~~regex~~~,"abc",Symbol('sym')]}]}
 EMPTY ASSERTION {"a":[{"r":["EMPTY-ERROR",["EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{"b":"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]}
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3907, error_mess);
 
 single_variable  = { a: [{ r: [ [123],         [],              987n,          false,         new Date('1999-12-12'), (x) => x,      12,            { a: 3 },      { b: 4 },             /d/,           'abc',         Symbol('sym') ] }] };
 single_signature = { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] };
-error_mess = `PRE_test_3900() PRE-FUNC: ME@403 - Param array [] is empty
+error_mess = `PRE_test_3900() PRE-FUNC: EE@321 - Empty array has no types
 CHECKER checkParam_empty()
 ACTUAL TYPE 'object'
- VALUES {a:[{r:[[123],[],987n,false,1999-12-12T00:00:00.000Z,(x) => x ***,12,{a:3},{b:4},/d/ +++,"abc",Symbol('sym')]}]}
+ VALUES {a:[{r:[[123],[],987n,false,1999-12-12T00:00:00.000Z,(x) => x ~~~function~~~,12,{a:3},{b:4},/d/ ~~~regex~~~,"abc",Symbol('sym')]}]}
 EMPTY ASSERTION {"a":[{"r":["EMPTY-ERROR",["EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{"b":"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]}
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3908, error_mess);
 
 single_variable  = { a: [{ r: [ [123],         [1, 2, 3],       987n,           false,         new Date('1999-12-12'), (x) => x,      12,            { a: 3 },      { b: 4 },             /d/,           'abc',         Symbol('sym') ] }] };
 single_signature = { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR'], 'EMPTY-IGNORE', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] };
-error_mess = ``;
+error_mess = `PRE_test_3900() PRE-FUNC: EE@322 - Array has more elements than types 3 !== 1
+CHECKER checkParam_empty()
+ACTUAL TYPE 'object'
+ VALUES {a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ~~~function~~~,12,{a:3},{b:4},/d/ ~~~regex~~~,"abc",Symbol('sym')]}]}
+EMPTY ASSERTION {"a":[{"r":["EMPTY-ERROR",["EMPTY-ERROR"],"EMPTY-IGNORE","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{"b":"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]}
+ ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3909, error_mess);
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 single_variable  = { a: [{ r: [ [123],         [1, 2, 3],       987n,          false,          new Date('1999-12-12'), (x) => x,      12,            { a: 3 },      { b: 4 },             /d/,          'abc',          Symbol('sym') ] }] };
-single_signature = { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-IGNORE', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] };
+single_signature = { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR','EMPTY-ERROR','EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-IGNORE', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] };
 error_mess = ``;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3910, error_mess);
 
 single_variable  = { a: [{ r: [ [123],         [1, 2, 3],       987n,          false,         new Date(''),            (x) => x,   12,       { a: 3 }, { b: 4 },         /d/,      'abc',    Symbol('sym')   ] }] };
-single_signature = { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',           'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] };
+single_signature = { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR','EMPTY-ERROR','EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',           'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] };
 error_mess = `PRE_test_3900() PRE-FUNC: EE@311 - ELEMENT '4' is erroneously empty :
 CHECKER checkParam_empty()
 ACTUAL TYPE 'object'
- VALUES {a:[{r:[[123],[1,2,3],987n,false,null,(x) => x ***,12,{a:3},{b:4},/d/ +++,"abc",Symbol('sym')]}]}
-EMPTY ASSERTION {"a":[{"r":["EMPTY-ERROR",["EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{"b":"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]}
+ VALUES {a:[{r:[[123],[1,2,3],987n,false,null,(x) => x ~~~function~~~,12,{a:3},{b:4},/d/ ~~~regex~~~,"abc",Symbol('sym')]}]}
+EMPTY ASSERTION {"a":[{"r":["EMPTY-ERROR",["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{"b":"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]}
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3911, error_mess);
 
 single_variable  = { a: [{ r: [ [123],         [1, 2, 3],       987n,          false,         new Date('1999-12-12'), (x) => x,       12,            { a: 3 },      { b: 4 },             /d/,           'abc',         Symbol('sym') ] }] };
-single_signature = { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-IGNORE', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] };
+single_signature = { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR','EMPTY-ERROR','EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-IGNORE', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] };
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3912, error_mess);
 
 single_variable  = { a: [{ r: [ [123],         [1, 2, 3],       987n,          false,         new Date('1999-12-12'), (x) => x,      NaN,           { a: 3 },      { b: 4 },             /d/,          'abc',          Symbol('sym') ] }] };
-single_signature = { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] };
+single_signature = { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR','EMPTY-ERROR','EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] };
 error_mess = `PRE_test_3900() PRE-FUNC: EE@311 - ELEMENT '6' is erroneously empty :
 CHECKER checkParam_empty()
 ACTUAL TYPE 'object'
- VALUES {a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ***,NaN,{a:3},{b:4},/d/ +++,"abc",Symbol('sym')]}]}
-EMPTY ASSERTION {"a":[{"r":["EMPTY-ERROR",["EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{"b":"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]}
+ VALUES {a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ~~~function~~~,NaN,{a:3},{b:4},/d/ ~~~regex~~~,"abc",Symbol('sym')]}]}
+EMPTY ASSERTION {"a":[{"r":["EMPTY-ERROR",["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{"b":"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]}
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3913, error_mess);
 
 single_variable  = { a: [{ r: [ [123],         [1, 2, 3],       987n,          false,         new Date('1999-12-12'), (x) => x,      12,            { a: '' },     { b: 4 },             /d/,           'abc',         Symbol('sym') ] }] };
-single_signature = { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] };
+single_signature = { a: [{ r: [ 'EMPTY-ERROR', ["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] };
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3914, error_mess);
 
 single_variable  = { a: [{ r: [ [123],         [1, 2, 3],       987n,          false,         new Date('1999-12-12'), (x) => x,      12,            { a: 3 },      { b: '' },            /d/,           'abc',         Symbol('sym') ] }] };
-single_signature = { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] };
+single_signature = { a: [{ r: [ 'EMPTY-ERROR', ["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] };
 error_mess = `PRE_test_3900() PRE-FUNC: EE@301 -  key 'b' is a 'string' which is reputed to be 'EMPTY-ERROR' but has a value of ''
 CHECKER checkParam_empty()
 ACTUAL TYPE 'object'
- VALUES {a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ***,12,{a:3},{b:""},/d/ +++,"abc",Symbol('sym')]}]}
-EMPTY ASSERTION {"a":[{"r":["EMPTY-ERROR",["EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{"b":"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]}
+ VALUES {a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ~~~function~~~,12,{a:3},{b:""},/d/ ~~~regex~~~,"abc",Symbol('sym')]}]}
+EMPTY ASSERTION {"a":[{"r":["EMPTY-ERROR",["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{"b":"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]}
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3915, error_mess);
 
 single_variable  = { a: [{ r: [ [123],         [1, 2, 3],       987n,          false,         new Date('1999-12-12'), (x) => x,      12,            { a: 3 },      { b: 4 },             /(?:)/,        'abc',         Symbol('sym') ] }] };
-single_signature = { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] };
+single_signature = { a: [{ r: [ 'EMPTY-ERROR', ["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] };
 error_mess = `PRE_test_3900() PRE-FUNC: EE@311 - ELEMENT '9' is erroneously empty :
 CHECKER checkParam_empty()
 ACTUAL TYPE 'object'
- VALUES {a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ***,12,{a:3},{b:4},/(?:)/ +++,"abc",Symbol('sym')]}]}
-EMPTY ASSERTION {"a":[{"r":["EMPTY-ERROR",["EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{"b":"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]}
+ VALUES {a:[{r:[[123],[1,2,3],987n,false,1999-12-12T00:00:00.000Z,(x) => x ~~~function~~~,12,{a:3},{b:4},/(?:)/ ~~~regex~~~,"abc",Symbol('sym')]}]}
+EMPTY ASSERTION {"a":[{"r":["EMPTY-ERROR",["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{"b":"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]}
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3916, error_mess);
 
 single_variable  = { a: [{ r: [ [123],         [1, 2, 3],       987n,          false,         new Date('1999-12-12'), (x) => x,      12,            { a: 3 },      { b: 4 },             /d/,           'abc',         Symbol('sym') ] }] };
-single_signature = { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-IGNORE' ] }] };
+single_signature = { a: [{ r: [ 'EMPTY-ERROR', ["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-IGNORE' ] }] };
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3917, error_mess);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // // /////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -250,10 +398,10 @@ test_pre_checkParam_empty_single(single_variable, single_signature, 3925, error_
 
 single_variable  = /(?:)/;
 single_signature = 'EMPTY-ERROR';
-error_mess = `PRE_test_3900() PRE-FUNC: EE@307 - EMPTY-ERROR states 'regexp' must not be empty for the value /(?:)/ +++
+error_mess = `PRE_test_3900() PRE-FUNC: EE@307 - EMPTY-ERROR states 'regexp' must not be empty for the value /(?:)/ ~~~regex~~~
 CHECKER checkParam_empty()
 ACTUAL TYPE 'regexp'
- VALUES /(?:)/ +++
+ VALUES /(?:)/ ~~~regex~~~
 EMPTY ASSERTION EMPTY-ERROR
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3926, error_mess);
@@ -272,6 +420,19 @@ single_variable  = Symbol('');
 single_signature = 'EMPTY-ERROR';
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3928, error_mess);
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // // /////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -368,6 +529,26 @@ single_variable  = { a: [ { b: [ { c: [ { d: [ { e: ''       } ] } ] } ] } ] };
 single_signature = { a: [ { b: [ { c: [ { d: [ 'EMPTY-ERROR'        ] } ] } ] } ] };
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3940, error_mess);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // // /////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -475,7 +656,25 @@ EMPTY ASSERTION {"b":[[{"c":{"d":[["EMPTY-ERROR"]]}}]]}
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3952, error_mess);
 
-// // /////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// // // /////////////////////////////////////////////////////////////////////////////////////////////
 single_variable  = null;
 single_signature = 'EMPTY-ERROR';
 error_mess = `PRE_test_3900() PRE-FUNC: EE@308 - A 'null' cannot be empty, so the state of 'EMPTY-ERROR' is illegal for the value 'null'
@@ -518,7 +717,7 @@ test_pre_checkParam_empty_single(single_variable, single_signature, 3956, error_
 
 single_variable  = [];
 single_signature = ['EMPTY-ERROR'];
-error_mess = `PRE_test_3900() PRE-FUNC: ME@403 - Param array [] is empty
+error_mess = `PRE_test_3900() PRE-FUNC: EE@321 - Empty array has no types
 CHECKER checkParam_empty()
 ACTUAL TYPE 'array'
  VALUES []
@@ -588,6 +787,28 @@ single_signature = 'EMPTY-IGNORE';
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3968, error_mess);
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // // ///////////////////////////////////////////////////////////////
 
 single_variable  = [1];
@@ -596,40 +817,134 @@ error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3969, error_mess);
 
 single_variable  = [1, 2];
-single_signature = ['EMPTY-ERROR'];
+single_signature = ['EMPTY-ERROR', 'EMPTY-ERROR'];
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3970, error_mess);
 
 single_variable  = [1, 2, 'three'];
-single_signature = ['EMPTY-ERROR'];
+single_signature = ['EMPTY-ERROR','EMPTY-ERROR','EMPTY-ERROR'];
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3971, error_mess);
 
 single_variable  = [ [1, 2, 3], [1, 2, 3], [1, 2, 3] ];
-single_signature = [['EMPTY-ERROR']];
+single_signature = [['EMPTY-ERROR','EMPTY-ERROR','EMPTY-ERROR']];
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3972, error_mess);
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 single_variable  = [   [ [1, 2, 3], [1, 2, 3], [1, 2, 3] ],
-                [ [1, 2, 3], [1, 2, 3], [1, 2, 3] ],
-                [ [1, 2, 3], [1, 2, 3], [1, 2, 3] ]    ];
-single_signature = [[['EMPTY-ERROR']]];
+                       [ [1, 2, 3], [1, 2, 3], [1, 2, 3] ],
+                       [ [1, 2, 3], [1, 2, 3], [1, 2, 3] ]    ];
+single_signature = [   [ ['EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR']],
+                       [ ['EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR']],
+                       [ ['EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR']]   ];
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3973, error_mess);
 
-single_variable  = [   [ [1, 2, 3], [1, 2, 3], [1,  2,  3] ],
-                [ [1, 2, 3], [1, 2, 3], [1,  2,  3] ],
-                [ [1, 2, 3], [1, 2, 3], [1, '', 3] ]    ];
-single_signature = [[['EMPTY-ERROR']]];
-error_mess = `PRE_test_3900() PRE-FUNC: EE@306 - ELEMENT '1' is asserted to be a 'EMPTY-ERROR', but is really 'EMPTY' : ''
+
+single_variable  = [   [ [1, 2, 3],                                     [1, 2, 3],                                     [1,  2,  3]                                   ],
+                       [ [1, 2, 3],                                     [1, 2, 3],                                     [1,  2,  3]                                   ],
+                       [ [1, 2, 3],                                     [1, 2, 3],                                     [1, '', 3]                                   ]    ];
+single_signature = [   [ ['EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR'], ['EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR'], ['EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR'] ],
+                       [ ['EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR'], ['EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR'], ['EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR'] ],
+                       [ ['EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR'], ['EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR'], ['EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR'] ]    ];
+error_mess = `PRE_test_3900() PRE-FUNC: EE@311 - ELEMENT '1' is erroneously empty :
 CHECKER checkParam_empty()
 ACTUAL TYPE 'array'
  VALUES [[[1,2,3],[1,2,3],[1,2,3]],[[1,2,3],[1,2,3],[1,2,3]],[[1,2,3],[1,2,3],[1,"",3]]]
+EMPTY ASSERTION [[["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"],["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"],["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]],[["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"],["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"],["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]],[["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"],["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"],["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]]]
+ ORIGIN pre_checkParam_empty_3900(a_var)`;
+test_pre_checkParam_empty_single(single_variable, single_signature, 3974, error_mess);
+
+
+
+single_variable  = [   [ [1, 2, 3],                                     [1, 2, 3],                                     [1, '', 3]                                    ]    ];
+single_signature = [   [ ['EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR'], ['EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR'], ['EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR'] ]    ];
+
+error_mess = `PRE_test_3900() PRE-FUNC: EE@311 - ELEMENT '1' is erroneously empty :
+CHECKER checkParam_empty()
+ACTUAL TYPE 'array'
+ VALUES [[[1,2,3],[1,2,3],[1,"",3]]]
+EMPTY ASSERTION [[["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"],["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"],["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]]]
+ ORIGIN pre_checkParam_empty_3900(a_var)`;
+test_pre_checkParam_empty_single(single_variable, single_signature, 3974, error_mess);
+
+
+single_variable  = [   [ [1, '', 3]                                    ]    ];
+single_signature = [   [ ['EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR'] ]    ];
+error_mess = `PRE_test_3900() PRE-FUNC: EE@311 - ELEMENT '1' is erroneously empty :
+CHECKER checkParam_empty()
+ACTUAL TYPE 'array'
+ VALUES [[[1,"",3]]]
+EMPTY ASSERTION [[["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]]]
+ ORIGIN pre_checkParam_empty_3900(a_var)`;
+test_pre_checkParam_empty_single(single_variable, single_signature, 3974, error_mess);
+
+
+
+
+single_variable  = [   [ [''           ] ]    ];
+single_signature = [   [ ['EMPTY-ERROR'] ]    ];
+error_mess = `PRE_test_3900() PRE-FUNC: EE@311 - ELEMENT '0' is erroneously empty :
+CHECKER checkParam_empty()
+ACTUAL TYPE 'array'
+ VALUES [[[""]]]
 EMPTY ASSERTION [[["EMPTY-ERROR"]]]
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3974, error_mess);
 
-// // ////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ////////////////////////////////////////
 
 single_variable  = 'not-object';
 single_signature = { an_object: 'EMPTY-ERROR' };
@@ -716,7 +1031,28 @@ single_signature = 'EMPTY-ERROR';
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3983, error_mess);
 
-// ///////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// // ///////////////////////////////////////////////////////
 
 single_variable  = [];
 single_signature = 'EMPTY-OK';
@@ -768,7 +1104,28 @@ single_signature = 'EMPTY-OK';
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3993, error_mess);
 
-//  ////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// //  ////////////////////////////////////////////////////////////////////////
 
 single_variable  = "a-s";
 single_signature =  "invalid-empty";
@@ -814,7 +1171,7 @@ test_pre_checkParam_empty_single(single_variable, single_signature, 3997, error_
 
 single_variable  = [];
 single_signature =  ['EMPTY-ERROR'];
-error_mess = `PRE_test_3900() PRE-FUNC: ME@403 - Param array [] is empty
+error_mess = `PRE_test_3900() PRE-FUNC: EE@321 - Empty array has no types
 CHECKER checkParam_empty()
 ACTUAL TYPE 'array'
  VALUES []
@@ -823,5 +1180,11 @@ EMPTY ASSERTION ["EMPTY-ERROR"]
 test_pre_checkParam_empty_single(single_variable, single_signature, 3998, error_mess);
 
 
-TEST_total_checks += 98;
 
+
+if (fail_count>0) {
+  the_problem = `check-tests/checkParam_empty_03900.js - fails = ${fail_count}`;  
+  console.log(the_problem)
+  throw the_problem
+}
+TEST_total_checks += pass_count;

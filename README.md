@@ -1,9 +1,9 @@
 
 # TypeCzech
 
-TypeCzech is a run-time type checking JavaScript library that can be toggled on and off.
+TypeCzech is a detachable run-time type checking JavaScript library that can be toggled on and off.
 Include one file in your web page or in your Node.js file to allow you to type check function parameters
-and results. Errors can be set to throw halting exceptions or just output to the Console.
+and results. Errors can be set to throw exceptions or just output to the Console.
 The motivation is to verify function parameters before execution, and function results after completion with 
 PRE_check() and POST_check() functions.
 
@@ -32,7 +32,7 @@ TypeCzech the good parts
     No special type variables, no annotations, and no generics.
   - Checking functions are easily detachable into a separate file. To stop all TypeCzech checking just stop importing the TypeCzech library in production or development. Decouple 
   with a comment as in [03-Turn-Off-Library-Not-Loaded](https://jsfiddle.net/steen_hansen/m1tce27f/?03-Turn-Off-Library-Not-Loaded), a variable as in [102-Extending-Classes-Imports](https://jsfiddle.net/steen_hansen/rs4nqL7k/?102-Extending-Classes-Imports), or an if statement as in [204-Extending-Closures-Single](https://jsfiddle.net/steen_hansen/8kbtyfz1/?204-Extending-Closures-Single).
-  - Does not introduce function syntax into your code, just plain functions. No .d.ts files just plain JavaScript.
+  - Does not introduce special syntax into your code, just plain functions. No .d.ts files just plain JavaScript.
 
 TypeCzech the bad parts
 
@@ -45,7 +45,7 @@ TypeCzech the bad parts
 
   -  type_czech = <b>TypeCzech('LOG-ERRORS')</b> logs errors to the console instead of throwing exceptions
   -  type_czech.<b>checkParam_type()</b> checks that the parameter types to aLottery() are first a string, then an array of numbers, and finally a date
-  -  type_czech.<b>checkArgs_emptyVariadic()</b> complains when parameters are found to be empty strings, arrays, or objects
+  -  type_czech.<b>checkArgs_emptyEach()</b> complains when parameters are found to be empty strings, arrays, objects, or dates.
   -  <b>PRE_check_aLottery()</b> is executed just before aLottery() and runs via type_czech.<b>linkUp()</b> 
   -  /**/ highlights added TypeCzech test code that is safely removable or programmatically turned off
 
@@ -56,7 +56,7 @@ function aLottery(lottery_name, lucky_numbers, draw_date){
 
 /**/  type_czech = TypeCzech('LOG-ERRORS')
 /**/
-/**/  LOTTERY_SIGNATURE = ['string', ['number'], 'date']
+/**/  LOTTERY_SIGNATURE = ['string', ['numbers'], 'date']
 /**/
 /**/  function PRE_check_aLottery(lottery_name, lucky_numbers, draw_date){
 /**/    the_parameters = [lottery_name, lucky_numbers, draw_date]
@@ -64,7 +64,7 @@ function aLottery(lottery_name, lucky_numbers, draw_date){
 /**/    if (type_issue) 
 /**/      return type_issue
 /**/
-/**/    empty_issue = type_czech.checkArgs_emptyVariadic(arguments, ['EMPTY-ERROR'])
+/**/    empty_issue = type_czech.checkArgs_emptyEach(arguments, 'EMPTY-ERROR')
 /**/    if (empty_issue)
 /**/      return empty_issue
 /**/
@@ -72,59 +72,65 @@ function aLottery(lottery_name, lucky_numbers, draw_date){
 /**/  }
 /**/
 /**/  aLottery = type_czech.linkUp(aLottery, PRE_check_aLottery) 
+
+aLottery('El Gordo', [1,2,3,4,5,0], new Date('jun 14 1999')) // no effects as valid parameters
 ```
 
 [Live editable program on JSFiddle](https://jsfiddle.net/steen_hansen/0xtpLwsc/?00-Readme-Example)
 
 Below is console.log input and output preceded with >>.
 ```
-aLottery('El Gordo', [1,2,3,4,5,0], new Date('jun 14 1999'))
-El Gordo ::: 1,2,3,4,5,0 ::: Date Mon Jun 14 1999 00:00:00 GMT-0700 (Pacific Daylight Time)
+>>El Gordo ::: 1,2,3,4,5,0 ::: Date Mon Jun 14 1999 00:00:00 GMT-0700 (Pacific Daylight Time)
 
 aLottery('Powerball', [], new Date('jun 14 1999'))
+
 >>PRE_check_aLottery() PRE-FUNC: Empty array has no types
 >>         CHECKER checkParam_type()
 >>     ACTUAL TYPE ['string','array','date']
 >>          VALUES ["Powerball",[],1999-06-14T07:00:00.000Z]
 >>   EXPECTED TYPE ["string",["number"],"date"]
 >>          ORIGIN aLottery(lottery_name, lucky_numbers, draw_date)
-Powerball ::: ::: Date Mon Jun 14 1999 00:00:00 GMT-0700 (Pacific Daylight Time)
+>>Powerball ::: ::: Date Mon Jun 14 1999 00:00:00 GMT-0700 (Pacific Daylight Time)
 
 aLottery('', [1,2,3,4,5,26], new Date('Dec 31 1999'))
->>PRE_check_aLottery() PRE-FUNC: ELEMENT '0' is asserted to be a 'EMPTY-ERROR', but is really 'EMPTY' : ''
->>                       CHECKER checkArgs_emptyVariadic()
+
+>>PRE_check_aLottery() PRE-FUNC: ELEMENT '0' is erroneously empty :
+>>                       CHECKER checkArgs_emptyEach()
 >>                  ACTUAL TYPES ['string','array','date']
 >>                        VALUES ["",[1,2,3,4,5,26],1999-12-31T08:00:00.000Z]
 >>               EMPTY ASSERTION ['EMPTY-ERROR']
 >>                      ORIGIN aLottery(lottery_name, lucky_numbers, draw_date)
-::: 1,2,3,4,5,26 ::: Date Fri Dec 31 1999 00:00:00 GMT-0800 (Pacific Standard Time)
+>>::: 1,2,3,4,5,26 ::: Date Fri Dec 31 1999 00:00:00 GMT-0800 (Pacific Standard Time)
 
 aLottery('Mega Millions', 17, new Date('jun 14 1999'))
+
 >>PRE_check_aLottery() PRE-FUNC: Param is meant to be 'array' but is of the wrong type of 'number':17
 >>                     CHECKER checkParam_type()
 >>                ACTUAL TYPES ['string','number','date']
 >>                      VALUES ["Mega Millions",17,1999-06-14T07:00:00.000Z]
 >>               EXPECTED TYPE ["string",["number"],"date"]
 >>                      ORIGIN aLottery(lottery_name, lucky_numbers, draw_date)
-Mega Millions ::: 17 ::: Date Mon Jun 14 1999 00:00:00 GMT-0700 (Pacific Daylight Time)
+>>Mega Millions ::: 17 ::: Date Mon Jun 14 1999 00:00:00 GMT-0700 (Pacific Daylight Time)
 
 aLottery('Lotto 649', [1,2,3,4,5,6])
+
 >>PRE_check_aLottery() PRE-FUNC:  ELEMENT '2' is assumed to be a 'date', but is mistakenly a 'undefined'
 >>                     CHECKER checkParam_type()
 >>                ACTUAL TYPES ['string','array']
 >>                      VALUES "Lotto 649",[1,2,3,4,5,6]
 >>               EXPECTED TYPE ["string",["number"],"date"]
 >>                      ORIGIN aLottery(lottery_name, lucky_numbers, draw_date)
-Lotto 649 ::: 1,2,3,4,5,6 ::: undefined
+>>Lotto 649 ::: 1,2,3,4,5,6 ::: undefined
 
 aLottery('Oz Lotto', ['fourty-two'], new Date('jun 14 1999'))
->>PRE_check_aLottery() PRE-FUNC:  ELEMENT '0' is assumed to be a 'number', but is mistakenly a 'string'
+
+>>PRE_check_aLottery() PRE-FUNC:  ELEMENT '0' is assumed to be a 'number', but is mistakenly a 'string' with a value of fourty-two
 >>                     CHECKER checkParam_type()
 >>                ACTUAL TYPES ['string','array','date']
 >>                      VALUES ["Oz Lotto",["fourty-two"],1999-06-14T07:00:00.000Z]
 >>               EXPECTED TYPE ["string",["number"],"date"]
 >>                      ORIGIN aLottery(lottery_name, lucky_numbers, draw_date)
-Oz Lotto ::: fourty-two ::: Date Mon Jun 14 1999 00:00:00 GMT-0700 (Pacific Daylight Time)
+>>Oz Lotto ::: fourty-two ::: Date Mon Jun 14 1999 00:00:00 GMT-0700 (Pacific Daylight Time)
 ```
 
 ### The Idea
@@ -177,8 +183,8 @@ function yourFunction(param_1, param_2){
 yourFunction(1, 'two')
 ```
 
-<b>So basically linkUp() and isActive() are the only two TypeCzech functions that are always safe to call.</b>
-As long as the below construct is used, regardless of whether or not TypeCzech.js has been loaded. Thus enveloping all TypeCzech calls with linkUp() and isActive() will ensure no reference errors are caused when TypeCzech is turned on or off by not loading the TypeCzech.js file.
+<b>So basically linkUp() and isActive() are the only two TypeCzech functions that are always safe to call,</b>
+as long as the below construct is used, regardless of whether or not TypeCzech.js has been loaded. Thus enveloping all TypeCzech calls with linkUp() and isActive() will ensure no reference errors are caused when TypeCzech is turned on or off by not loading the TypeCzech.js file.
 ```
 function aFunction(){ }
 function before_aFunction(){ }
@@ -196,36 +202,62 @@ type_czech.isActive()
 ### The Recipe
   TypeCzech function checking calls should only appear in these three places: 
 
-  - A. encased by a linked up PRE_check() function
-  - B. wrapped by a linked up POST_check() function
-  - C. or inside an isActive() if then statement inside of a promise. Then you
-    have to deliver the error message via an check_assert() call; it's not automatic.
+  - A. encased by a linked-up PRE_check() function
+  - B. wrapped by a linked-up POST_check() function
+
 
 ```
 function PRE_check_yourFunc(param_1, param_2, param_3){ 
-  /* A. TypeCzech functions should mostly appear here to check parameters before yourFunc() runs */
+  /* A. TypeCzech functions should mostly appear here to check parameters BEFORE yourFunc() runs */
 }
 
 function POST_check_yourFunc(function_result){ 
-  /* B. TypeCzech functions sometimes occur here to check the results of yourFunc() */
+  /* B. TypeCzech functions sometimes occur here to check the RESULTS of yourFunc() */
 }
 yourFunc = type_czech.linkUp(yourFunc, PRE_check_yourFunc, POST_check_yourFunc)
 
 function yourFunc(param_1, param_2, param_3){ 
   return function_result
 }
-
-fetch('https://get.geojs.io')
-.then(response_value => {
-  if (type_czech.isActive()) {
-    /* C. TypeCzech functions rarely show up here, but check_assert() is used to deliver errors */
-    type_err = type_czech.checkParam_type(response_value, 'array')
-    type_czech.check_assert(type_err, 'ERROR IS HERE', response_value, 'expected-error') // report type error if any
-  }
-})
 ```
-Above in the fetch() promise chain, if the variable 'response_value' is not an array then
-the variable 'type_err' will not be an empty string. If the 'type_err' is not an empty string, then type_czech.check_assert() will throw or console.log the error message. So if the variable 'response_value' is an array then the fetch() code will run without incident.
+
+  - C. or inside an isActive() if then statement inside of a promise. Then you
+    have to deliver the error message via an check_assert() call; it's not automatic when inside THEN blocks. Below is a passing example of '8.8.8.8', and a failing example. Note that the signature is built to match the number of returning countries in the variable geo_array_signature.
+```
+type_czech = TypeCzech('THROW-EXCEPTIONS')
+
+ONE_GeoJS_SIGNATURE = {country:'string', country_3:'string', ip:'string', name:'string'} 
+
+function getIpCountryInfo(ip_numbers){
+  country_url = 'https://get.geojs.io/v1/ip/country.json?ip=' + ip_numbers
+  fetch(country_url)
+  .then(response => response.json())
+  .then(geo_data => {
+    if (type_czech.isActive()) {
+      geo_array_signature = Array(geo_data.length).fill(ONE_GeoJS_SIGNATURE);
+      type_err = type_czech.checkParam_type(geo_data, geo_array_signature)
+      type_czech.check_assert(type_err, 'Error - GeoJs.io error', geo_data)
+    }
+    return geo_data
+  })
+  .then(geo_data => console.dir(geo_data))
+}
+
+getIpCountryInfo('8.8.8.8,' + '46.135.0.0,' + '104.200.151.94')
+
+>> Object { country: "US", country_3: "USA", ip: "8.8.8.8", ...}
+>> Object { country: "CZ", country_3: "CZE", ip: "46.135.0.0", … }
+>> Object { country: "CA", country_3: "CAN", ip: "199.175.213.12", ...}
+
+getIpCountryInfo('fail-no-country-ip')
+
+>>    MESSAGE  Key 'country', which has a type of 'string', is missing in the checked object 
+>>    CHECKER check_assert()
+>>ACTUAL TYPE 'array'
+>>     VALUES [{ip:"fail-no-country-ip"}]
+>>     ORIGIN Error - GeoJs.io error
+```
+Above in the fetch() promise chain, if the returned value of 'geo_data' does not match the {country:'string', country_3:'string', ip:'string', name:'string'}, then type_czech.check_assert() will throw or console.log the error message. 
 
 
 
@@ -257,15 +289,18 @@ if (typeof linkUp_typeCzech === 'function') {
 Because JavaScript does not completely hoist classes there is no example #104. 
 
 
-### [Type Signatures](./read-mes/signatures-type.md)
-Checking function parameters for correct types such as numbers and arrays.
+### [Type Signatures](./read-mes/type-signatures.md)
+Checking parameter type signtures.
+
+### [Empty Signatures](./read-mes/empty-signatures.md)
+Checking parameter empty signtures.
 
   
-### [Empty Signatures](./read-mes/signatures-empty.md)
-Testing function parameters for valuelessness errors.
-
 ### [67 Page Live Online Editable Tutorial](https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Contents)
 All the examples run on JsFiddle.
+
+### [67 Page Local Editable Tutorial](./example-snippets/example-contents.html)
+All the examples on local browser.
 
 ### [16 Simple How To Snippets](./read-mes/simple-howto.md)
 Getting started examples.
@@ -274,8 +309,7 @@ Getting started examples.
 The public functions that check function parameter types.
 
 
-### [67 Page Local Editable Tutorial](./example-snippets/example-contents.html)
-All the examples on local browser.
+
 
 
 ### [Node.js and PHP Examples](./read-mes/run-examples.md)

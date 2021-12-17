@@ -32,35 +32,35 @@ Having easily controllable type checking at runtime in both the browser and Node
   - Only  linkUp() and isActive() are always safe call. All other TypeCzech function calls 
    should be placed inside PRE_check() and POST_check() functions that are hooked up with linkUp().
   
+```
+if (typeof TypeCzech === 'function')
+  type_czech = TypeCzech('THROW-EXCEPTIONS')
+else
+  type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
 
-        if (typeof TypeCzech === 'function')
-          type_czech = TypeCzech('THROW-EXCEPTIONS')
-        else
-          type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
+function PRE_check_yourFunction(param_1, param_2){ 
+  /* TypeCzech functions always appear here */
+  return type_check.checkParam_type([param_1, param_2], ['string', 'string'])
+}
 
-        function PRE_check_yourFunction(param_1, param_2){ 
-          /* TypeCzech functions always appear here */
-          return type_check.checkParam_type([param_1, param_2], ['string', 'string'])
-        }
+function POST_check_yourFunction(results){ 
+  /* and TypeCzech functions sometimes appear here */
+  type_check.checkParam_empty(results, 'EMPTY-ERROR')
+}
 
-        function POST_check_yourFunction(results){ 
-          /* and TypeCzech functions sometimes appear here */
-          type_check.checkParam_empty(results, 'EMPTY-ERROR')
-        }
-        
-        yourFunction = type_czech.linkUp(yourFunction, PRE_check_yourFunction, POST_check_yourFunction)
+yourFunction = type_czech.linkUp(yourFunction, PRE_check_yourFunction, POST_check_yourFunction)
 
-        function yourFunction(param_1, param_2){
-          return results
-        }
+function yourFunction(param_1, param_2){
+  return results
+}
 
-        fetch(some_url)
-        .then(response => {
-          if (type_czech.isActive()) {
-            /* and TypeCzech functions infrequently show up here paired with an check_assert() */
-          }
-        })
-
+fetch('https://get.geojs.io/v1/ip/country.json?ip=8.8.8.8')
+.then(response => {
+  if (type_czech.isActive()) {
+    /* and TypeCzech functions infrequently show up here paired with an check_assert() */
+  }
+})
+```
 
 
 

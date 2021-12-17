@@ -1,20 +1,19 @@
 /* eslint-disable */
 
-tested_refDiff = 0;
-failed_refDiff = 0;
+
+
+pass_count = 0;
+fail_count = 0;
+
+
+
 
 _refDiff_19001();
 _refDiff_19002();
 _refDiff_19003();
 _refDiff_19004();
 
-TEST_total_fails += failed_refDiff;
-TEST_total_checks += tested_refDiff;
 
-if (TEST_show_random) {
-  console.log('_refDiff failed tests 19000', failed_refDiff)
-  console.log('_refDiff passed tests 19000', tested_refDiff)
-}
 
 /////////////////////////////////////////////
 
@@ -36,9 +35,9 @@ function _refDiff_19001(){
         if (actual_error !== expect_error) {
           console.log(TYPE_CZECH_current_test_number, 'actual=', actual_error);
           console.log(                          '    expected=', expect_error);
-          if (typeof failed_refDiff !=='undefined') failed_refDiff ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_refDiff !=='undefined') tested_refDiff ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
@@ -62,9 +61,9 @@ function _refDiff_19002(){
         if (actual_error !== expect_error) {
           console.log(TYPE_CZECH_current_test_number, 'actual=', actual_error);
           console.log(                          '    expected=', expect_error);
-          if (typeof failed_refDiff !=='undefined') failed_refDiff ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_refDiff !=='undefined') tested_refDiff ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
@@ -85,9 +84,9 @@ function _refDiff_19003(){
         if (actual_error !== expect_error) {
           console.log(TYPE_CZECH_current_test_number, 'actual=', actual_error);
           console.log(                          '    expected=', expect_error);
-          if (typeof failed_refDiff !=='undefined') failed_refDiff ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_refDiff !=='undefined') tested_refDiff ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
 
 
@@ -109,7 +108,15 @@ function _refDiff_19004(){
         if (actual_error !== expect_error) {
           console.log(TYPE_CZECH_current_test_number, 'actual=', actual_error);
           console.log(                          '    expected=', expect_error);
-          if (typeof failed_refDiff !=='undefined') failed_refDiff ++;
+          if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof tested_refDiff !=='undefined') tested_refDiff ++;
+        if (typeof pass_count !=='undefined') pass_count ++;
 }
+
+
+if (fail_count>0) {
+  the_problem = `private-tests/_refDiff_19000.js - fails = ${fail_count}`;  
+  console.log(the_problem)
+  throw the_problem
+}
+TEST_total_checks += pass_count;
