@@ -120,7 +120,7 @@ function keyRenameKtoXinTypes(tree_str, the_keys, show_data) {
 }
 
 function generativeTest(stop_index, show_data = false) {
-  pass_count += 1;
+  generative_pass_count += 1;
   const [tree_str, the_keys, the_values] = makeTree(stop_index);
   if (show_data) {
     if (typeof process !== 'undefined') {

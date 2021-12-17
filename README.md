@@ -139,7 +139,7 @@ aLottery('Oz Lotto', ['fourty-two'], new Date('jun 14 1999'))
 >>Oz Lotto ::: fourty-two ::: Date Mon Jun 14 1999 00:00:00 GMT-0700 (Pacific Daylight Time)
 ```
 
-### The Idea
+## The Idea
 Is to 'LOG-ERRORS' or 'THROW-EXCEPTIONS' when errors are found and returned from PRE_check() and POST_check() functions that are linked into yourFunction() during testing and development with linkUp().
 
 In the below example, PRE_check_yourFunction() and POST_check_yourFunction() are only executed, via linkUp(), because TypeCzech.js is loaded. The two commented out lines have no effect when <b>TypeCzech.js is loaded</b>. PRE_check_yourFunction() checks function parameters before yourFunction() runs, and POST_check_yourFunction() checks function results after yourFunction() runs.
@@ -205,7 +205,7 @@ type_czech.linkUp(aFunction, before_aFunction, after_aFunction)
 type_czech.isActive()
 ```
 
-### The Recipe
+## The Recipe
   TypeCzech function checking calls should only appear in these three places: 
 
   - A. encased by a linked-up PRE_check() function
@@ -275,7 +275,7 @@ type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
 
 
 
-### The Recommendation
+## The Recommendation
   For sanity's sake, I advise keeping TypeCzech code in separate files. This is highlighed in the examples of
 [204-Extending-Closures-Single](https://jsfiddle.net/steen_hansen/8kbtyfz1/?204-Extending-Closures-Single),
 [304-Extending-IIFEs-Single](https://jsfiddle.net/steen_hansen/ktbczhs8/?304-Extending-IIFEs-Single),
@@ -292,7 +292,15 @@ if (typeof linkUp_typeCzech === 'function') {
 }
 ```
 
+
+
 Because JavaScript does not completely hoist classes there is no example #104. 
+
+## The Penalty
+
+There is a time penalty for using TypeCzech on a function many times. For a complicated check, like the above aLottery(), a loop of 100,000 calls will add a noticable 10 seconds to execution time. There is virtually no difference in test runs between TypeCzech
+code that is turned off and TypeCzech code that has been removed.
+
 
 
 ### [Type Signatures](./read-mes/type-signatures.md)

@@ -11,7 +11,7 @@ global.TEST_total_checks = 0;
 global.TEST_total_fails = 0;
 global.TEST_show_random = false;
 global.TEST_number_generatives = 120;
-
+global.generative_pass_count = 0;
 
 
 
@@ -95,13 +95,15 @@ require('./read-me-tests/signature-checkParam_emptyEither_69000.js');
 
 require('./read-me-tests/signature-checkParam_emptyExtra_70000.js');
                        require('./public-tests/typeCzech_71000.js');
-         require('./dynamic-generative/random-signatures_72000.js');
 
 
+                       require('./dynamic-generative/random-signatures.js');
+                       
+TEST_total_checks += generative_pass_count;
 
 console.log('total fails = ', global.TEST_total_fails);
 console.log('total checks = ', global.TEST_total_checks);
 
-if (global.TEST_total_checks !== 2323 || global.TEST_total_fails !== 0) {
+if (global.TEST_total_checks !== 2444 || global.TEST_total_fails !== 0) {
   console.log("Houston we have an error problem!")
 } 

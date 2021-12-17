@@ -13,6 +13,7 @@ var TEST_total_fails = 0;
 var TEST_show_random = false;
 var TEST_number_generatives = 120;
 var TESTING_TYPE_CZECH = 'yes';
+var generative_pass_count = 0;
 
       console.log('starting tests')
 </script>
@@ -123,13 +124,19 @@ var TESTING_TYPE_CZECH = 'yes';
 
 <script src="read-me-tests/signature-checkParam_emptyExtra_70000.js"></script>
                        <script src="public-tests/typeCzech_71000.js"></script> 
-       <script src="./dynamic-generative/random-signatures_72000.js"></script>
+
+
+                       <script src="./dynamic-generative/random-signatures.js"></script> 
+
 
 <script>
+
+TEST_total_checks += generative_pass_count;
+
       console.log('total fails = ', TEST_total_fails)
       console.log('total checks = ', TEST_total_checks)
 
-      if (TEST_total_checks !== 2323 || TEST_total_fails !== 0) {
+      if (TEST_total_checks !== 2444 || TEST_total_fails !== 0) {
             console.log("Houston we have an error problem!")
       } 
 </script>

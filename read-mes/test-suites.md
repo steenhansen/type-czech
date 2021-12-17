@@ -11,6 +11,10 @@
 ### [Browser Signature Tests](../test-collection/test-web-generative.html)
 
 
+### [Node.js Time Trials](../time-trials/type-czech-on.js)
+Shows the time penalties for using TypeCzech on a function many times. For a complicated check, like the READ.ME's aLottery(), a loop of 100,000 calls will add a noticable 10 seconds to execution time. There is virtually no difference in test runs between TypeCzech
+code that is turned off and TypeCzech code that has been removed.
+
 ### [Browser REPL](../test-collection/repl.html)
 Load TypeCzech in a browser so can easily execute functions, in the console, that appear in the comments of TypeCzech.js, like: 
 <pre>
