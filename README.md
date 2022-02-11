@@ -139,6 +139,24 @@ aLottery('Oz Lotto', ['fourty-two'], new Date('jun 14 1999'))
 >>Oz Lotto ::: fourty-two ::: Date Mon Jun 14 1999 00:00:00 GMT-0700 (Pacific Daylight Time)
 ```
 
+## Pollute Function With Asserts
+A function can also be have its specification fufilled with congesting assertions for the same effect.
+```
+function aLottery(lottery_name, lucky_numbers, draw_date){
+  is_testing && assert.typeOf(lottery_name, 'string');
+  is_testing && assert.typeOf(lucky_numbers, 'array');
+  is_testing && assert.typeOf(draw_date, 'date');
+  
+  is_testing && assert.notEqual(lottery_name, ''); 
+  is_testing && assert.isNotEmpty(lucky_numbers);
+  is_testing && assert.notEqual(draw_date, ''); 
+  
+  is_testing && lucky_numbers.forEach(lucky_num => assert.typeOf(lucky_num, 'number'));
+  
+  console.log(`${lottery_name} ::: ${lucky_numbers} ::: `, draw_date)
+}
+```
+
 ## The Idea
 Is to 'LOG-ERRORS' or 'THROW-EXCEPTIONS' when errors are found and returned from PRE_check() and POST_check() functions that are linked into yourFunction() during testing and development with linkUp().
 
