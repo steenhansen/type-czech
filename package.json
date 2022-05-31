@@ -1,6 +1,6 @@
 {
   "name": "type-czech",
-  "version": "1.3.0",
+  "version": "1.0.0",
   "description": "Javascript runtime type checking that can be toggled on and off; A copy of clojure.spec",
   "main": "type-czech-require.js",
   "scripts": {
