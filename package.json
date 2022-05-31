@@ -1,6 +1,5 @@
 {
   "_from": "type-czech",
-  "_id": "type-czech@1.0.0",
   "_inBundle": false,
   "_integrity": "sha512-+ZORM9FIbKoAutlrB+NdgsYgzLTWUfjujto9LltHIkS2UYQkcTi83EsutBcZN1luqfWHkadzYXbWUzQPPoySIg==",
   "_location": "/type-czech",
@@ -67,5 +66,5 @@
     "type": "git",
     "url": "git+https://github.com/steenhansen/type-czech.git"
   },
-  "version": "1.0.0"
+  "version": "1.4.0"
 }
