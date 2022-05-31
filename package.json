@@ -39,7 +39,17 @@
     "node": ">=15.14.0"
   },
   "files": [
-    "TypeCzech.js"
+    "index.js",
+    "LICENSE",
+    "make_tc_dev.js",
+    "make_tc_prod.js",
+    "README.md",
+    "type-czech-import-dev.js",
+    "type-czech-import-prod.js",
+    "type-czech-import.js",
+    "type-czech-require-dev.js",
+    "type-czech-require-prod.js",
+    "type-czech-require.js"
   ],
   "homepage": "https://github.com/steenhansen/type-czech",
   "keywords": [
