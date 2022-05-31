@@ -1,61 +1,11 @@
 {
-  "_from": "type-czech",
-  "_id": "type-czech@1.0.0",
-  "_inBundle": false,
-  "_integrity": "sha512-+ZORM9FIbKoAutlrB+NdgsYgzLTWUfjujto9LltHIkS2UYQkcTi83EsutBcZN1luqfWHkadzYXbWUzQPPoySIg==",
-  "_location": "/type-czech",
-  "_npmUser": {
-    "name": "steenhansen",
-    "email": "steen_hansen@yahoo.com"
-  },
-  "_npmVersion": "3.10.10",
-  "_phantomChildren": {},
-  "_requested": {
-    "type": "tag",
-    "registry": true,
-    "raw": "type-czech",
-    "name": "type-czech",
-    "escapedName": "type-czech",
-    "rawSpec": "",
-    "saveSpec": null,
-    "fetchSpec": "latest"
-  },
-  "_requiredBy": [
-    "#USER"
-  ],
-  "_resolved": "https://registry.npmjs.org/type-czech/-/type-czech-0.0.3.tgz",
-  "_shasum": "b0cbc1d45932f6c1ca3ed204e0915dcd7f373cfc",
-  "_spec": "type-czech",
-  "_where": "C:\\Users\\16043\\Documents\\npm",
-  "bugs": {
-    "url": "https://github.com/steenhansen/type-czech/issues"
-  },
-  "bundleDependencies": false,
-  "dependencies": {},
-  "deprecated": false,
-  "description": "TypeCzech is a run-time type checking JavaScript library that can be toggled on and off",
-  "devDependencies": {},
-  "engines": {
-    "node": ">=15.14.0"
-  },
-  "files": [
-    "TypeCzech.js"
-  ],
-  "homepage": "https://github.com/steenhansen/type-czech",
-  "keywords": [
-    "run-time javascript type checking"
-  ],
-  "license": "MIT",
-  "maintainers": [
-    {
-      "name": "steen hansen",
-      "email": "steen_hansen@yahoo.com"
-    }
-  ],
   "name": "type-czech",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/steenhansen/type-czech.git"
+  "version": "1.3.0",
+  "description": "Javascript runtime type checking that can be toggled on and off; A copy of clojure.spec",
+  "main": "type-czech-require.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "version": "1.0.0"
+  "author": "Steen Hansen",
+  "license": "ISC"
 }

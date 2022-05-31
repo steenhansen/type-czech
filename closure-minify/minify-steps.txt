@@ -1,4 +1,5 @@
 
+This procedure is for non-compiled jsFiddle examples to work. 
 
 
   0  npm install -g google-closure-compiler
@@ -7,29 +8,30 @@
 
 
 minify:
-  1. change version date
+  1 copy ../type-czech-import-dev.js into /closure-minify/TypeCzech.js
 
-  1  remove debugging code 226 instances        consolelog[^;]*;   ==> ''
+  2 delete the last line of "  export default the_exports; // for JSX and ESM  "
 
-  2  save as TypeCzech.no-debug.js
+  3 remove debugging code 239 instances        consolelog[^;]*;   ==> ''
 
-  3  npx google-closure-compiler --language_out ECMASCRIPT_2020 --js=TypeCzech.no-debug.js --js_output_file=TypeCzech.min.js
+  4 save as TypeCzech.no-debug.js
 
-  4  copy TypeCzech.min.js to /web-resources/
+  5 npx google-closure-compiler --language_out ECMASCRIPT_2020 --js=TypeCzech.no-debug.js --js_output_file=TypeCzech.min.js
 
-  5 copy TypeCzech.min.js to /
+  6 copy TypeCzech.min.js to /web-resources/ for below jsFiddle link to work online
+    <script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/TypeCzech.min.js"></script>
 
-  6 copy TypeCzech.js to /examples-php
-  
+
 ///////////////////////////////////////////////////////
 
 https://github.com/google/closure-compiler/wiki/Flags-and-Options
 ECMASCRIPT_2020 
-ECMASCRIPT_2021   crashes in my NodeJs v14.14.0
+ECMASCRIPT_2021 crashes in NodeJs v14.14.0
+                saves only 6 bytes more than 2020
 
 /////////////////////////////////////////////////////
 
-jsDelivr takes a day for latest to become active
+jsDelivr takes a day for latest to become active from
 
 <script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/TypeCzech.min.js"></script>
 
