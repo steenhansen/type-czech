@@ -1,0 +1,372 @@
+<!DOCTYPE html><meta charset="utf-8" />
+<title>102 Extended Classes Imported</title>
+
+
+
+  
+<div id='js-div' style="width:52%; ">
+  <a href='https://github.com/steenhansen/type-czech'  target="_blank" class='git-hub'>GitHub Package</a>
+  <div id='js-code'>the javascript</div>
+</div>
+
+
+<div id="the-explanation" style="width:48%" >
+  <div class='an-explantion'>102 - Extended Classes Imported</div>
+  <div id='explanation-text'>
+
+
+
+
+
+
+
+    TypeCzech's general example of an author where:
+    <ul> 
+      <li class='floating_li'><b>First</b> controls an author's first name</li> 
+      <li class='floating_li'>Safely removable supporting TypeCzech test code begins with /**/</li>
+      <li class='floating_li'><b>Last</b> handles an author's first and last name</li> 
+      <li class='floating_li'><b>Full</b> deals with an author's salutation, first, and last name</li>
+      <br>  <br><br>
+  </ul>
+  <br><br><br>
+    Extended classes are used for inheritance:
+    <ul>
+      <li>When TypeCzech is turned off, only production code is imported:
+                  <ul> 
+                    <li class='floating_li'>First.js</li> 
+                    <li class='floating_li'>Last.js</li> 
+                    <li class='floating_li'>Full.js</li>
+                  </ul>
+                  <br><br>
+      </li>
+      <li>With TypeCzech turned on, the supporting test code is imported:
+        <ul> 
+          <li class='floating_li'>TypeCzech.js</li> 
+          <li class='floating_li'>TypeCzech_First.js</li> 
+          <li class='floating_li'>TypeCzech_Last</li>
+          <li class='floating_li'>TypeCzech_Full.js</li>
+          <br>  <br>
+      </ul>
+       </li>
+       <br>
+      <li>Production class declarations <b>must</b> interleave with TypeCzech calls
+        to have the PRE and POST checking functions be correctly linked before use </li>
+      </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+
+  <div id="console-log"  >
+    <div class='a-title'>Console Output</div>
+    <div id='log-text'></div>
+    <br>
+  </div>
+
+  <br><br>
+
+
+
+
+
+
+
+
+  
+<!--            --------------TYPE 2----------------------------       -->
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/consolelog.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/ordered-import.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/type-czech.css">
+
+<script>
+const TYPE_CZECH_JS =  'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/TypeCzech.min.js';
+const FIRST_JS = 'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/examples-web/102-Extending-Classes-Imports/First.js';
+const LAST_JS = 'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/examples-web/102-Extending-Classes-Imports/Last.js';
+const FULL_JS =   'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/examples-web/102-Extending-Classes-Imports/Full.js';
+
+const TC_FIRST_JS = 'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/examples-web/102-Extending-Classes-Imports/TypeCzech_First.js';
+const TC_LAST_JS = 'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/examples-web/102-Extending-Classes-Imports/TypeCzech_Last.js';
+const TC_FULL_JS =   'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/examples-web/102-Extending-Classes-Imports/TypeCzech_Full.js';
+</script>
+
+<!--            --------------TYPE 2----------------------------       -->
+<div id='js-fiddles'>
+  <a title="Example-Contents" href="https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Contents" target="_blank">Contents</a>
+
+
+  <a title="00-Readme-Example" href="https://jsfiddle.net/steen_hansen/0xtpLwsc/?00-Readme-Example" target="_blank">00</a>
+
+  <a title="01-What-is-TypeCzech" href="https://jsfiddle.net/steen_hansen/9u54vsd2/?01-What-is-TypeCzech" target="_blank">01</a>
+
+  <a title="02-Validate-Parameters-by-Value.html" href="https://jsfiddle.net/steen_hansen/6zy89om1/?02-Validate-Parameters-by-Value" target="_blank">02</a>
+    
+    <a title="03-Turn-Off-Library-Not-Loaded.html" href="https://jsfiddle.net/steen_hansen/m1tce27f/?03-Turn-Off-Library-Not-Loaded" target="_blank">03</a>
+    
+    <a title="04-Turn-Off-No-Check-Functions.html" href="https://jsfiddle.net/steen_hansen/nve4d3ah/?04-Turn-Off-No-Check-Functions" target="_blank">04</a>
+    
+    <a title="05-Verify-Return-Results-by-Value.html" href="https://jsfiddle.net/steen_hansen/wrkvscqg/?05-Verify-Return-Results-by-Value" target="_blank">05</a>
+    
+    <a title="06-Validate-Parameters-and-Results.html" href="https://jsfiddle.net/steen_hansen/jxrdom62/?06-Validate-Parameters-and-Results" target="_blank">06</a>
+    
+    <a title="07-Mutated-Function-Parameters.html" href="https://jsfiddle.net/steen_hansen/abh0jkL1/?07-Mutated-Function-Parameters" target="_blank">07</a>
+    
+    <a title="08-Mutated-Recursive-Function-Parameters.html" href="https://jsfiddle.net/steen_hansen/3pv5qwx8/?08-Mutated-Recursive-Function-Parameters" target="_blank">08</a>
+    
+
+
+
+
+  
+    <a title="09-Closure-Parameters-Results-and-Methods.html" href="https://jsfiddle.net/steen_hansen/r8L3mp40/?09-Closure-Parameters-Results-and-Methods" target="_blank">09</a>
+    
+    <a title="10-Class-Parameters-Results-and-Methods.html" href="https://jsfiddle.net/steen_hansen/Lhwov8y9/?10-Class-Parameters-Results-and-Methods" target="_blank">10</a>
+    
+    <a title="11-Object-Properties.html" href="https://jsfiddle.net/steen_hansen/qp29Ljd1/?11-Object-Properties" target="_blank">11</a>
+    
+    <a title="12-Class-Interface.html" href="https://jsfiddle.net/steen_hansen/og2sk4b9/?12-Class-Interface" target="_blank">12</a>
+    
+    <a title="13-Parameter-and-Results-Multi-Scalar-Types.html" href="https://jsfiddle.net/steen_hansen/rh79bLwa/?13-Parameter-and-Results-Multi-Scalar-Types" target="_blank">13</a>
+    
+    <a title="14-Parameter-and-Results-Multi-Types.html" href="https://jsfiddle.net/steen_hansen/1ref2ot7/?14-Parameter-and-Results-Multi-Types" target="_blank">14</a>
+    
+    <a title="15-Lone-Single-Type-Parameter-Functions.html" href="https://jsfiddle.net/steen_hansen/zkhfLw0u/?15-Lone-Single-Type-Parameter-Functions" target="_blank">15</a>
+    
+    <a title="16-Arrays-with-One-Type.html" href="https://jsfiddle.net/steen_hansen/bsw3yp5c/?16-Arrays-with-One-Type" target="_blank">16</a>
+    
+
+    <a title="17-Variadic-Functions.html" href="https://jsfiddle.net/steen_hansen/hrvucjzm/?17-Variadic-Functions.html" target="_blank">17</a>
+
+
+
+
+
+
+    <a title="18-Class-Type-Checks.html" href="https://jsfiddle.net/steen_hansen/063wLqfs/?18-Class-Type-Checks" target="_blank">18</a>
+    
+    <a title="19-Lone-Empty-Param-and-Result.html" href="https://jsfiddle.net/steen_hansen/x8h6dvj5/?19-Lone-Empty-Param-and-Result" target="_blank">19</a>
+    
+    <a title="20-Multiple-Empty-Params-and-Results.html" href="https://jsfiddle.net/steen_hansen/b7cfsz9y/?20-Multiple-Empty-Params-and-Results" target="_blank">20</a>
+    
+    <a title="21-Type-Check-with-Extra-Optional-Params.html" href="https://jsfiddle.net/steen_hansen/Lwn504es/?21-Type-Check-with-Extra-Optional-Params" target="_blank">21</a>
+    
+    <a title="22-Empty-Checks-with-Extra-Optional-Params.html" href="https://jsfiddle.net/steen_hansen/hjxekf63/?22-Empty-Checks-with-Extra-Optional-Params" target="_blank">22</a>
+    
+    <a title="23-Typed-Either-Checks.html" href="https://jsfiddle.net/steen_hansen/ntrsobk3/?23-Typed-Either-Checks" target="_blank">23</a>
+    
+    <a title="24-Empty-Either-Checks.html" href="https://jsfiddle.net/steen_hansen/1dL76zws/?24-Empty-Either-Checks" target="_blank">24</a>
+    
+    <a title="25-Default-Parameters.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Default-Parameters" target="_blank">25</a>
+    
+    <a title="26-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Empty-Abbreviations" target="_blank">26</a>
+    
+    <a title="27-Type-and-Empty-Object-Extras.html" href="https://jsfiddle.net/steen_hansen/tdL7hwgc/?27-Typed-and-Empty-Either-Checks-with-Optionals" target="_blank">27</a>
+    
+    <a title="28-Accept-Null-and-Undefined-Values.html" href="https://jsfiddle.net/steen_hansen/zdk1wjgn/?28-Accept-Null-and-Undefined-Values" target="_blank">28</a>
+    
+    <a title="29-Class-Object-Type-Checks.html" href="https://jsfiddle.net/steen_hansen/27kvuft1/?29-Class-Object-Type-Checks" target="_blank">29</a>
+    
+    <a title="30-HTML-Type-Checks.html" href="https://jsfiddle.net/steen_hansen/qkjvpoce/?30-HTML-Type-Checks" target="_blank">30</a>
+    
+    <a title="31-Extended-Class-Type-Checks.html" href="https://jsfiddle.net/steen_hansen/pv7Lt19b/?31-Extended-Class-Type-Checks" target="_blank">31</a>
+    
+    <a title="32-Extended-Closure-Type-Checks-check.html" href="https://jsfiddle.net/steen_hansen/1qfjLhsx/?32-Extended-Closure-Type-Checks-check" target="_blank">32</a>
+    
+    <a title="33-Count-Checks.html" href="https://jsfiddle.net/steen_hansen/gr1bucdp/?33-Count-Checks" target="_blank">33</a>
+    
+    <a title="34-Parameter-Check-Events.html" href="https://jsfiddle.net/steen_hansen/9Lvnhdmq/?34-Parameter-Check-Events" target="_blank">34</a>
+    
+    <a title="35-Throw-or-Log.html" href="https://jsfiddle.net/steen_hansen/ep3snb8z/?35-Throw-or-Log" target="_blank">35</a>
+    
+    <a title="36-Start-and-Stop.html" href="https://jsfiddle.net/steen_hansen/f19s52xr/?36-Start-and-Stop" target="_blank">36</a>
+    
+    <a title="37-Readme-Example-Arrow-Functions.html" href="https://jsfiddle.net/steen_hansen/cwfsubtv/?37-Readme-Example-Arrow-Functions" target="_blank">37</a>
+
+    
+  <a title="38-Every-Check.html" href="https://jsfiddle.net/steen_hansen/1umwvht5/?38-Every-Check" target="_blank">38</a>
+  
+  <a title="39-Assert-Checks.html" href="https://jsfiddle.net/steen_hansen/ta7fdnrw/?39-Assert-Checks" target="_blank">39</a>
+  
+  <a title="40-Prescribed-Use.html" href="https://jsfiddle.net/steen_hansen/m1atu7qj/?40-Prescribed-Use" target="_blank">40</a>
+
+  <a title="41-Lens-Example.html" href="https://jsfiddle.net/steen_hansen/fxt8ag56/?41-Lens-Example" target="_blank">41</a>
+
+
+  <a title="42 - Extended Objects.html" href="https://jsfiddle.net/steen_hansen/rvau7yes/?42-Extended-Objects" target="_blank">42</a>
+
+
+
+    &nbsp;&nbsp;
+
+    <a title="101-Extending-Classes-Inline.html" href="https://jsfiddle.net/steen_hansen/cnLrm6ad/?101-Extending-Classes-Inline" target="_blank">101</a>
+    
+    <a title="102-Extending-Classes-Imports.html" href="https://jsfiddle.net/steen_hansen/rs4nqL7k/?102-Extending-Classes-Imports" target="_blank">102</a>
+    
+    <a title="103-Extending-Classes-Production.html" href="https://jsfiddle.net/steen_hansen/37mysdz8/?103-Extending-Classes-Production" target="_blank">103</a>
+    
+    
+
+    <a title="201-Extending-Closures-Inline.html" href="https://jsfiddle.net/steen_hansen/6n5pb9eh/?201-Extending-Closures-Inline" target="_blank">201</a>
+    
+    <a title="202-Extending-Closures-Imports.html" href="https://jsfiddle.net/steen_hansen/msqcya0f/?202-Extending-Closures-Imports" target="_blank">202</a>
+    
+    <a title="203-Extending-Closures-Production.html" href="https://jsfiddle.net/steen_hansen/ym2vk1tf/?203-Extending-Closures-Production" target="_blank">203</a>
+
+    <a title="204-Extending-Closures-Single.html" href="https://jsfiddle.net/steen_hansen/8kbtyfz1/?204-Extending-Closures-Single" target="_blank">204</a>
+
+
+    
+    <a title="301-Extending-IIFEs-Inline.html" href="https://jsfiddle.net/steen_hansen/r26xjw8q/?301-Extending-IIFEs-Inline" target="_blank">301</a>
+    
+    <a title="302-Extending-IIFEs-Imports.html" href="https://jsfiddle.net/steen_hansen/ug3f1pqr/?302-Extending-IIFEs-Imports" target="_blank">302</a>
+    
+    <a title="303-Extending-IIFEs-Production.html" href="https://jsfiddle.net/steen_hansen/wrvze5o4/?303-Extending-IIFEs-Production" target="_blank">303</a>
+    
+    <a title="304-Extending-IIFEs-Single.html" href="https://jsfiddle.net/steen_hansen/ktbczhs8/?304-Extending-IIFEs-Single" target="_blank">304</a>
+    
+
+    
+    <a title="401-Extending-ClassFree-Inline.html" href="https://jsfiddle.net/steen_hansen/xsyu1Lma/?401-Extending-ClassFree-Inline" target="_blank">401</a>
+    
+    <a title="402-Extending-ClassFree-Imports.html" href="https://jsfiddle.net/steen_hansen/pyqxrs57/?402-Extending-ClassFree-Imports" target="_blank">402</a>
+    
+    <a title="403-Extending-ClassFree-Production.html" href="https://jsfiddle.net/steen_hansen/57tpy1wm/?403-Extending-ClassFree-Production" target="_blank">403</a>
+    
+    <a title="404-Extending-ClassFree-Single.html" href="https://jsfiddle.net/steen_hansen/asjwhbd8/?404-Extending-ClassFree-Single" target="_blank">404</a>
+    
+
+
+
+    <a title="501-Extending-Prototypes-Inline.html" href="https://jsfiddle.net/steen_hansen/gn38a4k9/?501-Extending-Prototypes-Inline" target="_blank">501</a>
+    
+    <a title="502-Extending-Prototypes-Imports.html" href="https://jsfiddle.net/steen_hansen/retqdosm/?502-Extending-Prototypes-Imports" target="_blank">502</a>
+    
+    <a title="503-Extending-Prototypes-Production.html" href="https://jsfiddle.net/steen_hansen/2paqh67m/?503-Extending-Prototypes-Production" target="_blank">503</a>
+    
+    <a title="504-Extending-Prototypes-Single.html" href="https://jsfiddle.net/steen_hansen/0fabr5g3/?504-Extending-Prototypes-Single" target="_blank">504</a>
+
+
+    
+    <a title="601-Extending-OLOO-Inline.html" href="https://jsfiddle.net/steen_hansen/guw701xv/?601-Created-OLOO-Inline" target="_blank">601</a>
+    
+    <a title="602-Extending-OLOO-Imports.html" href="https://jsfiddle.net/steen_hansen/b2qpL9rt/?602-Extending-OLOO-Imports" target="_blank">602</a>
+    
+    <a title="603-Extending-OLOO-Production.html" href="https://jsfiddle.net/steen_hansen/ktezbg7c/?603-Extending-OLOO-Production" target="_blank">603</a>
+    
+    <a title="604-Extending-OLOO-Single.html" href="https://jsfiddle.net/steen_hansen/74Lvbj5x/?604-Extending-OLOO-Single" target="_blank">604</a>
+    
+    &copy; 2021 Steen Hansen
+
+  </div>
+<!--            --------------TYPE 2----------------------------       -->
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+<script>
+
+function copyAndColor(){
+  jsToDiv('js-code', "check-code");      
+
+  fromToBoldText(798, 808, 'code', 1)  //firstMethod
+  fromToBoldText(845, 854, 'code', 2)  // lastMethod
+  fromToBoldText(875, 884, 'code', 3)  // fullMethod
+  
+  fromToBoldText(213, 228, 'log', 1)    //firstMethod
+  fromToBoldText(294, 308, 'log', 2)    //lastMethod
+  fromToBoldText(399, 413, 'log', 3)    //fullMethod
+}
+
+
+</script>
+
+<script>
+  log = captureConsole("log-text");
+</script>
+
+<script  id="check-code">
+/**/  const CHECKING_CLASS_FILES = [
+/**/    TYPE_CZECH_JS, 
+/**/    FIRST_JS,
+/**/    TC_FIRST_JS,
+/**/    LAST_JS,
+/**/    TC_LAST_JS,
+/**/    FULL_JS,
+/**/    TC_FULL_JS ]
+
+const NOT_CHECKING_CLASS_FILES = [
+  FIRST_JS, 
+  LAST_JS, 
+  FULL_JS ]
+
+/**/  TYPE_CZECH_START = true
+/**/  //TYPE_CZECH_START = false
+
+let class_files
+/**/  if (TYPE_CZECH_START) {
+/**/    TYPE_CZECH_COMMANDS = ['LOG-ERRORS']
+/**/    class_files = CHECKING_CLASS_FILES
+/**/  } else {
+        class_files = NOT_CHECKING_CLASS_FILES
+/**/  }
+
+onLoaded = ([_loaded_files, _import_errors]) => {
+  if (_import_errors) {
+    console.log('Error importing js. Loaded_files : ', _loaded_files)
+    console.log('                          Errors : ', _import_errors)
+  }
+  ted_chiang = new Full('Mr', 'Ted', 'Chiang')
+  ted_chiang.firstMethod(new Date(2008,10,15))
+  ted_chiang.lastMethod(2009)
+  ted_chiang.fullMethod('Exhalation')
+
+  linesConsole(2)
+
+/**/  function PRE_check_printFullFunc(a_person){
+/**/    return type_czech.checkParam_type(a_person, 'Full')
+/**/  }
+/**/  printFullFunc = type_czech.linkUp(printFullFunc, PRE_check_printFullFunc)
+
+function printFullFunc(a_person) {
+  log('From Checked Function : ', a_person.showName())
+}
+
+printFullFunc(ted_chiang)
+copyAndColor()
+
+}
+
+orderedImport(class_files, onLoaded)
+
+</script>
+  
+<link rel="stylesheet"
+href="https://fonts.googleapis.com/css?family=Inconsolata">
+
+
+

@@ -1,41 +1,19 @@
 {
-  "_from": "type-czech",
-  "_inBundle": false,
-  "_integrity": "sha512-+ZORM9FIbKoAutlrB+NdgsYgzLTWUfjujto9LltHIkS2UYQkcTi83EsutBcZN1luqfWHkadzYXbWUzQPPoySIg==",
-  "_location": "/type-czech",
-  "_npmUser": {
-    "name": "steenhansen",
-    "email": "steen_hansen@yahoo.com"
+  "name": "type-czech",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/steenhansen/type-czech.git"
   },
-  "_npmVersion": "3.10.10",
-  "_phantomChildren": {},
-  "_requested": {
-    "type": "tag",
-    "registry": true,
-    "raw": "type-czech",
-    "name": "type-czech",
-    "escapedName": "type-czech",
-    "rawSpec": "",
-    "saveSpec": null,
-    "fetchSpec": "latest"
+  "version": "1.4.0",
+  "devDependencies": {
+    "google-closure-compiler": "^20220502.0.0"
   },
-  "_requiredBy": [
-    "#USER"
-  ],
-  "_resolved": "https://registry.npmjs.org/type-czech/-/type-czech-0.0.3.tgz",
-  "_shasum": "b0cbc1d45932f6c1ca3ed204e0915dcd7f373cfc",
-  "_spec": "type-czech",
-  "_where": "C:\\Users\\16043\\Documents\\npm",
-  "bugs": {
-    "url": "https://github.com/steenhansen/type-czech/issues"
-  },
-  "bundleDependencies": false,
-  "dependencies": {},
-  "deprecated": false,
-  "description": "Javascript runtime type checking that can be toggled on and off; A copy of clojure.spec",
-  "devDependencies": {},
-  "engines": {
-    "node": ">=15.14.0"
+  "scripts": {
+    "test": "node ./test-collection/test-all-node.js",
+    "do-minify": "npm run A-strip-code && npm run B-google-closure && npm run C-clean-up",
+    "A-strip-code": "node ./closure-minify/make_tc_no_exports.js",
+    "B-google-closure": "npx google-closure-compiler --language_out ECMASCRIPT_2020 --js=./TypeCzech.no-debug.js --js_output_file=./TypeCzech.min.js",
+    "C-clean-up": "node ./closure-minify/make_move_code.js"
   },
   "files": [
     "index.js",
@@ -60,11 +38,5 @@
       "name": "steen hansen",
       "email": "steen_hansen@yahoo.com"
     }
-  ],
-  "name": "type-czech",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/steenhansen/type-czech.git"
-  },
-  "version": "1.4.0"
+  ]
 }

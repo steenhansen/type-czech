@@ -1,0 +1,16 @@
+
+This content is for non-compiled jsFiddle examples to work. 
+
+  https://jsfiddle.net/steen_hansen/37mysdz8/?103-Extending-Classes-Production
+
+jsDelivr takes a day for latest to become active.
+
+
+
+<script                 src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/consolelog.js"></script>
+<script                 src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/ordered-import.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/type-czech.css">
+<script                 src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/TypeCzech.min.js"></script>
+
+
+

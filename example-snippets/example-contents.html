@@ -1,0 +1,424 @@
+
+<!DOCTYPE html><meta charset="utf-8" />
+<title>TypeCzech</title>
+
+<!--            ---------------------TYPE 4---------------------       -->
+
+<link rel="stylesheet" href="../web-resources/type-czech.css">
+<script src="../TypeCzech.js"></script>
+
+<!--            -----------------TYPE 4-------------------------       -->
+
+<style>
+div {
+  margin-top:8px;
+}
+
+.functions{
+  margin-left:100px;
+  margin-bottom:16px;
+}
+  
+* {
+  font-family: arial;
+}
+
+pre {
+  font-family: 'Inconsolata', monospace;
+}
+
+</style>
+
+<h2>TypeCzech</h2>
+
+<p>
+  TypeCzech is a detachable runtime type checking JavaScript library that can be toggled on and off.
+  Include one file in your web page or in your Node.js file to allow you to type check function parameters
+  and results. Errors can be set to throw exceptions or just output to the Console.
+  The motivation is to verify function parameters before execution, and function results after completion with 
+  PRE_check() and POST_check() funtions.
+</p>
+
+
+<h3>GitHub</h3>
+<a title="TypeCzech"  target="_blank" href="https://github.com/steenhansen/type-czech">TypeCzech</a> project with tests
+
+
+<h3>Local TypeCzech Tutorial</h3>
+
+
+<div><a title="00-Readme-Example" href="00-Readme-Example.html">00-Readme-Example</a>
+- Realistic example of verifying types and checking emptiness
+  <div class="functions">TypeCzech() checkParam_type() checkArgs_emptyEach()</div>
+</div>
+
+<div><a title="01-What-is-TypeCzech" href="01-What-is-TypeCzech.html">01-What-is-TypeCzech</a>
+  - Check function parameters before task, and function results after execution
+  <div class="functions">TypeCzech()</div>
+</div>
+
+<div><a title="02-Validate-Parameters-by-Value.html" href="02-Validate-Parameters-by-Value.html">02-Validate-Parameters-by-Value</a>
+  - Verify function parameters by checking values with regular expressions, set membership, or array size
+  <div class="functions">TypeCzech()</div>
+</div>
+  
+<div><a title="03-Turn-Off-Library-Not-Loaded.html" href="03-Turn-Off-Library-Not-Loaded.html">03-Turn-Off-Library-Not-Loaded</a>
+  - Turn off TypeCzech by not loading TypeCzech.js
+  <div class="functions">TypeCzech()</div>
+</div>
+  
+<div><a title="04-Turn-Off-No-Check-Functions.html" href="04-Turn-Off-No-Check-Functions.html">04-Turn-Off-No-Check-Functions</a>
+  - Turn off TypeCzech by not loading checking functions
+  <div class="functions">TypeCzech()</div>
+</div>
+  
+<div><a title="05-Verify-Return-Results-by-Value.html" href="05-Verify-Return-Results-by-Value.html">05-Verify-Return-Results-by-Value</a>
+  - Verify function results by checking return value with regular expressions, set membership, or array size
+  <div class="functions">linkUp()</div>
+</div>
+  
+<div><a title="06-Validate-Parameters-and-Results.html" href="06-Validate-Parameters-and-Results.html">06-Validate-Parameters-and-Results</a>
+  - Example of verifying parameters by set membership, and checking function results via a regular expression
+  <div class="functions">linkUp()</div>
+</div>
+  
+<div><a title="07-Mutated-Function-Parameters.html" href="07-Mutated-Function-Parameters.html">07-Mutated-Function-Parameters</a>
+  - Ensure function parameters are not accidentally altered in a function call
+  <div class="functions">check_buildSnapshot() check_mutatedSnapshot()</div>
+</div>
+  
+<div><a title="08-Mutated-Recursive-Function-Parameters.html" href="08-Mutated-Recursive-Function-Parameters.html">08-Mutated-Recursive-Function-Parameters</a>
+  - Certify function parameters are not unintentionally modified in a stack of recursive function calls
+  <div class="functions">check_buildSnapshot() check_mutatedSnapshot()</div>
+</div>
+ 
+ 
+<div><a title="09-Closure-Parameters-Results-and-Methods.html" href="09-Closure-Parameters-Results-and-Methods.html">09-Closure-Parameters-Results-and-Methods</a>
+  - Check parameters and results in closures with numerous functions
+  <div class="functions">linkUp()</div>
+</div>
+          
+<div><a title="10-Class-Parameters-Results-and-Methods.html" href="10-Class-Parameters-Results-and-Methods.html">10-Class-Parameters-Results-and-Methods</a>
+  - Verify parameters and results in classes with mutliple methods
+  <div class="functions">linkUp()</div>
+</div>
+  
+<div><a title="11-Object-Properties.html" href="11-Object-Properties.html">11-Object-Properties</a>
+  - Check scalar, array, object parameters and results with checkParam_type(), as well as the creation of Closures and IIFEs
+  <div class="functions">checkParam_type()</div>
+</div>
+
+<div><a title="12-Class-Interface.html" href="12-Class-Interface.html">12-Class-Interface</a>
+  - Verify creation of Classes, ClassFrees, Prototypes, and OLOOs via check_interface()
+  <div class="functions">check_interface()</div>
+</div>
+  
+<div><a title="13-Parameter-and-Results-Multi-Types.html" href="13-Parameter-and-Results-Multi-Types.html">13-Parameter-and-Results-Multi-Types</a>
+  - Checking functions with multiple parameters and returned array results
+  <div class="functions">checkParam_type()</div>
+</div>
+  
+<div><a title="14-Array-and-Object-Types.html" href="14-Array-and-Object-Types.html">14-Array-and-Object-Types</a>
+  - Typeless arrays, objects without specified keys, typed arrays, and objects with keys
+  <div class="functions">checkParam_type()</div>
+</div>
+
+<div><a title="15-Lone-Single-Type-Parameter-Functions.html" href="15-Lone-Single-Type-Parameter-Functions.html">15-Lone-Single-Type-Parameter-Functions</a>
+  - Single parameters versus multiple parameters
+  <div class="functions">checkParam_type()</div>
+</div>
+
+<div><a title="16-Arrays-with-One-Type.html" href="16-Arrays-with-One-Type.html">16-Arrays-with-One-Type</a>
+  - Arrays with one type, but multiple elements
+  <div class="functions">checkParam_type()</div>
+</div>
+
+<div><a title="17-Variadic-Functions.html" href="17-Variadic-Functions.html">17-Variadic-Functions</a>
+  - Checking variadic functions with one type of parameter, but multiple parameters
+  <div class="functions">checkArgs_typeEach()</div>
+</div>
+
+<div><a title="18-Class-Type-Checks.html" href="18-Class-Type-Checks.html">18-Class-Type-Checks</a>
+  - Use both check_interface() and checkParam_type() on classes
+  <div class="functions">check_interface()</div>
+</div>
+
+<div><a title="19-Lone-Empty-Param-and-Result.html" href="19-Lone-Empty-Param-and-Result.html">19-Lone-Empty-Param-and-Result</a>
+  - Check for single parameters which are empty strings, arrays with no elements, and objects without properties
+  <div class="functions">checkParam_empty()</div>
+</div>
+
+<div><a title="20-Multiple-Empty-Params-and-Results.html" href="20-Multiple-Empty-Params-and-Results.html">20-Multiple-Empty-Params-and-Results</a>
+  - Check numerous parameters for emptiness which are OK, ignored, or an error
+  <div class="functions">checkParam_empty()</div>
+</div>
+
+<div><a title="21-Type-Check-with-Extra-Optional-Params.html" href="21-Type-Check-with-Extra-Optional-Params.html">21-Type-Check-with-Extra-Optional-Params</a>
+  - Ignore types of extra array elements and object properties in single parameters and results
+  <div class="functions">checkParam_typeExtra()</div>
+</div>
+
+<div><a title="22-Empty-Checks-with-Extra-Optional-Params.html" href="22-Empty-Checks-with-Extra-Optional-Params.html">22-Empty-Checks-with-Extra-Optional-Params</a>
+  - Ignore empty array elements and object properties in single parameters and results
+  <div class="functions">checkParam_emptyExtra()</div>
+</div>
+
+<div><a title="23-Typed-Either-Checks.html" href="23-Typed-Either-Checks.html">23-Typed-Either-Checks</a>
+  - Allow multiple different parameter type signatures and function return signatures
+  <div class="functions">checkParam_typeEither()</div>
+</div>
+
+<div><a title="24-Empty-Either-Checks.html" href="24-Empty-Either-Checks.html">24-Empty-Either-Checks</a>
+  - Allow multiple different empty parameter and return signatures
+  <div class="functions">checkParam_emptyEither()</div>
+</div>
+
+<div><a title="25-Default-Parameters.html" href="25-Default-Parameters.html">25-Default-Parameters</a>
+  - Parameters
+  <div class="functions">linkUp() checkParam_type() checkArgs_typeEach()</div>
+</div>
+
+<div><a title="26-Empty-Abbreviations.html" href="26-Empty-Abbreviations.html">26-Type-and-Empty-Abbreviations</a>
+  - Emptiness and type abbreviations
+  <div class="functions">checkParam_type() checkParam_empty()</div>
+</div>
+
+<div><a title="27-Type-and-Empty-Object-Extras.html" href="27-Type-and-Empty-Object-Extras.html">27-Type-and-Empty-Object-Extras</a>
+  - Types and emptiness together with extra parameters
+  <div class="functions">checkParam_typeExtra() checkParam_emptyExtra()</div>
+</div>
+
+<div><a title="28-Accept-Null-and-Undefined-Values.html" href="28-Accept-Null-and-Undefined-Values.html">28-Accept-Null-and-Undefined-Values</a>
+  - Accept nulls and undefineds as valid parameters
+  <div class="functions">TypeCzech()</div>
+</div>
+
+<div><a title="29-Class-Object-Type-Checks.html" href="29-Class-Object-Type-Checks.html">29-Class-Object-Type-Checks</a>
+  - Class type checks
+  <div class="functions">typeIsA() typeFinal() typeProtos()</div>
+</div>
+
+<div><a title="30-HTML-Type-Checks.html" href="30-HTML-Type-Checks.html">30-HTML-Type-Checks</a>
+  - HTML type checks
+  <div class="functions">checkParam_typeEither() typeFinal()</div>
+</div>
+
+<div><a title="31-Extended-Class-Type-Checks.html" href="31-Extended-Class-Type-Checks.html">31-Extended-Class-Type-Checks</a>
+  - Extended classes with type checks on creation and methods
+  <div class="functions">linkUp()</div>
+</div>
+
+<div><a title="32-Extended-Closure-Type-Checks-check.html" href="32-Extended-Closure-Type-Checks-check.html">32-Extended-Closure-Type-Checks-check</a>
+  - Extended closures with type checks on creation and functions
+  <div class="functions">linkUp()</div>
+</div>
+
+<div><a title="33-Count-Checks.html" href="33-Count-Checks.html">33-Count-Checks</a>
+  - Console count of checks
+  <div class="functions">TypeCzech()</div>
+</div>
+
+<div><a title="34-Parameter-Check-Events.html" href="34-Parameter-Check-Events.html">34-Parameter-Check-Events</a>
+  - Checking failure events, change tab contents or screen color on test execution
+  <div class="functions">TypeCzech()</div>
+</div>
+
+<div><a title="35-Throw-or-Log.html" href="35-Throw-or-Log.html">35-Throw-or-Log</a>
+  - Throw exceptions, console log, or ignore checking errors
+  <div class="functions">TypeCzech()</div>
+</div>
+
+<div><a title="36-Start-and-Stop.html" href="36-Start-and-Stop.html">36-Start-and-Stop</a>
+  - Turn checking on and off programmatically
+  <div class="functions">enableTests() disableTests() countFails() countTally()</div>
+</div>
+
+
+
+
+<div><a title="37-Readme-Example-Arrow-Functions.html" href="37-Readme-Example-Arrow-Functions.html">37-Readme-Example-Arrow-Functions</a>
+  - Difference between arrow and ordinary functions
+  <div class="functions">checkParam_type() checkParam_empty()</div>
+</div>
+
+<div><a title="38-Every-Check.html" href="38-Every-Check.html">38-Every-Check</a>
+  - Example of every checking function in TypeCzech
+  <div class="functions">Every check_function()</div>
+</div>
+
+<div><a title="39-Assert-Checks.html" href="39-Assert-Checks.html">39-Assert-Checks</a>
+  - Check return values of functions outside of the program
+  <div class="functions">check_assert() isActive()</div>
+</div>
+
+<div><a title="40-Prescribed-Use.html" href="40-Prescribed-Use.html">40-Prescribed-Use</a>
+  - Best practices
+  <div class="functions">TypeCzech() linkUp()</div>
+</div>
+
+<div><a title="41-Lens-Example.html" href="41-Lens-Example.html">41-Lens-Example</a>
+  - Lens Example
+  <div class="functions">checkParam_type() check_assert()</div>
+</div>
+
+<div><a title="42-Extended-Objects.html" href="42-Extended-Objects.html">42-Extended-Objects</a>
+  - Extended Object Types
+</div>
+
+
+  <br>  <br>
+
+<div><a title="101-Extending-Classes-Inline.html" href="../examples-web/101-Extending-Classes-Inline.html">101-Extending-Classes-Inline</a>
+  - Extended classes and checks in one inlined file
+  <div class="functions">linkUp()</div>
+</div>
+
+<div><a title="102-Extending-Classes-Imports.html" href="../examples-web/102-Extending-Classes-Imports/102-Extending-Classes-Imports.html">102-Extending-Classes-Imports</a>
+  - Extended classes and checks all imported
+  <div class="functions">linkUp()</div>
+</div>
+
+<div><a title="103-Extending-Classes-Production.html" href="../examples-web/103-Extending-Classes-Production/103-Extending-Classes-Production.html">103-Extending-Classes-Production</a>
+  - Extended classes inlined with imported checks when testing
+  <div class="functions">linkUp()</div>
+</div>
+
+
+
+
+
+
+<div><a title="201-Extending-Closures-Inline.html" href="../examples-web/201-Extending-Closures-Inline.html">201-Extending-Closures-Inline</a>
+  - Closure modules and checks in one inlined file
+  <div class="functions">linkUp()</div>
+</div>
+
+<div><a title="202-Extending-Closures-Imports.html" href="../examples-web/202-Extending-Closures-Imports/202-Extending-Closures-Imports.html">202-Extending-Closures-Imports</a>
+  - Closure modules and checks all imported
+  <div class="functions">linkUp()</div>
+</div>
+
+<div><a title="203-Extending-Closures-Production.html" href="../examples-web/203-Extending-Closures-Production/203-Extending-Closures-Production.html">203-Extending-Closures-Production</a>
+  - Closure modules inlined with imported checks when testing
+  <div class="functions">linkUp()</div>
+</div>
+
+<div><a title="204-Extending-Closures-Single.html" href="../examples-web/204-Extending-Closures-Single/204-Extending-Closures-Single.html">204-Extending-Closures-Single</a>
+  - Closure checks in one imported file when testing
+  <div class="functions">linkUp()</div>
+</div>
+
+
+
+
+
+
+
+<div><a title="301-Extending-IIFEs-Inline.html" href="../examples-web/301-Extending-IIFEs-Inline.html">301-Extending-IIFEs-Inline</a>
+  - IIFE modules and checks in one inlined file
+  <div class="functions">linkUp()</div>
+</div>
+
+<div><a title="302-Extending-IIFEs-Imports.html" href="../examples-web/302-Extending-IIFEs-Imports/302-Extending-IIFEs-Imports.html">302-Extending-IIFEs-Imports</a>
+  - IIFE modules and checks all imported
+  <div class="functions">linkUp()</div>
+</div>
+
+<div><a title="303-Extending-IIFEs-Production.html" href="../examples-web/303-Extending-IIFEs-Production/303-Extending-IIFEs-Production.html">303-Extending-IIFEs-Production</a>
+  - IIFE modules inlined with imported checks when testing
+  <div class="functions">linkUp()</div>
+</div>
+
+<div><a title="304-Extending-IIFEs-Single.html" href="../examples-web/304-Extending-IIFEs-Single/304-Extending-IIFEs-Single.html">304-Extending-IIFEs-Single</a>
+  - IIFE checks in one imported file when testing
+  <div class="functions">linkUp()</div>
+</div>
+
+
+
+
+
+
+<div><a title="401-Extending-ClassFree-Inline.html" href="../examples-web/401-Extending-ClassFree-Inline.html">401-Extending-ClassFree-Inline</a>
+  - ClassFree constructors and checks in one inlined file
+  <div class="functions">linkUp()</div>
+</div>
+
+<div><a title="402-Extending-ClassFree-Imports.html" href="../examples-web/402-Extending-ClassFree-Imports/402-Extending-ClassFree-Imports.html">402-Extending-ClassFree-Imports</a>
+  - ClassFree constructors and checks all imported  
+  <div class="functions">linkUp()</div>
+</div>
+
+<div><a title="403-Extending-ClassFree-Production.html" href="../examples-web/403-Extending-ClassFree-Production/403-Extending-ClassFree-Production.html">403-Extending-ClassFree-Production</a>
+  - ClassFree constructors inlined with imported checks when testing
+  <div class="functions">linkUp()</div>
+</div>
+
+<div><a title="404-Extending-ClassFree-Single.html" href="../examples-web/404-Extending-ClassFree-Single/404-Extending-ClassFree-Single.html">404-Extending-ClassFree-Single</a>
+  - ClassFree constructors checks in one imported file when testing
+  <div class="functions">linkUp()</div>
+</div>
+
+
+
+
+
+
+
+<div><a title="501-Extending-Prototypes-Inline.html" href="../examples-web/501-Extending-Prototypes-Inline.html">501-Extending-Prototypes-Inline</a>
+  - Inherited prototypes and checks in one inlined file
+  <div class="functions">linkUp()</div>
+</div>
+
+<div><a title="502-Extending-Prototypes-Imports.html" href="../examples-web/502-Extending-Prototypes-Imports/502-Extending-Prototypes-Imports.html">502-Extending-Prototypes-Imports</a>
+  - Inherited prototypes and checks all imported  
+  <div class="functions">linkUp()</div>
+</div>
+
+<div><a title="503-Extending-Prototypes-Production.html" href="../examples-web/503-Extending-Prototypes-Production/503-Extending-Prototypes-Production.html">503-Extending-Prototypes-Production</a>
+  - Inherited prototypes inlined with imported checks when testing
+  <div class="functions">linkUp()</div>
+</div>
+
+<div><a title="504-Extending-Prototypes-Single.html" href="../examples-web/504-Extending-Prototypes-Single/504-Extending-Prototypes-Single.html">504-Extending-Prototypes-Single</a>
+  - Inherited prototype checks in one imported file when testing
+  <div class="functions">linkUp()</div>
+</div>
+
+
+
+
+
+
+
+<div><a title="601-Extending-OLOO-Inline.html" href="../examples-web/601-Extending-OLOO-Inline.html">601-Extending-OLOO-Inline</a>
+  - Created OLOO and checks in one inlined file
+  <div class="functions">linkUp()</div>
+</div>
+
+<div><a title="602-Extending-OLOO-Imports.html" href="../examples-web/602-Extending-OLOO-Imports/602-Extending-OLOO-Imports.html">602-Extending-OLOO-Imports</a>
+  - Created OLOO and checks all imported
+  <div class="functions">linkUp()</div>
+</div>
+
+<div><a title="603-Extending-OLOO-Production.html" href="../examples-web/603-Extending-OLOO-Production/603-Extending-OLOO-Production.html">603-Extending-OLOO-Production</a>
+  - Created OLOO inlined with imported checks when testing
+  <div class="functions">linkUp()</div>
+</div>
+
+<div><a title="604-Extending-OLOO-Single.html" href="../examples-web/604-Extending-OLOO-Single/604-Extending-OLOO-Single.html">604-Extending-OLOO-Single</a>
+  - Created OLOO checks in one imported file when testing
+  <div class="functions">linkUp()</div>
+</div>
+
+
+
+
+<br>
+
+&copy; 2021 Steen Hansen
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
+
+  

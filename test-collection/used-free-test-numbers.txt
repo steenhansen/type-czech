@@ -1,0 +1,92 @@
+ 
+ 
+  tests should not except, then we have no idea how many wrongs
+ 
+   this is no good  OLD
+
+
+
+01000 Check-tests.js                
+02000 HasInterface-tests.js        
+
+checkParam_empty_03000.js           numbers have changed ....
+checkParam_empty_03800.js
+checkParam_empty_03900.js
+
+04000 ValuelessUnion-tests.js         
+05000 checkParam_type-tests_05000.js                
+06000 checkParam_typeExtra-tests.js          
+07000 checkParam_typeEither-tests.js           
+08000 check_interfaceExtra-tests_08000.js     
+09000 _aTypeOf-tests.js             
+
+10000 _isCollection-tests.js        
+11000 _isEmpty-tests.js             
+12000 _missingKey-tests.js          
+13000 _ParametersCheck-tests.js    
+14000 _mutatedVariables-tests_14000.js
+15000 _shapeArrayTypes-tests.js     
+16000 _shapeCollectionTypes-tests.js
+17000 _shapeContainer-tests.js      
+18000 _shapeErrorMess-tests.js      
+19000 _refDiff-tests_19000.js
+
+20000 _shapePropertyType-tests.js   
+21000 _shapeScalar-tests.js         
+22000 _shapeVariable-tests.js
+23000 typeIsA-tests.js
+24000 typeProtos-tests_24000.js
+25000 typeIs-tests_25000.js
+26000 TypeCzech-tests_26000.js
+27000 variadic-tests-27000.js
+28000 _shrinkDiffs-tests_28000.js
+29000 check_objectEmptyExtra-tests_29000.js
+
+checkParam_emptyExtra_30000.js
+_unionChecks-tests_31000.js
+variadic_checks_32000.js
+checkArgs_emptyEach_32800.js
+checkArgs_typeEach_32900.js
+
+33000.js
+34000.js
+35000.js
+36000.js
+37000.js
+38000.js
+39000.js
+
+
+check_buildSnapshot_40000.js
+check_mutatedSnapshot_41000.js
+enableTests_42000.js
+disableTests_43000.js
+countFails_44000.js
+countTally_45000.js
+signature_checkParam_type_46000.js
+signature_checkArgs_typeEach_47000.js
+signature_checkArgs_emptyEach_48000.js
+check_assert_49000.js
+
+nested_checks_50000.js
+class_check_51000.js
+closure_check_52000.js
+iife_check_53000.js
+classfree_check_54000.js
+prototype_check_55000.js
+oloo_check_56000.js
+
+scalar_arrays_57000.js
+array_arrays_58000.js
+
+//////////////////
+
+
+signaure ---
+  values - 60000
+  empty  - 61000
+  type   - 62000
+
+
+  signature-checkParam_type_63000.js
+    signature-checkParam_typeEither_64000.js
