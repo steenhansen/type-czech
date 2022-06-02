@@ -4762,5 +4762,3 @@ some command line stests
     } // _TypeCzech()
   };
 })(the_exports);
-
- // for JSX and ESM

@@ -1,20 +1,73 @@
-const TYPE_CZECH_JS = '../../TypeCzech.js';
-
-const TYPE_CZECH_JS = '../../web-resources/TypeCzech.js';
-
-in like 103 in examples-web
-
-therefore we need to have normal file in web-resources like the php example
-
-file:///C:/Users/16043/Documents/GitHub/TypeCzech/examples-web/103-Extending-Classes-Production/103-Extending-Classes-Production.html
 
 # TypeCzech
 
-TypeCzech is a detachable run-time type checking JavaScript library that can be toggled on and off.
-Errors can be set to throw exceptions or just output to the Console.
+TypeCzech is a run-time type checking 
+[NPM JavaScript library](https://www.npmjs.com/package/type-czech) that can be toggled on and off.
+Type errors can be set to throw exceptions or just output to the Console.
 The motivation is to verify function parameters before execution,
 and function results after completion with PRE_check() and POST_check() functions.
+Functions are not changed in any way by the linking of type checking functions as with asserts.
+Nothing is added to function declarations like with TypeScript . And no dependencies. 
+Basically a copy of the [Closure spec library](https://clojure.org/guides/spec).
 
+```
+function PRE_yourRoutine(a_str, number_array, a_date){
+   the_parameters = [a_str,    number_array, a_date];
+   the_signature  = ['string', ['numbers'],  'date']
+   type_issue = type_czech.checkParam_type(the_parameters, the_signature)
+   if (type_issue)
+      return type_issue
+}
+
+yourRoutine = type_czech.linkUp(yourRoutine, PRE_yourRoutine);
+
+function yourRoutine(a_str, number_array, a_date){}
+
+yourRoutine('hi', [1,2,3], new Date('dec 31 1999'));
+```
+## To Install
+```
+npm i type-czech
+```
+## Both Import and Require Are Supported
+```
+import TypeCzech_obj from "./node_modules/type-czech/type-czech-import.js";
+
+const { TypeCzech_obj } = require("./node_modules/type-czech/type-czech-require.js");
+```
+## Vite-Plugin-SSR
+The [vite-plugin-ssr](https://vite-plugin-ssr.com/) forms the foundations of all the sample programs. 
+
+
+## Online TypeCzech Examples
+
+### Type-czech-always-on
+A square root finder using Vite, [https://type-czech-always-on.herokuapp.com/](https://type-czech-always-on.herokuapp.com/) slow
+to start free Heroku site, which uses the four types of
+"Roman-Numbers", "Word-Numbers", "Floats", and "Integers". Type checking errors
+can easily be constructed, turned on or off, and are viewable in a grey dialog.
+[https://github.com/steenhansen/type-czech-always-on](https://github.com/steenhansen/type-czech-always-on)
+
+### Type-czech-canonical
+A Vite SSR/HMR example, [https://type-czech-canonical.herokuapp.com/](https://type-czech-canonical.herokuapp.com/) slow
+to start free Heroku site, that is a simple example of TypeCzech use. A JSX component has
+been deliberately given a string parameter of "1", when the correct value should have be a number of 1.
+This causes the clicked button to be incorrectly rendered as 'Counter 11111...' instead of the correct
+sequence of 'Counter 1', 'Counter 2'. There is one type checking function with one error that is found in 
+both Node.js and browser environments in the console when in development.
+[https://github.com/steenhansen/type-czech-canonical](https://github.com/steenhansen/type-czech-canonical)
+
+### Type-czech-phone-Recipes
+Another Vite example, [https://phone-recipes.herokuapp.com/](https://phone-recipes.herokuapp.com/), which uses
+TypeCzech in development to 
+- Type check the paremeters and results of MongoDB calls in Node.js, 
+    [GitHub File](https://github.com/steenhansen/type-czech-phone-recipes/blob/main/mongoose-database/tc-recipe-collections.js)
+- Type check the parameters of JSX SSR functions in Node.js and browser,
+    [GitHub File](https://github.com/steenhansen/type-czech-phone-recipes/blob/main/type-czech-jsx/tc_HomeRecipes_DEV.js)
+- Type check parameters and results of Ajax routines in the browser,
+    [GitHub File](https://github.com/steenhansen/type-czech-phone-recipes/blob/main/redux-store/tc-ajax-calls_DEV.js)
+
+### Why
 Enjoy some TypeScript benefits without the drawbacks of
 
 - Compilation time
@@ -53,6 +106,17 @@ TypeCzech the bad parts
 - Continuously checking parameter mutations of large collections can be slow
 - When checking constructors and methods of extended classes, production code
   can get complicated if all TypeCzech testing code is to be completely removed for production.
+
+-------------------------
+
+### Note that everything documented below is non-compiled straight included Javascript 
+where 
+&lt;script src="[https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/TypeCzech.min.js](https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/TypeCzech.min.js)"&gt;
+is used directly in webpages without any Vite/Rollup/Webpack bundling.
+This enables the TypeCzech examples to be hosted on JSFiddle, [https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Contents](https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Contents),
+and be manipulated and runnable directly in the browser.
+
+-------------------------
 
 ## The Example
 
