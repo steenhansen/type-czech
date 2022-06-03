@@ -29,6 +29,12 @@ yourRoutine('hi', [1,2,3], new Date('dec 31 1999'));
 ```
 npm i type-czech
 ```
+
+## To Test
+```
+npm test
+```
+
 ## Both Import and Require Are Supported
 ```
 import TypeCzech_obj from "./node_modules/type-czech/type-czech-import.js";
