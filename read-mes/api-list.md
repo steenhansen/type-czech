@@ -565,6 +565,6 @@ type_czech.typeProtos(document) // ["HTMLDocument", ... "Object" ]
 
   [typeProtos() examples](./public/typeProtos.md)  
 
-&copy; 2021 Steen Hansen
+&copy; 2022 Steen Hansen
 
 

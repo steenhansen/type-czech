@@ -230,4 +230,4 @@ oneObject({a:{}}) // fail
 ```
 
 
-&copy; 2021 Steen Hansen
+&copy; 2022 Steen Hansen

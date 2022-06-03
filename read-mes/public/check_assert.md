@@ -91,4 +91,4 @@ getIpCountryInfo('fail-no-country-ip')
 
 ```
 
-&copy; 2021 Steen Hansen 
+&copy; 2022 Steen Hansen 

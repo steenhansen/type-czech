@@ -330,7 +330,7 @@ objectAbc([]) // fail - array not object with a,b,c keys
 
 
 
-&copy; 2021 Steen Hansen
+&copy; 2022 Steen Hansen
 
 
 

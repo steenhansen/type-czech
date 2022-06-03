@@ -113,4 +113,4 @@ array2ExtraOk([1, 2, ''], '') // pass
 
 array2ExtraOk([1, '']) // fail - second parameter is an empty string ''
 ```
-&copy; 2021 Steen Hansen
+&copy; 2022 Steen Hansen

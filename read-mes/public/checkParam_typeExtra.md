@@ -106,4 +106,4 @@ objectExtra({album:'Avalon'})  // PRE fail - missing song property in result
 
 
 
-&copy; 2021 Steen Hansen
+&copy; 2022 Steen Hansen

@@ -72,4 +72,4 @@ then check_linkUp_first_last_full() is not run and no functions are linked up to
 /**/    check_linkUp_first_last_full()
 ```
 
-&copy; 2021 Steen Hansen
+&copy; 2022 Steen Hansen

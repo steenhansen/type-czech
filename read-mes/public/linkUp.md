@@ -161,4 +161,4 @@ smallPrimes(-7)          // fail - not in set
 
 
  
-&copy; 2021 Steen Hansen
+&copy; 2022 Steen Hansen

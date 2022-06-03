@@ -455,4 +455,4 @@ complex_pass=[{a:[{r:[[123],[1,2,3],987n,false,new Date('1999-12-12'),x=>x,
 complexDebug(complex_pass)
 ```
 
-&copy; 2021 Steen Hansen
+&copy; 2022 Steen Hansen

@@ -220,4 +220,4 @@ type_czech.check_interface(margaret_atwood, OLOO_INTERFACE) // pass
 ```
 
 
-&copy; 2021 Steen Hansen 
+&copy; 2022 Steen Hansen 

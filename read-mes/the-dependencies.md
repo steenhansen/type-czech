@@ -18,7 +18,7 @@ https://github.com/epoberezkin/fast-json-stable-stringify modified to handle new
 ## UsableBrowsers
 https://caniuse.com/proxy - Edge 12+, Firefox 18+, Chrome 49+, Safari 10+ Opera 36+
 
-&copy; 2021 Steen Hansen
+&copy; 2022 Steen Hansen
 
 
 

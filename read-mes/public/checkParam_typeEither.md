@@ -49,4 +49,4 @@ arrayOrObject(12) // fail - 12 is not an object
 
 
 
-&copy; 2021 Steen Hansen
+&copy; 2022 Steen Hansen

@@ -55,4 +55,4 @@ anObject({data:'data', extra:'extra'}) // pass
 anObject({an_err:'yep'}) // POST fail - changed to {"an_err":"yep","extra":"is mutated"} 
 ```
 
-&copy; 2021 Steen Hansen 
+&copy; 2022 Steen Hansen 

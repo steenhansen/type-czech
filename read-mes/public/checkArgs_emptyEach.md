@@ -65,7 +65,7 @@ someVariables({},2,3,4,)       // fail - {} is empty
 
 
 
- &copy; 2021 Steen Hansen
+ &copy; 2022 Steen Hansen
 
 
 

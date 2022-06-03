@@ -65,6 +65,6 @@ fetch('https://get.geojs.io/v1/ip/country.json?ip=8.8.8.8')
 
 
 
-&copy; 2021 Steen Hansen
+&copy; 2022 Steen Hansen
 
 

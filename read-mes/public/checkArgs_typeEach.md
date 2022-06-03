@@ -98,6 +98,6 @@ someObjects( {age:29, color:1492}) // fail - color a number
 
 
 
- &copy; 2021 Steen Hansen
+ &copy; 2022 Steen Hansen
 
 
