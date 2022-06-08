@@ -25,6 +25,11 @@ function yourRoutine(a_str, number_array, a_date){}
 
 yourRoutine('hi', [1,2,3], new Date('dec 31 1999'));
 ```
+
+## To See it Work in Live JsFiddle
+[67 pages](https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Contents) of live changeable coloured examples if you have the time.
+
+
 ## To Install
 ```
 npm i type-czech
