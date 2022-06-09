@@ -11,9 +11,9 @@ Nothing is added to function declarations like with TypeScript . And no dependen
 Basically a copy of the [Closure spec library](https://clojure.org/guides/spec).
 
 ```
-function PRE_yourRoutine(a_str, number_array, a_date){
-   the_parameters = [a_str,    number_array, a_date];
-   the_signature  = ['string', ['numbers'],  'date']
+function PRE_yourRoutine(number_array, a_str, a_date){
+   the_parameters = [ number_array, a_str,   a_date];
+   the_signature  = [ ['numbers'], 'string', 'date']
    type_issue = type_czech.checkParam_type(the_parameters, the_signature)
    if (type_issue)
       return type_issue
@@ -21,10 +21,14 @@ function PRE_yourRoutine(a_str, number_array, a_date){
 
 yourRoutine = type_czech.linkUp(yourRoutine, PRE_yourRoutine);
 
-function yourRoutine(a_str, number_array, a_date){}
+function yourRoutine(number_array, a_str, a_date){}
 
-yourRoutine('hi', [1,2,3], new Date('dec 31 1999'));
+yourRoutine([1,2,3], 'abc', new Date('dec 31 1999'));
 ```
+
+![diagram](diagram.png)
+
+
 
 ## To See it Work in Live JsFiddle
 [67 pages](https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Contents) of live changeable coloured examples if you have the time.
