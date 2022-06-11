@@ -29,10 +29,23 @@ yourRoutine([1,2,3], 'abc', new Date('dec 31 1999'));
 ![diagram](diagram.png)
 
 
+## See Type-Czech Working in Online Ajax Program
+The [Run Time Type Checking Square Root Finder](https://type-czech-always-on.herokuapp.com/), verifies that
+live aysnc server calls have correct number types. The types checked for are 'Roman Numerals', 'Word Numbers',
+'Floats', and 'Integers'. So when the Roman square root of 'MCDXLIV' is processed, resulting in 'xxxviii', 
+there are no type errors printed in the console. But when 'ypE', or 3025, is entered, an error is generated
+in the console.log because 'Greek Numerals' are not supported. So instead of seeing 'VE', or 55,  as the 
+square root of 3025, the server does not responed to non-supported number types and a non-response fetch 
+type check error is displayed in the console.
 
-## To See it Work in Live JsFiddle
+
+## See Type-Czech Work in Live Editable JsFiddles
 [67 pages](https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Contents) of live changeable coloured examples if you have the time.
 
+## See Canonical Motivational Example
+The use of '1' instead of 1 causes incorrect data to be displayed because the type of a [string instead of a number](https://type-czech-canonical.herokuapp.com/) causes concatenation instead of addition. 
+The development version of this program prints type errors to the console, while the production version
+ignores all Javascript type errors.
 
 ## To Install
 ```
