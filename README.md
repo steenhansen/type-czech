@@ -35,7 +35,7 @@ live aysnc server calls have correct number types. The types checked for are 'Ro
 'Floats', and 'Integers'. So when the Roman square root of 'MCDXLIV' is processed, resulting in 'xxxviii', 
 there are no type errors printed in the console. But when 'ypE', or 3025, is entered, an error is generated
 in the console.log because 'Greek Numerals' are not supported. So instead of seeing 'VE', or 55,  as the 
-square root of 3025, the server does not responed to non-supported number types and a non-response fetch 
+square root of 3025, the server does not respond to non-supported number types and a non-response fetch 
 type check error is displayed in the console.
 
 
