@@ -70,6 +70,8 @@ ignores all Javascript type errors.
 npm i type-czech
 ```
 
+<a id="tests-2444"></a>
+
 ## Run 2444 tests
 ```
 npm test
