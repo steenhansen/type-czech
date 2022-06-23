@@ -38,6 +38,7 @@ in the console.log because 'Greek Numerals' are not supported. So instead of see
 square root of 3025, the server does not respond to non-supported number types and a non-response fetch 
 type check error is displayed in the console.
 
+<a id="live-jsfiddles"></a>
 
 ## See Type-Czech Work in Live Editable JsFiddles
 [67 pages](https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Contents) of live changeable coloured examples if you have the time.
