@@ -14,7 +14,7 @@ Used thus:
 
 /* eslint-disable max-len */
 /* eslint-disable block-scoped-var */
-const VERS_NUM = "version 1.4.0 2022-05-30";
+const VERS_NUM = "version 1.5.0 2022-08-16";
 
 /*
     TypeCzech contains:
@@ -3798,7 +3798,12 @@ type_czech.checkParam_type('a', 'string');
       function checkParam_type(parameters_obj, shape_list, func_name = MESS_TYPE_VERIFY) {
         if (t_param_check_func.p_call_traps) {
           consolelog("^^^ checkParam_type ENTER", parameters_obj, shape_list, TYPE_CZECH_current_test_number);
-          const clean_param_obj = deClassify(parameters_obj);
+          const final_type =  typeFinal(parameters_obj)
+          if (parameters_obj!==undefined && parameters_obj!==null && !TYPE_SET_SCALAR.has(final_type)) {
+            return '';  // a classname like 'Person_Class' or 'Person' or 'First'/'Last'/'Full'
+          }
+          consolelog("^^^ checkParam_type typeFinal", typeFinal);
+          const clean_param_obj = deClassify(parameters_obj);              // here 'number', 'object', ['string', 'number', 'date']
           let error_str_3arr = _unsafeArgs(func_name, clean_param_obj);
           if (error_str_3arr === "") {
             const [parameters_array, no_parameters, one_param] = _getParameters(clean_param_obj);
