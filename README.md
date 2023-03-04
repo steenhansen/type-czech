@@ -1,6 +1,7 @@
-<a name="fast-start"></a>
+
 
 # TypeCzech
+<a name="fast-start"></a>
 
 TypeCzech is a run-time type checking 
 [NPM JavaScript library](https://www.npmjs.com/package/type-czech) that can be toggled on and off.
