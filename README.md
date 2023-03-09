@@ -93,14 +93,14 @@ The [vite-plugin-ssr](https://vite-plugin-ssr.com/) forms the foundations of all
 ## Online TypeCzech Examples
 
 ### Type-czech-always-on
-A square root finder using Vite, [https://type-czech-always-on.herokuapp.com/](https://type-czech-always-on.herokuapp.com/) slow
+A square root finder using Vite, [https://type-czech-always-on.onrender.com/](https://type-czech-always-on.onrender.com/) slow
 to start free Heroku site, which uses the four types of
 "Roman-Numbers", "Word-Numbers", "Floats", and "Integers". Type checking errors
 can easily be constructed, turned on or off, and are viewable in a grey dialog.
 [https://github.com/steenhansen/type-czech-always-on](https://github.com/steenhansen/type-czech-always-on)
 
 ### Type-czech-canonical
-A Vite SSR/HMR example, [https://type-czech-canonical.herokuapp.com/](https://type-czech-canonical.herokuapp.com/) slow
+A Vite SSR/HMR example, [https://type-czech-canonical.onrender.com/](https://type-czech-canonical.onrender.com/) slow
 to start free Heroku site, that is a simple example of TypeCzech use. A JSX component has
 been deliberately given a string parameter of "1", when the correct value should have be a number of 1.
 This causes the clicked button to be incorrectly rendered as 'Counter 11111...' instead of the correct
