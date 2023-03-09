@@ -32,7 +32,7 @@ yourRoutine([1,2,3], 'abc', new Date('dec 31 1999'));
 
 
 ## See Type-Czech Working in Online Ajax Program
-The [Run Time Type Checking Square Root Finder](https://type-czech-always-on.herokuapp.com/), verifies that
+The [Run Time Type Checking Square Root Finder](https://type-czech-always-on.onrender.com/), 150 seconds to start on free hostingverifies that
 live aysnc server calls have correct number types. The types checked for are 'Roman Numerals', 'Word Numbers',
 'Floats', and 'Integers'. So when the Roman square root of 'MCDXLIV' is processed, resulting in 'xxxviii', 
 there are no type errors printed in the console. But when 'ypE', or 3025, is entered, an error is generated
