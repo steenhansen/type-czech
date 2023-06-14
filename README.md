@@ -64,7 +64,7 @@ type check error is displayed in the console.
 | **OLOO**                                                                                                                           | [601 - Created OLOO Inline](https://jsfiddle.net/steen_hansen/guw701xv/?601-Created-OLOO-Inline)                       | [602 - Created OLOO Imported](https://jsfiddle.net/steen_hansen/b2qpL9rt/?602-Extending-OLOO-Imports)                                      | [603 - Created OLOO Production](https://jsfiddle.net/steen_hansen/ktezbg7c/?603-Extending-OLOO-Production)                              | [604 - Extending OLOO Single](https://jsfiddle.net/steen_hansen/74Lvbj5x/?604-Extending-OLOO-Single)                                       |
 
 ## See Canonical Motivational Example
-The use of '1' instead of 1 causes incorrect data to be displayed because the type of a [string instead of a number](https://type-czech-canonical.herokuapp.com/) causes concatenation instead of addition. 
+The use of '1' instead of 1 causes incorrect data to be displayed because the type of a [string instead of a number](https://type-czech-canonical.onrender.com/) causes concatenation instead of addition. 
 The development version of this program prints type errors to the console, while the production version
 ignores all Javascript type errors.
 
@@ -94,14 +94,14 @@ The [vite-plugin-ssr](https://vite-plugin-ssr.com/) forms the foundations of all
 
 ### Type-czech-always-on
 A square root finder using Vite, [https://type-czech-always-on.onrender.com/](https://type-czech-always-on.onrender.com/) slow
-to start free Heroku site, which uses the four types of
+to start free Render.com site, which uses the four types of
 "Roman-Numbers", "Word-Numbers", "Floats", and "Integers". Type checking errors
 can easily be constructed, turned on or off, and are viewable in a grey dialog.
 [https://github.com/steenhansen/type-czech-always-on](https://github.com/steenhansen/type-czech-always-on)
 
 ### Type-czech-canonical
 A Vite SSR/HMR example, [https://type-czech-canonical.onrender.com/](https://type-czech-canonical.onrender.com/) slow
-to start free Heroku site, that is a simple example of TypeCzech use. A JSX component has
+to start free Render.com site, that is a simple example of TypeCzech use. A JSX component has
 been deliberately given a string parameter of "1", when the correct value should have be a number of 1.
 This causes the clicked button to be incorrectly rendered as 'Counter 11111...' instead of the correct
 sequence of 'Counter 1', 'Counter 2'. There is one type checking function with one error that is found in 
