@@ -80,6 +80,8 @@ npm i type-czech
 npm test
 ```
 
+The test [suite](https://github.com/steenhansen/type-czech/tree/master/test-collection) directory.
+
 ## Both Import and Require Are Supported
 ```
 import TypeCzech_obj from "./node_modules/type-czech/type-czech-import.js";
