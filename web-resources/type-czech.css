@@ -71,7 +71,7 @@ li{
 .text-2{ color: rgb(0, 0, 255); font-weight: bold; }
 .text-3{ color: rgb(0, 255, 0); font-weight: bold; }
 .text-4{ color: #800080; font-weight: bold; }
-.text-5{ color: red; font-weight: bolder; }
+.text-5{ color: #FF00FF; font-weight: bold; }
 .text-6{ color: red; font-weight: bolder; }
 .back-1{ background-color: rgb(255, 230, 230); }
 .back-2{ background-color: rgb(230, 255, 230); }
