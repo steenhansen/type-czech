@@ -9,7 +9,7 @@ And of course null and undefined values.
   - EMPTY-OK - Used when an empty value is fine.
   - EMPTY-IGNORE - Basically a placeholder.
 
-Odd empty values.
+Odd empty values. 
   - Infinity
   - NaN
   - /(?:)/
@@ -23,18 +23,18 @@ Empty testing has no array properties such as 'EMPTY-ERRORs'.
 #### All examples below can be executed in the console of [repl.html](../test-collection/repl.html)
 
 Check Parameters For:
-  -  [A - Single Empty](#A)
-  -  [B - Two Empties](#B)
-  -  [C - Single Empty Element Array](#C)
-  -  [D - Two Empty Element Array](#D)
-  -  [E - Variadic Scalar Empties](#E)
-  -  [F - Array with Single Empty](#F)
-  -  [G - Array with Two Empties](#G)
-  -  [H - Object with Empty Properties](#H)
+  -  [A - Single Empty](#a)
+  -  [B - Two Empties](#b)
+  -  [C - Single Empty Element Array](#c)
+  -  [D - Two Empty Element Array](#d)
+  -  [E - Variadic Scalar Empties](#e)
+  -  [F - Array with Single Empty](#f)
+  -  [G - Array with Two Empties](#g)
+  -  [H - Object with Empty Properties](#h)
 
 
 
-### A - Single Scalar Empty<a name="A"></a>
+### A - Single Scalar Empty<a id="a"></a>
 ```
 /**/  type_czech = TypeCzech('LOG-ERRORS')
 /**/  
@@ -63,7 +63,7 @@ oneValue('one', 'two') // fail - two parameters
 ```
 
     
-### B - Two Scalar Empties<a name="B"></a>
+### B - Two Scalar Empties<a id="b"></a>
 ```
 /**/  type_czech = TypeCzech('LOG-ERRORS')
 /**/  
@@ -87,7 +87,7 @@ twoValues('one', '')         // fail - empty string
 twoValues(1, 'two', 'three') // fail - extra parameter
 ```
 
-### C - Single Scalar Element Array<a name="C"></a>
+### C - Single Scalar Element Array<a id="c"></a>
 ```
 /**/  type_czech = TypeCzech('LOG-ERRORS')
 /**/  
@@ -111,7 +111,7 @@ oneElemArr({a:1})   // fail - object
 
 
 
-### D - Two Empty Element Array<a name="D"></a>
+### D - Two Empty Element Array<a id="d"></a>
 ```
 /**/  type_czech = TypeCzech('LOG-ERRORS')
 /**/  
@@ -139,7 +139,7 @@ twoElemArr([1,2,'three']) // fail - two strings
 
 
 
-### E - Variadic Scalar Empties<a name="E"></a>
+### E - Variadic Scalar Empties<a id="e"></a>
 ```
 /**/  type_czech = TypeCzech('LOG-ERRORS', 'DEBUG-ERROR-TAGS')
 /**/  
@@ -160,7 +160,7 @@ someNums(1,2,'') // fail - last is empty
 
 
 
-### F - Array with Single Scalar<a name="F"></a>
+### F - Array with Single Scalar<a id="f"></a>
 ```
 /**/  type_czech = TypeCzech('LOG-ERRORS')
 /**/  
@@ -185,7 +185,7 @@ oneNumArray([1, '']) // fail - two parameters
 
 
 
-### G - Array with Two Scalars<a name="G"></a>
+### G - Array with Two Scalars<a id="g"></a>
 ```
 /**/  type_czech = TypeCzech('LOG-ERRORS')
 /**/  
@@ -206,7 +206,7 @@ twoNumArray(['str-1'])              // fail - one value
 twoNumArray([9876,   'str-1', 123]) // fail - three values
 ```
 
-### H - Object with Empty Properties<a name="H"></a>
+### H - Object with Empty Properties<a id="h"></a>
 ```
 /**/  type_czech = TypeCzech('LOG-ERRORS')
 /**/  
