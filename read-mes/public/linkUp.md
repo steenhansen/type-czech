@@ -1,16 +1,16 @@
 
 
 ## linkUp()
-  -  [A Check For a Null Parameter](#A) 
-  -  [B Check For a Null Result](#B) 
-  -  [C Check For a Null Parameter or Result](#C) 
-  -  [D Check a Parameter by Value](#D) 
-  -  [E Check a Parameter by RegExp](#E) 
-  -  [F Check a Parameter by Includes](#F) 
+  -  [A Check For a Null Parameter](#a) 
+  -  [B Check For a Null Result](#b) 
+  -  [C Check For a Null Parameter or Result](#c) 
+  -  [D Check a Parameter by Value](#d) 
+  -  [E Check a Parameter by RegExp](#e) 
+  -  [F Check a Parameter by Includes](#f) 
 
 #### All examples below can be executed in the console of [repl.html](../../test-collection/repl.html)
 
-## A Check For a Null Parameter<a name="A"></a>
+## A Check For a Null Parameter<a id="a"></a>
 
 ```
 function PRE_check_notNull(a_parameter){
@@ -31,7 +31,7 @@ notNull(null) // fail - found a null
 ```
 
 
-## B Check For a Null Parameter or Result<a name="B"></a>
+## B Check For a Null Parameter or Result<a id="b"></a>
 
 ```
 function PRE_check_notNull(a_parameter){
@@ -58,7 +58,7 @@ notNull()          // pass
 notNull(null)  // PRE and POST fail - null parameter and result         
 ```
 
-## C Check For a Null Result<a name="C"></a>
+## C Check For a Null Result<a id="c"></a>
 
 ```
 function POST_check_notNull(a_result){
@@ -82,7 +82,7 @@ notNull(null) // fail - null parameter and result
 
 
 
-## D Check a Parameter by Value<a name="D"></a>
+## D Check a Parameter by Value<a id="d"></a>
 Check that a date parameter is in the month of February.
 
 ```
@@ -108,7 +108,7 @@ mustBeFebruary(new Date('1999-01-10')) // fail - January
 mustBeFebruary(new Date('1999-02-31')) // fail - no such date 
 ```
 
-## E Check a Parameter by RegExp<a name="E"></a>
+## E Check a Parameter by RegExp<a id="e"></a>
 Check if a string parameter has its first character capitalized.
   
 ```
@@ -131,7 +131,7 @@ firstCapital('alice') // fail - first character is lowercase
 firstCapital('')      // fail - no uppercase letter          
 ```
 
-## F Check a Parameter by Includes<a name="F"></a>
+## F Check a Parameter by Includes<a id="f"></a>
 Check if a parameter is in the small prime set.
   
 ```
@@ -161,4 +161,4 @@ smallPrimes(-7)          // fail - not in set
 
 
  
-&copy; 2022 Steen Hansen
+&copy; 2024 Steen Hansen

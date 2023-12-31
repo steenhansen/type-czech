@@ -132,5 +132,5 @@ notNegNum('-55') // not checked
 
 
 
-&copy; 2022 Steen Hansen
+&copy; 2024 Steen Hansen
 

@@ -1,16 +1,16 @@
 
 ## checkParam_emptyExtra()
 
-  -  [A Single Parameter Empty Check With Possible Extra Empties](#A)
-  -  [B Two Parameter Empty Check With Possible Extra Empties](#B)
-  -  [C Extra Object Parameter Empty Check](#C) 
-  -  [D One Value Array Parameter Empty Check](#D)
-  -  [E Two Element Array Parameter Empty Check With Possible Extra Empties](#E)
+  -  [A Single Parameter Empty Check With Possible Extra Empties](#a)
+  -  [B Two Parameter Empty Check With Possible Extra Empties](#b)
+  -  [C Extra Object Parameter Empty Check](#c) 
+  -  [D One Value Array Parameter Empty Check](#d)
+  -  [E Two Element Array Parameter Empty Check With Possible Extra Empties](#e)
 
 #### All examples below can be executed in the console of [repl.html](../../test-collection/repl.html)
 
 
-## A Single Parameter Empty Check With Possible Extra Empties<a name="A"></a>
+## A Single Parameter Empty Check With Possible Extra Empties<a id="a"></a>
 
 ```
 function PRE_check_oneParam(a_parameter){
@@ -34,7 +34,7 @@ oneParam([])          // PRE fail - first parameter is empty
 oneParam('', 'extra') // PRE fail - first parameter is empty
 ```
 
-## B Two Parameter Empty Check With Possible Extra Empties<a name="B"></a>
+## B Two Parameter Empty Check With Possible Extra Empties<a id="b"></a>
 
 ```
 function PRE_check_twoParams(param_1, param_2){
@@ -55,7 +55,7 @@ twoParams('')          // PRE fail - first parameter is empty
 twoParams('full', []) // PRE fail - second parameter is empty
 ```
 
-## C Extra Object Parameter Empty Check<a name="C"></a>
+## C Extra Object Parameter Empty Check<a id="c"></a>
 
 ```
 function PRE_check_objectExtra(an_object){
@@ -74,7 +74,7 @@ objectExtra({album:'Gaucho'})  // PRE fail - no song
 ```
 
 
-## D One Value Array Parameter Empty Check<a name="D"></a>
+## D One Value Array Parameter Empty Check<a id="d"></a>
 
 ```
 function PRE_check_arrayOneElem(a_1_array){
@@ -94,7 +94,7 @@ arrayOneElem('not-empty', 'extra') // fail - not array
 arrayOneElem([], 'extra')          // fail - empty array
 ```
 
-## E Two Element Array Parameter Empty Check With Possible Extra Empties<a name="E"></a> 
+## E Two Element Array Parameter Empty Check With Possible Extra Empties<a id="e"></a> 
 
 This example requires the first two elements of one parameter to be non-empty, while empty elements may follow.
 ```
@@ -113,4 +113,4 @@ array2ExtraOk([1, 2, ''], '') // pass
 
 array2ExtraOk([1, '']) // fail - second parameter is an empty string ''
 ```
-&copy; 2022 Steen Hansen
+&copy; 2024 Steen Hansen

@@ -1,27 +1,27 @@
 ## checkParam_type() 
 
 ### Input Parameter Type Checks
-  -  [A Single Scalar Parameter Type Check](#A)
-  -  [S Single Array Parameter Type Check](#B)
-  -  [C Single Typed Array Parameter Type Check](#C)
-  -  [D Single Object Parameter Type Check](#D)
-  -  [E Single Typed Object Parameter Type Check](#E)
-  -  [F Multiple Parameter Type Check](#F)
-  -  [G HTML Type Parameter Check](#G)
-  -  [H Class Type Parameter Check](#H)
-  -  [I Class and Methods Type Parameter Type Check](#I) 
+  -  [A Single Scalar Parameter Type Check](#a)
+  -  [S Single Array Parameter Type Check](#b)
+  -  [C Single Typed Array Parameter Type Check](#c)
+  -  [D Single Object Parameter Type Check](#d)
+  -  [E Single Typed Object Parameter Type Check](#e)
+  -  [F Multiple Parameter Type Check](#f)
+  -  [G HTML Type Parameter Check](#g)
+  -  [H Class Type Parameter Check](#h)
+  -  [I Class and Methods Type Parameter Type Check](#i) 
 
 ### Output Result Type Checks
-  -  [J Scalar Result Type Check](#J)
-  -  [K Array Result Type Check](#K)
-  -  [L Typed Array Result Type Check](#L)
-  -  [M Multi Typed Array Result Type Check](#M)
-  -  [N Typed Object Result Type Check](#N)
+  -  [J Scalar Result Type Check](#j)
+  -  [K Array Result Type Check](#k)
+  -  [L Typed Array Result Type Check](#l)
+  -  [M Multi Typed Array Result Type Check](#m)
+  -  [N Typed Object Result Type Check](#n)
 
 
 #### All examples below can be executed in the console of [repl.html](../../test-collection/repl.html)
 
-## A Single Scalar Parameter Type Check<a name="A"></a>
+## A Single Scalar Parameter Type Check<a id="a"></a>
 
 ```
 function PRE_check_oneNumber(a_number){
@@ -38,7 +38,7 @@ oneNumber(12)       // pass
 oneNumber('a-string') // fail 'a-string' is not a number         
 ```
 
-## B Single Array Parameter Type Check<a name="B"></a>
+## B Single Array Parameter Type Check<a id="b"></a>
     
 ```
 function PRE_check_oneArray(an_array){
@@ -54,7 +54,7 @@ oneArray([1, 'two', {c:3}, [] ]) // pass
 
 oneArray({a:1}) // fail - object not an array
 ```
-## C Single Typed Array Parameter Type Check<a name="C"></a>
+## C Single Typed Array Parameter Type Check<a id="c"></a>
     
 ```
 function PRE_check_oneArray(an_array){
@@ -71,7 +71,7 @@ oneArray([1, 2, 3, 4]) // pass
 oneArray([false]) // fail - boolean not number     
 ```
 
-## D Single Object Parameter Type Check<a name="D"></a>
+## D Single Object Parameter Type Check<a id="d"></a>
 
 ```
 function PRE_check_oneObject(an_object){
@@ -91,7 +91,7 @@ oneObject([]) // fail - array not object
 
 
 
-## E Single Typed Object Parameter Type Check<a name="E"></a>
+## E Single Typed Object Parameter Type Check<a id="e"></a>
 
 ```
 function PRE_check_oneObject(oneObject){
@@ -114,7 +114,7 @@ oneObject({b:'capybara'}) // fail missing key 'a'
 
 
 
-## F Multiple Parameter Type Check<a name="F"></a>
+## F Multiple Parameter Type Check<a id="f"></a>
 
 ```
 function PRE_check_multiParams(an_array){
@@ -132,7 +132,7 @@ multiParams([1, 'one', false]) // pass
 multiParams([1999, 'Sharknado', {} ]) // fail - object not boolean
 ```
 
-## G HTML Type Check<a name="G"></a>
+## G HTML Type Check<a id="g"></a>
 
 ```
 function PRE_check_htmlButton(html_element){ 
@@ -150,7 +150,7 @@ htmlButton('hi there')                    // fail - string not button
 htmlButton(document.createElement('div')) // fail - div not button
 ```
 
-## H Class Type Check<a name="H"></a>
+## H Class Type Check<a id="h"></a>
 Applies to closures, IIFEs, ClassFrees, Prototypess, and OLLOs.
 
 ```
@@ -175,7 +175,7 @@ classOperate(a_last)  // pass
 classOperate(a_first)  // fail - is a 'First' not a 'Last'
 ```
 
-## I Class and Methods Type Check<a name="I"></a>
+## I Class and Methods Type Check<a id="i"></a>
 
 ```
 class Person {
@@ -225,7 +225,7 @@ person_5 = new Person('Pol Pot')  // POST fail - matched 'Pol Pot'
 ```
 
 
-## J Scalar Result Type Check<a name="J"></a>
+## J Scalar Result Type Check<a id="j"></a>
 
 ```
 function POST_check_returnString(return_result){
@@ -244,7 +244,7 @@ returnString('two') // pass
 returnString(false) // fail - not a string         
 ```
 
-## K Array Result Type Check<a name="K"></a>
+## K Array Result Type Check<a id="k"></a>
 
 ```
 function POST_check_anArray(an_array){
@@ -263,7 +263,7 @@ anArray([1, 'two', {c:3}, [] ]) // pass
 anArray({a:1}) // fail - object not array
 ```
 
-## L Typed Array Result Type Check<a name="L"></a>
+## L Typed Array Result Type Check<a id="l"></a>
 
 ```
 function POST_check_booleanArray(an_array){
@@ -282,7 +282,7 @@ booleanArray([true, false, true]) // pass
 booleanArray([1, 0, 1]) // fail - array of numbers not booleans
 ```
 
-## M Multi Typed Array Result Type Check<a name="M"></a>
+## M Multi Typed Array Result Type Check<a id="m"></a>
 
 ```
 function POST_check_numBoolStr(an_array){
@@ -301,7 +301,7 @@ numBoolStr([1, false, 'three']) // pass
 numBoolStr({}) // fail - object not an array of number,boolean,string
 ```
 
-## N Typed Object Result Type Check<a name="N"></a>
+## N Typed Object Result Type Check<a id="n"></a>
 
 ```
 function POST_check_objectAbc(an_array){
@@ -330,7 +330,7 @@ objectAbc([]) // fail - array not object with a,b,c keys
 
 
 
-&copy; 2022 Steen Hansen
+&copy; 2024 Steen Hansen
 
 
 

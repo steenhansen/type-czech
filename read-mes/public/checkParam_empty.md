@@ -1,19 +1,19 @@
 ## checkParam_empty() 
 
 ### Input Parameter Empty Checks
-  -  [A Single Empty Parameter Check](#A)  
-  -  [B Array Empty Parameter Check](#B)  
-  -  [C Object Empty Parameter Check](#C)  
+  -  [A Single Empty Parameter Check](#a)  
+  -  [B Array Empty Parameter Check](#b)  
+  -  [C Object Empty Parameter Check](#c)  
 
 
 ### Output Result Empty Checks
-  -  [D Empty Result Check](#D)
-  -  [E Empty Array Result Check](#E)     
-  -  [F Empty Object Result Check](#F)     
+  -  [D Empty Result Check](#d)
+  -  [E Empty Array Result Check](#e)     
+  -  [F Empty Object Result Check](#f)     
 
 #### All examples below can be executed in the console of [repl.html](../../test-collection/repl.html)
 
-## A Single Empty Parameter Check<a name="A"></a>
+## A Single Empty Parameter Check<a id="a"></a>
   
 ```
 function PRE_check_filledVariable(a_variable){
@@ -33,7 +33,7 @@ filledVariable({})  // PRE fail - {} is empty
 filledVariable(NaN) // PRE fail - NaN is empty
 ```
 
-## B Array Empty Parameter Check<a name="B"></a>
+## B Array Empty Parameter Check<a id="b"></a>
 
 ```
 function PRE_check_firstFilled(an_array){
@@ -52,7 +52,7 @@ firstFilled(['Booker T.', 'And', "The M.G.'s"]) // pass
 firstFilled(['', 'Steely', 'Dan']) // PRE fail - first element is empty
 ```
 
-## C Object Empty Parameter Check<a name="C"></a>
+## C Object Empty Parameter Check<a id="c"></a>
 
 ```
 function PRE_check_filledObject(oneObject){
@@ -73,7 +73,7 @@ filledObject({a:'', b:'bison'})  // PRE fail - 'a' property is empty
 
 
 
-## D Empty Result Check<a name="D"></a>
+## D Empty Result Check<a id="d"></a>
 ```
 function POST_check_filledReturn(a_variable){
   return type_czech.checkParam_empty(a_variable, 'EMPTY-ERROR')
@@ -94,7 +94,7 @@ filledReturn('') // PRE error
 ```
 
 
-## E Empty Array Result Check<a name="E"></a> 
+## E Empty Array Result Check<a id="e"></a> 
 
 ```
 function POST_check_arrayReturn(an_array){
@@ -118,7 +118,7 @@ arrayReturn([1, {}]) // fail, empty object
 
 
 
-## F Empty Object Result Check<a name="F"></a> 
+## F Empty Object Result Check<a id="f"></a> 
 ```
 function POST_check_objectReturn(an_object){
   return type_czech.checkParam_empty(an_object, {a:'EMPTY-ERROR'})
@@ -145,7 +145,7 @@ objectReturn({a:''}) // fail - empty string
 
 
 
-&copy; 2022 Steen Hansen
+&copy; 2024 Steen Hansen
 
 
 

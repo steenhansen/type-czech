@@ -1,11 +1,11 @@
 
 ## check_assert()
-  -  [A Assert Check in a Promise](#A) - one object in an array
-  -  [B Assert Check in a Promise](#B) - one or more similar objects in an array
+  -  [A Assert Check in a Promise](#a) - one object in an array
+  -  [B Assert Check in a Promise](#b) - one or more similar objects in an array
 
 #### All examples below can be executed in the console of [repl.html](../../test-collection/repl.html)
 
-## A Assert checkParam_type() in a Promise<a name="A"></a> - one object in an array
+## A Assert checkParam_type() in a Promise<a id="a"></a> - one object in an array
 
  Ask [GeoJS](#https://www.geojs.io/) for the country belonging to an ip, [USA 8.8.8.8](#https://get.geojs.io/v1/ip/country.json?ip=8.8.8.8) in this example, and 
  check that the object returned has the expected keys of country, country_3, ip, and name. Note that this example can only get <b>one</b> country from one ip number.
@@ -41,7 +41,7 @@ getIpCountryInfo('error-no-country-ip')  // check_assert fail - country key miss
 
 
 
-## B Assert checkParam_type() in a Promise<a name="B"></a> - one or more similar objects in an array
+## B Assert checkParam_type() in a Promise<a id="b"></a> - one or more similar objects in an array
 
 
 Because we cannot ask for <b>one or more</b> objects in an array, unlike ['numbers'], we must build the
@@ -91,4 +91,4 @@ getIpCountryInfo('fail-no-country-ip')
 
 ```
 
-&copy; 2022 Steen Hansen 
+&copy; 2024 Steen Hansen 

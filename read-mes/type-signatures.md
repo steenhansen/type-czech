@@ -27,31 +27,31 @@ For instance, 'numbers' represents the idea of an array of numbers having the ha
 #### All examples below can be executed in the console of [repl.html](../test-collection/repl.html)
 
 Check Parameters For:
-  -  [A - Single Scalar Type](#A)
-  -  [B - Two Scalar Types](#B)
-  -  [C - Single Object Type](#C)
-  -  [D - Two Object Types](#D)
-  -  [E - Single Scalar Element Array](#E)
-  -  [F - Two Scalar Element Array](#F)
-  -  [G - Variadic Scalar Types](#G)
-  -  [H - Array with Single Type](#H)
-  -  [I - Array with Two Types](#I)
-  -  [J - Two Array Types](#J)
-  -  [K - Array of Array Types](#K)
-  -  [L - Object with Typed Properties](#L)
-  -  [M - Two Objects with Typed Properties](#M)
+  -  [A - Single Scalar Type](#a)
+  -  [B - Two Scalar Types](#b)
+  -  [C - Single Object Type](#c)
+  -  [D - Two Object Types](#d)
+  -  [E - Single Scalar Element Array](#e)
+  -  [F - Two Scalar Element Array](#f)
+  -  [G - Variadic Scalar Types](#g)
+  -  [H - Array with Single Type](#h)
+  -  [I - Array with Two Types](#i)
+  -  [J - Two Array Types](#j)
+  -  [K - Array of Array Types](#k)
+  -  [L - Object with Typed Properties](#l)
+  -  [M - Two Objects with Typed Properties](#m)
 
 
-  -  [N - Any Size Scalar Array of One Type](#N)
-  -  [O - Any Size Object Array of One Type](#O) - <b>NB Unintuitive</b>
+  -  [N - Any Size Scalar Array of One Type](#n)
+  -  [O - Any Size Object Array of One Object Type](#o) 
 
 
 
-  -  [P - Typeless Object with Typeless Array](#P)
-  -  [Q - Debug Complicated Signature](#Q)
+  -  [P - Typeless Object with Typeless Array](#p)
+  -  [Q - Debug Complicated Signature](#q)
 
 
-### A - Single Scalar Type<a name="A"></a>
+### A - Single Scalar Type<a id="a"></a>
 ```
 /**/  type_czech = TypeCzech('LOG-ERRORS')
 /**/  
@@ -72,7 +72,7 @@ oneStr('a-str', 'b-str') // fail - two strings
 ```
 
     
-### B - Two Scalar Types<a name="B"></a>
+### B - Two Scalar Types<a id="b"></a>
 ```
 /**/  type_czech = TypeCzech('LOG-ERRORS')
 /**/  
@@ -93,7 +93,7 @@ twoNums('one', 'two')      // fail - no number
 twoNums(1, 'two', 'three') // fail - extra
 ```
 
-### C - Single Object Type<a name="C"></a>
+### C - Single Object Type<a id="c"></a>
 ```
 /**/  type_czech = TypeCzech('LOG-ERRORS')
 /**/  
@@ -114,7 +114,7 @@ oneObj({a:'string'})     // fail - wrong type
 oneObj({a:2222, b:1999}) // fail - extra stuff
 ```
 
-### D - Two Object Types<a name="D"></a>
+### D - Two Object Types<a id="d"></a>
 ```
 /**/  type_czech = TypeCzech('LOG-ERRORS')
 /**/  
@@ -136,7 +136,7 @@ twoObj({b:'a-string'})                 // fail - one object
 twoObj({a:'a-string'}, {b:'a-string'}) // fail - one object
 ```    
 
-### E - Single Scalar Element Array<a name="E"></a>
+### E - Single Scalar Element Array<a id="e"></a>
 ```
 /**/  type_czech = TypeCzech('LOG-ERRORS')
 /**/  
@@ -159,7 +159,7 @@ oneElemArr([17,18])        // fail - two numbers
 
 
 
-### F - Two Scalar Element Array<a name="F"></a>
+### F - Two Scalar Element Array<a id="f"></a>
 ```
 /**/  type_czech = TypeCzech('LOG-ERRORS')
 /**/  
@@ -188,7 +188,7 @@ twoElemArr([1,2,'three']) // fail - two strings
 
 
 
-### G - Variadic Scalar Types<a name="G"></a>
+### G - Variadic Scalar Types<a id="g"></a>
 ```
 /**/  type_czech = TypeCzech('LOG-ERRORS')
 /**/  
@@ -209,7 +209,7 @@ someNums(1,2,false) // fail - last is boolean
 
 
 
-### H - Array with Single Scalar<a name="H"></a>
+### H - Array with Single Scalar<a id="h"></a>
 ```
 /**/  type_czech = TypeCzech('LOG-ERRORS')
 /**/  
@@ -234,7 +234,7 @@ oneNumArray([1, 2])  // fail - two numbers
 
 
 
-### I - Array with Two Scalars<a name="I"></a>
+### I - Array with Two Scalars<a id="i"></a>
 ```
 /**/  type_czech = TypeCzech('LOG-ERRORS')
 /**/  
@@ -255,7 +255,7 @@ twoNumArray('str-1', 'str-2')       // fail - no number
 twoNumArray([9876,   'str-1', 123]) // fail - extra
 ```
  
-### J - Two Array Types<a name="J"></a>
+### J - Two Array Types<a id="j"></a>
 ```
 /**/  type_czech = TypeCzech('LOG-ERRORS')
 /**/  
@@ -278,7 +278,7 @@ someNums([1,2,3], [1,2,3]) // fail - no string array
 ```
 
 
-### K - Array of Array Types<a name="K"></a>
+### K - Array of Array Types<a id="k"></a>
 ```
 /**/  type_czech = TypeCzech('LOG-ERRORS')
 /**/  
@@ -306,7 +306,7 @@ arrayArray([ [6], 'not-array' ]) // fail
 
 
 
-### L - Object with Typed Properties<a name="L"></a>
+### L - Object with Typed Properties<a id="l"></a>
 ```
 /**/  type_czech = TypeCzech('LOG-ERRORS')
 /**/  
@@ -327,7 +327,7 @@ oneObject({a:1, b:{c:false}, d:['str1']})                 // fail - one string i
 ```
 
 
-### M - Two Objects with Typed Properties<a name="M"></a>
+### M - Two Objects with Typed Properties<a id="m"></a>
 ```
 /**/  type_czech = TypeCzech('LOG-ERRORS')
 /**/  
@@ -347,7 +347,7 @@ twoObjects({a:1}, {b:2021})   // fail - key 'b' is a number
 twoObjects({a:1}, {b:2021})   // fail - key 'b' is a number
 ``` 
   
-### N - Any Size Scalar Array of One Type<a name="N"></a>
+### N - Any Size Scalar Array of One Type<a id="n"></a>
 ```
 /**/  type_czech = TypeCzech('LOG-ERRORS')
 /**/  
@@ -369,36 +369,39 @@ anyNumArray(1)       // fail - not array
 anyNumArray([])      // fail - not number array
 anyNumArray(['sdf']) // fail - string
 ```
+checkArray_objType0n
+checkArray_objType0n
+checkArray_objType0n
+checkArray_objType0n
+checkArray_objType0n
+checkArray_objType0n
+checkArray_objType0n
+checkArray_objType0n
+checkArray_objType0n
 
-### O - Any Size Object Array of One Type<a name="O"></a>
-One object in an array has a type like [{a:'number',b:'string'}]. Because we cannot ask for 1 or more objects in an array, unlike ['numbers'] by just adding an 's', we must build the signature.
-The idea is to construct an array of signatures that matches the parameter array
-at runtime. Notice that the variable multi_obj_signature is built to match the number
-of elements to be checked.
 
-Signatures matched when the number of objects in the array is 
-
-  - 1 - [ {a:'number',b:'string'} ]
-  - 2 - [ {a:'number',b:'string'}, {a:'number',b:'string'} ]
-  - 3 - [ {a:'number',b:'string'}, {a:'number',b:'string'}, {a:'number',b:'string'} ]
+### O - Any Size Object Array of One Object Type<a id="o"></a>
+  Two choices:
+  -  Use checkArray_objType1n() if the array must not be empty.
+  -  Use checkArray_objType0n() if the array can be empty, like [], as below.
 
 ```
 /**/  type_czech = TypeCzech('LOG-ERRORS')
+/**/
+/**/  A_NUM_B_STR_OBJ_TYPE = {
+/**/    a: "number",
+/**/    b: "string"
+/**/  };
 /**/  
-/**/  function PRE_check_anyObjArray(array_with_any_obj){
-/**/    if (array_with_any_obj) {
-/**/      num_objects = array_with_any_obj.length
-/**/      single_obj_signature = {a:'number',b:'string'}
-/**/      multi_obj_signature = Array(num_objects).fill(single_obj_signature)
-/**/      return type_czech.checkParam_type(array_with_any_obj, multi_obj_signature)
-/**/    }
-/**/    return 'Error - Empty object array'
+/**/  function PRE_check_anyObjArray(an_obj_array){
+/**/    return type_czech.checkArray_objType0n(an_obj_array, A_NUM_B_STR_OBJ_TYPE)
 /**/  }
 /**/  
 /**/  anyObjArray = type_czech.linkUp(anyObjArray, PRE_check_anyObjArray) 
 
-function anyObjArray(array_with_any_obj){ }
+function anyObjArray(an_obj_array){ }
 
+anyObjArray([ ])                                                               // pass
 anyObjArray([ {a:1,b:'one'} ])                                                 // pass
 anyObjArray([ {a:1,b:'one'}, {a:2,b:'two'} ])                                  // pass
 anyObjArray([ {a:1,b:'one'}, {a:2,b:'two'}, {a:3,b:'three'} ])                 // pass
@@ -412,7 +415,7 @@ anyObjArray([ {a:1,b:'one'}, {a:2,b:false} ]) // fail - second b is boolean
 ```
 
 
-### P - Typeless Object with Typeless Array<a name="P"></a>
+### P - Typeless Object with Typeless Array<a id="p"></a>
 ```
 /**/  type_czech = TypeCzech('LOG-ERRORS')
 /**/  
@@ -433,7 +436,7 @@ objAndArr({}, [], 12)      // fail - extra number
 objAndArr({})              // fail - no array
 ```
 
-### Q - Debug Complicated Signature<a name="Q"></a>
+### Q - Debug Complicated Signature<a id="q"></a>
 ```
 type_czech = TypeCzech('LOG-ERRORS')
     
@@ -455,4 +458,4 @@ complex_pass=[{a:[{r:[[123],[1,2,3],987n,false,new Date('1999-12-12'),x=>x,
 complexDebug(complex_pass)
 ```
 
-&copy; 2022 Steen Hansen
+&copy; 2024 Steen Hansen

@@ -3,14 +3,14 @@
 
 
 
-  -  [A Variadic Parameter Type Check](#A)  
-  -  [B Limited Variadic Parameter Type Check](#B)  
-  -  [C Variadic Number Arrays Type Check](#C)  
-  -  [D Variadic Objects Type Check](#D)  
+  -  [A Variadic Parameter Type Check](#a)  
+  -  [B Limited Variadic Parameter Type Check](#b)  
+  -  [C Variadic Number Arrays Type Check](#c)  
+  -  [D Variadic Objects Type Check](#d)  
 
 #### All examples below can be executed in the console of [repl.html](../../test-collection/repl.html)
 
-## A Variadic Parameter Type Check<a name="A"></a>
+## A Variadic Parameter Type Check<a id="a"></a>
   
 ```
 function PRE_check_someNumbers(){
@@ -29,7 +29,7 @@ someNumbers('a-string')    // fail - not a number
 someNumbers(1,'two',3,4,5) // fail - 'two' a number
 ```
 
-## B Limited Variadic Parameter Type Check<a name="B"></a>
+## B Limited Variadic Parameter Type Check<a id="b"></a>
   
 ```
 function PRE_check_someNumbers(){
@@ -56,7 +56,7 @@ someNumbers(1,2,3,4,5,6)  // fail - 6 parameters
 
 
 
-## C Variadic Number Arrays Type Check<a name="C"></a>
+## C Variadic Number Arrays Type Check<a id="c"></a>
 ```
 function PRE_check_someNumArrays(){
   return type_czech.checkArgs_typeEach(arguments, 'numbers')
@@ -75,7 +75,7 @@ someNumArrays([1],[1,false],[1,2,3]) // fail - false  a number
 ```
 
 
-## D Variadic Objects Type Check<a name="D"></a>
+## D Variadic Objects Type Check<a id="d"></a>
 ```
 function PRE_check_someObjects(){
   return type_czech.checkArgs_typeEach(arguments, {age:'number', color:'string'} )
@@ -98,6 +98,6 @@ someObjects( {age:29, color:1492}) // fail - color a number
 
 
 
- &copy; 2022 Steen Hansen
+ &copy; 2024 Steen Hansen
 
 

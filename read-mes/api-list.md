@@ -10,20 +10,24 @@
   -  [D checkParam_emptyEither()](#d)
   -  [E checkParam_emptyExtra()](#e)
   -  [F checkArgs_emptyEach()](#f)
-  -  [G check_interface()](#g)
-  -  [H checkParam_type()](#h)
-  -  [I checkParam_typeEither()](#i)
-  -  [J checkParam_typeExtra()](#j)
-  -  [K checkArgs_typeEach()](#k)
-  -  [L countFails()](#l) 
-  -  [M countTally()](#m) 
-  -  [N enableTests()](#n) 
-  -  [O disableTests()](#o) 
-  -  [P isActive()](#p) 
-  -  [Q linkUp()](#q)
-  -  [R typeFinal()](#r)
-  -  [S typeIsA()](#s) 
-  -  [T typeProtos()](#t)
+
+  -  [G checkArray_objType0n()](#g)
+  -  [H checkArray_objType1n()](#h)
+
+  -  [I check_interface()](#i)
+  -  [J checkParam_type()](#j)
+  -  [K checkParam_typeEither()](#k)
+  -  [L checkParam_typeExtra()](#l)
+  -  [M checkArgs_typeEach()](#m)
+  -  [N countFails()](#n) 
+  -  [O countTally()](#o) 
+  -  [P enableTests()](#p) 
+  -  [Q disableTests()](#q) 
+  -  [R isActive()](#r) 
+  -  [S linkUp()](#s)
+  -  [T typeFinal()](#t)
+  -  [U typeIsA()](#u) 
+  -  [V typeProtos()](#v)
 
 #### All examples below can be executed in the console of [repl.html](../test-collection/repl.html)
 
@@ -230,7 +234,87 @@ haveValues('', [], {}) // fail - empty values
 
 
 
-### G check_interface(a_variable)<a id="g"></a>
+
+
+
+
+
+### G checkArray_objType0n(array_of_objects, object_signature)<a id="g"></a>
+  Will match an empty array.
+
+  Generally used inside PRE_check() functions to verify objects in arrays match their specification.
+
+```
+OBJECT_SIGNATURE = {
+  a_str: "string",
+  a_num: "number",
+  a_bool: "boolean"
+};
+
+AN_OBJECT = { a_str: "str",  a_num: 1, a_bool: true};
+
+function PRE_check_obj_arr_0(obj_array){
+  return type_czech.checkArray_objType0n(obj_array, OBJECT_SIGNATURE)
+}
+
+type_czech = TypeCzech('LOG-ERRORS')
+
+processObjsArr_0 = type_czech.linkUp(processObjsArr_0, PRE_check_obj_arr_0) 
+
+function processObjsArr_0(){ }
+
+processObjsArr_0([])                                                      // pass
+processObjsArr_0([AN_OBJECT])                                             // pass
+processObjsArr_0([AN_OBJECT, AN_OBJECT, AN_OBJECT, AN_OBJECT, AN_OBJECT]) // pass
+
+processObjsArr_0('')                                             // fail - not an array
+processObjsArr_0([{ X: "str",  Y: 1, z: true}])                  // fail - wrongs keys
+processObjsArr_0([{ a_str: 1234,  a_num: "onw", a_bool: 1999}])  // fail - wrongs types
+```
+
+
+
+### H checkArray_objType1n(array_of_objects, object_signature)<a id="h"></a>
+  Will NOT match an empty array.
+  
+  Generally used inside PRE_check() functions to verify objects in arrays match their specification.
+```
+OBJECT_SIGNATURE = {
+  a_str: "string",
+  a_num: "number",
+  a_bool: "boolean"
+};
+
+AN_OBJECT = { a_str: "str",  a_num: 1, a_bool: true};
+
+function PRE_check_obj_arr_1(obj_array){
+  return type_czech.checkArray_objType1n(obj_array, OBJECT_SIGNATURE)
+}
+
+type_czech = TypeCzech('LOG-ERRORS')
+
+processObjsArr_1 = type_czech.linkUp(processObjsArr_1, PRE_check_obj_arr_1) 
+
+function processObjsArr_1(){ }
+
+
+processObjsArr_1([AN_OBJECT])                                             // pass
+processObjsArr_1([AN_OBJECT, AN_OBJECT, AN_OBJECT, AN_OBJECT, AN_OBJECT]) // pass
+
+processObjsArr_1('')                                             // fail - not an array
+processObjsArr_1([])                                             // fail - empty array
+processObjsArr_1([{ X: "str",  Y: 1, z: true}])                  // fail - wrongs keys
+processObjsArr_1([{ a_str: 1234,  a_num: "onw", a_bool: 1999}])  // fail - wrongs types
+```
+
+
+
+
+
+
+
+
+### I check_interface(a_variable)<a id="i"></a>
   Generally used inside both PRE_check() and POST_check() functions that have been linked to 
   a function to be tested. Checks a class or object for wanted properties. Not a Java style interface of only functions.
 
@@ -255,7 +339,7 @@ wantedProperties({my_func: x=>x, my_number:{recursive:{wrapped:'nested'}}}) // f
 
   [check_interface() examples](./public/check_interface.md)
 
-### H checkParam_type(a_parameter, type_signature) <a id="h"></a>
+### J checkParam_type(a_parameter, type_signature) <a id="j"></a>
   Used inside both PRE_check() and POST_check() functions that have been linked to 
   a function to be tested. Outputs an error message if a tested function's parameters do not match the type signature.
   Returning an empty string or undefined signifies type compliance.
@@ -291,7 +375,7 @@ oneString(12)  // PRE POST fail - number not an object, object not an array
 
 
 
-### I checkParam_typeEither(a_variable, type_signatures)<a id="i"></a>
+### K checkParam_typeEither(a_variable, type_signatures)<a id="k"></a>
   Used inside both PRE_check() and POST_check() functions that have been linked to 
   a function to be tested.
 
@@ -323,7 +407,7 @@ eitherObject( {first: 'Bob', middle: 'Bob'}) // fail - has unknown middle
 
 
 
-### J checkParam_typeExtra(a_variable, type_signature)<a id="j"></a>
+### L checkParam_typeExtra(a_variable, type_signature)<a id="l"></a>
   Generally used inside both PRE_check() and POST_check() functions that have been linked to 
   a function to be tested.
   
@@ -353,7 +437,7 @@ extraParams({make: 'Ford'}) // fail - no model
 
 
 
-### K checkArgs_typeEach(arguments, type_signature)<a id="k"></a>
+### M checkArgs_typeEach(arguments, type_signature)<a id="m"></a>
   Generally used inside PRE_check() functions that have been linked to 
   a function to be tested. Outputs an error message if any function parameter does not match the type.
 ```
@@ -374,7 +458,7 @@ someNumbers(1, 'two', 3) // fail - 'two' is not a number
 ```
   [checkArgs_typeEach() examples](./public/checkArgs_typeEach.md)
 
-### L countFails()<a id="l"></a>
+### N countFails()<a id="n"></a>
  
   Get number of failed check function calls, both PRE_check() and POST_check().
 ```
@@ -398,7 +482,7 @@ anArray({an_object:[]}) // fail 2 - object not array
 type_czech.countFails() // 2
 ```
  
-### M countTally()<a id="m"></a>
+### O countTally()<a id="o"></a>
 
   Get number of total check function calls, both PRE_check() and POST_check().
 ```
@@ -428,7 +512,7 @@ type_czech.countTally()  // 5
 
 
 
-### N enableTests()<a id="n"></a>
+### P enableTests()<a id="p"></a>
  
   Start checking of functions after disabling them. Cannot enable checking
   from a non-active TypeCzech instance, started from TypeCzech() or TypeCzech('NO-ERROR-MESSAGES')
@@ -455,7 +539,7 @@ type_czech.enableTests()
 oneUppercase('push me pull you') // fail - no uppercase character
 ```
 
-### O disableTests()<a id="o"></a>
+### Q disableTests()<a id="q"></a>
  
   Stop checking of functions.
 ```
@@ -480,7 +564,7 @@ type_czech.disableTests()
 isRoman('1177 BC') // not checked and not counted as currently disabled
 ```
 
-### P isActive()<a id="p"></a>
+### R isActive()<a id="r"></a>
 
   Returns true if TypeCzech is checking errors. This returns false if TypeCzech was not loaded in Node.js or the browser. Can turn off with disableTests().
 
@@ -498,7 +582,7 @@ type_czech.enableTests()
 type_czech.isActive() // true
 ```
 
-### Q linkUp(tested_func, before_checking_func, after_checking_func)<a id="q"></a>
+### S linkUp(tested_func, before_checking_func, after_checking_func)<a id="s"></a>
   Link functions, classes, closures, IIFEs, and Prototypes to parameter and result checking functions.
 ```
 type_czech = TypeCzech('LOG-ERRORS')
@@ -526,7 +610,7 @@ oneString(12)  // PRE and POST fail - not strings but numbers
 
 
 
-### R typeFinal(a_variable)<a id="r"></a>
+### T typeFinal(a_variable)<a id="t"></a>
 
 
   Returns the last inherited prototype or classname of its lineage.
@@ -542,7 +626,7 @@ type_czech.typeFinal(a_last)  // Last
   
   [typeFinal() examples](./public/typeFinal.md)   
 
-### S typeIsA(a_variable, variable_type)<a id="s"></a>
+### U typeIsA(a_variable, variable_type)<a id="u"></a>
 
   Returns true if first parameter variable is of the second type.
 ```
@@ -553,7 +637,7 @@ type_czech.typeIsA(document, "Object")       // true
 ```
   [typeIsA() examples](./public/typeIsA.md)  
 
-### T typeProtos(a_variable)<a id="t"></a>
+### V typeProtos(a_variable)<a id="v"></a>
 
   Returns the prototype lineage an objects or class.
 
@@ -565,6 +649,6 @@ type_czech.typeProtos(document) // ["HTMLDocument", ... "Object" ]
 
   [typeProtos() examples](./public/typeProtos.md)  
 
-&copy; 2022 Steen Hansen
+&copy; 2024 Steen Hansen
 
 

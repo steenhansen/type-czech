@@ -1,11 +1,11 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>__44_ deClassify Objects</title>
+<title>701 Array of Objects</title>
 
 
 
 
 
-<div id='js-div' style="width:52%">
+<div id='js-div' style="width:35%">
   <a href='https://github.com/steenhansen/type-czech'  target="_blank" class='git-hub'>GitHub Package</a>
   <div id='js-code'>the javascript</div>
   <br>
@@ -38,22 +38,56 @@
 </div>
 
 
-<div id="the-explanation" style="width:48%" >
-  <div class='an-explantion'>__44_ - deClassify Objects</div>
+<div id="the-explanation" style="width:65%" >
+  <div class='an-explantion'>701 - Array of Objects</div>
   <div id='explanation-text'> 
-    Used to make plain objects without any prototypes from objects like a Mongoose result.
-Then you can check if the object matches a map without all the functions
+    Used to type check arrays of objects. 
+    <ul>
+      <li> checkArray_objType0n(object_array, object_type) will not fail on an empty object_array</li>
+      <li> checkArray_objType1n(object_array, object_type) will fail on an empty object_array</li>
+    </ul>
+<pre>
+const RECIPE_TYPES = {
+  title: "string",
+  ingredients: "array",
+  minutes: "number"
+};
+
+recipe_arr = [{
+  {title: "Mac and Cheese", ingredients: [ { ingredient: "cheese", amount: "handful" }, { ingredient: "milk", amount: "123ml" } ], minutes: 12},
+  {title: "Cookies",        ingredients: [ { ingredient: "flour", amount: "1 cup" },    { ingredient: "milk", amount: "123ml" } ], minutes: 120},
+  {title: "Banana Bread",   ingredients: [ { ingredient: "flour", amount: "1 cup" },    { ingredient: "Bananas", amount: "3"  } ], minutes: 45}
+}]
+
+const err = type_czech.checkArray_objType0n([], RECIPE_TYPES)
+if (err) 
+  throw "Cannot fail as no objects"
+
+const err = type_czech.checkArray_objType0n(recipe_arr, RECIPE_TYPES)
+if (err) 
+  throw "recipe_arr element does not conform to RECIPE_TYPES " + err
+
+const err = type_czech.checkArray_objType1n([], RECIPE_TYPES)
+if (err) 
+  throw "Must be at least 1 object in the array" + err
+
+
+</pre>
+
+
+
 <br>
 <br>
 
-<a href="https://github.com/steenhansen/type-czech-phone-recipes/blob/main/mongoose-database/tc-recipe-collections.js"
-        >https://github.com/steenhansen/type-czech-phone-recipes/blob/main/mongoose-database/tc-recipe-collections.js</a
-      >
 
+
+  <a href='https://github.com/steenhansen/type-czech-phone-recipes/blob/main/mongoose-database/tc-recipe-collections.js' 
+   target="_blank" style="float:left">Real world example </a>&nbsp;where checkArray_objType0n() is used to type check async MongoDb calls.
 <br>
 <br>
 
-NOTE, there are no tests for this function either
+
+NOTE, there are no tests for checkArray_objType0n() and checkArray_objType1n().
 
 <br>
 <br>
@@ -199,9 +233,16 @@ NOTE, there are no tests for this function either
     <a title="603-Extending-OLOO-Production.html" href="../examples-web/603-Extending-OLOO-Production/603-Extending-OLOO-Production.html">603</a>
     <a title="604-Extending-OLOO-Single.html"     href="../examples-web/604-Extending-OLOO-Single/604-Extending-OLOO-Single.html">604</a>
 
+     &nbsp;&nbsp;
 
+    <a title="700-Simple-Example.html"   href="../example-snippets/700-Simple-Example.html">701</a>
+    <a title="701-Array-of-Objects.html" href="../example-snippets/701-Array-of-Objects.html">701</a>
+    <a title="702-DeClassify.html"       href="../example-snippets/702-DeClassify.html">702</a>
+    <a title="703-Async-Await.html"      href="../example-snippets/703-Async-Await.html">703</a>
+    <a title="704-Ramda-Curry.html"      href="../example-snippets/704-Ramda-Curry.html">704</a>
+        <a title="705-Sensible-Switching.html" href="../example-snippets/705-Sensible-Switching.html">705</a>
 
-    &copy; 2022 Steen Hansen
+    &copy; 2024 Steen Hansen
   </div>
 <!--            ------------------TYPE 1------------------------       -->
 
@@ -277,33 +318,62 @@ NOTE, there are no tests for this function either
 <script id="check-code">
 type_czech = TypeCzech('LOG-ERRORS')
 
-class FirstObject { 
-  constructor() { } 
-}
+AN_OBJ_TYPE = {
+  a_str: "string",
+  a_num: "number",
+  a_bool: "boolean"
+};
 
-a_first = new FirstObject()
-class_type = type_czech.typeFinal(a_first);
+an_obj_array =[
+  { a_str: "how",  a_num: 1, a_bool: true},
+  { a_str: "ya",   a_num: 2, a_bool: false},
+  { a_str: "doin", a_num: 3, a_bool: true}
+];
 
-log('a_first is a "FirstObject":', class_type)
+error_array =[
+  { a_str: "how",  a_num: 1,     a_bool: true},
+  { a_str: "ya",   a_num: "Bob", a_bool: false},
+  { a_str: "doin", a_num: 3,     a_bool: true}
+];
+
+const type_err = type_czech.checkArray_objType0n(an_obj_array, AN_OBJ_TYPE);
+if (type_err) 
+  log(`First error : ` + type_err);
+else 
+  log(`First ok`);
+
 linesConsole(2)
 
-log('a_first.constructor :', a_first.constructor.toString())
-linesConsole(3)
+const type_empty = type_czech.checkArray_objType0n([], AN_OBJ_TYPE);
+if (type_empty) 
+  log(`Second error : ` + type_empty);
+else 
+  log(`Second ok`);
 
-no_class_first = type_czech.deClassify(a_first);
-no_class_type = type_czech.typeFinal(no_class_first);
 
-log('no_class_first is an "object":', no_class_type)
+
+
 linesConsole(2)
 
-log('no_class_first.constructor :', no_class_first.constructor.toString())
-linesConsole(3)
+const obj_error = type_czech.checkArray_objType0n(error_array, AN_OBJ_TYPE);
+if (obj_error) 
+  log(`Third error : ` + obj_error);
+else 
+  log(`Third ok`);
+
+
+  
+linesConsole(2)
+
+const empty_err = type_czech.checkArray_objType1n([], AN_OBJ_TYPE);
+if (empty_err) 
+  log(`At least one error : ` + empty_err);
+else 
+  log(`At least one ok`);
+
 
 
 </script>
-
-
-
 
 
 
@@ -317,18 +387,20 @@ linesConsole(3)
   jsToDiv('js-code', "check-code")
 
 
-//   fromToBoldText(824, 839, 'code', 1)  //  the_zip:'number'
-//   fromToBoldText(2258, 2264, 'code', 1)  //  zip: 'B73 5BL'
-//   fromToBoldText(118, 207, 'log', 1)    //Property 'the_zip' is indicated to be a 'number', but is inaccurately a 'string' : B73 5BL
 
 
 
-// fromToBoldText(2019, 2023, 'code', 2)  //12345
-// fromToBoldText(38, 42, 'log', 2)  //   12345
+ fromToBoldText(76, 80, 'code', 1)  // a_num: "number",
+ fromToBoldText(359, 361, 'code', 1)  // a_num: "Bob"
+ fromToBoldText(856, 864, 'code', 1)  //  log(`Third error : ` + obj_error);
+ 
+ fromToBoldText(71, 76, 'log', 1)  //   indicated to be a 'number'
+ fromToBoldText(113, 115, 'log', 1)  //    a 'string' : Bob
 
 
-// fromToBoldText(2126, 2130, 'code', 3)  //90210
-// fromToBoldText(78, 82, 'log', 3)  //   90210
+fromToBoldText(944, 945, 'code', 2)   // checkArray_objType1n([], AN_OBJ_TYPE);
+fromToBoldText(1010, 1018, 'code', 2) // At one error : ` + empty_err);
+ fromToBoldText(146, 150, 'log', 2)   //  array is empty in checkArray_objType1n
 
 
 

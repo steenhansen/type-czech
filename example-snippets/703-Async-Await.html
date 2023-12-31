@@ -1,11 +1,9 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>_43_ Array of Objects</title>
+<title>703 Async Await</title>
 
 
 
-
-
-<div id='js-div' style="width:55%">
+<div id='js-div' style="width:40%">
   <a href='https://github.com/steenhansen/type-czech'  target="_blank" class='git-hub'>GitHub Package</a>
   <div id='js-code'>the javascript</div>
   <br>
@@ -38,46 +36,48 @@
 </div>
 
 
-<div id="the-explanation" style="width:45%" >
-  <div class='an-explantion'>_43_ - Array of Objects</div>
+<div id="the-explanation" style="width:60%" >
+  <div class='an-explantion'>703 - Async Await</div>
   <div id='explanation-text'> 
-    Used to type check object arrays
+  How to check return types inside an await function.
 <br>
 <br>
+<ul>
+     
+  <li>Used in type-czech-always-on project
+                <ul style="list-style: none">
+                    <li><a href="https://github.com/steenhansen/type-czech-always-on">GitHub</a></li>
+                    <li ><a href="https://type-czech-always-on.onrender.com/#freehosting-wait-for-at-least-150-seconds">Website takes 150 seconds to wake up free hosting</a></li>
+                    <li><a href="https://github.com/steenhansen/type-czech-always-on/blob/main/Type-Czech/type-checks.js">File with function POST_serverGetSqrt()</a></li>
+                </ul>
+      </li>
 
-<a href="https://github.com/steenhansen/type-czech-phone-recipes/blob/main/mongoose-database/tc-recipe-collections.js"
-        >https://github.com/steenhansen/type-czech-phone-recipes/blob/main/mongoose-database/tc-recipe-collections.js</a
-      >
-<br>
-<pre>
-const TYPES = {
-  _id: "string",
-  cook: "string",
-  title: "string",
-  search: "string",
-  steps: "string",
-  serves: "string",
-  time: "string",
-  meal: "string",
-  cuisine: "string",
-  diet: "string",
-  internal: "string",
-  minutes: "number",
-  ingredients: "array",
-  comments: "array",
-};
+      <li style="list-style: none">
+            <ul style="list-style: none">
+                    <li>&nbsp;</li>
+            </ul>
+      </li>
 
-const err = type_czech.checkArray_objType0n(sorted_recipes, TYPES);
-if (err) 
-  type_czech.check_assert(`POST_getCooksRecipes B ` + err);
-    </pre>
+      <li>And type-czech-phone-recipes project
+                <ul style="list-style: none">
+                    <li><a href="https://github.com/steenhansen/type-czech-phone-recipes">GitHub</a></li>
+                    <li ><a href="https://phone-recipes.herokuapp.com/">Recipe Website</a></li>
+                    <li><a href="https://github.com/steenhansen/type-czech-phone-recipes/blob/main/mongoose-database/tc-comment-collections.js">File with function POST_getCookComments()</a></li>
+                </ul>
+      </li>
 
-<br>
-<br>
 
-NOTE, there are no tests for this function either
+</ul>
 
-<br>
+
+
+
+
+
+
+
+
+
 <br>
 
 
@@ -221,9 +221,17 @@ NOTE, there are no tests for this function either
     <a title="603-Extending-OLOO-Production.html" href="../examples-web/603-Extending-OLOO-Production/603-Extending-OLOO-Production.html">603</a>
     <a title="604-Extending-OLOO-Single.html"     href="../examples-web/604-Extending-OLOO-Single/604-Extending-OLOO-Single.html">604</a>
 
+       &nbsp;&nbsp;
 
+    <a title="700-Simple-Example.html"   href="../example-snippets/700-Simple-Example.html">701</a>
+    <a title="701-Array-of-Objects.html" href="../example-snippets/701-Array-of-Objects.html">701</a>
+    <a title="702-DeClassify.html"       href="../example-snippets/702-DeClassify.html">702</a>
+    <a title="703-Async-Await.html"      href="../example-snippets/703-Async-Await.html">703</a>
+    <a title="704-Ramda-Curry.html"      href="../example-snippets/704-Ramda-Curry.html">704</a>
+        <a title="705-Sensible-Switching.html" href="../example-snippets/705-Sensible-Switching.html">705</a>
 
-    &copy; 2022 Steen Hansen
+        
+    &copy; 2024 Steen Hansen
   </div>
 <!--            ------------------TYPE 1------------------------       -->
 
@@ -299,36 +307,58 @@ NOTE, there are no tests for this function either
 <script id="check-code">
 type_czech = TypeCzech('LOG-ERRORS')
 
+const KEYS_TO_CHECK = {args: {my_data: "string"}};
+const THREE_SEC_TIMEOUT = 3210
+
+function PRE_fetch(url_addr) {
+  url_issue = type_czech.checkParam_type(url_addr, "string");
+  if (url_issue) return url_issue;
+  if (!url_addr.startsWith("http")) return "url does not start with http";
+}
+
+function POST_fetch(fetch_promise) {
+  let is_resolved = false;
+  let ret_type_err = "";
+  fetch_promise.then((the_response) => {
+    ret_type_err = type_czech.checkParam_typeExtra(the_response, KEYS_TO_CHECK);
+    if (!ret_type_err) {
+      is_resolved = true;
+    }
+   return fetch_promise;
+  });
+
+  setTimeout(() => {
+    if (!is_resolved) 
+      type_czech.check_assert(`POST_myAwaitFetch didn't return` + ret_type_err);
+  }, THREE_SEC_TIMEOUT);
+}
+
+fetchJson = type_czech.linkUp(fetchJson, PRE_fetch, POST_fetch);
 
 
 
-AN_OBJ_TYPE = {
-  a_str: "string",
-  a_num: "number",
-  a_bool: "boolean"
-};
+async function fetchJson(url) {
+  the_response = await fetch(url)
+  the_json = await the_response.json()
+  return the_json
+}
+  
+fetchJson(44)
+  .then( the_json=> log("Never run as bad url"))
 
-an_obj_array =[
-  { a_str: "how",  a_num: 1, a_bool: true},
-  { a_str: "ya",   a_num: 2, a_bool: false},
-  { a_str: "doin", a_num: 3, a_bool: true}
-];
-
-empty_obj_array =[];
-
-const type_err = type_czech.checkArray_objType0n(an_obj_array, AN_OBJ_TYPE);
-if (type_err) 
-  log(`First try ` + type_err);
-else 
-  log(`First ok`);
-
+fetchJson("https://httpbin.org/anything?my_data=my_value")
+  .then( the_json=> {
+    log(the_json.args)
+    fetchJson("https://httpbin.org/anything?wrong_data=wrong_value2")
+      .then( the_json=> { 
 linesConsole(2)
+          log(the_json.args) 
+      } )
+   }
+  )
 
-const type_empty = type_czech.checkArray_objType0n(empty_obj_array, AN_OBJ_TYPE);
-if (type_empty) 
-  log(`Second try ` + type_empty);
-else 
-  log(`Second ok`);
+
+
 
 </script>
 
@@ -340,25 +370,28 @@ else
 
 
 <script>
+  function colorBoldText() {
+
+    fromToBoldText(987, 988, 'code', 1)  //  fetchJson(44)
+    fromToBoldText(721, 734, 'code', 1)  //  didn't return
+    fromToBoldText(35, 36, 'log', 1)  //  The value '44', which is a 'number', is not a 'string'
+    fromToBoldText(382, 394, 'log', 1)  //  didn't return
+
+    fromToBoldText(69, 75, 'code', 3)      //   {args: {my_data: "string"}};
+    fromToBoldText(1081, 1087, 'code', 3)  //  /anything?my_data=my_value")
+    fromToBoldText(274, 280, 'log', 3)     //  { "my_data": "my_value" }
+
+    fromToBoldText(1189, 1198, 'code', 2)  //  anything?wrong_data=wrong_value2")
+    fromToBoldText(523, 535, 'code', 2)  // heckParam_typeExtra(the_response, KEYS_TO_CHECK);
+    fromToBoldText(301, 310, 'log', 2)       // { "wrong_data": "wrong_value2" }
+    fromToBoldText(604, 610, 'log', 2)       // Key 'my_data'
+  }
 
   jsToDiv('js-code', "check-code")
 
-
-//   fromToBoldText(824, 839, 'code', 1)  //  the_zip:'number'
-//   fromToBoldText(2258, 2264, 'code', 1)  //  zip: 'B73 5BL'
-//   fromToBoldText(118, 207, 'log', 1)    //Property 'the_zip' is indicated to be a 'number', but is inaccurately a 'string' : B73 5BL
-
-
-
-// fromToBoldText(2019, 2023, 'code', 2)  //12345
-// fromToBoldText(38, 42, 'log', 2)  //   12345
-
-
-// fromToBoldText(2126, 2130, 'code', 3)  //90210
-// fromToBoldText(78, 82, 'log', 3)  //   90210
-
-
-
+  colorBoldText() 
+  setTimeout(() => colorBoldText(), THREE_SEC_TIMEOUT );
+  setTimeout(() => colorBoldText(), THREE_SEC_TIMEOUT*2);
 </script>
 
 

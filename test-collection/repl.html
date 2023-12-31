@@ -2,7 +2,7 @@
 <title>Test Console REPL</title>
 
 
-<script src="../TypeCzech.js">
+<script src="../web-resources/TypeCzech.js">
 </script>
 
 <script>
@@ -14,15 +14,94 @@
 
 This exists to cut and paste tests and examples into the console to execute them.
 <br><br>
-You must supply your own TypeCzech variable for exceptions or console logging
+You must supply your own TypeCzech variable for controlling exceptions or console logging
 <br><br>
-For Example: 
-<br><br>
-
-&nbsp;&nbsp;&nbsp;&nbsp; type_czech = TypeCzech('LOG-ERRORS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
-<br><br>
-
-&nbsp;&nbsp;&nbsp;&nbsp; type_czech.checkParam_type('a-string', 'number');
+For example pasting the below code in the console 
+<br>
 
 
+<pre style="border:1px solid darkcyan; padding:4px;">
+type_czech = TypeCzech('LOG-ERRORS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
 
+type_czech.checkParam_type('a-string', 'number');
+</pre>
+
+Will result in a console message of 
+<pre style="border:1px solid darkcyan; padding:4px;">
+>> "TE@226 - The value 'a-string', which is a 'string', is not a 'number'
+</pre>
+
+<br>
+<hr>
+<br>
+
+While pasting this into the console in one fell swoop
+<pre style="border:1px solid darkorange; padding:4px;">
+OBJECT_SIGNATURE = {
+  a_str: "string",
+  a_num: "number",
+  a_bool: "boolean"
+};
+
+AN_OBJECT = { a_str: "str",  a_num: 1, a_bool: true};
+
+function PRE_check_obj_arr_1(obj_array){
+  return type_czech.checkArray_objType1n(obj_array, OBJECT_SIGNATURE)
+}
+
+type_czech = TypeCzech('LOG-ERRORS')
+
+processObjsArr_1 = type_czech.linkUp(processObjsArr_1, PRE_check_obj_arr_1) 
+
+function processObjsArr_1(){ }
+
+
+processObjsArr_1([AN_OBJECT])                                             // pass
+processObjsArr_1([AN_OBJECT, AN_OBJECT, AN_OBJECT, AN_OBJECT, AN_OBJECT]) // pass
+
+processObjsArr_1('')                                             // fail 1 - not an array
+processObjsArr_1([])                                             // fail 2 - empty array
+processObjsArr_1([{ X: "str",  Y: 1, z: true}])                  // fail 3 - wrongs keys
+processObjsArr_1([{ a_str: 1234,  a_num: "onw", a_bool: 1999}])  // fail 4 - wrongs types
+
+</pre>
+
+Will produce console messages of 
+<pre style="border:1px solid darkorange; padding:4px;">
+OBJECT_SIGNATURE = {
+  a_str: "string",
+  a_num: "number",
+  a_bool: "boolean"
+}
+
+"TypeCzech-init","version 1.5.0 2022-08-16","","LOG-ERRORS","","","",false
+
+ PRE_check_obj_arr_1() PRE-FUNC: not an array in checkArray_objType1n
+		         CHECKER 
+		     ACTUAL TYPE 'string'
+		          VALUES ""
+		          ORIGIN processObjsArr_1(obj_array)
+		TypeCzech.js:1672:23
+
+ PRE_check_obj_arr_1() PRE-FUNC: array is empty in checkArray_objType1n
+		         CHECKER 
+		     ACTUAL TYPE 'array'
+		          VALUES []
+		          ORIGIN processObjsArr_1(obj_array)
+		TypeCzech.js:1672:23
+
+ PRE_check_obj_arr_1() PRE-FUNC: Extra key in checked object - (X:'str')
+		         CHECKER checkArray_objType()
+		     ACTUAL TYPE 'array'
+		          VALUES [{X:"str",Y:1,z:true}]
+		 EMPTY ASSERTION [{"a_str":"string","a_num":"number","a_bool":"boolean"}]
+		          ORIGIN processObjsArr_1(obj_array)
+		TypeCzech.js:1672:23
+
+ PRE_check_obj_arr_1() PRE-FUNC: Property 'a_str' is indicated to be a 'string', but is inaccurately a 'number' : 1234
+		         CHECKER checkArray_objType()
+		     ACTUAL TYPE 'array'
+		          VALUES [{a_str:1234,a_num:"onw",a_bool:1999}]
+		 EMPTY ASSERTION [{"a_str":"string","a_num":"number","a_bool":"boolean"}]
+		          ORIGIN processObjsArr_1(obj_array)
+</pre>

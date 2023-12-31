@@ -2,13 +2,13 @@
 
 ## checkParam_emptyEither()
 
-  -  [A Either Parameter Type Check](#A)
-  -  [B Either Array Parameter Type Check](#B)
-  -  [C Either Empty Result Check](#C)
+  -  [A Either Parameter Type Check](#a)
+  -  [B Either Array Parameter Type Check](#b)
+  -  [C Either Empty Result Check](#c)
 
 #### All examples below can be executed in the console of [repl.html](../../test-collection/repl.html)
 
-## A Either Parameter Type Check<a name="A"></a>
+## A Either Parameter Type Check<a id="a"></a>
   
 ```
 function PRE_check_firstOrSecond(first_str, second_str){
@@ -30,7 +30,7 @@ firstOrSecond('', '') // PRE fail - both empty
 
 ```
 
-## B Either Array Parameter Type Check<a name="B"></a>
+## B Either Array Parameter Type Check<a id="b"></a>
   
 ```
 function PRE_check_firstOrSecond(two_elem_array){
@@ -58,7 +58,7 @@ firstOrSecond(['', 'b']) // fail - first empty
 
 
 
-## C Either Empty Result Check<a name="C"></a>
+## C Either Empty Result Check<a id="c"></a>
   
 ```
 function POST_check_firstOrSecond(results_array){
@@ -83,5 +83,5 @@ firstOrSecond('', '') // POST fail - both empty
 
 
 
-&copy; 2022 Steen Hansen
+&copy; 2024 Steen Hansen
 

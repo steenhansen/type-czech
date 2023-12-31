@@ -1,13 +1,13 @@
 
 ## checkArgs_emptyEach()
 
-  -  [A Variadic Empty Parameter Check](#A)  
-  -  [B Limited Variadic Empty Parameter Check](#B)  
+  -  [A Variadic Empty Parameter Check](#a)  
+  -  [B Limited Variadic Empty Parameter Check](#b)  
 
 Note that the only valid empty signature type for checkArgs_emptyEach() is 'EMPTY-ERROR' and its shortcut 'ER'.
 #### All examples below can be executed in the console of [repl.html](../../test-collection/repl.html)
 
-## A Variadic Empty Parameter Check<a name="A"></a>
+## A Variadic Empty Parameter Check<a id="a"></a>
   
 ```
 function PRE_check_someVariables(){
@@ -35,7 +35,7 @@ someVariables(new Date(""))   // fail - date is empty
 
 ```
 
-## B Limited Variadic Empty Parameter  Check<a name="B"></a>
+## B Limited Variadic Empty Parameter  Check<a id="b"></a>
   
 ```
 function PRE_check_someVariables(){
@@ -65,7 +65,7 @@ someVariables({},2,3,4,)       // fail - {} is empty
 
 
 
- &copy; 2022 Steen Hansen
+ &copy; 2024 Steen Hansen
 
 
 

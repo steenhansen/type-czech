@@ -1,11 +1,11 @@
 
 ## typeProtos() 
-  -  [A Class TypeProtos](#A)
-  -  [B HTML TypeProtos](#B)
+  -  [A Class TypeProtos](#a)
+  -  [B HTML TypeProtos](#b)
 
 #### All examples below can be executed in the console of [repl.html](../../test-collection/repl.html)
 
-## A Class TypeProtos<a name="A"></a>
+## A Class TypeProtos<a id="a"></a>
 
 ```
 type_czech = TypeCzech('LOG-ERRORS')
@@ -38,7 +38,7 @@ type_czech.typeProtos(ted_chiang) // [ "FullName", "LastName", "FirstName", "Obj
 
 
 
-## B HTML TypeProtos<a name="B"></a>
+## B HTML TypeProtos<a id="b"></a>
 
 ```
 type_czech = TypeCzech('LOG-ERRORS')

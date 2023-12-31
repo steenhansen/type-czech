@@ -1,9 +1,22 @@
 
 
 # TypeCzech
-<a name="fast-start"></a>
+<a id="fast-start"></a>
 
-TypeCzech is a run-time type checking 
+JavaScript runtime type checking brought to you by the object [Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy).
+
+Benefits
+ - No compiling
+ - No dependencies
+ - Turn type checking on of off programatically
+ - Throw exceptions or just console.log type errors
+ - Does not touch nor alter your functions
+ - Specify async/await function return value type
+ - [A single file](https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/TypeCzech.js)
+ - [NPM package](https://www.npmjs.com/package/type-czech)
+
+
+TypeCzech is a single file with no dependancies run-time type checking 
 [NPM JavaScript library](https://www.npmjs.com/package/type-czech) that can be toggled on and off.
 Type errors can be set to throw exceptions or just output to the Console.
 The motivation is to verify function parameters before execution,
@@ -13,20 +26,28 @@ Nothing is added to function declarations like with TypeScript . And no dependen
 Basically a copy of the [Closure spec library](https://clojure.org/guides/spec).
 
 ```
-function PRE_yourRoutine(number_array, a_str, a_date){
-   the_parameters = [ number_array, a_str,   a_date];
-   the_signature  = [ ['numbers'], 'string', 'date']
-   type_issue = type_czech.checkParam_type(the_parameters, the_signature)
-   if (type_issue)
-      return type_issue
+type_czech = TypeCzech('LOG-ERRORS')
+
+function PRE_yourRoutine(number_array, an_str, a_date){
+  the_parameters = [ number_array, an_str,   a_date]
+  the_signature  = [ ['numbers'], 'string', 'date']
+  return type_czech.checkParam_type(the_parameters, the_signature)
 }
 
-yourRoutine = type_czech.linkUp(yourRoutine, PRE_yourRoutine);
+function POST_yourRoutine(return_int){
+  return type_czech.checkParam_type(return_int, 'number')
+}
 
-function yourRoutine(number_array, a_str, a_date){}
+yourRoutine = type_czech.linkUp(yourRoutine, PRE_yourRoutine, POST_yourRoutine)
 
-yourRoutine([1,2,3], 'abc', new Date('dec 31 1999'));
+function yourRoutine(number_array, an_str, a_date){
+  return 1234 
+}
+
+yourRoutine([1,2,3], 'abc', new Date('dec 31 1999'))
 ```
+[Run this live on an editable JSFiddle](https://jsfiddle.net/steen_hansen/efLgk3h4/?700-Simple-Example)
+
 
 ![diagram](diagram.png)
 
@@ -62,7 +83,7 @@ type check error is displayed in the console.
 | **Class Free**                                                                                                                     | [401 - ClassFree Constructors Inline](https://jsfiddle.net/steen_hansen/xsyu1Lma/?401-Extending-ClassFree-Inline)      | [402 - ClassFree Constructors Imported](https://jsfiddle.net/steen_hansen/pyqxrs57/?402-Extending-ClassFree-Imports)                       | [403 - ClassFree Constructors Production](https://jsfiddle.net/steen_hansen/57tpy1wm/?403-Extending-ClassFree-Production)               | [404 - Extending ClassFree Single](https://jsfiddle.net/steen_hansen/asjwhbd8/?404-Extending-ClassFree-Single)                             |
 | **Prototypes**                                                                                                                     | [501 - Inherited Prototypes Inline](https://jsfiddle.net/steen_hansen/gn38a4k9/?501-Extending-Prototypes-Inline)       | [502 - Inherited Prototypes Imported](https://jsfiddle.net/steen_hansen/retqdosm/?502-Extending-Prototypes-Imports)                        | [503 - Inherited Prototypes Production](https://jsfiddle.net/steen_hansen/2paqh67m/?503-Extending-Prototypes-Production)                | [504 - Extending Prototypes Single](https://jsfiddle.net/steen_hansen/0fabr5g3/?504-Extending-Prototypes-Single)                           |
 | **OLOO**                                                                                                                           | [601 - Created OLOO Inline](https://jsfiddle.net/steen_hansen/guw701xv/?601-Created-OLOO-Inline)                       | [602 - Created OLOO Imported](https://jsfiddle.net/steen_hansen/b2qpL9rt/?602-Extending-OLOO-Imports)                                      | [603 - Created OLOO Production](https://jsfiddle.net/steen_hansen/ktezbg7c/?603-Extending-OLOO-Production)                              | [604 - Extending OLOO Single](https://jsfiddle.net/steen_hansen/74Lvbj5x/?604-Extending-OLOO-Single)                                       |
-
+| [700-Simple-Example](https://jsfiddle.net/steen_hansen/efLgk3h4/?700-Simple-Example)                                                 | [701 - Array of Objects](https://jsfiddle.net/steen_hansen/536du9cb/?701-Array-of-Objects.html)                            | [702 - DeClassify](https://jsfiddle.net/steen_hansen/jbyor8fm/?702-DeClassify.html)                           | [703 - Async Await](https://jsfiddle.net/steen_hansen/q7rckeno/?703-Async-Await)            | [704 - Ramda Curry](https://jsfiddle.net/steen_hansen/1xLef83o/?704-Ramda-Curry)              |
 ## See Canonical Motivational Example
 The use of '1' instead of 1 causes incorrect data to be displayed because the type of a [string instead of a number](https://type-czech-canonical.onrender.com/) causes concatenation instead of addition. 
 The development version of this program prints type errors to the console, while the production version
@@ -487,4 +508,4 @@ The public functions that check function parameter types.
 
 [Steen Hansen](https://github.com/steenhansen)
 
-&copy; 2022 Steen Hansen
+&copy; 2024 Steen Hansen

@@ -55,7 +55,7 @@ yourFunc('Mr', '')     // fail - empty last name
 yourFunc('A', 'Short') // fail - first name is 1 char
 ```
 
-## Recommended Structure
+## Recommended Structure With Classes
 Keep TypeCzech code sparate from ordinary files as these local examples do [204](../examples-web/204-Extending-Closures-Single/204-Extending-Closures-Single.html),
 [304](../examples-web/304-Extending-IIFEs-Single/304-Extending-IIFEs-Single.html),
 [404](../examples-web/404-Extending-ClassFree-Single/404-Extending-ClassFree-Single.html),
@@ -71,5 +71,63 @@ then check_linkUp_first_last_full() is not run and no functions are linked up to
 /**/  if (typeof check_linkUp_first_last_full === 'function') 
 /**/    check_linkUp_first_last_full()
 ```
+## Recommended Functional Structure
 
-&copy; 2022 Steen Hansen
+The file, addInt2Int_tc.js, containing the PRE and POST type checking functions for addInt2Int()
+```
+// addInt2Int_tc.js
+
+if (typeof TypeCzech !== 'function') {
+  linkUp_addInt2Int = () => {}
+} else {
+  linkUp_addInt2Int = () => {
+    type_czech = TypeCzech('LOG-ERRORS')
+
+    function PRE_addInt2Int(first_int, second_int) {
+      return type_czech.checkParam_type([first_int, second_int], ['number', 'number'])
+    }
+
+    function POST_addInt2Int(sum_int) {
+      return type_czech.checkParam_type(sum_int, 'number')
+    }
+      
+    addInt2Int = type_czech.linkUp(addInt2Int, PRE_addInt2Int, POST_addInt2Int)
+  }
+}
+```
+
+
+The file, main.html, when type checking is ON 
+```
+<script src="TypeCzech.js">// on </script>
+
+          <script src="addInt2Int_tc.js"></script>
+
+          <script>
+            linkUp_addInt2Int()
+
+            function addInt2Int (first_int, second_int){
+              return first_int + second_int
+            }
+
+          </script>
+```
+
+The file, main.html, when type checking is OFF, no need to erase line
+```
+<script s r c="TypeCzech.js"></script>
+
+          <script src="addInt2Int_tc.js"></script>
+
+          <script>
+            linkUp_addInt2Int()
+
+            function addInt2Int (first_int, second_int){
+              return first_int + second_int
+            }
+
+          </script>
+```
+
+
+&copy; 2024 Steen Hansen

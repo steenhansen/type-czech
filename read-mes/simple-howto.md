@@ -9,32 +9,32 @@ else
   type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
 ```
 
-  -  [A String Parameter](#A)
-  -  [B Positive Number Parameter](#B)
+  -  [A String Parameter](#a)
+  -  [B Positive Number Parameter](#b)
 
-  -  [C RegExp match Parameter](#C)
-  -  [D Parameter Contained in Set](#D)
-  -  [E Sorted Parameters](#E)
-  -  [F Non-Empty Parameter](#F)
-  -  [G Array of Arrays Parameter](#G)
+  -  [C RegExp match Parameter](#c)
+  -  [D Parameter Contained in Set](#d)
+  -  [E Sorted Parameters](#e)
+  -  [F Non-Empty Parameter](#f)
+  -  [G Array of Arrays Parameter](#g)
 
-  -  [H Returned Results Constraints](#H)
+  -  [H Returned Results Constraints](#h)
 
-  -  [I Array of Arrays Result](#I)
-  -  [J Exactly Three Parameters](#J)
-  -  [K Parameter Mutated](#K)
-  -  [L Every Type in Array](#L)
-  -  [M Every Type in Object](#M)
-  -  [N Array of Many Types](#N)
+  -  [I Array of Arrays Result](#i)
+  -  [J Exactly Three Parameters](#j)
+  -  [K Parameter Mutated](#k)
+  -  [L Every Type in Array](#l)
+  -  [M Every Type in Object](#m)
+  -  [N Array of Many Types](#n)
 
-  -  [O Object of Many Types](#O)
-  -  [P String Cased](#P)
+  -  [O Object of Many Types](#o)
+  -  [P String Cased](#p)
 
 
 #### All examples below can be executed in the console of [repl.html](../test-collection/repl.html)
 
 
-### A String Parameter<a name="A"></a>
+### A String Parameter<a id="a"></a>
 ```
 /**/  type_czech = TypeCzech('LOG-ERRORS')
 /**/  
@@ -51,7 +51,7 @@ aString('a-string') // pass
 aString(99) // fail - a number
 ```
 
-### B Positive Number Parameter<a name="B"></a>
+### B Positive Number Parameter<a id="b"></a>
 ```
 /**/  type_czech = TypeCzech('LOG-ERRORS')
 /**/  
@@ -71,7 +71,7 @@ expectPosNum('not-a-number') // fail - not a number
 expectPosNum(-4)             // fail - negative
 ```    
 
-### C RegExp match Parameter<a name="C"></a>
+### C RegExp match Parameter<a id="c"></a>
 ```
 /**/  type_czech = TypeCzech('LOG-ERRORS')
 /**/    
@@ -95,7 +95,7 @@ expectsSentence('starts with lowercase and no period') // fail - bad start and e
 expectsSentence(17)                                    // fail - not a string
 ```
 
-### D Parameter Contained in Set<a name="D"></a>
+### D Parameter Contained in Set<a id="d"></a>
 ```
 /**/  type_czech = TypeCzech('LOG-ERRORS')
 /**/  
@@ -116,7 +116,7 @@ expectsCMYK('russian blue') // fail - not in CMYK_COLORS
 expectsCMYK(1234)           // fail - not in CMYK_COLORS
 ```
 
-### E Sorted Parameters<a name="E"></a>
+### E Sorted Parameters<a id="e"></a>
 ```
 /**/  type_czech = TypeCzech('LOG-ERRORS')
 /**/    
@@ -139,7 +139,7 @@ expectsAsc(1,22,333,4444) // pass
 expectsAsc(4444,333,2,1) // fail - sorted wrong way
 ```
 
-### F Non-Empty Parameter<a name="F"></a>
+### F Non-Empty Parameter<a id="f"></a>
 ```
 /**/  type_czech = TypeCzech('LOG-ERRORS') 
 /**/  
@@ -161,7 +161,7 @@ isNotEmpty([]) // fail - empty
 ```
 
 
-### G Array of Arrays Parameter<a name="G"></a>
+### G Array of Arrays Parameter<a id="g"></a>
 ```
 /**/  type_czech = TypeCzech('LOG-ERRORS') 
 /**/  
@@ -185,7 +185,7 @@ arrOfNumArr([1,2,3])                       // fail - just an array
 ```
 
 
-### H Returned Results Constraints<a name="H"></a>
+### H Returned Results Constraints<a id="h"></a>
 ```
 /**/  type_czech = TypeCzech('LOG-ERRORS')
 /**/  //type_czech = TypeCzech('NO-CHECKING')
@@ -207,7 +207,7 @@ yourFunc(22)  // fail - too small
 yourFunc(333) // fail - too big
 ```
 
-### I Array of Number Arrays Result<a name="I"></a>
+### I Array of Number Arrays Result<a id="i"></a>
 ```
 /**/  type_czech = TypeCzech('LOG-ERRORS')
 /**/  
@@ -226,7 +226,7 @@ arrArrRes([ [1], [2,2], [3,3,4] ]) // pass
 arrArrRes(['an-error'])  // fail - array of string
 ```
 
-### J Exactly Three Number Parameters<a name="J"></a>
+### J Exactly Three Number Parameters<a id="j"></a>
 ```
 /**/  type_czech = TypeCzech('LOG-ERRORS') 
 /**/  
@@ -267,7 +267,7 @@ arrOf3Nums(['one',2,3]) // fail - first parameter a string
 
 
 
-### K Parameter Mutated<a name="K"></a>
+### K Parameter Mutated<a id="k"></a>
 Note that check_buildSnapshot() is called in the PRE_check() function to record the object value. 
 And then the object is checked for any mutations, after isElvis() returns, in the POST_check() function via check_mutatedSnapshot().
 ```
@@ -294,7 +294,7 @@ isElvis({the_name:'Elvis'}) //pass
 isElvis({the_name:'Presley'}) // fail - the_name changed to 'Aaron Presley'
 ```
 
-### L Every Type in Array<a name="L"></a>
+### L Every Type in Array<a id="l"></a>
 ```
 /**/  type_czech = TypeCzech('LOG-ERRORS')
 /**/
@@ -326,7 +326,7 @@ yourFunc([ the_array, the_bigInt, the_boolean, the_date, the_function,
         the_number, the_object, the_regExp, the_string, the_symbol])  
 ```
 
-### M Every Type in Object<a name="M"></a>
+### M Every Type in Object<a id="m"></a>
 ```
 /**/  type_czech = TypeCzech('LOG-ERRORS')
 /**/
@@ -360,7 +360,7 @@ yourFunc({ the_array, the_bigInt, the_boolean, the_date, the_function,
         the_number, the_object, the_regExp, the_string, the_symbol})
 ```
 
-### N Array of Many Types<a name="N"></a>
+### N Array of Many Types<a id="n"></a>
 ```
 /**/  type_czech = TypeCzech('LOG-ERRORS')
 /**/
@@ -378,7 +378,7 @@ yourFunc(1, 'a-string', false, new Date('1999-12-31')) // pass
 yourFunc(1, 'a-string', false, '2021-12-02') // fail - string not date
 ```
 
-### O Object of Many Types<a name="O"></a>
+### O Object of Many Types<a id="o"></a>
 ```
 /**/  type_czech = TypeCzech('LOG-ERRORS')
 /**/
@@ -404,7 +404,7 @@ the_error = {A: 'A', b:'B'} // fail - key is uppercase 'A' not lowercase 'a'
 yourFunc({ the_array, the_object, the_bigInt, the_numb_array, the_error }) 
 ```
 
-### P String Cased<a name="P"></a>
+### P String Cased<a id="p"></a>
 ```
 /**/  type_czech = TypeCzech('LOG-ERRORS')
 /**/
@@ -425,4 +425,4 @@ yourFunc('metacomet') // fail - all lower case
 ```
 
 
-&copy; 2022 Steen Hansen
+&copy; 2024 Steen Hansen

@@ -3,9 +3,9 @@
 //  https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/example-snippets/705-No-Dead-Code.js
 
 if (typeof TypeCzech !== 'function') {
-  linkUp_705 = () => { }
+  linkUp_705_type_check = () => {}
 } else {
-    linkUp_705 = () => {
+    linkUp_705_type_check = () => {
       type_czech = TypeCzech('LOG-ERRORS')
 
       function PRE_addInt2Int(first_int, second_int) {

@@ -1,15 +1,15 @@
 
 ## checkParam_typeExtra()
 
-  -  [A Extra Multi Array Parameter Type Check](#A)
-  -  [B Extra Object Parameter Type Check](#B) 
+  -  [A Extra Multi Array Parameter Type Check](#a)
+  -  [B Extra Object Parameter Type Check](#b) 
   
-  -  [C Extra Multi Array Result Type Check](#C)
-  -  [D Extra Object Result Type Check](#D)
+  -  [C Extra Multi Array Result Type Check](#c)
+  -  [D Extra Object Result Type Check](#d)
 
 #### All examples below can be executed in the console of [repl.html](../../test-collection/repl.html)
 
-## A Extra Multi Array Parameter Type Check<a name="A"></a>
+## A Extra Multi Array Parameter Type Check<a id="a"></a>
 
 ```
 function PRE_check_arrayExtra(single_array_with_extra){
@@ -29,7 +29,7 @@ arrayExtra([0])  // fail - not a number
 ```
 
 
-## B Extra Object Parameter Type Check<a name="B"></a>
+## B Extra Object Parameter Type Check<a id="b"></a>
 
 ```
 function PRE_check_objectExtra(single_object_with_extra){
@@ -54,7 +54,7 @@ objectExtra({album:'Gaucho'})  // fail - missing 'song' property
 
 
 
-## C Extra Multi Array Result Type Check<a name="C"></a>
+## C Extra Multi Array Result Type Check<a id="c"></a>
 
 ```
 function POST_check_arrayExtra(return_result){
@@ -83,7 +83,7 @@ arrayExtra([false, 'a-boolean'])  // fail - not number
 
 
 
-## D Extra Object Result Type Check<a name="D"></a>
+## D Extra Object Result Type Check<a id="d"></a>
 
 ```
 function POST_check_objectExtra(return_result){
@@ -106,4 +106,4 @@ objectExtra({album:'Avalon'})  // PRE fail - missing song property in result
 
 
 
-&copy; 2022 Steen Hansen
+&copy; 2024 Steen Hansen

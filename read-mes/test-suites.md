@@ -30,5 +30,5 @@ Resulting in the plain error message of:
 >>number
 </pre>
 
-&copy; 2022 Steen Hansen
+&copy; 2024 Steen Hansen
 

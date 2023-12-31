@@ -1,14 +1,14 @@
 
 ## check_interface() 
-  -  [A Object Check Interface](#A)
-  -  [B Class Check Interface](#B)
-  -  [C ClassFree Check Interface](#C)
-  -  [D Prototype Check Interface](#D)
-  -  [E OLOO Check Interface](#E)
+  -  [A Object Check Interface](#a)
+  -  [B Class Check Interface](#b)
+  -  [C ClassFree Check Interface](#c)
+  -  [D Prototype Check Interface](#d)
+  -  [E OLOO Check Interface](#e)
 
 #### All examples below can be executed in the console of [repl.html](../../test-collection/repl.html)
 
-## A Object Check Interface<a name="A"></a>
+## A Object Check Interface<a id="a"></a>
 
 ```
 type_czech = TypeCzech('THROW-EXCEPTIONS')
@@ -47,7 +47,7 @@ type_czech.check_interface(michel_faber, OBJECT_INTERFACE) // pass
 }
 ```
 
-## B Class Check Interface<a name="B"></a>
+## B Class Check Interface<a id="b"></a>
 
 ```
 type_czech = TypeCzech('THROW-EXCEPTIONS')
@@ -89,7 +89,7 @@ type_czech.check_interface(ted_chiang, CLASS_INTERFACE) // pass
 }
 ```
 
-## C ClassFree Check Interface<a name="C"></a>
+## C ClassFree Check Interface<a id="c"></a>
 
 ```
 type_czech = TypeCzech('THROW-EXCEPTIONS')
@@ -131,7 +131,7 @@ type_czech.check_interface(frank_herbert, CLASSFREE_INTERFACE) // pass
 }
 ```
 
-## D Prototype Check Interface<a name="D"></a>
+## D Prototype Check Interface<a id="d"></a>
 
 ```
 type_czech = TypeCzech('THROW-EXCEPTIONS')
@@ -172,7 +172,7 @@ type_czech.check_assert(type_err, 'Prototype Check Interface', '-') // fail
 }
 ```
 
-## E OLOO Check Interface<a name="E"></a>
+## E OLOO Check Interface<a id="e"></a>
 
 ```
 type_czech = TypeCzech('THROW-EXCEPTIONS')
@@ -220,4 +220,4 @@ type_czech.check_interface(margaret_atwood, OLOO_INTERFACE) // pass
 ```
 
 
-&copy; 2022 Steen Hansen 
+&copy; 2024 Steen Hansen 
