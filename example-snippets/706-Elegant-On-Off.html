@@ -4,9 +4,27 @@
 
 
 
+<div style=" font-family: 'Inconsolata', monospace; margin-left: 8px; margin-bottom:8px;" >
+       <div style="float:left">
+                         /**/ lib_tc_file = '../web-resources/TypeCzech.js'
+            <br>
+            /**/ check_fileN = '706-Type-Czech-Funcs.js'
+       
+      </div>
+
+      <div style="float:left; margin-left:164px">
+         // lib_tc_file = 'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/TypeCzech.min.js'    
+                <br>
+                // check_fileN = 'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/example-snippets/706-Type-Czech-Funcs.js'
 
 
-<div id='js-div' style="width:27%">
+      </div>
+         <br> &nbsp;
+
+</div>
+
+
+<div id='js-div' style="width:30%;">
   <a href='https://github.com/steenhansen/type-czech' target="_blank" class='git-hub'>GitHub Package</a>
   <div id='js-code'>the javascript</div>
   <br>
@@ -18,11 +36,11 @@
 
 
     <!--            -----------------TYPE 1------------------------       -->
-  <script s r c="../web-resources/consolelog.js"></script>
-    <link r e l="stylesheet" href="../web-resources/type-czech.css">
+  <script src="../web-resources/consolelog.js"></script>
+    <link rel="stylesheet" href="../web-resources/type-czech.css">
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/type-czech.css">
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/consolelog.js"></script>
+<link r e l="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/type-czech.css">
+<script s r c="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/consolelog.js"></script>
 
 
 
@@ -194,7 +212,7 @@
 
      &nbsp;&nbsp;
 
-    <a title="700-Simple-Example.html"     href="../example-snippets/700-Simple-Example.html">701</a>
+    <a title="700-Simple-Example.html"     href="../example-snippets/700-Simple-Example.html">700</a>
     <a title="701-Array-of-Objects.html"   href="../example-snippets/701-Array-of-Objects.html">701</a>
     <a title="702-DeClassify.html"         href="../example-snippets/702-DeClassify.html">702</a>
     <a title="703-Async-Await.html"        href="../example-snippets/703-Async-Await.html">703</a>
@@ -235,7 +253,7 @@
 </div>
 
 
-<div id="the-explanation" style="width:73%">
+<div id="the-explanation" style="width:70%;">
   <div class='an-explantion'>706 - Elegant On Off</div>
   <div id='explanation-text'>
 
@@ -246,8 +264,6 @@
                       <div style="float:left; width:425px">
 
 &nbsp;&nbsp;The JavaScript that loads external files for type checking, if on.
- <br>                     
-&nbsp;&nbsp;706-Type-Czech-On-Off-LOCAL.js
 <pre style="margin-bottom:4px">
 async function loadJsFile(check_fileNm) {
   var script = document.createElement('script')
@@ -277,28 +293,27 @@ async function linkUp_706_type_check(type_checks,
 
 
 
-                                          <div style="float:left">
-&nbsp;&nbsp; This 706-Type-Czech-Funcs.js file  and the Type-Czech library are only loaded when "type_checks = true" in the html file
+                                          <div style="float:left; width:725px">
+&nbsp;&nbsp; This 706-Type-Czech-Funcs.js file  and the Type-Czech library are only loaded when "type_checks = true"
 <pre style="margin-bottom:4px">
 function link_up_706(type_czech, [addInt2Int_706, timesIntByInt_706]) {
+ function PRE_add(first_int, second_int) {
+   return type_czech.checkParam_type([first_int, second_int], ['number', 'number'])
+ }
+ function POST_add(sum_int) {
+   return type_czech.checkParam_type(sum_int, 'number')
+ }
+ addInt2Int_706 = type_czech.linkUp(addInt2Int_706, PRE_add, POST_add)
 
-    function PRE_addInt2Int_706(first_int, second_int) {
-      return type_czech.checkParam_type([first_int, second_int], ['number', 'number'])
-    }
-    function POST_addInt2Int_706(sum_int) {
-      return type_czech.checkParam_type(sum_int, 'number')
-    }
-    addInt2Int_706 = type_czech.linkUp(addInt2Int_706, PRE_addInt2Int_706, POST_addInt2Int_706)
-  
-    function PRE_timesIntByInt_706(first_int, second_int) {
-     return type_czech.checkParam_type([first_int, second_int], ['number', 'number']);
-    }
-    function POST_timesIntByInt_706(sum_int) {
-      return type_czech.checkParam_type(sum_int, 'number')
-    }
-    timesIntByInt_706 = type_czech.linkUp(timesIntByInt_706, PRE_timesIntByInt_706, POST_timesIntByInt_706);
+ function PRE_times(first_int, second_int) {
+  return type_czech.checkParam_type([first_int, second_int], ['number', 'number']);
+ }
+ function POST_times(sum_int) {
+   return type_czech.checkParam_type(sum_int, 'number')
+ }
+ timesIntByInt_706 = type_czech.linkUp(timesIntByInt_706, PRE_times, POST_times);
  
-    return [addInt2Int_706, timesIntByInt_706]
+ return [addInt2Int_706, timesIntByInt_706]
 }
 </pre>
 </div>
@@ -350,7 +365,6 @@ async function loadJsFile(check_fileNm) {
   var script_1_tc = document.createElement('script');
   return new Promise(function (resolve) {
     script_1_tc.addEventListener("load", () => {
-      //console.log("dd", "resolve", check_fileNm)
         resolve();
     });
     script_1_tc.src = check_fileNm;
@@ -361,21 +375,20 @@ async function loadJsFile(check_fileNm) {
 }
 
 async function linkUp_706_type_check(type_checks, lib_tc_file, check_fileN, check_funcs) {
- // console.log("dd", type_checks, lib_tc_file, check_fileN, check_funcs)
   if (type_checks === false) {
     return check_funcs;
   } else {
-    console.log("aa")
     await loadJsFile(lib_tc_file);
-    console.log("bb")
     await loadJsFile(check_fileN);
-    console.log("cc")
     window.type_czech = TypeCzech('LOG-ERRORS');
-         console.log("linkUp_706_type_check",  window.type_czech)
     proxied_functions = link_up_706(type_czech, check_funcs);
     return proxied_functions;
   }
 }
+
+/**/ lib_tc_file = '../web-resources/TypeCzech.js'
+/**/ check_fileN = '706-Type-Czech-Funcs.js'
+       
 
 </script>
 
@@ -385,31 +398,25 @@ async function linkUp_706_type_check(type_checks, lib_tc_file, check_fileN, chec
 function myColoring(){
   jsToDiv('js-code', "check-code");
 
-   fromToBoldText(1, 11, 'code', 1)  //  ()
-    fromToBoldText(1, 11, 'log', 1)       //  
+    fromToBoldText(772, 774, 'code', 1)  //  fail = addInt2Int_706("two", "three")
+     fromToBoldText(130, 132, 'log', 1)       // akenly a 'string' with a value of two
+     fromToBoldText(249, 251, 'log', 1)       // VALUES ["two","three"]
+     fromToBoldText(424, 426, 'log', 1)       // he value 'twothree
+     fromToBoldText(577, 579, 'log', 1)       //    VALUES "twothree"
 
-   fromToBoldText(22, 33, 'code', 2)       //  
-       fromToBoldText(22, 33, 'log', 2)       //  
+    fromToBoldText(928, 931, 'code', 2)       //  Int_706("four", "five")
+        fromToBoldText(833, 836, 'log', 2)       //  ng' with a value of four
+        fromToBoldText(953, 956, 'log', 2)       //           VALUES ["four","five"]
 }
 
 </script>
 
 <script id="check-code">
-// If type_checks == false then 
-//   706-Type-Czech-Funcs.js &
-//   the Type-Czech library
-//   are NOT loaded
 
 /**/ type_checks = true
-
-/**/ lib_tc_file = 'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/TypeCzech.min.js',
-/**/ check_fileN = 'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/example-snippets/706-Type-Czech-Funcs.js'
-
-/**/ //lib_tc_file = '../web-resources/TypeCzech.js'
-/**/ //check_fileN = '706-Type-Czech-Funcs.js'
 /**/ check_funcs = [addInt2Int_706, timesIntByInt_706];
 
-( async () => await linkUp_706_type_check(type_checks, 
+( async () => await linkUp_706_type_check(type_checks,
                                           lib_tc_file, 
                                           check_fileN, 
                                           check_funcs))()
@@ -426,11 +433,6 @@ function timesIntByInt_706 (first_int, second_int){
 
 
 function myExecution(check_funcs){
-
-  // addInt2Int_706() and timesIntByInt_706() now
-  // have the designated type checking active,
-  // if type checking is turned on
-    
     [addInt2Int_706, timesIntByInt_706] = check_funcs;
 
     sum_5 = addInt2Int_706(2, 3)

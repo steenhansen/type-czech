@@ -1,25 +1,53 @@
-<!DOCTYPE html><meta charset="utf-8" />
-<title>700 Simple Example</title>
+<!DOCTYPE html>
+<meta charset="utf-8" />
+<title>706 Elegant On Off</title>
 
-  
-<div id='js-div' style="width:40%;" >
-  <a href='https://github.com/steenhansen/type-czech'  target="_blank" class='git-hub'>GitHub Package</a>
+
+
+<div style=" font-family: 'Inconsolata', monospace; margin-left: 8px; margin-bottom:8px;" >
+       <div style="float:left">
+                /**/ lib_tc_file = 'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/TypeCzech.min.js'    
+                <br>
+                /**/ check_fileN = 'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/example-snippets/706-Type-Czech-Funcs.js'
+       
+      </div>
+
+      <div style="float:left; margin-left:16px">
+            // local lib_tc_file = '../web-resources/TypeCzech.js'
+            <br>
+            // local check_fileN = '706-Type-Czech-Funcs.js'
+      </div>
+         <br> &nbsp;
+
+</div>
+
+
+<div id='js-div' style="width:30%;">
+  <a href='https://github.com/steenhansen/type-czech' target="_blank" class='git-hub'>GitHub Package</a>
   <div id='js-code'>the javascript</div>
-  <br><br>
-
-  
+  <br>
 
 
 
 
 
-<!--            ------------------TYPE 1------------------------       -->
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/consolelog.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/TypeCzech.min.js"></script>
+
+
+    <!--            -----------------TYPE 1------------------------       -->
+  <script s r c="../web-resources/consolelog.js"></script>
+    <link r e l="stylesheet" href="../web-resources/type-czech.css">
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/type-czech.css">
-<!--            -------------------TYPE 1-----------------------       -->
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/consolelog.js"></script>
+
+
+
+
+
+
+ <!--            -------------------TYPE 1-----------------------       -->
 <div id='js-fiddles'>
-  <a title="Example-Contents" href="https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Contents" target="_blank">Contents</a>
+    <a title="Example-Contents" href="https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Contents" target="_blank">Contents</a>
 
 
   <a title="00-Readme-Example" href="https://jsfiddle.net/steen_hansen/0xtpLwsc/?00-Readme-Example" target="_blank">00</a>
@@ -181,8 +209,9 @@
     <a title="604-Extending-OLOO-Single.html" href="https://jsfiddle.net/steen_hansen/74Lvbj5x/?604-Extending-OLOO-Single" target="_blank">604</a>
     
 
-       &nbsp;&nbsp;
-   
+     &nbsp;&nbsp;
+
+     
 <a title="700-Simple-Example.html"     href="https://jsfiddle.net/steen_hansen/efLgk3h4/?700-Simple-Example"        target="_blank">700</a>
 <a title="701-Array-of-Objects.html"   href="https://jsfiddle.net/steen_hansen/536du9cb/?701-Array-of-Objects.html" target="_blank">701</a>
 <a title="702-DeClassify.html"         href="https://jsfiddle.net/steen_hansen/jbyor8fm/?702-DeClassify.html"       target="_blank">702</a>
@@ -191,6 +220,7 @@
 <a title="705-Sensible-Switching.html" href="https://jsfiddle.net/steen_hansen/fzh39je0/?705-Sensible-Switching"    target="_blank">705</a>
 <a title="706-Elegant-On-Off.html"     href="https://jsfiddle.net/steen_hansen/x0pL6jzq/?706-Elegant-On-Off"        target="_blank">706</a>
 <a title="707-React-JSX.html"          href="https://jsfiddle.net/steen_hansen/z1yug5nw/?707-React-JSX"             target="_blank">707</a>
+
 
 
 &copy; 2024 Steen Hansen
@@ -206,52 +236,124 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </div>
 
 
-<div id="the-explanation" style="width:60%" class='code-scroll'>
-  <div class='an-explantion'>700 - Simple Example</div>
+<div id="the-explanation" style="width:70%;">
+  <div class='an-explantion'>706 - Elegant On Off</div>
   <div id='explanation-text'>
 
-        <div> 
-            <div style="float:left">The function yourRoutine() expects &nbsp;</div>
-            <div style="float:left">
-              <ul style="margin-top:-4px">
-              <li>PRE_yourRoutine() - parameter 1, number_array, is an array of numbers</li>
-              <li>PRE_yourRoutine() - parameter 2, an_str, is a string</li>
-              <li style="float:left">PRE_yourRoutine() - parameter 3, a_date, is a date </li>
-              
-                    <li style="float:right; margin-left:64px">POST_yourRoutine() - function returns a number</li>
-              
-              
 
 
-            </ul>
+            <div>
+
+                      <div style="float:left; width:425px">
+
+&nbsp;&nbsp;The JavaScript that loads external files for type checking, if on.
+<pre style="margin-bottom:4px">
+async function loadJsFile(check_fileNm) {
+  var script = document.createElement('script')
+  return new Promise(function (resolve) {
+    script.addEventListener("load", () => {
+        resolve()
+    });
+    script.src = check_fileNm
+    script.async = false
+    document.head.appendChild(script)  });  }
+
+async function linkUp_706_type_check(type_checks,
+         lib_tc_file, check_fileN, check_funcs) {
+  if (type_checks === false) {
+    return check_funcs
+  } else {
+    await loadJsFile(lib_tc_file)
+    await loadJsFile(check_fileN)
+    type_czech = TypeCzech('LOG-ERRORS')
+    proxies=link_up_706(type_czech, check_funcs)
+    return proxies  }  }
+</pre>
+
+
+                    
+                    </div>
+
+
+
+                                          <div style="float:left; width:725px">
+&nbsp;&nbsp; This 706-Type-Czech-Funcs.js file  and the Type-Czech library are only loaded when "type_checks = true"
+<pre style="margin-bottom:4px">
+function link_up_706(type_czech, [addInt2Int_706, timesIntByInt_706]) {
+ function PRE_add(first_int, second_int) {
+   return type_czech.checkParam_type([first_int, second_int], ['number', 'number'])
+ }
+ function POST_add(sum_int) {
+   return type_czech.checkParam_type(sum_int, 'number')
+ }
+ addInt2Int_706 = type_czech.linkUp(addInt2Int_706, PRE_add, POST_add)
+
+ function PRE_times(first_int, second_int) {
+  return type_czech.checkParam_type([first_int, second_int], ['number', 'number']);
+ }
+ function POST_times(sum_int) {
+   return type_czech.checkParam_type(sum_int, 'number')
+ }
+ timesIntByInt_706 = type_czech.linkUp(timesIntByInt_706, PRE_times, POST_times);
+ 
+ return [addInt2Int_706, timesIntByInt_706]
+}
+</pre>
+</div>
             </div>
-       </div>
-<br>
+<div style="clear:both"></div>
 
-<br><br><br>
+</div>
+
+  <div id="console-log">
+    <div class='a-title'>Console Output</div>
+    <div id='log-text'></div>
+    <br>
+  </div>
+
+
+
+
+
+
+
+
 
 
 
 </div>
 
 
-<div id="console-log"  >
-   <div class='text-1' style='float:left; display: none;' id="exception-warning">
-      &nbsp;&nbsp;* Open console to see any thrown exceptions as they stop execution. *
-   </div>
 
-  <div class='a-title' style='float:right;'>Console Output</div>
 
- <div class='text-1' style='clear:both'></div>
-  
-  <div id='log-text'></div>
-  <br>
-</div>
 
-</div>
+
+
+
+
+
+
+
+
 
 
 
@@ -259,135 +361,100 @@
 <script>
   log = captureConsole("log-text")
 
+  // https://web.dev/articles/speed-script-loading
 
-
-
-
-</script>
-
-
-
-<script id="check-code">
-
-// Try changing and running 
-//   CHECK_TYPE = 'NO-ERROR-MESSAGES'
-//   CHECK_TYPE = 'LOG-ERRORS'
-//   CHECK_TYPE = 'THROW-EXCEPTIONS' - type errors stop program, and only shown in console
-
-/**/  CHECK_TYPE = "LOG-ERRORS"
-/**/
-/**/  type_czech = TypeCzech(CHECK_TYPE)
-/**/  
-/**/  function PRE_yourRoutine(number_array, an_str, a_date){
-/**/    the_parameters = [ number_array, an_str,   a_date]
-/**/    the_signature  = [ ['numbers'], 'string', 'date']
-/**/    return type_czech.checkParam_type(the_parameters, the_signature)
-/**/  }
-/**/  
-/**/  function POST_yourRoutine(return_int){
-/**/    return type_czech.checkParam_type(return_int, 'number')
-/**/  }
-/**/  
-/**/  yourRoutine = type_czech.linkUp(yourRoutine, PRE_yourRoutine, POST_yourRoutine)
-
-function yourRoutine(number_array, an_str, a_date){
-  if (an_str=='not_a_day')
-    return "not-a-day"
-  if (a_date instanceof Date)
-    return a_date.getDate()
-  return 0
+async function loadJsFile(check_fileNm) {
+  var script_1_tc = document.createElement('script');
+  return new Promise(function (resolve) {
+    script_1_tc.addEventListener("load", () => {
+      //console.log("dd", "resolve", check_fileNm)
+        resolve();
+    });
+    script_1_tc.src = check_fileNm;
+    script_1_tc.async = false;
+    document.head.appendChild(script_1_tc);
+     
+  });
 }
 
-good_day_5 = yourRoutine([1,2,3], 'abc', new Date('dec 5 1999'))
-log("good_day_5 =", good_day_5)
+async function linkUp_706_type_check(type_checks, lib_tc_file, check_fileN, check_funcs) {
+  if (type_checks === false) {
+    return check_funcs;
+  } else {
+    await loadJsFile(lib_tc_file);
+    await loadJsFile(check_fileN);
+    window.type_czech = TypeCzech('LOG-ERRORS');
+    proxied_functions = link_up_706(type_czech, check_funcs);
+    return proxied_functions;
+  }
+}
 
-linesConsole(2)
+/**/ lib_tc_file = 'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/TypeCzech.min.js'
+/**/ check_fileN = 'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/example-snippets/706-Type-Czech-Funcs.js'
 
-last_day_31 = yourRoutine("not-an-array", 'an-str', new Date('dec 31 1999'))
-log("last_day_31 =", last_day_31)
-
-linesConsole(2)
-
-error_17 = yourRoutine([1, 2, 3, 4, 5, 6, 'XyZ'], 'abc', new Date('dec 17 1999'))
-log("error_17 =", error_17)
-
-linesConsole(2)
-
-day_29 = yourRoutine([1,2,3], false, new Date('dec 29 1999'))
-log("day_29 =", day_29)
-
-linesConsole(2)
-
-missing_day_0 = yourRoutine([1,2,3], 'an-str', "no-date")
-log("missing_day_0 =", missing_day_0)
-
-linesConsole(2)
-
-not_a_day =  yourRoutine([1,2,3], 'not_a_day', new Date('dec 24 1999'))
-log("not_a_day =", not_a_day)
 </script>
-
-
-
-
-
-
 
 
 
 <script>
+function myColoring(){
+  jsToDiv('js-code', "check-code");
 
+   fromToBoldText(772, 774, 'code', 1)  //  fail = addInt2Int_706("two", "three")
+     fromToBoldText(130, 132, 'log', 1)       // akenly a 'string' with a value of two
+     fromToBoldText(249, 251, 'log', 1)       // VALUES ["two","three"]
+     fromToBoldText(424, 426, 'log', 1)       // he value 'twothree
+     fromToBoldText(577, 579, 'log', 1)       //    VALUES "twothree"
 
-    if (CHECK_TYPE === "THROW-EXCEPTIONS") {
-      
-    console.log("Hi")
-      document.getElementById('exception-warning').style.display = "block";
-   
-  }
-
-
-   jsToDiv('js-code', "check-code")
-
-   fromToBoldText(1054, 1065, 'code', 1)  // last_day_31 = yourRoutine("not-an-array"
-    fromToBoldText(109, 120, 'log', 1)    // 'string':not-an-array
-    fromToBoldText(244, 255, 'log', 1)    // 'string':not-an-array
-
- fromToBoldText(1182, 1184, 'code', 2)  // [1,'XyZ',3], 'abc'
-   fromToBoldText(540, 542, 'log', 2)    //  mistakenly a 'string' with a value of X
-   fromToBoldText(678, 680, 'log', 2)    //  VALUES [[1,"X",3],
-
-
-    fromToBoldText(1280, 1284, 'code', 3)  // yourRoutine([1,2,13], false
-    fromToBoldText(961, 965, 'log', 3)    // 'boolean' with a value of false
-    fromToBoldText(1096, 1100, 'log', 3)    // 'boolean' with a value of false
-
-
-   fromToBoldText(1385, 1391, 'code', 4)  // 'an-str', "no-date")
-   fromToBoldText(1368, 1374, 'log', 4)    //  'string' with a value of no-date
-   fromToBoldText(1516, 1522, 'log', 4)    //  'string' with a value of no-date
-
-
-
-
-       fromToBoldText(644, 649, 'code', 5)  // yourRoutine([1,2,3], 'not_a_day',
-
-
- fromToBoldText(1469, 1477, 'code', 5)    // POST-FUNC:
-
-
- fromToBoldText(1714, 1722, 'log', 5)    //  'not-a-day', which is a 'string', is not a 'number'
- fromToBoldText(1757, 1762, 'log', 5)    //  'not-a-day', which is a 'string', is not a 'number'
- fromToBoldText(1868, 1876, 'log', 5)    // not_a_day ="not-a-day"
- fromToBoldText(1980, 1988, 'log', 5)    // not_a_day ="not-a-day"
-
-
-
-  
+    fromToBoldText(928, 931, 'code', 2)       //  Int_706("four", "five")
+        fromToBoldText(833, 836, 'log', 2)       //  ng' with a value of four
+        fromToBoldText(953, 956, 'log', 2)       //           VALUES ["four","five"]
+}
 
 </script>
 
+<script id="check-code">
 
-<link rel="stylesheet"
-  href="https://fonts.googleapis.com/css?family=Inconsolata">
+/**/ type_checks = true
+/**/ check_funcs = [addInt2Int_706, timesIntByInt_706];
 
-  
+( async () => await linkUp_706_type_check(type_checks, 
+                                          lib_tc_file, 
+                                          check_fileN, 
+                                          check_funcs))()
+              .then((check_funcs)=>myExecution(check_funcs))
+              .then( () => myColoring() )
+
+function addInt2Int_706 (first_int, second_int){
+    return first_int + second_int
+}
+
+function timesIntByInt_706 (first_int, second_int){
+    return first_int * second_int
+}
+
+function myExecution(check_funcs){
+    [addInt2Int_706, timesIntByInt_706] = check_funcs;
+
+    sum_5 = addInt2Int_706(2, 3)
+    log('sum_5 == ', sum_5)
+
+    linesConsole(2)
+
+    sum_fail = addInt2Int_706("two", "three")
+    log('sum_fail == ', sum_fail)
+
+    linesConsole(2)
+
+    mult_20 = timesIntByInt_706(4, 5)
+    log('mult_20 == ', mult_20)
+
+    linesConsole(2)
+
+    mult_fail = timesIntByInt_706("four", "five")
+    log('mult_fail == ', mult_fail)
+}
+</script>
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">

@@ -187,13 +187,14 @@
 
      &nbsp;&nbsp;
 
-    <a title="700-Simple-Example.html"   href="../example-snippets/700-Simple-Example.html">701</a>
-    <a title="701-Array-of-Objects.html" href="../example-snippets/701-Array-of-Objects.html">701</a>
-    <a title="702-DeClassify.html"       href="../example-snippets/702-DeClassify.html">702</a>
-    <a title="703-Async-Await.html"      href="../example-snippets/703-Async-Await.html">703</a>
-    <a title="704-Ramda-Curry.html"      href="../example-snippets/704-Ramda-Curry.html">704</a>
-    
-          <a title="705-Sensible-Switching.html" href="../example-snippets/705-Sensible-Switching.html">705</a>
+   <a title="700-Simple-Example.html"     href="../example-snippets/700-Simple-Example.html">700</a>
+    <a title="701-Array-of-Objects.html"   href="../example-snippets/701-Array-of-Objects.html">701</a>
+    <a title="702-DeClassify.html"         href="../example-snippets/702-DeClassify.html">702</a>
+    <a title="703-Async-Await.html"        href="../example-snippets/703-Async-Await.html">703</a>
+    <a title="704-Ramda-Curry.html"        href="../example-snippets/704-Ramda-Curry.html">704</a>
+    <a title="705-Sensible-Switching.html" href="../example-snippets/705-Sensible-Switching.html">705</a>
+    <a title="706-Elegant-On-Off"          href="../example-snippets/706-Elegant-On-Off.html">706</a>
+    <a title="707-React-JSX.html"          href="../example-snippets/707-React-JSX.html">707</a>
 
         
     &copy; 2024 Steen Hansen
@@ -325,11 +326,10 @@ add_A_B = R.curry( (a, b) => a + b )
 /**/    }
 /**/  }
 /**/   
-/**/  retFuncOrNum = (func_or_num) => type_czech.checkParam_typeEither(func_or_num, ['function', 'number'])
+/**/  return_sig = ['function', 'number']
+/**/  retFuncOrNum = (func_or_num) => type_czech.checkParam_typeEither(func_or_num, return_sig)
 /**/
 /**/  add_A_B = type_czech.linkUp(add_A_B, param0or2Num, retFuncOrNum)
-
-
 
 add_B_as_1 = add_A_B(1) 
 
@@ -389,30 +389,30 @@ log('add_A_B(99) must be intercepted via type_check.linkUp(), like add_B_as_1() 
   jsToDiv('js-code', "check-code");
 
 
-   fromToBoldText(1142, 1144, 'code', 1)  //  err_cat = add_A_B('cat')(13)
+   fromToBoldText(1170, 1172, 'code', 1)  //  err_cat = add_A_B('cat')(13)
    fromToBoldText(108, 110, 'log', 1)       //  not a number but "cat"
    fromToBoldText(199, 201, 'log', 1)       //   VALUES "cat"
 
 
 
-  fromToBoldText(1204, 1206, 'code', 2)  //err_1dog = add_B_as_1('dog')
+  fromToBoldText(1232, 1234, 'code', 2)  //err_1dog = add_B_as_1('dog')
   fromToBoldText(296, 298, 'log', 2)  //   PRE-FUNC: The value 'dog',
   fromToBoldText(444, 446, 'log', 2)  //       VALUES "dog"
 
 
 
 
-   fromToBoldText(1234, 1237, 'code', 3)  //  log('err_1dog == ', err_1dog)
+   fromToBoldText(1262, 1265, 'code', 3)  //  log('err_1dog == ', err_1dog)
    fromToBoldText(565, 568, 'log', 3)  //   POST-FUNC: The value '1dog', 
   fromToBoldText(714, 717, 'log', 3)  //   VALUES "1dog"
 
 
 
-  fromToBoldText(1261, 1272, 'code', 4)  // 5 add_A_B(51, 52, 3000)
+  fromToBoldText(1289, 1300, 'code', 4)  // 5 add_A_B(51, 52, 3000)
 fromToBoldText(898, 916, 'log', 4)  //   51,52,3000 count 3
 
 
-  fromToBoldText(1340, 1350, 'code', 5)  // add_A_B(99)('badger')
+  fromToBoldText(1368, 1378, 'code', 5)  // add_A_B(99)('badger')
 fromToBoldText(1175, 1182, 'log', 5)  //  invisible_err_badger == "99badger"
 
 

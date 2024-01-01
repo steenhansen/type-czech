@@ -21,27 +21,7 @@
   <script src="../web-resources/consolelog.js"></script>
     <script src="../web-resources/TypeCzech.js"></script>
     <link rel="stylesheet" href="../web-resources/type-czech.css">
-<script src="705-No-Dead-Code.js"></script>
 
-<!-- <script>
-if (typeof TypeCzech !== 'function') {
-  linkUp_705_type_check = () => { }
-} else {
-    linkUp_705_type_check = () => {
-      type_czech = TypeCzech('LOG-ERRORS')
-
-      function PRE_addInt2Int(first_int, second_int) {
-        return type_czech.checkParam_type([first_int, second_int], ['number', 'number'])
-      }
-
-      function POST_addInt2Int(sum_int) {
-        return type_czech.checkParam_type(sum_int, 'number')
-      }
-   
-      addInt2Int = type_czech.linkUp(addInt2Int, PRE_addInt2Int, POST_addInt2Int)
-    };
-}
-</script> -->
 
  <!--            -------------------TYPE 1-----------------------       -->
 <div id='js-fiddles'>
@@ -208,14 +188,14 @@ if (typeof TypeCzech !== 'function') {
 
      &nbsp;&nbsp;
 
-    <a title="700-Simple-Example.html"   href="../example-snippets/700-Simple-Example.html">701</a>
-    <a title="701-Array-of-Objects.html" href="../example-snippets/701-Array-of-Objects.html">701</a>
-    <a title="702-DeClassify.html"       href="../example-snippets/702-DeClassify.html">702</a>
-    <a title="703-Async-Await.html"      href="../example-snippets/703-Async-Await.html">703</a>
-     <a title="704-Ramda-Curry.html"      href="../example-snippets/704-Ramda-Curry.html">704</a>
-  
-
-         <a title="705-Sensible-Switching.html" href="../example-snippets/705-Sensible-Switching.html">705</a>
+   <a title="700-Simple-Example.html"     href="../example-snippets/700-Simple-Example.html">700</a>
+    <a title="701-Array-of-Objects.html"   href="../example-snippets/701-Array-of-Objects.html">701</a>
+    <a title="702-DeClassify.html"         href="../example-snippets/702-DeClassify.html">702</a>
+    <a title="703-Async-Await.html"        href="../example-snippets/703-Async-Await.html">703</a>
+    <a title="704-Ramda-Curry.html"        href="../example-snippets/704-Ramda-Curry.html">704</a>
+    <a title="705-Sensible-Switching.html" href="../example-snippets/705-Sensible-Switching.html">705</a>
+    <a title="706-Elegant-On-Off"          href="../example-snippets/706-Elegant-On-Off.html">706</a>
+    <a title="707-React-JSX.html"          href="../example-snippets/707-React-JSX.html">707</a>
 
 
 &copy; 2024 Steen Hansen
@@ -256,36 +236,19 @@ if (typeof TypeCzech !== 'function') {
 
     
 
-The linkUp_705_type_check() function.
 <br>
-<br>
-  https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/example-snippets/705-No-Dead-Code.js
-  <br>
+  To turn on type checking
     <pre>
-      if (typeof TypeCzech !== 'function') {
-        linkUp_705_type_check = () => {}
-      } else {
-        linkUp_705_type_check = () => {
-            type_czech = TypeCzech('LOG-ERRORS')
-
-            function PRE_addInt2Int(first_int, second_int) {
-              return type_czech.checkParam_type([first_int, second_int], ['number', 'number'])
-            }
-
-            function POST_addInt2Int(sum_int) {
-              return type_czech.checkParam_type(sum_int, 'number')
-            }
-      
-            addInt2Int = type_czech.linkUp(addInt2Int, PRE_addInt2Int, POST_addInt2Int)
-        };
-      }
-    </pre>
-      Note that only a nop function call is executed if type checking is turned off.
-      This method still results in the parsing of the above code.
+       &lt;script src="../web-resources/TypeCzech.js"&gt;&lt;/script&gt;
+</pre>
+     
     <br>
     <br>
-
-
+To turn off type checking
+<pre>
+       &lt;script s r c="../web-resources/TypeCzech.js"&gt;&lt;/script&gt;
+</pre>
+    
 
 
 
@@ -357,31 +320,31 @@ The linkUp_705_type_check() function.
   log = captureConsole("log-text")
 </script>
 
-<script>
-  if (linkUp_705_type_check.toString()==="() => { }")
-    log('Type checking NOT loaded with <script s r c="TypeCzech.min.js">')
-  else
-    log('Type checking loaded with <script src="TypeCzech.min.js">')
-  linesConsole(2)
-</script>
-
 <script id="check-code">
 
-
-// To     load type checking <script   src="TypeCzech.min.js">
-
-// To NOT load type checking <script s r c="TypeCzech.min.js"
-
+/**/  if (typeof TypeCzech !== 'function') {
+/**/    linkUp_705_type_check = () => {}
+/**/  } else {
+/**/      linkUp_705_type_check = () => {
+/**/        type_czech = TypeCzech('LOG-ERRORS')
+/**/  
+/**/        function PRE_addInt2Int(first_int, second_int) {
+/**/          return type_czech.checkParam_type([first_int, second_int], ['number', 'number'])
+/**/        }
+/**/  
+/**/        function POST_addInt2Int(sum_int) {
+/**/          return type_czech.checkParam_type(sum_int, 'number')
+/**/        }
+/**/     
+/**/        addInt2Int = type_czech.linkUp(addInt2Int, PRE_addInt2Int, POST_addInt2Int)
+/**/      };
+/**/  }
 
 /**/  linkUp_705_type_check()
-
-
 
 function addInt2Int (first_int, second_int){
   return first_int + second_int
 }
-
-
 
 sum_5 = addInt2Int(2, 3)
 log('sum_5 == ', sum_5)
@@ -408,21 +371,21 @@ log('sum_fail == ', sum_fail)
   jsToDiv('js-code', "check-code");
 
 
-   fromToBoldText(319, 321, 'code', 1)  //  ()"two"
-    fromToBoldText(183, 185, 'log', 1)       //   a value of two
+   fromToBoldText(811, 813, 'code', 1)  //  ()"two"
+    fromToBoldText(126, 128, 'log', 1)       //   a value of two
 
-    fromToBoldText(302, 304, 'log', 1)       //    VALUES ["two"
+    fromToBoldText(245, 247, 'log', 1)       //    VALUES ["two"
 
-    fromToBoldText(730, 732, 'log', 1)       //    sum_fail == "two
-
-
-   fromToBoldText(326, 330, 'code', 2)       //  "three")
-       fromToBoldText(472, 476, 'log', 2)       //  three', which is a 'stri
-
-    fromToBoldText(625, 629, 'log', 2)       //   VALUES "twothree"
+    fromToBoldText(673, 675, 'log', 1)       //    sum_fail == "two
 
 
-    fromToBoldText(733, 737, 'log', 2)       //    um_fail == "twothree"
+   fromToBoldText(818, 822, 'code', 2)       //  "three")
+       fromToBoldText(415, 419, 'log', 2)       //  three', which is a 'stri
+
+    fromToBoldText(568, 572, 'log', 2)       //   VALUES "twothree"
+
+
+    fromToBoldText(676, 680, 'log', 2)       //    um_fail == "twothree"
    
    
 
