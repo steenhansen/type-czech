@@ -274,6 +274,7 @@
 //   CHECK_TYPE = 'LOG-ERRORS'
 //   CHECK_TYPE = 'THROW-EXCEPTIONS' - type errors stop program, and only shown in console
 
+//  Checks stop if "LOG-ERRORS" on line 278 in the JSFiddle HTML tab is set to ""
 /**/  CHECK_TYPE = "LOG-ERRORS"
 /**/
 /**/  type_czech = TypeCzech(CHECK_TYPE)
@@ -348,31 +349,31 @@ log("not_a_day =", not_a_day)
 
    jsToDiv('js-code', "check-code")
 
-   fromToBoldText(1054, 1065, 'code', 1)  // last_day_31 = yourRoutine("not-an-array"
+   fromToBoldText(1136, 1147, 'code', 1)  // last_day_31 = yourRoutine("not-an-array"
     fromToBoldText(109, 120, 'log', 1)    // 'string':not-an-array
     fromToBoldText(244, 255, 'log', 1)    // 'string':not-an-array
 
- fromToBoldText(1182, 1184, 'code', 2)  // [1,'XyZ',3], 'abc'
+ fromToBoldText(1264, 1266, 'code', 2)  // [1,'XyZ',3], 'abc'
    fromToBoldText(540, 542, 'log', 2)    //  mistakenly a 'string' with a value of X
    fromToBoldText(678, 680, 'log', 2)    //  VALUES [[1,"X",3],
 
 
-    fromToBoldText(1280, 1284, 'code', 3)  // yourRoutine([1,2,13], false
+    fromToBoldText(1362, 1366, 'code', 3)  // yourRoutine([1,2,13], false
     fromToBoldText(961, 965, 'log', 3)    // 'boolean' with a value of false
     fromToBoldText(1096, 1100, 'log', 3)    // 'boolean' with a value of false
 
 
-   fromToBoldText(1385, 1391, 'code', 4)  // 'an-str', "no-date")
+   fromToBoldText(1467, 1473, 'code', 4)  // 'an-str', "no-date")
    fromToBoldText(1368, 1374, 'log', 4)    //  'string' with a value of no-date
    fromToBoldText(1516, 1522, 'log', 4)    //  'string' with a value of no-date
 
 
 
 
-       fromToBoldText(644, 649, 'code', 5)  // yourRoutine([1,2,3], 'not_a_day',
+       fromToBoldText(1551, 1559, 'code', 5)  // yourRoutine([1,2,3], 'not_a_day',
 
 
- fromToBoldText(1469, 1477, 'code', 5)    // POST-FUNC:
+ fromToBoldText(726, 731, 'code', 5)    // return type_czech.checkParam_type(return_int, 'number')
 
 
  fromToBoldText(1714, 1722, 'log', 5)    //  'not-a-day', which is a 'string', is not a 'number'
@@ -380,7 +381,9 @@ log("not_a_day =", not_a_day)
  fromToBoldText(1868, 1876, 'log', 5)    // not_a_day ="not-a-day"
  fromToBoldText(1980, 1988, 'log', 5)    // not_a_day ="not-a-day"
 
+   fromToBoldText(196, 272, 'code', 4)  // Checks stop if "LOG-ERRORS" on line 278 in the JSFiddle HTML tab is set to ""
 
+   fromToBoldText(294, 303, 'code', 5)  // CHECK_TYPE = "LOG-ERRORS"
 
   
 
