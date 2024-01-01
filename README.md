@@ -5,7 +5,6 @@
 
 
 Ditch TypeScript and use JavaScript runtime type checking instead. 
-Brought to you by the object [Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy). 
 The links below all go to editable [JSFiddles](https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Contents) that look best in "Tabs (rows)" layout.
 
  - [Parameter signatures](https://jsfiddle.net/steen_hansen/0xtpLwsc/?00-Readme-Example), function [return types](https://jsfiddle.net/steen_hansen/wrkvscqg/?05-Verify-Return-Results-by-Value), and [argument values](https://jsfiddle.net/steen_hansen/6zy89om1/?02-Validate-Parameters-by-Value)
@@ -18,15 +17,16 @@ The links below all go to editable [JSFiddles](https://jsfiddle.net/steen_hansen
 
 [eiffel_link]: https://en.wikipedia.org/wiki/Eiffel_(programming_language)
 
+Brought to you by the object [Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy),
 TypeCzech is a single file with no dependancies run-time type checking 
 [NPM JavaScript library](https://www.npmjs.com/package/type-czech) that can be toggled on and off.
 Type errors can be set to throw exceptions or just output to the Console.
 The motivation is to verify function parameters before execution,
 and function results after completion with PRE_yourRoutine() and POST_yourRoutine() functions.
 Functions are not changed in any way by the linking of type checking functions as they are with asserts.
-Nothing is added to function declarations like with TypeScript . And no dependencies.
+Nothing is added to function declarations like with TypeScript.
 I got the idea from the [Closure spec library](https://clojure.org/guides/spec), which I believe
-copied Bertrand Meyer's [Eiffel][eiffel_link] that invented [Design by Contract](https://en.wikipedia.org/wiki/Design_by_contract)(DbC).
+copied Bertrand Meyer's [Eiffel][eiffel_link] that invented [Design by Contract](https://en.wikipedia.org/wiki/Design_by_contract) (DbC).
 
 
 ```
