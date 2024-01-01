@@ -269,9 +269,10 @@ function aLottery(lottery_name, lucky_numbers, draw_date){
 }
 
 /**/  //  <script src="../TypeCzech.js">
-/**/
-/**/  type_czech = TypeCzech('LOG-ERRORS')
-/**/
+
+//  Checks stop if you erase 'LOG-ERRORS' on line 274 in the JSFiddle HTML tab
+/**/  type_czech = TypeCzech('LOG-ERRORS')  
+
 /**/  LOTTERY_SIGNATURE = ['string', ['numbers'], 'date']
 /**/
 /**/  function PRE_check_aLottery(lottery_name, lucky_numbers, draw_date) {
@@ -323,24 +324,27 @@ aLottery('Oz Lotto', ['fourty-two'], new Date('jun 14 1999'))
 
    jsToDiv('js-code', "check-code")
 
-   fromToBoldText(909, 910, 'code', 1)  // []
+   fromToBoldText(982, 983, 'code', 1)  // []
 
    fromToBoldText(229, 230, 'log', 1)    // []
    fromToBoldText(279, 289, 'log', 1)    // ["numbers"]
 
 
-   fromToBoldText(1020, 1021, 'code', 2)  // 17
+   fromToBoldText(1093, 1094, 'code', 2)  // 17
 
    fromToBoldText(1020, 1021, 'log', 2)    // 17
    fromToBoldText(1070, 1080, 'log', 2)    // ['number']
 
 
 
-   fromToBoldText(1109, 1122, 'code', 3)  // ['fourty-two']
+   fromToBoldText(1182, 1195, 'code', 3)  // ['fourty-two']
 
    fromToBoldText(1877, 1890, 'log', 3)    //"fourty-two"
    fromToBoldText(1939, 1949, 'log', 3)    //  "number"
 
+   fromToBoldText(181, 255, 'code', 4)  // Errors disappear if you erase 'LOG-ERRORS' on line 274 in the HTML tab
+
+   fromToBoldText(287, 296, 'code', 5)  // e_czech = TypeCzech('LOG-ERRORS') 
 
 
 </script>

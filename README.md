@@ -4,7 +4,9 @@
 # TypeCzech
 
 
-Ditch TypeScript use JavaScript runtime type checking instead. Brought to you by the object [Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy).
+Ditch TypeScript use JavaScript runtime type checking instead. 
+Brought to you by the object [Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy). 
+Below links in list all go to editable [JSFiddles](https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Contents) that look best in "Tabs (rows)" layout.
 
  - [Parameter signatures](https://jsfiddle.net/steen_hansen/0xtpLwsc/?00-Readme-Example), function [return types](https://jsfiddle.net/steen_hansen/wrkvscqg/?05-Verify-Return-Results-by-Value), and [argument values](https://jsfiddle.net/steen_hansen/6zy89om1/?02-Validate-Parameters-by-Value)
  - Specify [async/await](https://jsfiddle.net/steen_hansen/q7rckeno/?703-Async-Await) types
@@ -12,7 +14,7 @@ Ditch TypeScript use JavaScript runtime type checking instead. Brought to you by
  - [Toggle on or off](https://jsfiddle.net/steen_hansen/f19s52xr/?36-Start-and-Stop) programatically
  - Console.log type errors or [throw exceptions](https://jsfiddle.net/steen_hansen/ep3snb8z/?35-Throw-or-Log)
  - Check for [empty values](https://jsfiddle.net/steen_hansen/x8h6dvj5/?19-Lone-Empty-Param-and-Result)
- - No compiling, no function altering, [no dependencies](https://github.com/steenhansen/type-czech/blob/master/package.json)
+ - No compiling, no function altering, [dependency free package.json](https://github.com/steenhansen/type-czech/blob/master/package.json)
 
 TypeCzech is a single file with no dependancies run-time type checking 
 [NPM JavaScript library](https://www.npmjs.com/package/type-czech) that can be toggled on and off.
@@ -475,13 +477,13 @@ Checking parameter type signtures.
 
 Checking parameter empty signtures.
 
-### [75 Page Live Online Editable Tutorial](https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Contents)
+### [JSFiddle - 75 Page Live Online Editable Tutorial](https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Contents)
 
 All the examples run on JsFiddle. Note that the JsFiddle console will not run small embedded "copy and paste green code examples".
 
-### [75 Page Local Editable Tutorial](./example-snippets/example-contents.html)
+### [Local Filesystem - 75 Page Local Editable Tutorial](./example-snippets/example-contents.html)
 
-All the examples on local browser.
+All the examples on local browser from the local filesystem.
 
 ### [16 Simple How To Snippets](./read-mes/simple-howto.md)
 
