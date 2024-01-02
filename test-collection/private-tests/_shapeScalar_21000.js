@@ -14,6 +14,22 @@ _shapeScalar_21006();
 _shapeScalar_21007();
 _shapeScalar_21008();
 
+function printTestName(an_str) {
+  if (typeof window !== "undefined") {
+    if (typeof window.browserList === 'function') {
+      if (window.browserList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+  } else {
+    if (typeof global.nodejsList === 'function') {
+      if (global.nodejsList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+   } 
+}
+
 ////////////////////////////////////////////////////
 
 
@@ -37,7 +53,8 @@ function _shapeScalar_21001(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+     printTestName("_shapeScalar_21001")  
 }
 
 
@@ -59,7 +76,8 @@ function _shapeScalar_21002(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+     printTestName("_shapeScalar_21002")  
 }
 
 
@@ -81,7 +99,8 @@ function _shapeScalar_21003(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+     printTestName("_shapeScalar_21003")  
 }
 
 function _shapeScalar_21004(){
@@ -101,7 +120,8 @@ function _shapeScalar_21004(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+     printTestName("_shapeScalar_21004")  
 }
 
 function _shapeScalar_21005(){
@@ -121,7 +141,8 @@ function _shapeScalar_21005(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+     printTestName("_shapeScalar_21005")  
 }
 
 
@@ -143,7 +164,8 @@ function _shapeScalar_21006(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+     printTestName("_shapeScalar_21006")  
 }
 
 
@@ -165,7 +187,8 @@ function _shapeScalar_21007(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+     printTestName("_shapeScalar_21007")  
 }
 
 
@@ -187,7 +210,8 @@ function _shapeScalar_21008(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+   printTestName("_shapeScalar_21008")  
 }
 
 if (fail_count>0) {

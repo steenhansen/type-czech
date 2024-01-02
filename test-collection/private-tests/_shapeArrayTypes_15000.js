@@ -9,6 +9,23 @@ _shapeArrayTypes_15001();
 _shapeArrayTypes_15002();
 
 
+function printTestName(an_str) {
+  if (typeof window !== "undefined") {
+    if (typeof window.browserList === 'function') {
+      if (window.browserList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+  } else {
+    if (typeof global.nodejsList === 'function') {
+      if (global.nodejsList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+   } 
+}
+
+
 /////////////////////////////////////////////////////
 
 
@@ -30,7 +47,8 @@ function _shapeArrayTypes_15001(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+       printTestName("_shapeArrayTypes_15001")   
 }
 
 
@@ -52,7 +70,8 @@ function _shapeArrayTypes_15002(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+     printTestName("_shapeArrayTypes_15002")   
 }
 
 

@@ -12,6 +12,24 @@ fail_count = 0;
 
 
 
+
+  
+function printTestName(an_str) {
+  if (typeof window !== "undefined") {
+    if (typeof window.browserList === 'function') {
+      if (window.browserList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+  } else {
+    if (typeof global.nodejsList === 'function') {
+      if (global.nodejsList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+   } 
+}
+
 ///////////////////////////////////////////////////////////////////
 
 function _mutatedVariables_14001(){
@@ -31,7 +49,8 @@ function _mutatedVariables_14001(){
           console.log(                          '    expected=', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+     printTestName("_mutatedVariables_14001")   
 }
 
 
@@ -57,7 +76,8 @@ function _mutatedVariables_14002(){
           console.log(                          '    expected=', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+     printTestName("_mutatedVariables_14002")   
 }
 
 
@@ -79,7 +99,8 @@ function _mutatedVariables_14003(){
           console.log(                          '    expected=', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+     printTestName("_mutatedVariables_14003")   
 }
 
 
@@ -126,7 +147,14 @@ function _mutatedVariables_14004(){
     console.log(                          '    expected=', expect_error);
     if (typeof fail_count !=='undefined') fail_count ++;
   }
-  if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+  
+  
+  printTestName("_mutatedVariables_14004")   
+  
+
+
+
 }
 
 

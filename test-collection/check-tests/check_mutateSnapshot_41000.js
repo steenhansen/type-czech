@@ -3,7 +3,21 @@
 pass_count = 0;
 fail_count = 0;
 
-
+function printTestName(an_str) {
+  if (typeof window !== "undefined") {
+    if (typeof window.browserList === 'function') {
+      if (window.browserList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+  } else {
+    if (typeof global.nodejsList === 'function') {
+      if (global.nodejsList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+   } 
+}
 
 // function test_pre_check_mutateSnapshot(parameters_array, signature_of_parameters, error_id, expected_error) {
 //   const type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
@@ -100,6 +114,7 @@ A_yourFunc({i:''},{j:''})          // fail 31 4 empty - {str str}
 A_yourFunc({k:{}},{l:{}})          // fail 32 5 empty - {obj obj}
 pass_count += expectedAndFailedTests(32, 32, 'A-Fail', '_check_mutatedSnapshot().md');
 
+printTestName("check_mutatedSnapshot_41000_a")  
 
 
 
@@ -136,6 +151,7 @@ function B_yourFunc(b_collection, change_function){
   B_yourFunc({a:1}, x=> x.a=2)            // pre-pass-11, post-fail-12
   // 12 tests, 6 fails
   pass_count += expectedAndFailedTests(12, 6, 'B-Fail', '_check_mutatedSnapshot().md');
+printTestName("check_mutatedSnapshot_41000_b")  
 
   /*
 ### C. check_mutatedSnapshot() fail from recursive calls
@@ -178,6 +194,7 @@ else if (typeof TEST_total_checks === 'undefined')
   console.log('no-issues: pass', expected_tests-expected_fails, ' fail', expected_fails)
 else
 pass_count += expected_tests
+printTestName("check_mutatedSnapshot_41000_c")  
 
 
 
@@ -213,7 +230,7 @@ if (is_correct){
 } else {
   throw `D. _check_buildSnapshot().md did not fail - VE@606`
 }
-
+printTestName("check_mutatedSnapshot_41000_d")  
 
 
 

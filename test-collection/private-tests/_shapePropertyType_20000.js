@@ -11,6 +11,21 @@ _shapePropertyType_20002();
 _shapePropertyType_20003();
 _shapePropertyType_20004();
 
+function printTestName(an_str) {
+  if (typeof window !== "undefined") {
+    if (typeof window.browserList === 'function') {
+      if (window.browserList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+  } else {
+    if (typeof global.nodejsList === 'function') {
+      if (global.nodejsList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+   } 
+}
 
 //////////////////////////////////////////
 
@@ -33,7 +48,8 @@ function _shapePropertyType_20001(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("_shapePropertyType_20001")  
 }
 
 
@@ -56,7 +72,8 @@ function _shapePropertyType_20002(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+   printTestName("_shapePropertyType_20002") 
 }
 
 
@@ -80,7 +97,8 @@ function _shapePropertyType_20003(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+   printTestName("_shapePropertyType_20003") 
 }
 
 
@@ -103,7 +121,8 @@ function _shapePropertyType_20004(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+   printTestName("_shapePropertyType_20004") 
 }
 
 if (fail_count>0) {

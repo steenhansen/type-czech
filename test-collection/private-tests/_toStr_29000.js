@@ -7,7 +7,21 @@ fail_count = 0;
 
 _toStr_29001();
 
-
+function printTestName(an_str) {
+  if (typeof window !== "undefined") {
+    if (typeof window.browserList === 'function') {
+      if (window.browserList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+  } else {
+    if (typeof global.nodejsList === 'function') {
+      if (global.nodejsList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+   } 
+}
 
 function _toStr_29001(){
   type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
@@ -53,7 +67,7 @@ function _toStr_29001(){
   test_toStr({g:[]}, '{g:[]}')                                 // pass 29 3 empty - {arr arr}
   test_toStr({i:''}, '{i:""}')                                 // pass 30 4 empty - {str str}
   test_toStr({k:{}}, '{k:{}}')                                 // pass 31 5 empty - {obj obj}
-
+ printTestName("_toStr_29001")  
 }
 
 if (fail_count>0) {

@@ -8,7 +8,21 @@ fail_count = 0;
 
 _shrinkDiffs_28001();
 
-
+function printTestName(an_str) {
+  if (typeof window !== "undefined") {
+    if (typeof window.browserList === 'function') {
+      if (window.browserList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+  } else {
+    if (typeof global.nodejsList === 'function') {
+      if (global.nodejsList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+   } 
+}
 /////////////////////////////////////////////////////////
 
 
@@ -30,7 +44,8 @@ function _shrinkDiffs_28001(){
           console.log('expect =', after_form);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+   printTestName("_shrinkDiffs_28001")  
 }
 
 if (fail_count>0) {

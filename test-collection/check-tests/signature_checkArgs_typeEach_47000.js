@@ -15,7 +15,21 @@ fail_count = 0;
 signature_stringParameters_47004();
 signature_stringParameters_47005();
 
-
+function printTestName(an_str) {
+  if (typeof window !== "undefined") {
+    if (typeof window.browserList === 'function') {
+      if (window.browserList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+  } else {
+    if (typeof global.nodejsList === 'function') {
+      if (global.nodejsList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+   } 
+}
 
 
 
@@ -42,7 +56,8 @@ function signature_stringParameters_47001(){
     console.log(TYPE_CZECH_current_test_number, err);
     if (typeof pass_count !== 'undefined') fail_count ++;
   }
-  if (typeof pass_count !== 'undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+  printTestName("signature_stringParameters_47001")
 }
 
 
@@ -65,7 +80,8 @@ function signature_stringParameters_47002(){
     console.log(TYPE_CZECH_current_test_number, err);
     if (typeof pass_count !== 'undefined') fail_count ++;
   }
-  if (typeof pass_count !== 'undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+  printTestName("signature_stringParameters_47002")
 }
 
 
@@ -88,7 +104,8 @@ function signature_stringParameters_47003(){
     console.log(TYPE_CZECH_current_test_number, err);
     if (typeof pass_count !== 'undefined') fail_count ++;
   }
-  if (typeof pass_count !== 'undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+  printTestName("signature_stringParameters_47003")
 }
 
 function signature_stringParameters_47004(){
@@ -110,7 +127,8 @@ function signature_stringParameters_47004(){
     console.log(TYPE_CZECH_current_test_number, err);
     if (typeof pass_count !== 'undefined') fail_count ++;
   }
-  if (typeof pass_count !== 'undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+  printTestName("signature_stringParameters_47004")
 }
 
 function signature_stringParameters_47005(){
@@ -132,7 +150,8 @@ function signature_stringParameters_47005(){
     console.log(TYPE_CZECH_current_test_number, err);
     if (typeof pass_count !== 'undefined') fail_count ++;
   }
-  if (typeof pass_count !== 'undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("signature_stringParameters_47005")
 }
 
 

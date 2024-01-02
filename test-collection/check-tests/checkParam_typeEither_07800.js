@@ -11,7 +11,21 @@
 pass_count = 0;
 fail_count = 0;
 
-
+function printTestName(an_str) {
+  if (typeof window !== "undefined") {
+    if (typeof window.browserList === 'function') {
+      if (window.browserList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+  } else {
+    if (typeof global.nodejsList === 'function') {
+      if (global.nodejsList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+   } 
+}
 
 function test_pre_checkParam_typeEither_multi(parameters_array, signature_of_parameters, error_id, expected_error) {
   const type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
@@ -61,6 +75,7 @@ multi_variable  = [ 12, 'zxc'];
 multi_signature = [ [ 'number', 'boolean'], [ 'number', 'string'] ];
 error_mess = '';
 test_pre_checkParam_typeEither_multi(multi_variable, multi_signature, 7801, error_mess);
+printTestName("checkParam_typeEither_07801") 
 
 multi_variable  = [ 12, [] ];
 multi_signature = [ [ 'number', 'boolean'], [ 'symbol', 'string'] ];
@@ -72,16 +87,19 @@ ACTUAL TYPE 'array'
 EXPECTED TYPE [["number","boolean"],["symbol","string"]]
  ORIGIN pre_checkParam_typeEither_07800(a_var)`;
 test_pre_checkParam_typeEither_multi(multi_variable, multi_signature, 7802, error_mess);
+printTestName("checkParam_typeEither_07802") 
 
 multi_variable  = { n: 12, b: false };
 multi_signature = [ { n: 'number', b: 'boolean' }, { r: 'regexp', s: 'string' } ];
 error_mess = '';
 test_pre_checkParam_typeEither_multi(multi_variable, multi_signature, 7803, error_mess);
+printTestName("checkParam_typeEither_07803") 
 
 multi_variable  = { r: /d/, s: 'Holiday Road' };
 multi_signature = [ { n: 'number', b: 'boolean' }, { r: 'regexp', s: 'string' } ];
 error_mess = '';
 test_pre_checkParam_typeEither_multi(multi_variable, multi_signature, 7804, error_mess);
+printTestName("checkParam_typeEither_07804") 
 
 multi_variable  = { n: 12, s: 'Holiday Road' };
 multi_signature = [ { n: 'number', b: 'boolean' }, { r: 'regexp', s: 'string' } ];
@@ -92,11 +110,13 @@ ACTUAL TYPE 'object'
 EXPECTED TYPE [{"n":"number","b":"boolean"},{"r":"regexp","s":"string"}]
  ORIGIN pre_checkParam_typeEither_07800(a_var)`;
 test_pre_checkParam_typeEither_multi(multi_variable, multi_signature, 7805, error_mess);
+printTestName("checkParam_typeEither_07805") 
 
 multi_variable  = ['a-string', 123];
 multi_signature = [ [ 'number', 'string'], [ 'string', 'number'] ];
 error_mess = '';
 test_pre_checkParam_typeEither_multi(multi_variable, multi_signature, 7806, error_mess);
+printTestName("checkParam_typeEither_07806") 
 
 multi_variable  = ['a-string', 123];
 multi_signature = ['string'];
@@ -107,6 +127,7 @@ ACTUAL TYPE 'array'
 EXPECTED TYPE ["string"]
  ORIGIN pre_checkParam_typeEither_07800(a_var)`;
 test_pre_checkParam_typeEither_multi(multi_variable, multi_signature, 7807, error_mess);
+printTestName("checkParam_typeEither_07807") 
 
 multi_variable  = [false, false];
 multi_signature = [ [ 'number', 'string'], [ 'string', 'number'] ];
@@ -119,6 +140,7 @@ ACTUAL TYPE 'array'
 EXPECTED TYPE [["number","string"],["string","number"]]
  ORIGIN pre_checkParam_typeEither_07800(a_var)`;
 test_pre_checkParam_typeEither_multi(multi_variable, multi_signature, 7808, error_mess);
+printTestName("checkParam_typeEither_07808") 
 
 multi_variable  = ['a-string', null];
 multi_signature = [ ['string', 'string'], ['number', 'number'] ];
@@ -130,6 +152,7 @@ ACTUAL TYPE 'array'
 EXPECTED TYPE [["string","string"],["number","number"]]
  ORIGIN pre_checkParam_typeEither_07800(a_var)`;
 test_pre_checkParam_typeEither_multi(multi_variable, multi_signature, 7809, error_mess);
+printTestName("checkParam_typeEither_07809") 
 
 
 
@@ -160,11 +183,13 @@ multi_variable  = 'asd';
 multi_signature = [ 'HTMLDivElement', 'string'];
 error_mess = '';
 test_pre_checkParam_typeEither_multi(multi_variable, multi_signature, 7810, error_mess);
+printTestName("checkParam_typeEither_07810")    
 
 multi_variable  = Symbol('sym');
 multi_signature = [ 'array', ['number'], 'bigint', 'boolean', 'date', 'function', 'number', 'object', { b: 'number' }, 'regexp', 'string', 'symbol' ];
 error_mess = '';
 test_pre_checkParam_typeEither_multi(multi_variable, multi_signature, 7811, error_mess);
+printTestName("checkParam_typeEither_07811")    
 
 multi_variable  = Symbol('sym');
 multi_signature = [ 'array', ['number'], 'bigint', 'boolean', 'date', 'function', 'number', 'object', { b: 'number' }, 'regexp', 'string'];
@@ -175,26 +200,31 @@ ACTUAL TYPE 'symbol'
 EXPECTED TYPE ["array",["number"],"bigint","boolean","date","function","number","object",{"b":"number"},"regexp","string"]
  ORIGIN pre_checkParam_typeEither_07800(a_var)`;
 test_pre_checkParam_typeEither_multi(multi_variable, multi_signature, 7812, error_mess);
+printTestName("checkParam_typeEither_07812")    
 
 multi_variable  = { a: 3 };
 multi_signature = [ { a: 'number' }, { b: 'string' } ];
 error_mess = '';
 test_pre_checkParam_typeEither_multi(multi_variable, multi_signature, 7813, error_mess);
+printTestName("checkParam_typeEither_07813")    
 
 multi_variable  = { b: 'Cheap Trick' };
 multi_signature = [ { a: 'number' }, { b: 'string' } ];
 error_mess = '';
 test_pre_checkParam_typeEither_multi(multi_variable, multi_signature, 7814, error_mess);
+printTestName("checkParam_typeEither_07814")    
 
 multi_variable  = [1, 2, 3, 4];
 multi_signature = [ ['numbers'], ['string'] ];
 error_mess = '';
 test_pre_checkParam_typeEither_multi(multi_variable, multi_signature, 7815, error_mess);
+printTestName("checkParam_typeEither_07815")    
 
 multi_variable  = ['a', 'b', 'c'];
 multi_signature = [ ['number'], ['strings'] ];
 error_mess = '';
 test_pre_checkParam_typeEither_multi(multi_variable, multi_signature, 7816, error_mess);
+printTestName("checkParam_typeEither_07816")    
 
 multi_variable  = 'asd';
 multi_signature = [ 12, false];
@@ -206,7 +236,7 @@ EXPECTED TYPE [12,false]
  ORIGIN pre_checkParam_typeEither_07800(a_var)`;
 test_pre_checkParam_typeEither_multi(multi_variable, multi_signature, 7817, error_mess);
 
-
+printTestName("checkParam_typeEither_07817")    
 
 
 

@@ -11,6 +11,21 @@ _shapeCollectionTypes_16002();
 _shapeCollectionTypes_16003();
 
 
+function printTestName(an_str) {
+  if (typeof window !== "undefined") {
+    if (typeof window.browserList === 'function') {
+      if (window.browserList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+  } else {
+    if (typeof global.nodejsList === 'function') {
+      if (global.nodejsList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+   } 
+}
 //////////////////////////////////////
 
 function _shapeCollectionTypes_16001(){
@@ -31,7 +46,8 @@ function _shapeCollectionTypes_16001(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+  printTestName("_shapeCollectionTypes_16001")   
 }
 
 function _shapeCollectionTypes_16002(){
@@ -52,7 +68,8 @@ function _shapeCollectionTypes_16002(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+  printTestName("_shapeCollectionTypes_16002")   
 }
 
 
@@ -74,7 +91,9 @@ function _shapeCollectionTypes_16003(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+  printTestName("_shapeCollectionTypes_16003")   
+  
 }
 
 

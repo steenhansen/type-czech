@@ -8,6 +8,21 @@ fail_count = 0;
 
 _isCollection_10000();
 
+function printTestName(an_str) {
+  if (typeof window !== "undefined") {
+    if (typeof window.browserList === 'function') {
+      if (window.browserList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+  } else {
+    if (typeof global.nodejsList === 'function') {
+      if (global.nodejsList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+   } 
+}
 
 //////////////////////////////////////////
 
@@ -67,5 +82,6 @@ if (fail_count>0) {
   console.log(the_problem)
   throw the_problem
 }
+    printTestName("_isCollection_10000")   
 TEST_total_checks += pass_count;
 

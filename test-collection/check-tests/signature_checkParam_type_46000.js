@@ -40,7 +40,21 @@ signature_oneFilledStringArray_46401();
 signature_oneFilledStringArray_46402();
 signature_oneFilledStringArray_46403();
 
-
+function printTestName(an_str) {
+  if (typeof window !== "undefined") {
+    if (typeof window.browserList === 'function') {
+      if (window.browserList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+  } else {
+    if (typeof global.nodejsList === 'function') {
+      if (global.nodejsList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+   } 
+}
 
 
 
@@ -65,7 +79,8 @@ function signature_oneString_46001(){
     console.log(TYPE_CZECH_current_test_number);
     if (typeof pass_count !== 'undefined') fail_count ++;
   }
-  if (typeof pass_count !== 'undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("signature_oneString_46001")
 }
 
 function signature_oneString_46002(){
@@ -87,7 +102,8 @@ function signature_oneString_46002(){
     console.log(TYPE_CZECH_current_test_number);
     if (typeof pass_count !== 'undefined') fail_count ++;
   }
-  if (typeof pass_count !== 'undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+      printTestName("signature_oneString_46002")
 }
 
 function signature_oneString_46003(){
@@ -109,7 +125,8 @@ function signature_oneString_46003(){
     console.log(TYPE_CZECH_current_test_number, ' test failed');
     if (typeof pass_count !== 'undefined') fail_count ++;
   }
-  if (typeof pass_count !== 'undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("signature_oneString_46003")
 }
 
 function signature_oneString_46004(){
@@ -131,7 +148,8 @@ function signature_oneString_46004(){
     console.log(TYPE_CZECH_current_test_number);
     if (typeof pass_count !== 'undefined') fail_count ++;
   }
-  if (typeof pass_count !== 'undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+  printTestName("signature_oneString_46004")
 }
 
 function signature_oneString_46005(){
@@ -153,7 +171,8 @@ function signature_oneString_46005(){
     console.log(TYPE_CZECH_current_test_number);
     if (typeof pass_count !== 'undefined') fail_count ++;
   }
-  if (typeof pass_count !== 'undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("signature_oneString_46005")
 }
 
 function signature_oneString_46006(){
@@ -175,7 +194,8 @@ function signature_oneString_46006(){
     console.log(TYPE_CZECH_current_test_number);
     if (typeof pass_count !== 'undefined') fail_count ++;
   }
-  if (typeof pass_count !== 'undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+     printTestName("signature_oneString_46006")
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -199,7 +219,8 @@ function signature_twoStringArray_46101(){
     console.log(TYPE_CZECH_current_test_number);
     if (typeof pass_count !== 'undefined') fail_count ++;
   }
-  if (typeof pass_count !== 'undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+   printTestName("signature_twoStringArray_46101")
 }
 
 
@@ -222,7 +243,8 @@ function signature_twoStringArray_46102(){
     console.log(TYPE_CZECH_current_test_number);
     if (typeof pass_count !== 'undefined') fail_count ++;
   }
-  if (typeof pass_count !== 'undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+     printTestName("signature_twoStringArray_46102")
 }
 
 
@@ -245,7 +267,8 @@ function signature_twoStringArray_46103(){
     console.log(TYPE_CZECH_current_test_number);
     if (typeof pass_count !== 'undefined') fail_count ++;
   }
-  if (typeof pass_count !== 'undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+     printTestName("signature_twoStringArray_46103")
 }
 
 function signature_twoStringArray_46104(){
@@ -267,7 +290,8 @@ function signature_twoStringArray_46104(){
     console.log(TYPE_CZECH_current_test_number);
     if (typeof pass_count !== 'undefined') fail_count ++;
   }
-  if (typeof pass_count !== 'undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+      printTestName("signature_twoStringArray_46104")
 }
 
 function signature_twoStringArray_46105(){
@@ -289,7 +313,8 @@ function signature_twoStringArray_46105(){
     console.log(TYPE_CZECH_current_test_number);
     if (typeof pass_count !== 'undefined') fail_count ++;
   }
-  if (typeof pass_count !== 'undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("signature_twoStringArray_46105")
 }
 
 function signature_twoStringArray_46106(){
@@ -311,7 +336,8 @@ function signature_twoStringArray_46106(){
     console.log(TYPE_CZECH_current_test_number);
     if (typeof pass_count !== 'undefined') fail_count ++;
   }
-  if (typeof pass_count !== 'undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+     printTestName("signature_twoStringArray_46106")
 }
 
 function signature_twoStringArray_46107(){
@@ -333,7 +359,8 @@ function signature_twoStringArray_46107(){
     console.log(TYPE_CZECH_current_test_number);
     if (typeof pass_count !== 'undefined') fail_count ++;
   }
-  if (typeof pass_count !== 'undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+     printTestName("signature_twoStringArray_46107")
 }
 
 function signature_twoStringArray_46108(){
@@ -355,7 +382,8 @@ function signature_twoStringArray_46108(){
     console.log(TYPE_CZECH_current_test_number);
     if (typeof pass_count !== 'undefined') fail_count ++;
   }
-  if (typeof pass_count !== 'undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+   printTestName("signature_twoStringArray_46108")
 }
 
 //////////////////////////////////////////////////////////////////////////////////////
@@ -379,7 +407,8 @@ function signature_twoStrings_46201(){
     console.log(TYPE_CZECH_current_test_number);
     if (typeof pass_count !== 'undefined') fail_count ++;
   }
-  if (typeof pass_count !== 'undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("signature_twoStrings_46201")
 }
 
 
@@ -402,7 +431,8 @@ function signature_twoStrings_46202(){
     console.log(TYPE_CZECH_current_test_number);
     if (typeof pass_count !== 'undefined') fail_count ++;
   }
-  if (typeof pass_count !== 'undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+     printTestName("signature_twoStrings_46202")
 }
 
 
@@ -425,7 +455,8 @@ function signature_twoStrings_46203(){
     console.log(TYPE_CZECH_current_test_number);
     if (typeof pass_count !== 'undefined') fail_count ++;
   }
-  if (typeof pass_count !== 'undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+   printTestName("signature_twoStrings_46203")
 }
 
 function signature_twoStrings_46204(){
@@ -447,7 +478,8 @@ function signature_twoStrings_46204(){
     console.log(TYPE_CZECH_current_test_number);
     if (typeof pass_count !== 'undefined') fail_count ++;
   }
-  if (typeof pass_count !== 'undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+  printTestName("signature_twoStrings_46204")
 }
 
 //////////////////////////////////////////////////////////////////////////////////////
@@ -471,7 +503,8 @@ function signature_oneStringArray_46301(){
     console.log(TYPE_CZECH_current_test_number);
     if (typeof pass_count !== 'undefined') fail_count ++;
   }
-  if (typeof pass_count !== 'undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+   printTestName("signature_oneStringArray_46301")
 }
 
 function signature_oneStringArray_46302(){
@@ -493,7 +526,8 @@ function signature_oneStringArray_46302(){
     console.log(TYPE_CZECH_current_test_number);
     if (typeof pass_count !== 'undefined') fail_count ++;
   }
-  if (typeof pass_count !== 'undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+     printTestName("signature_oneStringArray_46302")
 }
 
 function signature_oneStringArray_46303(){
@@ -515,7 +549,8 @@ function signature_oneStringArray_46303(){
     console.log(TYPE_CZECH_current_test_number, ' test failed');
     if (typeof pass_count !== 'undefined') fail_count ++;
   }
-  if (typeof pass_count !== 'undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+      printTestName("signature_oneStringArray_46303")
 }
 
 function signature_oneStringArray_46304(){
@@ -537,7 +572,8 @@ function signature_oneStringArray_46304(){
     console.log(TYPE_CZECH_current_test_number);
     if (typeof pass_count !== 'undefined') fail_count ++;
   }
-  if (typeof pass_count !== 'undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+      printTestName("signature_oneStringArray_46304")
 }
 
 function signature_oneStringArray_46305(){
@@ -559,7 +595,8 @@ function signature_oneStringArray_46305(){
     console.log(TYPE_CZECH_current_test_number);
     if (typeof pass_count !== 'undefined') fail_count ++;
   }
-  if (typeof pass_count !== 'undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+       printTestName("signature_oneStringArray_46305")
 }
 
 function signature_oneStringArray_46306(){
@@ -581,7 +618,8 @@ function signature_oneStringArray_46306(){
     console.log(TYPE_CZECH_current_test_number);
     if (typeof pass_count !== 'undefined') fail_count ++;
   }
-  if (typeof pass_count !== 'undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+     printTestName("signature_oneStringArray_46306")
 }
 
 function signature_oneStringArray_46307(){
@@ -603,7 +641,8 @@ function signature_oneStringArray_46307(){
     console.log(TYPE_CZECH_current_test_number);
     if (typeof pass_count !== 'undefined') fail_count ++;
   }
-  if (typeof pass_count !== 'undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+   printTestName("signature_oneStringArray_46307")
 }
 
 function signature_oneStringArray_46308(){
@@ -625,7 +664,8 @@ function signature_oneStringArray_46308(){
     console.log(TYPE_CZECH_current_test_number);
     if (typeof pass_count !== 'undefined') fail_count ++;
   }
-  if (typeof pass_count !== 'undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+  printTestName("signature_oneStringArray_46308")  
 }
 
 function signature_oneStringArray_46309(){
@@ -647,7 +687,8 @@ function signature_oneStringArray_46309(){
     console.log(TYPE_CZECH_current_test_number);
     if (typeof pass_count !== 'undefined') fail_count ++;
   }
-  if (typeof pass_count !== 'undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+       printTestName("signature_oneStringArray_46309")  
 }
 
 /////////////////////////////////////////////
@@ -673,7 +714,8 @@ function signature_oneFilledStringArray_46401(){
     console.log(TYPE_CZECH_current_test_number);
     if (typeof pass_count !== 'undefined') fail_count ++;
   }
-  if (typeof pass_count !== 'undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+     printTestName("signature_oneFilledStringArray_46401")  
 }
 
 function signature_oneFilledStringArray_46402(){
@@ -697,7 +739,8 @@ function signature_oneFilledStringArray_46402(){
     console.log(TYPE_CZECH_current_test_number);
     if (typeof pass_count !== 'undefined') fail_count ++;
   }
-  if (typeof pass_count !== 'undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+     printTestName("signature_oneFilledStringArray_46402")  
 }
 
 function signature_oneFilledStringArray_46403(){
@@ -721,7 +764,8 @@ function signature_oneFilledStringArray_46403(){
     console.log(TYPE_CZECH_current_test_number);
     if (typeof pass_count !== 'undefined') fail_count ++;
   }
-  if (typeof pass_count !== 'undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+   printTestName("signature_oneFilledStringArray_46403")  
 }
 
 

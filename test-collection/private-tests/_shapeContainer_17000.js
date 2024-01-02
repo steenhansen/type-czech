@@ -23,7 +23,22 @@ _shapeContainer_17101();
 _shapeContainer_17102();
  _shapeContainer_17103();
 
-
+  
+function printTestName(an_str) {
+  if (typeof window !== "undefined") {
+    if (typeof window.browserList === 'function') {
+      if (window.browserList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+  } else {
+    if (typeof global.nodejsList === 'function') {
+      if (global.nodejsList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+   } 
+}
 
 //////////////////////////////////////
 
@@ -46,7 +61,8 @@ function _shapeContainer_17001(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("_shapeContainer_17001") 
 }
 
 
@@ -69,7 +85,8 @@ function _shapeContainer_17002(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("_shapeContainer_17002") 
 }
 
 
@@ -92,7 +109,8 @@ function _shapeContainer_17003(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("_shapeContainer_17003") 
 }
 
 function _shapeContainer_17004(){
@@ -113,7 +131,8 @@ function _shapeContainer_17004(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("_shapeContainer_17004") 
 }
 
 
@@ -136,7 +155,8 @@ function _shapeContainer_17005(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("_shapeContainer_17005") 
 }
 
 
@@ -162,7 +182,8 @@ function _shapeContainer_17006(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("_shapeContainer_17006") 
 }
 
 
@@ -187,7 +208,8 @@ function _shapeContainer_17007(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("_shapeContainer_17007") 
 }
 
 
@@ -210,7 +232,8 @@ function _shapeContainer_17008(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("_shapeContainer_17008") 
 }
 
 
@@ -235,7 +258,8 @@ function _shapeContainer_17009(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+      printTestName("_shapeContainer_17009") 
 }
 
 
@@ -263,7 +287,8 @@ function _shapeContainer_17101(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+      printTestName("_shapeContainer_17101") 
 }
 
 
@@ -290,7 +315,8 @@ function _shapeContainer_17102(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+      printTestName("_shapeContainer_17102") 
 }
 
 
@@ -315,7 +341,8 @@ function _shapeContainer_17103(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("_shapeContainer_17103") 
 }
 
 if (fail_count>0) {

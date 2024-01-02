@@ -13,7 +13,21 @@ pass_count = 0;
 fail_count = 0;
 
 
-
+function printTestName(an_str) {
+  if (typeof window !== "undefined") {
+    if (typeof window.browserList === 'function') {
+      if (window.browserList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+  } else {
+    if (typeof global.nodejsList === 'function') {
+      if (global.nodejsList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+   } 
+}
 
 function test_pre_check_buildSnapshot(parameters_array, signature_of_parameters, error_id, expected_error) {
   const type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
@@ -95,7 +109,7 @@ A_yourFunc({g:[]},{h:[]})          // pass 14 3 empty - {arr arr}
 A_yourFunc({i:''},{j:''})          // pass 15 4 empty - {str str}
 A_yourFunc({k:{}},{l:{}})          // pass 16 5 empty - {obj obj}
 pass_count += expectedAndFailedTests(16, 0, 'A-Pass', 'check_buildSnapshot().md');
-
+printTestName("check_buildSnapshot_400000") 
 
 A_yourFunc(234n)                        // fail 1 B bigint
 A_yourFunc(false)                       // fail 2 C boolean
@@ -114,7 +128,7 @@ A_yourFunc(undefined)                   // fail 14 R empty undefined
 A_yourFunc()                            // fail 15 S empty nothing
 A_yourFunc(14,15,16)                    // fail 16 U multi args
 pass_count += expectedAndFailedTests(16, 16, 'A-Fail', 'check_buildSnapshot().md');
-
+printTestName("check_buildSnapshot_400000_a") 
 // /////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -156,7 +170,7 @@ if (stack_str === B_expected_first_stack){
 } else {
   throw `B. _check_buildSnapshot().md first had un-expected stack list values`
 }
-
+printTestName("check_buildSnapshot_400000_b1") 
 
 
 B_expected_second_stack = `{"B_PRE_check_recurseArr-growing_array":[{"collection_ref":[1],"func_name":"B_PRE_check_recurseArr","pre_collect_str":"[1]","var_name":"growing_array"},{"collection_ref":[1,2],"func_name":"B_PRE_check_recurseArr","pre_collect_str":"[1,2]","var_name":"growing_array"},{"collection_ref":[1,2,"THREE"],"func_name":"B_PRE_check_recurseArr","pre_collect_str":"[1,2,3]","var_name":"growing_array"},{"collection_ref":[1,2,"THREE",4],"func_name":"B_PRE_check_recurseArr","pre_collect_str":"[1,2,\\\"THREE\\\",4]","var_name":"growing_array"},{"collection_ref":[1,2,"THREE",4,5],"func_name":"B_PRE_check_recurseArr","pre_collect_str":"[1,2,\\\"THREE\\\",4,5]","var_name":"growing_array"}]}`
@@ -170,7 +184,7 @@ if (B_expected_second_stack === stack_str){
   console.log(stack_str)
   throw `B. _check_buildSnapshot().md second had un-expected stack list values`
 }
-
+printTestName("check_buildSnapshot_400000_b2") 
 
 
 
@@ -207,7 +221,7 @@ if (is_correct){
 } else {
   throw `C. _check_buildSnapshot().md did not fail - VE@601`
 }
-
+printTestName("check_buildSnapshot_400000_c") 
 /*
 ### D. check_buildSnapshot() fail from non-string variable name
 */
@@ -232,7 +246,7 @@ if (is_correct){
 } else {
   throw `D. _check_buildSnapshot().md did not fail - VE@602`
 }
-
+printTestName("check_buildSnapshot_400000_d") 
 /*
 ### E. check_buildSnapshot() fail from scalar variable
 */
@@ -257,7 +271,7 @@ if (is_correct){
 } else {
   throw `E. _check_buildSnapshot().md did not fail - TC@56`
 }
-
+printTestName("check_buildSnapshot_400000_e") 
 
 /*
 ### F. check_buildSnapshot() fail from not enough parameters
@@ -283,7 +297,7 @@ if (is_correct){
 } else {
   throw `F. _check_buildSnapshot().md did not fail - TC@55`
 }
-
+printTestName("check_buildSnapshot_400000_f") 
 
 
 /*
@@ -313,7 +327,7 @@ if (is_correct){
 } else {
   throw `G. _check_buildSnapshot().md could not handle cyclic array`
 }
-
+printTestName("check_buildSnapshot_400000_g") 
 
 /*
 ### H. check_buildSnapshot() is ok with cyclic object
@@ -349,3 +363,5 @@ if (fail_count>0) {
   throw the_problem
 }
 TEST_total_checks += pass_count;
+
+   printTestName("check_buildSnapshot_400000_h") 

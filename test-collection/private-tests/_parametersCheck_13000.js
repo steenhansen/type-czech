@@ -5,13 +5,28 @@ pass_count = 0;
 fail_count = 0;
 
 
-_ParametersCheck_13001();
+_ParametersCheck_13000();
 
+function printTestName(an_str) {
+  if (typeof window !== "undefined") {
+    if (typeof window.browserList === 'function') {
+      if (window.browserList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+  } else {
+    if (typeof global.nodejsList === 'function') {
+      if (global.nodejsList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+   } 
+}
 
 
 ///////////////////////////////////////////////////////////////////////
 
-function _ParametersCheck_13001(){
+function _ParametersCheck_13000(){
   var TYPE_CZECH_current_test_number = '13001';    
   
   function your_function(){};
@@ -47,4 +62,6 @@ if (fail_count>0) {
   console.log(the_problem)
   throw the_problem
 }
+
+  printTestName("_ParametersCheck_13000") 
 TEST_total_checks += pass_count;

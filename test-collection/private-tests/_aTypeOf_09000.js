@@ -7,6 +7,21 @@ fail_count = 0;
 
 _aTypeOf_09000();
 
+function printTestName(an_str) {
+  if (typeof window !== "undefined") {
+    if (typeof window.browserList === 'function') {
+      if (window.browserList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+  } else {
+    if (typeof global.nodejsList === 'function') {
+      if (global.nodejsList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+   } 
+}
 
 function _aTypeOf_09000(){
   type_czech_test=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
@@ -62,5 +77,6 @@ if (fail_count>0) {
   console.log(the_problem)
   throw the_problem
 }
+     printTestName("_aTypeOf_09000")
 TEST_total_checks += pass_count;
 

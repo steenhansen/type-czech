@@ -14,6 +14,22 @@ checkParam_emptyExtra_30006();
 checkParam_emptyExtra_30007();
 checkParam_emptyExtra_30008();
 
+function printTestName(an_str) {
+  if (typeof window !== "undefined") {
+    if (typeof window.browserList === 'function') {
+      if (window.browserList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+  } else {
+    if (typeof global.nodejsList === 'function') {
+      if (global.nodejsList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+   } 
+}
+
 ///////////////////////////////
 function checkParam_emptyExtra_30000(){
 
@@ -156,7 +172,8 @@ D. Test array with extra parameters
   else if  (typeof TEST_total_checks === 'undefined')
     console.log('no-issues: pass', expected_tests-expected_fails, ' fail', expected_fails)
   else
-  pass_count += expected_tests
+    pass_count += expected_tests
+        printTestName("checkParam_emptyExtra_30000")  
 }
 
 
@@ -177,7 +194,8 @@ function checkParam_emptyExtra_30004(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+        printTestName("checkParam_emptyExtra_30004")  
 }
 
 function checkParam_emptyExtra_30005(){
@@ -197,7 +215,8 @@ function checkParam_emptyExtra_30005(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+        printTestName("checkParam_emptyExtra_30005")  
 }
 
 
@@ -218,7 +237,8 @@ function checkParam_emptyExtra_30006(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+        printTestName("checkParam_emptyExtra_30006")  
 }
 
 
@@ -240,7 +260,8 @@ function checkParam_emptyExtra_30007(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+        printTestName("checkParam_emptyExtra_30007")  
 }
 
 //  type_czech.checkParam_emptyExtra([17], ['EMPTY-ERROR', 'EMPTY-ERROR']);
@@ -261,7 +282,8 @@ function checkParam_emptyExtra_30008(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+      printTestName("checkParam_emptyExtra_30008")  
 }
 
 

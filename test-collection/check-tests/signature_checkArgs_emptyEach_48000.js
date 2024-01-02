@@ -12,7 +12,21 @@ signature_filledStrParams_48002();
 signature_filledStrParams_48003();
 
 
-
+function printTestName(an_str) {
+  if (typeof window !== "undefined") {
+    if (typeof window.browserList === 'function') {
+      if (window.browserList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+  } else {
+    if (typeof global.nodejsList === 'function') {
+      if (global.nodejsList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+   } 
+}
 
 
 //////////////////////////////////////////////////////////////////////////////////////
@@ -42,7 +56,8 @@ function signature_filledStrParams_48001(){
     console.log(TYPE_CZECH_current_test_number, err);
     if (typeof pass_count !== 'undefined') fail_count ++;
   }
-  if (typeof pass_count !== 'undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+     printTestName("signature_filledStrParams_48001")  
 }
 
 function signature_filledStrParams_48002(){
@@ -68,7 +83,8 @@ function signature_filledStrParams_48002(){
     console.log(TYPE_CZECH_current_test_number, err);
     if (typeof pass_count !== 'undefined') fail_count ++;
   }
-  if (typeof pass_count !== 'undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+     printTestName("signature_filledStrParams_48002")  
 }
 
 function signature_filledStrParams_48003(){
@@ -94,7 +110,8 @@ function signature_filledStrParams_48003(){
     console.log(TYPE_CZECH_current_test_number, err);
     if (typeof pass_count !== 'undefined') fail_count ++;
   }
-  if (typeof pass_count !== 'undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+   printTestName("signature_filledStrParams_48003")  
 }
 
 

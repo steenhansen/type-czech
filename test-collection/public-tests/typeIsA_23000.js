@@ -16,7 +16,21 @@ _typeIsA_23303();
 
 
 
-
+function printTestName(an_str) {
+  if (typeof window !== "undefined") {
+    if (typeof window.browserList === 'function') {
+      if (window.browserList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+  } else {
+    if (typeof global.nodejsList === 'function') {
+      if (global.nodejsList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+   } 
+}
 
 
 
@@ -65,7 +79,9 @@ function _typeIsA_23000(){
   test_typeIsA([{},{}], 'array')                // pass 28 2 empty - [obj obj]
   test_typeIsA({g:[]}, 'object')                // pass 29 3 empty - {arr arr}
   test_typeIsA({i:''}, 'object')                // pass 30 4 empty - {str str}
-  test_typeIsA({k:{}}, 'object')                // pass 31 5 empty - {obj obj}
+  test_typeIsA({ k: {} }, 'object');                // pass 31 5 empty - {obj obj}
+  
+    printTestName("_typeIsA_23301") 
 }
 
 
@@ -116,6 +132,7 @@ function _typeIsA_23202() {
     console.log(`${TYPE_CZECH_current_test_number} type_czech.typeIsA(a_full, 'Full')`);
   }
   pass_count += 1;
+     printTestName("_typeIsA_23302") 
 }
 
 function _typeIsA_23303() {
@@ -146,6 +163,7 @@ function _typeIsA_23303() {
     pass_count += 1;
     pass_count += 1;
   }
+      printTestName("_typeIsA_23303") 
 }
 
 

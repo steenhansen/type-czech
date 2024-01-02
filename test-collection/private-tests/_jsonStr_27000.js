@@ -6,7 +6,21 @@ fail_count = 0;
 
 _jsonStr_27000();
 
-
+function printTestName(an_str) {
+  if (typeof window !== "undefined") {
+    if (typeof window.browserList === 'function') {
+      if (window.browserList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+  } else {
+    if (typeof global.nodejsList === 'function') {
+      if (global.nodejsList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+   } 
+}
 
 function _jsonStr_27000(){
   type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
@@ -53,7 +67,7 @@ function _jsonStr_27000(){
   test_jsonStr({g:[]}, '{"g":[]}')                                 // pass 29 3 empty - {arr arr}
   test_jsonStr({i:''}, '{"i":""}')                                 // pass 30 4 empty - {str str}
   test_jsonStr({k:{}}, '{"k":{}}')                                 // pass 31 5 empty - {obj obj}
-
+   printTestName("_jsonStr_27000")  
 }
 
 

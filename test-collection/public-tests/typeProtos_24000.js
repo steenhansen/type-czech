@@ -8,6 +8,21 @@ _typeProtos_24101();
 _typeProtos_24102();
 _typeProtos_24103();
 
+function printTestName(an_str) {
+  if (typeof window !== "undefined") {
+    if (typeof window.browserList === 'function') {
+      if (window.browserList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+  } else {
+    if (typeof global.nodejsList === 'function') {
+      if (global.nodejsList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+   } 
+}
 
 function _typeProtos_24101() {
   type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
@@ -21,6 +36,7 @@ function _typeProtos_24101() {
     console.log(`${TYPE_CZECH_current_test_number} type_czech.typeProtos(new Date('1999-12-31')`);
   }
   pass_count += 1;
+   printTestName("_typeProtos_24101")  
 }
 
 function _typeProtos_24102() {
@@ -37,6 +53,7 @@ function _typeProtos_24102() {
     }
   }
   pass_count += 1;
+      printTestName("_typeProtos_24102")  
 }
 
 
@@ -58,6 +75,7 @@ function _typeProtos_24103() {
     } 
   }
   pass_count += 1;
+      printTestName("_typeProtos_24103")  
 }
 
 
@@ -103,7 +121,7 @@ function _typeProtos_24000() {
   A_yourFunc(['',''], 'Array')                  // pass 23 0 empty - [str str]
   A_yourFunc([[],[]], 'Array')                  // pass 24 1 empty - [arr arr]
   A_yourFunc([{},{}], 'Array')                  // pass 25 2 empty - [obj obj]
-
+    printTestName("_typeProtos_24000")  
 }
 
 

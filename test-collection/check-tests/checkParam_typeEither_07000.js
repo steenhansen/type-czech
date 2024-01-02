@@ -16,7 +16,21 @@ checkParam_typeEither_07002();
  checkParam_typeEither_07006();
  checkParam_typeEither_07007();
 
-
+function printTestName(an_str) {
+  if (typeof window !== "undefined") {
+    if (typeof window.browserList === 'function') {
+      if (window.browserList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+  } else {
+    if (typeof global.nodejsList === 'function') {
+      if (global.nodejsList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+   } 
+}
 ///////////////////////////////////////////
 
 function checkParam_typeEither_07000(){
@@ -75,6 +89,7 @@ function checkParam_typeEither_07000(){
     A_yourFunc({i:''},{j:''})            // fail 27 4 empty - {str str}
     A_yourFunc({k:{}},{l:{}})            // fail 28 5 empty - {obj obj}
     pass_count += expectedAndFailedTests(28, 28, 'A-Fail', 'checkParam_typeEither().md');
+printTestName("checkParam_typeEither_07000")   
 
 
 }
@@ -97,7 +112,9 @@ function checkParam_typeEither_07001(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+  printTestName("checkParam_typeEither_07001")   
+
 }
 
 
@@ -118,7 +135,9 @@ function checkParam_typeEither_07002(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+  printTestName("checkParam_typeEither_07002")   
+
 }
 
 
@@ -141,7 +160,9 @@ function checkParam_typeEither_07003(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+  printTestName("checkParam_typeEither_07003")   
+
 }
 
 function checkParam_typeEither_07004(){
@@ -163,7 +184,9 @@ function checkParam_typeEither_07004(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+  printTestName("checkParam_typeEither_07004")   
+
 }
 
 function checkParam_typeEither_07005(){
@@ -185,7 +208,9 @@ function checkParam_typeEither_07005(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+  printTestName("checkParam_typeEither_07005")   
+
 }
 
 function checkParam_typeEither_07006(){
@@ -208,6 +233,7 @@ function checkParam_typeEither_07006(){
           if (typeof fail_count !=='undefined') fail_count ++;
         }
         if (typeof pass_count !=='undefined') pass_count ++;
+printTestName("checkParam_typeEither_07006")   
 }
 
 
@@ -231,7 +257,9 @@ function checkParam_typeEither_07007(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+printTestName("checkParam_typeEither_07007")   
+  
 }
 
 

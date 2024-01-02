@@ -12,6 +12,23 @@
 pass_count = 0;
 fail_count = 0;
 
+function printTestName(an_str) {
+  if (typeof window !== "undefined") {
+    if (typeof window.browserList === 'function') {
+      if (window.browserList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+  } else {
+    if (typeof global.nodejsList === 'function') {
+      if (global.nodejsList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+   } 
+}
+
+
 function test_pre_checkArgs_typeEach(parameters_array, signature_of_parameters, error_id, expected_error) {
   const type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
   pass_count += 1;
@@ -103,6 +120,7 @@ A_yourFunc({g:[]},{h:[]})            // fail 27 3 empty - {arr arr}
 A_yourFunc({i:''},{j:''})            // fail 28 4 empty - {str str}
 A_yourFunc({k:{}},{l:{}})            // fail 29 5 empty - {obj obj}
 pass_count += expectedAndFailedTests(29, 29, 'A-Fail', '_checkArgs_typeEach_32900.js');
+printTestName("checkArgs_typeEach_32900")  
 
 // // /////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -110,6 +128,7 @@ parameters  = ['a', 'b', 'c'];
 signature = 'string';
 error_mess = '';
 test_pre_checkArgs_typeEach(parameters, signature, 32901, error_mess);
+printTestName("checkArgs_typeEach_32901")  
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -122,6 +141,7 @@ ACTUAL TYPE 'string','number','string'
 EXPECTED TYPE ["string"]
  ORIGIN pre_checkArgs_typeEach_32900()`;
 test_pre_checkArgs_typeEach(parameters, signature, 32902, error_mess);
+printTestName("checkArgs_typeEach_32902")  
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -129,6 +149,7 @@ parameters  = [ ['a'] ];
 signature = 'strings';
 error_mess = ``;
 test_pre_checkArgs_typeEach(parameters, signature, 32903, error_mess);
+printTestName("checkArgs_typeEach_32903")  
 
 
 
@@ -142,6 +163,7 @@ ACTUAL TYPE 'array'
 EXPECTED TYPE string
  ORIGIN pre_checkArgs_typeEach_32900()`;
 test_pre_checkArgs_typeEach(parameters, signature, 32904, error_mess);
+printTestName("checkArgs_typeEach_32904")  
 
 parameters  = 'a';
 signature = 'strings';
@@ -152,16 +174,19 @@ ACTUAL TYPE 'string'
 EXPECTED TYPE strings
  ORIGIN pre_checkArgs_typeEach_32900()`;
 test_pre_checkArgs_typeEach(parameters, signature, 32905, error_mess);
+printTestName("checkArgs_typeEach_32905")  
 
 parameters  = 'a';
 signature = 'string';
 error_mess = ``;
 test_pre_checkArgs_typeEach(parameters, signature, 32906, error_mess);
+printTestName("checkArgs_typeEach_32906")  
 
 parameters  = [ ['a'], ['b'], ['c']];
 signature = 'strings';
 error_mess = ``;
 test_pre_checkArgs_typeEach(parameters, signature, 32907, error_mess);
+printTestName("checkArgs_typeEach_32907")  
 
 parameters  = [ ['a'], ['b'], ['c']];
 signature = 'string';
@@ -172,6 +197,7 @@ ACTUAL TYPE 'array','array','array'
 EXPECTED TYPE string
  ORIGIN pre_checkArgs_typeEach_32900()`;
 test_pre_checkArgs_typeEach(parameters, signature, 32908, error_mess);
+printTestName("checkArgs_typeEach_32908")  
 
 parameters  = ['a', 'b', 'c'];
 signature = 'strings';
@@ -182,16 +208,19 @@ ACTUAL TYPE 'string','string','string'
 EXPECTED TYPE strings
  ORIGIN pre_checkArgs_typeEach_32900()`;
 test_pre_checkArgs_typeEach(parameters, signature, 32909, error_mess);
+printTestName("checkArgs_typeEach_32909")  
 
 parameters  = ['a', 'b', 'c'];
 signature = 'string';
 error_mess = ``;
 test_pre_checkArgs_typeEach(parameters, signature, 32910, error_mess);
+printTestName("checkArgs_typeEach_32910")  
 
 parameters  = [2];
 signature = 'number';
 error_mess = '';
 test_pre_checkArgs_typeEach(parameters, signature, 32911, error_mess);
+printTestName("checkArgs_typeEach_32911")  
 
 parameters  = [];
 signature = ['number'];
@@ -202,14 +231,7 @@ ACTUAL TYPE
 EXPECTED TYPE ["number"]
  ORIGIN pre_checkArgs_typeEach_32900()`;
 test_pre_checkArgs_typeEach(parameters, signature, 32912, error_mess);
-
-
-if (fail_count>0) {
-  the_problem = `read-me-tests/checkArgs_typeEach_32900.js - fails = ${fail_count}`;  
-  console.log(the_problem)
-  throw the_problem
-}
-
+printTestName("checkArgs_typeEach_32912")  
 
 if (fail_count>0) {
   the_problem = `check-tests/checkArgs_typeEach_32900.js - fails = ${fail_count}`;  

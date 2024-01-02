@@ -12,6 +12,22 @@ pass_count = 0;
 fail_count = 0;
 
 
+function printTestName(an_str) {
+  if (typeof window !== "undefined") {
+    if (typeof window.browserList === 'function') {
+      if (window.browserList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+  } else {
+    if (typeof global.nodejsList === 'function') {
+      if (global.nodejsList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+   } 
+}
+
 
 function test_pre_checkArgs_emptyEach(actual_variable, variable_signature, error_id, expected_error) {
   const type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
@@ -104,7 +120,7 @@ A_yourFunc()                       // fail 9 S empty nothing
 
 
 pass_count += expectedAndFailedTests(9, 9, 'A-Fail', 'checkArgs_emptyEach().md');
-
+printTestName("checkArgs_emptyEach_32800")  
 
 
 // /////////////////////////////////////////////////////////////////////////////////////////////
@@ -114,12 +130,14 @@ parameters  = ['a', 'b', 'c'];
 signature = 'EMPTY-ERROR';
 error_mess = '';
 test_pre_checkArgs_emptyEach(parameters, signature, 32801, error_mess);
-
+printTestName("checkArgs_emptyEach_32801")  
+    
 parameters  = ['a', 2, 'c'];
 signature = 'EMPTY-ERROR';
 error_mess = '';
 test_pre_checkArgs_emptyEach(parameters, signature, 32802, error_mess);
-
+printTestName("checkArgs_emptyEach_32802")  
+    
 parameters  = ['a', 'b', 'c'];
 signature = ['EMPTY-ERROR'];
 error_mess = `PRE_test_32800() PRE-FUNC: VE@607 - Not allowed, ["EMPTY-ERROR"], the only signature allowed with checkArgs_emptyEach() is 'EMPTY-ERROR' or 'ER'
@@ -129,11 +147,13 @@ ACTUAL TYPE 'array'
 EMPTY ASSERTION ["EMPTY-ERROR"]
  ORIGIN pre_checkArgs_emptyEach_32800()`;
 test_pre_checkArgs_emptyEach(parameters, signature, 32803, error_mess);
-
+printTestName("checkArgs_emptyEach_32803")  
+    
 parameters  = [2];
 signature = 'EMPTY-ERROR';
 error_mess = '';
 test_pre_checkArgs_emptyEach(parameters, signature, 32804, error_mess);
+    printTestName("checkArgs_emptyEach_32804")  
 
 parameters  = [];
 signature = 'EMPTY-ERROR';
@@ -144,7 +164,7 @@ ACTUAL TYPE 'array'
 EMPTY ASSERTION EMPTY-ERROR
  ORIGIN pre_checkArgs_emptyEach_32800()`;
 test_pre_checkArgs_emptyEach(parameters, signature, 32805, error_mess);
-
+    printTestName("checkArgs_emptyEach_32805")  
 
 
 if (fail_count>0) {

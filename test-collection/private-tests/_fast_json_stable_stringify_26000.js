@@ -10,7 +10,21 @@ _fast_json_stable_stringify_26001();
 _fast_json_stable_stringify_26002();
 
 
-
+function printTestName(an_str) {
+  if (typeof window !== "undefined") {
+    if (typeof window.browserList === 'function') {
+      if (window.browserList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+  } else {
+    if (typeof global.nodejsList === 'function') {
+      if (global.nodejsList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+   } 
+}
 
 function _fast_json_stable_stringify_26001(){
   type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE'
@@ -63,7 +77,10 @@ function _fast_json_stable_stringify_26001(){
     test_fast_json_stable(new RegExp(/\d\d\d\d\d\d\d\d\d\d\d\dabcdefghijklmnopqrstuvwxyz/),
       `/\\d\\d\\d\\d\\d\\d\\d\\d\\d\\d\\d\\dabcdefghijklmnopqrstuvwxyz/`)                           // pass 32 big regex
     test_fast_json_stable(function (param_1,param_2,param_3) { return param_1 + param_2 + param_3; },
-      `function (param_1,param_2,param_3) { return param_1 + param_2 + param_3; }`)                 // pass 33 big function
+      `function (param_1,param_2,param_3) { return param_1 + param_2 + param_3; }`);                 // pass 33 big function
+  
+  
+    printTestName("_fast_json_stable_stringify_26001")  
 }
 
 
@@ -111,7 +128,8 @@ function _fast_json_stable_stringify_26002(){
                                               if (a_json !== b_json) {
                                                 fail_count ++;
                                               }
-                                              pass_count ++;
+  pass_count++;
+      printTestName("_fast_json_stable_stringify_26002")  
 }
 
 

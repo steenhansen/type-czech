@@ -13,7 +13,21 @@ _refDiff_19002();
 _refDiff_19003();
 _refDiff_19004();
 
-
+function printTestName(an_str) {
+  if (typeof window !== "undefined") {
+    if (typeof window.browserList === 'function') {
+      if (window.browserList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+  } else {
+    if (typeof global.nodejsList === 'function') {
+      if (global.nodejsList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+   } 
+}
 
 /////////////////////////////////////////////
 
@@ -37,7 +51,8 @@ function _refDiff_19001(){
           console.log(                          '    expected=', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("_refDiff_19001")  
 }
 
 
@@ -63,7 +78,8 @@ function _refDiff_19002(){
           console.log(                          '    expected=', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("_refDiff_19002")  
 }
 
 
@@ -86,7 +102,8 @@ function _refDiff_19003(){
           console.log(                          '    expected=', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("_refDiff_19003")  
 }
 
 
@@ -110,7 +127,8 @@ function _refDiff_19004(){
           console.log(                          '    expected=', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+      printTestName("_refDiff_19004")  
 }
 
 

@@ -5,10 +5,25 @@ pass_count = 0;
 fail_count = 0;
 
 
-_missingKey_12001();
+_missingKey_12000();
 
+function printTestName(an_str) {
+  if (typeof window !== "undefined") {
+    if (typeof window.browserList === 'function') {
+      if (window.browserList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+  } else {
+    if (typeof global.nodejsList === 'function') {
+      if (global.nodejsList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+   } 
+}
 
-function _missingKey_12001(){
+function _missingKey_12000(){
   var TYPE_CZECH_current_test_number = '12001';       
   var extra_keys = {g:"my-extra-key"};           
   var expect_error =`TE@216 -  Key 'g', which has a type of 'my-extra-key', is missing in the checked object`;
@@ -32,5 +47,6 @@ if (fail_count>0) {
   console.log(the_problem)
   throw the_problem
 }
+   printTestName("_missingKey_12000") 
 TEST_total_checks += pass_count;
 

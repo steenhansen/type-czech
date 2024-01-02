@@ -8,6 +8,21 @@ fail_count = 0;
 
 _eitherChecks_31001();
 
+function printTestName(an_str) {
+  if (typeof window !== "undefined") {
+    if (typeof window.browserList === 'function') {
+      if (window.browserList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+  } else {
+    if (typeof global.nodejsList === 'function') {
+      if (global.nodejsList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+   } 
+}
 
 function _eitherChecks_31001(){
   type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE'
@@ -29,7 +44,8 @@ function _eitherChecks_31001(){
                       if (actual_str !== expected_str) {
                         fail_count ++;
                       }
-                      pass_count ++;
+  pass_count++;
+    printTestName("_eitherChecks_31001") 
 }
 
 

@@ -16,6 +16,21 @@ variadic_32102();
 
 variadic_32201();
 
+function printTestName(an_str) {
+  if (typeof window !== "undefined") {
+    if (typeof window.browserList === 'function') {
+      if (window.browserList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+  } else {
+    if (typeof global.nodejsList === 'function') {
+      if (global.nodejsList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+   } 
+}
 
 function variadic_32001(){
   TYPE_CZECH_current_test_number = '32001';
@@ -36,7 +51,8 @@ function variadic_32001(){
     console.log(TYPE_CZECH_current_test_number, 'test failed');
     if (typeof tested_signatures !== 'undefined') failed_signatures ++;
     }
-    if (typeof tested_signatures !== 'undefined') tested_signatures ++;
+  if (typeof tested_signatures !== 'undefined') tested_signatures++;
+    printTestName("variadic_32001") 
 }
 
 
@@ -65,7 +81,8 @@ function variadic_32002(){
     console.log(TYPE_CZECH_current_test_number, 'test failed');
     if (typeof tested_signatures !== 'undefined') failed_signatures ++;
     }
-    if (typeof tested_signatures !== 'undefined') tested_signatures ++;
+  if (typeof tested_signatures !== 'undefined') tested_signatures++;
+    printTestName("variadic_32002") 
 }
 
 function variadic_32003(){
@@ -88,7 +105,8 @@ function variadic_32003(){
   if (was_exception) {
     if (typeof tested_signatures !== 'undefined') failed_signatures ++;
     }
-    if (typeof tested_signatures !== 'undefined') tested_signatures ++;
+  if (typeof tested_signatures !== 'undefined') tested_signatures++;
+  printTestName("variadic_32003") 
 }
 
 
@@ -115,7 +133,8 @@ function variadic_32101(){
     console.log(TYPE_CZECH_current_test_number, 'test failed');
     if (typeof tested_signatures !== 'undefined') failed_signatures ++;
     }
-    if (typeof tested_signatures !== 'undefined') tested_signatures ++;
+  if (typeof tested_signatures !== 'undefined') tested_signatures++;
+    printTestName("variadic_32101") 
 }
 
 function variadic_32102(){
@@ -138,7 +157,8 @@ function variadic_32102(){
     console.log(TYPE_CZECH_current_test_number, 'test failed');
     if (typeof tested_signatures !== 'undefined') failed_signatures ++;
     }
-    if (typeof tested_signatures !== 'undefined') tested_signatures ++;
+  if (typeof tested_signatures !== 'undefined') tested_signatures++;
+    printTestName("variadic_32102") 
 }
 
 
@@ -163,7 +183,8 @@ function variadic_32201(){
           console.log(                          '    expected=', expect_error);
           if (typeof failed_mutatedVariables !=='undefined') failed_mutatedVariables ++;
         }
-        if (typeof tested_mutatedVariables !=='undefined') tested_mutatedVariables ++;
+  if (typeof tested_mutatedVariables !== 'undefined') tested_mutatedVariables++;
+      printTestName("variadic_32201")  
 }
 
 

@@ -9,6 +9,21 @@ fail_count = 0;
   nested_checks_50003();   // LEVEL_222_ERROR__123n
 nested_checks_50004();   // LEVEL_333_ERROR__123n
 
+function printTestName(an_str) {
+  if (typeof window !== "undefined") {
+    if (typeof window.browserList === 'function') {
+      if (window.browserList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+  } else {
+    if (typeof global.nodejsList === 'function') {
+      if (global.nodejsList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+   } 
+}
 
 ////////////////////////////////////////////
 
@@ -44,7 +59,8 @@ function nested_checks_50001(NO_ERROR){
     console.log(TYPE_CZECH_current_test_number, err);
     if (typeof pass_count !== 'undefined') fail_count ++;
   }
-  if (typeof pass_count !== 'undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+   printTestName("nested_checks_50001")  
 }
 
 
@@ -95,7 +111,8 @@ EXPECTED TYPE number
       // expected route with an error message
     }
   }
-  if (typeof pass_count !== 'undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+     printTestName("nested_checks_50002")  
 }
 
 
@@ -146,7 +163,7 @@ EXPECTED TYPE ["boolean","symbol"]
     }
   }
   if (typeof pass_count !== 'undefined') pass_count ++;
-
+   printTestName("nested_checks_50003")  
 
 }
 
@@ -199,7 +216,8 @@ EXPECTED TYPE date
       // expected route with an error message
     }
   }
-  if (typeof pass_count !== 'undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+     printTestName("nested_checks_50004")  
 }
 
 

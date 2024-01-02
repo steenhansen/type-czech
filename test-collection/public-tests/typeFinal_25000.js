@@ -11,7 +11,21 @@ _typeFinal_25003();
 
 
 
-
+function printTestName(an_str) {
+  if (typeof window !== "undefined") {
+    if (typeof window.browserList === 'function') {
+      if (window.browserList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+  } else {
+    if (typeof global.nodejsList === 'function') {
+      if (global.nodejsList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+   } 
+}
 
 
 
@@ -58,7 +72,8 @@ function _typeFinal_25000(){
   test_typeFinal([{},{}], 'array')                // pass 28 2 empty - [obj obj]
   test_typeFinal({g:[]}, 'object')                // pass 29 3 empty - {arr arr}
   test_typeFinal({i:''}, 'object')                // pass 30 4 empty - {str str}
-  test_typeFinal({k:{}}, 'object')                // pass 31 5 empty - {obj obj}
+  test_typeFinal({ k: {} }, 'object');                // pass 31 5 empty - {obj obj}
+  printTestName("_typeFinal_25000")  
 }
 
 function _typeFinal_25001() {
@@ -70,6 +85,7 @@ function _typeFinal_25001() {
     console.log(`${TYPE_CZECH_current_test_number} type_czech.typeFinal(new Date('1999-12-31')`);
   }
   pass_count += 1;
+    printTestName("_typeFinal_25000")  
 }
 
 function _typeFinal_25002() {
@@ -84,6 +100,7 @@ function _typeFinal_25002() {
     }
   }
   pass_count += 1;
+    printTestName("_typeFinal_25000")  
 }
 
 
@@ -102,6 +119,7 @@ function _typeFinal_25003() {
     }
   }
   pass_count += 1;
+    printTestName("_typeFinal_25000")  
 }
 
 

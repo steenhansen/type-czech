@@ -6,7 +6,21 @@ fail_count = 0;
 
 _cycle_loops_08001();
 
-
+function printTestName(an_str) {
+  if (typeof window !== "undefined") {
+    if (typeof window.browserList === 'function') {
+      if (window.browserList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+  } else {
+    if (typeof global.nodejsList === 'function') {
+      if (global.nodejsList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+   } 
+}
 
 
 function _cycle_loops_08001(){
@@ -52,7 +66,7 @@ function _cycle_loops_08001(){
     console.log('_cycle_loops_08001 failed with decycle()')
     fail_count ++;
   }
-
+printTestName("_cycle_loops_08000")
 }
 
 

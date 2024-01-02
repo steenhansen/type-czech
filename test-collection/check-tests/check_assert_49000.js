@@ -8,6 +8,21 @@ fail_count = 0;
 signature_check_assert_49001()
 signature_check_assert_49002()
 
+function printTestName(an_str) {
+  if (typeof window !== "undefined") {
+    if (typeof window.browserList === 'function') {
+      if (window.browserList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+  } else {
+    if (typeof global.nodejsList === 'function') {
+      if (global.nodejsList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+   } 
+}
 
 function signature_check_assert_49001(){
   TYPE_CZECH_current_test_number = '49001';
@@ -41,7 +56,8 @@ ACTUAL TYPE 'object'
     console.log(TYPE_CZECH_current_test_number, 'FAIL EXPECTED', expected_error);
     if (typeof pass_count !== 'undefined') fail_count ++;
   }
-  if (typeof pass_count !== 'undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+  printTestName("signature_check_assert_49001")  
 }
 
 
@@ -84,7 +100,9 @@ try {
     console.log(TYPE_CZECH_current_test_number, 'FAIL EXPECTED', expected_error);
     if (typeof pass_count !== 'undefined') fail_count ++;
   }
-  if (typeof pass_count !== 'undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("signature_check_assert_49002")  
+
 }
 
 
