@@ -10,6 +10,21 @@
 pass_count = 0;
 fail_count = 0;
 
+function printTestName(an_str) {
+  if (typeof window !== "undefined") {
+    if (typeof window.browserList === 'function') {
+      if (window.browserList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+  } else {
+    if (typeof global.nodejsList === 'function') {
+      if (global.nodejsList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+   } 
+}
 
 
 function test_pre_checkParam_type_single(single_parameter, signature_of_parameter, error_id, expected_error) {
@@ -61,6 +76,7 @@ single_variable  = { x: [{ y: 'z'      }] };
 single_signature = { x: [{ y: 'string' }] };
 error_mess = '';
 test_pre_checkParam_type_single(single_variable, single_signature, 5901, error_mess);
+printTestName("checkParam_type_5901") 
 
 single_variable  = { x: [{ y: 123456   }] };
 single_signature = { x: [{ y: 'string' }] };
@@ -71,6 +87,7 @@ ACTUAL TYPE 'object'
 EXPECTED TYPE {"x":[{"y":"string"}]}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5902, error_mess);
+printTestName("checkParam_type_5902") 
 
 single_variable  = { a: [1, 2, 3] };
 single_signature = { a: 'object' };
@@ -81,6 +98,7 @@ ACTUAL TYPE 'object'
 EXPECTED TYPE {"a":"object"}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5903, error_mess);
+printTestName("checkParam_type_5903") 
 
 single_variable  = [13, 14, 15];
 single_signature = { r: 'number' };
@@ -91,6 +109,7 @@ ACTUAL TYPE 'array'
 EXPECTED TYPE {"r":"number"}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5904, error_mess);
+printTestName("checkParam_type_5904") 
 
 single_variable  = { r: 'a-string' };
 single_signature = ['number'];
@@ -101,6 +120,7 @@ ACTUAL TYPE 'object'
 EXPECTED TYPE ["number"]
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5905, error_mess);
+printTestName("checkParam_type_5905") 
 
 // /////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -108,6 +128,7 @@ single_variable  = { a: [{ r: [ [123],   [1, 2, 3],         987n,     false,    
 single_signature = { a: [{ r: [ 'array', ['numbers'], 'bigint', 'boolean', 'date',                 'function', 'number', 'object', { b: 'number' }, 'regexp', 'string', 'symbol'        ] }] };
 error_mess = '';
 test_pre_checkParam_type_single(single_variable, single_signature, 5906, error_mess);
+printTestName("checkParam_type_5906") 
 
 single_variable  = { a: [{ r: [ 'A-STRING ! ! !', [1, 2, 3],  987n,    false,     new Date('1999-12-12'), (x) => x,   12,        { a: 3 }, { b: 4 },        /d/,      'abc',    Symbol('sym')   ] }] };
 single_signature = { a: [{ r: [ 'array',          ['number'], 'bigint', 'boolean', 'date',                 'function', 'number', 'object', { b: 'number' }, 'regexp', 'string', 'symbol'        ] }] };
@@ -118,6 +139,7 @@ ACTUAL TYPE 'object'
 EXPECTED TYPE {"a":[{"r":["array",["number"],"bigint","boolean","date","function","number","object",{"b":"number"},"regexp","string","symbol"]}]}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5907, error_mess);
+printTestName("checkParam_type_5907") 
 
 single_variable  = { a: [{ r: [ [123],   'A-STRING ! ! !',  987n,     false,     new Date('1999-12-12'), (x) => x,   12,       { a: 3 }, { b: 4 },         /d/,      'abc',    Symbol('sym')   ] }] };
 single_signature = { a: [{ r: [ 'array', ['number'],        'bigint', 'boolean', 'date',                 'function', 'number', 'object', { b: 'number' }, 'regexp', 'string', 'symbol'        ] }] };
@@ -128,6 +150,7 @@ ACTUAL TYPE 'object'
 EXPECTED TYPE {"a":[{"r":["array",["number"],"bigint","boolean","date","function","number","object",{"b":"number"},"regexp","string","symbol"]}]}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5908, error_mess);
+printTestName("checkParam_type_5908") 
 
 single_variable  = { a: [{ r: [ [123],   [1, 2, 3],  'A-STRING ! ! !', false,     new Date('1999-12-12'), (x) => x,   12,       { a: 3 }, { b: 4 },         /d/,      'abc',    Symbol('sym')   ] }] };
 single_signature = { a: [{ r: [ 'array', ['numbers'], 'bigint',         'boolean', 'date',                 'function', 'number', 'object', { b: 'number' }, 'regexp', 'string', 'symbol'        ] }] };
@@ -138,6 +161,7 @@ ACTUAL TYPE 'object'
 EXPECTED TYPE {"a":[{"r":["array",["numbers"],"bigint","boolean","date","function","number","object",{"b":"number"},"regexp","string","symbol"]}]}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5909, error_mess);
+printTestName("checkParam_type_5909") 
 
 single_variable  = { a: [{ r: [ [123],   [1, 2, 3],  987n,     'A-STRING ! ! !', new Date('1999-12-12'), (x) => x,   12,       { a: 3 }, { b: 4 },         /d/,      'abc',    Symbol('sym')   ] }] };
 single_signature = { a: [{ r: [ 'array', ['numbers'], 'bigint', 'boolean',        'date',                 'function', 'number', 'object', { b: 'number' }, 'regexp', 'string', 'symbol'        ] }] };
@@ -148,6 +172,7 @@ ACTUAL TYPE 'object'
 EXPECTED TYPE {"a":[{"r":["array",["numbers"],"bigint","boolean","date","function","number","object",{"b":"number"},"regexp","string","symbol"]}]}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5910, error_mess);
+printTestName("checkParam_type_5910") 
 
 single_variable  = { a: [{ r: [ [123],   [1, 2, 3],  987n,     false,     'A-STRING ! ! !', (x) => x,   12,       { a: 3 }, { b: 4 },         /d/,      'abc',    Symbol('sym')   ] }] };
 single_signature = { a: [{ r: [ 'array', ['numbers'], 'bigint', 'boolean', 'date',           'function', 'number', 'object', { b: 'number' }, 'regexp', 'string', 'symbol'        ] }] };
@@ -158,6 +183,7 @@ ACTUAL TYPE 'object'
 EXPECTED TYPE {"a":[{"r":["array",["numbers"],"bigint","boolean","date","function","number","object",{"b":"number"},"regexp","string","symbol"]}]}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5911, error_mess);
+printTestName("checkParam_type_5911") 
 
 single_variable  = { a: [{ r: [ [123],   [1, 2, 3],  987n,     false,     new Date('1999-12-12'), 'A-STRING ! ! !',  12,       { a: 3 }, { b: 4 },         /d/,      'abc',    Symbol('sym')   ] }] };
 single_signature = { a: [{ r: [ 'array', ['numbers'], 'bigint', 'boolean', 'date',                 'function',       'number', 'object', { b: 'number' }, 'regexp', 'string', 'symbol'        ] }] };
@@ -168,6 +194,7 @@ ACTUAL TYPE 'object'
 EXPECTED TYPE {"a":[{"r":["array",["numbers"],"bigint","boolean","date","function","number","object",{"b":"number"},"regexp","string","symbol"]}]}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5912, error_mess);
+printTestName("checkParam_type_5912") 
 
 single_variable  = { a: [{ r: [ [123],   [1, 2, 3],  987n,     false,     new Date('1999-12-12'), (x) => x,   'A-STRING ! ! !', { a: 3 }, { b: 4 },         /d/,      'abc',    Symbol('sym')   ] }] };
 single_signature = { a: [{ r: [ 'array', ['numbers'], 'bigint', 'boolean', 'date',                 'function', 'number',         'object', { b: 'number' }, 'regexp', 'string', 'symbol'        ] }] };
@@ -178,6 +205,7 @@ ACTUAL TYPE 'object'
 EXPECTED TYPE {"a":[{"r":["array",["numbers"],"bigint","boolean","date","function","number","object",{"b":"number"},"regexp","string","symbol"]}]}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5913, error_mess);
+printTestName("checkParam_type_5913") 
 
 single_variable  = { a: [{ r: [ [123],   [1, 2, 3],  987n,     false,     new Date('1999-12-12'), (x) => x,   12,       'A-STRING ! ! !', { b: 4 },         /d/,      'abc',    Symbol('sym')   ] }] };
 single_signature = { a: [{ r: [ 'array', ['numbers'], 'bigint', 'boolean', 'date',                 'function', 'number', 'object',         { b: 'number' }, 'regexp', 'string', 'symbol'        ] }] };
@@ -188,6 +216,7 @@ ACTUAL TYPE 'object'
 EXPECTED TYPE {"a":[{"r":["array",["numbers"],"bigint","boolean","date","function","number","object",{"b":"number"},"regexp","string","symbol"]}]}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5914, error_mess);
+printTestName("checkParam_type_5914") 
 
 single_variable  = { a: [{ r: [ [123],   [1, 2, 3],  987n,     false,     new Date('1999-12-12'), (x) => x,   12,       { a: 3 }, 'A-STRING ! ! !', /d/,      'abc',    Symbol('sym')   ] }] };
 single_signature = { a: [{ r: [ 'array', ['numbers'], 'bigint', 'boolean', 'date',                 'function', 'number', 'object', { b: 'number' },  'regexp', 'string', 'symbol'        ] }] };
@@ -198,6 +227,7 @@ ACTUAL TYPE 'object'
 EXPECTED TYPE {"a":[{"r":["array",["numbers"],"bigint","boolean","date","function","number","object",{"b":"number"},"regexp","string","symbol"]}]}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5915, error_mess);
+printTestName("checkParam_type_5915") 
 
 single_variable  = { a: [{ r: [ [123],   [1, 2, 3],  987n,     false,     new Date('1999-12-12'), (x) => x,   12,       { a: 3 }, { b: 4 },        'A-STRING ! ! !', 'abc',    Symbol('sym')   ] }] };
 single_signature = { a: [{ r: [ 'array', ['numbers'], 'bigint', 'boolean', 'date',                 'function', 'number', 'object', { b: 'number' }, 'regexp',         'string', 'symbol'        ] }] };
@@ -208,6 +238,7 @@ ACTUAL TYPE 'object'
 EXPECTED TYPE {"a":[{"r":["array",["numbers"],"bigint","boolean","date","function","number","object",{"b":"number"},"regexp","string","symbol"]}]}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5916, error_mess);
+printTestName("checkParam_type_5916") 
 
 single_variable  = { a: [{ r: [ [123],   [1, 2, 3],  987n,     false,     new Date('1999-12-12'), (x) => x,   12,       { a: 3 }, { b: 4 },         /d/,     'abc',    'A-STRING ! ! !' ] }] };
 single_signature = { a: [{ r: [ 'array', ['numbers'], 'bigint', 'boolean', 'date',                 'function', 'number', 'object', { b: 'number' }, 'regexp', 'string', 'symbol'         ] }] };
@@ -218,6 +249,7 @@ ACTUAL TYPE 'object'
 EXPECTED TYPE {"a":[{"r":["array",["numbers"],"bigint","boolean","date","function","number","object",{"b":"number"},"regexp","string","symbol"]}]}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5917, error_mess);
+printTestName("checkParam_type_5917") 
 
 // /////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -230,6 +262,7 @@ ACTUAL TYPE 'array'
 EXPECTED TYPE date
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5918, error_mess);
+printTestName("checkParam_type_5918") 
 
 single_variable  = [1, 2, 3];
 single_signature = 'date';
@@ -240,6 +273,7 @@ ACTUAL TYPE 'array'
 EXPECTED TYPE date
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5919, error_mess);
+printTestName("checkParam_type_5919") 
 
 single_variable  = 987n;
 single_signature = 'date';
@@ -250,6 +284,7 @@ ACTUAL TYPE 'bigint'
 EXPECTED TYPE date
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5920, error_mess);
+printTestName("checkParam_type_5920") 
 
 single_variable  = false;
 single_signature = 'date';
@@ -260,11 +295,13 @@ ACTUAL TYPE 'boolean'
 EXPECTED TYPE date
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5921, error_mess);
+printTestName("checkParam_type_5921") 
 
 single_variable  = new Date('1999-12-12');
 single_signature = 'date';
 error_mess = '';
 test_pre_checkParam_type_single(single_variable, single_signature, 5922, error_mess);
+printTestName("checkParam_type_5922") 
 
 single_variable  = (x) => x;
 single_signature = 'date';
@@ -275,6 +312,7 @@ ACTUAL TYPE 'function'
 EXPECTED TYPE date
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5923, error_mess);
+printTestName("checkParam_type_5923") 
 
 single_variable  = 12;
 single_signature = 'date';
@@ -285,6 +323,7 @@ ACTUAL TYPE 'number'
 EXPECTED TYPE date
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5924, error_mess);
+printTestName("checkParam_type_5924")
 
 single_variable  = { a: 3 };
 single_signature = 'date';
@@ -295,6 +334,7 @@ ACTUAL TYPE 'object'
 EXPECTED TYPE date
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5925, error_mess);
+printTestName("checkParam_type_5925")
 
 single_variable  = /d/;
 single_signature = 'date';
@@ -305,6 +345,7 @@ ACTUAL TYPE 'regexp'
 EXPECTED TYPE date
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5926, error_mess);
+printTestName("checkParam_type_5926") 
 
 single_variable  = 'abc';
 single_signature = 'date';
@@ -315,6 +356,7 @@ ACTUAL TYPE 'string'
 EXPECTED TYPE date
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5927, error_mess);
+printTestName("checkParam_type_5927") 
 
 single_variable  = Symbol('sym');
 single_signature = 'date';
@@ -325,13 +367,14 @@ ACTUAL TYPE 'symbol'
 EXPECTED TYPE date
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5928, error_mess);
-
+printTestName("checkParam_type_5928") 
 // /////////////////////////////////////////////////////////////////////////////////////////////
 
 single_variable  = [[[[[[[ 1        ]]]]]]];
 single_signature = [[[[[[[ 'number' ]]]]]]];
 error_mess = '';
 test_pre_checkParam_type_single(single_variable, single_signature, 5929, error_mess);
+printTestName("checkParam_type_5929") 
 
 single_variable  = [[[[[[[ 1        ]]]]]]];
 single_signature = [[[[[[[ 'string' ]]]]]]];
@@ -342,6 +385,7 @@ ACTUAL TYPE 'array'
 EXPECTED TYPE [[[[[[["string"]]]]]]]
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5930, error_mess);
+printTestName("checkParam_type_5930") 
 
 single_variable  =    [[[[[[ 1        ]]]]]];
 single_signature = [  [[[[[[ 'number' ]]]]]]  ];
@@ -352,6 +396,7 @@ ACTUAL TYPE 'array'
 EXPECTED TYPE [[[[[[["number"]]]]]]]
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5931, error_mess);
+printTestName("checkParam_type_5931") 
 
 single_variable  = [  [[[[[[ 1        ]]]]]]  ];
 single_signature =    [[[[[[ 'number' ]]]]]];
@@ -362,6 +407,7 @@ ACTUAL TYPE 'array'
 EXPECTED TYPE [[[[[["number"]]]]]]
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5932, error_mess);
+printTestName("checkParam_type_5932") 
 
 // /////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -369,6 +415,7 @@ single_variable  = { a: { b: { c: { d: { e: 12       } } } } };
 single_signature = { a: { b: { c: { d: { e: 'number' } } } } };
 error_mess = '';
 test_pre_checkParam_type_single(single_variable, single_signature, 5933, error_mess);
+printTestName("checkParam_type_5933") 
 
 single_variable  = { a: { b: { c: { d: { e: 12       } } } } };
 single_signature = { a: { b: { c: { d: { e: 'string' } } } } };
@@ -379,6 +426,7 @@ ACTUAL TYPE 'object'
 EXPECTED TYPE {"a":{"b":{"c":{"d":{"e":"string"}}}}}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5934, error_mess);
+printTestName("checkParam_type_5934") 
 
 single_variable  = { a: { b: { c: { d: 12              } } } };
 single_signature = { a: { b: { c: { d: { e: 'number' } } } } };
@@ -389,6 +437,7 @@ ACTUAL TYPE 'object'
 EXPECTED TYPE {"a":{"b":{"c":{"d":{"e":"number"}}}}}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5935, error_mess);
+printTestName("checkParam_type_5935") 
 
 single_variable  = { a: { b: { c: { d: { e: 12 }   } } } };
 single_signature = { a: { b: { c: { d: 'number'    } } } };
@@ -399,6 +448,7 @@ ACTUAL TYPE 'object'
 EXPECTED TYPE {"a":{"b":{"c":{"d":"number"}}}}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5936, error_mess);
+printTestName("checkParam_type_5936") 
 
 // /////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -406,6 +456,7 @@ single_variable  = { a: [ { b: [ { c: [ { d: [ { e: 12       } ] } ] } ] } ] };
 single_signature = { a: [ { b: [ { c: [ { d: [ { e: 'number' } ] } ] } ] } ] };
 error_mess = '';
 test_pre_checkParam_type_single(single_variable, single_signature, 5937, error_mess);
+printTestName("checkParam_type_5937") 
 
 single_variable  = { a: [ { b: [ { c: [ { d: [ { e: 12       } ] } ] } ] } ] };
 single_signature = { a: [ { b: [ { c: [ { d: [ { e: 'string' } ] } ] } ] } ] };
@@ -416,6 +467,7 @@ ACTUAL TYPE 'object'
 EXPECTED TYPE {"a":[{"b":[{"c":[{"d":[{"e":"string"}]}]}]}]}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5938, error_mess);
+printTestName("checkParam_type_5938") 
 
 single_variable  = { a: [ { b: [ { c: [ { d: [ 12              ] } ] } ] } ] };
 single_signature = { a: [ { b: [ { c: [ { d: [ { e: 'number' } ] } ] } ] } ] };
@@ -426,6 +478,7 @@ ACTUAL TYPE 'object'
 EXPECTED TYPE {"a":[{"b":[{"c":[{"d":[{"e":"number"}]}]}]}]}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5939, error_mess);
+printTestName("checkParam_type_5939") 
 
 single_variable  = { a: [ { b: [ { c: [ { d: [ { e: 12       } ] } ] } ] } ] };
 single_signature = { a: [ { b: [ { c: [ { d: [ 'number'        ] } ] } ] } ] };
@@ -436,6 +489,7 @@ ACTUAL TYPE 'object'
 EXPECTED TYPE {"a":[{"b":[{"c":[{"d":["number"]}]}]}]}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5940, error_mess);
+printTestName("checkParam_type_5940") 
 
 // /////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -443,6 +497,7 @@ single_variable  = [ { a: [ { b: [ { c: [ { d: [ { e: 12       } ] } ] } ] } ] }
 single_signature = [ { a: [ { b: [ { c: [ { d: [ { e: 'number' } ] } ] } ] } ] } ];
 error_mess = '';
 test_pre_checkParam_type_single(single_variable, single_signature, 5941, error_mess);
+printTestName("checkParam_type_5941") 
 
 single_variable  = [ { a: [ { b: [ { c: [ { d: [ { e: 12       } ] } ] } ] } ] } ];
 single_signature = [ { a: [ { b: [ { c: [ { d: [ { e: 'string' } ] } ] } ] } ] } ];
@@ -453,6 +508,7 @@ ACTUAL TYPE 'array'
 EXPECTED TYPE [{"a":[{"b":[{"c":[{"d":[{"e":"string"}]}]}]}]}]
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5942, error_mess);
+printTestName("checkParam_type_5942") 
 
 single_variable  = [ { a: [ { b: [ { c: [ { d: [ 12              ] } ] } ] } ] } ];
 single_signature = [ { a: [ { b: [ { c: [ { d: [ { e: 'number' } ] } ] } ] } ] } ];
@@ -463,6 +519,7 @@ ACTUAL TYPE 'array'
 EXPECTED TYPE [{"a":[{"b":[{"c":[{"d":[{"e":"number"}]}]}]}]}]
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5943, error_mess);
+printTestName("checkParam_type_5943") 
 
 single_variable  = [ { a: [ { b: [ { c: [ { d: [ { e: 12       } ] } ] } ] } ] } ];
 single_signature = [ { a: [ { b: [ { c: [ { d: [ 'number'        ] } ] } ] } ] } ];
@@ -473,6 +530,7 @@ ACTUAL TYPE 'array'
 EXPECTED TYPE [{"a":[{"b":[{"c":[{"d":["number"]}]}]}]}]
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5944, error_mess);
+printTestName("checkParam_type_5944") 
 
 // /////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -480,6 +538,7 @@ single_variable  = [[ { a: { b: [[ { c: { d: [[ 1        ]] } } ]] } } ]];
 single_signature = [[ { a: { b: [[ { c: { d: [[ 'number' ]] } } ]] } } ]];
 error_mess = '';
 test_pre_checkParam_type_single(single_variable, single_signature, 5945, error_mess);
+printTestName("checkParam_type_5945") 
 
 single_variable  = [[ { a: { b: [[ { c: { d: [[ 1        ]] } } ]] } } ]];
 single_signature = [[ { a: { b: [[ { c: { d: [[ 'string' ]] } } ]] } } ]];
@@ -490,6 +549,7 @@ ACTUAL TYPE 'array'
 EXPECTED TYPE [[{"a":{"b":[[{"c":{"d":[["string"]]}}]]}}]]
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5946, error_mess);
+printTestName("checkParam_type_5946") 
 
 single_variable  =  [ { a: { b: [[ { c: { d: [[ 1        ]] } } ]] } } ];
 single_signature = [[ { a: { b: [[ { c: { d: [[ 'number' ]] } } ]] } } ]];
@@ -500,6 +560,7 @@ ACTUAL TYPE 'array'
 EXPECTED TYPE [[{"a":{"b":[[{"c":{"d":[["number"]]}}]]}}]]
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5947, error_mess);
+printTestName("checkParam_type_5947") 
 
 single_variable  = [[ { a: { b: [[ { c: { d: [[ 1        ]] } } ]] } } ]];
 single_signature =  [ { a: { b: [[ { c: { d: [[ 'number' ]] } } ]] } } ];
@@ -510,6 +571,7 @@ ACTUAL TYPE 'array'
 EXPECTED TYPE [{"a":{"b":[[{"c":{"d":[["number"]]}}]]}}]
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5948, error_mess);
+printTestName("checkParam_type_5948") 
 
 // /////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -517,6 +579,7 @@ single_variable  = { a: { b: [[ { c: { d: [[ 1        ]] } } ]] } };
 single_signature = { a: { b: [[ { c: { d: [[ 'number' ]] } } ]] } };
 error_mess = '';
 test_pre_checkParam_type_single(single_variable, single_signature, 5949, error_mess);
+printTestName("checkParam_type_5949") 
 
 single_variable  = { a: { b: [[ { c: { d: [[ 1        ]] } } ]] } };
 single_signature = { a: { b: [[ { c: { d: [[ 'string' ]] } } ]] } };
@@ -527,6 +590,7 @@ ACTUAL TYPE 'object'
 EXPECTED TYPE {"a":{"b":[[{"c":{"d":[["string"]]}}]]}}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5950, error_mess);
+printTestName("checkParam_type_5950") 
 
 single_variable  =      { b: [[ { c: { d: [[ 1        ]] } } ]] };
 single_signature = { a: { b: [[ { c: { d: [[ 'number' ]] } } ]] } };
@@ -537,6 +601,7 @@ ACTUAL TYPE 'object'
 EXPECTED TYPE {"a":{"b":[[{"c":{"d":[["number"]]}}]]}}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5951, error_mess);
+printTestName("checkParam_type_5951") 
 
 single_variable  = { a: { b: [[ { c: { d: [[ 1        ]] } } ]] } };
 single_signature =      { b: [[ { c: { d: [[ 'number' ]] } } ]] };
@@ -547,6 +612,7 @@ ACTUAL TYPE 'object'
 EXPECTED TYPE {"b":[[{"c":{"d":[["number"]]}}]]}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5952, error_mess);
+printTestName("checkParam_type_5952") 
 
 // /////////////////////////////////////////////////////////////////////////////////////////////
 single_variable  = null;
@@ -558,6 +624,7 @@ ACTUAL TYPE 'null'
 EXPECTED TYPE number
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5953, error_mess);
+printTestName("checkParam_type_5953") 
 
 single_variable  = undefined;
 single_signature = 'number';
@@ -568,16 +635,19 @@ ACTUAL TYPE 'undefined'
 EXPECTED TYPE number
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5954, error_mess);
+printTestName("checkParam_type_5954") 
 
 single_variable  = [];
 single_signature = 'array';
 error_mess = '';
 test_pre_checkParam_type_single(single_variable, single_signature, 5955, error_mess);
+printTestName("checkParam_type_5955") 
 
 single_variable  = {};
 single_signature = 'object';
 error_mess = '';
 test_pre_checkParam_type_single(single_variable, single_signature, 5956, error_mess);
+printTestName("checkParam_type_5956") 
 
 single_variable  = [];
 single_signature = ' [  ] ';
@@ -588,6 +658,7 @@ ACTUAL TYPE 'array'
 EXPECTED TYPE  [  ] 
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5957, error_mess);
+printTestName("checkParam_type_5957") 
 
 single_variable  = {};
 single_signature = ' { } ';
@@ -598,6 +669,7 @@ ACTUAL TYPE 'object'
 EXPECTED TYPE  { } 
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5958, error_mess);
+printTestName("checkParam_type_5958") 
 
 // ////////////////////////////////////////////////////////////////
 
@@ -610,6 +682,7 @@ ACTUAL TYPE 'array'
 EXPECTED TYPE Array
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5959, error_mess);
+printTestName("checkParam_type_5959") 
 
 single_variable  = 123n;
 single_signature = 'Bigint';
@@ -620,6 +693,7 @@ ACTUAL TYPE 'bigint'
 EXPECTED TYPE Bigint
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5960, error_mess);
+printTestName("checkParam_type_5960") 
 
 single_variable  = false;
 single_signature = 'Boolean';
@@ -630,6 +704,7 @@ ACTUAL TYPE 'boolean'
 EXPECTED TYPE Boolean
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5961, error_mess);
+printTestName("checkParam_type_5961") 
 
 single_variable  = new Date('1999-12-12');
 single_signature = 'Date';
@@ -640,6 +715,7 @@ ACTUAL TYPE 'date'
 EXPECTED TYPE Date
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5962, error_mess);
+printTestName("checkParam_type_5962") 
 
 single_variable  = (x) => x;
 single_signature = 'Function';
@@ -650,6 +726,7 @@ ACTUAL TYPE 'function'
 EXPECTED TYPE Function
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5963, error_mess);
+printTestName("checkParam_type_5963") 
 
 single_variable  = 12;
 single_signature = 'Number';
@@ -660,6 +737,7 @@ ACTUAL TYPE 'number'
 EXPECTED TYPE Number
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5964, error_mess);
+printTestName("checkParam_type_5964") 
 
 single_variable  = { a: 12 };
 single_signature = 'Object';
@@ -670,6 +748,7 @@ ACTUAL TYPE 'object'
 EXPECTED TYPE Object
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5965, error_mess);
+printTestName("checkParam_type_5965") 
 
 single_variable  = /d/;
 single_signature = 'Regexp';
@@ -680,6 +759,7 @@ ACTUAL TYPE 'regexp'
 EXPECTED TYPE Regexp
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5966, error_mess);
+printTestName("checkParam_type_5966") 
 
 single_variable  = 'a-string';
 single_signature = 'String';
@@ -690,6 +770,7 @@ ACTUAL TYPE 'string'
 EXPECTED TYPE String
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5967, error_mess);
+printTestName("checkParam_type_5967") 
 
 single_variable  = Symbol('sym');
 single_signature = 'Symbol';
@@ -700,18 +781,22 @@ ACTUAL TYPE 'symbol'
 EXPECTED TYPE Symbol
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5968, error_mess);
-
+printTestName("checkParam_type_5968") 
 // // ///////////////////////////////////////////////////////////////
 
 single_variable  = [1];
 single_signature = ['number'];
 error_mess = '';
 test_pre_checkParam_type_single(single_variable, single_signature, 5969, error_mess);
+printTestName("checkParam_type_5969") 
+
 
 single_variable  = [1, 2];
 single_signature = ['numbers'];
 error_mess = '';
 test_pre_checkParam_type_single(single_variable, single_signature, 5970, error_mess);
+printTestName("checkParam_type_5970") 
+
 
 single_variable  = [1, 2, 'three'];
 single_signature = ['numbers'];
@@ -722,6 +807,8 @@ ACTUAL TYPE 'array'
 EXPECTED TYPE ["numbers"]
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5971, error_mess);
+printTestName("checkParam_type_5971") 
+
 
 single_variable  = [ [1, 2, 3], [1, 2, 3], [1, 2, 3] ];
 single_signature = [['numbers']];
@@ -732,6 +819,8 @@ ACTUAL TYPE 'array'
 EXPECTED TYPE [["numbers"]]
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5972, error_mess);
+printTestName("checkParam_type_5972") 
+
 
 single_variable  = [   [ [1, 2, 3], [1, 2, 3], [1, 2, 3] ],
                 [ [1, 2, 3], [1, 2, 3], [1, 2, 3] ],
@@ -744,6 +833,8 @@ ACTUAL TYPE 'array'
 EXPECTED TYPE [[["numbers"]]]
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5973, error_mess);
+printTestName("checkParam_type_5973") 
+
 
 // single_variable  = [   [ [1, 2, 3], [1, 2, 3], [1,  2,  3] ],
 //                 [ [1, 2, 3], [1, 2, 3], [1,  2,  3] ],                                      /// does not work???
@@ -768,6 +859,8 @@ ACTUAL TYPE 'string'
 EXPECTED TYPE {"an_object":"Boaty-McBoatFace"}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5975, error_mess);
+printTestName("checkParam_type_5975") 
+
 
 single_variable  = 'a-string';
 single_signature = 'null';
@@ -778,6 +871,8 @@ ACTUAL TYPE 'string'
 EXPECTED TYPE null
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5976, error_mess);
+printTestName("checkParam_type_5976") 
+
 
 single_variable  = 91;
 single_signature = 'undefined';
@@ -788,6 +883,8 @@ ACTUAL TYPE 'number'
 EXPECTED TYPE undefined
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5977, error_mess);
+printTestName("checkParam_type_5977") 
+
 
 single_variable  = 91;
 single_signature = 'Ford Torino';
@@ -798,6 +895,7 @@ ACTUAL TYPE 'number'
 EXPECTED TYPE Ford Torino
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5978, error_mess);
+printTestName("checkParam_type_5978") 
 
 single_variable  = { a: 1, b: 2 };
 single_signature = { a: 'number' };
@@ -808,6 +906,7 @@ ACTUAL TYPE 'object'
 EXPECTED TYPE {"a":"number"}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5979, error_mess);
+printTestName("checkParam_type_5979") 
 
 single_variable  = { a: undefined };
 single_signature = { a: 'number' };
@@ -818,6 +917,7 @@ ACTUAL TYPE 'object'
 EXPECTED TYPE {"a":"number"}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5980, error_mess);
+printTestName("checkParam_type_5980") 
 
 single_variable  = { a: null };
 single_signature = { a: 'number' };
@@ -828,6 +928,7 @@ ACTUAL TYPE 'object'
 EXPECTED TYPE {"a":"number"}
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5981, error_mess);
+printTestName("checkParam_type_5981") 
 
 // TE@217
 single_variable  = 'a-string';
@@ -839,11 +940,13 @@ ACTUAL TYPE 'string'
 EXPECTED TYPE ["number"]
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5982, error_mess);
+printTestName("checkParam_type_5982") 
 
 single_variable  = console;
 single_signature = 'object';
 error_mess = '';
 test_pre_checkParam_type_single(single_variable, single_signature, 5983, error_mess);
+printTestName("checkParam_type_5983") 
 
 single_variable  = Date;
 single_signature = 'bad-classname';
@@ -854,6 +957,7 @@ ACTUAL TYPE 'function'
 EXPECTED TYPE bad-classname
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5984, error_mess);
+printTestName("checkParam_type_5984") 
 
 single_variable  = 'single_signature-not-string';
 single_signature = 12;
@@ -864,6 +968,7 @@ ACTUAL TYPE 'string'
 EXPECTED TYPE 12
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5985, error_mess);
+printTestName("checkParam_type_5985") 
 
 single_variable  = 'single_signature-null';
 single_signature = null;
@@ -874,6 +979,7 @@ ACTUAL TYPE 'string'
 EXPECTED TYPE null
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5986, error_mess);
+printTestName("checkParam_type_5986") 
 
 single_variable  = 'single_signature-undefined';
 single_signature = undefined;
@@ -884,6 +990,7 @@ ACTUAL TYPE 'string'
 EXPECTED TYPE undefined
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5987, error_mess);
+printTestName("checkParam_type_5987") 
 
 single_variable  = ["Vinnie", "Barbarino"];
 single_signature = ["string", "string", "boolean"];
@@ -894,6 +1001,7 @@ ACTUAL TYPE 'array'
 EXPECTED TYPE ["string","string","boolean"]
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5988, error_mess);
+printTestName("checkParam_type_5988") 
 
 
 
@@ -908,7 +1016,7 @@ EXPECTED TYPE ["number"]
  ORIGIN pre_checkParam_type_05900(a_var)`;
 test_pre_checkParam_type_single(single_variable, single_signature, 5989, error_mess);
 
-
+printTestName("checkParam_type_5989") 
 
 
 

@@ -9,7 +9,21 @@ fail_count = 0;
 checkParam_emptyEither_04000();
 checkParam_emptyEither_04001();
 
-
+function printTestName(an_str) {
+  if (typeof window !== "undefined") {
+    if (typeof window.browserList === 'function') {
+      if (window.browserList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+  } else {
+    if (typeof global.nodejsList === 'function') {
+      if (global.nodejsList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+   } 
+}
 
 /////////////////////
 function checkParam_emptyEither_04000(){
@@ -62,7 +76,7 @@ pass_count += expectedAndFailedTests(7, 7, 'A-Fail', '_checkParam_emptyEither().
 
 
 
-
+   printTestName("checkParam_emptyEither_04000")  
 }
 
 
@@ -85,7 +99,8 @@ function checkParam_emptyEither_04001(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+     printTestName("checkParam_emptyEither_04001")  
 }
 
 

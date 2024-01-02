@@ -27,7 +27,21 @@ checkParam_type_05015();
  checkParam_type_05017();
  checkParam_type_05018();
 
-
+function printTestName(an_str) {
+  if (typeof window !== "undefined") {
+    if (typeof window.browserList === 'function') {
+      if (window.browserList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+  } else {
+    if (typeof global.nodejsList === 'function') {
+      if (global.nodejsList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+   } 
+}
 //////////////////////////////////////////////////////////
 
 function checkParam_type_05000(){
@@ -352,7 +366,7 @@ G. One array of arrays of two Numbers.
 
 
 
-
+printTestName("checkParam_type_05000") 
 
 
 
@@ -384,7 +398,8 @@ function checkParam_type_05001(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+  printTestName("checkParam_type_05001") 
 }
 
 function checkParam_type_05002(){
@@ -404,7 +419,8 @@ function checkParam_type_05002(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+  printTestName("checkParam_type_05002") 
 }
 
 
@@ -425,7 +441,8 @@ function checkParam_type_05003(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+  printTestName("checkParam_type_05003") 
 }
 
 
@@ -447,7 +464,8 @@ function checkParam_type_05004(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+  printTestName("checkParam_type_05004") 
 }
 
 
@@ -468,7 +486,8 @@ function checkParam_type_05005(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+  printTestName("checkParam_type_05005") 
 }
 
 
@@ -490,7 +509,8 @@ function checkParam_type_05006(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+  printTestName("checkParam_type_05006") 
 }
 
 
@@ -512,7 +532,8 @@ function checkParam_type_05007(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+  printTestName("checkParam_type_05007") 
 }
 
 
@@ -535,7 +556,8 @@ function checkParam_type_05008(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+  printTestName("checkParam_type_05008") 
 }
 
 
@@ -558,7 +580,9 @@ function checkParam_type_05009(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("checkParam_type_05009") 
+
 }
 
 
@@ -579,7 +603,9 @@ function checkParam_type_05010(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("checkParam_type_05010") 
+
 }
 
 function checkParam_type_05011(){
@@ -599,7 +625,9 @@ function checkParam_type_05011(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("checkParam_type_05011") 
+
 }
 
 function checkParam_type_05012(){
@@ -619,7 +647,9 @@ function checkParam_type_05012(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("checkParam_type_05012") 
+
 }
 
 
@@ -641,7 +671,9 @@ function checkParam_type_05013(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("checkParam_type_05013") 
+
 }
 
 
@@ -663,7 +695,9 @@ function checkParam_type_05014(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("checkParam_type_05014") 
+
 }
 
 
@@ -685,7 +719,9 @@ function checkParam_type_05015(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("checkParam_type_05015") 
+
 }
 
 
@@ -706,7 +742,9 @@ function checkParam_type_05016(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("checkParam_type_05016") 
+
 }
 
 
@@ -729,7 +767,9 @@ function checkParam_type_05017(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("checkParam_type_05017") 
+
 }
 
 
@@ -751,7 +791,8 @@ function checkParam_type_05018(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+  printTestName("checkParam_type_05018") 
 }
 
 

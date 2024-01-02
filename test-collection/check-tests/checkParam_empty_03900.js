@@ -11,7 +11,21 @@
 pass_count = 0;
 fail_count = 0;
 
-
+function printTestName(an_str) {
+  if (typeof window !== "undefined") {
+    if (typeof window.browserList === 'function') {
+      if (window.browserList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+  } else {
+    if (typeof global.nodejsList === 'function') {
+      if (global.nodejsList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+   } 
+}
 
 
 
@@ -66,6 +80,7 @@ single_variable  = { x: 'c' };
 single_signature = { x: 'EMPTY-ERROR' };
 error_mess = ``;
 test_pre_checkParam_empty_single(single_variable, single_signature, 99001, error_mess);
+printTestName("checkParam_empty_99001")
 
 single_variable  = { x: '' };
 single_signature = { x: 'EMPTY-ERROR' };
@@ -76,6 +91,7 @@ ACTUAL TYPE 'object'
 EMPTY ASSERTION {"x":"EMPTY-ERROR"}
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 99002, error_mess);
+printTestName("checkParam_empty_99002")
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -88,11 +104,13 @@ ACTUAL TYPE 'array'
 EMPTY ASSERTION ["EMPTY-ERROR"]
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 99003, error_mess);
+printTestName("checkParam_empty_99003")
 
 single_variable  = ['c'];
 single_signature = ['EMPTY-ERROR'];
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 99004, error_mess);
+printTestName("checkParam_empty_99004")
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -100,6 +118,7 @@ single_variable  = [ ['not-empty']             ];
 single_signature = [ ['EMPTY-ERROR'] ];
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 99005, error_mess);
+printTestName("checkParam_empty_99005")
 
 single_variable  = [ ['']             ];
 single_signature = [ ['EMPTY-ERROR'] ];
@@ -110,6 +129,7 @@ ACTUAL TYPE 'array'
 EMPTY ASSERTION [["EMPTY-ERROR"]]
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 99006, error_mess);
+printTestName("checkParam_empty_99006")
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -117,6 +137,7 @@ single_variable  = [ ['a',           'b']           ];
 single_signature = [ ['EMPTY-ERROR', 'EMPTY-ERROR'] ];
 error_mess = ``;
 test_pre_checkParam_empty_single(single_variable, single_signature, 99007, error_mess);
+printTestName("checkParam_empty_99007")
 
 single_variable  = [ ['a',           '']            ];
 single_signature = [ ['EMPTY-ERROR', 'EMPTY-ERROR'] ];
@@ -127,6 +148,7 @@ ACTUAL TYPE 'array'
 EMPTY ASSERTION [["EMPTY-ERROR","EMPTY-ERROR"]]
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 99008, error_mess);
+printTestName("checkParam_empty_99008")
 
 single_variable  = [ ['',            'b']            ];
 single_signature = [ ['EMPTY-ERROR', 'EMPTY-ERROR'] ];
@@ -137,7 +159,7 @@ ACTUAL TYPE 'array'
 EMPTY ASSERTION [["EMPTY-ERROR","EMPTY-ERROR"]]
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 99009, error_mess);
-
+printTestName("checkParam_empty_99009")
 ////////////////////////////////////////////////////////////////////
 
 
@@ -166,6 +188,7 @@ single_variable  = { x: [{ y: 'z'           }] };
 single_signature = { x: [{ y: 'EMPTY-ERROR' }] };
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3901, error_mess);
+printTestName("checkParam_empty_3901")
 
 single_variable  = { x: [{ y: ''            }] };
 single_signature = { x: [{ y: 'EMPTY-ERROR' }] };
@@ -176,11 +199,13 @@ ACTUAL TYPE 'object'
 EMPTY ASSERTION {"x":[{"y":"EMPTY-ERROR"}]}
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3902, error_mess);
+printTestName("checkParam_empty_3902")
 
 single_variable  = { a: [1, 2, 3] };
 single_signature = { a: ['EMPTY-ERROR','EMPTY-ERROR','EMPTY-ERROR'] };
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3903, error_mess);
+printTestName("checkParam_empty_3903")
 
 single_variable  = { a: [1, NaN, 3] };
 single_signature = { a: ['EMPTY-ERROR','EMPTY-ERROR','EMPTY-ERROR'] };
@@ -191,6 +216,7 @@ ACTUAL TYPE 'object'
 EMPTY ASSERTION {"a":["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3904, error_mess);
+printTestName("checkParam_empty_3904")
 
 single_variable  = { r: {} };
 single_signature = { r: 'EMPTY-ERROR' };
@@ -201,6 +227,7 @@ ACTUAL TYPE 'object'
 EMPTY ASSERTION {"r":"EMPTY-ERROR"}
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3905, error_mess);
+printTestName("checkParam_empty_3905")
 
 // // /////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -208,6 +235,7 @@ single_variable  = { a: [{ r: [ [123],         [1, 2, 3],       987n,          f
 single_signature = { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR','EMPTY-ERROR','EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',           'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] };
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3906, error_mess);
+printTestName("checkParam_empty_3906")
 
 single_variable  = { a: [{ r: [ [],            [1, 2, 3],       987n,          false,         new Date('1999-12-12'), (x) => x,      12,            { a: 3 },      { b: 4 },             /d/,          'abc',          Symbol('sym') ] }] };
 single_signature = { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] };
@@ -218,6 +246,7 @@ ACTUAL TYPE 'object'
 EMPTY ASSERTION {"a":[{"r":["EMPTY-ERROR",["EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{"b":"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]}
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3907, error_mess);
+printTestName("checkParam_empty_3907")
 
 single_variable  = { a: [{ r: [ [123],         [],              987n,          false,         new Date('1999-12-12'), (x) => x,      12,            { a: 3 },      { b: 4 },             /d/,           'abc',         Symbol('sym') ] }] };
 single_signature = { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] };
@@ -228,6 +257,7 @@ ACTUAL TYPE 'object'
 EMPTY ASSERTION {"a":[{"r":["EMPTY-ERROR",["EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{"b":"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]}
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3908, error_mess);
+printTestName("checkParam_empty_3908")
 
 single_variable  = { a: [{ r: [ [123],         [1, 2, 3],       987n,           false,         new Date('1999-12-12'), (x) => x,      12,            { a: 3 },      { b: 4 },             /d/,           'abc',         Symbol('sym') ] }] };
 single_signature = { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR'], 'EMPTY-IGNORE', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] };
@@ -238,7 +268,7 @@ ACTUAL TYPE 'object'
 EMPTY ASSERTION {"a":[{"r":["EMPTY-ERROR",["EMPTY-ERROR"],"EMPTY-IGNORE","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{"b":"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]}
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3909, error_mess);
-
+printTestName("checkParam_empty_3909")
 
 
 
@@ -264,6 +294,7 @@ single_variable  = { a: [{ r: [ [123],         [1, 2, 3],       987n,          f
 single_signature = { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR','EMPTY-ERROR','EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-IGNORE', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] };
 error_mess = ``;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3910, error_mess);
+printTestName("checkParam_empty_3910")
 
 single_variable  = { a: [{ r: [ [123],         [1, 2, 3],       987n,          false,         new Date(''),            (x) => x,   12,       { a: 3 }, { b: 4 },         /d/,      'abc',    Symbol('sym')   ] }] };
 single_signature = { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR','EMPTY-ERROR','EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',           'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] };
@@ -274,11 +305,13 @@ ACTUAL TYPE 'object'
 EMPTY ASSERTION {"a":[{"r":["EMPTY-ERROR",["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{"b":"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]}
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3911, error_mess);
+printTestName("checkParam_empty_3911")
 
 single_variable  = { a: [{ r: [ [123],         [1, 2, 3],       987n,          false,         new Date('1999-12-12'), (x) => x,       12,            { a: 3 },      { b: 4 },             /d/,           'abc',         Symbol('sym') ] }] };
 single_signature = { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR','EMPTY-ERROR','EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-IGNORE', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] };
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3912, error_mess);
+printTestName("checkParam_empty_3912")
 
 single_variable  = { a: [{ r: [ [123],         [1, 2, 3],       987n,          false,         new Date('1999-12-12'), (x) => x,      NaN,           { a: 3 },      { b: 4 },             /d/,          'abc',          Symbol('sym') ] }] };
 single_signature = { a: [{ r: [ 'EMPTY-ERROR', ['EMPTY-ERROR','EMPTY-ERROR','EMPTY-ERROR'], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] };
@@ -289,11 +322,13 @@ ACTUAL TYPE 'object'
 EMPTY ASSERTION {"a":[{"r":["EMPTY-ERROR",["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{"b":"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]}
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3913, error_mess);
+printTestName("checkParam_empty_3913")
 
 single_variable  = { a: [{ r: [ [123],         [1, 2, 3],       987n,          false,         new Date('1999-12-12'), (x) => x,      12,            { a: '' },     { b: 4 },             /d/,           'abc',         Symbol('sym') ] }] };
 single_signature = { a: [{ r: [ 'EMPTY-ERROR', ["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] };
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3914, error_mess);
+printTestName("checkParam_empty_3914")
 
 single_variable  = { a: [{ r: [ [123],         [1, 2, 3],       987n,          false,         new Date('1999-12-12'), (x) => x,      12,            { a: 3 },      { b: '' },            /d/,           'abc',         Symbol('sym') ] }] };
 single_signature = { a: [{ r: [ 'EMPTY-ERROR', ["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] };
@@ -304,6 +339,7 @@ ACTUAL TYPE 'object'
 EMPTY ASSERTION {"a":[{"r":["EMPTY-ERROR",["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{"b":"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]}
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3915, error_mess);
+printTestName("checkParam_empty_3915")
 
 single_variable  = { a: [{ r: [ [123],         [1, 2, 3],       987n,          false,         new Date('1999-12-12'), (x) => x,      12,            { a: 3 },      { b: 4 },             /(?:)/,        'abc',         Symbol('sym') ] }] };
 single_signature = { a: [{ r: [ 'EMPTY-ERROR', ["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR' ] }] };
@@ -314,12 +350,13 @@ ACTUAL TYPE 'object'
 EMPTY ASSERTION {"a":[{"r":["EMPTY-ERROR",["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"],"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR",{"b":"EMPTY-ERROR"},"EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]}]}
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3916, error_mess);
+printTestName("checkParam_empty_3916")
 
 single_variable  = { a: [{ r: [ [123],         [1, 2, 3],       987n,          false,         new Date('1999-12-12'), (x) => x,      12,            { a: 3 },      { b: 4 },             /d/,           'abc',         Symbol('sym') ] }] };
 single_signature = { a: [{ r: [ 'EMPTY-ERROR', ["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"], 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR',          'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR', { b: 'EMPTY-ERROR' }, 'EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-IGNORE' ] }] };
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3917, error_mess);
-
+printTestName("checkParam_empty_3917")
 
 
 
@@ -345,6 +382,7 @@ ACTUAL TYPE 'array'
 EMPTY ASSERTION EMPTY-ERROR
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3918, error_mess);
+printTestName("checkParam_empty_3918")
 
 single_variable  = [1, 2, 3];
 single_signature = 'EMPTY-ERROR';
@@ -355,16 +393,19 @@ ACTUAL TYPE 'array'
 EMPTY ASSERTION EMPTY-ERROR
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3919, error_mess);
+printTestName("checkParam_empty_3919")
 
 single_variable  = 0n;
 single_signature = 'EMPTY-ERROR';
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3920, error_mess);
+printTestName("checkParam_empty_3920")
 
 single_variable  = false;
 single_signature = 'EMPTY-ERROR';
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3921, error_mess);
+printTestName("checkParam_empty_3921")
 
 single_variable  = new Date('');
 single_signature = 'EMPTY-ERROR';
@@ -375,11 +416,13 @@ ACTUAL TYPE 'date'
 EMPTY ASSERTION EMPTY-ERROR
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3922, error_mess);
+printTestName("checkParam_empty_3922")
 
 single_variable  = (x) => x;
 single_signature = 'EMPTY-ERROR';
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3923, error_mess);
+printTestName("checkParam_empty_3923")
 
 single_variable  = NaN;
 single_signature = 'EMPTY-ERROR';
@@ -390,11 +433,13 @@ ACTUAL TYPE 'number'
 EMPTY ASSERTION EMPTY-ERROR
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3924, error_mess);
+printTestName("checkParam_empty_3924")
 
 single_variable  = { a: 3 };
 single_signature = 'EMPTY-ERROR';
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3925, error_mess);
+printTestName("checkParam_empty_3925")
 
 single_variable  = /(?:)/;
 single_signature = 'EMPTY-ERROR';
@@ -405,6 +450,7 @@ ACTUAL TYPE 'regexp'
 EMPTY ASSERTION EMPTY-ERROR
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3926, error_mess);
+printTestName("checkParam_empty_3926")
 
 single_variable  = '';
 single_signature = 'EMPTY-ERROR';
@@ -415,12 +461,13 @@ ACTUAL TYPE 'string'
 EMPTY ASSERTION EMPTY-ERROR
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3927, error_mess);
+printTestName("checkParam_empty_3927")
 
 single_variable  = Symbol('');
 single_signature = 'EMPTY-ERROR';
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3928, error_mess);
-
+printTestName("checkParam_empty_3928")
 
 
 
@@ -440,6 +487,7 @@ single_variable  = [[[[[[[ 1             ]]]]]]];
 single_signature = [[[[[[[ 'EMPTY-ERROR' ]]]]]]];
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3929, error_mess);
+printTestName("checkParam_empty_3929")
 
 single_variable  = [[[[[[[ ''            ]]]]]]];
 single_signature = [[[[[[[ 'EMPTY-ERROR' ]]]]]]];
@@ -450,6 +498,7 @@ ACTUAL TYPE 'array'
 EMPTY ASSERTION [[[[[[["EMPTY-ERROR"]]]]]]]
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3930, error_mess);
+printTestName("checkParam_empty_3930")
 
 single_variable  =    [[[[[[ ''            ]]]]]];
 single_signature = [  [[[[[[ 'EMPTY-ERROR' ]]]]]]  ];
@@ -460,18 +509,20 @@ ACTUAL TYPE 'array'
 EMPTY ASSERTION [[[[[[["EMPTY-ERROR"]]]]]]]
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3931, error_mess);
+printTestName("checkParam_empty_3931")
 
 single_variable  = [  [[[[[[ ''            ]]]]]]  ];
 single_signature =    [[[[[[ 'EMPTY-ERROR' ]]]]]];
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3932, error_mess);
-
+printTestName("checkParam_empty_3932")
 // // /////////////////////////////////////////////////////////////////////////////////////////////
 
 single_variable  = { a: { b: { c: { d: { e: 12            } } } } };
 single_signature = { a: { b: { c: { d: { e: 'EMPTY-ERROR' } } } } };
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3933, error_mess);
+printTestName("checkParam_empty_3933")
 
 single_variable  = { a: { b: { c: { d: { e: ''            } } } } };
 single_signature = { a: { b: { c: { d: { e: 'EMPTY-ERROR' } } } } };
@@ -482,6 +533,7 @@ ACTUAL TYPE 'object'
 EMPTY ASSERTION {"a":{"b":{"c":{"d":{"e":"EMPTY-ERROR"}}}}}
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3934, error_mess);
+printTestName("checkParam_empty_3934")
 
 single_variable  = { a: { b: { c: { d: 12              } } } };
 single_signature = { a: { b: { c: { d: { e: 'EMPTY-ERROR' } } } } };
@@ -492,18 +544,20 @@ ACTUAL TYPE 'object'
 EMPTY ASSERTION {"a":{"b":{"c":{"d":{"e":"EMPTY-ERROR"}}}}}
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3935, error_mess);
+printTestName("checkParam_empty_3935")
 
 single_variable  = { a: { b: { c: { d: { e: 12 }   } } } };
 single_signature = { a: { b: { c: { d: 'EMPTY-ERROR'    } } } };
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3936, error_mess);
-
+printTestName("checkParam_empty_3936")
 // // /////////////////////////////////////////////////////////////////////////////////////////////
 
 single_variable  = { a: [ { b: [ { c: [ { d: [ { e: 12       } ] } ] } ] } ] };
 single_signature = { a: [ { b: [ { c: [ { d: [ { e: 'EMPTY-ERROR' } ] } ] } ] } ] };
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3937, error_mess);
+printTestName("checkParam_empty_3937")
 
 single_variable  = { a: [ { b: [ { c: [ { d: [ { e: ''       } ] } ] } ] } ] };
 single_signature = { a: [ { b: [ { c: [ { d: [ { e: 'EMPTY-ERROR' } ] } ] } ] } ] };
@@ -514,6 +568,7 @@ ACTUAL TYPE 'object'
 EMPTY ASSERTION {"a":[{"b":[{"c":[{"d":[{"e":"EMPTY-ERROR"}]}]}]}]}
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3938, error_mess);
+printTestName("checkParam_empty_3938")
 
 single_variable  = { a: [ { b: [ { c: [ { d: [ ''              ] } ] } ] } ] };
 single_signature = { a: [ { b: [ { c: [ { d: [ { e: 'EMPTY-ERROR' } ] } ] } ] } ] };
@@ -524,12 +579,13 @@ ACTUAL TYPE 'object'
 EMPTY ASSERTION {"a":[{"b":[{"c":[{"d":[{"e":"EMPTY-ERROR"}]}]}]}]}
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3939, error_mess);
+printTestName("checkParam_empty_3939")
 
 single_variable  = { a: [ { b: [ { c: [ { d: [ { e: ''       } ] } ] } ] } ] };
 single_signature = { a: [ { b: [ { c: [ { d: [ 'EMPTY-ERROR'        ] } ] } ] } ] };
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3940, error_mess);
-
+printTestName("checkParam_empty_3940")
 
 
 
@@ -556,6 +612,7 @@ single_variable  = [ { a: [ { b: [ { c: [ { d: [ { e: 12       } ] } ] } ] } ] }
 single_signature = [ { a: [ { b: [ { c: [ { d: [ { e: 'EMPTY-ERROR' } ] } ] } ] } ] } ];
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3941, error_mess);
+printTestName("checkParam_empty_3941")
 
 single_variable  = [ { a: [ { b: [ { c: [ { d: [ { e: ''       } ] } ] } ] } ] } ];
 single_signature = [ { a: [ { b: [ { c: [ { d: [ { e: 'EMPTY-ERROR' } ] } ] } ] } ] } ];
@@ -566,6 +623,7 @@ ACTUAL TYPE 'array'
 EMPTY ASSERTION [{"a":[{"b":[{"c":[{"d":[{"e":"EMPTY-ERROR"}]}]}]}]}]
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3942, error_mess);
+printTestName("checkParam_empty_3942")
 
 single_variable  = [ { a: [ { b: [ { c: [ { d: [ 12              ] } ] } ] } ] } ];
 single_signature = [ { a: [ { b: [ { c: [ { d: [ { e: 'EMPTY-ERROR' } ] } ] } ] } ] } ];
@@ -576,18 +634,20 @@ ACTUAL TYPE 'array'
 EMPTY ASSERTION [{"a":[{"b":[{"c":[{"d":[{"e":"EMPTY-ERROR"}]}]}]}]}]
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3943, error_mess);
+printTestName("checkParam_empty_3943")
 
 single_variable  = [ { a: [ { b: [ { c: [ { d: [ { e: 12       } ] } ] } ] } ] } ];
 single_signature = [ { a: [ { b: [ { c: [ { d: [ 'EMPTY-ERROR'        ] } ] } ] } ] } ];
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3944, error_mess);
-
+printTestName("checkParam_empty_3944")
 // // /////////////////////////////////////////////////////////////////////////////////////////////
 
 single_variable  = [[ { a: { b: [[ { c: { d: [[ 1        ]] } } ]] } } ]];
 single_signature = [[ { a: { b: [[ { c: { d: [[ 'EMPTY-ERROR' ]] } } ]] } } ]];
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3945, error_mess);
+printTestName("checkParam_empty_3945")
 
 single_variable  = [[ { a: { b: [[ { c: { d: [[ ''        ]] } } ]] } } ]];
 single_signature = [[ { a: { b: [[ { c: { d: [[ 'EMPTY-ERROR' ]] } } ]] } } ]];
@@ -598,6 +658,7 @@ ACTUAL TYPE 'array'
 EMPTY ASSERTION [[{"a":{"b":[[{"c":{"d":[["EMPTY-ERROR"]]}}]]}}]]
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3946, error_mess);
+printTestName("checkParam_empty_3946")
 
 single_variable  =  [ { a: { b: [[ { c: { d: [[ 1        ]] } } ]] } } ];
 single_signature = [[ { a: { b: [[ { c: { d: [[ 'EMPTY-ERROR' ]] } } ]] } } ]];
@@ -608,6 +669,7 @@ ACTUAL TYPE 'array'
 EMPTY ASSERTION [[{"a":{"b":[[{"c":{"d":[["EMPTY-ERROR"]]}}]]}}]]
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3947, error_mess);
+printTestName("checkParam_empty_3947")
 
 single_variable  = [[ { a: { b: [[ { c: { d: [[ ''        ]] } } ]] } } ]];
 single_signature =  [ { a: { b: [[ { c: { d: [[ 'EMPTY-ERROR' ]] } } ]] } } ];
@@ -618,13 +680,14 @@ ACTUAL TYPE 'array'
 EMPTY ASSERTION [{"a":{"b":[[{"c":{"d":[["EMPTY-ERROR"]]}}]]}}]
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3948, error_mess);
-
+printTestName("checkParam_empty_3948")
 // // /////////////////////////////////////////////////////////////////////////////////////////////
 
 single_variable  = { a: { b: [[ { c: { d: [[ 1             ]] } } ]] } };
 single_signature = { a: { b: [[ { c: { d: [[ 'EMPTY-ERROR' ]] } } ]] } };
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3949, error_mess);
+printTestName("checkParam_empty_3949")
 
 single_variable  = { a: { b: [[ { c: { d: [[ ''            ]] } } ]] } };
 single_signature = { a: { b: [[ { c: { d: [[ 'EMPTY-ERROR' ]] } } ]] } };
@@ -635,6 +698,7 @@ ACTUAL TYPE 'object'
 EMPTY ASSERTION {"a":{"b":[[{"c":{"d":[["EMPTY-ERROR"]]}}]]}}
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3950, error_mess);
+printTestName("checkParam_empty_3950")
 
 single_variable  =      { b: [[ { c: { d: [[ ''            ]] } } ]] };
 single_signature = { a: { b: [[ { c: { d: [[ 'EMPTY-ERROR' ]] } } ]] } };
@@ -645,6 +709,7 @@ ACTUAL TYPE 'object'
 EMPTY ASSERTION {"a":{"b":[[{"c":{"d":[["EMPTY-ERROR"]]}}]]}}
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3951, error_mess);
+printTestName("checkParam_empty_3951")
 
 single_variable  = { a: { b: [[ { c: { d: [[ ''            ]] } } ]] } };
 single_signature =      { b: [[ { c: { d: [[ 'EMPTY-ERROR' ]] } } ]] };
@@ -655,7 +720,7 @@ ACTUAL TYPE 'object'
 EMPTY ASSERTION {"b":[[{"c":{"d":[["EMPTY-ERROR"]]}}]]}
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3952, error_mess);
-
+printTestName("checkParam_empty_3952")
 
 
 
@@ -684,6 +749,7 @@ ACTUAL TYPE 'null'
 EMPTY ASSERTION EMPTY-ERROR
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3953, error_mess);
+printTestName("checkParam_empty_3953")
 
 single_variable  = undefined;
 single_signature = 'EMPTY-ERROR';
@@ -694,6 +760,7 @@ ACTUAL TYPE 'undefined'
 EMPTY ASSERTION EMPTY-ERROR
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3954, error_mess);
+printTestName("checkParam_empty_3954")
 
 single_variable  = [];
 single_signature = 'EMPTY-ERROR';
@@ -704,6 +771,7 @@ ACTUAL TYPE 'array'
 EMPTY ASSERTION EMPTY-ERROR
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3955, error_mess);
+printTestName("checkParam_empty_3955")
 
 single_variable  = {};
 single_signature = 'EMPTY-ERROR';
@@ -714,6 +782,7 @@ ACTUAL TYPE 'object'
 EMPTY ASSERTION EMPTY-ERROR
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3956, error_mess);
+printTestName("checkParam_empty_3956")
 
 single_variable  = [];
 single_signature = ['EMPTY-ERROR'];
@@ -724,6 +793,7 @@ ACTUAL TYPE 'array'
 EMPTY ASSERTION ["EMPTY-ERROR"]
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3957, error_mess);
+printTestName("checkParam_empty_3957")
 
 single_variable  = {};
 single_signature = { a: 'EMPTY-ERROR' };
@@ -734,59 +804,68 @@ ACTUAL TYPE 'object'
 EMPTY ASSERTION {"a":"EMPTY-ERROR"}
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3958, error_mess);
-
+printTestName("checkParam_empty_3958")
 // // ////////////////////////////////////////////////////////////////
 
 single_variable  = [];
 single_signature = 'EMPTY-IGNORE';
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3959, error_mess);
+printTestName("checkParam_empty_3959")
 
 single_variable  = 123n;
 single_signature = 'EMPTY-IGNORE';
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3960, error_mess);
+printTestName("checkParam_empty_3960")
 
 single_variable  = false;
 single_signature = 'EMPTY-IGNORE';
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3961, error_mess);
+printTestName("checkParam_empty_3961")
 
 single_variable  = new Date('1999-12-12');
 single_signature = 'EMPTY-IGNORE';
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3962, error_mess);
+printTestName("checkParam_empty_3962")
 
 single_variable  = (x) => x;
 single_signature = 'EMPTY-IGNORE';
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3963, error_mess);
+printTestName("checkParam_empty_3963")
 
 single_variable  = 12;
 single_signature = 'EMPTY-IGNORE';
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3964, error_mess);
+printTestName("checkParam_empty_3964")
 
 single_variable  = { a: 12 };
 single_signature = 'EMPTY-IGNORE';
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3965, error_mess);
+printTestName("checkParam_empty_3965")
 
 single_variable  = /d/;
 single_signature = 'EMPTY-IGNORE';
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3966, error_mess);
+printTestName("checkParam_empty_3966")
 
 single_variable  = 'a-string';
 single_signature = 'EMPTY-IGNORE';
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3967, error_mess);
+printTestName("checkParam_empty_3967")
 
 single_variable  = Symbol('sym');
 single_signature = 'EMPTY-IGNORE';
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3968, error_mess);
-
+printTestName("checkParam_empty_3968")
 
 
 
@@ -815,22 +894,25 @@ single_variable  = [1];
 single_signature = ['EMPTY-ERROR'];
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3969, error_mess);
+printTestName("checkParam_empty_3969")
 
 single_variable  = [1, 2];
 single_signature = ['EMPTY-ERROR', 'EMPTY-ERROR'];
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3970, error_mess);
+printTestName("checkParam_empty_3970")
 
 single_variable  = [1, 2, 'three'];
 single_signature = ['EMPTY-ERROR','EMPTY-ERROR','EMPTY-ERROR'];
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3971, error_mess);
+printTestName("checkParam_empty_3971")
 
 single_variable  = [ [1, 2, 3], [1, 2, 3], [1, 2, 3] ];
 single_signature = [['EMPTY-ERROR','EMPTY-ERROR','EMPTY-ERROR']];
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3972, error_mess);
-
+printTestName("checkParam_empty_3972")
 
 
 
@@ -871,7 +953,7 @@ single_signature = [   [ ['EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR']],
                        [ ['EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR']]   ];
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3973, error_mess);
-
+printTestName("checkParam_empty_3973")
 
 single_variable  = [   [ [1, 2, 3],                                     [1, 2, 3],                                     [1,  2,  3]                                   ],
                        [ [1, 2, 3],                                     [1, 2, 3],                                     [1,  2,  3]                                   ],
@@ -886,7 +968,7 @@ ACTUAL TYPE 'array'
 EMPTY ASSERTION [[["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"],["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"],["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]],[["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"],["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"],["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]],[["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"],["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"],["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]]]
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3974, error_mess);
-
+printTestName("checkParam_empty_3974-1")
 
 
 single_variable  = [   [ [1, 2, 3],                                     [1, 2, 3],                                     [1, '', 3]                                    ]    ];
@@ -899,7 +981,7 @@ ACTUAL TYPE 'array'
 EMPTY ASSERTION [[["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"],["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"],["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]]]
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3974, error_mess);
-
+printTestName("checkParam_empty_3974-2")
 
 single_variable  = [   [ [1, '', 3]                                    ]    ];
 single_signature = [   [ ['EMPTY-ERROR', 'EMPTY-ERROR', 'EMPTY-ERROR'] ]    ];
@@ -910,7 +992,7 @@ ACTUAL TYPE 'array'
 EMPTY ASSERTION [[["EMPTY-ERROR","EMPTY-ERROR","EMPTY-ERROR"]]]
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3974, error_mess);
-
+printTestName("checkParam_empty_3974-3")
 
 
 
@@ -923,7 +1005,7 @@ ACTUAL TYPE 'array'
 EMPTY ASSERTION [[["EMPTY-ERROR"]]]
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3974, error_mess);
-
+printTestName("checkParam_empty_3974-4")
 
 
 
@@ -955,6 +1037,7 @@ ACTUAL TYPE 'string'
 EMPTY ASSERTION {"an_object":"EMPTY-ERROR"}
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3975, error_mess);
+printTestName("checkParam_empty_3975")
 
 single_variable  = '';
 single_signature = 'EMPTY-ERROR';
@@ -965,6 +1048,7 @@ ACTUAL TYPE 'string'
 EMPTY ASSERTION EMPTY-ERROR
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3976, error_mess);
+printTestName("checkParam_empty_3976")
 
 single_variable  = {};
 single_signature = 'EMPTY-ERROR';
@@ -975,6 +1059,7 @@ ACTUAL TYPE 'object'
 EMPTY ASSERTION EMPTY-ERROR
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3977, error_mess);
+printTestName("checkParam_empty_3977")
 
 single_variable  = [];
 single_signature = 'EMPTY-ERROR';
@@ -985,6 +1070,7 @@ ACTUAL TYPE 'array'
 EMPTY ASSERTION EMPTY-ERROR
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3978, error_mess);
+printTestName("checkParam_empty_3978")
 
 single_variable  = { a: 1, b: 2 };
 single_signature = { a: 'EMPTY-ERROR' };
@@ -995,6 +1081,7 @@ ACTUAL TYPE 'object'
 EMPTY ASSERTION {"a":"EMPTY-ERROR"}
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3979, error_mess);
+printTestName("checkParam_empty_3979")
 
 single_variable  = { a: undefined };
 single_signature = { a: 'EMPTY-ERROR' };
@@ -1005,6 +1092,7 @@ ACTUAL TYPE 'object'
 EMPTY ASSERTION {"a":"EMPTY-ERROR"}
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3980, error_mess);
+printTestName("checkParam_empty_3980")
 
 single_variable  = { a: null };
 single_signature = { a: 'EMPTY-ERROR' };
@@ -1015,6 +1103,7 @@ ACTUAL TYPE 'object'
 EMPTY ASSERTION {"a":"EMPTY-ERROR"}
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3981, error_mess);
+printTestName("checkParam_empty_3981")
 
 single_variable  = 'a-string';
 single_signature = ['EMPTY-ERROR'];
@@ -1025,12 +1114,13 @@ ACTUAL TYPE 'string'
 EMPTY ASSERTION ["EMPTY-ERROR"]
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3982, error_mess);
+printTestName("checkParam_empty_3982")
 
 single_variable  = console;
 single_signature = 'EMPTY-ERROR';
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3983, error_mess);
-
+printTestName("checkParam_empty_3983")
 
 
 
@@ -1058,52 +1148,61 @@ single_variable  = [];
 single_signature = 'EMPTY-OK';
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3984, error_mess);
+printTestName("checkParam_empty_3984")
 
 single_variable  = 123n;
 single_signature = 'EMPTY-OK';
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3985, error_mess);
+printTestName("checkParam_empty_3985")
 
 single_variable  = false;
 single_signature = 'EMPTY-OK';
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3986, error_mess);
+printTestName("checkParam_empty_3986")
 
 single_variable  = new Date('1999-12-12');
 single_signature = 'EMPTY-OK';
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3987, error_mess);
+printTestName("checkParam_empty_3987")
 
 single_variable  = (x) => x;
 single_signature = 'EMPTY-OK';
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3988, error_mess);
+printTestName("checkParam_empty_3988")
 
 single_variable  = 12;
 single_signature = 'EMPTY-OK';
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3989, error_mess);
+printTestName("checkParam_empty_3989")
 
 single_variable  = { a: 12 };
 single_signature = 'EMPTY-OK';
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3990, error_mess);
+printTestName("checkParam_empty_3990")
 
 single_variable  = /d/;
 single_signature = 'EMPTY-OK';
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3991, error_mess);
+printTestName("checkParam_empty_3991")
 
 single_variable  = 'a-string';
 single_signature = 'EMPTY-OK';
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3992, error_mess);
+printTestName("checkParam_empty_3992")
 
 single_variable  = Symbol('sym');
 single_signature = 'EMPTY-OK';
 error_mess = '';
 test_pre_checkParam_empty_single(single_variable, single_signature, 3993, error_mess);
-
+printTestName("checkParam_empty_3993")
 
 
 
@@ -1136,6 +1235,7 @@ ACTUAL TYPE 'string'
 EMPTY ASSERTION invalid-empty
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3994, error_mess);
+printTestName("checkParam_empty_3994")
 
 single_variable  = [12, false, 'a string'];
 single_signature =  ['EMPTY-OK'];
@@ -1146,6 +1246,7 @@ ACTUAL TYPE 'array'
 EMPTY ASSERTION ["EMPTY-OK"]
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3995, error_mess);
+printTestName("checkParam_empty_3995")
 
 single_variable  = ['first', 'middle', 'last'];
 single_signature =  ['EMPTY-ERROR', 'INVALID-EMPTY-TYPE', 'EMPTY-OK'];
@@ -1156,6 +1257,7 @@ ACTUAL TYPE 'array'
 EMPTY ASSERTION ["EMPTY-ERROR","INVALID-EMPTY-TYPE","EMPTY-OK"]
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3996, error_mess);
+printTestName("checkParam_empty_3996")
 
 single_variable  = ['first', 'middle', 'last'];
 single_signature =  ['EMPTY-ERROR', [], 'EMPTY-OK'];
@@ -1166,7 +1268,7 @@ ACTUAL TYPE 'array'
 EMPTY ASSERTION ["EMPTY-ERROR",[],"EMPTY-OK"]
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3997, error_mess);
-
+printTestName("checkParam_empty_3997")
 
 
 single_variable  = [];
@@ -1178,7 +1280,7 @@ ACTUAL TYPE 'array'
 EMPTY ASSERTION ["EMPTY-ERROR"]
  ORIGIN pre_checkParam_empty_3900(a_var)`;
 test_pre_checkParam_empty_single(single_variable, single_signature, 3998, error_mess);
-
+    printTestName("checkParam_empty_3998") 
 
 
 
