@@ -38,19 +38,40 @@
 </div>
 
 
+
+
+
 <div id="the-explanation" style="width:50%">
         <div class='an-explantion'>707- React JSX</div>
    
         <div id='explanation-text'>
    
-            The first &lt;li&gt; below has a &lt;<span style="color:red; font-weight:bold">div</span>&gt; instead of a &lt;label&gt;
-          <div id="react-root-label"></div>
+          
+          <div id="react-root"></div>
 
              <br>
-              
-<div id="react-root-div"></div>
 
-<br>
+<pre>
+  const <span class="text-4">isNodeJs</span> = ()=> { try {return process.versions.node} catch{return false} }
+
+  function <span class="text-3">getJsxAsArray</span>(jsx_item, the_list) {
+    let the_type = jsx_item['type']
+    the_list.push(the_type)
+    let the_children = jsx_item['props'].children
+    if (Array.isArray(the_children)) {
+      the_list.push(the_children[1])
+    }else{
+      getJsxAsArray(the_children, the_list)
+    }
+    return the_list
+  }
+
+//  ['li', 'label', 'learn javascript']
+//  ['li', 'label', '<span class="text-2">GROK REACT</span>']
+//  ['li', 'label', 'use type-czech']
+
+</pre>
+              
 Used in type-czech-phone-recipes project
  <ul style="list-style: none">
                     <li><a href="https://github.com/steenhansen/type-czech-phone-recipes">GitHub</a></li>
@@ -60,9 +81,13 @@ Used in type-czech-phone-recipes project
 
                 <br>
 
-
-
         </div>
+
+
+
+
+
+
 
           <div id="console-log">
                     <div class='a-title'>Console Output</div>
@@ -316,66 +341,76 @@ Used in type-czech-phone-recipes project
 
 <script>
   log = captureConsole("log-text")
+
+  const isNodeJs = ()=> { try {return process.versions.node} catch{return false} }
+
+function getJsxAsArray(jsx_item, the_list) {
+  let the_type = jsx_item['type']
+  the_list.push(the_type)
+  let the_children = jsx_item['props'].children
+  if (Array.isArray(the_children)) {
+    the_list.push(the_children[1])
+  }else{
+   getJsxAsArray(the_children, the_list)
+  }
+  return the_list
+}
 </script>
 
 
 <script id="check-code" type="text/babel">
 /**/  type_czech = TypeCzech('LOG-ERRORS')
-/**/    
-/**/  const BROWSER_ITEM = [ {the_item: { done: 'boolean', text: 'string'}}, "object"          ]
-/**/  const NODE_JS_ITEM = [ {the_item: { done: 'boolean', text: 'string'}}, "object", "object"]
-/**/  
-/**/  const isNodeJs = ()=> { try {return process.versions.node} catch{return false} }
-/**/  
+
+/**/  const BROWSER_SIG = [ {the_item: { done: 'boolean', text: 'string'}}, "object"          ]
+/**/  const NODE_JS_SIG = [ {the_item: { done: 'boolean', text: 'string'}}, "object", "object"]
+
 /**/  function PRE_AnItem(item_props, _react_obj_1, _react_obj_2){
 /**/    const item_params = [item_props, _react_obj_1, _react_obj_2]
 /**/    if (isNodeJs())
-/**/        return type_czech.checkParam_typeExtra(item_params, NODE_JS_ITEM)
-/**/    return type_czech.checkParam_typeExtra(item_params, BROWSER_ITEM)
+/**/        return type_czech.checkParam_typeExtra(item_params, NODE_JS_SIG)
+/**/    return type_czech.checkParam_typeExtra(item_params, BROWSER_SIG)
 /**/  }
 /**/  
 /**/  function POST_AnItem(item_return){
-/**/    if (item_return.type!=='li') 
-/**/      return type_czech.check_assert("AnItem() is not an <li> element");
-/**/    if (item_return.props.children.type!=='label') 
-/**/      return type_czech.check_assert("AnItem() is missing <label> element, maybe a <div>?");
-/**/    if (item_return.props.children.props.children[0].type!=='input') 
-/**/      return type_czech.check_assert("AnItem() is missing <input> element");
+/**/    const elem_arr = getJsxAsArray(item_return, [])
+/**/    const [the_li, the_label, label_text] = elem_arr
+/**/    if (the_li!=="li")      
+/**/      return type_czech.check_assert("PRE: AnItem() not an <li> - " + the_li)
+/**/    if (the_label!=="label") 
+/**/      return type_czech.check_assert("PRE: AnItem() missing <label> - " + the_label)
+/**/    const ALL_LOWER = new RegExp(/^[a-z -]*$/)
+/**/    if (!label_text.match(ALL_LOWER))
+/**/      return type_czech.check_assert(`POST: AnItem text has uppercase - ${label_text}`)
 /**/  }
 /**/  
 /**/  AnItem = type_czech.linkUp(AnItem, PRE_AnItem, POST_AnItem)
 
 function AnItem({ the_item }) {
-  if (return_div_error) {
-      return_div_error = false
-      return (  <li>< div ><input type="checkbox" readOnly checked={the_item.done} /> 
-                            {the_item.text}                                             </ div ></li>) }
-  return (      <li><label><input type="checkbox" readOnly checked={the_item.done} /> 
-                            {the_item.text}                                             </label></li>)
+  return (<li><label>
+                  <input type="checkbox" readOnly checked={the_item.done} /> 
+                  {the_item.text} 
+          </label></li>)
 }
 
 class TodoApp extends React.Component {
-    constructor(props) {
+  constructor(props) {
       super(props)
-      this.state = { items: [ { done: true,  text: "Learn JavaScript [maybe div]" },
-                              { done: 17,    text: "Grok React" },
-                              { done: false, text: "Use TypeCzech" } ] } }
+      this.state = { items: [ { done: 17,    text: "learn javascript" },
+                              { done: true,  text: "GROK REACT" },
+                              { done: false, text: "use type-czech" }      ] } 
+  }
+
   render() { return ( <div> <ol>
-                       {this.state.items.map( (an_item, index_i) => (
-                          <AnItem the_item={an_item} key={index_i}></AnItem>
-                         ))}
-                      </ol> </div> ) } 
+                           {this.state.items.map( (an_item, index_i) => (
+                               <AnItem the_item={an_item} key={index_i}></AnItem>
+                           ))}
+                      </ol> </div> ) 
+  }
 }
-var return_div_error = false
-const label_root = ReactDOM.createRoot( document.getElementById('react-root-label') )
+
+const label_root = ReactDOM.createRoot( document.getElementById('react-root') )
 label_root.render(<TodoApp />)
-
-return_div_error = true
-const div_root = ReactDOM.createRoot( document.getElementById('react-root-div') )
-div_root.render(<TodoApp />)
 </script>
-
-
 
 
 
@@ -386,20 +421,18 @@ div_root.render(<TodoApp />)
   function myColoring(){
     jsToDiv('js-code', "check-code");
 
-    fromToBoldText(975, 977, 'code', 1)  //  , maybe a div?");
-    fromToBoldText(1332, 1334, 'code', 1)  //  return (  <li>< div ><
-    fromToBoldText(81, 83, 'log', 1)       //   nt, maybe a div?
+  fromToBoldText(93, 99, 'code', 1)   //BROWSER_ITEM = [ {the_item: { done: 'boolean', 
+     fromToBoldText(1537, 1538, 'code', 1)  // { items: [ { done: 17,    text: "learn javascript" },
+     fromToBoldText(63, 69, 'log', 1)  //      to be a 'boolean', but i
+     fromToBoldText(243, 244, 'log', 1)  //     item:{done:17,text:
 
-    fromToBoldText(199, 205, 'code', 2)   //he_item: { done: 'boolean', text: 
-    fromToBoldText(1902, 1903, 'code', 2)  //    { done: 17,    text: "Grok React" },
-    fromToBoldText(286, 292, 'log', 2)  //      to be a 'boolean', but i
-    fromToBoldText(466, 467, 'log', 2)  //     item:{done:17,text:
+    fromToBoldText(995, 997, 'code', 2)  //   L_LOWER = new RegExp(/^[a-z -]*$/)
+    fromToBoldText(1624, 1633, 'code', 2)  //    { done: true,  text: "GROK REACT" }, 
+    fromToBoldText(507, 516, 'log', 2)  //    character(s) - GROK REACT
 
-    fromToBoldText(718, 724, 'log', 2)  //      to be a 'boolean', but i
-    fromToBoldText(898, 899, 'log', 2)  //      item:{done:17,text:
-
-    fromToBoldText(65, 76, 'code', 3)  //   const BROWSER_ITEM = [ 
-    fromToBoldText(646, 657, 'code', 3)  //tra(item_params, BROWSER_ITEM)
+    fromToBoldText(629, 641, 'code', 3)  //    const elem_arr=getJsxArray(item_return, [])
+    fromToBoldText(386, 393, 'code', 4)  //     if (isNodeJs())
+  
 
   }
 
