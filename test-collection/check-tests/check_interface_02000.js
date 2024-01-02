@@ -11,6 +11,21 @@ check_interface_02002();   // missing function in interface
 check_interface_02003();   // wrong type in interface
 
 
+function printTestName(an_str) {
+  if (typeof window !== "undefined") {
+    if (typeof window.browserList === 'function') {
+      if (window.browserList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+  } else {
+    if (typeof global.nodejsList === 'function') {
+      if (global.nodejsList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+   } 
+}
 /////////////////////////////////////////////////////////////
 function check_interface_02000(){
 
@@ -81,10 +96,12 @@ function check_interface_02000(){
   else if  (typeof TEST_total_checks === 'undefined')
     console.log('no-issues: pass', expected_tests-expected_fails, ' fail', expected_fails)
   else
-  pass_count += expected_tests
+    pass_count += expected_tests
+        printTestName("check_interface_02000")
 }
 
-function check_interface_02001(){
+function check_interface_02001() {
+
   var TYPE_CZECH_current_test_number = '02001';       
   var check_param = {show: (x) => x};
   var check_shape =   {show:'function'};          
@@ -101,12 +118,14 @@ function check_interface_02001(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+          printTestName("check_interface_02001")
 }
 
 
 
-function check_interface_02002(){
+function check_interface_02002() {
+
   var TYPE_CZECH_current_test_number = '02002';       
   var check_param = {show: (x) => x};
   var check_shape =   {noShow:'function'};          
@@ -123,11 +142,13 @@ function check_interface_02002(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+      printTestName("check_interface_02002")
 }
 
 
-function check_interface_02003(){
+function check_interface_02003() {
+
   var TYPE_CZECH_current_test_number = '02003';       
   var check_param =  {show: 17};
   var check_shape =   {show:'function'};           
@@ -144,7 +165,8 @@ function check_interface_02003(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("check_interface_02003")
 }
 
 

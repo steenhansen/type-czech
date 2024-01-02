@@ -1,5 +1,21 @@
 //  node --trace-uncaught test-all-node.js
 
+// NodeJs
+//        npm test          == show total fails and checks only
+//        npm run test-list == show every test
+//
+// Browser
+//        /test-collection/test-all-web.html       == show total fails and checks only
+//        /test-collection/test-all-web-list.html  == show every test
+
+
+if (typeof global.nodejsList !== 'function') {
+  global.nodejsList = () => {
+    return false;
+  };
+}
+
+
 require("./node_includes.js");
 
 const { TypeCzech } = require("../type-czech-require-dev.js");

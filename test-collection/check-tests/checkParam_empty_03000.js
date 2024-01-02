@@ -65,6 +65,22 @@ checkParam_empty_03049();
 checkParam_empty_03050();
 checkParam_empty_03051();
 
+function printTestName(an_str) {
+  if (typeof window !== "undefined") {
+    if (typeof window.browserList === 'function') {
+      if (window.browserList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+  } else {
+    if (typeof global.nodejsList === 'function') {
+      if (global.nodejsList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+   } 
+}
+
 //////////////////////////////////////
 function checkParam_empty_03000(){
 
@@ -270,6 +286,8 @@ function checkParam_empty_03000(){
   E_yourFunc(2,[])               // fail 5
   E_yourFunc(2,{})               // fail 6
   pass_count += expectedAndFailedTests(6, 6, 'E-Fail', 'checkParam_empty().md');
+    printTestName("checkParam_empty_03000")   
+
 }
 
 function checkParam_empty_03001(){
@@ -289,7 +307,9 @@ function checkParam_empty_03001(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("checkParam_empty_03001")   
+
 }
 
 
@@ -311,7 +331,9 @@ function checkParam_empty_03002(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("checkParam_empty_03002")   
+
 }
 
 
@@ -333,7 +355,9 @@ function checkParam_empty_03003(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("checkParam_empty_03003")   
+
 }
 
 function checkParam_empty_03004(){
@@ -353,7 +377,9 @@ function checkParam_empty_03004(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("checkParam_empty_03004")   
+
 }
 
 function checkParam_empty_03005(){
@@ -373,7 +399,9 @@ function checkParam_empty_03005(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("checkParam_empty_03005")   
+
 }
 
 function checkParam_empty_03006(){
@@ -393,7 +421,9 @@ function checkParam_empty_03006(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("checkParam_empty_03006")   
+
 }
 
 
@@ -414,7 +444,9 @@ function checkParam_empty_03007(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("checkParam_empty_03007")   
+
 }
 
 
@@ -436,7 +468,9 @@ function checkParam_empty_03008(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("checkParam_empty_03008")   
+
 }
 
 
@@ -457,7 +491,9 @@ function checkParam_empty_03009(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("checkParam_empty_03009")   
+
 }
 
 function checkParam_empty_03010(){
@@ -477,7 +513,9 @@ function checkParam_empty_03010(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("checkParam_empty_03010")   
+
 }
 
 
@@ -498,7 +536,9 @@ function checkParam_empty_03011(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("checkParam_empty_03011")   
+
 }
 
 
@@ -520,7 +560,9 @@ function checkParam_empty_03012(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("checkParam_empty_03012")   
+
 }
 
 
@@ -544,7 +586,9 @@ function checkParam_empty_03013(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("checkParam_empty_03013")   
+
 }
 
 
@@ -565,7 +609,9 @@ function checkParam_empty_03014(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("checkParam_empty_03014")   
+
 }
 
 
@@ -586,7 +632,9 @@ function checkParam_empty_03015(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("checkParam_empty_03015")   
+
 }
 
 
@@ -608,7 +656,9 @@ function checkParam_empty_03016(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("checkParam_empty_03016")   
+
 }
 
 
@@ -630,7 +680,9 @@ function checkParam_empty_03017(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("checkParam_empty_03017")   
+
 }
 
 
@@ -652,7 +704,9 @@ function checkParam_empty_03018(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("checkParam_empty_03018")   
+
 }
 
 
@@ -673,7 +727,9 @@ function checkParam_empty_03019(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("checkParam_empty_03019")   
+
 }
 
 
@@ -694,7 +750,9 @@ function checkParam_empty_03020(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("checkParam_empty_03020")   
+
 }
 
 
@@ -715,7 +773,9 @@ function checkParam_empty_03021(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("checkParam_empty_03021")   
+
 }
 
 
@@ -738,7 +798,9 @@ function checkParam_empty_03022(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("checkParam_empty_03022")   
+
 }
 
 
@@ -759,7 +821,9 @@ function checkParam_empty_03023(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("checkParam_empty_03023")   
+
 }
 
 
@@ -780,7 +844,9 @@ function checkParam_empty_03024(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("checkParam_empty_03024")   
+
 }
 
 function checkParam_empty_03025(){
@@ -800,7 +866,9 @@ function checkParam_empty_03025(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("checkParam_empty_03025")   
+
 }
 
 
@@ -821,7 +889,9 @@ function checkParam_empty_03026(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("checkParam_empty_03026")   
+
 }
 
 
@@ -843,7 +913,9 @@ function checkParam_empty_03027(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+    printTestName("checkParam_empty_03027")   
+
 }
 
 
@@ -865,7 +937,8 @@ function checkParam_empty_03028(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+  printTestName("checkParam_empty_03028")   
 }
 
 
@@ -886,7 +959,8 @@ function checkParam_empty_03029(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+     printTestName("checkParam_empty_03029")   
 }
 
 
@@ -907,7 +981,8 @@ function checkParam_empty_03030(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+     printTestName("checkParam_empty_03030")   
 }
 
 function checkParam_empty_03031(){
@@ -927,7 +1002,8 @@ function checkParam_empty_03031(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+     printTestName("checkParam_empty_03031")   
 }
 
 function checkParam_empty_03032(){
@@ -947,7 +1023,8 @@ function checkParam_empty_03032(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+     printTestName("checkParam_empty_03032")   
 }
 
 
@@ -968,7 +1045,8 @@ function checkParam_empty_03033(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+     printTestName("checkParam_empty_03033")   
 }
 
 
@@ -989,7 +1067,8 @@ function checkParam_empty_03034(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+     printTestName("checkParam_empty_03034")   
 }
 
 
@@ -1010,7 +1089,8 @@ function checkParam_empty_03035(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+     printTestName("checkParam_empty_03035")   
 }
 
 
@@ -1033,7 +1113,8 @@ function checkParam_empty_03036(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+     printTestName("checkParam_empty_03036")   
 }
 
 
@@ -1055,7 +1136,8 @@ function checkParam_empty_03037(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+     printTestName("checkParam_empty_03037")   
 }
 
 
@@ -1076,7 +1158,8 @@ function checkParam_empty_03038(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+     printTestName("checkParam_empty_03038")   
 }
 
 
@@ -1097,7 +1180,8 @@ function checkParam_empty_03039(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+     printTestName("checkParam_empty_03039")   
 }
 
 
@@ -1119,7 +1203,8 @@ function checkParam_empty_03040(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+     printTestName("checkParam_empty_03040")   
 }
 
 
@@ -1140,7 +1225,8 @@ function checkParam_empty_03041(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+     printTestName("checkParam_empty_03041")   
 }
 
 function checkParam_empty_03042(){
@@ -1160,7 +1246,8 @@ function checkParam_empty_03042(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+     printTestName("checkParam_empty_03042")   
 }
 
 function checkParam_empty_03043(){
@@ -1180,7 +1267,8 @@ function checkParam_empty_03043(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+     printTestName("checkParam_empty_03043")   
 }
 
 function checkParam_empty_03044(){
@@ -1200,7 +1288,8 @@ function checkParam_empty_03044(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+     printTestName("checkParam_empty_03044")   
 }
 
 function checkParam_empty_03045(){
@@ -1220,7 +1309,8 @@ function checkParam_empty_03045(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+     printTestName("checkParam_empty_03045")   
 }
 
 function checkParam_empty_03046(){
@@ -1240,7 +1330,8 @@ function checkParam_empty_03046(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+     printTestName("checkParam_empty_03046")   
 }
 
 
@@ -1261,7 +1352,8 @@ function checkParam_empty_03047(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+     printTestName("checkParam_empty_03047")   
 }
 
 function checkParam_empty_03048(){
@@ -1281,7 +1373,8 @@ function checkParam_empty_03048(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+     printTestName("checkParam_empty_03048")   
 }
 
 function checkParam_empty_03049(){
@@ -1301,7 +1394,8 @@ function checkParam_empty_03049(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+     printTestName("checkParam_empty_03049")   
 }
 
 
@@ -1323,7 +1417,8 @@ function checkParam_empty_03050(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+     printTestName("checkParam_empty_03050")   
 }
 
 function checkParam_empty_03051(){
@@ -1343,7 +1438,8 @@ function checkParam_empty_03051(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+   printTestName("checkParam_empty_03051")     
 }
 
 

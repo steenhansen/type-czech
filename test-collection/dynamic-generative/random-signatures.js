@@ -158,6 +158,7 @@ generativeTest(TEST_number_generatives, TEST_show_random);
 
 
 
- for (let i = 0; i < TEST_number_generatives; i += 1) {
+for (let i = 0; i < TEST_number_generatives; i += 1) {
+   //console.log("ge",i)
    generativeTest(i);
  }

@@ -12,7 +12,21 @@
 pass_count = 0;
 fail_count = 0;
 
-
+function printTestName(an_str) {
+  if (typeof window !== "undefined") {
+    if (typeof window.browserList === 'function') {
+      if (window.browserList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+  } else {
+    if (typeof global.nodejsList === 'function') {
+      if (global.nodejsList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+   } 
+}
 
 
 
@@ -64,6 +78,7 @@ variable  = { show: (x) => x };
 signature = { show: 'function' };
 error_mess = '';
 test_pre_check_interface(variable, signature, 2901, error_mess);
+printTestName("check_interface_02901")  
 
 variable  = { show: (x) => x };
 signature = { no_match: 'function' };
@@ -74,6 +89,7 @@ ACTUAL TYPE 'object'
  EXPECTED TYPE {"no_match":"function"}
  ORIGIN pre_check_interface_02900(a_var)`;
 test_pre_check_interface(variable, signature, 2902, error_mess);
+printTestName("check_interface_02902")  
 
 variable  = { show: (x) => x };
 signature = { show: 'number' };
@@ -84,6 +100,7 @@ ACTUAL TYPE 'object'
  EXPECTED TYPE {"show":"number"}
  ORIGIN pre_check_interface_02900(a_var)`;
 test_pre_check_interface(variable, signature, 2903, error_mess);
+printTestName("check_interface_02903")  
 
 variable  = { show: 12 };
 signature = { show: 'function' };
@@ -94,16 +111,19 @@ ACTUAL TYPE 'object'
  EXPECTED TYPE {"show":"function"}
  ORIGIN pre_check_interface_02900(a_var)`;
 test_pre_check_interface(variable, signature, 2904, error_mess);
+printTestName("check_interface_02904")  
 
 variable  = { show: (x) => x, extra: 57 };
 signature = { show: 'function' };
 error_mess = '';
 test_pre_check_interface(variable, signature, 2905, error_mess);
+printTestName("check_interface_02905")  
 
 variable  = { show: 95 };
 signature = { show: 'number' };
 error_mess = '';
 test_pre_check_interface(variable, signature, 2906, error_mess);
+printTestName("check_interface_02906")  
 
 variable  = [98];
 signature = { show: 'number' };
@@ -114,6 +134,7 @@ ACTUAL TYPE 'array'
  EXPECTED TYPE {"show":"number"}
  ORIGIN pre_check_interface_02900(a_var)`;
 test_pre_check_interface(variable, signature, 2907, error_mess);
+printTestName("check_interface_02907")  
 
 variable  =  { show: 95 };
 signature = [45];
@@ -124,6 +145,7 @@ ACTUAL TYPE 'object'
  EXPECTED TYPE [45]
  ORIGIN pre_check_interface_02900(a_var)`;
 test_pre_check_interface(variable, signature, 2908, error_mess);
+printTestName("check_interface_02908")  
 
 variable  = { show: (x) => x };
 signature = { };
@@ -135,7 +157,7 @@ ACTUAL TYPE 'object'
  ORIGIN pre_check_interface_02900(a_var)`;
 test_pre_check_interface(variable, signature, 2909, error_mess);
 
-
+printTestName("check_interface_02909")  
 
 
 
@@ -144,6 +166,8 @@ variable  = { Matryoshka: 'doll'} ;
 signature = { Matryoshka: 'string' };
 error_mess = '';
 test_pre_check_interface(variable, signature, 2910, error_mess);
+printTestName("check_interface_02910")  
+
 
 variable  = { Matryoshka: {Russia:  'doll'} };
 signature = { Matryoshka: {Russia:'string'} };
@@ -155,7 +179,7 @@ EXPECTED TYPE {"Matryoshka":{"Russia":"string"}}
  ORIGIN pre_check_interface_02900(a_var)`;
 test_pre_check_interface(variable, signature, 2911, error_mess);
 
-
+printTestName("check_interface_02911")     
 
 
 

@@ -10,6 +10,7 @@
   },
   "scripts": {
     "test": "node ./test-collection/test-all-node.js",
+     "test-list": "node ./test-collection/test-all-node-list.js",
     "do-minify": "npm run A-strip-code && npm run B-google-closure && npm run C-clean-up",
     "A-strip-code": "node ./closure-minify/make_tc_no_exports.js",
     "B-google-closure": "npx google-closure-compiler --language_out ECMASCRIPT_2020 --js=./TypeCzech.no-debug.js --js_output_file=./TypeCzech.min.js",

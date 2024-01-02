@@ -11,9 +11,26 @@ link_01003();
 link_01004();
 
 
+function printTestName(an_str) {
+  if (typeof window !== "undefined") {
+    if (typeof window.browserList === 'function') {
+      if (window.browserList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+  } else {
+    if (typeof global.nodejsList === 'function') {
+      if (global.nodejsList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+   } 
+}
+
 /////////////////////////////////////////////
 
-function link_01000(){
+function link_01000() {
+
 
   type_czech = TypeCzech('NO-ERROR-MESSAGES', 'HIDE-INIT-MESSAGE')
 
@@ -196,9 +213,12 @@ function link_01000(){
   else
   pass_count += expected_tests
 
+       printTestName("link_01000")
 }
 
-function link_01001(){
+function link_01001() {
+
+
   type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE'
   //, 'DEBUG-CONSOLE-TRACE'
   );
@@ -228,11 +248,12 @@ function link_01001(){
                                               if (actual !== expected) {
                                                 fail_count ++;
                                               }
-                                              pass_count ++;
+  pass_count++;
+           printTestName("link_01001")
 }
 
-function link_01002(){
-
+function link_01002() {
+  
   type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE'
   //, 'DEBUG-CONSOLE-TRACE'
   );
@@ -258,12 +279,14 @@ function link_01002(){
                                               if (actual !== expected) {
                                                 fail_count ++;
                                               }
-                                              pass_count ++;
+  pass_count++;
+         printTestName("link_01002")
 }
 
 function link_01003(){
 
-  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE'
+
+  type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE', 'CONSOLE-COUNT'
   //, 'DEBUG-CONSOLE-TRACE'
   );
   TYPE_CZECH_current_test_number = '01003';
@@ -286,10 +309,13 @@ function link_01003(){
                                               if (actual !== expected) {
                                                 fail_count ++;
                                               }
-                                              pass_count ++;
+  pass_count++;
+         printTestName("link_01003")
 }
 
-function link_01004(){
+function link_01004() {
+   
+
   type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE'
   //, 'DEBUG-CONSOLE-TRACE'
   );
@@ -313,7 +339,7 @@ function link_01004(){
                                                 fail_count ++;
                                               }
                                               pass_count ++;
-                                              
+       printTestName("link_01004")                                           
 }
 
 
