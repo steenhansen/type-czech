@@ -9,9 +9,5 @@ No tests, no online examples for
   - checkArray_objEmpty0n()
   - checkArray_objEmpty1n()
 
-Started examples:
-  -  /example-snippets/___43_-Array-of-Objects-Example.html
-  -  /example-snippets/___44_-deClassify-Example.html
-  -  /example-snippets/___45_-Await-Fetch-Example.html
 
 

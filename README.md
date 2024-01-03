@@ -25,7 +25,7 @@ The motivation is to verify function parameters before execution,
 and function results after completion with PRE_yourRoutine() and POST_yourRoutine() functions.
 Functions are not changed in any way by the linking of type checking functions as they are with asserts.
 Nothing is added to function declarations like with TypeScript.
-I got the idea from the [Closure spec library](https://clojure.org/guides/spec), which I believe
+I got the idea from the [Clojure spec library](https://clojure.org/guides/spec), which I believe
 copied Bertrand Meyer's [Eiffel][eiffel_link] that invented [Design by Contract](https://en.wikipedia.org/wiki/Design_by_contract) (DbC).
 
 
