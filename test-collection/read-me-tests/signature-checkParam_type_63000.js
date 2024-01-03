@@ -4,6 +4,22 @@
 pass_count = 0;
 fail_count = 0;
 
+function printTestName(an_str) {
+  if (typeof window !== "undefined") {
+    if (typeof window.browserList === 'function') {
+      if (window.browserList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+  } else {
+    if (typeof global.nodejsList === 'function') {
+      if (global.nodejsList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+   } 
+}
+
 function showFail(which_type, e='') {
   console.log('Failed test in signature-checkParam_type_63000.js : ', which_type, e);
   fail_count +=1;
@@ -12,7 +28,8 @@ function showFail(which_type, e='') {
 function test_checkParam_type(test_value, the_signature){
   type_czech = TypeCzech('THROW-EXCEPTIONS', 'HIDE-INIT-MESSAGE');
 
-  function PRE_check_checkParam_type(a_value){
+  function PRE_check_checkParam_type(a_value) {
+    printTestName("signature-checkParam_type_63000_"+a_value)  
     return type_czech.checkParam_type(a_value, the_signature);
   }
 

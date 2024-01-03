@@ -3,6 +3,22 @@
 pass_count = 0;
 fail_count = 0;
 
+function printTestName(an_str) {
+  if (typeof window !== "undefined") {
+    if (typeof window.browserList === 'function') {
+      if (window.browserList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+  } else {
+    if (typeof global.nodejsList === 'function') {
+      if (global.nodejsList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+   } 
+}
+
 
 function showFail(which_type, e='') {
     console.log('Failed test in signatures-type_61000.js : ', which_type, e)
@@ -15,7 +31,8 @@ function showFail(which_type, e='') {
     /**/  type_czech = TypeCzech('THROW-EXCEPTIONS')
     /**/  
     /**/  function PRE_check_oneStr(one_str){
-    /**/    pass_count ++;
+    /**/    pass_count++;
+          printTestName("signatures-type_61000_a")  
     /**/    return type_czech.checkParam_type(one_str, 'string')
     /**/  }
     /**/  
@@ -44,7 +61,8 @@ try { oneStr('a-str', 'b-str'); showFail('A5'); // fail
     /**/  type_czech = TypeCzech('THROW-EXCEPTIONS')
     /**/  
     /**/  function PRE_check_twoNums(num_1, str_2){
-    /**/    pass_count ++;
+    /**/    pass_count++;
+               printTestName("signatures-type_61000_b")  
     /**/    return type_czech.checkParam_type([num_1, str_2], ['number', 'string'])
     /**/  }
     /**/  
@@ -81,7 +99,8 @@ try { twoNums(1, 'two', 'three'); showFail('B6');   // fail
     /**/  type_czech = TypeCzech('THROW-EXCEPTIONS')
     /**/  
     /**/  function PRE_check_oneObj(one_obj){
-    /**/    pass_count ++;
+    /**/    pass_count++;
+               printTestName("signatures-type_61000_c")  
     /**/    return type_czech.checkParam_type(one_obj, {a:'number'})
     /**/  }
     /**/  
@@ -111,7 +130,8 @@ try { oneObj({a:2222, b:1999}); showFail('C6');   // fail
 // ### D - Two Object Types
     /**/  type_czech = TypeCzech('THROW-EXCEPTIONS')
     /**/  
-    /**/  function PRE_check_twoObj(one_obj, two_obj){
+    /**/  function PRE_check_twoObj(one_obj, two_obj) {
+               printTestName("signatures-type_61000_d")  
     /**/    pass_count ++;
     /**/    return type_czech.checkParam_type([one_obj, two_obj], [{a:'number'}, {b:'string'}])
     /**/  }
@@ -148,7 +168,8 @@ try { twoObj({a:'a-string'}, {b:'a-string'}); showFail('D7');   // fail
 // ### E - Single Scalar Element Array
     /**/  type_czech = TypeCzech('THROW-EXCEPTIONS')
     /**/  
-    /**/  function PRE_check_oneElemArr(one_num_elem_arr){
+    /**/  function PRE_check_oneElemArr(one_num_elem_arr) {
+               printTestName("signatures-type_61000_e")  
     /**/    pass_count ++;
     /**/    return type_czech.checkParam_type(one_num_elem_arr, ['number'])
     /**/  }
@@ -185,7 +206,8 @@ try { oneElemArr([17,18]); showFail('E6');   // fail
 
     /**/  type_czech = TypeCzech('THROW-EXCEPTIONS')
     /**/  
-    /**/  function PRE_check_twoElemArr(two_num_elem_arr){
+    /**/  function PRE_check_twoElemArr(two_num_elem_arr) {
+               printTestName("signatures-type_61000_f")  
     /**/    pass_count ++;
     /**/    return type_czech.checkParam_type(two_num_elem_arr, ['number', 'number'])
     /**/  }
@@ -226,7 +248,8 @@ try { twoElemArr([1,2,'three']); showFail('F6');   // fail
   /**/  type_czech = TypeCzech('THROW-EXCEPTIONS')
     /**/  
     /**/  function PRE_check_someNums(){
-    /**/    pass_count ++;
+    /**/    pass_count++;
+               printTestName("signatures-type_61000_g")  
     /**/    return type_czech.checkArgs_typeEach(arguments, 'number')
     /**/  }
     /**/  
@@ -255,7 +278,8 @@ try { someNums(); showFail('G3');   // fail
     /**/  type_czech = TypeCzech('THROW-EXCEPTIONS')
     /**/  
     /**/  function PRE_check_oneNumArray(array_with_1_num){
-    /**/    pass_count ++;
+    /**/    pass_count++;
+               printTestName("signatures-type_61000_h")  
     /**/    return type_czech.checkParam_type(array_with_1_num, ['number'])
     /**/  }
     /**/  
@@ -286,7 +310,8 @@ try { oneNumArray([1, 2]); showFail('H6');   // fail
     /**/  type_czech = TypeCzech('THROW-EXCEPTIONS')
     /**/  
     /**/  function PRE_check_twoNumArray(array_with_num_str){
-    /**/    pass_count ++;
+    /**/    pass_count++;
+               printTestName("signatures-type_61000_i")  
     /**/    return type_czech.checkParam_type(array_with_num_str, ['number', 'string'])
     /**/  }
     /**/  
@@ -326,7 +351,8 @@ try { twoNumArray([9876,   'str-1', 123]); showFail('I6');   // fail
     /**/  type_czech = TypeCzech('THROW-EXCEPTIONS')
     /**/  
     /**/  function PRE_check_someNums_2(strs_1, nums_2){
-    /**/    pass_count ++;
+    /**/    pass_count++;
+               printTestName("signatures-type_61000_j")  
     /**/    the_parameters = [strs_1, nums_2] 
     /**/    the_signature = ['strings', 'numbers']
     /**/    return type_czech.checkParam_type(the_parameters, the_signature)
@@ -367,7 +393,8 @@ try { someNums_2([1,2,3], [1,2,3]); showFail('J6');   // fail
     /**/  type_czech = TypeCzech('THROW-EXCEPTIONS')
     /**/  
     /**/  function PRE_check_arrayArray(array_with_2_num){
-    /**/    pass_count ++;
+    /**/    pass_count++;
+               printTestName("signatures-type_61000_k")  
     /**/    return type_czech.checkParam_type(array_with_2_num, ['arrays'])
     /**/  }
     /**/  

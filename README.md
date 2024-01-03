@@ -101,7 +101,7 @@ npm i type-czech
 
 <a id="tests-2444"></a>
 
-## Run 2444 tests in NodeJs
+## Run 2456 tests in NodeJs
 ```
 npm test             // total pass fail only
 
@@ -109,7 +109,7 @@ npm run test-list    // show every test
 ```
 
 
-## Run 2444 tests in browser console
+## Run 2456 tests in browser console
 ```
 /test-collection/test-all-web.html  // total pass fail only
 

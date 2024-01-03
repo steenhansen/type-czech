@@ -17,6 +17,21 @@ arr_arr_complex_58110();
 
 arr_arr_complex_58111();
 
+function printTestName(an_str) {
+  if (typeof window !== "undefined") {
+    if (typeof window.browserList === 'function') {
+      if (window.browserList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+  } else {
+    if (typeof global.nodejsList === 'function') {
+      if (global.nodejsList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+   } 
+}
 
 //////////////////////////////////////////////////////////
 
@@ -64,7 +79,9 @@ function arr_arr_complex_58101(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+     printTestName("arr_arr_complex_58101")  
+
 }
 
 
@@ -88,7 +105,9 @@ function arr_arr_complex_58102(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+     printTestName("arr_arr_complex_58102")  
+
 }
 
 function arr_arr_complex_58103(){
@@ -111,7 +130,9 @@ function arr_arr_complex_58103(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+     printTestName("arr_arr_complex_58103")  
+
 }
 
 function arr_arr_complex_58104(){
@@ -134,7 +155,9 @@ function arr_arr_complex_58104(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+     printTestName("arr_arr_complex_58104")  
+
 }
 
 
@@ -159,7 +182,9 @@ function arr_arr_complex_58105(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+     printTestName("arr_arr_complex_58105")  
+
 }
 
 function arr_arr_complex_58106(){
@@ -182,7 +207,9 @@ function arr_arr_complex_58106(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+     printTestName("arr_arr_complex_58106")  
+
 }
 
 
@@ -206,7 +233,9 @@ function arr_arr_complex_58107(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+     printTestName("arr_arr_complex_58107")  
+
 }
 
 function arr_arr_complex_58108(){
@@ -229,7 +258,9 @@ function arr_arr_complex_58108(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+     printTestName("arr_arr_complex_58108")  
+
 }
 
 function arr_arr_complex_58109(){
@@ -252,7 +283,8 @@ function arr_arr_complex_58109(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+   printTestName("arr_arr_complex_58109")  
 }
 
 function arr_arr_complex_58110(){
@@ -275,7 +307,8 @@ function arr_arr_complex_58110(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+   printTestName("arr_arr_complex_58110")  
 }
 
 //////////////////////////////////////////////////////////
@@ -314,7 +347,9 @@ function arr_arr_complex_58111(){
           console.log('expect =', expect_error);
           if (typeof fail_count !=='undefined') fail_count ++;
         }
-        if (typeof pass_count !=='undefined') pass_count ++;
+  if (typeof pass_count !== 'undefined') pass_count++;
+  
+    printTestName("arr_arr_complex_58111")  
 }
 
 if (fail_count>0) {

@@ -7,6 +7,21 @@
 pass_count = 0;
 fail_count = 0;
 
+function printTestName(an_str) {
+  if (typeof window !== "undefined") {
+    if (typeof window.browserList === 'function') {
+      if (window.browserList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+  } else {
+    if (typeof global.nodejsList === 'function') {
+      if (global.nodejsList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+   } 
+}
 
 try{
   type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
@@ -158,11 +173,11 @@ try{
   full_3.fullMethod()
   pass_count +=1;
 }catch(e){ 
-  console.log('closure_check_52000 - FAIL', e)
+  console.log('prototype_check_55000 - FAIL', e)
   fail_count += 1;
 }
 
-
+printTestName("prototype_check_55000")  
 
 if (fail_count>0) {
   the_problem = `public-tests/prototype_check_55000.js - fails = ${fail_count}`;  

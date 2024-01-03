@@ -11,6 +11,21 @@
 pass_count = 0;
 fail_count = 0;
 
+function printTestName(an_str) {
+  if (typeof window !== "undefined") {
+    if (typeof window.browserList === 'function') {
+      if (window.browserList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+  } else {
+    if (typeof global.nodejsList === 'function') {
+      if (global.nodejsList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+   } 
+}
 
 function test_pre_scalar_arrays_57000(single_parameter, signature_of_parameter, error_id, expected_error) {
   const type_czech = TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
@@ -63,21 +78,25 @@ arr_variable  = [1];
 arr_signature = ['numbers'];
 error_mess = '';
 test_pre_scalar_arrays_57000(arr_variable, arr_signature, 57001, error_mess);
+printTestName("scalar_arrays_57001") 
 
 arr_variable  = [1, 2];
 arr_signature = ['numbers'];
 error_mess = '';
 test_pre_scalar_arrays_57000(arr_variable, arr_signature, 57002, error_mess);
+printTestName("scalar_arrays_57002") 
 
 arr_variable  = [1, 2, 3];
 arr_signature = ['numbers'];
 error_mess = '';
 test_pre_scalar_arrays_57000(arr_variable, arr_signature, 57003, error_mess);
+printTestName("scalar_arrays_57003") 
 
 arr_variable  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
 arr_signature = ['numbers'];
 error_mess = '';
 test_pre_scalar_arrays_57000(arr_variable, arr_signature, 57004, error_mess);
+printTestName("scalar_arrays_57004") 
 
 arr_variable  = [false];
 arr_signature = ['numbers'];
@@ -88,6 +107,8 @@ ACTUAL TYPE 'array'
 EXPECTED TYPE ["numbers"]
  ORIGIN pre_scalar_arrays_57000(a_var)`;
 test_pre_scalar_arrays_57000(arr_variable, arr_signature, 57005, error_mess);
+printTestName("scalar_arrays_57005") 
+
 
 arr_variable  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 'a-string', 13];
 arr_signature = ['numbers'];
@@ -98,52 +119,62 @@ ACTUAL TYPE 'array'
 EXPECTED TYPE ["numbers"]
  ORIGIN pre_scalar_arrays_57000(a_var)`;
 test_pre_scalar_arrays_57000(arr_variable, arr_signature, 57006, error_mess);
+printTestName("scalar_arrays_57006") 
 
 
 arr_variable  = ['a', 'b', 'c'];
 arr_signature = ['strings'];
 error_mess = '';
 test_pre_scalar_arrays_57000(arr_variable, arr_signature, 57007, error_mess);
+printTestName("scalar_arrays_57007") 
 
 arr_variable  = [Symbol('sym-a'), Symbol('sym-b'), Symbol('sym-c')];
 arr_signature = ['symbols'];
 error_mess = '';
 test_pre_scalar_arrays_57000(arr_variable, arr_signature, 57008, error_mess);
+printTestName("scalar_arrays_57008") 
 
 arr_variable  = [/(?:)/, /(?:)/, /(?:)/];
 arr_signature = ['regexps'];
 error_mess = '';
 test_pre_scalar_arrays_57000(arr_variable, arr_signature, 57009, error_mess);
+printTestName("scalar_arrays_57009") 
 
 arr_variable  = [{a:'a'}, {b:52}, {c:'crater'},];
 arr_signature = ['objects'];
 error_mess = '';
 test_pre_scalar_arrays_57000(arr_variable, arr_signature, 57010, error_mess);
+printTestName("scalar_arrays_57010") 
 
 arr_variable  = [a=>a+8, b=>b+7, c=>c+6];
 arr_signature = ['functions'];
 error_mess = '';
 test_pre_scalar_arrays_57000(arr_variable, arr_signature, 57011, error_mess);
+printTestName("scalar_arrays_57011") 
 
 arr_variable  = [new Date('2021-12-05'), new Date('2021-12-05'), new Date('2021-12-05')];
 arr_signature = ['dates'];
 error_mess = '';
 test_pre_scalar_arrays_57000(arr_variable, arr_signature, 57012, error_mess);
+printTestName("scalar_arrays_57012") 
 
 arr_variable  = [true, false, true];
 arr_signature = ['booleans'];
 error_mess = '';
 test_pre_scalar_arrays_57000(arr_variable, arr_signature, 57013, error_mess);
+printTestName("scalar_arrays_57013") 
 
 arr_variable  = [123n, 456n, 789n];
 arr_signature = ['bigints'];
 error_mess = '';
 test_pre_scalar_arrays_57000(arr_variable, arr_signature, 57014, error_mess);
+printTestName("scalar_arrays_57014") 
 
 arr_variable  = [ [123n], ['Arcola', 42] ];
 arr_signature = ['arrays'];
 error_mess = '';
 test_pre_scalar_arrays_57000(arr_variable, arr_signature, 57015, error_mess);
+printTestName("scalar_arrays_57015") 
 
 arr_variable  = [  ['a', 1],  ['b', 2] ];
 arr_signature = ['string', 'number'];
@@ -154,12 +185,13 @@ ACTUAL TYPE 'array'
 EXPECTED TYPE ["string","number"]
  ORIGIN pre_scalar_arrays_57000(a_var)`;
 test_pre_scalar_arrays_57000(arr_variable, arr_signature, 57016, error_mess);
+printTestName("scalar_arrays_57016") 
 
 arr_variable  = [  ['a', 1],  ['b', 2] ];
 arr_signature = [ ['string', 'number'], ['string', 'number'] ];
 error_mess = ``;
 test_pre_scalar_arrays_57000(arr_variable, arr_signature, 57017, error_mess);
-
+printTestName("scalar_arrays_57017") 
 
 
 if (fail_count>0) {

@@ -2,6 +2,22 @@
 
 //  node --trace-uncaught test-signatures-node.js
 
+function printTestName(an_str) {
+  if (typeof window !== "undefined") {
+    if (typeof window.browserList === 'function') {
+      if (window.browserList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+  } else {
+    if (typeof global.nodejsList === 'function') {
+      if (global.nodejsList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+   } 
+}
+
 const type_czech_test = TypeCzech('THROW-EXCEPTIONS', 'HIDE-INIT-MESSAGE');
 const change_tree = changeTree();
 
@@ -159,6 +175,6 @@ generativeTest(TEST_number_generatives, TEST_show_random);
 
 
 for (let i = 0; i < TEST_number_generatives; i += 1) {
-   //console.log("ge",i)
+   printTestName("random-signatures_"+i)  
    generativeTest(i);
  }

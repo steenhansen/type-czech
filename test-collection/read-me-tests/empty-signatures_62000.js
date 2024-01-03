@@ -3,6 +3,22 @@
 pass_count = 0;
 fail_count = 0;
 
+function printTestName(an_str) {
+  if (typeof window !== "undefined") {
+    if (typeof window.browserList === 'function') {
+      if (window.browserList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+  } else {
+    if (typeof global.nodejsList === 'function') {
+      if (global.nodejsList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+   } 
+}
+
 
 function showFail(which_type, e='') {
     console.log('Failed test in signatures-type_62000.js : ', which_type, e)
@@ -14,7 +30,8 @@ function showFail(which_type, e='') {
     /**/  type_czech = TypeCzech('THROW-EXCEPTIONS')
     /**/  
     /**/  function PRE_check_oneValue(one_value){
-    /**/    pass_count +=1;
+    /**/    pass_count += 1;
+            printTestName("signatures-empty_62000_oneValue")  
     /**/    return type_czech.checkParam_empty(one_value, 'EMPTY-ERROR')  // one thing
     /**/  }
     /**/  
@@ -61,7 +78,8 @@ try { oneValue('one', 'two'); showFail('A11'); // fail
     /**/  type_czech = TypeCzech('THROW-EXCEPTIONS')
     /**/  
     /**/  function PRE_check_twoValues(value_1, value_2){
-    /**/    pass_count +=1;    
+    /**/    pass_count += 1;    
+           printTestName("signatures-empty_62000_twoValues")  
     /**/    return type_czech.checkParam_empty([value_1, value_2], ['EMPTY-ERROR', 'EMPTY-ERROR'])  // two things
     /**/  }
     /**/  
@@ -90,7 +108,8 @@ try {  twoValues(1, 'two', 'three'); showFail('B8'); // fail - extra parameter
     /**/  type_czech = TypeCzech('THROW-EXCEPTIONS')
     /**/  
     /**/  function PRE_check_oneElemArr(one_num_elem_arr){
-    /**/    pass_count +=1;    
+    /**/    pass_count += 1;    
+             printTestName("signatures-empty_62000_oneElemArr")  
     /**/    return type_czech.checkParam_empty(one_num_elem_arr, ['EMPTY-ERROR'])  // one thing in one thing
     /**/  }
     /**/  
@@ -115,9 +134,10 @@ try { oneElemArr({a:1}); showFail('C7');   // fail - object
 } catch (e) {         }
 
     /**/  type_czech = TypeCzech('THROW-EXCEPTIONS')
-    /**/    pass_count +=1;      
     /**/  function PRE_check_twoElemArr(two_num_elem_arr){
     /**/    
+    /**/    pass_count +=1;      
+     printTestName("signatures-empty_62000_twoElemArr")  
     /**/    return type_czech.checkParam_empty(two_num_elem_arr, ['EMPTY-ERROR', 'EMPTY-ERROR'])
     /**/  }
     /**/  
@@ -141,9 +161,9 @@ try { twoElemArr([1,2,'three']); showFail('D6');   // fail - two strings
 } catch (e) {         }
 
     /**/  type_czech = TypeCzech('THROW-EXCEPTIONS')
-    /**/    pass_count +=1;      
     /**/  function PRE_check_someNums(){
-    /**/    
+    /**/    pass_count +=1;      
+      printTestName("signatures-empty_62000_someNums")  
     /**/    return type_czech.checkArgs_emptyEach(arguments, 'EMPTY-ERROR')
     /**/  }
     /**/  
@@ -164,7 +184,8 @@ try { someNums(1,2,''); showFail('E4'); // fail - last is empty
     /**/  type_czech = TypeCzech('THROW-EXCEPTIONS')
     /**/  
     /**/  function PRE_check_oneNumArray(array_with_1_num){
-    /**/    pass_count +=1;        
+    /**/    pass_count += 1;        
+        printTestName("signatures-empty_62000_array_with_1_num")  
     /**/    return type_czech.checkParam_empty(array_with_1_num, ['EMPTY-ERROR'])
     /**/  }
     /**/  
@@ -189,7 +210,8 @@ try { oneNumArray([1, '']); showFail('F6'); // fail - two parameters
     /**/  type_czech = TypeCzech('THROW-EXCEPTIONS')
     /**/  
     /**/  function PRE_check_twoNumArray(array_with_num_str){
-    /**/    pass_count +=1;        
+    /**/    pass_count += 1;        
+           printTestName("signatures-empty_62000_array_with_num_str")  
     /**/    return type_czech.checkParam_empty(array_with_num_str, ['EMPTY-ERROR', 'EMPTY-ERROR'])
     /**/  }
     /**/  
@@ -216,7 +238,8 @@ try { twoNumArray([9876,   'str-1', 123]); showFail('G6') // fail - three values
     /**/  type_czech = TypeCzech('THROW-EXCEPTIONS')
     /**/  
     /**/  function PRE_check_oneObject(one_object){
-    /**/    pass_count +=1;        
+    /**/    pass_count += 1;
+     printTestName("signatures-empty_62000_one_object")      
     /**/    return type_czech.checkParam_empty(one_object, {a: 'EMPTY-ERROR'} )
     /**/  }
     /**/  

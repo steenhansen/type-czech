@@ -7,6 +7,21 @@
 pass_count = 0;
 fail_count = 0;
 
+function printTestName(an_str) {
+  if (typeof window !== "undefined") {
+    if (typeof window.browserList === 'function') {
+      if (window.browserList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+  } else {
+    if (typeof global.nodejsList === 'function') {
+      if (global.nodejsList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+   } 
+}
 
 try{
   type_czech=TypeCzech('THROW-EXCEPTIONS', 'DEBUG-ERROR-TAGS', 'HIDE-INIT-MESSAGE');
@@ -132,6 +147,8 @@ try{
   console.log('closure_check_52000 - FAIL', e)
   fail_count += 1;
 }
+
+   printTestName("closure_check_52000")  
 
 if (fail_count>0) {
   the_problem = `public-tests/closure_check_52000.js - fails = ${fail_count}`;  

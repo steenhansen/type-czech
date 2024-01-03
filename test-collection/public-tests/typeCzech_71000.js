@@ -3,6 +3,21 @@
 pass_count = 0;
 fail_count = 0;
 
+function printTestName(an_str) {
+  if (typeof window !== "undefined") {
+    if (typeof window.browserList === 'function') {
+      if (window.browserList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+  } else {
+    if (typeof global.nodejsList === 'function') {
+      if (global.nodejsList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+   } 
+}
 
 _typeCzechConstructor_90001();
 
@@ -36,7 +51,7 @@ function _typeCzechConstructor_90001() {
     console.log(`${TYPE_CZECH_current_test_number} TypeCzech(['LOG-ERRORS', 'CONSOLE-COUNT', 'HIDE-INIT-MESSAGE'])`);
   }
   pass_count += 1;
-
+printTestName("typeCzech_9000") 
 }
 
 

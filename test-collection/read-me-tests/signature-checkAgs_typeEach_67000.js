@@ -4,6 +4,22 @@
 pass_count = 0;
 fail_count = 0;
 
+function printTestName(an_str) {
+  if (typeof window !== "undefined") {
+    if (typeof window.browserList === 'function') {
+      if (window.browserList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+  } else {
+    if (typeof global.nodejsList === 'function') {
+      if (global.nodejsList()) {
+        console.log(pass_count, an_str);
+      }
+    }
+   } 
+}
+
 function showFail(which_type, e='') {
   console.log('Failed test in signature-checkAgs_typeEach_67000.js : ', which_type, e);
   fail_count +=1;
@@ -15,7 +31,8 @@ function test_checkArgs_typeEach(...the_args){
 
   type_czech = TypeCzech('THROW-EXCEPTIONS', 'HIDE-INIT-MESSAGE');
 
-  function PRE_check_checkArgs_typeEach(){
+  function PRE_check_checkArgs_typeEach() {
+    printTestName("signature-checkAgs_typeEach_67000_" + arguments)  
     return type_czech.checkArgs_typeEach(arguments, the_signature)
   }
 
