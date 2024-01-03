@@ -99,25 +99,6 @@ ignores all Javascript type errors.
 npm i type-czech
 ```
 
-<a id="tests-2444"></a>
-
-## Run 2456 tests in NodeJs
-```
-npm test             // total pass fail only
-
-npm run test-list    // show every test
-```
-
-
-## Run 2456 tests in browser console
-```
-/test-collection/test-all-web.html  // total pass fail only
-
-/test-collection/test-all-web-list.html  // show every test
-```
-
-The test [suite](https://github.com/steenhansen/type-czech/tree/master/test-collection) directory.
-
 ## Both Import and Require Are Supported
 ```
 import TypeCzech_obj from "./node_modules/type-czech/type-czech-import.js";
@@ -518,6 +499,11 @@ The public functions that check function parameter types.
 ### [FAQ](./read-mes/faq-answers.md)
 
 ### [Dependencies](./read-mes/the-dependencies.md)
+
+### [Run Tests](./read-mes/the-tests.md)
+
+### [Compile New Versions](./read-mes/compile-code.md)
+
 
 ### Created by
 

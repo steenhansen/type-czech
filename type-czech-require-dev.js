@@ -4767,4 +4767,4 @@ some command line stests
   };
 })(the_exports);
 
-module.exports.the_exports; // for CJS
+module.exports.the_exports; // for CJS for NodeJs

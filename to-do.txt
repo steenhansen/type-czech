@@ -1,6 +1,7 @@
 
 
-No tests, no online examples for 
+No tests for :
+
   - deClassify()
   
   - checkArray_objType0n()
