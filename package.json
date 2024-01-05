@@ -4,13 +4,13 @@
     "type": "git",
     "url": "git+https://github.com/steenhansen/type-czech.git"
   },
-  "version": "1.6.0",
+  "version": "1.7.0",
   "devDependencies": {
     "google-closure-compiler": "^20220502.0.0"
   },
   "scripts": {
     "test": "node ./test-collection/test-all-node.js",
-     "test-list": "node ./test-collection/test-all-node-list.js",
+    "test-list": "node ./test-collection/test-all-node-list.js",
     "minify2Browser": "npm run A-strip-code && npm run B-google-closure && npm run C-clean-up",
     "A-strip-code": "node ./closure-minify/make_no_exports_type_czech.js",
     "B-google-closure": "npx google-closure-compiler --language_out ECMASCRIPT_2020 --js=./closure-minify/TypeCzech.no-export-no-debug.js --js_output_file=./closure-minify/TypeCzech.min.js",
@@ -29,7 +29,7 @@
     "type-czech-require-prod.js",
     "type-czech-require.js"
   ],
-   "directories": {
+  "directories": {
     "read-mes": "read-mes",
     "read-mes/public": "read-mes/public"
   },
