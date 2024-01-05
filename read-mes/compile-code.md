@@ -7,10 +7,6 @@
  - New    debug browser version in /web-resources/TypeCzech.js
 
 
-
-
-//////////////////////////////////
-
 # Steps in - npm run minify2Browser
  - Starts with 214KB type-czech-import-dev.js
  - Creates a 196KB broswer version without any 'exports' and no debugging in /closure-minify/TypeCzech.no-export-no-debug.js

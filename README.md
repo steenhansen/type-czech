@@ -23,7 +23,7 @@ Live editable [JSFiddles](https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Co
  - No compiling, [no function altering](https://jsfiddle.net/steen_hansen/8kbtyfz1/?204-Extending-Closures-Single), and a single dependency free file
 
 The motivation is to verify function parameters before execution,
-and function results after completion with PRE_yourRoutine() and POST_yourRoutine() functions.
+and function results after completion with PRE_yourRoutine() and POST_yourRoutine() functions. The example below will not log any type errors in Node.js nor the browser.
 
 ```
 type_czech = TypeCzech('LOG-ERRORS')
@@ -90,7 +90,7 @@ On Render.com as a slow to start free hosted site that takes 80-180 seconds to s
 npm i type-czech
 ```
 
-## Require for Node.js is Supported, as well as Import for React
+## Require for Node.js is Supported, as Well as Import for React
 ```
 const { TypeCzech_obj } = require("./node_modules/type-czech/type-czech-require.js");
 
