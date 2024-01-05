@@ -17,7 +17,6 @@ const JS_NO_DEBUG = "./closure-minify/TypeCzech.no-export-no-debug.js";
 // .no-export-no-debug. ==> .no-export-no-debug.
 
 const TYPE_CZECH_MIN = "./closure-minify/TypeCzech.min.js";
-const PHP_TYPE_CZECH = "./examples-php/TypeCzech.js";
 
 const JS_PLAIN_TYPE_CZECH = "./web-resources/TypeCzech.js";
 
@@ -42,10 +41,6 @@ try {
   const js_code = fs.readFileSync(DEV_type_czech_import, "utf8");
   const js_no_jsx_export = js_code.replace(JSX_EXPORT_DELETE, "");
   const js_plain = js_no_jsx_export.replace(CJS_EXPORT_DELETE, "");
-
-  old_php_timestamped = dateTime(PHP_TYPE_CZECH);
-  fs.rename(PHP_TYPE_CZECH, old_php_timestamped, renameErr);
-  fs.writeFileSync(PHP_TYPE_CZECH, js_plain); // examples-php/TypeCzech.js without any export statements
 
   old_browser_timestamped = dateTime(JS_PLAIN_TYPE_CZECH);
   fs.rename(JS_PLAIN_TYPE_CZECH, old_browser_timestamped, renameErr);

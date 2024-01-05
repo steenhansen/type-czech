@@ -1,0 +1,25 @@
+<!DOCTYPE html><meta charset="utf-8" />
+<title>For colored ReadMe markdown - 700-Simple-Example-colored-text-for-ReadMe.html</title>
+
+<pre style="font-family: Consolas; background-color: #f6f8fa; width:700px; padding:16px">
+type_czech = TypeCzech('LOG-ERRORS')
+
+function PRE_yourRoutine(<span style="color:red">number_array</span>, <span style="color:blue">an_str</span>, <span style="color:green">a_date</span>){
+  the_parameters = [ <span style="color:red">number_array</span>, <span style="color:blue">an_str</span>,   <span style="color:green">a_date</span>]
+  the_signature  = [ <span style="color:red">['numbers']</span>, <span style="color:blue">'string'</span>, <span style="color:green">'date'</span>]
+  return type_czech.checkParam_type(the_parameters, the_signature)
+}
+
+function POST_yourRoutine(<span style="color:#800080">return_int</span>){
+  return type_czech.checkParam_type(return_int, <span style="color:#800080">'number'</span>)
+}
+
+yourRoutine = type_czech.linkUp(yourRoutine, PRE_yourRoutine, POST_yourRoutine)
+
+function yourRoutine(<span style="color:red">number_array</span>, <span style="color:blue">an_str</span>, <span style="color:green">a_date</span>){
+  return <span style="color:#800080">1234</span> 
+}
+
+yourRoutine(<span style="color:red">[1,2,3]</span>, <span style="color:blue">'abc'</span>, <span style="color:green">new Date('dec 31 1999')</span>)
+
+</pre>

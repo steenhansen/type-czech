@@ -23,33 +23,14 @@ Live editable [JSFiddles](https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Co
  - No compiling, [no function altering](https://jsfiddle.net/steen_hansen/8kbtyfz1/?204-Extending-Closures-Single), and a single dependency free file
 
 The motivation is to verify function parameters before execution,
-and function results after completion with PRE_yourRoutine() and POST_yourRoutine() functions. The example below will not log any type errors in Node.js nor the browser.
+and function results after completion with PRE_yourRoutine() and POST_yourRoutine() functions. The example below will not log any type errors in Node.js nor the browser as there are no type errors.
 
-```
-type_czech = TypeCzech('LOG-ERRORS')
+![diagram](read-mes/700-colored-text.png)
 
-function PRE_yourRoutine(number_array, an_str, a_date){
-  the_parameters = [ number_array, an_str,   a_date]
-  the_signature  = [ ['numbers'], 'string', 'date']
-  return type_czech.checkParam_type(the_parameters, the_signature)
-}
-
-function POST_yourRoutine(return_int){
-  return type_czech.checkParam_type(return_int, 'number')
-}
-
-yourRoutine = type_czech.linkUp(yourRoutine, PRE_yourRoutine, POST_yourRoutine)
-
-function yourRoutine(number_array, an_str, a_date){
-  return 1234 
-}
-
-yourRoutine([1,2,3], 'abc', new Date('dec 31 1999'))
-```
 [Run this live on an editable JSFiddle](https://jsfiddle.net/steen_hansen/efLgk3h4/?700-Simple-Example)
 
 
-![diagram](diagram.png)
+![diagram](read-mes/diagram.png)
 
 
 
@@ -126,7 +107,7 @@ import TypeCzech_obj from "./node_modules/type-czech/type-czech-import.js";
 
 ### [TypeCzech API](./read-mes/api-list.md)
 
-### [Node.js and PHP Examples](./read-mes/run-examples.md)
+### [Node.js Only Examples](./read-mes/node-only-examples.md)
 
 ### [Browser and Node.js Tests](./read-mes/test-suites.md)
 

@@ -61,7 +61,7 @@ li{
 
 .blue-explanation{ color: rgb(0, 0, 255); font-weight: bold; }
 .red-explanation{ color: rgb(255, 0, 0); font-weight: bold; }
-.green-explanation{ color: rgb(0, 255, 0); font-weight: bold; }
+.green-explanation{ color: rgb(0, 128, 0); font-weight: bold; }
 
 .font-1{ font-family:arial}
 .text-2{ font-family: 'Inconsolata', monospace;   }

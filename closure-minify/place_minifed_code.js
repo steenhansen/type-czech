@@ -20,16 +20,11 @@ function renameErr(err) {
 
 const TYPE_CZECH_MIN = "./closure-minify/TypeCzech.min.js";
 const WEB_RESOURCES_MIN = "./web-resources/TypeCzech.min.js";
-const PHP_EXAMPLE_MIN = "./examples-php/TypeCzech.min.js";
 const JS_PLAIN_TYPE_CZECH = "./web-resources/TypeCzech.js";
 try {
   old_resource_min = dateTime(WEB_RESOURCES_MIN);
   fs.rename(WEB_RESOURCES_MIN, old_resource_min, renameErr);
   fs.copyFileSync(TYPE_CZECH_MIN, WEB_RESOURCES_MIN);
-
-  old_php_min = dateTime(PHP_EXAMPLE_MIN);
-  fs.rename(PHP_EXAMPLE_MIN, old_php_min, renameErr);
-  fs.copyFileSync(TYPE_CZECH_MIN, PHP_EXAMPLE_MIN);
 
   console.log("***********************************************************************************")
   console.log("*** Compiled Type-Czech minified browser code", WEB_RESOURCES_MIN,      ' ***')

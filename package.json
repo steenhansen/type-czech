@@ -4,7 +4,7 @@
     "type": "git",
     "url": "git+https://github.com/steenhansen/type-czech.git"
   },
-  "version": "1.5.2",
+  "version": "1.6.0",
   "devDependencies": {
     "google-closure-compiler": "^20220502.0.0"
   },
@@ -19,8 +19,8 @@
   "files": [
     "index.js",
     "LICENSE",
-    "make_tc_dev.js",
-    "make_tc_prod.js",
+    "web-resources/TypeCzech.js",
+    "web-resources/TypeCzech.min.js",
     "README.md",
     "type-czech-import-dev.js",
     "type-czech-import-prod.js",
@@ -29,6 +29,10 @@
     "type-czech-require-prod.js",
     "type-czech-require.js"
   ],
+   "directories": {
+    "read-mes": "read-mes",
+    "read-mes/public": "read-mes/public"
+  },
   "homepage": "https://github.com/steenhansen/type-czech",
   "keywords": [
     "run-time javascript type checking"
