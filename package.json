@@ -4,7 +4,7 @@
     "type": "git",
     "url": "git+https://github.com/steenhansen/type-czech.git"
   },
-  "version": "1.6.0",
+  "version": "1.7.0",
   "devDependencies": {
     "google-closure-compiler": "^20220502.0.0"
   },
@@ -19,6 +19,8 @@
   "files": [
     "index.js",
     "LICENSE",
+    "make_tc_dev.js",
+    "make_tc_prod.js",
     "web-resources/TypeCzech.js",
     "web-resources/TypeCzech.min.js",
     "README.md",

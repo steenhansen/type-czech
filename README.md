@@ -22,6 +22,8 @@ Live editable [JSFiddles](https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Co
  
  - No compiling, [no function altering](https://jsfiddle.net/steen_hansen/8kbtyfz1/?204-Extending-Closures-Single), and a single dependency free file
 
+## Base Example
+
 The motivation is to verify function parameters before execution,
 and function results after completion with PRE_yourRoutine() and POST_yourRoutine() functions. The example below will not log any type errors in Node.js nor the browser as there are no type errors.
 
@@ -33,10 +35,37 @@ and function results after completion with PRE_yourRoutine() and POST_yourRoutin
 ![diagram](read-mes/diagram.png)
 
 
+## React Node.js SSR Example
+
+This example is [live on Render.com ](https://type-czech-canonical.onrender.com/) as a slow to start, free hosted site that takes 30-180 seconds to start. View the browser console for type errors as below. The [barebones source](https://github.com/steenhansen/type-czech-canonical#fast-start) needs three commands to resume.
+
+  - npm install
+  - npm run dev
+  - http://localhost:3000/
+
+### Program started with "npm run dev"
+![diagram](read-mes/nodejs-active.png)
+
+![diagram](read-mes/browser-active.png)
+
+### Program started with "npm run prod"
+
+When the program is launched in production mode, all type checking stops.
+
+![diagram](read-mes/nodejs-off.png)
+
+![diagram](read-mes/browser-off.png)
+
+
+Another live editable JSFiddle [React JSX example](https://jsfiddle.net/steen_hansen/z1yug5nw/?707-React-JSX.html) shows how to type check the return value of an React component.
+     
+
 
 <a id="live-jsfiddles"></a>
 
-## Live Editable Type-Czech Examples on JsFiddle in Browser
+
+## Live Editable Type-Czech JSFiddle Examples
+
 [Contents](https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Contents) of 74 live editable examples.
 
 |                                                                                                                                    |                                                                                                                        |                                                                                                                                            |                                                                                                                                         |                                                                                                                                            |
@@ -57,7 +86,7 @@ and function results after completion with PRE_yourRoutine() and POST_yourRoutin
 | **Prototypes**                                                                                                                     | [501 - Inherited Prototypes Inline](https://jsfiddle.net/steen_hansen/gn38a4k9/?501-Extending-Prototypes-Inline)       | [502 - Inherited Prototypes Imported](https://jsfiddle.net/steen_hansen/retqdosm/?502-Extending-Prototypes-Imports)                        | [503 - Inherited Prototypes Production](https://jsfiddle.net/steen_hansen/2paqh67m/?503-Extending-Prototypes-Production)                | [504 - Extending Prototypes Single](https://jsfiddle.net/steen_hansen/0fabr5g3/?504-Extending-Prototypes-Single)                           |
 | **OLOO**                                                                                                                           | [601 - Created OLOO Inline](https://jsfiddle.net/steen_hansen/guw701xv/?601-Created-OLOO-Inline)                       | [602 - Created OLOO Imported](https://jsfiddle.net/steen_hansen/b2qpL9rt/?602-Extending-OLOO-Imports)                                      | [603 - Created OLOO Production](https://jsfiddle.net/steen_hansen/ktezbg7c/?603-Extending-OLOO-Production)                              | [604 - Extending OLOO Single](https://jsfiddle.net/steen_hansen/74Lvbj5x/?604-Extending-OLOO-Single)    
 | &nbsp; | [700 - Simple-Example](https://jsfiddle.net/steen_hansen/efLgk3h4/?700-Simple-Example)                                                 | [701 - Array of Objects](https://jsfiddle.net/steen_hansen/536du9cb/?701-Array-of-Objects.html)                            | [702 - DeClassify](https://jsfiddle.net/steen_hansen/jbyor8fm/?702-DeClassify.html)                           |[703 - Async Await](https://jsfiddle.net/steen_hansen/q7rckeno/?703-Async-Await)            |
-|&nbsp;| [704 - Ramda Curry](https://jsfiddle.net/steen_hansen/1xLef83o/?704-Ramda-Curry)              | [705 - Sensible Switching](https://jsfiddle.net/steen_hansen/efLgk3h4/?700-Simple-Example)                                                 | [706 - Elegant On Off](https://jsfiddle.net/steen_hansen/536du9cb/?701-Array-of-Objects.html)                            | [707 - React JSX.html](https://jsfiddle.net/steen_hansen/jbyor8fm/?702-DeClassify.html)                           | 
+|&nbsp;| [704 - Ramda Curry](https://jsfiddle.net/steen_hansen/1xLef83o/?704-Ramda-Curry)              | [705 - Sensible Switching](https://jsfiddle.net/steen_hansen/fzh39je0/?705-Sensible-Switching)                                                 | [706 - Elegant On Off](https://jsfiddle.net/steen_hansen/x0pL6jzq/?706-Elegant-On-Off.html)                            | [707 - React JSX.html](https://jsfiddle.net/steen_hansen/z1yug5nw/?707-React-JSX.html)                           | 
 
 ## Complete React SSR Barebones Node.js Server
 
