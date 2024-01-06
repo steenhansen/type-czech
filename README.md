@@ -61,7 +61,7 @@ When the program is launched in production mode, all type checking stops.
 ![diagram](read-mes/browser-off.png)
 
 
-Another live editable JSFiddle [707 - React JSX example](https://jsfiddle.net/steen_hansen/z1yug5nw/?707-React-JSX.html) shows how to type check the parameters of a React component, as well as the structure of the return properties. 
+Another live editable JSFiddle [707 - React JSX example](https://jsfiddle.net/steen_hansen/z1yug5nw/?707-React-JSX.html) shows how to type check the parameters of a React list component, as well as the properties of the structure returned. 
      
 
 
