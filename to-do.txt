@@ -12,3 +12,5 @@ No tests for :
 
 
 
+React Native, Hermes may not work
+
