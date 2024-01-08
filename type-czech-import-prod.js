@@ -1,6 +1,6 @@
 /* 
 
-Production TypeCzech.js IMPORTED NOP code for JSX and ESM.
+Production TypeCzech.js IMPORTED NOP code for browser JSX and ESM
 
 When in production, this small file replaces type-czech-import.js 
 stopping all type checking without any changes to the source code.

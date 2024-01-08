@@ -13,7 +13,7 @@ Live editable [JSFiddles](https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Co
  
  - Toggle TypeCzech [on or off](https://jsfiddle.net/steen_hansen/f19s52xr/?36-Start-and-Stop) programatically
  
- - Console.log errors or [throw exceptions](https://jsfiddle.net/steen_hansen/ep3snb8z/?35-Throw-or-Log)
+ - Console.log type errors or [throw exceptions](https://jsfiddle.net/steen_hansen/ep3snb8z/?35-Throw-or-Log)
  
  - Catch [empty parameters](https://jsfiddle.net/steen_hansen/x8h6dvj5/?19-Lone-Empty-Param-and-Result) like null, NaN, or an empty array
  
@@ -23,7 +23,7 @@ Live editable [JSFiddles](https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Co
 
  - Type check [monads](https://jsfiddle.net/steen_hansen/zmd1v27x/?708-Monad-Type-Checking)
 
- - NPM [package](https://www.npmjs.com/package/type-czech)
+ - NPM [package](https://www.npmjs.com/package/type-czech) with require for Node.js and import for React
 
 ## Base Example
 
@@ -42,9 +42,9 @@ and function results after completion with PRE_yourRoutine() and POST_yourRoutin
 ![diagram](read-mes/diagram.png)
 
 
-## React Node.js SSR Example
+## React Node.js SSR Barebones Example
 
-This example is [live on Render.com ](https://type-czech-canonical.onrender.com/) as a slow to start, free hosted site that takes 30-180 seconds to start. View the browser console for type errors as below. The [barebones source](https://github.com/steenhansen/type-czech-canonical#fast-start) needs three commands to resume.
+This example is [live on Render.com ](https://type-czech-canonical.onrender.com/) as a slow to start, free hosted site that takes 30-180 seconds to start. View the browser console for type errors as below. The [barebones source](https://github.com/steenhansen/type-czech-canonical#fast-start) needs three commands to start.
 
   - npm install
   - npm run dev
@@ -57,7 +57,7 @@ This example is [live on Render.com ](https://type-czech-canonical.onrender.com/
 
 ### Program started with "npm run prod"
 
-When the program is launched in production mode, all type checking stops.
+When the program is launched in production mode, all type checking stops. The incorrect string type is no longer caught.
 
 ![diagram](read-mes/nodejs-off.png)
 
@@ -66,6 +66,41 @@ When the program is launched in production mode, all type checking stops.
 
 Another live editable JSFiddle [707 - React JSX example](https://jsfiddle.net/steen_hansen/z1yug5nw/?707-React-JSX.html) shows how to type check the parameters of a React list component, as well as the properties of the structure returned. 
      
+
+
+
+## Node.js Async/Await Example
+
+The live [Run Time Type Checking Square Root Finder](https://type-czech-always-on.onrender.com/), 150 seconds to start on free hosting, verifies that
+live aysnc server calls have correct number types. The types checked for are 'Roman Numerals', 'Word Numbers',
+'Floats', and 'Integers'. Run locally with the Square Root Finder [source](https://github.com/steenhansen/type-czech-always-on).
+
+The server responds with the square root of XVI is in fact IV. 
+
+![roman 'xvi'](read-mes/calc-xvi-as-roman.png)
+![romanSqr('xvi')](read-mes/square-root-roman-xvi.png)
+
+<br>
+
+Here we see an error when we try to calculate the square root of 16 as
+a roman number on the server. Locally we get the "'16' is not a valid roman number", and
+since the server decides that this is a "400 Bad Request", TypeCzech warns us that the server never returns a valid answer with the "POST_serverGetSqrt E did not return within 3007 milliseconds" error message.
+
+![roman 16](read-mes/calc-16-as-roman.png)
+![romanSqr(16)](read-mes/square-root-roman-16.png)
+
+<br>
+
+The server responds with the square root of 16 is in fact 4.
+
+![roman 'xvi'](read-mes/calc-16-as-integer.png)
+![integerSqr(16)](read-mes/square-root-integer-16.png)
+
+
+
+
+
+Another live editable JSFiddle [703 - Async Await](https://jsfiddle.net/steen_hansen/q7rckeno/?703-Async-Await) shows how to check return types inside an await function.
 
 
 <a id="live-jsfiddles"></a>
@@ -94,13 +129,6 @@ Another live editable JSFiddle [707 - React JSX example](https://jsfiddle.net/st
 | **OLOO**                                                                                                                           | [601 - Created OLOO Inline](https://jsfiddle.net/steen_hansen/guw701xv/?601-Created-OLOO-Inline)                       | [602 - Created OLOO Imported](https://jsfiddle.net/steen_hansen/b2qpL9rt/?602-Extending-OLOO-Imports)                                      | [603 - Created OLOO Production](https://jsfiddle.net/steen_hansen/ktezbg7c/?603-Extending-OLOO-Production)                              | [604 - Extending OLOO Single](https://jsfiddle.net/steen_hansen/74Lvbj5x/?604-Extending-OLOO-Single)    
 | &nbsp; | [700 - Simple-Example](https://jsfiddle.net/steen_hansen/efLgk3h4/?700-Simple-Example)                                                 | [701 - Array of Objects](https://jsfiddle.net/steen_hansen/536du9cb/?701-Array-of-Objects)                            | [702 - DeClassify](https://jsfiddle.net/steen_hansen/jbyor8fm/?702-DeClassify)                           |[703 - Async Await](https://jsfiddle.net/steen_hansen/q7rckeno/?703-Async-Await)            |
 | [704 - Ramda Curry](https://jsfiddle.net/steen_hansen/1xLef83o/?704-Ramda-Curry)              | [705 - Sensible Switching](https://jsfiddle.net/steen_hansen/fzh39je0/?705-Sensible-Switching)                                                 | [706 - Elegant On Off](https://jsfiddle.net/steen_hansen/x0pL6jzq/?706-Elegant-On-Off)                            | [707 - React JSX](https://jsfiddle.net/steen_hansen/z1yug5nw/?707-React-JSX)       |[708 - Monad Type Checking](https://jsfiddle.net/steen_hansen/zmd1v27x/?708-Monad-Type-Checking)  |
-
-
-
-## Complete React SSR Barebones Node.js Server
-
-On Render.com as a slow to start free hosted site that takes 80-180 seconds to start https://type-czech-canonical.onrender.com. The project on [GitHub](https://github.com/steenhansen/type-czech-canonical) has type checking in both the Node.js server and the browser client.
-
 
 ## To Install the Package
 

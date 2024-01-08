@@ -1,6 +1,6 @@
 /* 
 
-Production TypeCzech.js REQUIRED NOP code for CJS
+Production TypeCzech.js REQUIRED NOP code for Node.js CJS
 
 When in production, this small file replaces type-czech-require.js 
 stopping all type checking without any changes to the source code.

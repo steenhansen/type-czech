@@ -1,6 +1,6 @@
 /* 
 
-Development TypeCzech.js IMPORTED NOP code for JSX and ESM.
+Development TypeCzech.js IMPORTED code for browser JSX and ESM
 
 When in development, this large file replaces type-czech-import.js, 
 providing all the type checking functions without any changes to the source code.
@@ -14,7 +14,7 @@ Used thus:
 
 /* eslint-disable max-len */
 /* eslint-disable block-scoped-var */
-const VERS_NUM = "version 1.7.0 2024-01-05";
+const VERS_NUM = "version 1.7.1 2024-01-08";
 
 /*
     TypeCzech contains:
