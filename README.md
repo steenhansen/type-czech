@@ -2,14 +2,14 @@
 # TypeCzech
 
 
-Ditch TypeScript and use TypeCzech JavaScript runtime type checking instead.
+Ditch TypeScript and use TypeCzech runtime type checking instead. 
 Live editable [JSFiddles](https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Contents) with visible type checking in the list below.
 
- - Verify [parameter signatures](https://jsfiddle.net/steen_hansen/0xtpLwsc/?00-Readme-Example), function [return types](https://jsfiddle.net/steen_hansen/wrkvscqg/?05-Verify-Return-Results-by-Value), and [argument values](https://jsfiddle.net/steen_hansen/6zy89om1/?02-Validate-Parameters-by-Value)
+ - Verify JavaScript [parameter signatures](https://jsfiddle.net/steen_hansen/0xtpLwsc/?00-Readme-Example), function [return types](https://jsfiddle.net/steen_hansen/wrkvscqg/?05-Verify-Return-Results-by-Value), and [argument values](https://jsfiddle.net/steen_hansen/6zy89om1/?02-Validate-Parameters-by-Value)
  
  - Specify [async/await](https://jsfiddle.net/steen_hansen/q7rckeno/?703-Async-Await) types
  
- - Type check [React JSX](https://jsfiddle.net/steen_hansen/z1yug5nw/?707-React-JSX)
+ - Type check [React](https://jsfiddle.net/steen_hansen/z1yug5nw/?707-React-JSX)
  
  - Toggle TypeCzech [on or off](https://jsfiddle.net/steen_hansen/f19s52xr/?36-Start-and-Stop) programatically
  
@@ -19,8 +19,11 @@ Live editable [JSFiddles](https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Co
  
  - No compiling, [no function altering](https://jsfiddle.net/steen_hansen/8kbtyfz1/?204-Extending-Closures-Single), and a single dependency free file
 
- - Check  [object interfaces](https://jsfiddle.net/steen_hansen/063wLqfs/?18-Class-Type-Checks) for expected methods and properties on objects 
+ - Inspect [object interfaces](https://jsfiddle.net/steen_hansen/063wLqfs/?18-Class-Type-Checks) for expected methods and properties on objects 
 
+ - Type check [monads](https://jsfiddle.net/steen_hansen/zmd1v27x/?708-Monad-Type-Checking)
+
+ - NPM [package](https://www.npmjs.com/package/type-czech)
 
 ## Base Example
 
