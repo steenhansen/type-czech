@@ -2,10 +2,10 @@
 # Dependencies
 
 ## JavaScript
-TypeCzech requires ECMAScript 2015 (ES6) for Proxy, Reflect
+TypeCzech requires ECMAScript 2015 (ES6) for Proxy and Reflect
 
 ## Node.js
-If used on Node.js, TypeCzech requires Node.js 15.14.0 for replaceAll()
+If used on Node.js, TypeCzech requires Node.js 15.14.0 for replaceAll(), released 2021-04-06, npm v7.7.6
 
 ## Cycle.js - included directly for ease of use
 Douglas Crockford's Cycle.js for working with cyclic variables, newer with WeakMap, for checking mutations that refer to themselves

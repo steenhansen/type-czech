@@ -9,8 +9,8 @@ Having easily controllable type checking at runtime in both the browser and Node
 ### How does it work?
 Brought to you by the object [Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy) which intercepts function calls and returns.
 
-### How do I figure it out?
-I got the idea from the [Clojure spec library](https://clojure.org/guides/spec), which I believe copied Bertrand Meyer's [Eiffel][eiffel_link] that invented [Design by Contract](https://en.wikipedia.org/wiki/Design_by_contract) (DbC). I was inspecting the MDN Web Docs and noticed that the JavaScript Proxy Object seemed to be similar to clojure.spec.
+### How did I figure it out?
+I got the idea from the [Clojure spec library](https://clojure.org/guides/spec), which I believe copied Bertrand Meyer's [Eiffel][eiffel_link] that invented [Design by Contract](https://en.wikipedia.org/wiki/Design_by_contract) (DbC). I was inspecting the MDN Web Docs and noticed that the JavaScript Proxy Object seemed to be similar to clojure.spec's ability to have a test function called before and after a normal function allowing parameters and return values to be specified programatically.
 
 [eiffel_link]: https://en.wikipedia.org/wiki/Eiffel_(programming_language)
 

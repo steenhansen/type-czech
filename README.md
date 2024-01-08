@@ -9,7 +9,7 @@ Live editable [JSFiddles](https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Co
  
  - Specify [async/await](https://jsfiddle.net/steen_hansen/q7rckeno/?703-Async-Await) types
  
- - Type check [React](https://jsfiddle.net/steen_hansen/z1yug5nw/?707-React-JSX)
+ - Type check [React](https://jsfiddle.net/steen_hansen/z1yug5nw/?707-React-JSX) components
  
  - Toggle TypeCzech [on or off](https://jsfiddle.net/steen_hansen/f19s52xr/?36-Start-and-Stop) programatically
  
@@ -64,7 +64,7 @@ When the program is launched in production mode, all type checking stops. The in
 ![diagram](read-mes/browser-off.png)
 
 
-Another live editable JSFiddle [707 - React JSX example](https://jsfiddle.net/steen_hansen/z1yug5nw/?707-React-JSX.html) shows how to type check the parameters of a React list component, as well as the properties of the structure returned. 
+A live editable JSFiddle [707 - React JSX example](https://jsfiddle.net/steen_hansen/z1yug5nw/?707-React-JSX.html) shows how to type check the parameters of a React list component, as well as the properties of the structure returned. 
      
 
 
@@ -86,12 +86,14 @@ Here we see an error when we try to calculate the square root of 16 as
 a roman number on the server. Locally we get the "'16' is not a valid roman number", and
 since the server decides that this is a "400 Bad Request", TypeCzech warns us that the server never returns a valid answer with the "POST_serverGetSqrt E did not return within 3007 milliseconds" error message.
 
+The idea is to simulate a non-returning server crash.
+
 ![roman 16](read-mes/calc-16-as-roman.png)
 ![romanSqr(16)](read-mes/square-root-roman-16.png)
 
 <br>
 
-The server responds with the square root of 16 is in fact 4.
+The server responds with the square root of 16 is 4.
 
 ![roman 'xvi'](read-mes/calc-16-as-integer.png)
 ![integerSqr(16)](read-mes/square-root-integer-16.png)
@@ -100,7 +102,7 @@ The server responds with the square root of 16 is in fact 4.
 
 
 
-Another live editable JSFiddle [703 - Async Await](https://jsfiddle.net/steen_hansen/q7rckeno/?703-Async-Await) shows how to check return types inside an await function.
+A live editable JSFiddle [703 - Async Await](https://jsfiddle.net/steen_hansen/q7rckeno/?703-Async-Await) shows how to check return types inside an await function.
 
 
 <a id="live-jsfiddles"></a>
@@ -185,7 +187,7 @@ import TypeCzech_obj from "./node_modules/type-czech/type-czech-import.js";
 
 ### [Dependencies](./read-mes/the-dependencies.md)
 
-### [Run Tests](./read-mes/the-tests.md)
+### [Run Tests](./read-mes/run-tests.md)
 
 ### [Compile New Versions](./read-mes/compile-code.md)
 
