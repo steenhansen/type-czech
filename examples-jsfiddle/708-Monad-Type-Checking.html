@@ -1,40 +1,72 @@
-<!DOCTYPE html><meta charset="utf-8" />
-<title>20 Multiple Empty Parameters and Results</title>
+<!DOCTYPE html>
+<meta charset="utf-8" />
+<title>708 Monad Type Checking</title>
 
 
 
 
 
-<div id='js-div' style="width:54%">
-  <a href='https://github.com/steenhansen/type-czech' target="_blank"  class='git-hub'>GitHub Package</a>
-        <div id='js-code'>the javascript</div>
-</div>
-
-
-
-<div id="the-explanation" style="width:46%">
-  <div class='an-explantion'>20 - Multiple Empty Parameters and Results</div>
-
-  <div id='explanation-text'>
-    <br>
-
-To see if a function has multiple parameters or return results that lack content, such as empty strings, arrays with 
-no elements, or an objects with no properties use checkParam_empty().
-
-<br><br>
-Null and undefined values are also considered to be empty with no value.
-<br><br>
-
-
-</div>
-
-<div id="console-log"  >
-  <div class='a-title'>Console Output</div>
-  <div id='log-text'></div>
+<div id='js-div' style="width:50%">
+  <a href='https://github.com/steenhansen/type-czech' target="_blank" class='git-hub'>GitHub Package</a>
+  <div id='js-code'>the javascript</div>
   <br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </div>
 
-<br><br>
+
+
+
+
+<div id="the-explanation" style="width:50%">
+        <div class='an-explantion'>708 - Monad Type Checking</div>
+   
+        <div id='explanation-text'>
+   
+          
+          <div id="react-root"></div>
+
+             <br>
+
+      The          <a href='https://gist.github.com/steenhansen/f9a9e9eee2fd563e378d8ddfce98cf0a' target="_blank">Either monad</a> used here 
+      is a GitHub gist. Change code to <b>type_czech = TypeCzech('NO-CHECKING')</b> and the Monand Errors will still show.
+
+              
+
+
+                <br><br>
+
+        </div>
+
+          <div id="console-log">
+                    <div class='a-title'>Console Output</div>
+         
+                    <div id='log-text'></div>
+                    <br>
+          </div>
 
 
 
@@ -44,13 +76,29 @@ Null and undefined values are also considered to be empty with no value.
 
 
 
-<!--            -----------------TYPE 1-------------------------       -->
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/consolelog.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/TypeCzech.min.js"></script>
+
+
+    <!--            -----------------TYPE 1------------------------       -->
+
+      <script s r c="../web-resources/consolelog.js"></script>
+    <link r e l="stylesheet" href="../web-resources/type-czech.css">
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/type-czech.css">
-<!--            ---------------TYPE 1---------------------------       -->
-<div id='js-fiddles'>
-  <a title="Example-Contents" href="https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Contents" target="_blank">Contents</a>
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/consolelog.js"></script>
+
+
+
+
+
+
+<script s r c="../web-resources/TypeCzech.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/TypeCzech.min.js"></script>
+
+
+
+    <!--            ------------------TYPE 1------------------------       -->
+    <div id='js-fiddles'>
+    <a title="Example-Contents" href="https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Contents" target="_blank">Contents</a>
 
 
   <a title="00-Readme-Example" href="https://jsfiddle.net/steen_hansen/0xtpLwsc/?00-Readme-Example" target="_blank">00</a>
@@ -152,7 +200,6 @@ Null and undefined values are also considered to be empty with no value.
 
   <a title="42 - Extended Objects.html" href="https://jsfiddle.net/steen_hansen/rvau7yes/?42-Extended-Objects" target="_blank">42</a>
 
-
     &nbsp;&nbsp;
 
     <a title="101-Extending-Classes-Inline.html" href="https://jsfiddle.net/steen_hansen/cnLrm6ad/?101-Extending-Classes-Inline" target="_blank">101</a>
@@ -212,7 +259,8 @@ Null and undefined values are also considered to be empty with no value.
     
     <a title="604-Extending-OLOO-Single.html" href="https://jsfiddle.net/steen_hansen/74Lvbj5x/?604-Extending-OLOO-Single" target="_blank">604</a>
     
-      &nbsp;&nbsp;
+
+     &nbsp;&nbsp;
 
      
 <a title="700-Simple-Example.html"     href="https://jsfiddle.net/steen_hansen/efLgk3h4/?700-Simple-Example"        target="_blank">700</a>
@@ -226,13 +274,9 @@ Null and undefined values are also considered to be empty with no value.
 <a title="708-Monad-Type-Checking.html" href="https://jsfiddle.net/steen_hansen/zmd1v27x/?708-Monad-Type-Checking"  target="_blank">708</a>
 
         
-&copy; 2024 Steen Hansen
-
+    &copy; 2024 Steen Hansen
   </div>
-<!--            ---------------TYPE 1---------------------------       -->
-
-
-
+    <!--            ------------------TYPE 1------------------------       -->
 
 
 
@@ -255,59 +299,130 @@ Null and undefined values are also considered to be empty with no value.
 
 
 
+
+
+
+
+
 <script>
-  log = captureConsole("log-text");
+  log = captureConsole("log-text")
+
+class Base_Either {
+	constructor(value) { this._value = value; }
+	get value() { return this._value; }
+	static left(a) { return new Left(a); }
+	static right(a) { return new Right(a); }
+	static fromNullable(val) { return val !== null && val !== undefined ? Base_Either.right(val) : Base_Either.left(val); }
+	static of(a){ return Base_Either.right(a); }  };
+
+class Either extends Base_Either { answer() {return this._value; }  };
+
+class Left extends Either {	
+	map(_) { return this; } // noop
+	get value() { throw new TypeError("Can't extract the value of a Left(a)."); }
+	getOrElse(other) { return other; } 
+	orElse(f) { return f(this._value); }
+	chain(f) { return this; }
+	getOrElseThrow(a) { throw new Error(a); }
+	filter(f) { return this; }
+	get isRight() { return false; }
+	get isLeft() { return true; }
+  tap(f) { 
+    f(this._value);
+    return new Left(this._value);
+  }
+	toString() { return `Either.Left(${this._value})`; }  };
+
+class Right extends Either {
+	map(f) { return Either.of(f(this._value)); }
+	getOrElse(other) { return this._value; }
+	orElse() { return this; }
+	chain(f) { return f(this._value); }
+	getOrElseThrow(_) { return this._value; }
+	filter(f) { return Either.fromNullable(f(this._value) ? this._value : null); }
+	get isRight() { return true; }
+	get isLeft() { return false; }
+	tap(f) { 
+    f(this._value);
+    return new Right(this._value);
+  }
+	toString() { return `Either.Right(${this._value})`; }  };
+
+function capFirst(a_string) {
+  try {
+    return a_string[0].toUpperCase() + a_string.slice(1);
+  } catch (e) {
+    return a_string
+  }
+}
+
 </script>
-
-
 
 
 <script id="check-code">
-/**/  if (typeof TypeCzech === 'function')
-/**/    type_czech = TypeCzech('LOG-ERRORS')
-/**/  else
-/**/    type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
-/**/
-/**/  PRE_check_Person = (typeof PRE_check_Person === 'undefined') 
-/**/                     ? undefined : PRE_check_Person
-/**/
-/**/  POST_check_Person = (typeof POST_check_Person === 'undefined')
-/**/                      ? undefined : POST_check_Person
-/**/
-/**/  PRE_check_Person_EMPTYS = ['EMPTY-ERROR', 'EMPTY-OK', 'EMPTY-ERROR']
-/**/
-/**/  POST_check_Person_EMPTYS = {l_name:'EMPTY-ERROR', b_date:'EMPTY-OK'}
-/**/
-/**/  function PRE_check_Person(f_name, l_name, b_date){
-/**/    the_parameters = [f_name, l_name, b_date]
-/**/    return type_czech.checkParam_empty(the_parameters, PRE_check_Person_EMPTYS)
-/**/  }
-/**/
-/**/  function POST_check_Person(person_obj){
-/**/    return type_czech.checkParam_empty(person_obj, POST_check_Person_EMPTYS)
-/**/  }
-/**/
-/**/  Person = type_czech.linkUp(Person, PRE_check_Person, POST_check_Person)
-
-function Person(f_name, l_name, b_date){
-  person_obj = {l_name, b_date}
-  return person_obj
+affixName = name_arr => current_sentence => {
+  name_str = name_arr.reduce((acc_sent, cur_name) => acc_sent + ' ' + capFirst(cur_name), "");
+  return Either.of(current_sentence + name_str); 
 }
 
-chuck = Person('Charles', 'Windsor', new Date(1948,0,14))
-log(chuck)
+affixYear = when_born => current_sentence => {
+  try { 
+    born_year = when_born.getFullYear();
+    if (born_year<1800) return Either.left('Monad Error : year must be bigger than 1800');
+  } catch (e) { born_year = "affixYear() exception error" }
+  return Either.of(current_sentence + ", born in " + born_year); 
+}
 
-linesConsole(3)
+affixType = is_hero => current_sentence => {
+  if (is_hero === 'AN_ERROR') return Either.left("Monad Error : is_hero must never be 'AN_ERROR'");
+  hero_type = is_hero ? "Hero" : "Villain";
+  return Either.of(current_sentence + ", is a " + hero_type);
+} 
 
-boudica = Person('Queen', 'Boudica', new Date(''))
-log(boudica)
+sentenceMonad = (name_arr, when_born, is_hero) => {
+  return Either.of("Hero or Villain? - ")
+  .chain(affixName(name_arr))
+  .chain(affixYear(when_born))
+  .chain(affixType(is_hero)).answer()
+}
 
-linesConsole(3)
+/**/  type_czech = TypeCzech('LOG-ERRORS')   
+/**/  function PRE_affixName(name_arr){ return type_czech.checkParam_type(name_arr, ["strings"])}
+/**/  function PRE_affixYear(when_born){ return type_czech.checkParam_type(when_born, "date") }
+/**/  function PRE_affixType(is_hero){ return type_czech.checkParam_type(is_hero, "boolean") }
+/**/  function PRE_sentenceMonad(name_arr, when_born, is_hero){
+/**/    if (name_arr.length<2) return "ERROR, name_arr must have both a first and last name" 
+/**/  }
+/**/  function POST_sentenceMonad(return_str){ return type_czech.checkParam_type(return_str, "string") }
 
-sting = Person('Sting', '', new Date(1912,6,23))
-log(sting)
+/**/  affixName = type_czech.linkUp(affixName, PRE_affixName)
+/**/  affixYear = type_czech.linkUp(affixYear, PRE_affixYear)
+/**/  affixType = type_czech.linkUp(affixType, PRE_affixType)
+/**/  sentenceMonad = type_czech.linkUp(sentenceMonad, PRE_sentenceMonad, POST_sentenceMonad)
+
+good_sentence = sentenceMonad(['john', 'wilkes', 'booth'], new Date('may 10 1838'), false);
+log(good_sentence);
+
+linesConsole(4)
+
+bad_third_name = sentenceMonad(["first","middle",3], new Date('may 10 1776'), false);
+log(bad_third_name);
+
+linesConsole(4)
+
+bad_date = sentenceMonad(['john', 'f', 'kennedy'], 1801, true);
+log(bad_date);
+
+linesConsole(4)
+
+bad_boolean = sentenceMonad(['bill', 'clinton'], new Date('may 10 1950'), "AN_ERROR");
+log(bad_boolean);
+
+linesConsole(4)
+
+bad_one_name = sentenceMonad(['Batman'], new Date('may 10 1945'), true);
+log(bad_one_name);
 </script>
-
 
 
 
@@ -317,30 +432,34 @@ log(sting)
 
 
 <script>
-  
-  jsToDiv('js-code', "check-code");
+  function myColoring(){
+    jsToDiv('js-code', "check-code");
 
-  fromToBoldText(1130, 1170, 'code', 3)  // 'Charles', 'Windsor', new Date(1948,0,14)
-  fromToBoldText(1, 51, 'log', 3)   // { "l_name": "Windsor", "b_date": "1948-01-14" }
+     fromToBoldText(1093, 1103, 'code', 1)   //ckParam_type(name_arr, ["strings"])}
+     fromToBoldText(2013, 2013, 'code', 1)   //["first","middle",3]
+     fromToBoldText(180, 180, 'log', 1)  //    NT '2' is assumed to be a 'string' with a value of 3
+     fromToBoldText(301, 301, 'log', 1)  //    VALUES ["first","middle",3]
 
-  
+    fromToBoldText(1194, 1197, 'code', 2)  //   heckParam_type(when_born, "date") }
+    fromToBoldText(2123, 2126, 'code', 2)  //   'kennedy'], 1801,
+    fromToBoldText(475, 478, 'log', 2)  //    '1801', which is a 'number', is not a 'date'
+    fromToBoldText(621, 624, 'log', 2)  //      VALUES 1801
 
-  fromToBoldText(1222, 1233, 'code', 1)  // new Date('')
-  fromToBoldText(205, 210, 'log', 1)   // 'date'
-  fromToBoldText(257, 260, 'log', 1)   // null
-  fromToBoldText(314, 326, 'log', 1)   //,"EMPTY-ERROR"]
+    fromToBoldText(1286, 1292, 'code', 3)  //    h.checkParam_type(is_hero, "boolean") }
+    fromToBoldText(2227, 2234, 'code', 3)  //    1950'), "AN_ERROR");
+    fromToBoldText(830, 837, 'log', 3)  //    'AN_ERROR', which is a 'string', is not a 'boolean'
+    fromToBoldText(984, 991, 'log', 3)  //   VALUES "AN_ERROR"
 
+     fromToBoldText(1434, 1452, 'code', 4)  //   ust have both a first and last name
+    fromToBoldText(2289, 2294, 'code', 4)  //   d(['Batman'],
+    fromToBoldText(1189, 1207, 'log', 4)  //    both a first and last name
+    fromToBoldText(1315, 1320, 'log', 4)  //    VALUES [["Batman"],1945-05-10,true]
 
-  fromToBoldText(1274, 1275, 'code', 2)  // , '', 
-  fromToBoldText(659, 667, 'log', 2)   // {l_name:""
-  fromToBoldText(714, 735, 'log', 2)   // {l_name:"EMPTY-ERROR",
+  }
 
-
-
+  myColoring()
+  setTimeout(myColoring, 1234);
 </script>
 
-<link rel="stylesheet"
-  href="https://fonts.googleapis.com/css?family=Inconsolata">
 
-
-  
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">

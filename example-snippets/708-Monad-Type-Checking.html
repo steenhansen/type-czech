@@ -52,9 +52,7 @@
              <br>
 
       The          <a href='https://gist.github.com/steenhansen/f9a9e9eee2fd563e378d8ddfce98cf0a' target="_blank">Either monad</a> used here 
-      is a GitHub gist. 
-
-
+      is a GitHub gist. Change code to <b>type_czech = TypeCzech('NO-CHECKING')</b> and the Monand Errors will still show.
 
               
 
@@ -371,26 +369,27 @@ affixName = name_arr => current_sentence => {
 }
 
 affixYear = when_born => current_sentence => {
-  try { born_year = when_born.getFullYear();
-      } catch (e) { born_year = "affixYear() exception error" }
+  try { 
+    born_year = when_born.getFullYear();
+    if (born_year<1800) return Either.left('Monad Error : year must be bigger than 1800');
+  } catch (e) { born_year = "affixYear() exception error" }
   return Either.of(current_sentence + ", born in " + born_year); 
 }
 
 affixType = is_hero => current_sentence => {
+  if (is_hero === 'AN_ERROR') return Either.left("Monad Error : is_hero must never be 'AN_ERROR'");
   hero_type = is_hero ? "Hero" : "Villain";
   return Either.of(current_sentence + ", is a " + hero_type);
 } 
 
 sentenceMonad = (name_arr, when_born, is_hero) => {
-  the_sentence = Either.of("Hero or Villain? - ")
+  return Either.of("Hero or Villain? - ")
   .chain(affixName(name_arr))
   .chain(affixYear(when_born))
-  .chain(affixType(is_hero))
-  .answer()
-  return the_sentence;
+  .chain(affixType(is_hero)).answer()
 }
 
-/**/  type_czech = TypeCzech('LOG-ERRORS')  
+/**/  type_czech = TypeCzech('LOG-ERRORS')   
 /**/  function PRE_affixName(name_arr){ return type_czech.checkParam_type(name_arr, ["strings"])}
 /**/  function PRE_affixYear(when_born){ return type_czech.checkParam_type(when_born, "date") }
 /**/  function PRE_affixType(is_hero){ return type_czech.checkParam_type(is_hero, "boolean") }
@@ -409,17 +408,17 @@ log(good_sentence);
 
 linesConsole(4)
 
-bad_third_name = sentenceMonad(["first","middle",3], new Date('may 10 1776'), true);
+bad_third_name = sentenceMonad(["first","middle",3], new Date('may 10 1776'), false);
 log(bad_third_name);
 
 linesConsole(4)
 
-bad_date = sentenceMonad(['john', 'f', 'kennedy'], 1776, true);
+bad_date = sentenceMonad(['john', 'f', 'kennedy'], 1801, true);
 log(bad_date);
 
 linesConsole(4)
 
-bad_boolean = sentenceMonad(['bill', 'clinton'], new Date('may 10 1950'), "FALSE!");
+bad_boolean = sentenceMonad(['bill', 'clinton'], new Date('may 10 1950'), "AN_ERROR");
 log(bad_boolean);
 
 linesConsole(4)
@@ -439,21 +438,25 @@ log(bad_one_name);
   function myColoring(){
     jsToDiv('js-code', "check-code");
 
-     fromToBoldText(93, 99, 'code', 1)   //["first","middle",3]
-     fromToBoldText(243, 244, 'log', 1)  //    NT '2' is assumed to be a 'string
-     fromToBoldText(243, 244, 'log', 1)  //    VALUES ["first","middle",3]
+     fromToBoldText(1093, 1103, 'code', 1)   //ckParam_type(name_arr, ["strings"])}
+     fromToBoldText(2013, 2013, 'code', 1)   //["first","middle",3]
+     fromToBoldText(180, 180, 'log', 1)  //    NT '2' is assumed to be a 'string' with a value of 3
+     fromToBoldText(301, 301, 'log', 1)  //    VALUES ["first","middle",3]
 
-    fromToBoldText(995, 997, 'code', 2)  //   'kennedy'], 1776,
-    fromToBoldText(507, 516, 'log', 2)  //    '1776', which is a 'number', is not a 'date'
-    fromToBoldText(507, 516, 'log', 2)  //      VALUES 1776
+    fromToBoldText(1194, 1197, 'code', 2)  //   heckParam_type(when_born, "date") }
+    fromToBoldText(2123, 2126, 'code', 2)  //   'kennedy'], 1801,
+    fromToBoldText(475, 478, 'log', 2)  //    '1801', which is a 'number', is not a 'date'
+    fromToBoldText(621, 624, 'log', 2)  //      VALUES 1801
 
-    fromToBoldText(995, 997, 'code', 3)  //    1950'), "FALSE!");
-    fromToBoldText(507, 516, 'log', 3)  //    'FALSE!', which is a 'string', is not a 'boolean'
-    fromToBoldText(507, 516, 'log', 3)  //   VALUES "FALSE!"
+    fromToBoldText(1286, 1292, 'code', 3)  //    h.checkParam_type(is_hero, "boolean") }
+    fromToBoldText(2227, 2234, 'code', 3)  //    1950'), "AN_ERROR");
+    fromToBoldText(830, 837, 'log', 3)  //    'AN_ERROR', which is a 'string', is not a 'boolean'
+    fromToBoldText(984, 991, 'log', 3)  //   VALUES "AN_ERROR"
 
-    fromToBoldText(995, 997, 'code', 4)  //   d(['Batman'],
-    fromToBoldText(507, 516, 'log', 4)  //    both a first and last name
-    fromToBoldText(507, 516, 'log', 4)  //    VALUES [["Batman"],1945-05-10,true]
+     fromToBoldText(1434, 1452, 'code', 4)  //   ust have both a first and last name
+    fromToBoldText(2289, 2294, 'code', 4)  //   d(['Batman'],
+    fromToBoldText(1189, 1207, 'log', 4)  //    both a first and last name
+    fromToBoldText(1315, 1320, 'log', 4)  //    VALUES [["Batman"],1945-05-10,true]
 
   }
 
