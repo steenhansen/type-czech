@@ -1,29 +1,39 @@
 <a id="fast-start"></a>
+<a id="s"></a>
 # TypeCzech
 
 
 Ditch TypeScript and use TypeCzech runtime type checking instead. 
 Live editable [JSFiddles](https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Contents) with visible type checking in the list below.
 
- - Verify JavaScript [parameter signatures](https://jsfiddle.net/steen_hansen/0xtpLwsc/?00-Readme-Example), function [return types](https://jsfiddle.net/steen_hansen/wrkvscqg/?05-Verify-Return-Results-by-Value), and [argument values](https://jsfiddle.net/steen_hansen/6zy89om1/?02-Validate-Parameters-by-Value)
- 
- - Specify [async/await](https://jsfiddle.net/steen_hansen/q7rckeno/?703-Async-Await) types
+ - Specify JavaScript [parameter signatures](https://jsfiddle.net/steen_hansen/0xtpLwsc/?00-Readme-Example) and function [return types](https://jsfiddle.net/steen_hansen/wrkvscqg/?05-Verify-Return-Results-by-Value)
  
  - Type check [React](https://jsfiddle.net/steen_hansen/z1yug5nw/?707-React-JSX) components
- 
+
+ - Does not touch [nor affect your code](https://jsfiddle.net/steen_hansen/8kbtyfz1/?204-Extending-Closures-Single)
+
+
+  - Verify [async/await](https://jsfiddle.net/steen_hansen/q7rckeno/?703-Async-Await) arguments and resolved values
+
  - Toggle TypeCzech [on or off](https://jsfiddle.net/steen_hansen/f19s52xr/?36-Start-and-Stop) programatically
  
  - Console.log type errors or [throw exceptions](https://jsfiddle.net/steen_hansen/ep3snb8z/?35-Throw-or-Log)
  
  - Catch [empty parameters](https://jsfiddle.net/steen_hansen/x8h6dvj5/?19-Lone-Empty-Param-and-Result) like null, NaN, or an empty array
  
- - No compiling, [no function altering](https://jsfiddle.net/steen_hansen/8kbtyfz1/?204-Extending-Closures-Single), and a single dependency free file
-
- - Inspect [object interfaces](https://jsfiddle.net/steen_hansen/063wLqfs/?18-Class-Type-Checks) for expected methods and properties on objects 
+ - Object [interfaces](https://jsfiddle.net/steen_hansen/063wLqfs/?18-Class-Type-Checks) for expected methods and properties
 
  - Type check [monads](https://jsfiddle.net/steen_hansen/zmd1v27x/?708-Monad-Type-Checking)
-
+<br><br>
  - NPM [package](https://www.npmjs.com/package/type-czech) with require for Node.js and import for React
+
+  - No compiling, a [single dependency free file ](https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/TypeCzech.js)
+
+## Shortest Possible Live Example
+
+The [shortest easiest possible example](https://jsfiddle.net/steen_hansen/7c2q54v0/?000-Shortest-Possible-Example) on a live JSFiddle.
+
+
 
 ## Base Example
 

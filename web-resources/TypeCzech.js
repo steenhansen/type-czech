@@ -1,6 +1,6 @@
 /* 
 
-Development TypeCzech.js IMPORTED NOP code for JSX and ESM.
+Development TypeCzech.js IMPORTED code for browser JSX and ESM
 
 When in development, this large file replaces type-czech-import.js, 
 providing all the type checking functions without any changes to the source code.

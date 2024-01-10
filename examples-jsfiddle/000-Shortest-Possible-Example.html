@@ -1,0 +1,51 @@
+<!DOCTYPE html><meta charset="utf-8" />
+
+<script src="https://cdn.jsdelivr.net/gh/eu81273/jsfiddle-console/console.js"></script>
+
+<pre style ="background-color: rgb(195,195,195);">
+&lt;script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/TypeCzech.min.js"&gt;&lt;/script&gt; 
+
+&lt;script&gt;
+  type_czech = TypeCzech('LOG-ERRORS')
+
+  function PRE_addAB(a, b) {
+    return type_czech.checkParam_type([a, b], ['number', 'number'])
+  }
+  
+  addAB = type_czech.linkUp(addAB, PRE_addAB)
+
+
+  function addAB(a, b) { return a + b }
+
+  console.log(" 5 + 5     = ", addAB(5, 5))
+  console.log(" 6 + 'six' = ", addAB(6, 'six'))
+  console.log(" 7 + 7     = ", addAB(7, 7))
+&lt;/script&gt; 
+
+</pre>
+
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/TypeCzech.min.js"></script>
+
+<script>
+  type_czech = TypeCzech('LOG-ERRORS')
+
+  function PRE_addAB(a, b) {
+    return type_czech.checkParam_type([a, b], ['number', 'number'])
+  }
+  
+  addAB = type_czech.linkUp(addAB, PRE_addAB)
+
+
+  function addAB(a, b) { return a + b }
+
+  console.log(" 5 + 5     = ", addAB(5, 5))
+  console.log(" 6 + 'six' = ", addAB(6, 'six'))
+  console.log(" 7 + 7     = ", addAB(7, 7))
+</script>
+
+<a title="Example-Contents" href="https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Contents" target="_blank">JSFiddle Contents</a>
+<br>
+<a href='https://github.com/steenhansen/type-czech#fast-start'  target="_blank">GitHub TypeCzech</a>
+<br>
+<a href='https://www.npmjs.com/package/type-czech'  target="_blank">NPM TypeCzech</a>

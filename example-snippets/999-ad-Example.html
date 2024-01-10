@@ -1,0 +1,182 @@
+<!DOCTYPE html><meta charset="utf-8" />
+
+
+<!--            ------------------TYPE 1------------------------       -->
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/consolelog.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/TypeCzech.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/type-czech.css">
+<!--            -------------------TYPE 1-----------------------       -->
+
+
+<script src="../web-resources/consolelog.js"></script>
+<script src="../web-resources/TypeCzech.js"></script>
+<link rel="stylesheet" href="../web-resources/type-czech.css">
+
+
+   <div style ="background-color: rgb(255,255,255);  font-family: Arial, sans-serif;" >
+       Ditch TypeScript and use TypeCzech Runtime type checking instead.
+      </div>
+
+<br>
+<style>
+    .myul {
+   padding-left:16px; 
+   margin-bottom:4px;
+   list-style: none;   
+   font-family: Arial, sans-serif;
+  }
+  .myli {
+   padding-top:0px;
+  }
+
+  .myspan {
+    font-weight: bold;
+    position: relative; 
+    top:-4px; 
+   padding-right: 2px;    
+  }
+</style>
+<div style="width:640px; height:480px; border:1px solid red">
+         <div style ="background-color: rgb(255,255,255); font-size:15px" >
+                  <div style="float:left;">
+                         <ul class="myul" style="padding-left:8px;">   
+                                          <li class="myli"><span class="myspan">.</span>Parameter signatures and return types</li>
+                                                            <li class="myli"><span class="myspan">.</span>Does not touch nor affect your code</li>
+                                                          <li class="myli"><span class="myspan">.</span>Toggle on or off programatically</li> </ul>
+                  </div>
+                  <div style="float:left; ">
+                          <ul class="myul">    
+                                            <li class="myli"><span class="myspan">.</span>Log or throw exceptions</li>
+                                                           <li class="myli"><span class="myspan">.</span>Type check React</li>
+                                                           <li class="myli"><span class="myspan">.</span>Catch nulls or empty arrays</li>            </ul>
+                  </div>
+                    <div style="float:left;">
+                          <ul class="myul">   
+                                           <li class="myli"><span class="myspan">.</span>No compiling, gradual</li>
+                                                          <li class="myli"><span class="myspan">.</span>Verify async/await args</li>
+                                                           <li class="myli"><span class="myspan">.</span>NPM Node.js package</li>            </ul>
+                  </div>
+
+        </div>
+
+        <div style ="background-color: rgb(235,235,235); clear:both; padding-left:160px; padding-bottom:2px" >   &lt;script src="TypeCzech.js"&gt;&lt;/script&gt;  </div>
+
+         <div id='js-code' style ="background-color: rgb(195,195,195); margin-left:0px;">the javascript</div>
+
+
+         <div style="background-color: rgb(175,175,175); font-size:12px;   ">
+            <div style="float:left; width:10px; font-family: Courier New;">&nbsp;</div>
+                 <div id='log-text' style="font-family: Arial;"></div>
+        </div>
+
+
+</div>
+
+
+
+<br>
+
+
+
+
+
+
+        <div style ="background-color: rgb(255,255,255);" >https://github.com/steenhansen/type-czech#i</div>
+
+640x480
+
+512x512
+
+600x316
+
+600x450
+
+600x338
+
+
+<script> log = captureConsole("log-text") </script>
+
+<script id="check-code">
+                                                                                
+      type_czech = TypeCzech('LOG-ERRORS')  // 'NO-ERROR-MESSAGES'              
+                                                                                
+      function PRE_addAB(a, b) {                                                
+          return type_czech.checkParam_type([a, b], ['number', 'number'])       
+      }                                                                         
+      addAB = type_czech.linkUp(addAB, PRE_addAB)                               
+
+function addAB(a, b) { return a + b }
+
+linesConsole(1)
+
+console.log(" 5 + 5     = ", addAB(5, 5))
+linesConsole(2)
+console.log(" 6 + 'six' = ", addAB(6, 'six'))
+linesConsole(1)
+console.log(" 7 + 7     = ", addAB(7, 7))
+</script>
+
+
+
+
+
+
+
+
+<script>
+
+   jsToDiv('js-code', "check-code")
+
+   fromToBackGround(1, 565, 'code', 1)  // type_czech = TypeCzech('LOG-ERRORS') .... linkUp(addNums, PRE_addNums) 
+
+   ///////////////////////////
+
+
+   fromToBoldText(269, 269, 'code', 2)  // PRE_addNums(num_a
+  fromToBoldText(370, 370, 'code', 2)  // [a,b
+  fromToBoldText(379, 384, 'code', 2)  // ['number,
+
+  fromToBoldText(585, 585, 'code', 2)  // ion addNums(a,
+  fromToBoldText(600, 600, 'code', 2)  // rn a +
+
+  fromToBoldText(686, 686, 'code', 2)  // *** addNums(6
+
+
+
+   fromToBoldText(244, 244, 'log', 2)    // VALUES [6, 
+   fromToBoldText(357, 357, 'log', 2)    // "6six" 
+
+///////////////////////////////////////////////////////////////
+
+     fromToBoldText(272, 272, 'code', 3)  // PRE_addNums(a, b
+  fromToBoldText(373, 373, 'code', 3)  // ,b]
+  fromToBoldText(389, 394, 'code', 3)  // ,'number]
+
+  fromToBoldText(588, 588, 'code', 3)  // ion addNums(a, b
+  fromToBoldText(604, 604, 'code', 3)  // rn a + b
+
+   fromToBoldText(690, 692, 'code', 3)    //addAB(6, 'six'))
+
+
+   fromToBoldText(247, 249, 'log', 3)    //S [6,"six"]
+
+   fromToBoldText(358, 360, 'log', 3)    //  ix' = "6six"
+
+
+
+////////////////////////////////////////////////////////////
+
+      fromToBoldText(112, 121, 'code', 1)  // 'LOG-ERRORS'
+      fromToBoldText(130, 146, 'code', 4)  // 'NO-ERROR-MESSAGES'
+
+
+
+
+
+</script>
+
+
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Inconsolata">
+
+  
