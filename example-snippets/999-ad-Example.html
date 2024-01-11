@@ -14,11 +14,13 @@
 
 
    <div style ="background-color: rgb(255,255,255);  font-family: Arial, sans-serif;" >
-       Ditch TypeScript and use TypeCzech runtime type checking instead.
+      Ditch TypeScript and use TypeCzech runtime type checking instead.
        <br>
       No source code alteration, no compiling, and turn type checking
-      on or off in pure Javascript.
+      on or off in pure JavaScript.
    </div>
+
+
 
 <br>
 <style>
@@ -62,7 +64,8 @@
 
         </div>
 
-        <div style ="background-color: rgb(235,235,235); clear:both; padding-left:160px; padding-bottom:2px" >   &lt;script src="TypeCzech.js"&gt;&lt;/script&gt;  </div>
+        <div style ="background-color: rgb(235,235,235); clear:both; padding-left:160px; padding-bottom:2px" >   &lt;script src="TypeCzech.js"&gt;&lt;/script&gt; 
+             <span style="float:right"></span></div>
         
         <style>.back-1{ background-color:rgb(215,215,215);}</style>
         <div style ="background-color: rgb(205,205,205); margin-left:0px;" id='js-code' >the javascript</div>
@@ -89,12 +92,12 @@
 
 <script id="check-code">
                                                                                 
-      type_czech = TypeCzech('LOG-ERRORS')  // 'NO-ERROR-MESSAGES'              
+      type_czech = TypeCzech('LOG-ERRORS')          // added type checking code 
                                                                                 
       function PRE_addAB(a, b) {                                                
           return type_czech.checkParam_type([a, b], ['number', 'number'])       
       }                                                                         
-      addAB = type_czech.linkUp(addAB, PRE_addAB)                              
+      addAB = type_czech.linkUp(addAB, PRE_addAB)                               
 
 function addAB(a, b) { return a + b }
 
@@ -127,10 +130,10 @@ console.log(" 7 + 7     = ", addAB(7, 7))
   fromToBoldText(370, 370, 'code', 2)  // [a,b
   fromToBoldText(379, 384, 'code', 2)  // ['number,
 
-  fromToBoldText(583, 583, 'code', 2)  // ion addAB(a,
-  fromToBoldText(598, 598, 'code', 2)  // rn a +
+  fromToBoldText(584, 584, 'code', 2)  // ion addAB(a,
+  fromToBoldText(599, 599, 'code', 2)  // rn a +
 
-  fromToBoldText(684, 684, 'code', 2)  // *** addAB(6
+  fromToBoldText(685, 685, 'code', 2)  // *** addAB(6
 
 
 
@@ -143,10 +146,10 @@ console.log(" 7 + 7     = ", addAB(7, 7))
   fromToBoldText(373, 373, 'code', 3)  // ,b]
   fromToBoldText(389, 394, 'code', 3)  // ,'number]
 
-  fromToBoldText(586, 586, 'code', 3)  // ion addAB(a, b
-  fromToBoldText(602, 602, 'code', 3)  // rn a + b
+  fromToBoldText(587, 587, 'code', 3)  // ion addAB(a, b
+  fromToBoldText(603, 603, 'code', 3)  // rn a + b
 
-   fromToBoldText(688, 690, 'code', 3)    //addAB(6, 'six'))
+   fromToBoldText(689, 691, 'code', 3)    //addAB(6, 'six'))
 
 
    fromToBoldText(247, 249, 'log', 3)    //S [6,"six"]
@@ -158,7 +161,7 @@ console.log(" 7 + 7     = ", addAB(7, 7))
 ////////////////////////////////////////////////////////////
 
       fromToBoldText(112, 121, 'code', 1)  // 'LOG-ERRORS'
-      fromToBoldText(130, 146, 'code', 4)  // 'NO-ERROR-MESSAGES'
+     // fromToBoldText(130, 146, 'code', 4)  // 'NO-ERROR-MESSAGES'
 
 
 
