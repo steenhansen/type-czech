@@ -6,20 +6,20 @@
 &lt;script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/TypeCzech.min.js"&gt;&lt;/script&gt; 
 
 &lt;script&gt;
-  type_czech = TypeCzech('LOG-ERRORS')
+  type_czech &equals; TypeCzech&lpar;'LOG-ERRORS'&rpar;
 
-  function PRE_addAB(a, b) {
-    return type_czech.checkParam_type([a, b], ['number', 'number'])
-  }
+  function PRE_addAB&lpar;a&comma; b&rpar; &lcub;
+    return type_czech&period;checkParam_type&lpar;&lbrack;a&comma; b&rbrack;&comma; &lbrack;'number'&comma; 'number'&rbrack;&rpar;
+  &rcub;
   
-  addAB = type_czech.linkUp(addAB, PRE_addAB)
+  addAB &equals; type_czech&period;linkUp&lpar;addAB&comma; PRE_addAB&rpar;
 
 
-  function addAB(a, b) { return a + b }
+  function addAB&lpar;a&comma; b&rpar; &lcub; return a &plus; b &rcub;
 
-  console.log(" 5 + 5     = ", addAB(5, 5))
-  console.log(" 6 + 'six' = ", addAB(6, 'six'))
-  console.log(" 7 + 7     = ", addAB(7, 7))
+  console&period;log&lpar;" 5 &plus; 5     &equals; "&comma; addAB&lpar;5&comma; 5&rpar;&rpar;
+  console&period;log&lpar;" 6 &plus; 'six' &equals; "&comma; addAB&lpar;6&comma; 'six'&rpar;&rpar;
+  console&period;log&lpar;" 7 &plus; 7     &equals; "&comma; addAB&lpar;7&comma; 7&rpar;&rpar;
 &lt;/script&gt; 
 
 </pre>

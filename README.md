@@ -25,14 +25,29 @@ Live editable [JSFiddles](https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Co
 
  - Type check [monads](https://jsfiddle.net/steen_hansen/zmd1v27x/?708-Monad-Type-Checking)
 <br><br>
- - NPM [package](https://www.npmjs.com/package/type-czech) with require for Node.js and import for React
+ - [npm i type-czech](https://www.npmjs.com/package/type-czech) package with require for Node.js and import for React
 
   - No compiling, a [single dependency free file ](https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/TypeCzech.js)
 
 ## Shortest Possible Live Example
 
-The [shortest easiest possible example](https://jsfiddle.net/steen_hansen/7c2q54v0/?000-Shortest-Possible-Example) on a live JSFiddle.
+The [shortest easiest possible example](https://jsfiddle.net/steen_hansen/7c2q54v0/?000-Shortest-Possible-Example) on a live editable JSFiddle.
 
+```
+type_czech = TypeCzech('LOG-ERRORS')
+
+function PRE_addAB(a, b) {
+  return type_czech.checkParam_type([a, b], ['number', 'number'])
+}
+
+addAB = type_czech.linkUp(addAB, PRE_addAB)
+
+function addAB(a, b) { return a + b }
+
+console.log(" 5 + 5     = ", addAB(5, 5))
+console.log(" 6 + 'six' = ", addAB(6, 'six'))  // type error
+console.log(" 7 + 7     = ", addAB(7, 7))
+```
 
 
 ## Base Example

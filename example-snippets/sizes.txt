@@ -10,7 +10,7 @@ Catch nulls or empty arrays
 
 No compiling, gradual
 Verify async/await args
-NPM Node.js package
+npm install type-czech
 
 
 
