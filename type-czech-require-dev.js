@@ -14,7 +14,7 @@ Used thus:
 
 /* eslint-disable max-len */
 /* eslint-disable block-scoped-var */
-const VERS_NUM = "version 1.7.1 2024-01-08";
+const VERS_NUM = "version 1.7.2 2024-01-11";
 
 /*
     TypeCzech contains:

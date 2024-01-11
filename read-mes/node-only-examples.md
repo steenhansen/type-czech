@@ -2,6 +2,9 @@
 
 # Node.js Only Examples
 
+### npm install type-czech
+
+
 ### These Multi File Server Examples use Require
   -  [example-node.js](../examples-nodejs/example-node.js)
   -  [32-Extending-Classes-Node.js](../examples-nodejs/32-Extended-Closure-Node/node-32-all-checks-external.js)
