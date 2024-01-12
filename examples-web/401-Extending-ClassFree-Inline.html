@@ -130,6 +130,7 @@
     <a title="41-Lens-Example.html" href="../example-snippets/41-Lens-Example.html">41</a>
 
     <a title="42-Extended-Objects.html" href="../example-snippets/42-Extended-Objects.html">42</a>
+     <a title="43-PHP-On-OFF-Extending-Classes.html" href="../example-snippets/43-PHP-On-OFF-Extending-Classes.html">43</a>
 
     &nbsp;&nbsp;
 
@@ -204,153 +205,144 @@
 </script>
 
 <script id="check-code">
-  First = function (spec) {
-    let { f_name } = spec;
-    log(NL + `CONS-First :${f_name}`);
-    firstMethod = function (a_date) {
-      log(NL + `RUN -firstMethod :${f_name} `, a_date);
-      return a_date;
-    };
-    first_object = { firstMethod };
-    return Object.freeze(first_object);
-  };
+First = function (spec) {
+  let {f_name} = spec
+  log(NL+`CONS-First :${f_name}`)
+  firstMethod = function(a_date) { 
+    log(NL+`RUN -firstMethod :${f_name} `, a_date) 
+    return a_date
+  }
+  first_object = {firstMethod}
+  return Object.freeze(first_object)
+}
 
-  Last = function (spec) {
-    let { f_name, l_name } = spec;
-    let { firstMethod } = First(spec);
-    log(NL + LEVEL_1 + `CONS-Last :${f_name} ${l_name}`);
-    lastMethod = function (a_year) {
-      log(LEVEL_1 + `RUN -lastMethod :${a_year} ${f_name} ${l_name}`);
-      return a_year;
-    };
-    last_object = { firstMethod, lastMethod };
-    return Object.freeze(last_object);
-  };
+Last = function (spec) {
+  let {f_name, l_name} = spec
+  let {firstMethod} = First(spec)
+  log(NL+LEVEL_1+`CONS-Last :${f_name} ${l_name}`)
+  lastMethod = function (a_year) {
+    log(LEVEL_1+`RUN -lastMethod :${a_year} ${f_name} ${l_name}`)
+    return a_year
+  }
+  last_object = {firstMethod, lastMethod}
+  return Object.freeze(last_object)
+}
 
-  Full = function (spec) {
-    let { f_name, l_name, salu } = spec;
-    let { firstMethod, lastMethod } = Last(spec);
-    log(NL + LEVEL_2 + `CONS-Full :${salu} ${f_name} ${l_name}`);
-    fullMethod = function (a_book) {
-      log(LEVEL_2 + `RUN -fullMethod :${a_book} ${salu} ${l_name}`);
-      return a_book;
-    };
-    function showName() {
-      return `${salu} ${f_name} ${l_name}`;
-    }
-    full_object = { showName, firstMethod, lastMethod, fullMethod };
-    return Object.freeze(full_object);
-  };
+Full = function (spec) {
+  let {f_name, l_name, salu} = spec
+  let {firstMethod, lastMethod} = Last(spec)
+  log(NL+LEVEL_2+`CONS-Full :${salu} ${f_name} ${l_name}`)
+  fullMethod = function (a_book) {
+    log(LEVEL_2+`RUN -fullMethod :${a_book} ${salu} ${l_name}`)
+    return a_book
+  }
+  function showName() {
+    return `${salu} ${f_name} ${l_name}`
+  }
+  full_object = {showName, firstMethod, lastMethod, fullMethod}
+  return Object.freeze(full_object)
+}
 
-  /**/ if (typeof TypeCzech === "function") /**/ type_czech = TypeCzech("LOG-ERRORS");
-  /**/
-  /**/ else type_czech = { linkUp: (nop) => nop, isActive: (x) => false };
-  /**/
-  /**/ function PRE_check_First(spec) {
-    /**/ log(NL2 + "PRE -First");
-    /**/ pre_first_sig = { f_name: "string" };
-    /**/ type_issue = type_czech.checkParam_typeExtra(spec, pre_first_sig);
-    /**/ if (type_issue) return type_issue;
-    /**/ return type_czech.checkParam_emptyExtra(spec, { f_name: "EMPTY-ERROR" });
-    /**/
-  }
-  /**/ function POST_check_First(First) {
-    /**/ log(NL1 + "POST-First");
-    /**/ return type_czech.check_interface(First, { firstMethod: "function" });
-    /**/
-  }
-  /**/ function PRE_check_firstMethod(a_date) {
-    /**/ log("PRE -firstMethod");
-    /**/ return type_czech.checkParam_type(a_date, "date");
-    /**/
-  }
-  /**/ function POST_check_firstMethod(a_date) {
-    /**/ log("POST-firstMethod");
-    /**/ return type_czech.checkParam_type(a_date, "date");
-    /**/
-  }
-  /**/
-  /**/ First_PREs = { First: PRE_check_First, firstMethod: PRE_check_firstMethod };
-  /**/ First_POSTs = { First: POST_check_First, firstMethod: POST_check_firstMethod };
-  /**/ First = type_czech.linkUp(First, First_PREs, First_POSTs);
+/**/  if (typeof TypeCzech === 'function')
+/**/    type_czech = TypeCzech('LOG-ERRORS')
+/**/  else
+/**/    type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
+/**/
+/**/  function PRE_check_First(spec){
+/**/    log(NL2+'PRE -First') 
+/**/    pre_first_sig = { f_name: 'string' }
+/**/    type_issue = type_czech.checkParam_typeExtra(spec, pre_first_sig)
+/**/    if (type_issue) return type_issue;
+/**/    return type_czech.checkParam_emptyExtra(spec, {f_name: 'EMPTY-ERROR' });
+/**/  }
+/**/  function POST_check_First(First){
+/**/    log(NL1+'POST-First') 
+/**/    return type_czech.check_interface(First, { firstMethod: 'function' })
+/**/  }
+/**/  function PRE_check_firstMethod(a_date){
+/**/    log('PRE -firstMethod') 
+/**/    return type_czech.checkParam_type(a_date, 'date')
+/**/  }
+/**/  function POST_check_firstMethod(a_date){
+/**/    log('POST-firstMethod') 
+/**/    return type_czech.checkParam_type(a_date, 'date')
+/**/  }
+/**/
+/**/  First_PREs = {First:PRE_check_First, firstMethod:PRE_check_firstMethod}
+/**/  First_POSTs = {First:POST_check_First, firstMethod:POST_check_firstMethod}
+/**/  First = type_czech.linkUp(First, First_PREs, First_POSTs)
 
-  /**/ function PRE_check_Last(spec) {
-    /**/ log(LEVEL_1 + "PRE-Last");
-    /**/ pre_last_sig = { f_name: "string", l_name: "string" };
-    /**/ type_issue = type_czech.checkParam_typeExtra(spec, pre_last_sig);
-    /**/ if (type_issue) return type_issue;
-    /**/ return type_czech.checkParam_emptyExtra(spec, { l_name: "EMPTY-ERROR" });
-    /**/
-  }
-  /**/ function POST_check_Last(Last) {
-    /**/ log(LEVEL_1 + "POST-Last");
-    /**/ post_last_sig = { firstMethod: "function", lastMethod: "function" };
-    /**/ return type_czech.check_interface(Last, post_last_sig);
-    /**/
-  }
-  /**/ function PRE_check_lastMethod(a_year) {
-    /**/ log(LEVEL_1 + "PRE -lastMethod");
-    /**/ return type_czech.checkParam_type(a_year, "number");
-    /**/
-  }
-  /**/ function POST_check_lastMethod(a_year) {
-    /**/ log(LEVEL_1 + "POST-lastMethod");
-    /**/ return type_czech.checkParam_type(a_year, "number");
-    /**/
-  }
-  /**/
-  /**/ Last_PREs = { Last: PRE_check_Last, lastMethod: PRE_check_lastMethod };
-  /**/ Last_POSTs = { Last: POST_check_Last, lastMethod: POST_check_lastMethod };
-  /**/ Last = type_czech.linkUp(Last, Last_PREs, Last_POSTs);
+/**/  function PRE_check_Last(spec){
+/**/    log(LEVEL_1+'PRE-Last') 
+/**/    pre_last_sig = { f_name: 'string', l_name: 'string' }
+/**/    type_issue = type_czech.checkParam_typeExtra(spec, pre_last_sig)
+/**/    if (type_issue) return type_issue;
+/**/    return type_czech.checkParam_emptyExtra(spec, {l_name: 'EMPTY-ERROR' });
+/**/  }
+/**/  function POST_check_Last(Last){
+/**/    log(LEVEL_1+"POST-Last") 
+/**/    post_last_sig = {firstMethod:'function', lastMethod:'function'}
+/**/    return type_czech.check_interface(Last, post_last_sig)
+/**/  }
+/**/  function PRE_check_lastMethod(a_year){
+/**/    log(LEVEL_1+"PRE -lastMethod")
+/**/    return type_czech.checkParam_type(a_year, 'number')
+/**/  }
+/**/  function POST_check_lastMethod(a_year){
+/**/    log(LEVEL_1+"POST-lastMethod") 
+/**/    return type_czech.checkParam_type(a_year, 'number')
+/**/  }
+/**/
+/**/  Last_PREs = {Last:PRE_check_Last, lastMethod:PRE_check_lastMethod}
+/**/  Last_POSTs = {Last:POST_check_Last, lastMethod:POST_check_lastMethod}
+/**/  Last = type_czech.linkUp(Last, Last_PREs, Last_POSTs)
 
-  /**/ function PRE_check_Full(spec) {
-    /**/ log(LEVEL_2 + "PRE-Full");
-    /**/ pre_full_sig = { salu: "string", f_name: "string", l_name: "string" };
-    /**/ return type_czech.checkParam_typeExtra(spec, pre_full_sig);
-    /**/
-  }
-  /**/ function POST_check_Full(Full) {
-    /**/ log(LEVEL_2 + "POST-Full");
-    /**/ return type_czech.check_interface(Full, { firstMethod: "function", /**/ lastMethod: "function", fullMethod: "function", /**/ showName: "function" });
-    /**/
-  }
-  /**/ function PRE_check_fullMethod(a_book) {
-    /**/ log(LEVEL_2 + "PRE -fullMethod");
-    /**/ return type_czech.checkParam_type(a_book, "string");
-    /**/
-  }
-  /**/ function POST_check_fullMethod(a_book) {
-    /**/ log(LEVEL_2 + "POST-fullMethod");
-    /**/ return type_czech.checkParam_type(a_book, "string");
-    /**/
-  }
-  /**/
-  /**/ Full_PREs = { Full: PRE_check_Full, fullMethod: PRE_check_fullMethod };
-  /**/ Full_POSTs = { Full: POST_check_Full, fullMethod: POST_check_fullMethod };
-  /**/ Full = type_czech.linkUp(Full, Full_PREs, Full_POSTs);
+/**/  function PRE_check_Full(spec){  
+/**/    log(LEVEL_2+'PRE-Full') 
+/**/    pre_full_sig = {salu:'string', f_name:'string', l_name:'string'}
+/**/    return type_czech.checkParam_typeExtra(spec, pre_full_sig)
+/**/}
+/**/  function POST_check_Full(Full){
+/**/    log(LEVEL_2+"POST-Full") 
+/**/    return type_czech.check_interface(Full, {firstMethod:'function',
+/**/              lastMethod:'function', fullMethod: 'function', 
+/**/              showName: 'function' })
+/**/   }
+/**/  function PRE_check_fullMethod(a_book){
+/**/    log(LEVEL_2+"PRE -fullMethod") 
+/**/    return type_czech.checkParam_type(a_book, 'string')
+/**/  }
+/**/  function POST_check_fullMethod(a_book){
+/**/    log(LEVEL_2+"POST-fullMethod") 
+/**/    return type_czech.checkParam_type(a_book, 'string')
+/**/  }
+/**/
+/**/  Full_PREs = {Full:PRE_check_Full, fullMethod:PRE_check_fullMethod}
+/**/  Full_POSTs= {Full:POST_check_Full, fullMethod:POST_check_fullMethod}
+/**/  Full = type_czech.linkUp(Full, Full_PREs, Full_POSTs)
 
-  const frank_herbert = Full({ salu: "Mr", f_name: "Frank", l_name: "Herbert" });
-  linesConsole(1);
-  frank_herbert.firstMethod(new Date(1965, 7, 1));
-  linesConsole(1);
-  frank_herbert.lastMethod(1966);
-  linesConsole(1);
-  frank_herbert.fullMethod("Dune");
+const frank_herbert = Full({salu: 'Mr', f_name:'Frank', l_name:'Herbert'})
+linesConsole(1)
+frank_herbert.firstMethod(new Date(1965,7,1))
+linesConsole(1)
+frank_herbert.lastMethod(1966)
+linesConsole(1)
+frank_herbert.fullMethod('Dune')
 
-  linesConsole(2);
+linesConsole(2)
 
-  /**/ function PRE_check_printFullFunc(a_person) {
-    /**/ the_interface = { showName: "function", fullMethod: "function", /**/ firstMethod: "function", lastMethod: "function" };
-    /**/ return type_czech.check_interface(a_person, the_interface);
-    /**/
-  }
-  /**/ printFullFunc = type_czech.linkUp(printFullFunc, PRE_check_printFullFunc);
+/**/  function PRE_check_printFullFunc(a_person){
+/**/    the_interface = {showName:'function', fullMethod:'function', 
+/**/                     firstMethod:'function', lastMethod:'function'}
+/**/    return type_czech.check_interface(a_person, the_interface)
+/**/  }
+/**/  printFullFunc = type_czech.linkUp(printFullFunc, PRE_check_printFullFunc)
 
-  function printFullFunc(a_person) {
-    log("From Checked Function : ", a_person.showName());
-  }
+function printFullFunc(a_person) {
+  log('From Checked Function : ', a_person.showName())
+}
 
-  printFullFunc(frank_herbert);
+printFullFunc(frank_herbert)
 </script>
 
 <script>

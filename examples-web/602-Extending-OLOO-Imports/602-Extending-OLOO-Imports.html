@@ -100,7 +100,7 @@
     <a title="41-Lens-Example.html" href="../../example-snippets/41-Lens-Example.html">41</a>
 
     <a title="42-Extended-Objects.html" href="../../example-snippets/42-Extended-Objects.html">42</a>
-
+     <a title="43-PHP-On-OFF-Extending-Classes.html" href="../../example-snippets/43-PHP-On-OFF-Extending-Classes.html">43</a>
     &nbsp;&nbsp;
 
     <a title="101-Extending-Classes-Inline.html" href="../../examples-web/101-Extending-Classes-Inline.html">101</a>
@@ -246,52 +246,53 @@
   const TC_FULL_JS = "./TypeCzech_Full.js";
 </script>
 
-<script id="check-code">
-  /**/ const CHECKING_CLASS_FILES = [/**/ TYPE_CZECH_JS, FIRST_JS, TC_FIRST_JS, /**/ LAST_JS, TC_LAST_JS, /**/ FULL_JS, TC_FULL_JS];
+<script  id="check-code">
+/**/  const CHECKING_CLASS_FILES = [
+/**/    TYPE_CZECH_JS, FIRST_JS, TC_FIRST_JS,
+/**/                   LAST_JS, TC_LAST_JS,
+/**/                   FULL_JS, TC_FULL_JS ]
 
-  const NOT_CHECKING_CLASS_FILES = [FIRST_JS, LAST_JS, FULL_JS];
+const NOT_CHECKING_CLASS_FILES = [
+  FIRST_JS, LAST_JS, FULL_JS ]
 
-  /**/ TYPE_CZECH_START = true;
-  /**/ //TYPE_CZECH_START = false
-  /**/
-  /**/ let class_files;
-  /**/ if (TYPE_CZECH_START) {
-    /**/ TYPE_CZECH_COMMANDS = ["LOG-ERRORS"];
-    /**/ class_files = CHECKING_CLASS_FILES;
-    /**/
-  } else {
-    class_files = NOT_CHECKING_CLASS_FILES;
-    /**/
+/**/      TYPE_CZECH_START = true
+/**/    //TYPE_CZECH_START = false
+/**/
+/**/  let class_files
+/**/  if (TYPE_CZECH_START) {
+/**/    TYPE_CZECH_COMMANDS = ['LOG-ERRORS']
+/**/    class_files = CHECKING_CLASS_FILES
+/**/  } else {
+  class_files = NOT_CHECKING_CLASS_FILES
+/**/  }
+
+onLoaded = ([_loaded_files, _import_errors]) => {
+  if (_import_errors) {
+    console.log('Error importing js. Loaded_files : ', _loaded_files)
+    console.log('                          Errors : ', _import_errors)
+  }
+  margaret_atwood = Full('Ms.', 'Margaret', 'Atwood');
+  margaret_atwood.firstMethod( new Date(1985,1,1))
+  margaret_atwood.lastMethod(1987)
+  margaret_atwood.fullMethod("The Handmaid's Tale")
+
+  linesConsole(2)
+
+/**/  function PRE_check_printFullFunc(a_person){
+/**/    the_interface = {showName:'function', fullMethod:'function', 
+/**/                     firstMethod:'function', lastMethod:'function'}
+/**/    return type_czech.check_interface(a_person, the_interface)
+/**/  }
+/**/  printFullFunc = type_czech.linkUp(printFullFunc, PRE_check_printFullFunc)
+
+  function printFullFunc(a_person) {
+    log('From Checked Function : ', a_person.showName())
   }
 
-  onLoaded = ([_loaded_files, _import_errors]) => {
-    if (_import_errors) {
-      console.log("Error importing js. Loaded_files : ", _loaded_files);
-      console.log("                          Errors : ", _import_errors);
-    }
-    margaret_atwood = Full("Ms.", "Margaret", "Atwood");
-    margaret_atwood.firstMethod(new Date(1985, 1, 1));
-    margaret_atwood.lastMethod(1987);
-    margaret_atwood.fullMethod("The Handmaid's Tale");
+  printFullFunc(margaret_atwood)
+  copyAndColor()
+}
 
-    linesConsole(2);
-
-    /**/ function PRE_check_printFullFunc(a_person) {
-      /**/ the_interface = { showName: "function", fullMethod: "function", /**/ firstMethod: "function", lastMethod: "function" };
-      /**/ return type_czech.check_interface(a_person, the_interface);
-      /**/
-    }
-    /**/ printFullFunc = type_czech.linkUp(printFullFunc, PRE_check_printFullFunc);
-
-    function printFullFunc(a_person) {
-      log("From Checked Function : ", a_person.showName());
-    }
-
-    printFullFunc(margaret_atwood);
-    copyAndColor();
-  };
-
-  orderedImport(class_files, onLoaded);
+orderedImport(class_files, onLoaded)
 </script>
-
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata" />

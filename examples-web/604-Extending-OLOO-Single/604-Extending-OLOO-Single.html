@@ -129,6 +129,9 @@ if (typeof check_linkUp_first_last_full === 'function')
 
       <a title="42-Extended-Objects.html" href="../../example-snippets/42-Extended-Objects.html">42</a>
 
+     <a title="43-PHP-On-OFF-Extending-Classes.html" href="../../example-snippets/43-PHP-On-OFF-Extending-Classes.html">43</a>
+
+
       &nbsp;&nbsp;
 
       <a title="101-Extending-Classes-Inline.html" href="../../examples-web/101-Extending-Classes-Inline.html">101</a>
@@ -207,86 +210,72 @@ if (typeof check_linkUp_first_last_full === 'function')
   log = captureConsole("log-text");
 </script>
 
+
 <script id="check-code">
-  /**/ //<script src="../TypeCzech.js">
-  /**/ //<script src="./604-oloo-external-checks.js">
+/**/ //<script src="../TypeCzech.js">
+/**/ //<script src="./604-oloo-external-checks.js">
 
-  function First(f_name) {
-    FIRST_TEMPLATE = {
-      firstMethod(a_date) {
-        log(NL + `RUN -firstMethod :${f_name} `, a_date);
-        return a_date;
-      },
-      instanceOf() {
-        return "First";
-      },
-    };
-    first_object = Object.create(FIRST_TEMPLATE);
-    first_object.f_name = f_name;
-    log(NL + `CONS-First :${f_name}`);
-    return first_object;
-  }
+function First(f_name) {
+  FIRST_TEMPLATE = {  firstMethod(a_date){
+                        log(NL+`RUN -firstMethod :${f_name} `, a_date) 
+                        return a_date 
+                      },
+                      instanceOf(){ return 'First' }    }
+  first_object = Object.create(FIRST_TEMPLATE)
+  first_object.f_name = f_name
+  log(NL+`CONS-First :${f_name}`)
+  return first_object  }
 
-  function Last(f_name, l_name) {
-    LAST_TEMPLATE = {
-      lastMethod(a_year) {
-        log(LEVEL_1 + `RUN -lastMethod :${a_year} ${f_name} ${l_name}`);
-        return a_year;
-      },
-      instanceOf() {
-        return "Last";
-      },
-    };
-    first = First(f_name);
-    Object.setPrototypeOf(LAST_TEMPLATE, first);
-    last_object = Object.create(LAST_TEMPLATE);
-    last_object.l_name = l_name;
-    log(NL + LEVEL_1 + `CONS-Last :${l_name}`);
-    return last_object;
-  }
+function Last(f_name, l_name) {
+  LAST_TEMPLATE = { lastMethod(a_year){
+                      log(LEVEL_1+`RUN -lastMethod :${a_year} ${f_name} ${l_name}`)
+                      return a_year 
+                    },
+                    instanceOf(){ return 'Last' }    }
+  first = First(f_name)
+  Object.setPrototypeOf(LAST_TEMPLATE, first)
+  last_object = Object.create(LAST_TEMPLATE)
+  last_object.l_name = l_name
+  log(NL+LEVEL_1+`CONS-Last :${l_name}`)
+  return last_object  }
 
-  function Full(salu, f_name, l_name) {
-    FULL_TEMPLATE = {
-      fullMethod(a_book) {
-        log(LEVEL_2 + `RUN -fullMethod :${a_book} ${salu} ${l_name}`);
-        return a_book;
-      },
-      showName() {
-        return `${salu} ${f_name} ${l_name}`;
-      },
-      instanceOf() {
-        return "Full";
-      },
-    };
-    last = Last(f_name, l_name);
-    Object.setPrototypeOf(FULL_TEMPLATE, last);
-    full_object = Object.create(FULL_TEMPLATE);
-    full_object.salu = salu;
-    log(NL + LEVEL_2 + `CONS-Full :${salu}`);
-    return full_object;
-  }
+function Full(salu, f_name, l_name) {
+  FULL_TEMPLATE = { fullMethod(a_book){
+                      log(LEVEL_2+`RUN -fullMethod :${a_book} ${salu} ${l_name}`)
+                      return a_book },
+                    showName() {
+                       return  `${salu} ${f_name} ${l_name}` },
+                    instanceOf(){ return 'Full' }    }
+  last = Last(f_name, l_name) 
+  Object.setPrototypeOf(FULL_TEMPLATE, last)
+  full_object = Object.create(FULL_TEMPLATE)
+  full_object.salu = salu
+  log(NL+LEVEL_2+`CONS-Full :${salu}`)
+  return full_object 
+}
 
-  /**/ if (typeof check_linkUp_first_last_full === "function") /**/ check_linkUp_first_last_full();
+/**/  if (typeof check_linkUp_first_last_full === 'function') 
+/**/    check_linkUp_first_last_full()
 
-  margaret_atwood = Full("Ms.", "Margaret", "Atwood");
-  margaret_atwood.firstMethod(new Date(1985, 1, 1));
-  margaret_atwood.lastMethod(1987);
-  margaret_atwood.fullMethod("The Handmaid's Tale");
+margaret_atwood = Full('Ms.', 'Margaret', 'Atwood')
+margaret_atwood.firstMethod( new Date(1985,1,1))
+margaret_atwood.lastMethod(1987)
+margaret_atwood.fullMethod("The Handmaid's Tale")
 
-  linesConsole(2);
+linesConsole(2)
 
-  /**/ function PRE_check_printFullFunc(a_person) {
-    /**/ the_interface = { showName: "function", fullMethod: "function", /**/ firstMethod: "function", lastMethod: "function" };
-    /**/ return type_czech.check_interface(a_person, the_interface);
-    /**/
-  }
-  /**/ printFullFunc = type_czech.linkUp(printFullFunc, PRE_check_printFullFunc);
+/**/  function PRE_check_printFullFunc(a_person){
+/**/    the_interface = {showName:'function', fullMethod:'function', 
+/**/                     firstMethod:'function', lastMethod:'function'}
+/**/    return type_czech.check_interface(a_person, the_interface)
+/**/  }
+/**/  printFullFunc = type_czech.linkUp(printFullFunc, PRE_check_printFullFunc)
 
-  function printFullFunc(a_person) {
-    log("From Checked Function : ", a_person.showName());
-  }
+function printFullFunc(a_person) {
+log('From Checked Function : ', a_person.showName())
+}
 
-  printFullFunc(margaret_atwood);
+printFullFunc(margaret_atwood)
 </script>
 
 <script>

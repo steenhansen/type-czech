@@ -1,24 +1,16 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>23 Typed Either Checks</title>
+<title>43 PHP On Off Extending Classes</title>
 
 
 
-
-<div id='js-div' style="width:52%">
+  
+<div id='js-div' style="width:30%; " class=''>
   <a href='https://github.com/steenhansen/type-czech'  target="_blank" class='git-hub'>GitHub Package</a>
   <div id='js-code'>the javascript</div>
 
-<br>
 
 
 
-
-
-<!--            ------------------TYPE 1------------------------       -->
-<script src="../web-resources/consolelog.js"></script>
-<script src="../web-resources/TypeCzech.js"></script>
-<link rel="stylesheet" href="../web-resources/type-czech.css">
-<!--            ---------------TYPE 1---------------------------       -->
 <div id='js-fiddles'>
   <a title="Example-Contents" href="../example-snippets/example-contents.html">Contents</a>
   
@@ -112,7 +104,11 @@
     <a title="41-Lens-Example.html" href="../example-snippets/41-Lens-Example.html">41</a>
 
     <a title="42-Extended-Objects.html" href="../example-snippets/42-Extended-Objects.html">42</a>
-     <a title="43-PHP-On-OFF-Extending-Classes.html" href="../example-snippets/43-PHP-On-OFF-Extending-Classes.html">43</a>
+
+    <a title="43-PHP On Off Extending Classes.html" href="../example-snippets/43-PHP-On-OFF-Extending-Classes.html">43</a>
+
+
+
 
     &nbsp;&nbsp;
 
@@ -145,7 +141,7 @@
     <a title="603-Extending-OLOO-Production.html" href="../examples-web/603-Extending-OLOO-Production/603-Extending-OLOO-Production.html">603</a>
     <a title="604-Extending-OLOO-Single.html"     href="../examples-web/604-Extending-OLOO-Single/604-Extending-OLOO-Single.html">604</a>
 
-     &nbsp;&nbsp;
+ &nbsp;&nbsp;
 
 
     <a title="700-Simple-Example.html"     href="../example-snippets/700-Simple-Example.html">700</a>
@@ -161,72 +157,128 @@
 
     &copy; 2024 Steen Hansen
   </div>
-<!--            -------------------TYPE 1-----------------------       -->
+
+
+
+
+
+
+
+
 
 
 
 </div>
 
-<div id="the-explanation" style="width:48%">
-  <div class='an-explantion'>23 - Typed Either Checks</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="the-explanation" style="width:70%" >
+  <div class='an-explantion'>43 - PHP On Off Extending Classes</div>
   <div id='explanation-text'>
+
+
+
+  Turning on and off JavaScript type checking with extended classes, where specification functions and 
+  library are in one separate file. For example a PHP environment.
+    <br>
     <br>
 
-  If a function can take parameters with multiple different type shapes then conformity 
-  can be checked with a checkParam_typeEither() call.
-
-  <br><br>
-  In the example below, the function objNumArr() is only allowed to receive a 
-  single parameter of an object, a single number, or an array.
-<pre title='Copy and paste the green code below into the console to run' class='console-runnable'>
-function PRE_check_obj_num_arr(obj_num_arr){
-  allowed_types = ['object', 'number', 'array']
-  return type_czech.checkParam_typeEither(obj_num_arr, allowed_types)
-}  
-
-objNumArr = type_czech.linkUp(objNumArr, PRE_check_obj_num_arr)
-
-function objNumArr(obj_num_arr){}
-
-objNumArr({})            // pass
-objNumArr({key:'key'})   // pass
-objNumArr([])            // pass
-objNumArr([1, 2, 3])     // pass
-objNumArr(9876543210)    // pass
-
-objNumArr('String-Fail') // fail
+Load and turn on type checking, by including the type checking JavaScript file, at line 332 in the HTML section
+<pre>
+Shows PRE() and POST() type checking calls.
+    &lt;script src="43-type-check-defns.js"&gt;
 </pre>
 
-  </div>
+No loading the type checking JavaScript file, and no type checking, at line 332 in the HTML section
+<pre>
+No PRE(), no POST() type checking calls.
+    &lt;s c r i p t   s r c="43-type-check-defns.js"&gt;
+</pre>
+
+
+
+<pre style="font-size:x-small">
+// 43-type-check-defns.js consisting of logging statements
+
+  function PRE_A_one_name() { log(indent_tc + 'PRE_A_one_name()') }    function POST_A_one_name() { log(indent_tc + 'POST_A_one_name()') }
+  function PRE_a_method()   { log(indent_tc + 'PRE PRE_a_method()') }  function POST_a_method()   { log(indent_tc + 'POST_a_method()') }
+  function LINKUP_A_one_name_before_extend(){ 
+    const A_PREs = { A_one_name: PRE_A_one_name, a_method: PRE_a_method }
+    const A_POSTs = { A_one_name: POST_A_one_name, a_method: POST_a_method }
+    A_one_name = type_czech.linkUp(A_one_name, A_PREs, A_POSTs)                 }
+
+  function PRE_B_first_last() { log(indent_tc + 'PRE_B_first_last()') }  function POST_B_first_last() { log(indent_tc + 'POST_B_first_last()') }
+  function PRE_b_function()   { log(indent_tc + 'PRE_b_function()') }    function POST_b_function()   { log(indent_tc + 'POST_b_function()') }
+  function LINKUP_B_first_last_before_extend(){ 
+    const B_PREs = { B_first_last: PRE_B_first_last, b_function: PRE_b_function }
+    const B_POSTs = { B_first_last: POST_B_first_last, b_function: POST_b_function }
+    B_first_last = type_czech.linkUp(B_first_last, B_PREs, B_POSTs)             }
+
+  function PRE_C_complete_names() { log(indent_tc + 'PRE_C_complete_names()') }  function POST_C_complete_names() { log(indent_tc + 'POST_C_complete_names()') }
+  function PRE_c_routine()        { log(indent_tc + 'PRE_c_routine()') }         function POST_c_routine()        { log(indent_tc + 'POST_c_routine') }
+  function LINKUP_C_complete_names_before_extend(){ 
+    const C_PREs = { C_complete_names: PRE_C_complete_names, c_routine: PRE_c_routine }
+    const C_POSTs = { C_complete_names: POST_C_complete_names, c_routine: POST_c_routine }
+    C_complete_names = type_czech.linkUp(C_complete_names, C_PREs, C_POSTs)     }
+</pre>
+</div>
 
 
   <div id="console-log"  >
     <div class='a-title'>Console Output</div>
     <div id='log-text'></div>
-    <br>
-  </div> 
+  </div>
+
+
+
+
+
+
+
+
+  
+
+<!--            ----------------TYPE 2--------------------------       -->
+
+
+
+<script src="../web-resources/consolelog.js"></script>
+  <script src="../web-resources/ordered-import.js"></script>
+<link rel="stylesheet" href="../web-resources/type-czech.css">
+<!--            ------------------TYPE 2------------------------       -->
+
+<!--            ------------------TYPE 2------------------------       -->
+
+
+
 
 
 </div>
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<script>
+function copyAndColor(){
+  jsToDiv('js-code', "check-code");      
+}
+</script>
 
 
 
@@ -235,110 +287,67 @@ objNumArr('String-Fail') // fail
   log = captureConsole("log-text");
 </script>
 
-
-
+<script src="43-type-check-defns.js"></script>
 
 <script id="check-code">
-/**/  if (typeof TypeCzech === 'function')
-/**/    type_czech = TypeCzech('LOG-ERRORS')
-/**/  else
-/**/    type_czech = { linkUp: (nop) => nop, isActive: (x) => false }
-/**/  
-/**/  PRE_check_Person = (typeof PRE_check_Person === 'undefined')
-/**/                     ? undefined : PRE_check_Person
-/**/
-/**/  POST_check_Person = (typeof POST_check_Person === 'undefined')
-/**/                      ? undefined : POST_check_Person
-/**/
-/**/  function PRE_check_Person(f_name, l_name, b_date){
-/**/    the_parameters = [f_name, l_name, b_date]
-/**/    PRE_check_date = [ 'string', 'string', 'date' ]
-/**/    PRE_check_year = [ 'string', 'string', 'number' ]
-/**/    PRE_signatures = [PRE_check_date, PRE_check_year]
-/**/    return type_czech.checkParam_typeEither(the_parameters, PRE_signatures)
-/**/  }
-/**/  
-/**/  function POST_check_Person(result_object){
-/**/    POST_check_date = { f_name:'string', l_name:'string', b_date:'date' }
-/**/    POST_check_year = { f_name:'string', l_name:'string', b_year:'number' }
-/**/    POST_signatures = [POST_check_date, POST_check_year]
-/**/    return type_czech.checkParam_typeEither(result_object, POST_signatures)
-/**/  }
-/**/  
-/**/  Person = type_czech.linkUp(Person, PRE_check_Person, POST_check_Person)
 
-function Person(f_name, l_name, b_date){
-  result_object = { f_name: f_name, l_name: l_name}
-  if (typeof b_date === 'number')
-    result_object['b_year'] = b_date
-  else if (type_czech._aTypeOf(b_date) === 'date')
-    result_object['b_date'] = b_date
-  return result_object
-}
+//  <script src="43-type-check-defns.js">
 
+  class A_one_name { 
+    constructor() { 
+      log(NL+`A_one_name - constructor`) 
+    }
+    a_method() { 
+      log(NL+`a_method()`)
+    }
+  }
 
-dracula = Person('Count', 'Dracula')
-log(dracula)
+  if (typeof TypeCzech === 'function'){  
+    LINKUP_A_one_name_before_extend()
+  }
 
-linesConsole(1)
+  class B_first_last extends A_one_name{  
+    constructor() {
+      super()
+      log(NL+`B_first_last - constructor`)
+    }
+    b_function(){ 
+      log(NL+`b_function()`)
+    }
+  }
 
-chuck = Person('Charles', 'Windsor', new Date(1948,11,14))
-log(chuck)
+  if (typeof TypeCzech === 'function'){
+    LINKUP_B_first_last_before_extend()
+  }
 
-linesConsole(1)
+  class C_complete_names extends B_first_last {
+    constructor() {
+      super()
+        log(NL+`C_complete_names - constructor`) 
+    }
+    c_routine(){
+      log(NL+`c_routine()`)
+    }
+  }
 
-alan_turing = Person('Alan', 'Turing', 1912)
-log(alan_turing)
+  if (typeof TypeCzech === 'function'){
+    LINKUP_C_complete_names_before_extend()
+  }
+
+  const complete_name = new C_complete_names()
+
+  linesConsole(2)
+  
+  complete_name.a_method()
+  linesConsole(2)
+  complete_name.b_function()
+  linesConsole(2)
+  complete_name.c_routine()
+
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <script>
-  
-  jsToDiv('js-code', "check-code");
-
-  fromToBoldText(569, 598, 'code', 1)  //  [ 'string', 'string', 'date' ]
-  fromToBoldText(625, 656, 'code', 1)  //  [ 'string', 'string', 'number' ]
-
-  fromToBoldText(1549, 1566, 'code', 1)  // 'Count', 'Dracula'
-
-
-  fromToBoldText(252, 270, 'log', 1)    //ACTUAL TYPES ['string','string']
-  fromToBoldText(297, 313, 'log', 1)    // ACTUAL VALUE ["Count","Dracula"]
-
-  /////////////////////////
-
-  fromToBoldText(886, 936, 'code', 2)  // { f_name:'string', l_name:'string', b_date:'date' }
-  fromToBoldText(964, 1016, 'code', 2)  // {f_name:"Count",l_name:"Dracula"}
-
-
-
-  fromToBoldText(1573, 1579, 'code', 2)  // log(dracula)
-
-
-  fromToBoldText(757, 789, 'log', 2)    //{f_name:"Count",l_name:"Dracula"}
-
-
+  copyAndColor()
 </script>
 
-
-<link rel="stylesheet"
-  href="https://fonts.googleapis.com/css?family=Inconsolata">
-
-  
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
