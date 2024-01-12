@@ -1,5 +1,5 @@
 <!DOCTYPE html><meta charset="utf-8" />
-<title>800   NEW</title>
+<title>43 PHP On Off Extending Classes</title>
 
 
 
@@ -7,74 +7,10 @@
 <div id='js-div' style="width:30%; " class=''>
   <a href='https://github.com/steenhansen/type-czech'  target="_blank" class='git-hub'>GitHub Package</a>
   <div id='js-code'>the javascript</div>
-</div>
-
-
-<div id="the-explanation" style="width:70%" >
-  <div class='an-explantion'>Multiple inheriting classes with type checking functions in a separate file.</div>
-  <div id='explanation-text'>
-
-    both snippets and jsFIddle or 
-
-    <br>
-no, COPY https://jsfiddle.net/steen_hansen/7c2q54v0/?000-Shortest-Possible-Example
-
-The shortest possible example on a live JSFiddle.   ==> 0000-Type-Checks-Separate-Example
-
-Multiple inheriting classes with type checking functions in a separate file.
-
-
-<pre style="font-size:smaller">
-  function PRE_A_one_name() { log(indent_tc + 'PRE_A_one_name()') }    function POST_A_one_name() { log(indent_tc + 'POST_A_one_name()') }
-  function PRE_a_method()   { log(indent_tc + 'PRE PRE_a_method()') }  function POST_a_method()   { log(indent_tc + 'POST_a_method()') }
-  function LINKUP_A_one_name_before_extend(){ 
-    const A_PREs = { A_one_name: PRE_A_one_name, a_method: PRE_a_method }
-    const A_POSTs = { A_one_name: POST_A_one_name, a_method: POST_a_method }
-    A_one_name = type_czech.linkUp(A_one_name, A_PREs, A_POSTs)                 }
-
-  function PRE_B_first_last() { log(indent_tc + 'PRE_B_first_last()') }  function POST_B_first_last() { log(indent_tc + 'POST_B_first_last()') }
-  function PRE_b_function()   { log(indent_tc + 'PRE_b_function()') }    function POST_b_function()   { log(indent_tc + 'POST_b_function()') }
-  function LINKUP_B_first_last_before_extend(){ 
-    const B_PREs = { B_first_last: PRE_B_first_last, b_function: PRE_b_function }
-    const B_POSTs = { B_first_last: POST_B_first_last, b_function: POST_b_function }
-    B_first_last = type_czech.linkUp(B_first_last, B_PREs, B_POSTs)             }
-
-  function PRE_C_complete_names() { log(indent_tc + 'PRE_C_complete_names()') }  function POST_C_complete_names() { log(indent_tc + 'POST_C_complete_names()') }
-  function PRE_c_routine()        { log(indent_tc + 'PRE_c_routine()') }         function POST_c_routine()        { log(indent_tc + 'POST_c_routine') }
-  function LINKUP_C_complete_names_before_extend(){ 
-    const C_PREs = { C_complete_names: PRE_C_complete_names, c_routine: PRE_c_routine }
-    const C_POSTs = { C_complete_names: POST_C_complete_names, c_routine: POST_c_routine }
-    C_complete_names = type_czech.linkUp(C_complete_names, C_PREs, C_POSTs)     }
- </pre>
-</div>
-
-
-  <div id="console-log"  >
-    <div class='a-title'>Console Output</div>
-    <div id='log-text'></div>
-  </div>
 
 
 
 
-
-
-
-
-  
-
-<!--            ----------------TYPE 2--------------------------       -->
-
-
-
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/consolelog.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/ordered-import.js"></script>
-
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/type-czech.css">
-
-
-<!--            ------------------TYPE 2------------------------       -->
 <div id='js-fiddles'>
   <a title="Example-Contents" href="https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Contents" target="_blank">Contents</a>
 
@@ -178,7 +114,7 @@ Multiple inheriting classes with type checking functions in a separate file.
 
   <a title="42 - Extended Objects.html" href="https://jsfiddle.net/steen_hansen/rvau7yes/?42-Extended-Objects" target="_blank">42</a>
 
-  <a title="43- PHP On OFF Extending Classes.html" href="https://jsfiddle.net/steen_hansen/rvau7yes/?43-PHP-On-OFF-Extending-Classes" target="_blank">43</a>
+  <a title="43- PHP On OFF Extending Classes.html" href="https://jsfiddle.net/steen_hansen/dy61bph4/?43-PHP-On-OFF-Extending-Classes" target="_blank">43</a>
 
 
 
@@ -258,6 +194,118 @@ Multiple inheriting classes with type checking functions in a separate file.
 &copy; 2024 Steen Hansen
 
   </div>
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="the-explanation" style="width:70%" >
+  <div class='an-explantion'>43 - PHP On Off Extending Classes</div>
+  <div id='explanation-text'>
+
+
+
+  Turning on and off JavaScript type checking with extended classes, where specification functions and 
+  library are in one separate file. For example a PHP environment.
+    <br>
+    <br>
+
+Load and turn on type checking, by including the type checking JavaScript file, at line 332 in the HTML section
+<pre>
+Shows PRE() and POST() type checking calls.
+    &lt;script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/example-snippets/43-type-check-defns.js"&gt;
+</pre>
+
+No loading the type checking JavaScript file, and no type checking, at line 332 in the HTML section
+<pre>
+No PRE(), no POST() type checking calls.
+    &lt;s c r i p t   s r c="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/example-snippets/43-type-check-defns.js"&gt;
+</pre>
+
+
+
+<pre style="font-size:x-small">
+// 43-type-check-defns.js consisting of logging statements
+
+  function PRE_A_one_name() { log(indent_tc + 'PRE_A_one_name()') }    function POST_A_one_name() { log(indent_tc + 'POST_A_one_name()') }
+  function PRE_a_method()   { log(indent_tc + 'PRE PRE_a_method()') }  function POST_a_method()   { log(indent_tc + 'POST_a_method()') }
+  function LINKUP_A_one_name_before_extend(){ 
+    const A_PREs = { A_one_name: PRE_A_one_name, a_method: PRE_a_method }
+    const A_POSTs = { A_one_name: POST_A_one_name, a_method: POST_a_method }
+    A_one_name = type_czech.linkUp(A_one_name, A_PREs, A_POSTs)                 }
+
+  function PRE_B_first_last() { log(indent_tc + 'PRE_B_first_last()') }  function POST_B_first_last() { log(indent_tc + 'POST_B_first_last()') }
+  function PRE_b_function()   { log(indent_tc + 'PRE_b_function()') }    function POST_b_function()   { log(indent_tc + 'POST_b_function()') }
+  function LINKUP_B_first_last_before_extend(){ 
+    const B_PREs = { B_first_last: PRE_B_first_last, b_function: PRE_b_function }
+    const B_POSTs = { B_first_last: POST_B_first_last, b_function: POST_b_function }
+    B_first_last = type_czech.linkUp(B_first_last, B_PREs, B_POSTs)             }
+
+  function PRE_C_complete_names() { log(indent_tc + 'PRE_C_complete_names()') }  function POST_C_complete_names() { log(indent_tc + 'POST_C_complete_names()') }
+  function PRE_c_routine()        { log(indent_tc + 'PRE_c_routine()') }         function POST_c_routine()        { log(indent_tc + 'POST_c_routine') }
+  function LINKUP_C_complete_names_before_extend(){ 
+    const C_PREs = { C_complete_names: PRE_C_complete_names, c_routine: PRE_c_routine }
+    const C_POSTs = { C_complete_names: POST_C_complete_names, c_routine: POST_c_routine }
+    C_complete_names = type_czech.linkUp(C_complete_names, C_PREs, C_POSTs)     }
+</pre>
+</div>
+
+
+  <div id="console-log"  >
+    <div class='a-title'>Console Output</div>
+    <div id='log-text'></div>
+  </div>
+
+
+
+
+
+
+
+
+  
+
+<!--            ----------------TYPE 2--------------------------       -->
+
+
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/consolelog.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/ordered-import.js"></script>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/type-czech.css">
+
+
+<!--            ------------------TYPE 2------------------------       -->
+
 <!--            ------------------TYPE 2------------------------       -->
 
 
@@ -271,14 +319,6 @@ Multiple inheriting classes with type checking functions in a separate file.
 <script>
 function copyAndColor(){
   jsToDiv('js-code', "check-code");      
-
-  // fromToBoldText(181, 196, 'code', 1)  //firstMethod
-  // fromToBoldText(519, 533, 'code', 2)  // lastMethod
-  // fromToBoldText(915, 929, 'code', 3)  // fullMethod
- 
-  // fromToBoldText(215, 230, 'log', 1)    //firstMethod
-  // fromToBoldText(296, 310, 'log', 2)    //lastMethod
-  // fromToBoldText(401, 415, 'log', 3)    //fullMethod
 }
 </script>
 
@@ -289,11 +329,12 @@ function copyAndColor(){
   log = captureConsole("log-text");
 </script>
 
-<script s r c="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/example-snippets/43-type-check-defns.js"></script>
-
-<script src="../example-snippets/43-type-check-defns.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/example-snippets/43-type-check-defns.js"></script>
 
 <script id="check-code">
+
+//  <script src="43-type-check-defns.js">
+
   class A_one_name { 
     constructor() { 
       log(NL+`A_one_name - constructor`) 
@@ -335,15 +376,16 @@ function copyAndColor(){
     LINKUP_C_complete_names_before_extend()
   }
 
-  const person_C = new C_complete_names()
+  const complete_name = new C_complete_names()
 
   linesConsole(2)
   
-  person_C.a_method()
+  complete_name.a_method()
   linesConsole(2)
-  person_C.b_function()
+  complete_name.b_function()
   linesConsole(2)
-  person_C.c_routine()
+  complete_name.c_routine()
+
 </script>
 
 <script>
