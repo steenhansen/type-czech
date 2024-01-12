@@ -1,0 +1,353 @@
+<!DOCTYPE html><meta charset="utf-8" />
+<title>800   NEW</title>
+
+
+
+  
+<div id='js-div' style="width:30%; " class=''>
+  <a href='https://github.com/steenhansen/type-czech'  target="_blank" class='git-hub'>GitHub Package</a>
+  <div id='js-code'>the javascript</div>
+</div>
+
+
+<div id="the-explanation" style="width:70%" >
+  <div class='an-explantion'>Multiple inheriting classes with type checking functions in a separate file.</div>
+  <div id='explanation-text'>
+
+    both snippets and jsFIddle or 
+
+    <br>
+no, COPY https://jsfiddle.net/steen_hansen/7c2q54v0/?000-Shortest-Possible-Example
+
+The shortest possible example on a live JSFiddle.   ==> 0000-Type-Checks-Separate-Example
+
+Multiple inheriting classes with type checking functions in a separate file.
+
+
+<pre style="font-size:smaller">
+  function PRE_A_one_name() { log(indent_tc + 'PRE_A_one_name()') }    function POST_A_one_name() { log(indent_tc + 'POST_A_one_name()') }
+  function PRE_a_method()   { log(indent_tc + 'PRE PRE_a_method()') }  function POST_a_method()   { log(indent_tc + 'POST_a_method()') }
+  function LINKUP_A_one_name_before_extend(){ 
+    const A_PREs = { A_one_name: PRE_A_one_name, a_method: PRE_a_method }
+    const A_POSTs = { A_one_name: POST_A_one_name, a_method: POST_a_method }
+    A_one_name = type_czech.linkUp(A_one_name, A_PREs, A_POSTs)                 }
+
+  function PRE_B_first_last() { log(indent_tc + 'PRE_B_first_last()') }  function POST_B_first_last() { log(indent_tc + 'POST_B_first_last()') }
+  function PRE_b_function()   { log(indent_tc + 'PRE_b_function()') }    function POST_b_function()   { log(indent_tc + 'POST_b_function()') }
+  function LINKUP_B_first_last_before_extend(){ 
+    const B_PREs = { B_first_last: PRE_B_first_last, b_function: PRE_b_function }
+    const B_POSTs = { B_first_last: POST_B_first_last, b_function: POST_b_function }
+    B_first_last = type_czech.linkUp(B_first_last, B_PREs, B_POSTs)             }
+
+  function PRE_C_complete_names() { log(indent_tc + 'PRE_C_complete_names()') }  function POST_C_complete_names() { log(indent_tc + 'POST_C_complete_names()') }
+  function PRE_c_routine()        { log(indent_tc + 'PRE_c_routine()') }         function POST_c_routine()        { log(indent_tc + 'POST_c_routine') }
+  function LINKUP_C_complete_names_before_extend(){ 
+    const C_PREs = { C_complete_names: PRE_C_complete_names, c_routine: PRE_c_routine }
+    const C_POSTs = { C_complete_names: POST_C_complete_names, c_routine: POST_c_routine }
+    C_complete_names = type_czech.linkUp(C_complete_names, C_PREs, C_POSTs)     }
+ </pre>
+</div>
+
+
+  <div id="console-log"  >
+    <div class='a-title'>Console Output</div>
+    <div id='log-text'></div>
+  </div>
+
+
+
+
+
+
+
+
+  
+
+<!--            ----------------TYPE 2--------------------------       -->
+
+
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/consolelog.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/ordered-import.js"></script>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/type-czech.css">
+
+
+<!--            ------------------TYPE 2------------------------       -->
+<div id='js-fiddles'>
+  <a title="Example-Contents" href="https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Contents" target="_blank">Contents</a>
+
+
+  <a title="00-Readme-Example" href="https://jsfiddle.net/steen_hansen/0xtpLwsc/?00-Readme-Example" target="_blank">00</a>
+
+  <a title="01-What-is-TypeCzech" href="https://jsfiddle.net/steen_hansen/9u54vsd2/?01-What-is-TypeCzech" target="_blank">01</a>
+
+  <a title="02-Validate-Parameters-by-Value.html" href="https://jsfiddle.net/steen_hansen/6zy89om1/?02-Validate-Parameters-by-Value" target="_blank">02</a>
+    
+    <a title="03-Turn-Off-Library-Not-Loaded.html" href="https://jsfiddle.net/steen_hansen/m1tce27f/?03-Turn-Off-Library-Not-Loaded" target="_blank">03</a>
+    
+    <a title="04-Turn-Off-No-Check-Functions.html" href="https://jsfiddle.net/steen_hansen/nve4d3ah/?04-Turn-Off-No-Check-Functions" target="_blank">04</a>
+    
+    <a title="05-Verify-Return-Results-by-Value.html" href="https://jsfiddle.net/steen_hansen/wrkvscqg/?05-Verify-Return-Results-by-Value" target="_blank">05</a>
+    
+    <a title="06-Validate-Parameters-and-Results.html" href="https://jsfiddle.net/steen_hansen/jxrdom62/?06-Validate-Parameters-and-Results" target="_blank">06</a>
+    
+    <a title="07-Mutated-Function-Parameters.html" href="https://jsfiddle.net/steen_hansen/abh0jkL1/?07-Mutated-Function-Parameters" target="_blank">07</a>
+    
+    <a title="08-Mutated-Recursive-Function-Parameters.html" href="https://jsfiddle.net/steen_hansen/3pv5qwx8/?08-Mutated-Recursive-Function-Parameters" target="_blank">08</a>
+    
+
+
+
+
+  
+    <a title="09-Closure-Parameters-Results-and-Methods.html" href="https://jsfiddle.net/steen_hansen/r8L3mp40/?09-Closure-Parameters-Results-and-Methods" target="_blank">09</a>
+    
+    <a title="10-Class-Parameters-Results-and-Methods.html" href="https://jsfiddle.net/steen_hansen/Lhwov8y9/?10-Class-Parameters-Results-and-Methods" target="_blank">10</a>
+    
+    <a title="11-Object-Properties.html" href="https://jsfiddle.net/steen_hansen/qp29Ljd1/?11-Object-Properties" target="_blank">11</a>
+    
+    <a title="12-Object-Interface.html" href="https://jsfiddle.net/steen_hansen/og2sk4b9/?12-Object-Interface" target="_blank">12</a>
+    
+    <a title="13-Parameter-and-Results-Multi-Scalar-Types.html" href="https://jsfiddle.net/steen_hansen/rh79bLwa/?13-Parameter-and-Results-Multi-Scalar-Types" target="_blank">13</a>
+    
+    <a title="14-Parameter-and-Results-Multi-Types.html" href="https://jsfiddle.net/steen_hansen/1ref2ot7/?14-Parameter-and-Results-Multi-Types" target="_blank">14</a>
+    
+    <a title="15-Lone-Single-Type-Parameter-Functions.html" href="https://jsfiddle.net/steen_hansen/zkhfLw0u/?15-Lone-Single-Type-Parameter-Functions" target="_blank">15</a>
+    
+    <a title="16-Arrays-with-One-Type.html" href="https://jsfiddle.net/steen_hansen/bsw3yp5c/?16-Arrays-with-One-Type" target="_blank">16</a>
+    
+
+    <a title="17-Variadic-Functions.html" href="https://jsfiddle.net/steen_hansen/hrvucjzm/?17-Variadic-Functions.html" target="_blank">17</a>
+
+
+
+
+
+
+    <a title="18-Class-Type-Checks.html" href="https://jsfiddle.net/steen_hansen/063wLqfs/?18-Class-Type-Checks" target="_blank">18</a>
+    
+    <a title="19-Lone-Empty-Param-and-Result.html" href="https://jsfiddle.net/steen_hansen/x8h6dvj5/?19-Lone-Empty-Param-and-Result" target="_blank">19</a>
+    
+    <a title="20-Multiple-Empty-Params-and-Results.html" href="https://jsfiddle.net/steen_hansen/b7cfsz9y/?20-Multiple-Empty-Params-and-Results" target="_blank">20</a>
+    
+    <a title="21-Type-Check-with-Extra-Optional-Params.html" href="https://jsfiddle.net/steen_hansen/Lwn504es/?21-Type-Check-with-Extra-Optional-Params" target="_blank">21</a>
+    
+    <a title="22-Empty-Checks-with-Extra-Optional-Params.html" href="https://jsfiddle.net/steen_hansen/hjxekf63/?22-Empty-Checks-with-Extra-Optional-Params" target="_blank">22</a>
+    
+    <a title="23-Typed-Either-Checks.html" href="https://jsfiddle.net/steen_hansen/ntrsobk3/?23-Typed-Either-Checks" target="_blank">23</a>
+    
+    <a title="24-Empty-Either-Checks.html" href="https://jsfiddle.net/steen_hansen/1dL76zws/?24-Empty-Either-Checks" target="_blank">24</a>
+    
+    <a title="25-Default-Parameters.html" href="https://jsfiddle.net/steen_hansen/8ep7fzu5/?25-Default-Parameters" target="_blank">25</a>
+    
+    <a title="26-Empty-Abbreviations.html" href="https://jsfiddle.net/steen_hansen/4a1r03he/?26-Empty-Abbreviations" target="_blank">26</a>
+    
+    <a title="27-Type-and-Empty-Object-Extras.html" href="https://jsfiddle.net/steen_hansen/tdL7hwgc/?27-Typed-and-Empty-Either-Checks-with-Optionals" target="_blank">27</a>
+    
+    <a title="28-Accept-Null-and-Undefined-Values.html" href="https://jsfiddle.net/steen_hansen/zdk1wjgn/?28-Accept-Null-and-Undefined-Values" target="_blank">28</a>
+    
+    <a title="29-Class-Object-Type-Checks.html" href="https://jsfiddle.net/steen_hansen/27kvuft1/?29-Class-Object-Type-Checks" target="_blank">29</a>
+    
+    <a title="30-HTML-Type-Checks.html" href="https://jsfiddle.net/steen_hansen/qkjvpoce/?30-HTML-Type-Checks" target="_blank">30</a>
+    
+    <a title="31-Extended-Class-Type-Checks.html" href="https://jsfiddle.net/steen_hansen/pv7Lt19b/?31-Extended-Class-Type-Checks" target="_blank">31</a>
+    
+    <a title="32-Extended-Closure-Type-Checks-check.html" href="https://jsfiddle.net/steen_hansen/1qfjLhsx/?32-Extended-Closure-Type-Checks-check" target="_blank">32</a>
+    
+    <a title="33-Count-Checks.html" href="https://jsfiddle.net/steen_hansen/gr1bucdp/?33-Count-Checks" target="_blank">33</a>
+    
+    <a title="34-Parameter-Check-Events.html" href="https://jsfiddle.net/steen_hansen/9Lvnhdmq/?34-Parameter-Check-Events" target="_blank">34</a>
+    
+    <a title="35-Throw-or-Log.html" href="https://jsfiddle.net/steen_hansen/ep3snb8z/?35-Throw-or-Log" target="_blank">35</a>
+    
+    <a title="36-Start-and-Stop.html" href="https://jsfiddle.net/steen_hansen/f19s52xr/?36-Start-and-Stop" target="_blank">36</a>
+    
+    <a title="37-Readme-Example-Arrow-Functions.html" href="https://jsfiddle.net/steen_hansen/cwfsubtv/?37-Readme-Example-Arrow-Functions" target="_blank">37</a>
+
+    
+  <a title="38-Every-Check.html" href="https://jsfiddle.net/steen_hansen/1umwvht5/?38-Every-Check" target="_blank">38</a>
+  
+  <a title="39-Assert-Checks.html" href="https://jsfiddle.net/steen_hansen/ta7fdnrw/?39-Assert-Checks" target="_blank">39</a>
+  
+  <a title="40-Prescribed-Use.html" href="https://jsfiddle.net/steen_hansen/m1atu7qj/?40-Prescribed-Use" target="_blank">40</a>
+
+  <a title="41-Lens-Example.html" href="https://jsfiddle.net/steen_hansen/fxt8ag56/?41-Lens-Example" target="_blank">41</a>
+
+
+  <a title="42 - Extended Objects.html" href="https://jsfiddle.net/steen_hansen/rvau7yes/?42-Extended-Objects" target="_blank">42</a>
+
+  <a title="43- PHP On OFF Extending Classes.html" href="https://jsfiddle.net/steen_hansen/rvau7yes/?43-PHP-On-OFF-Extending-Classes" target="_blank">43</a>
+
+
+
+    &nbsp;&nbsp;
+
+    <a title="101-Extending-Classes-Inline.html" href="https://jsfiddle.net/steen_hansen/cnLrm6ad/?101-Extending-Classes-Inline" target="_blank">101</a>
+    
+    <a title="102-Extending-Classes-Imports.html" href="https://jsfiddle.net/steen_hansen/rs4nqL7k/?102-Extending-Classes-Imports" target="_blank">102</a>
+    
+    <a title="103-Extending-Classes-Production.html" href="https://jsfiddle.net/steen_hansen/37mysdz8/?103-Extending-Classes-Production" target="_blank">103</a>
+    
+    
+
+    <a title="201-Extending-Closures-Inline.html" href="https://jsfiddle.net/steen_hansen/6n5pb9eh/?201-Extending-Closures-Inline" target="_blank">201</a>
+    
+    <a title="202-Extending-Closures-Imports.html" href="https://jsfiddle.net/steen_hansen/msqcya0f/?202-Extending-Closures-Imports" target="_blank">202</a>
+    
+    <a title="203-Extending-Closures-Production.html" href="https://jsfiddle.net/steen_hansen/ym2vk1tf/?203-Extending-Closures-Production" target="_blank">203</a>
+
+    <a title="204-Extending-Closures-Single.html" href="https://jsfiddle.net/steen_hansen/8kbtyfz1/?204-Extending-Closures-Single" target="_blank">204</a>
+
+
+    
+    <a title="301-Extending-IIFEs-Inline.html" href="https://jsfiddle.net/steen_hansen/r26xjw8q/?301-Extending-IIFEs-Inline" target="_blank">301</a>
+    
+    <a title="302-Extending-IIFEs-Imports.html" href="https://jsfiddle.net/steen_hansen/ug3f1pqr/?302-Extending-IIFEs-Imports" target="_blank">302</a>
+    
+    <a title="303-Extending-IIFEs-Production.html" href="https://jsfiddle.net/steen_hansen/wrvze5o4/?303-Extending-IIFEs-Production" target="_blank">303</a>
+    
+    <a title="304-Extending-IIFEs-Single.html" href="https://jsfiddle.net/steen_hansen/ktbczhs8/?304-Extending-IIFEs-Single" target="_blank">304</a>
+    
+
+    
+    <a title="401-Extending-ClassFree-Inline.html" href="https://jsfiddle.net/steen_hansen/xsyu1Lma/?401-Extending-ClassFree-Inline" target="_blank">401</a>
+    
+    <a title="402-Extending-ClassFree-Imports.html" href="https://jsfiddle.net/steen_hansen/pyqxrs57/?402-Extending-ClassFree-Imports" target="_blank">402</a>
+    
+    <a title="403-Extending-ClassFree-Production.html" href="https://jsfiddle.net/steen_hansen/57tpy1wm/?403-Extending-ClassFree-Production" target="_blank">403</a>
+    
+    <a title="404-Extending-ClassFree-Single.html" href="https://jsfiddle.net/steen_hansen/asjwhbd8/?404-Extending-ClassFree-Single" target="_blank">404</a>
+    
+
+
+
+    <a title="501-Extending-Prototypes-Inline.html" href="https://jsfiddle.net/steen_hansen/gn38a4k9/?501-Extending-Prototypes-Inline" target="_blank">501</a>
+    
+    <a title="502-Extending-Prototypes-Imports.html" href="https://jsfiddle.net/steen_hansen/retqdosm/?502-Extending-Prototypes-Imports" target="_blank">502</a>
+    
+    <a title="503-Extending-Prototypes-Production.html" href="https://jsfiddle.net/steen_hansen/2paqh67m/?503-Extending-Prototypes-Production" target="_blank">503</a>
+    
+    <a title="504-Extending-Prototypes-Single.html" href="https://jsfiddle.net/steen_hansen/0fabr5g3/?504-Extending-Prototypes-Single" target="_blank">504</a>
+
+
+    
+    <a title="601-Extending-OLOO-Inline.html" href="https://jsfiddle.net/steen_hansen/guw701xv/?601-Created-OLOO-Inline" target="_blank">601</a>
+    
+    <a title="602-Extending-OLOO-Imports.html" href="https://jsfiddle.net/steen_hansen/b2qpL9rt/?602-Extending-OLOO-Imports" target="_blank">602</a>
+    
+    <a title="603-Extending-OLOO-Production.html" href="https://jsfiddle.net/steen_hansen/ktezbg7c/?603-Extending-OLOO-Production" target="_blank">603</a>
+    
+    <a title="604-Extending-OLOO-Single.html" href="https://jsfiddle.net/steen_hansen/74Lvbj5x/?604-Extending-OLOO-Single" target="_blank">604</a>
+    
+      &nbsp;&nbsp;
+
+     
+<a title="700-Simple-Example.html"     href="https://jsfiddle.net/steen_hansen/efLgk3h4/?700-Simple-Example"        target="_blank">700</a>
+<a title="701-Array-of-Objects.html"   href="https://jsfiddle.net/steen_hansen/536du9cb/?701-Array-of-Objects.html" target="_blank">701</a>
+<a title="702-DeClassify.html"         href="https://jsfiddle.net/steen_hansen/jbyor8fm/?702-DeClassify.html"       target="_blank">702</a>
+<a title="703-Async-Await.html"        href="https://jsfiddle.net/steen_hansen/q7rckeno/?703-Async-Await"           target="_blank">703</a>
+<a title="704-Ramda-Curry.html"        href="https://jsfiddle.net/steen_hansen/1xLef83o/?704-Ramda-Curry"           target="_blank">704</a>
+<a title="705-Sensible-Switching.html" href="https://jsfiddle.net/steen_hansen/fzh39je0/?705-Sensible-Switching"    target="_blank">705</a>
+<a title="706-Elegant-On-Off.html"     href="https://jsfiddle.net/steen_hansen/x0pL6jzq/?706-Elegant-On-Off"        target="_blank">706</a>
+<a title="707-React-JSX.html"          href="https://jsfiddle.net/steen_hansen/z1yug5nw/?707-React-JSX"             target="_blank">707</a>
+<a title="708-Monad-Type-Checking.html" href="https://jsfiddle.net/steen_hansen/zmd1v27x/?708-Monad-Type-Checking"  target="_blank">708</a>
+
+        
+&copy; 2024 Steen Hansen
+
+  </div>
+<!--            ------------------TYPE 2------------------------       -->
+
+
+
+
+
+</div>
+
+
+
+<script>
+function copyAndColor(){
+  jsToDiv('js-code', "check-code");      
+
+  // fromToBoldText(181, 196, 'code', 1)  //firstMethod
+  // fromToBoldText(519, 533, 'code', 2)  // lastMethod
+  // fromToBoldText(915, 929, 'code', 3)  // fullMethod
+ 
+  // fromToBoldText(215, 230, 'log', 1)    //firstMethod
+  // fromToBoldText(296, 310, 'log', 2)    //lastMethod
+  // fromToBoldText(401, 415, 'log', 3)    //fullMethod
+}
+</script>
+
+
+
+
+<script>
+  log = captureConsole("log-text");
+</script>
+
+<script s r c="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/example-snippets/43-type-check-defns.js"></script>
+
+<script src="../example-snippets/43-type-check-defns.js"></script>
+
+<script id="check-code">
+  class A_one_name { 
+    constructor() { 
+      log(NL+`A_one_name - constructor`) 
+    }
+    a_method() { 
+      log(NL+`a_method()`)
+    }
+  }
+
+  if (typeof TypeCzech === 'function'){  
+    LINKUP_A_one_name_before_extend()
+  }
+
+  class B_first_last extends A_one_name{  
+    constructor() {
+      super()
+      log(NL+`B_first_last - constructor`)
+    }
+    b_function(){ 
+      log(NL+`b_function()`)
+    }
+  }
+
+  if (typeof TypeCzech === 'function'){
+    LINKUP_B_first_last_before_extend()
+  }
+
+  class C_complete_names extends B_first_last {
+    constructor() {
+      super()
+        log(NL+`C_complete_names - constructor`) 
+    }
+    c_routine(){
+      log(NL+`c_routine()`)
+    }
+  }
+
+  if (typeof TypeCzech === 'function'){
+    LINKUP_C_complete_names_before_extend()
+  }
+
+  const person_C = new C_complete_names()
+
+  linesConsole(2)
+  
+  person_C.a_method()
+  linesConsole(2)
+  person_C.b_function()
+  linesConsole(2)
+  person_C.c_routine()
+</script>
+
+<script>
+  copyAndColor()
+</script>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
