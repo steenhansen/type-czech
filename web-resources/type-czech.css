@@ -80,6 +80,11 @@ li{
 .back-5{ background-color: rgb(255, 220, 255); }
 .back-6{ background-color: rgb(200, 255, 255); }
 
+.text-7{ color: rgb(145, 145, 145); }
+.text-8{ color: rgb(135, 135, 135); }
+.text-9{ color: rgb(115, 115, 115); }
+
+
 pre{
   background-color: #eee; 
   margin-top:4px;
