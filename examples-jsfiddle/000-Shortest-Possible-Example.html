@@ -6,20 +6,18 @@
 &lt;script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/TypeCzech.min.js"&gt;&lt;/script&gt; 
 
 &lt;script&gt;
-  type_czech &equals; TypeCzech&lpar;'LOG-ERRORS'&rpar;
+        type_czech &equals; TypeCzech&lpar;'LOG-ERRORS'&rpar;
 
-  function PRE_addAB&lpar;a&comma; b&rpar; &lcub;
-    return type_czech&period;checkParam_type&lpar;&lbrack;a&comma; b&rbrack;&comma; &lbrack;'number'&comma; 'number'&rbrack;&rpar;
-  &rcub;
-  
-  addAB &equals; type_czech&period;linkUp&lpar;addAB&comma; PRE_addAB&rpar;
+        function BEFORE_addXY&lpar;x&comma; y&rpar; &lcub;
+            return type_czech&period;checkParam_type&lpar;&lbrack;x&comma; y&rbrack;&comma; &lbrack;'number'&comma; 'number'&rbrack;&rpar;
+        &rcub;
+        addXY &equals; type_czech&period;linkUp&lpar;addXY&comma; BEFORE_addXY&rpar;
 
+    function addXY&lpar;a&comma; b&rpar; &lcub; return a &plus; b &rcub;
 
-  function addAB&lpar;a&comma; b&rpar; &lcub; return a &plus; b &rcub;
-
-  console&period;log&lpar;" 5 &plus; 5     &equals; "&comma; addAB&lpar;5&comma; 5&rpar;&rpar;
-  console&period;log&lpar;" 6 &plus; 'six' &equals; "&comma; addAB&lpar;6&comma; 'six'&rpar;&rpar;
-  console&period;log&lpar;" 7 &plus; 7     &equals; "&comma; addAB&lpar;7&comma; 7&rpar;&rpar;
+    console&period;log&lpar;" 5 &plus; 5     &equals; "&comma; addXY&lpar;5&comma; 5&rpar;&rpar;
+    console&period;log&lpar;" 6 &plus; 'six' &equals; "&comma; addXY&lpar;6&comma; 'six'&rpar;&rpar;
+    console&period;log&lpar;" 7 &plus; 7     &equals; "&comma; addXY&lpar;7&comma; 7&rpar;&rpar;
 &lt;/script&gt; 
 
 </pre>
@@ -30,18 +28,18 @@
 <script>
   type_czech = TypeCzech('LOG-ERRORS')
 
-  function PRE_addAB(a, b) {
-    return type_czech.checkParam_type([a, b], ['number', 'number'])
+  function BEFORE_addXY(x, y) {
+    return type_czech.checkParam_type([x, y], ['number', 'number'])
   }
   
-  addAB = type_czech.linkUp(addAB, PRE_addAB)
+  addXY = type_czech.linkUp(addXY, BEFORE_addXY)
 
 
-  function addAB(a, b) { return a + b }
+  function addXY(x, y) { return x + y }
 
-  console.log(" 5 + 5     = ", addAB(5, 5))
-  console.log(" 6 + 'six' = ", addAB(6, 'six'))
-  console.log(" 7 + 7     = ", addAB(7, 7))
+  console.log(" 5 + 5     = ", addXY(5, 5))
+  console.log(" 6 + 'six' = ", addXY(6, 'six'))
+  console.log(" 7 + 7     = ", addXY(7, 7))
 </script>
 
 <a title="Example-Contents" href="https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Contents" target="_blank">JSFiddle Contents</a>

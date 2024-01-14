@@ -34,19 +34,20 @@ Live editable [JSFiddles](https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Co
 The [shortest easiest possible example](https://jsfiddle.net/steen_hansen/7c2q54v0/?000-Shortest-Possible-Example) on a live editable JSFiddle.
 
 ```
-type_czech = TypeCzech('LOG-ERRORS')
+    type_czech = TypeCzech('LOG-ERRORS')                  // type checking code
+                
+    function BEFORE_addXY(x, y) {                                            
+        return type_czech.checkParam_type([x, y], ['number', 'number'])      
+    }                                                                        
+    addXY = type_czech.linkUp(addXY, BEFORE_addXY)                           
+                                                                             
+function addXY(x, y) { return x + y }                     // your code
 
-function PRE_addAB(a, b) {
-  return type_czech.checkParam_type([a, b], ['number', 'number'])
-}
-
-addAB = type_czech.linkUp(addAB, PRE_addAB)
-
-function addAB(a, b) { return a + b }
-
-console.log(" 5 + 5     = ", addAB(5, 5))
-console.log(" 6 + 'six' = ", addAB(6, 'six'))  // type error
-console.log(" 7 + 7     = ", addAB(7, 7))
+console.log(" 5 + 5     = ", addXY(5, 5))
+linesConsole(2)
+console.log(" 6 + 'six' = ", addXY(6, 'six'))             // type error
+linesConsole(1)
+console.log(" 7 + 7     = ", addXY(7, 7))
 ```
 
 
@@ -173,12 +174,13 @@ import TypeCzech_obj from "./node_modules/type-czech/type-czech-import.js";
 ```
 
 
-
-
-
 ### [Online Examples](./read-mes/online-examples.md)
 
 ### [Why Use](./read-mes/why-use.md)
+
+### [Function Expression Error - Uncaught ReferenceError: myFunction is not defined](./read-mes/func-expr-error.md)
+
+
 
 ### [Lottery Example](./read-mes/lottery-example.md)
 
