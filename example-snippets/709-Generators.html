@@ -1,30 +1,12 @@
 <!DOCTYPE html>
 <meta charset="utf-8" />
-<title>706 Elegant On Off</title>
+<title>709 Generators</title>
 
 
 
-<div style=" font-family: 'Inconsolata', monospace; margin-left: 8px; margin-bottom:8px;" >
-       <div style="float:left">
-                         /**/ lib_tc_file = '../web-resources/TypeCzech.js'
-            <br>
-            /**/ check_fileN = '706-Type-Czech-Funcs.js'
-       
-      </div>
-
-      <div style="float:left; margin-left:164px">
-         // lib_tc_file = 'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/TypeCzech.min.js'    
-                <br>
-                // check_fileN = 'https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/example-snippets/706-Type-Czech-Funcs.js'
 
 
-      </div>
-         <br> &nbsp;
-
-</div>
-
-
-<div id='js-div' style="width:30%;">
+<div id='js-div' style="width:45%">
   <a href='https://github.com/steenhansen/type-czech' target="_blank" class='git-hub'>GitHub Package</a>
   <div id='js-code'>the javascript</div>
   <br>
@@ -35,21 +17,96 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+<div id="the-explanation" style="width:55%">
+        <div class='an-explantion'>709 - Generators</div>
+   
+        <div id='explanation-text'>
+   
+          
+          <div id="react-root"></div>
+
+             <br>
+
+      
+      With generator functions, the interator.next() function is where the type checking mainly occurs. 
+      <br>
+      Matching the object { value: 'iterator-value', done: true}.
+              
+
+
+                <br><br>
+
+        </div>
+
+          <div id="console-log">
+                    <div class='a-title'>Console Output</div>
+         
+                    <div id='log-text'></div>
+                    <br>
+          </div>
+
+
+
+
+
+
+
+
+
+
+
     <!--            -----------------TYPE 1------------------------       -->
-  <script src="../web-resources/consolelog.js"></script>
-    <link rel="stylesheet" href="../web-resources/type-czech.css">
 
-<link r e l="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/type-czech.css">
-<script s r c="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/consolelog.js"></script>
+        <script s r c="../web-resources/consolelog.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/consolelog.js"></script>
 
 
 
 
 
+    <link r e l="stylesheet" href="../web-resources/type-czech.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/type-czech.css">
 
- <!--            -------------------TYPE 1-----------------------       -->
-<div id='js-fiddles'>
-     <a title="Example-Contents" href="../example-snippets/example-contents.html">Contents</a>
+<script src="https://unpkg.com/react/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
+
+
+
+
+
+
+<script s r c="../web-resources/TypeCzech.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/TypeCzech.min.js"></script>
+
+
+
+    <!--            ------------------TYPE 1------------------------       -->
+    <div id='js-fiddles'>
+      <a title="Example-Contents" href="../example-snippets/example-contents.html">Contents</a>
 
       <a title="00-Readme-Example" href="../example-snippets/00-Readme-Example.html">00</a>
 
@@ -206,131 +263,26 @@
       <a title="601-Extending-OLOO-Inline.html" href="../examples-web/601-Extending-OLOO-Inline.html">601</a>
       <a title="602-Extending-OLOO-Imports.html"
         href="../examples-web/602-Extending-OLOO-Imports/602-Extending-OLOO-Imports.html">602</a>
-      <a title="603-Extending-OLOO-Production.html"
-        href="../examples-web/603-Extending-OLOO-Production/603-Extending-OLOO-Production.html">603</a>
-      <a title="604-Extending-OLOO-Single.html"
-        href="../examples-web/604-Extending-OLOO-Single/604-Extending-OLOO-Single.html">604</a>
+      <a title="603-Extending-OLOO-Production.html" href="../examples-web/603-Extending-OLOO-Production/603-Extending-OLOO-Production.html">603</a>
+      <a title="604-Extending-OLOO-Single.html"     href="../examples-web/604-Extending-OLOO-Single/604-Extending-OLOO-Single.html">604</a>
 
      &nbsp;&nbsp;
 
-    <a title="700-Simple-Example.html"     href="../example-snippets/700-Simple-Example.html">700</a>
-    <a title="701-Array-of-Objects.html"   href="../example-snippets/701-Array-of-Objects.html">701</a>
-    <a title="702-DeClassify.html"         href="../example-snippets/702-DeClassify.html">702</a>
-    <a title="703-Async-Await.html"        href="../example-snippets/703-Async-Await.html">703</a>
-    <a title="704-Ramda-Curry.html"        href="../example-snippets/704-Ramda-Curry.html">704</a>
-    <a title="705-Sensible-Switching.html" href="../example-snippets/705-Sensible-Switching.html">705</a>
-    <a title="706-Elegant-On-Off"          href="../example-snippets/706-Elegant-On-Off.html">706</a>
-    <a title="707-React-JSX.html"          href="../example-snippets/707-React-JSX.html">707</a>
+    <a title="700-Simple-Example.html"      href="../example-snippets/700-Simple-Example.html">700</a>
+    <a title="701-Array-of-Objects.html"    href="../example-snippets/701-Array-of-Objects.html">701</a>
+    <a title="702-DeClassify.html"          href="../example-snippets/702-DeClassify.html">702</a>
+    <a title="703-Async-Await.html"         href="../example-snippets/703-Async-Await.html">703</a>
+    <a title="704-Ramda-Curry.html"         href="../example-snippets/704-Ramda-Curry.html">704</a>
+    <a title="705-Sensible-Switching.html"  href="../example-snippets/705-Sensible-Switching.html">705</a>
+    <a title="706-Elegant-On-Off"           href="../example-snippets/706-Elegant-On-Off.html">706</a>
+    <a title="707-React-JSX.html"           href="../example-snippets/707-React-JSX.html">707</a>
     <a title="708-Monad-Type-Checking.html"  href="../example-snippets/708-Monad-Type-Checking.html">708</a>
-        <a title="709-Generators.html"  href="../example-snippets/709-Generators.html">709</a>
-&copy; 2024 Steen Hansen
+    <a title="709-Generators.html"  href="../example-snippets/709-Generators.html">709</a>
+    <a title="710-One-Check-Function.html"  href="../example-snippets/710-One-Check-Function.html">710</a>
 
+    &copy; 2024 Steen Hansen
   </div>
-<!--            -------------------TYPE 1-----------------------       -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
-
-
-<div id="the-explanation" style="width:70%;">
-  <div class='an-explantion'>706 - Elegant On Off</div>
-  <div id='explanation-text'>
-
-
-
-            <div>
-
-                      <div style="float:left; width:425px">
-
-&nbsp;&nbsp;The JavaScript that loads external files for type checking, if on.
-<pre style="margin-bottom:4px">
-async function loadJsFile(check_fileNm) {
-  var script = document.createElement('script')
-  return new Promise(function (resolve) {
-    script.addEventListener("load", () => {
-        resolve()
-    });
-    script.src = check_fileNm
-    script.async = false
-    document.head.appendChild(script)  });  }
-
-async function linkUp_706_type_check(type_checks,
-         lib_tc_file, check_fileN, check_funcs) {
-  if (type_checks === false) {
-    return check_funcs
-  } else {
-    await loadJsFile(lib_tc_file)
-    await loadJsFile(check_fileN)
-    type_czech = TypeCzech('LOG-ERRORS')
-    proxies=link_up_706(type_czech, check_funcs)
-    return proxies  }  }
-</pre>
-
-
-                    
-                    </div>
-
-
-
-                                          <div style="float:left; width:725px">
-&nbsp;&nbsp; This 706-Type-Czech-Funcs.js file  and the Type-Czech library are only loaded when "type_checks = true"
-<pre style="margin-bottom:4px">
-function link_up_706(type_czech, [addInt2Int_706, timesIntByInt_706]) {
- function PRE_add(first_int, second_int) {
-   return type_czech.checkParam_type([first_int, second_int], ['number', 'number'])
- }
- function POST_add(sum_int) {
-   return type_czech.checkParam_type(sum_int, 'number')
- }
- addInt2Int_706 = type_czech.linkUp(addInt2Int_706, PRE_add, POST_add)
-
- function PRE_times(first_int, second_int) {
-  return type_czech.checkParam_type([first_int, second_int], ['number', 'number']);
- }
- function POST_times(sum_int) {
-   return type_czech.checkParam_type(sum_int, 'number')
- }
- timesIntByInt_706 = type_czech.linkUp(timesIntByInt_706, PRE_times, POST_times);
- 
- return [addInt2Int_706, timesIntByInt_706]
-}
-</pre>
-</div>
-            </div>
-<div style="clear:both"></div>
-
-</div>
-
-  <div id="console-log">
-    <div class='a-title'>Console Output</div>
-    <div id='log-text'></div>
-    <br>
-  </div>
-
-
+    <!--            ------------------TYPE 1------------------------       -->
 
 
 
@@ -361,100 +313,116 @@ function link_up_706(type_czech, [addInt2Int_706, timesIntByInt_706]) {
 <script>
   log = captureConsole("log-text")
 
-  // https://web.dev/articles/speed-script-loading
-
-async function loadJsFile(check_fileNm) {
-  var script_1_tc = document.createElement('script');
-  return new Promise(function (resolve) {
-    script_1_tc.addEventListener("load", () => {
-        resolve();
-    });
-    script_1_tc.src = check_fileNm;
-    script_1_tc.async = false;
-    document.head.appendChild(script_1_tc);
-     
-  });
-}
-
-async function linkUp_706_type_check(type_checks, lib_tc_file, check_fileN, check_funcs) {
-  if (type_checks === false) {
-    return check_funcs;
-  } else {
-    await loadJsFile(lib_tc_file);
-    await loadJsFile(check_fileN);
-    window.type_czech = TypeCzech('LOG-ERRORS');
-    proxied_functions = link_up_706(type_czech, check_funcs);
-    return proxied_functions;
-  }
-}
-
-/**/ lib_tc_file = '../web-resources/TypeCzech.js'
-/**/ check_fileN = '706-Type-Czech-Funcs.js'
-       
 
 </script>
+
+
+<script id="check-code">
+type_czech = TypeCzech('LOG-ERRORS')
+
+function PRE_generator(gen_start) {  
+  return type_czech.checkParam_type(gen_start, 'number') 
+}
+
+generator = type_czech.linkUp(generator, PRE_generator)
+
+function* generator(gen_start) {
+  yield gen_start + 0
+  yield new Date('1999-12-31')
+  yield gen_start + 10
+  yield gen_start - 100
+  yield gen_start + 1000
+  return "finished-internal"
+}
+
+iterError = generator(false)
+
+
+
+function POST_iterator(gen_return) {
+  ret_val = gen_return.value
+  if (gen_return.done) {
+    return type_czech.checkParam_type(ret_val, 'string') 
+  } else if (ret_val<0) {
+    return `Negative number found = ${ret_val}`
+  }
+  return type_czech.checkParam_type(ret_val, 'number') 
+}
+
+iterator = generator(1)
+
+iterator.next = type_czech.linkUp(iterator.next, undefined, POST_iterator)
+
+log('yield 1 + 0 = ' + iterator.next().value)
+
+linesConsole(3)
+
+log("yield new Date('1999-12-31') = " + iterator.next().value)
+
+
+linesConsole(3)
+
+log('yield 1 + 10 = ' + iterator.next().value)
+
+linesConsole(3)
+
+log('yield 1 - 100 = ' + iterator.next().value)
+
+linesConsole(3)
+
+log('yield 1 + 1000 = ' + iterator.next().value)
+
+linesConsole(3)
+
+yield_val = iterator.next()
+
+log("yield 'finished-internal' = "   +  yield_val.value + ',  done == ' + yield_val.done)
+</script>
+
+
+
+
+
+
 
 
 
 <script>
-function myColoring(){
-  jsToDiv('js-code', "check-code");
-
-    fromToBoldText(772, 774, 'code', 1)  //  fail = addInt2Int_706("two", "three")
-     fromToBoldText(130, 132, 'log', 1)       // akenly a 'string' with a value of two
-     fromToBoldText(249, 251, 'log', 1)       // VALUES ["two","three"]
-     fromToBoldText(424, 426, 'log', 1)       // he value 'twothree
-     fromToBoldText(577, 579, 'log', 1)       //    VALUES "twothree"
-
-    fromToBoldText(928, 931, 'code', 2)       //  Int_706("four", "five")
-        fromToBoldText(833, 836, 'log', 2)       //  ng' with a value of four
-        fromToBoldText(953, 956, 'log', 2)       //           VALUES ["four","five"]
-}
-
-</script>
-
-<script id="check-code">
-
-/**/ type_checks = true
-/**/ check_funcs = [addInt2Int_706, timesIntByInt_706];
-
-( async () => await linkUp_706_type_check(type_checks,
-                                          lib_tc_file, 
-                                          check_fileN, 
-                                          check_funcs))()
-              .then((check_funcs)=>myExecution(check_funcs))
-              .then( () => myColoring() )
-
-function addInt2Int_706 (first_int, second_int){
-    return first_int + second_int
-}
-
-function timesIntByInt_706 (first_int, second_int){
-    return first_int * second_int
-}
+  function myColoring(){
+    jsToDiv('js-code', "check-code");
 
 
-function myExecution(check_funcs){
-    [addInt2Int_706, timesIntByInt_706] = check_funcs;
+     fromToBoldText(125, 130, 'code', 1)   //gen_start, 'number') 
+     fromToBoldText(407, 411, 'code', 1)   //  generator(false)
+     fromToBoldText(39, 43, 'log', 1)  //  e 'false', which is a 'boolean'
+     fromToBoldText(59, 65, 'log', 1)  //    e 'false', which is a 'boolean'
+     fromToBoldText(195, 205, 'log', 1)  //   VALUES false
 
-    sum_5 = addInt2Int_706(2, 3)
-    log('sum_5 == ', sum_5)
 
-    linesConsole(2)
 
-    sum_fail = addInt2Int_706("two", "three")
-    log('sum_fail == ', sum_fail)
+    fromToBoldText(322, 326, 'code', 2)  //    yield gen_start - 100
+    fromToBoldText(579, 587, 'code', 2)  //   ret_val<0
+    fromToBoldText(757, 759, 'log', 2)  //    Negative number found = -99
+    fromToBoldText(853, 856, 'log', 2)  //     VALUES {value:-99,done:false}
 
-    linesConsole(2)
 
-    mult_20 = timesIntByInt_706(4, 5)
-    log('mult_20 == ', mult_20)
+     fromToBoldText(363, 379, 'code', 3)  //     return "finished-internal"
+     fromToBoldText(556, 561, 'code', 3)  //     type_czech.checkParam_type(ret_val, 'string') 
+     fromToBoldText(987, 1003, 'log', 3)  //  finished-internal
 
-    linesConsole(2)
 
-    mult_fail = timesIntByInt_706("four", "five")
-    log('mult_fail == ', mult_fail)
-}
+
+    fromToBoldText(268, 277, 'code', 4)  //    yield new Date('1999-12-31')
+    fromToBoldText(690, 695, 'code', 4)  //     return type_czech.checkParam_type(ret_val, 'number') 
+    fromToBoldText(872, 881, 'code', 4)  //     log("yield new Date('1999-12-31') = 
+       fromToBoldText(336, 345, 'log', 4)  //     '1999-12-31', which is a 'date',
+       fromToBoldText(361, 364, 'log', 4)  //     '1999-12-31', which is a 'date',
+       fromToBoldText(495, 504, 'log', 4)  //    VALUES {value:1999-12-31,done:false}
+
+  }
+
+  myColoring()
+  setTimeout(myColoring, 1234);
 </script>
 
 

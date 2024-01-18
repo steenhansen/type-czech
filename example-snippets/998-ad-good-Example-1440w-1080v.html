@@ -1,0 +1,205 @@
+<!DOCTYPE html><meta charset="utf-8" />
+
+
+<!--            ------------------TYPE 1------------------------       -->
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/consolelog.js"></script>
+<link rel="stylesheet" href="../web-resources/type-czech.css">
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/TypeCzech.min.js"></script>
+<!--            -------------------TYPE 1-----------------------       -->
+
+
+
+
+   <div style ="background-color: rgb(255,255,255);  font-family: Arial, sans-serif;" >
+      Ditch TypeScript and use TypeCzech runtime type checking instead.
+       <br>
+      No source code alteration, no compiling, and toggle type checking
+      on or off in pure JavaScript.
+   </div>
+
+
+
+<br>
+<style>
+    .myul {
+   padding-left:8px; 
+   margin-bottom:4px;
+   list-style: none;   
+   font-family: Arial, sans-serif;
+  }
+  .myli {
+   font-size:31px;
+   padding-top:15px;
+   padding-left:8px;
+  }
+
+  .myspan {
+    font-weight: bold;
+    position: relative; 
+    color: rgb(145, 145, 145);
+    top:-4px; 
+   padding-right: 2px;    
+  }
+</style>
+<div style="width:1440px; height:1080px; border:1px solid red">
+         <div style ="background-color: rgb(255,255,255); font-size:15px" >
+                  <div style="float:left; padding-bottom:16px;">
+                         <ul class="myul" style="padding-left:1px;">   
+                                          
+                                          <li class="myli"><span class="myspan">.</span> <span class="text-3" style="margin-left:-8px">Specify async promise return types & values </span></li>     
+                          <li class="myli">                <span class="myspan">.</span>Validate parameter signatures &amp; arguments</li>
+                                                          
+                                          <li class="myli"><span class="myspan">.</span>Type check objects &amp; class interfaces</li> 
+                                                        </ul>
+                  </div>
+                  <div style="float:left; ">
+                          <ul class="myul">    
+                                          <li class="myli"><span class="myspan">.</span>One file, dependency free</li>
+                                          <li class="myli"><span class="myspan">.</span>Catch nulls or empty arrays</li>
+                                          <li class="myli"><span class="myspan">.</span>Log or throw exceptions</li>            </ul>
+                  </div>
+                    <div style="float:left;">
+                          <ul class="myul">   
+                                          <li class="myli"><span class="myspan">.</span>Npm install type-czech</li>
+                                          <li class="myli"><span class="myspan">.</span>Type check React</li>
+                                          <li class="myli"><span class="myspan">.</span>Can run on JSFiddle</li>        
+                                                          
+                                                      
+                                                          </ul>
+                  </div>
+
+        </div>
+
+        <div style ="background-color: rgb(235,235,235); clear:both; padding-left:366px; padding-bottom:9px; font-size:30px;" > 
+             &lt;script src="TypeCzech.js"&gt;&lt;/script&gt; 
+           
+         </div>
+        
+        <div style ="background-color: rgb(215,215,215); clear:both;  font-family: 'Inconsolata', monospace; font-size:12px; color: rgb(145, 145, 145);  font-size:27px;" > 
+             <span style="float:left">&nbsp;&lt;script&gt; </span>
+             <div style="float:right; font-size:33px;  position:absolute; left:1075px"> // type checking code </div>
+             <br>
+         </div>
+
+
+
+        <style>.back-1{ background-color:rgb(215,215,215);}</style>
+        <div style ="background-color: rgb(205,205,205); margin-left:0px; font-size:36px;" id='js-code' >the javascript</div>
+        <div style="background-color: rgb(195,195,195); font-size:12px;  ">
+             
+         <div style ="background-color: rgb(205,205,205);  font-family: 'Inconsolata', monospace; padding-bottom:2px; color: rgb(145, 145, 145); font-size:27px; ">&nbsp;&lt;/script&gt; </div>
+
+<br>
+             <div style="left:1250px;  font-family: 'Inconsolata', monospace; font-size:16px;  color: rgb(125, 125, 125); position:absolute;  font-size:33px; "> // console&nbsp;</div>
+                 <div id='log-text' style="margin-left:-5px; font-family: Arial; padding-top:2px; font-size:26px;">
+                </div>
+            
+        </div>
+
+
+</div>
+
+
+
+<br>
+
+
+
+
+
+
+        <div style ="background-color: rgb(255,255,255);" >https://github.com/steenhansen/type-czech#s</div>
+
+<script> log = captureConsole("log-text") 
+
+
+// log("ardvarrk")
+
+</script>
+
+<script id="check-code">
+        type_czech = TypeCzech('LOG-ERRORS')                                    
+                                                                               
+        function BEFORE_addXY(x, y) {                                          
+            return type_czech.checkParam_type([x, y], ['number', 'number'])    
+        }                                                                      
+        addXY = type_czech.linkUp(addXY, BEFORE_addXY)                         
+                                                                               
+    function addXY(x, y) { return x + y }                         // your code
+
+    console.log(" 5 + 5     = ", addXY(5, 5))
+    linesConsole(2)
+    console.log(" 6 + 'six' = ", addXY(6, 'six'))
+    linesConsole(1)
+    console.log(" 7 + 7     = ", addXY(7, 7))
+</script>
+
+
+
+
+
+
+
+
+<script>
+
+   jsToDiv('js-code', "check-code")
+
+   fromToBackGround(1, 561, 'code', 1)  // type_czech = TypeCzech('LOG-ERRORS') .... linkUp(addNums, PRE_addNums) 
+
+   ///////////////////////////
+
+
+   fromToBoldText(192, 192, 'code', 2)  // BEFORE_addXY(x
+  fromToBoldText(289, 289, 'code', 2)  // [x,y
+  fromToBoldText(298, 303, 'code', 2)  // ['number,
+
+  fromToBoldText(581, 581, 'code', 2)  // ion addXY(x,
+  fromToBoldText(596, 596, 'code', 2)  // rn x +
+
+  fromToBoldText(727, 727, 'code', 2)  // *** addXY(6
+
+
+
+   fromToBoldText(247, 247, 'log', 2)    // VALUES [6, 
+   fromToBoldText(360, 360, 'log', 2)    // "6six" 
+
+///////////////////////////////////////////////////////////////
+
+     fromToBoldText(195, 195, 'code', 1)  // BEFORE_addXY(x,y
+  fromToBoldText(292, 292, 'code', 1)  // ,y]
+  fromToBoldText(308, 313, 'code', 1)  // ,'number]
+
+  fromToBoldText(584, 584, 'code', 1)  // ion addXY(x,y
+  fromToBoldText(600, 600, 'code', 1)  // rn x + Y
+
+   fromToBoldText(731, 733, 'code', 1)    //addXY(6, 'six'))
+
+
+
+fromToBoldText(105, 110, 'log', 1)    //y a 'string' with a value of six
+fromToBoldText(129, 131, 'log', 1)    //y a 'string' with a value of six
+
+
+fromToBoldText(212, 217, 'log', 1)    //ACTUAL TYPE ['number','string']
+   fromToBoldText(250, 253, 'log', 1)    //S [6,"six"]
+
+   fromToBoldText(361, 363, 'log', 1)    //  ix' = "6six"
+
+
+
+////////////////////////////////////////////////////////////
+      fromToBoldText(628, 639, 'code', 8)  // // your code
+
+
+
+
+
+</script>
+
+
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Inconsolata">
+
+  Recommended aspect ratios: 1:1 square; 4:5 portrait; 4:3 landscape; 16:9 landscape
+Recommended resolutions: 1080x1080 square, 1080x1350 portrait, 1440x1080 landscape, 1920x1080 landscape
