@@ -1,0 +1,138 @@
+<!DOCTYPE html><meta charset="utf-8" />
+<title>703 B - Async Await - TypeScript Fail</title>
+
+<!-- 
+
+This example exists to show that TypeScript does not help with runtime type errors that TypeCzech catches.
+
+This is the HTML in https://jsfiddle.net/steen_hansen/hydvt4jq/
+
+ -->
+
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/consolelog.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/TypeCzech.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/type-czech.css">
+
+<div id="app"></div>
+
+
+<div id='js-div' style="width:50%">
+              <span class='git-hub'><b>Vanilla JavaScript</b></span>
+              <div id='js-code'>the javascript</div>
+              <br>
+
+</div>
+
+
+<div id="the-explanation" style="width: 50%" >
+  <div class='an-explantion'>703 B - Async Await - TypeScript Fail</div>
+  <div id='explanation-text'> 
+    <br>
+                       This example exists to show that TypeScript cannot catch return type errors inside asynchronous functions.
+                       Below, only the TypeCzech fetchJson() function signals the invalid response from the test API call to httpbin.org
+                       caught by POST_fetch().
+                       The valid runtime response expected to be of the form of <b>{"correct_key":"correct_value"}</b> which TypeScript cannot diagnose 
+                       since it occurs at runtime.
+
+
+                  <br>
+                  <br>
+
+                    <span class='git-hub'><b>TypeScript</b>&nbsp;</span>
+                  <pre>
+type JSONResponse = {
+    args: {correct_key: string}
+}
+
+async function fetchJsonTs(the_url:string) :Promise<JSONResponse> {
+  let the_response = await fetch(the_url)
+  let the_json = await the_response.json()
+  return the_json
+}
+  
+fetchJsonTs("https://httpbin.org/anything?correct_key=correct_value")
+   .then( the_json=> log("|| typescript gets correct key ", the_json.args) )
+
+fetchJsonTs("https://httpbin.org/anything?wrong_key=wrong_value2")
+    .then(no_err_ts => no_err_ts);
+</pre>
+
+                  <br>
+  </div>
+
+          <div id="console-log"  >
+                      <div class='a-title'>Console Output</div>
+                      <div id='log-text'></div>
+                      <br>
+          </div>
+
+
+
+</div>
+
+
+
+
+
+
+
+    <script>
+      log = captureConsole("log-text")
+      const THREE_SEC_TIMEOUT = 3210
+    </script>
+
+<script id="check-code">
+/**/  type_czech = TypeCzech('LOG-ERRORS')
+/**/  
+/**/  function POST_fetch(fetch_promise) {
+/**/    let is_resolved = false, the_err = "",  ret_response = "";
+/**/    fetch_promise.then((the_response) => {
+/**/      ret_response = the_response
+/**/      expected_keys = {args: {correct_key: "string"}}
+/**/      the_err = type_czech.checkParam_typeExtra(the_response, expected_keys);
+/**/      if (!the_err) is_resolved = true;
+/**/      return fetch_promise;
+/**/    });
+/**/    setTimeout(() => {
+/**/      if (!is_resolved) {
+/**/        the_args = JSON.stringify(ret_response.args)
+/**/        err_mess = `POST_myAwaitFetch() | - ` + the_err + "| - " 
+/**/                     + the_args + "| - from " + ret_response.url
+/**/        type_czech.check_assert(err_mess);
+/**/      }  }, 3210);
+/**/  }
+/**/  
+/**/  fetchJsonTc = type_czech.linkUp(fetchJsonTc, undefined, POST_fetch);
+
+async function fetchJsonTc(url) {
+  the_response = await fetch(url)
+  the_json = await the_response.json()
+  return the_json
+}
+
+fetchJsonTc("https://httpbin.org/anything?correct_key=correct_value")
+   .then( the_json=> log("TYPE-CZECH gets correct key " +  JSON.stringify(the_json.args)) )
+
+fetchJsonTc("https://httpbin.org/anything?wrong_key=wrong_value2")
+    .then( error_tc => error_tc)
+</script>
+
+<script>
+function colorBoldText() {
+    fromToBoldText(612, 630, 'code', 1)  //  err_mess = `POST_myAwaitFetch() | - 
+    fromToBoldText(161, 179, 'log', 1)  //  MESSAGE POST_myAwaitFetch()
+
+
+    fromToBoldText(280, 290, 'code', 2)  // s = {args: {correct_key: "string"}}
+    fromToBoldText(1221, 1229, 'code', 2)  //  org/anything?wrong_key=wrong_value2"
+    fromToBoldText(273, 281, 'log', 2)  //  - {"wrong_key":"wrong_value2"}
+
+
+  }
+
+  jsToDiv('js-code', "check-code")
+  colorBoldText()
+    setTimeout(() => colorBoldText(), THREE_SEC_TIMEOUT);
+    setTimeout(() => colorBoldText(), THREE_SEC_TIMEOUT*2);
+</script>
+
