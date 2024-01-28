@@ -29,6 +29,13 @@ Live editable [JSFiddles](https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Co
 
   - No compiling, a [single dependency free file ](https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/TypeCzech.js)
 
+## Similar Proxy Using Projects in TypeScript
+[ts-runtime](https://github.com/fabiandev/ts-runtime)
+
+[Flow Runtime](https://github.com/gajus/flow-runtime)
+
+
+
 ## Shortest Possible Live Example
 
 The [shortest easiest possible example](https://jsfiddle.net/steen_hansen/7c2q54v0/?000-Shortest-Possible-Example) on a live editable JSFiddle.
@@ -136,7 +143,7 @@ A live editable JSFiddle [703 - Async Await](https://jsfiddle.net/steen_hansen/q
 
 ## Live Editable Type-Czech JSFiddle Examples
 
-[Contents](https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Contents) of 74 live editable examples. Best 'Editor layout' is 'Right results'.
+[Contents](https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Contents) of 80 live editable examples. Best 'Editor layout' is 'Right results'.
 
 |                                                                                                                                    |                                                                                                                        |                                                                                                                                            |                                                                                                                                         |                                                                                                                                            |
 |------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|
@@ -195,9 +202,9 @@ import TypeCzech_obj from "./node_modules/type-czech/type-czech-import.js";
 
 ### [Empty Strings, Arrays, and Objects](./read-mes/empty-signatures.md)
 
-### [JSFiddle - 74 Page Live Online Editable Tutorial](https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Contents)
+### [JSFiddle - 80 Page Live Online Editable Tutorial](https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Contents)
 
-### [Local Filesystem - 74 Page Local Editable Tutorial](./example-snippets/example-contents.html)
+### [Local Filesystem - 80 Page Local Editable Tutorial](./example-snippets/example-contents.html)
 
 ### [16 Simple How To Snippets](./read-mes/simple-howto.md)
 
@@ -215,7 +222,7 @@ import TypeCzech_obj from "./node_modules/type-czech/type-czech-import.js";
 
 ### [Dependencies](./read-mes/the-dependencies.md)
 
-### [Run Tests](./read-mes/run-tests.md)
+### [Run 2456 Tests](./read-mes/run-tests.md)
 
 ### [Compile New Versions](./read-mes/compile-code.md)
 
