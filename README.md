@@ -29,12 +29,17 @@ Live editable [JSFiddles](https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Co
 
   - No compiling, a [single dependency free file ](https://cdn.jsdelivr.net/gh/steenhansen/type-czech@latest/web-resources/TypeCzech.js)
 
-## Similar Proxy Using Projects in TypeScript
-[ts-runtime](https://github.com/fabiandev/ts-runtime)
+## Similar Projects
 
-[Flow Runtime](https://github.com/gajus/flow-runtime)
+[clojure.spec](https://clojure.org/about/spec) My inspiration, runtime type checking in Clojure; also has generative testing.
 
+[Sorbet](https://sorbet.org/docs/overview) Static and runtime type checking in Ruby from Stripe.
 
+[ts-runtime](https://github.com/fabiandev/ts-runtime) TypeScript that uses JavaScript's Proxy object for runtime type checking.
+
+[Flow Runtime](https://github.com/gajus/flow-runtime) TypeScript that uses JavaScript's Proxy object for runtime type checking.
+
+The one thing that distinguishes TypeCzech is that it can be used/added with absolutely no changes to the original source code. Types can be checked by loading a file with TypeCzech calls before the original source. Types are not checked by not including the file with the TypeCzech calls.
 
 ## Shortest Possible Live Example
 
