@@ -39,7 +39,7 @@ Live editable [JSFiddles](https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Co
 
 [Flow Runtime](https://github.com/gajus/flow-runtime) TypeScript that uses JavaScript's Proxy object for runtime type checking.
 
-The one thing that distinguishes TypeCzech is that it can be used/added with absolutely no changes to the original source code. Types can be checked by loading a file with TypeCzech calls before the original source. Types are not checked by not including the file with the TypeCzech calls.
+The one thing that distinguishes TypeCzech is that it can be used/added with absolutely no changes to the original source code, no added syntax, just functions. Types can be checked by loading a file with TypeCzech calls before the original source. Types are not checked by not including the file with the TypeCzech calls.
 
 ## Shortest Possible Live Example
 
