@@ -2,6 +2,7 @@
 <a id="s"></a>
 # TypeCzech
 
+### What if we replace type syntax with functions that check parameter types, and can also guarantee parameter/return values are valid. Basically à la carte Design by Contract from Eiffel.
 
 Ditch TypeScript and use TypeCzech runtime type checking instead. 
 Live editable [JSFiddles](https://jsfiddle.net/steen_hansen/1Lshcept/?Example-Contents) with visible type checking in the list below.
